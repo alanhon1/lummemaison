@@ -1,0 +1,233 @@
+{
+  "nav": {
+    "home": "홈",
+    "catalogue": "카탈로그",
+    "about": "회사 소개",
+    "contact": "연락처",
+    "cart": "장바구니",
+    "search": "검색"
+  },
+  "home": {
+    "hero": {
+      "title": "프리미엄 한국",
+      "titleAccent": "에스테틱 코스메틱",
+      "subtitle": "한국에서 직접 수입한 전문 의료 등급 에스테틱 제품. 전 세계 클리닉과 에스테틱 전문가들이 신뢰합니다.",
+      "cta": "카탈로그 보기",
+      "ctaSecondary": "문의하기"
+    },
+    "categories": {
+      "title": "카테고리",
+      "subtitle": "전문 에스테틱 제품의 종합적인 라인업을 살펴보세요",
+      "viewAll": "전체 보기"
+    },
+    "bestSellers": {
+      "title": "베스트셀러",
+      "subtitle": "전문가들이 가장 신뢰하는 인기 제품"
+    },
+    "whyChooseUs": {
+      "title": "Lumière를 선택하는 이유",
+      "subtitle": "프리미엄 한국 에스테틱 제품의 신뢰할 수 있는 파트너",
+      "authentic": {
+        "title": "100% 정품",
+        "desc": "모든 제품은 공인된 한국 제조업체에서 직접 공급됩니다"
+      },
+      "shipping": {
+        "title": "한국 직배송",
+        "desc": "서울에서 FedEx를 통한 빠르고 안전한 전 세계 배송"
+      },
+      "global": {
+        "title": "글로벌 서비스",
+        "desc": "전 세계 50개국 이상의 에스테틱 전문가들에게 서비스 제공"
+      },
+      "b2b": {
+        "title": "B2B 전문",
+        "desc": "전문가를 위한 도매 가격 및 유연한 MOQ"
+      }
+    },
+    "newProducts": {
+      "title": "신제품",
+      "subtitle": "카탈로그에 새로 추가된 최신 제품"
+    },
+    "cta": {
+      "title": "주문 준비되셨나요?",
+      "subtitle": "가격, MOQ, 도매 문의를 위해 연락해 주세요",
+      "button": "문의하기",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "email": "이메일"
+    }
+  },
+  "catalogue": {
+    "title": "제품 카탈로그",
+    "subtitle": "20개 카테고리, 438개 제품",
+    "search": "제품 검색...",
+    "filter": "필터",
+    "allCategories": "전체 카테고리",
+    "priceRange": "가격 범위",
+    "saleOnly": "할인 제품만",
+    "newOnly": "신제품만",
+    "sortBy": "정렬",
+    "sortDefault": "기본",
+    "sortPriceAsc": "가격: 낮은 순",
+    "sortPriceDesc": "가격: 높은 순",
+    "sortName": "이름 A-Z",
+    "noResults": "제품을 찾을 수 없습니다",
+    "noResultsHint": "검색어나 필터를 조정해 보세요",
+    "products": "개 제품",
+    "addToCart": "장바구니 추가",
+    "viewDetails": "상세 보기",
+    "downloadPdf": "카탈로그 PDF 다운로드"
+  },
+  "product": {
+    "specification": "규격",
+    "description": "설명",
+    "price": "가격",
+    "moq": "최소주문수량",
+    "unit": "개",
+    "units": "개",
+    "addToCart": "장바구니 추가",
+    "inStock": "재고 있음",
+    "outOfStock": "재고 없음",
+    "category": "카테고리",
+    "tags": {
+      "new": "신제품",
+      "sale": "할인",
+      "bestSeller": "베스트셀러"
+    },
+    "relatedProducts": "관련 제품",
+    "contactForOrder": "주문 문의"
+  },
+  "cart": {
+    "title": "장바구니",
+    "empty": "장바구니가 비어있습니다",
+    "emptyHint": "카탈로그에서 제품을 찾아보세요",
+    "continueShopping": "쇼핑 계속하기",
+    "remove": "삭제",
+    "quantity": "수량",
+    "subtotal": "소계",
+    "total": "합계",
+    "items": "개",
+    "checkout": "주문하기",
+    "clear": "비우기"
+  },
+  "checkout": {
+    "title": "주문서",
+    "shipping": "배송 정보",
+    "firstName": "이름",
+    "lastName": "성",
+    "company": "회사/클리닉명",
+    "email": "이메일 주소",
+    "phone": "전화번호",
+    "country": "국가",
+    "address": "주소",
+    "city": "도시",
+    "state": "주/도",
+    "zip": "우편번호",
+    "paymentMethod": "결제 방법",
+    "wise": "Wise (계좌이체)",
+    "usdt": "USDT (암호화폐)",
+    "placeOrder": "주문 완료",
+    "orderSummary": "주문 요약",
+    "shippingFee": "배송비",
+    "total": "합계",
+    "koreaRestriction": "한국으로는 배송하지 않습니다.",
+    "required": "필수"
+  },
+  "payment": {
+    "title": "결제 안내",
+    "orderNumber": "주문번호",
+    "orderPlaced": "주문이 완료되었습니다!",
+    "instructions": "아래 방법 중 하나로 결제를 완료해 주세요",
+    "wise": {
+      "title": "Wise로 결제",
+      "instructions": "Wise 계정으로 결제를 보내주세요. 참조에 주문번호를 포함해 주세요."
+    },
+    "usdt": {
+      "title": "USDT (TRC-20)로 결제",
+      "instructions": "아래 주소로 TRC-20 네트워크에서 USDT를 보내주세요. 메모에 주문번호를 입력해 주세요.",
+      "address": "지갑 주소",
+      "network": "네트워크"
+    },
+    "afterPayment": "결제 완료 후 주문번호와 함께 WhatsApp 또는 이메일로 결제 확인서를 보내주세요.",
+    "contactUs": "문의하기",
+    "orderDetails": "주문 내역"
+  },
+  "about": {
+    "title": "회사 소개",
+    "subtitle": "프리미엄 한국 에스테틱 제품의 신뢰할 수 있는 파트너",
+    "story": {
+      "title": "회사 소개",
+      "content": "Lumière는 SH Core Stetics Global (Skin Global)의 글로벌 수출 브랜드로, 프리미엄 한국 의료 등급 에스테틱 제품의 전문 B2B 공급업체입니다. 전 세계 에스테틱 클리닉, 피부과 의사, 미용 전문가들을 한국 최고 제조업체의 최고 제품과 연결합니다."
+    },
+    "mission": {
+      "title": "우리의 사명",
+      "content": "프리미엄 한국 에스테틱 혁신을 전 세계 전문가들에게 제공하여 진정성, 품질, 안정적인 공급을 보장합니다."
+    },
+    "values": {
+      "title": "핵심 가치",
+      "authentic": "정품 보장",
+      "quality": "품질",
+      "reliability": "신뢰성",
+      "expertise": "전문성"
+    }
+  },
+  "contact": {
+    "title": "문의하기",
+    "subtitle": "도매 문의를 위해 연락해 주세요",
+    "form": {
+      "name": "이름",
+      "email": "이메일 주소",
+      "company": "회사/클리닉명",
+      "message": "메시지",
+      "send": "보내기"
+    },
+    "info": {
+      "title": "연락처 정보",
+      "email": "이메일",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "address": "주소"
+    }
+  },
+  "footer": {
+    "company": "회사",
+    "about": "회사 소개",
+    "catalogue": "카탈로그",
+    "contact": "연락처",
+    "payment": "결제 방법",
+    "shipping": "배송",
+    "legal": "법적 고지",
+    "copyright": "© 2026 SH Core Stetics Global. All rights reserved.",
+    "disclaimer": "전문가 전용. B2B 판매만 가능. 최종 소비자 재판매 불가.",
+    "downloadCatalogue": "카탈로그 다운로드"
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다",
+    "tryAgain": "다시 시도",
+    "close": "닫기",
+    "back": "뒤로",
+    "next": "다음",
+    "previous": "이전",
+    "viewAll": "전체 보기",
+    "learnMore": "자세히 보기",
+    "contact": "연락처",
+    "from": "부터",
+    "currency": "$"
+  },
+  "gates": {
+    "professional": {
+      "title": "전문가 전용 서비스",
+      "subtitle": "Lumière는 면허를 보유한 에스테틱 및 의료 전문가만을 위한 서비스입니다.",
+      "question": "면허를 보유한 에스테틱 또는 의료 전문가이신가요?",
+      "yes": "예, 전문가입니다",
+      "no": "아니오"
+    },
+    "korea": {
+      "title": "서비스 불가 지역",
+      "subtitle": "현재 한국 내수 시장은 서비스하지 않습니다.",
+      "message": "Lumière는 수출 전용 서비스입니다. 한국으로는 배송하지 않습니다.",
+      "contact": "문의사항은 이쪽으로 연락해 주세요:"
+    }
+  }
+}

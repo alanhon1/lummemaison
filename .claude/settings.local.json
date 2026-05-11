@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(npm *)",
+      "PowerShell(Set-ExecutionPolicy *)",
+      "PowerShell(Head *)",
+      "PowerShell(node -e \"const pkg = require\\('./node_modules/next/package.json'\\); console.log\\(pkg.version\\)\" 2>&1)",
+      "PowerShell(node -e \"const pkg = require\\('./node_modules/next-intl/package.json'\\); console.log\\(pkg.version\\)\" 2>&1)",
+      "PowerShell(pip *)",
+      "PowerShell(python3 --version 2>&1; node -e \"const fs = require\\('fs'\\); const buf = fs.readFileSync\\('APR2026- CATALOGUE.pdf'\\); console.log\\('PDF size:', buf.length, 'bytes'\\); const text = buf.toString\\('utf8', 0, 2000\\); console.log\\(text.substring\\(0, 500\\)\\);\" 2>&1)",
+      "PowerShell(New-Item *)",
+      "PowerShell(cmd /c \"type C:\\\\Users\\\\user\\\\Desktop\\\\lumiere-app\\\\.env.local\")",
+      "PowerShell(cmd /c \"dir /b C:\\\\Users\\\\user\\\\Desktop\\\\lumiere-app\\\\node_modules\\\\pdfjs-dist\\\\ 2>&1\")",
+      "PowerShell(cmd /c \"dir /b C:\\\\Users\\\\user\\\\Desktop\\\\lumiere-app\\\\node_modules\\\\pdfjs-dist\\\\legacy\\\\build\\\\ 2>&1\")",
+      "PowerShell(pdfimages *)",
+      "PowerShell(node -e \"const p = require\\('C:/Users/user/Desktop/lumiere-app/node_modules/pdfjs-dist/package.json'\\); console.log\\(p.version\\)\")",
+      "PowerShell(taskkill *)",
+      "PowerShell($data = Get-Content \"C:\\\\Users\\\\user\\\\Desktop\\\\lumiere-app\\\\data\\\\products.json\" | ConvertFrom-Json; $data.products | Select-Object -First 15 | Format-Table id, name, price, specification -AutoSize)",
+      "PowerShell(Get-Process *)",
+      "WebFetch(domain:lumeemaison.com)"
+    ]
+  }
+}

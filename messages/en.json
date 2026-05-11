@@ -1,0 +1,233 @@
+{
+  "nav": {
+    "home": "Home",
+    "catalogue": "Catalogue",
+    "about": "About",
+    "contact": "Contact",
+    "cart": "Cart",
+    "search": "Search"
+  },
+  "home": {
+    "hero": {
+      "title": "Premium Korean",
+      "titleAccent": "Aesthetic Cosmetics",
+      "subtitle": "Professional-grade medical and aesthetic products sourced directly from Korea. Trusted by clinics and aesthetic professionals worldwide.",
+      "cta": "View Catalogue",
+      "ctaSecondary": "Contact Us"
+    },
+    "categories": {
+      "title": "Our Categories",
+      "subtitle": "Explore our comprehensive range of professional aesthetic products",
+      "viewAll": "View All"
+    },
+    "bestSellers": {
+      "title": "Best Sellers",
+      "subtitle": "Our most popular products trusted by professionals"
+    },
+    "whyChooseUs": {
+      "title": "Why Choose Lumière",
+      "subtitle": "Your trusted partner for premium Korean aesthetic products",
+      "authentic": {
+        "title": "100% Authentic",
+        "desc": "All products are sourced directly from certified Korean manufacturers"
+      },
+      "shipping": {
+        "title": "Direct from Korea",
+        "desc": "Fast and reliable worldwide shipping via FedEx from Seoul"
+      },
+      "global": {
+        "title": "Global Reach",
+        "desc": "Serving aesthetic professionals in over 50 countries worldwide"
+      },
+      "b2b": {
+        "title": "B2B Specialist",
+        "desc": "Dedicated wholesale pricing and MOQ flexibility for professionals"
+      }
+    },
+    "newProducts": {
+      "title": "New Arrivals",
+      "subtitle": "The latest additions to our catalogue"
+    },
+    "cta": {
+      "title": "Ready to Order?",
+      "subtitle": "Contact us for pricing, MOQ, and wholesale inquiries",
+      "button": "Get In Touch",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "email": "Email Us"
+    }
+  },
+  "catalogue": {
+    "title": "Product Catalogue",
+    "subtitle": "438 products across 20 categories",
+    "search": "Search products...",
+    "filter": "Filters",
+    "allCategories": "All Categories",
+    "priceRange": "Price Range",
+    "saleOnly": "Sale Items Only",
+    "newOnly": "New Arrivals Only",
+    "sortBy": "Sort By",
+    "sortDefault": "Default",
+    "sortPriceAsc": "Price: Low to High",
+    "sortPriceDesc": "Price: High to Low",
+    "sortName": "Name A-Z",
+    "noResults": "No products found",
+    "noResultsHint": "Try adjusting your search or filters",
+    "products": "products",
+    "addToCart": "Add to Cart",
+    "viewDetails": "View Details",
+    "downloadPdf": "Download Catalogue PDF"
+  },
+  "product": {
+    "specification": "Specification",
+    "description": "Description",
+    "price": "Price",
+    "moq": "MOQ",
+    "unit": "unit",
+    "units": "units",
+    "addToCart": "Add to Cart",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "category": "Category",
+    "tags": {
+      "new": "New",
+      "sale": "Sale",
+      "bestSeller": "Best Seller"
+    },
+    "relatedProducts": "Related Products",
+    "contactForOrder": "Contact to Order"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "emptyHint": "Browse our catalogue to find products",
+    "continueShopping": "Continue Shopping",
+    "remove": "Remove",
+    "quantity": "Qty",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "items": "items",
+    "checkout": "Proceed to Checkout",
+    "clear": "Clear Cart"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping": "Shipping Information",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "company": "Company Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "country": "Country",
+    "address": "Street Address",
+    "city": "City",
+    "state": "State / Province",
+    "zip": "ZIP / Postal Code",
+    "paymentMethod": "Payment Method",
+    "wise": "Wise (Bank Transfer)",
+    "usdt": "USDT (Crypto)",
+    "placeOrder": "Place Order",
+    "orderSummary": "Order Summary",
+    "shippingFee": "Shipping Fee",
+    "total": "Total",
+    "koreaRestriction": "We do not ship to South Korea. Please select a different destination.",
+    "required": "required"
+  },
+  "payment": {
+    "title": "Payment Instructions",
+    "orderNumber": "Order Number",
+    "orderPlaced": "Your order has been placed!",
+    "instructions": "Please complete your payment using one of the methods below",
+    "wise": {
+      "title": "Pay via Wise",
+      "instructions": "Send payment to our Wise account. Include your order number as reference."
+    },
+    "usdt": {
+      "title": "Pay via USDT (TRC-20)",
+      "instructions": "Send USDT on TRC-20 network to the address below. Include your order number as memo.",
+      "address": "Wallet Address",
+      "network": "Network"
+    },
+    "afterPayment": "After completing payment, please send us a payment confirmation via WhatsApp or Email with your order number.",
+    "contactUs": "Contact Us",
+    "orderDetails": "Order Details"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Your trusted partner for premium Korean aesthetic products",
+    "story": {
+      "title": "Our Story",
+      "content": "Lumière is the global export brand of SH Core Stetics Global (Skin Global), a specialized B2B supplier of premium Korean medical-grade aesthetic products. We connect aesthetic clinics, dermatologists, and beauty professionals worldwide with the finest products from Korea's leading manufacturers."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "content": "To make premium Korean aesthetic innovations accessible to professionals worldwide, ensuring authenticity, quality, and reliable supply."
+    },
+    "values": {
+      "title": "Our Values",
+      "authentic": "Authenticity",
+      "quality": "Quality",
+      "reliability": "Reliability",
+      "expertise": "Expertise"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch for wholesale inquiries",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "company": "Company / Clinic Name",
+      "message": "Message",
+      "send": "Send Message"
+    },
+    "info": {
+      "title": "Get In Touch",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "address": "Address"
+    }
+  },
+  "footer": {
+    "company": "Company",
+    "about": "About Us",
+    "catalogue": "Catalogue",
+    "contact": "Contact",
+    "payment": "Payment Methods",
+    "shipping": "Shipping",
+    "legal": "Legal",
+    "copyright": "© 2026 SH Core Stetics Global. All rights reserved.",
+    "disclaimer": "For professional use only. B2B sales only. Not for resale to end consumers.",
+    "downloadCatalogue": "Download Catalogue"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "tryAgain": "Try Again",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "viewAll": "View All",
+    "learnMore": "Learn More",
+    "contact": "Contact",
+    "from": "from",
+    "currency": "$"
+  },
+  "gates": {
+    "professional": {
+      "title": "Professional Access Only",
+      "subtitle": "Lumière serves licensed aesthetic and medical professionals exclusively.",
+      "question": "Are you a licensed aesthetic or medical professional?",
+      "yes": "Yes, I am a professional",
+      "no": "No, I am not"
+    },
+    "korea": {
+      "title": "Service Not Available",
+      "subtitle": "We currently do not serve the Korean domestic market.",
+      "message": "Lumière is an export-only service. We do not ship to South Korea.",
+      "contact": "For inquiries, please contact us at"
+    }
+  }
+}
