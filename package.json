@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "fetch-images": "tsx scripts/fetch-product-images.ts"
+    "fetch-images": "tsx scripts/fetch-product-images.ts",
+    "enrich-descriptions": "tsx scripts/enrich-product-descriptions.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
