@@ -5,6 +5,7 @@ import { ArrowLeft, Tag, Layers } from 'lucide-react';
 import { getProductById, getCategoryById, getProductsByCategory } from '@/lib/products';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
+import ProductDetailTabs from '@/components/catalogue/ProductDetailTabs';
 import ProductPrice from '@/components/catalogue/ProductPrice';
 import ProductCard from '@/components/catalogue/ProductCard';
 import ProductImage from '@/components/catalogue/ProductImage';
@@ -25,11 +26,16 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
   if (!product) notFound();
 
   const t = await getTranslations({ locale, namespace: 'product' });
-  const tCat = getTranslations({ locale, namespace: 'catalogue' });
   const category = getCategoryById(product.categoryId);
   const related = getProductsByCategory(product.categoryId)
     .filter(p => p.id !== product.id)
     .slice(0, 4);
+
+  const hasEnriched = !!(
+    product.enrichedInfo?.benefits?.length ||
+    product.enrichedInfo?.protocol ||
+    product.enrichedInfo?.ingredients
+  );
 
   return (
     <div className="pt-24 min-h-screen bg-cream">
@@ -51,29 +57,24 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
           <span className="text-charcoal font-medium line-clamp-1 max-w-xs">{product.name}</span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Image */}
-          <div className="border border-bone aspect-square relative overflow-hidden">
-            <ProductImage
-              src={product.image}
-              alt={product.name}
-              productId={product.id}
-              categoryId={product.categoryId}
-              categoryName={category?.name}
-              fill={false}
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            {/* Badges */}
-            <div className="absolute top-4 left-4 flex flex-col gap-1.5">
-              {product.isNew && (
-                <span className="badge-new text-xs px-2 py-1">{t('tags.new')}</span>
-              )}
-              {product.isSale && (
-                <span className="badge-sale text-xs px-2 py-1">{t('tags.sale')}</span>
-              )}
-              {product.isBestSeller && (
-                <span className="badge-best text-xs px-2 py-1">{t('tags.bestSeller')}</span>
-              )}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          {/* Image — sticky on large screens */}
+          <div className="lg:sticky lg:top-28">
+            <div className="border border-bone aspect-square relative overflow-hidden">
+              <ProductImage
+                src={product.image}
+                alt={product.name}
+                productId={product.id}
+                categoryId={product.categoryId}
+                categoryName={category?.name}
+                fill={false}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute top-4 left-4 flex flex-col gap-1.5">
+                {product.isNew && <span className="badge-new text-xs px-2 py-1">{t('tags.new')}</span>}
+                {product.isSale && <span className="badge-sale text-xs px-2 py-1">{t('tags.sale')}</span>}
+                {product.isBestSeller && <span className="badge-best text-xs px-2 py-1">{t('tags.bestSeller')}</span>}
+              </div>
             </div>
           </div>
 
@@ -84,10 +85,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
               {category && (
                 <>
                   <span>·</span>
-                  <Link
-                    href={`/${locale}/catalogue/${product.categoryId}`}
-                    className="text-gold hover:underline"
-                  >
+                  <Link href={`/${locale}/catalogue/${product.categoryId}`} className="text-gold hover:underline">
                     {category.name}
                   </Link>
                 </>
@@ -97,13 +95,10 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             <h1 className="font-display text-3xl md:text-4xl font-light text-charcoal mb-4">
               {product.name}
             </h1>
-
             <div className="gold-divider mb-6" />
 
-            {/* Price */}
             <ProductPrice price={product.price} moq={product.moq} moqLabel={t('units')} />
 
-            {/* Specification */}
             {product.specification && (
               <div className="mb-6 p-4 bg-white border border-bone">
                 <div className="flex items-center gap-2 mb-2">
@@ -116,8 +111,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
               </div>
             )}
 
-            {/* Description */}
-            {product.description && (
+            {!hasEnriched && product.description && (
               <div className="mb-6">
                 <h3 className="text-xs font-semibold tracking-wider uppercase text-mist mb-3">
                   {t('description')}
@@ -126,7 +120,6 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
               </div>
             )}
 
-            {/* Status */}
             <div className="flex items-center gap-2 mb-8">
               <div className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-400'}`} />
               <span className="text-xs font-semibold text-charcoal">
@@ -134,38 +127,38 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
               </span>
             </div>
 
-            {/* CTA */}
             <ProductDetailClient product={product} />
 
-            {/* Tags */}
             {product.tags.length > 0 && (
               <div className="mt-6 flex items-center gap-2">
                 <Tag size={13} className="text-mist" />
                 <div className="flex gap-2 flex-wrap">
                   {product.tags.map(tag => (
-                    <span key={tag} className="text-xs text-mist border border-bone px-2 py-0.5">
-                      {tag}
-                    </span>
+                    <span key={tag} className="text-xs text-mist border border-bone px-2 py-0.5">{tag}</span>
                   ))}
                 </div>
               </div>
             )}
+
+            {hasEnriched && (
+              <ProductDetailTabs
+                description={product.description}
+                specification={product.specification}
+                enrichedInfo={product.enrichedInfo}
+              />
+            )}
           </div>
         </div>
 
-        {/* Related products */}
         {related.length > 0 && (
           <div className="mt-20">
             <h2 className="section-title mb-8">{t('relatedProducts')}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {related.map(p => (
-                <ProductCard key={p.id} product={p} />
-              ))}
+              {related.map(p => <ProductCard key={p.id} product={p} />)}
             </div>
           </div>
         )}
 
-        {/* Back link */}
         <div className="mt-12">
           <Link
             href={`/${locale}/catalogue`}
