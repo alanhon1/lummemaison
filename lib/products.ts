@@ -6,6 +6,14 @@ export interface Category {
   range: [number, number];
 }
 
+export interface EnrichedInfo {
+  benefits?: string[];
+  treatmentAreas?: string[];
+  protocol?: string;
+  ingredients?: string;
+  duration?: string;
+}
+
 export interface Product {
   id: number;
   name: string;
@@ -20,6 +28,7 @@ export interface Product {
   inStock: boolean;
   image: string;
   moq: number;
+  enrichedInfo?: EnrichedInfo;
 }
 
 export const categories: Category[] = productsData.categories as Category[];
