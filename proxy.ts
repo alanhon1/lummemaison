@@ -23,14 +23,18 @@ export async function proxy(req: NextRequest) {
     return res;
   }
 
-  // Admin page protection
-  if (pathname.startsWith('/manzura') && pathname !== '/manzura/login') {
-    const res = NextResponse.next();
-    const session = await getIronSession<SessionData>(req, res, sessionOptions);
-    if (!session.loggedIn) {
-      return NextResponse.redirect(new URL('/manzura/login', req.url));
+  // Admin page protection — all /manzura paths bypass i18n
+  if (pathname.startsWith('/manzura')) {
+    if (pathname !== '/manzura/login') {
+      const res = NextResponse.next();
+      const session = await getIronSession<SessionData>(req, res, sessionOptions);
+      if (!session.loggedIn) {
+        return NextResponse.redirect(new URL('/manzura/login', req.url));
+      }
+      return res;
     }
-    return res;
+    // Login page: pass through directly without i18n redirect
+    return NextResponse.next();
   }
 
   // i18n routing for all other pages
