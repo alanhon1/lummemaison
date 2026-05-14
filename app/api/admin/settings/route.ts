@@ -6,7 +6,13 @@ const CONFIG_FILE = path.join(process.cwd(), 'lib', 'site-config.ts');
 
 export async function PATCH(req: NextRequest) {
   const updates = await req.json();
-  let src = fs.readFileSync(CONFIG_FILE, 'utf8');
+
+  let src: string;
+  try {
+    src = fs.readFileSync(CONFIG_FILE, 'utf8');
+  } catch {
+    return NextResponse.json({ error: 'Config file not readable' }, { status: 500 });
+  }
 
   // These replacements target the `contact` block fields.
   // `contact.whatsapp` is a plain phone string (e.g. "+82-10-0000-0000"),
@@ -14,21 +20,28 @@ export async function PATCH(req: NextRequest) {
   // by the waLink block below, which uses a more specific regex.
   // Because `contact.whatsapp` appears before `social.whatsapp` in the file,
   // the first regex match targets the contact entry only.
-  const replacements: Record<string, string> = {
-    email: `email: "${updates.email}"`,
-    phone: `phone: "${updates.phone}"`,
-    whatsapp: `whatsapp: "${updates.whatsapp}"`,
-    telegram: `telegram: "${updates.telegram}"`,
-  };
 
-  for (const [field, replacement] of Object.entries(replacements)) {
-    src = src.replace(new RegExp(`${field}: "[^"]*"`), replacement);
+  if (updates.email !== undefined) {
+    src = src.replace(/email: "[^"]*"/, `email: "${updates.email}"`);
   }
-
-  if (updates.waLink) {
+  if (updates.phone !== undefined) {
+    src = src.replace(/phone: "[^"]*"/, `phone: "${updates.phone}"`);
+  }
+  if (updates.whatsapp !== undefined) {
+    src = src.replace(/whatsapp: "(?!https:\/\/wa\.me)[^"]*"/, `whatsapp: "${updates.whatsapp}"`);
+  }
+  if (updates.telegram !== undefined) {
+    src = src.replace(/telegram: "[^"]*"/, `telegram: "${updates.telegram}"`);
+  }
+  if (updates.waLink !== undefined) {
     src = src.replace(/whatsapp: "https:\/\/wa\.me\/[^"]*"/, `whatsapp: "${updates.waLink}"`);
   }
 
-  fs.writeFileSync(CONFIG_FILE, src, 'utf8');
+  try {
+    fs.writeFileSync(CONFIG_FILE, src, 'utf8');
+  } catch {
+    return NextResponse.json({ error: 'Failed to write config' }, { status: 500 });
+  }
+
   return NextResponse.json({ ok: true });
 }

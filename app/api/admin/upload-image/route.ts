@@ -5,7 +5,9 @@ import path from 'path';
 
 export async function POST(req: NextRequest) {
   const id = req.nextUrl.searchParams.get('id');
-  if (!id) return NextResponse.json({ error: 'Missing id' }, { status: 400 });
+  if (!id || !/^[a-zA-Z0-9_-]+$/.test(id)) {
+    return NextResponse.json({ error: 'Invalid id' }, { status: 400 });
+  }
 
   const formData = await req.formData();
   const file = formData.get('file') as File | null;
@@ -17,15 +19,29 @@ export async function POST(req: NextRequest) {
   const outputPath = path.join(outputDir, `product-${id}.webp`);
   const backupPath = path.join(outputDir, `product-${id}.bak.webp`);
 
+  let backupCreated = false;
   if (fs.existsSync(outputPath)) {
     fs.renameSync(outputPath, backupPath);
+    backupCreated = true;
   }
 
-  const buf = Buffer.from(await file.arrayBuffer());
-  await sharp(buf)
-    .resize(1600, 1600, { fit: 'inside', withoutEnlargement: true })
-    .webp({ quality: 90 })
-    .toFile(outputPath);
+  try {
+    const buf = Buffer.from(await file.arrayBuffer());
+    await sharp(buf)
+      .resize(1600, 1600, { fit: 'inside', withoutEnlargement: true })
+      .webp({ quality: 90 })
+      .toFile(outputPath);
+  } catch (err) {
+    // Restore backup if processing failed
+    if (backupCreated && fs.existsSync(backupPath)) {
+      try {
+        fs.renameSync(backupPath, outputPath);
+      } catch {
+        /* ignore */
+      }
+    }
+    return NextResponse.json({ error: 'Image processing failed' }, { status: 400 });
+  }
 
   return NextResponse.json({ ok: true, path: `/images/products/product-${id}.webp` });
 }
