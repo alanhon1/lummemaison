@@ -147,7 +147,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
           <button
             type="button"
             onClick={() => router.back()}
-            className="btn-outline"
+            className="border border-gold/40 text-espresso text-xs px-3 py-1.5 rounded-sm hover:border-gold transition-colors"
           >
             Cancel
           </button>
@@ -175,7 +175,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
               onClick={() => fileInputRef.current?.click()}
               className={`border-2 border-dashed rounded-sm p-4 text-center cursor-pointer transition-colors ${isDragging ? 'border-gold bg-gold/5' : 'border-bone hover:border-gold/50'}`}
             >
-              <p className="text-sm text-muted">
+              <p className="text-sm text-stone-500">
                 {uploading ? 'Uploading…' : 'Drag & drop or click to upload'}
               </p>
               <input
@@ -275,7 +275,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
 
           {activeTab === 'languages' && (
             <div className="space-y-4">
-              <p className="text-sm text-muted">Category language names (for display in storefront)</p>
+              <p className="text-sm text-stone-500">Category language names (for display in storefront)</p>
               <Field label="English">
                 <input
                   className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white"
