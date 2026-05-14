@@ -17,14 +17,20 @@ export default function SettingsPage() {
 
   async function handleSave() {
     setSaving(true);
-    await fetch('/api/admin/settings', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
-    });
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
-    setSaving(false);
+    try {
+      const res = await fetch('/api/admin/settings', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error('Save failed');
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Save failed');
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -42,8 +48,9 @@ export default function SettingsPage() {
           { key: 'waLink', label: 'WhatsApp Link (wa.me/...)' },
         ].map(f => (
           <div key={f.key}>
-            <label className="block text-[10px] uppercase tracking-[0.2em] text-mist mb-1.5">{f.label}</label>
+            <label htmlFor={`setting-${f.key}`} className="block text-[10px] uppercase tracking-[0.2em] text-mist mb-1.5">{f.label}</label>
             <input
+              id={`setting-${f.key}`}
               value={form[f.key as keyof typeof form]}
               onChange={e => setForm(p => ({ ...p, [f.key]: e.target.value }))}
               className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold"
@@ -51,7 +58,7 @@ export default function SettingsPage() {
           </div>
         ))}
         <div className="flex items-center gap-4 pt-2">
-          <button onClick={handleSave} disabled={saving} className="btn-gold text-xs disabled:opacity-60">
+          <button type="button" onClick={handleSave} disabled={saving} className="btn-gold text-xs disabled:opacity-60">
             {saving ? 'Saving…' : 'Save Changes'}
           </button>
           {saved && <span className="text-xs text-green-600">Saved! Redeploy to apply.</span>}
