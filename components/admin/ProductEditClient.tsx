@@ -31,6 +31,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   const [isDirty, setIsDirty] = useState(false);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [activeTab, setActiveTab] = useState<'basic' | 'enriched' | 'languages'>('basic');
@@ -51,12 +52,19 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   async function uploadFile(file: File) {
     if (!product) return;
     setUploading(true);
-    const fd = new FormData();
-    fd.append('file', file);
-    const res = await fetch(`/api/admin/upload-image?id=${product.id}`, { method: 'POST', body: fd });
-    const data = await res.json();
-    update('image', data.path);
-    setUploading(false);
+    setUploadError(null);
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const res = await fetch(`/api/admin/upload-image?id=${product.id}`, { method: 'POST', body: fd });
+      if (!res.ok) throw new Error('Upload failed');
+      const data: { ok: boolean; path: string } = await res.json();
+      update('image', data.path);
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : 'Upload failed');
+    } finally {
+      setUploading(false);
+    }
   }
 
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -108,10 +116,17 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   }
 
   async function handleDelete() {
-    if (!product || !confirm(`Delete #${product.id} ${product.name}?`)) return;
+    if (!product) return;
+    if (!confirm(`Delete "${product.name}"? This cannot be undone.`)) return;
     setDeleting(true);
-    await fetch(`/api/admin/products/${product.id}`, { method: 'DELETE' });
-    router.push('/manzura/products');
+    try {
+      const res = await fetch(`/api/admin/products/${product.id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed');
+      router.push('/manzura/products');
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Delete failed');
+      setDeleting(false);
+    }
   }
 
   const tagsStr = (form.tags ?? []).join(', ');
@@ -186,6 +201,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
                 onChange={handleFileChange}
               />
             </div>
+            {uploadError && <p className="text-red-600 text-xs mt-1">{uploadError}</p>}
           </div>
         )}
 
@@ -234,7 +250,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
                 {(['isNew', 'isSale', 'isBestSeller', 'inStock'] as const).map(key => (
                   <label key={key} className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={!!form[key]} onChange={e => update(key, e.target.checked as any)}
+                    <input type="checkbox" checked={!!form[key]} onChange={e => update(key, e.target.checked as Product[typeof key])}
                       className="accent-gold" />
                     <span className="text-xs capitalize">{key.replace('is', '').replace('Best', ' Best ')}</span>
                   </label>

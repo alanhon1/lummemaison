@@ -14,6 +14,18 @@ interface Props {
 
 const PAGE_SIZE = 50;
 
+function getPageNumbers(current: number, total: number): number[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const half = 3;
+  let start = Math.max(1, current - half);
+  let end = Math.min(total, current + half);
+  if (end - start < 6) {
+    if (start === 1) end = Math.min(total, 7);
+    else start = Math.max(1, end - 6);
+  }
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+}
+
 export default function ProductsClient({ products, categories, initialFilter }: Props) {
   const [search, setSearch] = useState('');
   const [catFilter, setCatFilter] = useState('');
@@ -50,23 +62,31 @@ export default function ProductsClient({ products, categories, initialFilter }: 
   }
 
   async function handleDelete(id: number) {
-    if (!confirm(`Delete product #${id}?`)) return;
+    if (!confirm('Delete this product?')) return;
     setDeleting(id);
-    await fetch(`/api/admin/products/${id}`, { method: 'DELETE' });
-    setDeleting(null);
-    window.location.reload();
+    try {
+      const res = await fetch(`/api/admin/products/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Delete failed');
+      window.location.reload();
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Delete failed');
+      setDeleting(null);
+    }
   }
 
   function handleBulkPriceApply() {
-    console.log('bulk price adjust', { ids: [...selected], value: bulkPriceValue, mode: bulkPriceMode });
+    // TODO: implement when /api/admin/products bulk API is available (Task 14)
+    console.log('bulk price apply', [...selected], bulkPriceValue, bulkPriceMode);
   }
 
   function handleBulkCategoryApply() {
+    // TODO: implement when /api/admin/products bulk API is available (Task 14)
     console.log('bulk category change', { ids: [...selected], category: bulkCategory });
   }
 
   function handleBulkDelete() {
     if (!confirm(`Delete ${selected.size} selected product${selected.size > 1 ? 's' : ''}?`)) return;
+    // TODO: implement when /api/admin/products bulk API is available (Task 14)
     console.log('bulk delete', [...selected]);
   }
 
@@ -90,7 +110,7 @@ export default function ProductsClient({ products, categories, initialFilter }: 
             placeholder="Search name, ID, category..."
             className="flex-1 text-sm bg-transparent outline-none text-charcoal placeholder-mist"
           />
-          {search && <button onClick={() => setSearch('')}><X size={12} className="text-mist" /></button>}
+          {search && <button aria-label="Clear search" onClick={() => setSearch('')}><X size={12} className="text-mist" /></button>}
         </div>
         <select
           value={catFilter}
@@ -175,7 +195,7 @@ export default function ProductsClient({ products, categories, initialFilter }: 
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-bone bg-cream">
-                <th className="px-4 py-3 w-8"><input type="checkbox" onChange={e => setSelected(e.target.checked ? new Set(paged.map(p => p.id)) : new Set())} /></th>
+                <th className="px-4 py-3 w-8"><input type="checkbox" checked={paged.length > 0 && paged.every(p => selected.has(p.id))} onChange={e => { setSelected(prev => { const next = new Set(prev); if (e.target.checked) paged.forEach(p => next.add(p.id)); else paged.forEach(p => next.delete(p.id)); return next; }); }} /></th>
                 <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase w-12">#</th>
                 <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase w-10">Img</th>
                 <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase">Name</th>
@@ -231,7 +251,7 @@ export default function ProductsClient({ products, categories, initialFilter }: 
       {totalPages > 1 && (
         <div className="flex items-center justify-center gap-2 mt-6">
           <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-3 py-1.5 border border-bone text-xs disabled:opacity-40">←</button>
-          {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => i + 1).map(n => (
+          {getPageNumbers(page, totalPages).map(n => (
             <button key={n} onClick={() => setPage(n)} className={`px-3 py-1.5 border text-xs ${n === page ? 'border-gold text-gold' : 'border-bone text-mist'}`}>{n}</button>
           ))}
           <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages} className="px-3 py-1.5 border border-bone text-xs disabled:opacity-40">→</button>
