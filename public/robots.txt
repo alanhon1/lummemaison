@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Disallow: /manzura
+Disallow: /api/admin/

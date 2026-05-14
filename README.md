@@ -160,3 +160,20 @@ node extract-pdf.js        # extracts text → pdf-text.txt
 node parse-products2.js    # parses products → data/products.json
 cp "APR2026- CATALOGUE.pdf" public/APR2026-CATALOGUE.pdf
 ```
+
+## Admin Panel
+
+Local admin panel: http://localhost:3000/manzura  
+Login: `manzura` / (see .env.local)
+
+## Scripts
+
+```bash
+# Download product images automatically (DuckDuckGo, no API key needed)
+npm run fetch-images
+
+# Enrich product descriptions from the web
+npm run enrich-descriptions
+```
+
+After running scripts locally, commit the updated `data/products.json` and `public/images/` then push to GitHub — Vercel redeploys automatically.
