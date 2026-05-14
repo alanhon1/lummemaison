@@ -26,11 +26,14 @@ export default function Header() {
 
   const { totalItems, toggleCart } = useCartStore();
   const { currency, setCurrency } = useCurrencyStore();
-  const itemCount = totalItems();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const itemCount = mounted ? totalItems() : 0;
+  const displayCurrency = mounted ? currency : 'USD';
 
   const CURRENCY_CYCLE: Record<string, Currency> = { USD: 'RUB', RUB: 'KRW', KRW: 'USD' };
   const CURRENCY_LABEL: Record<string, string> = { USD: '$ USD', RUB: '₽ RUB', KRW: '₩ 원' };
-  function cycleCurrency() { setCurrency(CURRENCY_CYCLE[currency]); }
+  function cycleCurrency() { setCurrency(CURRENCY_CYCLE[displayCurrency]); }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -111,7 +114,7 @@ export default function Header() {
               style={{ color: 'var(--page-text)' }}
               title="Switch currency"
             >
-              {CURRENCY_LABEL[currency]}
+              {CURRENCY_LABEL[displayCurrency]}
             </button>
 
             {/* Theme toggle */}
@@ -219,7 +222,7 @@ export default function Header() {
                 className="text-xs font-bold tracking-wider px-3 py-1.5 border rounded-md transition-colors"
                 style={{ borderColor: 'var(--border-color)', color: 'var(--page-text-2)' }}
               >
-                {CURRENCY_LABEL[currency]}
+                {CURRENCY_LABEL[displayCurrency]}
               </button>
               <div style={{ color: 'var(--page-text)' }}>
                 <ThemeToggle />

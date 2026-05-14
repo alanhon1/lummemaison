@@ -1,12 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useThemeStore, THEMES, type Theme } from '@/lib/theme-store';
 import { Palette, X } from 'lucide-react';
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useThemeStore();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const activeTheme = mounted ? theme : 'classic';
 
   return (
     <div className="relative">
@@ -50,8 +53,8 @@ export default function ThemeToggle() {
                   onClick={() => { setTheme(t.id as Theme); setOpen(false); }}
                   className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all text-left w-full"
                   style={{
-                    background: theme === t.id ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
-                    borderLeft: theme === t.id ? `3px solid var(--accent)` : '3px solid transparent',
+                    background: activeTheme === t.id ? 'color-mix(in srgb, var(--accent) 12%, transparent)' : 'transparent',
+                    borderLeft: activeTheme === t.id ? `3px solid var(--accent)` : '3px solid transparent',
                   }}
                 >
                   {/* Color swatch */}
@@ -67,7 +70,7 @@ export default function ThemeToggle() {
                   </div>
                   <span
                     className="text-xs font-medium tracking-wide"
-                    style={{ color: theme === t.id ? 'var(--accent)' : 'var(--page-text)' }}
+                    style={{ color: activeTheme === t.id ? 'var(--accent)' : 'var(--page-text)' }}
                   >
                     {t.label}
                   </span>
