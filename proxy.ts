@@ -13,14 +13,22 @@ const intlMiddleware = createMiddleware({
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // API admin protection (except auth endpoint itself)
-  if (pathname.startsWith('/api/admin/') && !pathname.startsWith('/api/admin/auth')) {
-    const res = NextResponse.next();
-    const session = await getIronSession<SessionData>(req, res, sessionOptions);
-    if (!session.loggedIn) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  // All /api/ routes bypass i18n entirely
+  if (pathname.startsWith('/api/')) {
+    // Protect admin API (except auth and logout)
+    if (
+      pathname.startsWith('/api/admin/') &&
+      !pathname.startsWith('/api/admin/auth') &&
+      !pathname.startsWith('/api/admin/logout')
+    ) {
+      const res = NextResponse.next();
+      const session = await getIronSession<SessionData>(req, res, sessionOptions);
+      if (!session.loggedIn) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      }
+      return res;
     }
-    return res;
+    return NextResponse.next();
   }
 
   // Admin page protection — all /manzura paths bypass i18n
