@@ -10,9 +10,13 @@ export async function GET() {
   if (!fs.existsSync(BACKUP_DIR)) return NextResponse.json({ backups: [] });
   const backups = fs.readdirSync(BACKUP_DIR)
     .filter(f => f.endsWith('.json'))
-    .map(f => {
-      const stat = fs.statSync(path.join(BACKUP_DIR, f));
-      return { name: f, size: stat.size, created: stat.mtime.toISOString() };
+    .flatMap(f => {
+      try {
+        const stat = fs.statSync(path.join(BACKUP_DIR, f));
+        return [{ name: f, size: stat.size, created: stat.mtime.toISOString() }];
+      } catch {
+        return []; // file was deleted between readdir and stat
+      }
     })
     .sort((a, b) => b.name.localeCompare(a.name));
   return NextResponse.json({ backups });
@@ -20,6 +24,10 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const { filename } = await req.json();
+  // Validate filename format to prevent path traversal
+  if (!/^products-[\d\w-]+\.json$/.test(filename)) {
+    return NextResponse.json({ error: 'Invalid filename' }, { status: 400 });
+  }
   const src = path.join(BACKUP_DIR, filename);
   if (!fs.existsSync(src)) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   createBackup(); // backup current state before restoring

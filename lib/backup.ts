@@ -6,6 +6,7 @@ const BACKUP_DIR = path.join(process.cwd(), 'data', 'backups');
 const MAX_BACKUPS = 30;
 
 export function createBackup(): void {
+  if (!fs.existsSync(DATA_FILE)) return; // nothing to back up
   fs.mkdirSync(BACKUP_DIR, { recursive: true });
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
   const dest = path.join(BACKUP_DIR, `products-${timestamp}.json`);
@@ -15,11 +16,17 @@ export function createBackup(): void {
     .filter(f => f.endsWith('.json'))
     .sort()
     .reverse();
-  files.slice(MAX_BACKUPS).forEach(f => fs.unlinkSync(path.join(BACKUP_DIR, f)));
+  files.slice(MAX_BACKUPS).forEach(f => {
+    try { fs.unlinkSync(path.join(BACKUP_DIR, f)); } catch { /* ignore if already deleted */ }
+  });
 }
 
 export function readData(): { products: any[]; categories: any[] } {
-  return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+  } catch {
+    throw new Error(`Failed to read ${DATA_FILE}: file missing or invalid JSON`);
+  }
 }
 
 export function writeData(data: any): void {
