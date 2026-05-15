@@ -1,0 +1,36 @@
+=== DESCRIPTIONS FETCHED (32) ===
+barbie-slim
+regenovue-sub-q
+sosum
+neuramis
+dermalax
+tesoro-sub-q-with-lido
+youthfill-pn-with-lido
+celosome
+ultrafill-nose
+misadi-pdlla-200-mg
+cindella-set
+juvelook-i-30mg
+miracle-x
+lapuroon-aurora-super
+curenex-bundle
+curenex-dailycare-rejuvenating-cream
+misadi-lipo
+botulax-300unit
+metox
+innotox-50
+nabota-200unit
+liztox-100u
+kaimax-100u
+wondertox-200
+mennus-pla-200mg
+lipotocin
+vita-d-200000iu
+wellscaine-plus-cream-450g
+sm-cream-2
+laennec
+dk-filler-cannula
+syringe-mixing-tube
+
+=== FAILED (1) ===
+dk-cannula-18g-50-7050pcs

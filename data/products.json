@@ -167,7 +167,7 @@
       "name": "BARBIE SLIM",
       "categoryId": "fillers",
       "specification": "10 mL x 5 vials Product components have a positive effect on participation, breakdown of",
-      "description": "Product components have a positive effect on participation, breakdown of fatty deposits, and guaran tee of a long - term effect",
+      "description": "Barbie Slim is new product designed to reduce body fat in the face and body area. The deoxycholic acid contained in the preparation has a lipolytic effect in selected parts of the body, and excess fat is metabolized and removed from the body.",
       "price": 45,
       "tags": [],
       "isNew": false,
@@ -177,7 +177,11 @@
       "image": "/images/products/product-1.webp",
       "moq": 1,
       "groupId": "barbie-slim",
-      "variantLabel": "BARBIE SLIM"
+      "variantLabel": "BARBIE SLIM",
+      "images": [
+        "/images/products/product-1-2.webp",
+        "/images/products/product-1-3.webp"
+      ]
     },
     {
       "id": 2,
@@ -201,7 +205,7 @@
       "name": "REGENOVUE FINE (CE)",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 Syr , HA 24 mg / mL Hyaluronic filler",
-      "description": "Syr , HA 24 mg / mL Hyaluronic filler",
+      "description": "Regenovue Sub-Q uses cross-linked Hyaluronic Acid as a base for the injectable gel. This chemical structure makes the filler more stable and  it will not shift once injected into the deep skin layers. This is paramount when using an HA product to augment features like the jawline.",
       "price": 25,
       "tags": [],
       "isNew": false,
@@ -218,7 +222,7 @@
       "name": "REGENOVUE DEEP (CE)",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 Syr , HA 24 mg / mL Hyaluronic filler",
-      "description": "Syr , HA 24 mg / mL Hyaluronic filler",
+      "description": "Regenovue Sub-Q uses cross-linked Hyaluronic Acid as a base for the injectable gel. This chemical structure makes the filler more stable and  it will not shift once injected into the deep skin layers. This is paramount when using an HA product to augment features like the jawline.",
       "price": 25,
       "tags": [],
       "isNew": false,
@@ -235,7 +239,7 @@
       "name": "REGENOVUE SUB - Q (CE)",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 Syr , HA 24 mg / mL Hyaluronic filler",
-      "description": "Syr , HA 24 mg / mL Hyaluronic filler",
+      "description": "Regenovue Sub-Q uses cross-linked Hyaluronic Acid as a base for the injectable gel. This chemical structure makes the filler more stable and  it will not shift once injected into the deep skin layers. This is paramount when using an HA product to augment features like the jawline.",
       "price": 25,
       "tags": [],
       "isNew": false,
@@ -252,7 +256,7 @@
       "name": "REGENOVUE FINE PLUS (CE)",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 Syr , lidocaine 0,3%, HA 24 mg/ mL Hyaluronic filler",
-      "description": "Syr , lidocaine 0,3%, HA 24 mg/ mL Hyaluronic filler",
+      "description": "Regenovue Sub-Q uses cross-linked Hyaluronic Acid as a base for the injectable gel. This chemical structure makes the filler more stable and  it will not shift once injected into the deep skin layers. This is paramount when using an HA product to augment features like the jawline.",
       "price": 25,
       "tags": [],
       "isNew": false,
@@ -269,7 +273,7 @@
       "name": "REGENOVUE DEEP PLUS (CE)",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 Syr , lidocaine 0,3%, HA 24 mg/ mL Hyaluronic filler",
-      "description": "Syr , lidocaine 0,3%, HA 24 mg/ mL Hyaluronic filler",
+      "description": "Regenovue Sub-Q uses cross-linked Hyaluronic Acid as a base for the injectable gel. This chemical structure makes the filler more stable and  it will not shift once injected into the deep skin layers. This is paramount when using an HA product to augment features like the jawline.",
       "price": 25,
       "tags": [],
       "isNew": false,
@@ -286,7 +290,7 @@
       "name": "REGENOVUE SUB - Q PLUS (CE)",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1Syr , lidocaine 0,3%, HA 24 mg/ mL Hyaluronic filler",
-      "description": "GROWTH FACTOR & EXOSOME THERAPY # 180 ~ 2 03 #2 04 ~ 2 07 #2 08 ~ 2 14",
+      "description": "Regenovue Sub-Q uses cross-linked Hyaluronic Acid as a base for the injectable gel. This chemical structure makes the filler more stable and  it will not shift once injected into the deep skin layers. This is paramount when using an HA product to augment features like the jawline.",
       "price": 25,
       "tags": [],
       "isNew": false,
@@ -303,7 +307,7 @@
       "name": "SOSUM S (CE) NO Lidocaine",
       "categoryId": "fillers",
       "specification": "1.1 mL x 2syr , HA 24mg Hyaluronic filler",
-      "description": "Lidocaine 1.1 mL x 2syr , HA 24mg Hyaluronic filler",
+      "description": "Sosum H is a highly crosslinked stabilized hyaluronic acid (HA) dermal filler.",
       "price": 37,
       "tags": [],
       "isNew": false,
@@ -313,14 +317,18 @@
       "image": "/images/products/product-9.webp",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "S"
+      "variantLabel": "S",
+      "images": [
+        "/images/products/product-9-2.webp",
+        "/images/products/product-9-3.webp"
+      ]
     },
     {
       "id": 10,
       "name": "SOSUM M (CE) NO Lidocaine",
       "categoryId": "fillers",
       "specification": "1.1 mL x 2syr , HA 24mg Hyaluronic filler",
-      "description": "Lidocaine 1.1 mL x 2syr , HA 24mg Hyaluronic filler",
+      "description": "Sosum H is a highly crosslinked stabilized hyaluronic acid (HA) dermal filler.",
       "price": 38,
       "tags": [],
       "isNew": false,
@@ -330,14 +338,18 @@
       "image": "/images/products/product-10.webp",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "M"
+      "variantLabel": "M",
+      "images": [
+        "/images/products/product-9-2.webp",
+        "/images/products/product-9-3.webp"
+      ]
     },
     {
       "id": 11,
       "name": "SOSUM H (CE) NO Lidocaine",
       "categoryId": "fillers",
       "specification": "1.1 mL x 2syr , HA 24mg Hyaluronic filler",
-      "description": "Lidocaine 1.1 mL x 2syr , HA 24mg Hyaluronic filler",
+      "description": "Sosum H is a highly crosslinked stabilized hyaluronic acid (HA) dermal filler.",
       "price": 38,
       "tags": [],
       "isNew": false,
@@ -347,14 +359,18 @@
       "image": "/images/products/product-11.webp",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "H"
+      "variantLabel": "H",
+      "images": [
+        "/images/products/product-9-2.webp",
+        "/images/products/product-9-3.webp"
+      ]
     },
     {
       "id": 12,
       "name": "SOSUM SOFT (CE)",
       "categoryId": "fillers",
       "specification": "3 mL x 1syr Hyaluronic filler",
-      "description": "",
+      "description": "Sosum H is a highly crosslinked stabilized hyaluronic acid (HA) dermal filler.",
       "price": 21,
       "tags": [],
       "isNew": false,
@@ -364,14 +380,18 @@
       "image": "/images/products/product-12.webp",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "SOFT"
+      "variantLabel": "SOFT",
+      "images": [
+        "/images/products/product-9-2.webp",
+        "/images/products/product-9-3.webp"
+      ]
     },
     {
       "id": 13,
       "name": "SOSUM HARD",
       "categoryId": "fillers",
       "specification": "3 mL x 3syr Hyaluronic filler",
-      "description": "",
+      "description": "Sosum H is a highly crosslinked stabilized hyaluronic acid (HA) dermal filler.",
       "price": 106,
       "tags": [],
       "isNew": false,
@@ -381,7 +401,11 @@
       "image": "/images/products/product-13.webp",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "HARD"
+      "variantLabel": "HARD",
+      "images": [
+        "/images/products/product-9-2.webp",
+        "/images/products/product-9-3.webp"
+      ]
     },
     {
       "id": 14,
@@ -478,7 +502,7 @@
       "name": "NEURAMIS LIGHT (MESO)",
       "categoryId": "fillers",
       "specification": "1.0 mL , HA 20 mg / mL , Lidocaine 0.3% Hyaluronic filler",
-      "description": "IMPORTED PRODUCTS #4 27 ~ 4 38 Disclaimer: Due to the U.S. tariff system, our flat rate to the USA applies only if the recipient has a FedEx account. For customers without a FedEx account, shipping is available via FedEx Priority at rate PAYMENT with WISE app or USDT 1. BARBIE SLIM 10 mL x 5 vials Product components have a positive effect on participation, breakdown of fatty deposits, and guaran tee of a long - term effect 2. MisAdi Beso 1 mL x 1 Syr Volume augmentation filler, containing Cross - linked 24mg/ml, Lidocaine hydrochloride 3mg/ml, Phosphate - buffered saline (pH 7), and Vitamin B12, offers some potential benefits over regular hyaluronic acid (HA) injections, particularly for lip treatments 3. REGENOVUE FINE (CE) 1.1 mL x 1 Syr , HA 24 mg / mL Hyaluronic filler 4. REGENOVUE DEEP ( CE) 1.1 mL x 1 Syr , HA 24 mg / mL Hyaluronic filler 5. REGENOVUE SUB - Q (CE) 1.1 mL x 1 Syr , HA 24 mg / mL Hyaluronic filler 6. REGENOVUE FINE PLUS (CE) 1.1 mL x 1 Syr , lidocaine 0,3%, HA 24 mg/ mL Hyaluronic filler 7. REGENOVUE DEEP PLUS (CE) 1.1 mL x 1 Syr , lidocaine 0,3%, HA 24 mg/ mL Hyaluronic filler 8. REGENOVUE SUB - Q PLUS (CE) 1.1 mL x 1Syr , lidocaine 0,3%, HA 24 mg/ mL Hyaluronic filler 9. SOSUM S (CE) NO Lidocaine 1.1 mL x 2syr , HA 24mg Hyaluronic filler 10. SOSUM M (CE) NO Lidocaine 1.1 mL x 2syr , HA 24mg Hyaluronic filler 11. SOSUM H (CE) NO Lidocaine 1.1 mL x 2syr , HA 24mg Hyaluronic filler 12. SOSUM SOFT (CE) 3 mL x 1sy r Hyaluronic filler 13. SOSUM HARD 3 mL x 3syr Hyaluronic filler 14. ELASTY FINE PLUS 1.0 mL x 1syr , Lidocaine 0.3% Hyaluronic filler 15. ELASTY DEEP PLUS 1.0 mL x 1syr , Lidocaine 0.3% Hyaluronic filler 16. ELASTY GRAND PLUS 1.0 mL x 1syr , Lidocaine 0.3% Hyaluronic filler 17. VOM LIGHT (CE) NO Lidocaine 1.0 mL x 2 syr , Cross - linked HA 20mg/mL Cross Linked Hyaluronic Acid filler 18. VOM INTEN S E 1.0 mL x 2 syr , Cross - linked HA 20mg/mL Cross Linked Hyaluronic Acid filler 19. VOM VOLUME (CE) 1.0 mL x 2 syr , Cross - linked HA 20mg/mL Cross Linked Hyaluronic Acid filler 20. NEURAMIS LIGHT (MESO) 1.0 mL , HA 20 mg / mL , Lidocaine 0.3% Hyaluronic filler",
+      "description": "Indications of Neuramis Deep for use:",
       "price": 24,
       "tags": [],
       "isNew": false,
@@ -488,14 +512,19 @@
       "image": "/images/products/product-20.webp",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "LIGHT (MESO)"
+      "variantLabel": "LIGHT (MESO)",
+      "images": [
+        "/images/products/product-20-2.webp",
+        "/images/products/product-20-3.webp",
+        "/images/products/product-20-4.webp"
+      ]
     },
     {
       "id": 21,
       "name": "NEURAMIS",
       "categoryId": "fillers",
       "specification": "1.1 mL , HA 20 mg / mL , Lidocaine 0.3% Hyaluronic filler",
-      "description": "NEURAMIS 1.1 mL , HA 20 mg / mL , Lidocaine 0.3% Hyaluronic filler",
+      "description": "Indications of Neuramis Deep for use:",
       "price": 23,
       "tags": [],
       "isNew": false,
@@ -505,14 +534,19 @@
       "image": "/images/products/product-21.webp",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "NEURAMIS"
+      "variantLabel": "NEURAMIS",
+      "images": [
+        "/images/products/product-20-2.webp",
+        "/images/products/product-20-3.webp",
+        "/images/products/product-20-4.webp"
+      ]
     },
     {
       "id": 22,
       "name": "NEURAMIS DEEP",
       "categoryId": "fillers",
       "specification": "1.0 mL , No Lidocaine , HA 20 mg / mL Hyaluronic filler",
-      "description": "NEURAMIS DEEP 1.0 mL , No Lidocaine , HA 20 mg / mL Hyaluronic filler",
+      "description": "Indications of Neuramis Deep for use:",
       "price": 23,
       "tags": [],
       "isNew": false,
@@ -522,14 +556,19 @@
       "image": "/images/products/product-22.webp",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "images": [
+        "/images/products/product-20-2.webp",
+        "/images/products/product-20-3.webp",
+        "/images/products/product-20-4.webp"
+      ]
     },
     {
       "id": 23,
       "name": "NEURAMIS DEEP WITH LIDOCAINE",
       "categoryId": "fillers",
       "specification": "1.0 mL, HA 20 mg/ mL , Lidocaine 0.3% Hyaluronic filler",
-      "description": "NEURAMIS DEEP WITH LIDOCAINE 1.0 mL, HA 20 mg/ mL , Lidocaine 0.3% Hyaluronic filler",
+      "description": "Indications of Neuramis Deep for use:",
       "price": 23,
       "tags": [],
       "isNew": false,
@@ -539,7 +578,12 @@
       "image": "/images/products/product-23.webp",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "images": [
+        "/images/products/product-20-2.webp",
+        "/images/products/product-20-3.webp",
+        "/images/products/product-20-4.webp"
+      ]
     },
     {
       "id": 24,
@@ -606,7 +650,7 @@
       "name": "DERMALAX PLUS",
       "categoryId": "fillers",
       "specification": "1.1 mL , HA 20 mg/ mL , Lidocaine 0.3% Hyaluronic filler",
-      "description": "DERMALAX PLUS 1.1 mL , HA 20 mg/ mL , Lidocaine 0.3% Hyaluronic filler",
+      "description": "$33.00 – $66.00Price range: $33.00 through $66.00",
       "price": 25,
       "tags": [],
       "isNew": false,
@@ -616,14 +660,19 @@
       "image": "/images/products/product-28.webp",
       "moq": 1,
       "groupId": "dermalax",
-      "variantLabel": "DERMALAX PLUS"
+      "variantLabel": "DERMALAX PLUS",
+      "images": [
+        "/images/products/product-28-2.webp",
+        "/images/products/product-28-3.webp",
+        "/images/products/product-28-4.webp"
+      ]
     },
     {
       "id": 29,
       "name": "DERMALAX DEEP PLUS",
       "categoryId": "fillers",
       "specification": "1.1 mL , HA 24 mg/ mL , Lidocaine 0.3% Hyaluronic filler",
-      "description": "DERMALAX DEEP PLUS 1.1 mL , HA 24 mg/ mL , Lidocaine 0.3% Hyaluronic filler",
+      "description": "$33.00 – $66.00Price range: $33.00 through $66.00",
       "price": 25,
       "tags": [],
       "isNew": false,
@@ -633,14 +682,19 @@
       "image": "/images/products/product-29.webp",
       "moq": 1,
       "groupId": "dermalax",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "images": [
+        "/images/products/product-28-2.webp",
+        "/images/products/product-28-3.webp",
+        "/images/products/product-28-4.webp"
+      ]
     },
     {
       "id": 30,
       "name": "DERMALAX IMPLANT PLUS",
       "categoryId": "fillers",
       "specification": "1.1 mL x 2 syr, HA 24 mg/ mL , Lidocaine 0.3% Hyaluronic filler",
-      "description": "DERMALAX IMPLANT PLUS 1.1 mL x 2 syr , HA 24 mg/ mL , Lidocaine 0.3% Hyaluronic filler",
+      "description": "$33.00 – $66.00Price range: $33.00 through $66.00",
       "price": 50,
       "tags": [],
       "isNew": false,
@@ -650,14 +704,19 @@
       "image": "/images/products/product-30.webp",
       "moq": 1,
       "groupId": "dermalax",
-      "variantLabel": "IMPLANT"
+      "variantLabel": "IMPLANT",
+      "images": [
+        "/images/products/product-28-2.webp",
+        "/images/products/product-28-3.webp",
+        "/images/products/product-28-4.webp"
+      ]
     },
     {
       "id": 31,
       "name": "TESORO FINE PLUS",
       "categoryId": "fillers",
       "specification": "1 . 0 mL x 1 syr, Cross - linked HA , Lidocaine 0.3% Hyaluronic filler",
-      "description": "TESORO FINE PLUS 1 . 0 mL x 1 syr , Cross - linked HA , Lidocaine 0.3% Hyaluronic filler",
+      "description": "$33.00 – $66.00Price range: $33.00 through $66.00",
       "price": 21,
       "tags": [],
       "isNew": false,
@@ -667,7 +726,12 @@
       "image": "/images/products/product-31.webp",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "FINE PLUS"
+      "variantLabel": "FINE PLUS",
+      "images": [
+        "/images/products/product-31-2.webp",
+        "/images/products/product-31-3.webp",
+        "/images/products/product-31-4.webp"
+      ]
     },
     {
       "id": 32,
@@ -689,7 +753,7 @@
       "name": "TESORO SUB - Q PLUS",
       "categoryId": "fillers",
       "specification": "1.0 mL x 1 syr, Cross - linked HA , Lidocaine 0.3% Hyaluronic filler",
-      "description": "TESORO SUB - Q PLUS 1.0 mL x 1 syr , Cross - linked HA , Lidocaine 0.3% Hyaluronic filler",
+      "description": "$33.00 – $66.00Price range: $33.00 through $66.00",
       "price": 21,
       "tags": [],
       "isNew": false,
@@ -699,7 +763,12 @@
       "image": "/images/products/product-33.webp",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "SUB - Q PLUS"
+      "variantLabel": "SUB - Q PLUS",
+      "images": [
+        "/images/products/product-31-2.webp",
+        "/images/products/product-31-3.webp",
+        "/images/products/product-31-4.webp"
+      ]
     },
     {
       "id": 34,
@@ -721,7 +790,7 @@
       "name": "TESORO FINE",
       "categoryId": "fillers",
       "specification": "0 mL x 1 syringe Cross - linked Hyaluronic Acid 20 mg / mL Hyaluronic filler",
-      "description": "TESORO FINE 1,0 mL x 1 syringe Cross - linked Hyaluronic Acid 20 mg / mL Hyaluronic filler",
+      "description": "$33.00 – $66.00Price range: $33.00 through $66.00",
       "price": 21,
       "tags": [],
       "isNew": false,
@@ -731,14 +800,19 @@
       "image": "/images/products/product-35.webp",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "FINE"
+      "variantLabel": "FINE",
+      "images": [
+        "/images/products/product-31-2.webp",
+        "/images/products/product-31-3.webp",
+        "/images/products/product-31-4.webp"
+      ]
     },
     {
       "id": 36,
       "name": "TESORO DEEP",
       "categoryId": "fillers",
       "specification": "0 mL x 1 syringe Cross - linked Hyaluronic Acid 20 mg/ mL Hyaluronic filler",
-      "description": "TESORO DEEP 1,0 mL x 1 syringe Cross - linked Hyaluronic Acid 20 mg/ mL Hyaluronic filler",
+      "description": "$33.00 – $66.00Price range: $33.00 through $66.00",
       "price": 21,
       "tags": [],
       "isNew": false,
@@ -748,14 +822,19 @@
       "image": "/images/products/product-36.webp",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "images": [
+        "/images/products/product-31-2.webp",
+        "/images/products/product-31-3.webp",
+        "/images/products/product-31-4.webp"
+      ]
     },
     {
       "id": 37,
       "name": "TESORO SUB - Q",
       "categoryId": "fillers",
       "specification": "0 mL x 1 syringe Cross - linked Hyaluronic Acid HA 20 mg / mL Hyaluronic filler",
-      "description": "TESORO SUB - Q 1,0 mL x 1 syringe Cross - linked Hyaluronic Acid HA 20 mg / mL Hyaluronic filler",
+      "description": "$33.00 – $66.00Price range: $33.00 through $66.00",
       "price": 21,
       "tags": [],
       "isNew": false,
@@ -765,7 +844,12 @@
       "image": "/images/products/product-37.webp",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "SUB - Q"
+      "variantLabel": "SUB - Q",
+      "images": [
+        "/images/products/product-31-2.webp",
+        "/images/products/product-31-3.webp",
+        "/images/products/product-31-4.webp"
+      ]
     },
     {
       "id": 38,
@@ -802,7 +886,7 @@
       "name": "YOUTHFILL SHAPE",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1syr, HA 24mg/ mL, L idocaine 0.3% Hyaluronic filler Analogue of Sardenya",
-      "description": "YOUTHFILL SHAPE 1.1 mL x 1syr, HA 24mg/ mL, L idocaine 0.3% Hyaluronic filler Analogue of Sardenya",
+      "description": "Youthfill PN+ is a viscous, biologically compatible gel designed for comprehensive skin rejuvenation. Enhanced with polynucleotide and lidocaine, it effectively addresses multiple skin concerns.",
       "price": 19,
       "tags": [],
       "isNew": false,
@@ -879,7 +963,7 @@
       "name": "CELOSOME MID",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 syr, Lidocaine 0.3%, HA 24 mg/ mL Hyaluronic filler",
-      "description": "CELOSOME MID 1.1 mL x 1 syr, Lidocaine 0.3%, HA 24 mg/ mL Hyaluronic filler",
+      "description": "Celosome Implant",
       "price": 18,
       "tags": [],
       "isNew": false,
@@ -896,7 +980,7 @@
       "name": "CELOSOME STRONG",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1syr, Lidocaine 0.3%, HA 24 mg/mL Hyaluronic filler",
-      "description": "CELOSOME STRONG 1.1 mL x 1syr, Lidocaine 0.3%, HA 24 mg/mL Hyaluronic filler",
+      "description": "Celosome Implant",
       "price": 18,
       "tags": [],
       "isNew": false,
@@ -913,7 +997,7 @@
       "name": "CELOSOME IMPLANT",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1syr, Lidocaine 0.3%, HA 24 mg/mL Hyaluronic filler",
-      "description": "CELOSOME IMPLANT 1.1 mL x 1syr, Lidocaine 0.3%, HA 24 mg/mL Hyaluronic filler",
+      "description": "Celosome Implant",
       "price": 18,
       "tags": [],
       "isNew": false,
@@ -1080,7 +1164,7 @@
       "name": "ULTRAFILL KISS",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid fil",
-      "description": "ULTRAFILL KISS 1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid filler",
+      "description": "UltraFill Nose is a premium monophasic dermal filler based on crosslinked hyaluronic acid, specifically developed for non-surgical nose contouring and enhancement. It provides precise lifting, long-lasting results, and a high level of patient safety. The advanced multi-stage purification process and",
       "price": 22,
       "tags": [],
       "isNew": false,
@@ -1097,7 +1181,7 @@
       "name": "ULTRAFILL FINE",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid fil",
-      "description": "ULTRAFILL FINE 1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid filler",
+      "description": "UltraFill Nose is a premium monophasic dermal filler based on crosslinked hyaluronic acid, specifically developed for non-surgical nose contouring and enhancement. It provides precise lifting, long-lasting results, and a high level of patient safety. The advanced multi-stage purification process and",
       "price": 21,
       "tags": [],
       "isNew": false,
@@ -1114,7 +1198,7 @@
       "name": "ULTRAFILL DEEP",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid fil",
-      "description": "ULTRAFILL DEEP 1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid filler",
+      "description": "UltraFill Nose is a premium monophasic dermal filler based on crosslinked hyaluronic acid, specifically developed for non-surgical nose contouring and enhancement. It provides precise lifting, long-lasting results, and a high level of patient safety. The advanced multi-stage purification process and",
       "price": 21,
       "tags": [],
       "isNew": false,
@@ -1131,7 +1215,7 @@
       "name": "ULTRAFILL SHAPE",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid fil",
-      "description": "ULTRAFILL SHAPE 1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid filler",
+      "description": "UltraFill Nose is a premium monophasic dermal filler based on crosslinked hyaluronic acid, specifically developed for non-surgical nose contouring and enhancement. It provides precise lifting, long-lasting results, and a high level of patient safety. The advanced multi-stage purification process and",
       "price": 21,
       "tags": [],
       "isNew": false,
@@ -1148,7 +1232,7 @@
       "name": "ULTRAFILL IMPLANT",
       "categoryId": "fillers",
       "specification": "1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid fil",
-      "description": "ULTRAFILL IMPLANT 1.1 mL x 1 syringe Cross - linked Hyaluronic Acid 24mg/mL Cross Linked Hyaluronic Acid filler",
+      "description": "UltraFill Nose is a premium monophasic dermal filler based on crosslinked hyaluronic acid, specifically developed for non-surgical nose contouring and enhancement. It provides precise lifting, long-lasting results, and a high level of patient safety. The advanced multi-stage purification process and",
       "price": 23,
       "tags": [],
       "isNew": false,
@@ -1212,7 +1296,7 @@
       "name": "MisAdi H",
       "categoryId": "fillers",
       "specification": "6 0cc - HA 2 4 mg/ mL Cross Linked Hyaluronic Acid Body Filler",
-      "description": "MisAdi H ard Body filler 6 0cc - HA 2 4 mg/ mL Cross Linked Hyaluronic Acid Body Filler",
+      "description": "Misadi Filler is a copy of Aesthefill. It’s a collagen stimulator derived from Polylactic Acid (D,L form), designed to provide natural and long-lasting skin enhancement.",
       "price": 70,
       "tags": [],
       "isNew": false,
@@ -1222,7 +1306,10 @@
       "image": "/images/products/product-66.webp",
       "moq": 1,
       "groupId": "misadi-pdlla-200-mg",
-      "variantLabel": "H"
+      "variantLabel": "H",
+      "images": [
+        "/images/products/product-66-2.webp"
+      ]
     },
     {
       "id": 67,
@@ -1559,7 +1646,7 @@
       "name": "YOUTHFILL PN with",
       "categoryId": "mesotherapy",
       "specification": "1 Syr x 2.5 mL Bio - revitalizing",
-      "description": "YOUTHFILL PN with lido caine Non cross - linked HA 20 mg + PN 5 mg 1 Syr x 2.5 mL Bio - revitalizing",
+      "description": "Youthfill PN+ is a viscous, biologically compatible gel designed for comprehensive skin rejuvenation. Enhanced with polynucleotide and lidocaine, it effectively addresses multiple skin concerns.",
       "price": 37,
       "tags": [],
       "isNew": false,
@@ -1771,7 +1858,7 @@
       "name": "MISADI C O",
       "categoryId": "mesotherapy",
       "specification": "30 mL x 5 tubes containing carboxygel 5 face masks x 5 neck masks Tissue repair, matrix f",
-      "description": "MISADI C O 2 Mask 30 mL x 5 tubes containing carboxygel 5 face masks x 5 neck masks Tissue repair, matrix formation, blood vessel growth, antibacterial, promote growth factor exchange.",
+      "description": "Misadi Filler is a copy of Aesthefill. It’s a collagen stimulator derived from Polylactic Acid (D,L form), designed to provide natural and long-lasting skin enhancement.",
       "price": 0,
       "tags": [],
       "isNew": false,
@@ -1781,7 +1868,10 @@
       "image": "/images/products/product-103.webp",
       "moq": 1,
       "groupId": "misadi-pdlla-200-mg",
-      "variantLabel": "C O"
+      "variantLabel": "C O",
+      "images": [
+        "/images/products/product-66-2.webp"
+      ]
     },
     {
       "id": 104,
@@ -1818,7 +1908,7 @@
       "name": "CINDELLA I (PN)",
       "categoryId": "mesotherapy",
       "specification": "2ml x 1 S yr Identical to Rejuran i A dvanced PN - based rejuvenation treatment designe",
-      "description": "CINDELLA I (PN 1%) PN Skin Booster 2ml x 1 S yr Identical to Rejuran i A dvanced PN - based rejuvenation treatment designed to restore eye area vitality and overall skin health. By stimulating cell regeneration and repairing damaged tissues, improves elasticity, smooths fine lines, refines pores, and provides deep hydration. Its restorative action strengthens thinning under - eye skin, helping reduce the appearance of dark circles caused by aging and loss of elasticity, while also brightening and revitalizing the eye contour",
+      "description": "$98.00 – $124.00Price range: $98.00 through $124.00",
       "price": 20,
       "tags": [],
       "isNew": false,
@@ -1828,7 +1918,10 @@
       "image": "/images/products/product-106.webp",
       "moq": 1,
       "groupId": "cindella-set",
-      "variantLabel": "I (PN)"
+      "variantLabel": "I (PN)",
+      "images": [
+        "/images/products/product-106-2.webp"
+      ]
     },
     {
       "id": 107,
@@ -1880,7 +1973,7 @@
       "name": "JUVELOOK",
       "categoryId": "mesotherapy",
       "specification": "25.5 mg PDLLA + 4.5 mg HA 30mg/vial Hybrid PDLLA + HA skin booster",
-      "description": "JUVELOOK i (Juvelook Eye) 25.5 mg PDLLA + 4.5 mg HA 30mg/vial Hybrid PDLLA + HA skin booster designed for delicate areas. Stimulates collagen, improves skin quality, and provides natural rejuvenation with minimal downtime. Indications: - Under - eye area (dark circles, fine lines) - Crow’s feet - Perioral “barcode” lines - Thin skin (neck, delicate zones) - Skin texture & elasticity improvement Protocol: • 2 – 3 sessions recommended • Interval: every 4 – 6 weeks • Injection: superficial dermis / mesotherapy technique • Maintenance: every 6 – 12 months",
+      "description": "Juvelook i is an eye-area–specific skin booster that combines PLA (Poly-L-Lactic Acid) and Hyaluronic Acid in an ultra-fine particle formula. With smaller particles than the original Juvelook, it can be safely applied to delicate areas such as the eye area, nasolabial folds, and around the mouth.",
       "price": 135,
       "tags": [],
       "isNew": false,
@@ -1890,7 +1983,10 @@
       "image": "/images/products/product-110.webp",
       "moq": 1,
       "groupId": "juvelook-i-30mg",
-      "variantLabel": "JUVELOOK"
+      "variantLabel": "JUVELOOK",
+      "images": [
+        "/images/products/product-110-2.webp"
+      ]
     },
     {
       "id": 111,
@@ -2017,7 +2113,7 @@
       "name": "MIRACLE X",
       "categoryId": "mesotherapy",
       "specification": "2 mL x 5 vials An advanced skin rejuvenation treatment combining PCL (Polycaprolactone)",
-      "description": "MIRACLE X 2 mL x 5 vials An advanced skin rejuvenation treatment combining PCL (Polycaprolactone) and botulinum - like peptides to stimulate collagen, smooth fine lines, refine pores, and improve firmness. Delivers gradual, natural - looking lifting, brighter tone, and long - lasting skin renewal.",
+      "description": "WHAT IS MIRACLE X?",
       "price": 180,
       "tags": [],
       "isNew": false,
@@ -2027,14 +2123,19 @@
       "image": "/images/products/product-119.webp",
       "moq": 1,
       "groupId": "miracle-x",
-      "variantLabel": "X"
+      "variantLabel": "X",
+      "images": [
+        "/images/products/product-119-2.webp",
+        "/images/products/product-119-3.webp",
+        "/images/products/product-119-4.webp"
+      ]
     },
     {
       "id": 120,
       "name": "MIRACLE H HA",
       "categoryId": "mesotherapy",
       "specification": "5 vials (2 mL each) Meso Solution face lifting Skin Hydration Coll",
-      "description": "MIRACLE H HA 1% combined with PCL 20% 5 vials (2 mL each) Meso Solution face lifting Skin Hydration Collagen rejuvenation",
+      "description": "WHAT IS MIRACLE X?",
       "price": 170,
       "tags": [],
       "isNew": false,
@@ -2044,14 +2145,19 @@
       "image": "/images/products/product-120.webp",
       "moq": 1,
       "groupId": "miracle-x",
-      "variantLabel": "H HA"
+      "variantLabel": "H HA",
+      "images": [
+        "/images/products/product-119-2.webp",
+        "/images/products/product-119-3.webp",
+        "/images/products/product-119-4.webp"
+      ]
     },
     {
       "id": 121,
       "name": "MIRACLE L PCL",
       "categoryId": "mesotherapy",
       "specification": "5 vials (2 mL each) Meso Solution face lifting Skin Lift Collagen",
-      "description": "MIRACLE L PCL 20% 5 vials (2 mL each) Meso Solution face lifting Skin Lift Collagen rejuvenation",
+      "description": "WHAT IS MIRACLE X?",
       "price": 170,
       "tags": [],
       "isNew": false,
@@ -2061,7 +2167,12 @@
       "image": "/images/products/product-121.webp",
       "moq": 1,
       "groupId": "miracle-x",
-      "variantLabel": "L PCL"
+      "variantLabel": "L PCL",
+      "images": [
+        "/images/products/product-119-2.webp",
+        "/images/products/product-119-3.webp",
+        "/images/products/product-119-4.webp"
+      ]
     },
     {
       "id": 122,
@@ -2143,7 +2254,7 @@
       "name": "LAPUROON AURORA S UPER",
       "categoryId": "mesotherapy",
       "specification": "2.5 mL x 2 SYRINGES PDRN 2% Skin Booster",
-      "description": "LAPUROON AURORA S UPER 2.5 mL x 2 SYRINGES PDRN 2% Skin Booster",
+      "description": "The first AURORA to apply LAPUROON’s exclusive technology.",
       "price": 67,
       "tags": [],
       "isNew": false,
@@ -2153,14 +2264,18 @@
       "image": "/images/products/product-127.webp",
       "moq": 1,
       "groupId": "lapuroon-aurora-super",
-      "variantLabel": "S UPER"
+      "variantLabel": "S UPER",
+      "images": [
+        "/images/products/product-127-2.webp",
+        "/images/products/product-127-3.webp"
+      ]
     },
     {
       "id": 128,
       "name": "LAPUROON AURORA V IVID",
       "categoryId": "mesotherapy",
       "specification": "5 mL x 5 vials PDRN 0.2% Skin Booster",
-      "description": "LAPUROON AURORA V IVID 5 mL x 5 vials PDRN 0.2% Skin Booster",
+      "description": "The first AURORA to apply LAPUROON’s exclusive technology.",
       "price": 73,
       "tags": [],
       "isNew": false,
@@ -2170,7 +2285,11 @@
       "image": "/images/products/product-128.webp",
       "moq": 1,
       "groupId": "lapuroon-aurora-super",
-      "variantLabel": "V IVID"
+      "variantLabel": "V IVID",
+      "images": [
+        "/images/products/product-127-2.webp",
+        "/images/products/product-127-3.webp"
+      ]
     },
     {
       "id": 129,
@@ -3473,7 +3592,7 @@
       "name": "CURENEX SCULP (PLLA)",
       "categoryId": "curenex",
       "specification": "360 mg) 360mg / vial A poly - L - lactic acid collagen biostimulat",
-      "description": "CURENEX SCULP (PLLA 360 mg) 360mg / vial A poly - L - lactic acid collagen biostimulator designed to restore volume, improve firmness, and rebuild dermal structure. Stimulates natural collagen production for gradual, long - lasting rejuvenation with natural - looking results.",
+      "description": "CURENEX HYDRATING CLEANSER",
       "price": 85,
       "tags": [],
       "isNew": false,
@@ -3490,7 +3609,7 @@
       "name": "CURENEX PDRN, Multi",
       "categoryId": "curenex",
       "specification": "5 mL x 5 vials Bio - revitalizing Salmon - derived PDRN s timulates cellular repair and",
-      "description": "CURENEX PDRN, Multi peptide, Glutathione, Collagen, HA 5 mL x 5 vials Bio - revitalizing Salmon - derived PDRN s timulates cellular repair and growth factor production to strengthen the dermal foundation. 15 Multi - Peptides: Essential for firming the skin, boosting collagen/elastin, and inhibiting melanin formation. Glutathione: A potent antioxidant that provides a noticeable \"whitening\" and brightening effect by evening out skin tone. Hyaluronic Acid: Delivers intense, deep hydration to restore a \"glass skin\" appearance. Collagen: Directly supports skin elasticity and volume restoration.",
+      "description": "CURENEX HYDRATING CLEANSER",
       "price": 59,
       "tags": [],
       "isNew": false,
@@ -3522,7 +3641,7 @@
       "name": "CURENEX REJUVENATING CREAM",
       "categoryId": "curenex",
       "specification": "",
-      "description": "CURENEX REJUVENATING CREAM 120 m L Salmon DNA regenerates tissue activating microvessels and fibroblasts to help produce collagen. Ceramide builds skin barrier. Quick and deep absorption into skin. Improves oil and moisture balance, resulting in silky smooth skin. Perfect nourishing and hydration. NO uncomfortable feeling of sticky cream Especially beneficial for post - treatment skincare (MTS, laser, etc.)",
+      "description": "Curenex Rejuvenating Cream",
       "price": 16,
       "tags": [],
       "isNew": false,
@@ -3569,7 +3688,7 @@
       "name": "CURENEX REJUVENATING MASK",
       "categoryId": "curenex",
       "specification": "",
-      "description": "CURENEX REJUVENATING MASK (5 sheets) A revitalizing sheet mask with salmon DNA, peptides, hyaluronic acid, and glutathione to deeply hydrate, brighten, and restore skin radiance.",
+      "description": "Curenex Rejuvenating Cream",
       "price": 12,
       "tags": [],
       "isNew": false,
@@ -3601,7 +3720,7 @@
       "name": "CURENEX EYE PN",
       "categoryId": "curenex",
       "specification": "2 mL x 1 syringe a PN - based under - eye injectable with lidocaine for comfort. It targ",
-      "description": "CURENEX EYE PN 1% + HA 1% 2 mL x 1 syringe a PN - based under - eye injectable with lidocaine for comfort. It targets dark circles, fine lines, and loss of elasticity by deeply hydrating, repairing damaged skin, and stimulating natural regeneration - leaving the eye area smoother, brighter, and refreshed.",
+      "description": "CURENEX HYDRATING CLEANSER",
       "price": 28,
       "tags": [],
       "isNew": false,
@@ -3618,7 +3737,7 @@
       "name": "CURENEX SCULP (PLLA)",
       "categoryId": "curenex",
       "specification": "360 mg) 360mg / vial A poly - L - lactic acid collagen biostimulat",
-      "description": "CURENEX SCULP (PLLA 360 mg) 360mg / vial A poly - L - lactic acid collagen biostimulator designed to restore volume, improve firmness, and rebuild dermal structure. Stimulates natural collagen production for gradual, long - lasting rejuvenation with natural - looking results.",
+      "description": "CURENEX HYDRATING CLEANSER",
       "price": 85,
       "tags": [],
       "isNew": false,
@@ -4669,7 +4788,7 @@
       "name": "MisAdi Lipo",
       "categoryId": "lipolytics",
       "specification": "8 mL x 4vial s L carnitine LIPOLITIC Fat burner Painless",
-      "description": "MisAdi Lipo (Face and Body) 8 mL x 4vial s L carnitine LIPOLITIC Fat burner Painless",
+      "description": "$24.00 – $85.00Price range: $24.00 through $85.00",
       "price": 50,
       "tags": [],
       "isNew": false,
@@ -4679,14 +4798,18 @@
       "image": "/images/products/product-293.webp",
       "moq": 1,
       "groupId": "misadi-lipo",
-      "variantLabel": "MisAdi Lipo"
+      "variantLabel": "MisAdi Lipo",
+      "images": [
+        "/images/products/product-293-2.webp",
+        "/images/products/product-293-3.webp"
+      ]
     },
     {
       "id": 294,
       "name": "MisAdi Lipo",
       "categoryId": "lipolytics",
       "specification": "8 mL x 1vial L carnitine LIPOLITIC Fat burner Painless",
-      "description": "MisAdi Lipo (Face and Body) 8 mL x 1vial L carnitine LIPOLITIC Fat burner Painless",
+      "description": "$24.00 – $85.00Price range: $24.00 through $85.00",
       "price": 15,
       "tags": [],
       "isNew": false,
@@ -4696,14 +4819,18 @@
       "image": "/images/products/product-294.webp",
       "moq": 1,
       "groupId": "misadi-lipo",
-      "variantLabel": "MisAdi Lipo"
+      "variantLabel": "MisAdi Lipo",
+      "images": [
+        "/images/products/product-293-2.webp",
+        "/images/products/product-293-3.webp"
+      ]
     },
     {
       "id": 295,
       "name": "BARBIE SLIM",
       "categoryId": "lipolytics",
       "specification": "5 vials x 10 mL each Non - surgical lipolytic solution formulated with plant extracts and ac",
-      "description": "BARBIE SLIM 5 vials x 10 mL each Non - surgical lipolytic solution formulated with plant extracts and active compounds to break down localized fat, improve lymphatic circulation, and enhance skin elasticity. Indications: - Localized fat reduction (face & body) - Double chin, jawline, and cheek fat - Abdomen, thighs, arms, and love handles - Post - liposuction or post - thread lifting fat - Patients seeking non - surgical contouring and skin tightening",
+      "description": "Barbie Slim is new product designed to reduce body fat in the face and body area. The deoxycholic acid contained in the preparation has a lipolytic effect in selected parts of the body, and excess fat is metabolized and removed from the body.",
       "price": 45,
       "tags": [],
       "isNew": false,
@@ -4713,7 +4840,11 @@
       "image": "/images/products/product-295.webp",
       "moq": 1,
       "groupId": "barbie-slim",
-      "variantLabel": "BARBIE SLIM"
+      "variantLabel": "BARBIE SLIM",
+      "images": [
+        "/images/products/product-1-2.webp",
+        "/images/products/product-1-3.webp"
+      ]
     },
     {
       "id": 296,
@@ -4932,7 +5063,7 @@
       "name": "BOTULAX",
       "categoryId": "botulinum",
       "specification": "100 unit s Botulinum toxin.",
-      "description": "",
+      "description": "Botulax 300 units contains Clostridium Botulinum toxin type A which acts on muscles when injected intramuscularly, to improve/ muscle functions. it is an effective facial beauty product as it easily eliminates wrinkles from their area of origin, leaving the skin remarkably smooth.",
       "price": 41,
       "tags": [],
       "isNew": false,
@@ -4942,14 +5073,18 @@
       "image": "/images/products/product-310.webp",
       "moq": 1,
       "groupId": "botulax-300unit",
-      "variantLabel": "BOTULAX"
+      "variantLabel": "BOTULAX",
+      "images": [
+        "/images/products/product-310-2.webp",
+        "/images/products/product-310-3.webp"
+      ]
     },
     {
       "id": 311,
       "name": "BOTULAX",
       "categoryId": "botulinum",
       "specification": "200 unit s Botulinum toxin..",
-      "description": "",
+      "description": "Botulax 300 units contains Clostridium Botulinum toxin type A which acts on muscles when injected intramuscularly, to improve/ muscle functions. it is an effective facial beauty product as it easily eliminates wrinkles from their area of origin, leaving the skin remarkably smooth.",
       "price": 50,
       "tags": [],
       "isNew": false,
@@ -4959,14 +5094,18 @@
       "image": "/images/products/product-311.webp",
       "moq": 1,
       "groupId": "botulax-300unit",
-      "variantLabel": "BOTULAX"
+      "variantLabel": "BOTULAX",
+      "images": [
+        "/images/products/product-310-2.webp",
+        "/images/products/product-310-3.webp"
+      ]
     },
     {
       "id": 312,
       "name": "BOTULAX",
       "categoryId": "botulinum",
       "specification": "3 00 unit s Botulinum toxin.. .",
-      "description": "",
+      "description": "Botulax 300 units contains Clostridium Botulinum toxin type A which acts on muscles when injected intramuscularly, to improve/ muscle functions. it is an effective facial beauty product as it easily eliminates wrinkles from their area of origin, leaving the skin remarkably smooth.",
       "price": 54,
       "tags": [],
       "isNew": false,
@@ -4976,14 +5115,18 @@
       "image": "/images/products/product-312.webp",
       "moq": 1,
       "groupId": "botulax-300unit",
-      "variantLabel": "BOTULAX"
+      "variantLabel": "BOTULAX",
+      "images": [
+        "/images/products/product-310-2.webp",
+        "/images/products/product-310-3.webp"
+      ]
     },
     {
       "id": 313,
       "name": "METOX",
       "categoryId": "botulinum",
       "specification": "100 units Botulinum toxin..",
-      "description": "",
+      "description": "PLEASE NOTE: TOXINS ARE NOT ELIGIBLE FOR RETURN/REFUND/STORE CREDIT",
       "price": 26,
       "tags": [],
       "isNew": false,
@@ -5000,7 +5143,7 @@
       "name": "METOX",
       "categoryId": "botulinum",
       "specification": "2 00 units Botulinum toxin.. .",
-      "description": "",
+      "description": "PLEASE NOTE: TOXINS ARE NOT ELIGIBLE FOR RETURN/REFUND/STORE CREDIT",
       "price": 42,
       "tags": [],
       "isNew": false,
@@ -5017,7 +5160,7 @@
       "name": "INNOTOX",
       "categoryId": "botulinum",
       "specification": "50 unit s Botulinum toxin..",
-      "description": "",
+      "description": "PLEASE NOTE: TOXINS ARE NOT ELIGIBLE FOR RETURN/REFUND/STORE CREDIT",
       "price": 23,
       "tags": [],
       "isNew": false,
@@ -5027,14 +5170,17 @@
       "image": "/images/products/product-315.webp",
       "moq": 1,
       "groupId": "innotox-50",
-      "variantLabel": "INNOTOX"
+      "variantLabel": "INNOTOX",
+      "images": [
+        "/images/products/product-315-2.webp"
+      ]
     },
     {
       "id": 316,
       "name": "INNOTOX",
       "categoryId": "botulinum",
       "specification": "100 unit s Botulinum toxin..",
-      "description": "",
+      "description": "PLEASE NOTE: TOXINS ARE NOT ELIGIBLE FOR RETURN/REFUND/STORE CREDIT",
       "price": 35,
       "tags": [],
       "isNew": false,
@@ -5044,14 +5190,17 @@
       "image": "/images/products/product-316.webp",
       "moq": 1,
       "groupId": "innotox-50",
-      "variantLabel": "INNOTOX"
+      "variantLabel": "INNOTOX",
+      "images": [
+        "/images/products/product-315-2.webp"
+      ]
     },
     {
       "id": 317,
       "name": "NABOTA",
       "categoryId": "botulinum",
       "specification": "100unit s Botulinum toxin..",
-      "description": "",
+      "description": "CAUTIONS!!!!!",
       "price": 38,
       "tags": [],
       "isNew": false,
@@ -5068,7 +5217,7 @@
       "name": "NABOTA",
       "categoryId": "botulinum",
       "specification": "200 unit s Botulinum toxin..",
-      "description": "",
+      "description": "CAUTIONS!!!!!",
       "price": 54,
       "tags": [],
       "isNew": false,
@@ -5085,7 +5234,7 @@
       "name": "LIZTOX",
       "categoryId": "botulinum",
       "specification": "100 unit s Botulinum toxin..",
-      "description": "",
+      "description": "Liztox 100U",
       "price": 34,
       "tags": [],
       "isNew": false,
@@ -5102,7 +5251,7 @@
       "name": "LIZTOX",
       "categoryId": "botulinum",
       "specification": "2 00unit s Botulinum toxin..",
-      "description": "",
+      "description": "Liztox 100U",
       "price": 42,
       "tags": [],
       "isNew": false,
@@ -5224,7 +5373,7 @@
       "name": "KAIMAX",
       "categoryId": "botulinum",
       "specification": "",
-      "description": "",
+      "description": "The Kaimax 100 units strain, developed by the European National Institute, is an original, high-purity product with a low risk of immunogenicity. It complies with cGMP standards set by the FDA and EMA, ensuring safe and effective improvement of skin and wrinkles, as well as treatment for larger musc",
       "price": 30,
       "tags": [],
       "isNew": false,
@@ -5241,7 +5390,7 @@
       "name": "KAIMAX",
       "categoryId": "botulinum",
       "specification": "",
-      "description": "",
+      "description": "The Kaimax 100 units strain, developed by the European National Institute, is an original, high-purity product with a low risk of immunogenicity. It complies with cGMP standards set by the FDA and EMA, ensuring safe and effective improvement of skin and wrinkles, as well as treatment for larger musc",
       "price": 46,
       "tags": [],
       "isNew": false,
@@ -5258,7 +5407,7 @@
       "name": "WONDERTOX",
       "categoryId": "botulinum",
       "specification": "",
-      "description": "",
+      "description": "Active ingredient: Clostridium botulinum toxin type A 200 units(U)\nStabilizer. Human serum albumin 0.5mg\nIsotonic agent: Sodium chloride 0.9mg",
       "price": 29,
       "tags": [],
       "isNew": false,
@@ -5275,7 +5424,7 @@
       "name": "WONDERTOX",
       "categoryId": "botulinum",
       "specification": "",
-      "description": "",
+      "description": "Active ingredient: Clostridium botulinum toxin type A 200 units(U)\nStabilizer. Human serum albumin 0.5mg\nIsotonic agent: Sodium chloride 0.9mg",
       "price": 44,
       "tags": [],
       "isNew": false,
@@ -5519,7 +5668,7 @@
       "name": "MENNUS PLA",
       "categoryId": "injections",
       "specification": "200 MG 200 mg / vial, porosity PLA (microparticle of polyethylene",
-      "description": "MENNUS PLA 200 MG 200 mg / vial, porosity PLA (microparticle of polyethylene acid) 156 mg - CMC44 mg PLA(Poly Lactic Acid) + CMC(Carboxymethyl celulose)",
+      "description": "MENNUS 200 mg – PLA filler",
       "price": 86,
       "tags": [],
       "isNew": false,
@@ -5529,14 +5678,17 @@
       "image": "/images/products/product-347.webp",
       "moq": 1,
       "groupId": "mennus-pla-200mg",
-      "variantLabel": "PLA"
+      "variantLabel": "PLA",
+      "images": [
+        "/images/products/product-347-2.webp"
+      ]
     },
     {
       "id": 348,
       "name": "MENNUS PL L A",
       "categoryId": "injections",
       "specification": "36 0 MG PL L A(Poly L - L actic Acid) + CMC(Carboxymethyl celulose)",
-      "description": "MENNUS PL L A 36 0 MG PL L A(Poly L - L actic Acid) + CMC(Carboxymethyl celulose)",
+      "description": "MENNUS 200 mg – PLA filler",
       "price": 80,
       "tags": [],
       "isNew": false,
@@ -5546,7 +5698,10 @@
       "image": "/images/products/product-348.webp",
       "moq": 1,
       "groupId": "mennus-pla-200mg",
-      "variantLabel": "PL L A"
+      "variantLabel": "PL L A",
+      "images": [
+        "/images/products/product-347-2.webp"
+      ]
     },
     {
       "id": 349,
@@ -5613,7 +5768,7 @@
       "name": "JUVELOOK",
       "categoryId": "injections",
       "specification": "50 mg) 50 mg / vial 1 vial per box PLA/HA hybrid skin booster des",
-      "description": "JUVELOOK (50 mg) 50 mg / vial 1 vial per box PLA/HA hybrid skin booster designed to stimulate collagen production and improve skin quality, elasticity, and texture. Indications: - Fine lines & wrinkles - Under - eye rejuvenation - Skin texture & elasticity improvement - Acne scars & skin repair",
+      "description": "Juvelook i is an eye-area–specific skin booster that combines PLA (Poly-L-Lactic Acid) and Hyaluronic Acid in an ultra-fine particle formula. With smaller particles than the original Juvelook, it can be safely applied to delicate areas such as the eye area, nasolabial folds, and around the mouth.",
       "price": 145,
       "tags": [],
       "isNew": false,
@@ -5623,7 +5778,10 @@
       "image": "/images/products/product-353.webp",
       "moq": 1,
       "groupId": "juvelook-i-30mg",
-      "variantLabel": "JUVELOOK"
+      "variantLabel": "JUVELOOK",
+      "images": [
+        "/images/products/product-110-2.webp"
+      ]
     },
     {
       "id": 354,
@@ -5645,7 +5803,7 @@
       "name": "CINDELLA SET",
       "categoryId": "injections",
       "specification": "25 mg / 5 Ml, VITAMIN C 10g / 20 mL / 10 vials De - age De - TOX Whitening injection",
-      "description": "CINDELLA SET 1200 mg 10 vials Glutaone 1200 mg, 10 vials Thioctic acid 25 mg / 5 Ml, VITAMIN C 10g / 20 mL / 10 vials De - age De - TOX Whitening injection",
+      "description": "$98.00 – $124.00Price range: $98.00 through $124.00",
       "price": 87,
       "tags": [],
       "isNew": false,
@@ -5655,14 +5813,17 @@
       "image": "/images/products/product-355.webp",
       "moq": 1,
       "groupId": "cindella-set",
-      "variantLabel": "SET"
+      "variantLabel": "SET",
+      "images": [
+        "/images/products/product-106-2.webp"
+      ]
     },
     {
       "id": 356,
       "name": "CINDELLA INJ",
       "categoryId": "injections",
       "specification": "5 mL x 10 vials Thioctic acid 25mg",
-      "description": "",
+      "description": "$98.00 – $124.00Price range: $98.00 through $124.00",
       "price": 29,
       "tags": [],
       "isNew": false,
@@ -5672,7 +5833,10 @@
       "image": "/images/products/product-356.webp",
       "moq": 1,
       "groupId": "cindella-set",
-      "variantLabel": "INJ"
+      "variantLabel": "INJ",
+      "images": [
+        "/images/products/product-106-2.webp"
+      ]
     },
     {
       "id": 357,
@@ -5694,7 +5858,7 @@
       "name": "LIPOTOCIN INJ Thioctic Acid",
       "categoryId": "injections",
       "specification": "12mL x 10 ampoules These injections deliver a number of different benefits for individual",
-      "description": "LIPOTOCIN INJ Thioctic Acid 300mg 12mL x 10 ampoules These injections deliver a number of different benefits for individuals, including increased metabolism, a healthier nervous system, and healthier kidneys. Made up of a number of different amino acids, lipotocin injections offer users an easy way to SPEED UP FAT BURNING.",
+      "description": "Detail information\n\nThese injections deliver a number of different benefits for individuals, including increased metabolism, a healthier nervous system, and healthier kidneys. Lipotocin is known to produce the desired effect a lot faster than other Korean brands available on the market. 12 times hig",
       "price": 42,
       "tags": [],
       "isNew": false,
@@ -5876,7 +6040,7 @@
       "name": "Vita D",
       "categoryId": "injections",
       "specification": "0 . 5 mL x 10 vials Vitamin D Deficiency Prevents and treats vitamin D deficiency in adults a",
-      "description": "Vita D - bone Inj. Vitamin D 200,000iu Injection Cholecalciferol 0 . 5 mL x 10 vials Vitamin D Deficiency Prevents and treats vitamin D deficiency in adults at high risk due to malabsorption conditions.",
+      "description": "Vitamin D is a Fat-soluble vitamin important in many health conditions. It is obtained from the diet or made by the skin from exposure to UV light (sunshine) and is later converted to its active form by the liver and kidneys. Vitamin D has been indicated in the bone health, cancers, cardiovascular d",
       "price": 36,
       "tags": [],
       "isNew": false,
@@ -5886,14 +6050,17 @@
       "image": "/images/products/product-370.webp",
       "moq": 1,
       "groupId": "vita-d-200000iu",
-      "variantLabel": "Vita D"
+      "variantLabel": "Vita D",
+      "images": [
+        "/images/products/product-370-2.webp"
+      ]
     },
     {
       "id": 371,
       "name": "Vita - D",
       "categoryId": "injections",
       "specification": "1mL (Vitamin D3) Cholecalciferol 5mg/mL x 10 ampoules Treatment",
-      "description": "Vita - D 2 00,000 IU/1mL (Vitamin D3) Cholecalciferol 5mg/mL x 10 ampoules Treatment for Vitamin D, Malabsorption, Osteoporosis, Relief, Prevention of Muscle Loss (Sarcopenia), Immune System Enhancement",
+      "description": "Vitamin D is a Fat-soluble vitamin important in many health conditions. It is obtained from the diet or made by the skin from exposure to UV light (sunshine) and is later converted to its active form by the liver and kidneys. Vitamin D has been indicated in the bone health, cancers, cardiovascular d",
       "price": 0,
       "tags": [],
       "isNew": false,
@@ -5903,14 +6070,17 @@
       "image": "/images/products/product-371.webp",
       "moq": 1,
       "groupId": "vita-d-200000iu",
-      "variantLabel": "-"
+      "variantLabel": "-",
+      "images": [
+        "/images/products/product-370-2.webp"
+      ]
     },
     {
       "id": 372,
       "name": "Vita - D",
       "categoryId": "injections",
       "specification": "1.5 mL × 10 ampoules per box High - dose Vitamin D3 (Cholecalciferol) injection for rapid c",
-      "description": "Vita - D 300,000 IU / 1.5 mL ampoule 1.5 mL × 10 ampoules per box High - dose Vitamin D3 (Cholecalciferol) injection for rapid correction of deficiency and support of bone and immune health. Indications - Vitamin D deficiency - Bone health (osteoporosis, osteomalacia) - Immune support - Fatigue related to low vitamin D",
+      "description": "Vitamin D is a Fat-soluble vitamin important in many health conditions. It is obtained from the diet or made by the skin from exposure to UV light (sunshine) and is later converted to its active form by the liver and kidneys. Vitamin D has been indicated in the bone health, cancers, cardiovascular d",
       "price": 50,
       "tags": [],
       "isNew": false,
@@ -5920,7 +6090,10 @@
       "image": "/images/products/product-372.webp",
       "moq": 1,
       "groupId": "vita-d-200000iu",
-      "variantLabel": "-"
+      "variantLabel": "-",
+      "images": [
+        "/images/products/product-370-2.webp"
+      ]
     },
     {
       "id": 373,
@@ -5987,7 +6160,7 @@
       "name": "LIPOTOCIN INJ Thioctic Acid",
       "categoryId": "injections",
       "specification": "12mL x 10 amp oules These injections deliver a number of different benefits for individua",
-      "description": "LIPOTOCIN INJ Thioctic Acid 300mg 12mL x 10 amp oules These injections deliver a number of different benefits for individuals, including increased metabolism, a healthier nervous system, and healthier kidneys. Made up of a number of different amino acids, lipotocin injections offer users an easy way to SPEED UP FAT BURNING.",
+      "description": "Detail information\n\nThese injections deliver a number of different benefits for individuals, including increased metabolism, a healthier nervous system, and healthier kidneys. Lipotocin is known to produce the desired effect a lot faster than other Korean brands available on the market. 12 times hig",
       "price": 42,
       "tags": [],
       "isNew": false,
@@ -6139,7 +6312,7 @@
       "name": "WELLSCAINE PLUS CREAM Lidocaine",
       "categoryId": "anesthetics",
       "specification": "25mg + Prilocaine 25mg 500g Anesthetic cream Ingredients: 25mg L",
-      "description": "WELLSCAINE PLUS CREAM Lidocaine 25mg + Prilocaine 25mg 500g Anesthetic cream Ingredients: 25mg Lidocaine / gr 25mg of Prilocaine / gr P olyoxyethylene60,Hydrogenated Caster Oil,Carbomer 940, Sodium Hydroxide ,Methylparaben,Propylparaben, Purfied Water",
+      "description": "Wellscaine Plus 450g",
       "price": 28,
       "tags": [],
       "isNew": false,
@@ -6171,7 +6344,7 @@
       "name": "WELLSCAINE CREAM",
       "categoryId": "anesthetics",
       "specification": "500g Anesthetic cream surface anesthetic",
-      "description": "WELLSCAINE CREAM 9.6% x 500g Anesthetic cream surface anesthetic",
+      "description": "Wellscaine Plus 450g",
       "price": 22,
       "tags": [],
       "isNew": false,
@@ -6263,7 +6436,7 @@
       "name": "SM CREAM",
       "categoryId": "anesthetics",
       "specification": "500g Anesthetic cream surface anesthetic",
-      "description": "Anesthetic cream surface anesthetic",
+      "description": "Excellent pain relief cream for MTS, semi-permanent make-up, laser treatment, cosmetology treatments.",
       "price": 28,
       "tags": [],
       "isNew": false,
@@ -6280,7 +6453,7 @@
       "name": "SM CREAM",
       "categoryId": "anesthetics",
       "specification": "3 0g Anesthetic cream surface anesthetic",
-      "description": "Anesthetic cream surface anesthetic",
+      "description": "Excellent pain relief cream for MTS, semi-permanent make-up, laser treatment, cosmetology treatments.",
       "price": 6,
       "tags": [],
       "isNew": false,
@@ -6359,7 +6532,7 @@
       "name": "LAENNEC",
       "categoryId": "placental-therapy",
       "specification": "2mL x 50 amp ules Placenta injection",
-      "description": "LAENNEC hepaprotector, immunostimulant, youth elixir 2mL x 50 amp ules Placenta injection",
+      "description": "$135.00 – $340.00Price range: $135.00 through $340.00",
       "price": 270,
       "tags": [],
       "isNew": false,
@@ -6376,7 +6549,7 @@
       "name": "LAENNEC",
       "categoryId": "placental-therapy",
       "specification": "2mL x 10 amp ules Placenta injection",
-      "description": "LAENNEC hepaprotector, immunostimulant, youth elixir 2mL x 10 amp ules Placenta injection",
+      "description": "$135.00 – $340.00Price range: $135.00 through $340.00",
       "price": 67,
       "tags": [],
       "isNew": false,
@@ -6648,7 +6821,7 @@
       "name": "DK Filler Cannula with",
       "categoryId": "nano-needle-cannula",
       "specification": "50pcs/box 2 1 G50/70 23G50/70, 25G50/70,",
-      "description": "DK Filler Cannula with punching needle 50pcs/box 2 1 G50/70 23G50/70, 25G50/70,",
+      "description": "$75.00 – $85.00Price range: $75.00 through $85.00",
       "price": 62,
       "tags": [],
       "isNew": false,
@@ -6658,14 +6831,17 @@
       "image": "/images/products/product-420.webp",
       "moq": 1,
       "groupId": "dk-filler-cannula",
-      "variantLabel": "DK Filler Cannula with"
+      "variantLabel": "DK Filler Cannula with",
+      "images": [
+        "/images/products/product-420-2.webp"
+      ]
     },
     {
       "id": 421,
       "name": "DK Filler Cannula with",
       "categoryId": "nano-needle-cannula",
       "specification": "50pcs/box 18G50/70",
-      "description": "Filler Cannula with punching needle 50pcs/box 18G50/70",
+      "description": "$75.00 – $85.00Price range: $75.00 through $85.00",
       "price": 72,
       "tags": [],
       "isNew": false,
@@ -6675,7 +6851,10 @@
       "image": "/images/products/product-421.webp",
       "moq": 1,
       "groupId": "dk-filler-cannula",
-      "variantLabel": "DK Filler Cannula with"
+      "variantLabel": "DK Filler Cannula with",
+      "images": [
+        "/images/products/product-420-2.webp"
+      ]
     },
     {
       "id": 422,
@@ -6731,7 +6910,7 @@
       "name": "SYRINGE MI X ING TUBE (CONNECTOR) (For",
       "categoryId": "nano-needle-cannula",
       "specification": "425. SYRINGE MI X ING TUBE (CONNECTOR) (For connecting syringes) BOX",
-      "description": "SYRINGE MI X ING TUBE (CONNECTOR) (For connecting syringes) BOX 100pcs",
+      "description": "The syringe connector is designed to mix products in two syringes or to move a solution from one device to another. The connector forms a sealed system between 2 medical instruments. This protects the cosmetic products from the penetration of bacteria and prevents the loss if the solution when mixed",
       "price": 45,
       "tags": [],
       "isNew": false,
@@ -6748,7 +6927,7 @@
       "name": "SYRINGE MIXING TUBE (CONNECTOR)",
       "categoryId": "nano-needle-cannula",
       "specification": "426. SYRINGE MIXING TUBE (CONNECTOR) 10 PCS ( For connecting syringe",
-      "description": "SYRINGE MIXING TUBE (CONNECTOR) 10 PCS ( For connecting syringes) 10 PCS ( 1 7) IMPORTED PRODUCTS ( NOT KOREAN ORIGIN)",
+      "description": "The syringe connector is designed to mix products in two syringes or to move a solution from one device to another. The connector forms a sealed system between 2 medical instruments. This protects the cosmetic products from the penetration of bacteria and prevents the loss if the solution when mixed",
       "price": 7,
       "tags": [],
       "isNew": false,
