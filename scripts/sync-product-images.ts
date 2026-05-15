@@ -117,7 +117,7 @@ interface Product {
   image: string;
 }
 
-async function main() {
+function main() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
   const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
