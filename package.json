@@ -13,7 +13,10 @@
     "fix-images": "tsx scripts/fix-product-images.ts",
     "sync-images": "tsx scripts/sync-product-images.ts",
     "fill-descriptions": "tsx scripts/fill-descriptions.ts",
-    "sync-aesthetics": "tsx scripts/sync-from-aesthetics-shop.ts"
+    "sync-aesthetics": "tsx scripts/sync-from-aesthetics-shop.ts",
+    "group-products": "tsx scripts/group-products.ts",
+    "scrape-descriptions": "tsx scripts/scrape-descriptions.ts",
+    "scrape-gallery": "tsx scripts/scrape-gallery-images.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
