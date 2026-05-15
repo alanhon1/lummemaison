@@ -2,13 +2,14 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Tag, Layers } from 'lucide-react';
-import { getProductById, getCategoryById, getProductsByCategory } from '@/lib/products';
+import { getProductById, getCategoryById, getProductsByCategory, getProductVariants } from '@/lib/products';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
 import ProductDetailTabs from '@/components/catalogue/ProductDetailTabs';
 import ProductPrice from '@/components/catalogue/ProductPrice';
 import ProductCard from '@/components/catalogue/ProductCard';
-import ProductImage from '@/components/catalogue/ProductImage';
+import ProductGallery from '@/components/catalogue/ProductGallery';
+import VariantSelector from '@/components/catalogue/VariantSelector';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
   const { id } = await params;
@@ -28,8 +29,10 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
   const t = await getTranslations({ locale, namespace: 'product' });
   const category = getCategoryById(product.categoryId);
   const related = getProductsByCategory(product.categoryId)
-    .filter(p => p.id !== product.id)
+    .filter(p => p.id !== product.id && !p.groupId)
     .slice(0, 4);
+
+  const variants = product.groupId ? getProductVariants(product.groupId) : [];
 
   const hasEnriched = !!(
     product.enrichedInfo?.benefits?.length ||
@@ -58,25 +61,22 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Image — sticky on large screens */}
-          <div className="lg:sticky lg:top-28">
-            <div className="border border-bone aspect-square relative overflow-hidden">
-              <ProductImage
-                src={product.image}
-                alt={product.name}
-                productId={product.id}
-                categoryId={product.categoryId}
-                categoryName={category?.name}
-                fill={false}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute top-4 left-4 flex flex-col gap-1.5">
+          {/* Image gallery — sticky on large screens */}
+          <ProductGallery
+            mainImage={product.image}
+            extraImages={product.images ?? []}
+            alt={product.name}
+            productId={product.id}
+            categoryId={product.categoryId}
+            categoryName={category?.name}
+            badges={
+              <>
                 {product.isNew && <span className="badge-new text-xs px-2 py-1">{t('tags.new')}</span>}
                 {product.isSale && <span className="badge-sale text-xs px-2 py-1">{t('tags.sale')}</span>}
                 {product.isBestSeller && <span className="badge-best text-xs px-2 py-1">{t('tags.bestSeller')}</span>}
-              </div>
-            </div>
-          </div>
+              </>
+            }
+          />
 
           {/* Info */}
           <div>
@@ -97,6 +97,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             </h1>
             <div className="gold-divider mb-6" />
 
+            <VariantSelector currentProduct={product} variants={variants} />
             <ProductPrice price={product.price} moq={product.moq} moqLabel={t('units')} />
 
             {product.specification && (
