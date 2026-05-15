@@ -11,7 +11,8 @@
     "enrich-descriptions": "tsx scripts/enrich-product-descriptions.ts",
     "extract-doc-images": "powershell -ExecutionPolicy Bypass -File scripts/extract-doc-images.ps1",
     "fix-images": "tsx scripts/fix-product-images.ts",
-    "sync-images": "tsx scripts/sync-product-images.ts"
+    "sync-images": "tsx scripts/sync-product-images.ts",
+    "fill-descriptions": "tsx scripts/fill-descriptions.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
