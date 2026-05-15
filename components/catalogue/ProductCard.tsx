@@ -12,9 +12,10 @@ import ProductImage from './ProductImage';
 interface ProductCardProps {
   product: Product;
   layout?: 'grid' | 'list';
+  variantCount?: number;
 }
 
-export default function ProductCard({ product, layout = 'grid' }: ProductCardProps) {
+export default function ProductCard({ product, layout = 'grid', variantCount = 1 }: ProductCardProps) {
   const t = useTranslations('catalogue');
   const tProduct = useTranslations('product');
   const locale = useLocale();
@@ -60,6 +61,11 @@ export default function ProductCard({ product, layout = 'grid' }: ProductCardPro
               <h3 className="text-sm font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight">
                 #{product.id} {product.name}
               </h3>
+              {variantCount > 1 && (
+                <p className="text-[9px] text-gold/80 font-medium tracking-wide mt-0.5">
+                  {variantCount} options
+                </p>
+              )}
               {product.specification && (
                 <p className="text-xs text-mist mt-1 line-clamp-1">{product.specification}</p>
               )}
@@ -124,9 +130,14 @@ export default function ProductCard({ product, layout = 'grid' }: ProductCardPro
       {/* Info */}
       <div className="p-4">
         <p className="text-xs text-mist mb-1">#{product.id}</p>
-        <h3 className="text-xs font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-2">
+        <h3 className="text-xs font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-1">
           {product.name}
         </h3>
+        {variantCount > 1 && (
+          <p className="text-[9px] text-gold/80 font-medium tracking-wide mb-1">
+            {variantCount} options available
+          </p>
+        )}
         {product.specification && (
           <p className="text-xs text-mist line-clamp-1 mb-3">{product.specification}</p>
         )}

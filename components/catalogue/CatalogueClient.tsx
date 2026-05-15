@@ -41,6 +41,17 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
 
   const fuse = useMemo(() => new Fuse(products, fuseOptions), []);
 
+  // Precompute variant counts once
+  const variantCounts = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const p of products) {
+      if (p.groupId) {
+        map.set(p.groupId, (map.get(p.groupId) ?? 0) + 1);
+      }
+    }
+    return map;
+  }, []);
+
   const filteredProducts = useMemo(() => {
     let result: Product[] = products;
 
@@ -76,6 +87,15 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
         result = [...result].sort((a, b) => a.name.localeCompare(b.name));
         break;
     }
+
+    // Deduplicate grouped products: keep only the first representative per group
+    const seenGroups = new Set<string>();
+    result = result.filter(p => {
+      if (!p.groupId) return true;
+      if (seenGroups.has(p.groupId)) return false;
+      seenGroups.add(p.groupId);
+      return true;
+    });
 
     return result;
   }, [searchQuery, activeCategory, saleOnly, newOnly, sortBy, fuse]);
@@ -325,13 +345,23 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
           ) : layout === 'grid' ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
               {paginatedProducts.map(product => (
-                <ProductCard key={product.id} product={product} layout="grid" />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  layout="grid"
+                  variantCount={product.groupId ? (variantCounts.get(product.groupId) ?? 1) : 1}
+                />
               ))}
             </div>
           ) : (
             <div className="flex flex-col gap-2">
               {paginatedProducts.map(product => (
-                <ProductCard key={product.id} product={product} layout="list" />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  layout="list"
+                  variantCount={product.groupId ? (variantCounts.get(product.groupId) ?? 1) : 1}
+                />
               ))}
             </div>
           )}
