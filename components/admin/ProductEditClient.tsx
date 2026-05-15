@@ -59,7 +59,8 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
       const res = await fetch(`/api/admin/upload-image?id=${product.id}`, { method: 'POST', body: fd });
       if (!res.ok) throw new Error('Upload failed');
       const data: { ok: boolean; path: string } = await res.json();
-      update('image', data.path);
+      update('image', `${data.path}?v=${Date.now()}`);
+      if (fileInputRef.current) fileInputRef.current.value = '';
     } catch (err) {
       setUploadError(err instanceof Error ? err.message : 'Upload failed');
     } finally {
@@ -102,13 +103,18 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
         setIsDirty(false);
         router.push(`/manzura/products/${data.product.id}`);
       } else {
-        await fetch(`/api/admin/products/${product!.id}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        });
-        setIsDirty(false);
-        router.refresh();
+        try {
+          const res = await fetch(`/api/admin/products/${product!.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+          });
+          if (!res.ok) throw new Error('Save failed');
+          setIsDirty(false);
+          router.refresh();
+        } catch (err) {
+          alert(err instanceof Error ? err.message : 'Save failed');
+        }
       }
     } finally {
       setSaving(false);
