@@ -98,7 +98,7 @@ export default function ProductCard({ product, layout = 'grid' }: ProductCardPro
           productId={product.id}
           categoryId={product.categoryId}
           fill
-          className="group-hover:scale-105 transition-transform duration-500"
+          className="group-hover:scale-110 transition-transform duration-500"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 

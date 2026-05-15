@@ -12,7 +12,8 @@
     "extract-doc-images": "powershell -ExecutionPolicy Bypass -File scripts/extract-doc-images.ps1",
     "fix-images": "tsx scripts/fix-product-images.ts",
     "sync-images": "tsx scripts/sync-product-images.ts",
-    "fill-descriptions": "tsx scripts/fill-descriptions.ts"
+    "fill-descriptions": "tsx scripts/fill-descriptions.ts",
+    "sync-aesthetics": "tsx scripts/sync-from-aesthetics-shop.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",

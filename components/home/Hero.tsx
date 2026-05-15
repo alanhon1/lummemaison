@@ -19,7 +19,23 @@ export default function Hero() {
       <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
         <div className="w-full h-full bg-gradient-to-bl from-gold/30 to-transparent" />
       </div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl" />
+
+      {/* Animated floating orbs */}
+      <motion.div
+        className="absolute top-1/4 right-1/4 w-64 h-64 bg-gold/8 rounded-full blur-3xl pointer-events-none"
+        animate={{ y: [0, -30, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-1/3 right-1/6 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none"
+        animate={{ y: [0, 20, 0] }}
+        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute top-1/2 right-1/3 w-32 h-32 bg-gold/12 rounded-full blur-2xl pointer-events-none"
+        animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
       {/* Grid pattern */}
       <div

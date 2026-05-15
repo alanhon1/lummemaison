@@ -51,37 +51,35 @@ export default function CategoryGrid() {
           <div className="gold-divider mx-auto mt-4" />
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-6">
           {categories.map((cat, i) => {
             const Icon = CATEGORY_ICONS[cat.id] ?? Package;
             return (
               <motion.div
                 key={cat.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.04 }}
               >
                 <Link
                   href={`/${locale}/catalogue/${cat.id}`}
-                  className="group block bg-cream border border-gold/20 p-5 hover:border-gold hover:shadow-md transition-all duration-300 hover:-translate-y-1 rounded-sm"
+                  className="group flex flex-col items-center gap-3"
                 >
-                  <div className="mb-3">
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full border border-gold/30 bg-cream flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:shadow-[0_0_20px_rgba(201,169,110,0.35)]">
                     <Icon
-                      size={22}
+                      size={24}
                       strokeWidth={1.5}
                       className="text-gold group-hover:text-gold-dark transition-colors duration-300"
                     />
                   </div>
-                  <h3 className="text-xs font-semibold tracking-wide text-charcoal group-hover:text-gold transition-colors leading-tight">
-                    {cat.name}
-                  </h3>
-                  <p className="text-xs text-mist mt-1">
-                    #{cat.range[0]}–{cat.range[1]}
-                  </p>
-                  <div className="mt-3 flex items-center gap-1 text-gold opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-xs font-semibold tracking-wider">View</span>
-                    <ArrowRight size={12} />
+                  <div className="text-center">
+                    <h3 className="text-[10px] font-semibold tracking-wide text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2">
+                      {cat.name}
+                    </h3>
+                    <p className="text-[9px] text-mist mt-0.5">
+                      #{cat.range[0]}–{cat.range[1]}
+                    </p>
                   </div>
                 </Link>
               </motion.div>
