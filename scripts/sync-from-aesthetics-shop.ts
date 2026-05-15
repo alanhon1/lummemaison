@@ -67,8 +67,9 @@ async function fetchSitemap(): Promise<AestheticsProduct[]> {
   const urlBlocks = xml.match(/<url>[\s\S]*?<\/url>/g) ?? [];
 
   for (const block of urlBlocks) {
-    const locMatch = block.match(/<loc>(https:\/\/aesthetics-shop\.com\/product\/([^<]+)\/?)<\/loc>/);
-    const imgMatch = block.match(/<image:loc>(https?:\/\/[^<]+)<\/image:loc>/);
+    // Values are wrapped in CDATA: <loc><![CDATA[https://...]]></loc>
+    const locMatch = block.match(/<loc>(?:<!\[CDATA\[)?(https:\/\/aesthetics-shop\.com\/product\/([^\]<]+?)\/??)(?:\]\]>)?<\/loc>/);
+    const imgMatch = block.match(/<image:loc>\s*(?:<!\[CDATA\[)?\s*(https?:\/\/[^\]\s<]+?)\s*(?:\]\]>)?\s*<\/image:loc>/);
 
     if (!locMatch || !imgMatch) continue;
 
