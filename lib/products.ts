@@ -29,6 +29,9 @@ export interface Product {
   image: string;
   moq: number;
   enrichedInfo?: EnrichedInfo;
+  groupId?: string;
+  variantLabel?: string;
+  images?: string[];
 }
 
 export const categories: Category[] = productsData.categories as Category[];
@@ -66,4 +69,8 @@ export function searchProducts(query: string): Product[] {
     p.specification.toLowerCase().includes(q) ||
     p.categoryId.includes(q)
   );
+}
+
+export function getProductVariants(groupId: string): Product[] {
+  return products.filter(p => p.groupId === groupId).sort((a, b) => a.id - b.id);
 }
