@@ -204,4 +204,4 @@ function main() {
   process.stdout.write(`Full report: scripts/image-sync-report.txt\n`);
 }
 
-main().catch(console.error);
+main();
