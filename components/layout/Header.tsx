@@ -8,7 +8,6 @@ import { ShoppingBag, Search, Menu, X, Globe } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore, type Currency } from '@/lib/currency-store';
 import { locales, type Locale } from '@/lib/i18n';
-import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const LOCALE_LABELS: Record<Locale, string> = { en: 'EN', ru: 'RU', ko: 'KO' };
 
@@ -117,13 +116,6 @@ export default function Header() {
               {CURRENCY_LABEL[displayCurrency]}
             </button>
 
-            {/* Theme toggle */}
-            <div
-              className="hidden lg:flex"
-              style={{ color: 'var(--page-text)' }}
-            >
-              <ThemeToggle />
-            </div>
 
             {/* Language */}
             <div className="relative hidden lg:block">
@@ -224,9 +216,6 @@ export default function Header() {
               >
                 {CURRENCY_LABEL[displayCurrency]}
               </button>
-              <div style={{ color: 'var(--page-text)' }}>
-                <ThemeToggle />
-              </div>
             </div>
           </div>
         )}
