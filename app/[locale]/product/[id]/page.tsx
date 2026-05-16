@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Tag, Layers } from 'lucide-react';
-import { getProductById, getCategoryById, getProductsByCategory, getProductVariants } from '@/lib/products';
+import { Tag, Layers } from 'lucide-react';
+import { getProductById, getCategoryById, getProductsByCategory, getProductVariants, categories } from '@/lib/products';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
 import ProductDetailTabs from '@/components/catalogue/ProductDetailTabs';
@@ -10,6 +10,7 @@ import ProductPrice from '@/components/catalogue/ProductPrice';
 import ProductCard from '@/components/catalogue/ProductCard';
 import ProductGallery from '@/components/catalogue/ProductGallery';
 import VariantSelector from '@/components/catalogue/VariantSelector';
+import BackToCatalogueButton from '@/components/catalogue/BackToCatalogueButton';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
   const { id } = await params;
@@ -40,9 +41,15 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
     product.enrichedInfo?.ingredients
   );
 
+  const categoriesById: Record<string, string> = Object.fromEntries(
+    categories.map(c => [c.id, c.name])
+  );
+
   return (
     <div className="pt-24 min-h-screen bg-cream">
       <div className="max-w-7xl mx-auto px-6 py-12">
+        <BackToCatalogueButton locale={locale} categoriesById={categoriesById} />
+
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-mist mb-8">
           <Link href={`/${locale}`} className="hover:text-gold transition-colors">Home</Link>
@@ -160,15 +167,6 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
           </div>
         )}
 
-        <div className="mt-12">
-          <Link
-            href={`/${locale}/catalogue`}
-            className="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-mist hover:text-gold transition-colors"
-          >
-            <ArrowLeft size={14} />
-            Back to Catalogue
-          </Link>
-        </div>
       </div>
     </div>
   );
