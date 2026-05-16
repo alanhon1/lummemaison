@@ -10,6 +10,7 @@ import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
 import sharp from 'sharp';
+import { normalise, scoreMatch } from './lib/fuzzy-match';
 
 const DATA_FILE = path.join(process.cwd(), 'data', 'products.json');
 const OUTPUT_DIR = path.join(process.cwd(), 'public', 'images', 'products');
@@ -27,33 +28,6 @@ interface Product {
   id: number;
   name: string;
   image: string;
-}
-
-// Normalise a product name for comparison.
-// "BOTULAX 100 units" → "botulax 100"
-// "Botulax 100U" → "botulax 100"
-function normalise(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/\(.*?\)/g, ' ')        // strip parenthetical notes
-    .replace(/\b(\d+)\s*u\b/g, '$1') // "100u" → "100"
-    .replace(/\bunits?\b/g, '')       // "units" → ""
-    .replace(/\bwith\b/g, '')
-    .replace(/\bplus\b/g, '+')
-    .replace(/[^a-z0-9+\s]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-// Score how many words two normalised names share.
-function scoreMatch(a: string, b: string): number {
-  const wa = new Set(a.split(' ').filter(w => w.length > 1));
-  const wb = b.split(' ').filter(w => w.length > 1);
-  let score = 0;
-  for (const w of wb) {
-    if (wa.has(w)) score += w.length > 3 ? 2 : 1; // long words worth more
-  }
-  return score;
 }
 
 async function fetchSitemap(): Promise<AestheticsProduct[]> {
