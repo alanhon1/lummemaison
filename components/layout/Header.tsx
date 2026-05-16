@@ -116,7 +116,6 @@ export default function Header() {
               {CURRENCY_LABEL[displayCurrency]}
             </button>
 
-
             {/* Language */}
             <div className="relative hidden lg:block">
               <button
@@ -208,7 +207,7 @@ export default function Header() {
                   {LOCALE_LABELS[l]}
                 </Link>
               ))}
-              {/* Mobile currency + theme */}
+              {/* Mobile currency */}
               <button
                 onClick={cycleCurrency}
                 className="text-xs font-bold tracking-wider px-3 py-1.5 border rounded-md transition-colors"

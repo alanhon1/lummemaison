@@ -44,6 +44,7 @@ export default function BackToCatalogueButton({
     const categoryName = categoriesById[categoryId];
     if (!categoryName) return;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTarget({
       href: `/${locale}/catalogue/${categoryId}`,
       label: `Back to ${categoryName}`,
