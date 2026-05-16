@@ -20,8 +20,8 @@ The remaining post-launch work (not in this spec):
 
 ## Goals
 
-1. **Detect and remove mismatched images** across all 438 products using AI vision.
-2. **Refill the cleared slots and the existing gaps** (11 images, 76 descriptions) from a second scraping source, with every fetched image re-verified by AI vision before being persisted.
+1. **Detect and remove mismatched images** across all 438 products using Claude Code subagent vision (no API key required — uses session inference).
+2. **Refill the cleared slots and the existing gaps** (11 images, 76 descriptions) from a second scraping source, with every fetched image re-verified by the same subagent vision pass before being persisted.
 3. **Produce `public/missingproducts.txt`** listing every product that still lacks an image or description after both passes.
 4. **Add group-level display fields** (`groupName`, `groupImage`) and update the catalog card to use them for deduplicated group entries.
 
@@ -46,24 +46,29 @@ The remaining post-launch work (not in this spec):
 
 ## Design
 
-Three sequential phases, each producing a commit and a report file. Phases share infrastructure (AI vision helper, scrape helper, backup) but their concerns are distinct.
+Three sequential phases, each producing a commit and a report file. Phases share infrastructure (the subagent-vision batching pattern from Phase 1, the secondary-source scrape helper from Phase 2, and the existing backup system) but their concerns are distinct.
 
-### Phase 1 — Audit existing image matches with AI vision
+### Phase 1 — Audit existing image matches via Claude Code subagent vision
 
 **Goal:** classify every existing `image` field as CONFIRMED, MISMATCH, or UNCERTAIN. Clear the field for the latter two so Phase 2 has clean slots to fill.
 
-**New file:** `scripts/audit-matches.ts`
+**Approach:** The user does not have an `ANTHROPIC_API_KEY`. Instead of a standalone Node script that calls the API, the audit runs as an **implementation task during plan execution**: the controller dispatches Claude Code subagents (general-purpose, model `sonnet` or `haiku`) that read the local product image files via the `Read` tool and classify them directly. No external API, no cost to the user — the work is amortised across the existing Claude Code session.
 
-**Model:** Claude Haiku 4.5 (`claude-haiku-4-5-20251001`) via the official Anthropic SDK (`@anthropic-ai/sdk` — add as a dependency). Vision input: the local product image file from `public/images/products/`, base64-encoded.
+**Mechanics:**
+- The controller iterates products in batches of 20 (avoids over-stuffing subagent context with images).
+- For each batch, dispatch one subagent with a prompt containing:
+  - The plan task text (explaining the classification job)
+  - A JSON snippet listing the 20 products: `[{id, name, categoryName, imagePath}, ...]` where `imagePath` is the absolute path to the local file under `public/images/products/`.
+  - Instruction: "For each product, use the Read tool on its imagePath to view the image. Match strictly by visible brand/product wording on packaging. Reply with one JSON object per product: `{id, status: 'CONFIRMED'|'MISMATCH'|'UNCERTAIN', reason: 'one short sentence'}`. Concatenate the 20 objects into a JSON array."
+- Subagent returns 20 classifications per dispatch. Controller writes them into a running buffer.
+- After all 22 batches complete (≈ 22 subagent dispatches, ≈ 1 hour wall time), the controller applies the buffer to `products.json` and writes the report.
 
-**Cost target:** under $1 for the full 438-product run. Haiku 4.5 input pricing × ~1800 tokens/image × 438 products is well under that.
+**Cost:** $0 to the user — uses Claude Code session inference. Total run time around 1 hour for the full 438.
 
-**Per-product call shape:**
-- System: "You are auditing product image matches for a Korean cosmetics catalog. Answer in exactly this format: `STATUS: <CONFIRMED|MISMATCH|UNCERTAIN>` on line 1, `REASON: <one short sentence>` on line 2. Match strictly by visible brand/product wording on packaging."
-- User: text block "Product name: `<name>`\nCategory: `<category name>`" + image block.
-- Output: at most 50 tokens. Parse the two lines.
-
-**Concurrency:** at most 4 in-flight calls. Use a simple promise pool; no need for a library.
+**Tradeoffs vs. an API-key approach:**
+- Slower (subagent dispatch overhead per batch vs. fan-out API calls)
+- Cannot be re-run unattended later from a cron or CI (requires a Claude Code session)
+- Accepted because it's the right shape for a one-shot data quality fix with no recurring need
 
 **Outputs:**
 - Updated `data/products.json`: for any product where status is MISMATCH or UNCERTAIN, set `image` to empty string and add it to a working "to-refill" list (held in memory for Phase 2). Also clear the product's `images` (extra gallery images) array, since those came from the same wrong source.
@@ -83,22 +88,23 @@ Three sequential phases, each producing a commit and a report file. Phases share
   ```
 - Backup written to `data/backups/products-{ISO}.json` before the data is mutated.
 
-**Phase commit message:** `feat(data): audit and clear mismatched product images via AI vision`
+**Phase commit message:** `feat(data): audit and clear mismatched product images via subagent vision`
 
 ### Phase 2 — Multi-source refill with vision re-verification
 
-**Goal:** fill every cleared image slot and every missing-or-short description using a second scraping source. Re-verify each fetched image through Phase 1's AI vision helper before persisting.
+**Goal:** fill every cleared image slot and every missing-or-short description using a second scraping source. Re-verify each fetched image through Phase 1's subagent vision pass before persisting.
 
 **New file:** `scripts/sync-from-gofillerss.ts` — mirrors `sync-from-aesthetics-shop.ts`'s shape but targeted at `mg.gofillerss.com`. Discovers products via the site's sitemap or category index pages (whichever exists — to be determined by quick `WebFetch` during implementation). Uses the existing normalisation + fuzzy match helpers from `sync-from-aesthetics-shop.ts` (extract those into `scripts/lib/fuzzy-match.ts` so both scripts share one implementation rather than duplicating the regex).
 
-**New file:** `scripts/refill-from-secondary.ts` — the orchestrator. Reads `products.json`, iterates over all products with empty `image` OR short `description`, and for each:
+**New file:** `scripts/refill-from-secondary.ts` — the scraping orchestrator. Reads `products.json`, iterates over all products with empty `image` OR short `description`, and for each:
 1. Look up candidate in the gofillerss source by fuzzy match (`score ≥ 2`).
-2. If found, download the candidate image to `public/images/products/product-{id}-secondary.webp` (a staging filename to avoid overwriting until verified).
-3. Call the AI vision helper from Phase 1 with the new image. If CONFIRMED, move the staging file to `product-{id}.webp` and write the path into `products.json`.
-4. For description: read the candidate's short description from gofillerss, persist into `products.json` if length ≥ 50. No AI verification needed for text — the source-product mapping is already vetted by the same fuzzy match step.
-5. If no candidate found, or AI vision rejects, leave the product empty and queue for `missingproducts.txt`.
+2. If found, download the candidate image to `public/images/products/product-{id}-secondary.webp` (a staging filename — do NOT overwrite until verified).
+3. Read the candidate's short description from gofillerss, hold in memory.
+4. **Do not** mark these as final yet. The script's output is a "candidates" JSON file (`scripts/secondary-candidates.json`) listing every staged image + candidate description for verification.
 
-**Shared module:** `scripts/lib/vision-audit.ts` — exports the per-image verification function reused by both Phase 1 and Phase 2.
+**Verification handoff:** After the scraping script produces `scripts/secondary-candidates.json`, the controller runs the same subagent-vision pattern from Phase 1 on the staged images. For each verified CONFIRMED: rename `product-{id}-secondary.webp` to `product-{id}.webp` and persist the description into `products.json`. For REJECTED or UNCERTAIN: delete the staging file and queue the product for `missingproducts.txt`.
+
+**Why split scrape and verify:** the scraping is purely mechanical (and can be retried/resumed if the network blips); the verification is the careful, judgment-heavy step that benefits from being a discrete subagent task with a clean batch.
 
 **Outputs:**
 - Updated `data/products.json` with refilled fields.
@@ -134,7 +140,7 @@ For each `groupId` present in `products.json`, compute and persist:
   1. If a bundle photo was scraped during Phase 2 (e.g. an aesthetics-shop or gofillerss product page shows the variants together), use that — naming convention `public/images/products/group-{groupId}.webp`.
   2. Else fall back to the first variant's confirmed image.
 
-Phase 3 implements the data derivation, plus a minimal Phase-2 hook: when iterating products in `refill-from-secondary.ts`, after a group's variants are settled, look for and fetch a "bundle" image specifically (e.g. a sitemap entry whose slug equals the group's `groupId` rather than a single variant slug). If found and AI-verified to be the bundle shot, save as `group-{groupId}.webp`.
+Phase 3 implements the data derivation, plus a minimal Phase-2 hook: when iterating products in `refill-from-secondary.ts`, after a group's variants are settled, look for and fetch a "bundle" image specifically (e.g. a sitemap entry whose slug equals the group's `groupId` rather than a single variant slug). Any candidate bundle shot goes through the same subagent vision verification as variant images; if verified, save as `group-{groupId}.webp`.
 
 **UI changes:** `components/catalogue/ProductCard.tsx`
 
@@ -152,11 +158,9 @@ Each phase is independently runnable and committed. Stopping after Phase 1 leave
 
 ## Configuration
 
-**Environment variable:** `ANTHROPIC_API_KEY` — read from `.env.local`. The user already has this for other API integrations; if not, the spec calls out that they will be prompted during plan execution. Add `.env.local` lookup to the new scripts via Node's `process.env` (already wired through `next/env` for the main app — scripts can read `.env.local` directly via `dotenv` if needed, but `tsx` should pick it up if started with `NODE_OPTIONS="-r dotenv/config"` — confirm during plan writing).
+**No new environment variables.** The user has explicitly stated they do not have an `ANTHROPIC_API_KEY`, so all vision verification happens via Claude Code subagent dispatch during plan execution rather than via a paid API key.
 
-**Package additions:**
-- `@anthropic-ai/sdk` (production dep, since scripts could be re-run from the admin UI in the future)
-- `dotenv` (dev dep, if needed for script env loading)
+**Package additions:** None. The new scripts only need things already in the dependency tree: `axios` (already present), `cheerio` (already present), `sharp` (already present, for any image post-processing).
 
 ## Backups and safety
 
@@ -177,6 +181,7 @@ No test framework in the project. Verification is:
 ## Risks and open items
 
 - **gofillerss.com structure is unknown.** During plan-writing, a small `WebFetch` reconnaissance will determine sitemap availability. If gofillerss has no usable sitemap, fall back to scraping its category index pages. If gofillerss is completely unusable, the plan will swap in a different secondary source (e.g. `medanat.com` or `kosbeauty.com`) — but this is a plan-level decision, not a spec change.
-- **AI vision could misclassify.** The audit report exposes every classification with a reason — the user can spot-check. If MISMATCH rate is unexpectedly high (>30%) or CONFIRMED includes obvious wrong matches, the calibration prompt may need tuning. The spec accepts up to one revision pass of the prompt as part of Phase 1.
+- **Subagent vision could misclassify.** The audit report exposes every classification with a reason — the user can spot-check. If MISMATCH rate is unexpectedly high (>30%) or CONFIRMED includes obvious wrong matches, the prompt may need tuning. The spec accepts up to one revision pass of the prompt as part of Phase 1.
 - **Bundle photos may not exist for every group.** That's fine — `groupImage` falls back to the first variant's image. The site still looks better than today because group *names* are cleaned up.
-- **Phase 2's API key requirement.** If the user does not have `ANTHROPIC_API_KEY` set, Phase 2's vision re-verification cannot run. Phase 2 would then degrade to "trust the fuzzy match" for new images — which is exactly the problem we just fixed in Phase 1. The plan must surface this as a precondition and refuse to run Phase 2 without the key, rather than silently falling back.
+- **Phase 1 wall time.** ≈ 1 hour for 438 products across ~22 subagent dispatches. This is real session time spent. If the user wants it faster, the batch size can be raised (e.g. 30/dispatch instead of 20) at slight risk of context bloat in the subagent. The plan will set an initial size and call out the adjustment knob.
+- **Re-runnability.** Unlike an API-key script, this audit is not a one-command rerun. If the data changes later (new products added, images replaced), re-auditing requires another Claude Code session. Acceptable for a B2B catalog where the product set is largely stable.
