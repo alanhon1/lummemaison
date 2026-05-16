@@ -48,7 +48,8 @@ export default function BackToCatalogueButton({
       href: `/${locale}/catalogue/${categoryId}`,
       label: `Back to ${categoryName}`,
     });
-  }, [locale, categoriesById]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Link
