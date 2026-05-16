@@ -11,6 +11,7 @@
 import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
+import { normalise, scoreMatch } from './lib/fuzzy-match';
 
 const DATA_FILE = path.join(process.cwd(), 'data', 'products.json');
 const SITEMAP_URL = 'https://aesthetics-shop.com/product-sitemap.xml';
@@ -28,28 +29,6 @@ interface Product {
   variantLabel?: string;
 }
 
-function normalise(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/\(.*?\)/g, ' ')
-    .replace(/\b(\d+)\s*u\b/g, '$1')
-    .replace(/\bunits?\b/g, '')
-    .replace(/\bwith\b/g, '')
-    .replace(/\bplus\b/g, '+')
-    .replace(/[^a-z0-9+\s]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function scoreMatch(a: string, b: string): number {
-  const wa = new Set(a.split(' ').filter(w => w.length > 1));
-  const wb = b.split(' ').filter(w => w.length > 1);
-  let score = 0;
-  for (const w of wb) {
-    if (wa.has(w)) score += w.length > 3 ? 2 : 1;
-  }
-  return score;
-}
 
 function extractVariantLabel(productName: string, allNamesInGroup: string[]): string {
   const words = productName.trim().toUpperCase().split(/\s+/);
