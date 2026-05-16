@@ -40,59 +40,6 @@
   --border-color: #e8e2d9;
 }
 
-/* ─── Neon Violet ─── */
-[data-theme="neon"] {
-  --glass-bg:     rgba(8, 6, 20, 0.92);
-  --glass-border: rgba(168, 85, 247, 0.25);
-  --accent:       #a855f7;
-  --accent-dark:  #7c3aed;
-  --glow:         0 0 20px rgba(168, 85, 247, 0.35), 0 0 50px rgba(168, 85, 247, 0.15);
-  --card-shadow:  0 8px 30px rgba(168, 85, 247, 0.12);
-  --surface:      #100e24;
-  --surface-dark: #06050f;
-  --page-bg:      #08061a;
-  --page-text:    #ede9ff;
-  --page-text-2:  #9d8fc9;
-  --border-color: #1e1a3a;
-  /* Override Tailwind color vars for utility adaptation */
-  --color-cream:    #08061a;
-  --color-cream-dark: #100e24;
-  --color-gold:     #a855f7;
-  --color-gold-light: #c084fc;
-  --color-gold-dark: #7c3aed;
-  --color-obsidian: #ede9ff;
-  --color-charcoal: #d0c8ff;
-  --color-mist:     #9d8fc9;
-  --color-bone:     #1e1a3a;
-  --color-surface:  #100e24;
-}
-
-/* ─── Soir de Paris (Midnight Navy) ─── */
-[data-theme="paris"] {
-  --glass-bg:     rgba(6, 9, 20, 0.92);
-  --glass-border: rgba(201, 169, 110, 0.18);
-  --accent:       #c9a96e;
-  --accent-dark:  #a8874a;
-  --glow:         none;
-  --card-shadow:  0 8px 30px rgba(0, 0, 0, 0.25);
-  --surface:      #0d1428;
-  --surface-dark: #040810;
-  --page-bg:      #070c18;
-  --page-text:    #ede8db;
-  --page-text-2:  #8a8070;
-  --border-color: #182040;
-  --color-cream:    #070c18;
-  --color-cream-dark: #0d1428;
-  --color-gold:     #c9a96e;
-  --color-gold-light: #ddc08e;
-  --color-gold-dark: #a8874a;
-  --color-obsidian: #ede8db;
-  --color-charcoal: #ccc2b0;
-  --color-mist:     #8a8070;
-  --color-bone:     #182040;
-  --color-surface:  #0d1428;
-}
-
 /* ─── Base ─── */
 @layer base {
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
