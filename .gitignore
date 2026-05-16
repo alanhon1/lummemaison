@@ -42,3 +42,12 @@ yarn-error.log*
 next-env.d.ts
 
 scripts/progress.json
+
+# local working files
+*.zip
+*.doc
+~$*
+products.txt
+data/backups/
+scripts/aesthetics-sync-report.txt
+public/missing-images.txt
