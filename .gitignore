@@ -51,3 +51,9 @@ products.txt
 data/backups/
 scripts/aesthetics-sync-report.txt
 public/missing-images.txt
+
+# Spec 2 data-enrichment intermediates (regenerated on every run)
+scripts/audit-batches/
+scripts/audit-results.json
+scripts/secondary-candidates.json
+public/images/products/product-*-secondary.webp
