@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ProductImage from './ProductImage';
 
 interface ProductGalleryProps {
@@ -25,6 +26,19 @@ export default function ProductGallery({
   const allImages = [mainImage, ...extraImages].filter(Boolean);
   const [activeIdx, setActiveIdx] = useState(0);
 
+  useEffect(() => {
+    if (allImages.length <= 1) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        setActiveIdx(i => (i - 1 + allImages.length) % allImages.length);
+      } else if (e.key === 'ArrowRight') {
+        setActiveIdx(i => (i + 1) % allImages.length);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [allImages.length]);
+
   return (
     <div className="lg:sticky lg:top-28">
       {/* Main image */}
@@ -42,6 +56,24 @@ export default function ProductGallery({
           <div className="absolute top-4 left-4 flex flex-col gap-1.5">
             {badges}
           </div>
+        )}
+        {allImages.length > 1 && (
+          <>
+            <button
+              onClick={() => setActiveIdx(i => (i - 1 + allImages.length) % allImages.length)}
+              className="absolute top-1/2 left-3 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-charcoal/70 hover:bg-charcoal text-cream flex items-center justify-center transition-opacity"
+              aria-label="Previous image"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={() => setActiveIdx(i => (i + 1) % allImages.length)}
+              className="absolute top-1/2 right-3 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-charcoal/70 hover:bg-charcoal text-cream flex items-center justify-center transition-opacity"
+              aria-label="Next image"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </>
         )}
       </div>
 
