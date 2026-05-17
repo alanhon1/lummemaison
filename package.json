@@ -18,7 +18,8 @@
     "scrape-descriptions": "tsx scripts/scrape-descriptions.ts",
     "scrape-gallery": "tsx scripts/scrape-gallery-images.ts",
     "audit-prep": "tsx scripts/audit-prep.ts",
-    "audit-apply": "tsx scripts/audit-apply.ts"
+    "audit-apply": "tsx scripts/audit-apply.ts",
+    "sync-gofillerss": "tsx scripts/sync-from-gofillerss.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
