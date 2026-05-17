@@ -1,4 +1,13 @@
 import productsData from '@/data/products.json';
+import translationsRu from '@/data/translations/ru.json';
+import translationsKo from '@/data/translations/ko.json';
+
+type ProductTranslation = { description?: string; specification?: string };
+
+const TRANSLATIONS: Record<string, Record<string, ProductTranslation>> = {
+  ru: translationsRu as Record<string, ProductTranslation>,
+  ko: translationsKo as Record<string, ProductTranslation>,
+};
 
 export interface Category {
   id: string;
@@ -75,4 +84,14 @@ export function searchProducts(query: string): Product[] {
 
 export function getProductVariants(groupId: string): Product[] {
   return products.filter(p => p.groupId === groupId).sort((a, b) => a.id - b.id);
+}
+
+export function getLocalizedDescription(product: Product, locale: string): string {
+  const t = TRANSLATIONS[locale]?.[String(product.id)]?.description;
+  return t || product.description;
+}
+
+export function getLocalizedSpecification(product: Product, locale: string): string {
+  const t = TRANSLATIONS[locale]?.[String(product.id)]?.specification;
+  return t || product.specification;
 }
