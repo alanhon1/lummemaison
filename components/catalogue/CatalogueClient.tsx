@@ -33,6 +33,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
   const [activeCategory, setActiveCategory] = useState(initialCategory || '');
   const [saleOnly, setSaleOnly] = useState(false);
   const [newOnly, setNewOnly] = useState(false);
+  const [groupedOnly, setGroupedOnly] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>('default');
   const [layout, setLayout] = useState<'grid' | 'list'>('grid');
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -77,6 +78,11 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
       result = result.filter(p => p.isNew);
     }
 
+    // Group-only filter (applies in addition to any active category)
+    if (groupedOnly) {
+      result = result.filter(p => Boolean(p.groupId));
+    }
+
     // Sort
     switch (sortBy) {
       case 'price-asc':
@@ -100,7 +106,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
     });
 
     return result;
-  }, [searchQuery, activeCategory, saleOnly, newOnly, sortBy, fuse]);
+  }, [searchQuery, activeCategory, saleOnly, newOnly, groupedOnly, sortBy, fuse]);
 
   const totalPages = Math.ceil(filteredProducts.length / PER_PAGE);
   const paginatedProducts = filteredProducts.slice((page - 1) * PER_PAGE, page * PER_PAGE);
@@ -126,11 +132,12 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
     setActiveCategory('');
     setSaleOnly(false);
     setNewOnly(false);
+    setGroupedOnly(false);
     setSortBy('default');
     setPage(1);
   };
 
-  const hasActiveFilters = searchQuery || activeCategory || saleOnly || newOnly;
+  const hasActiveFilters = searchQuery || activeCategory || saleOnly || newOnly || groupedOnly;
 
   return (
     <div className="flex gap-0">
@@ -237,6 +244,17 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               />
               <span className="text-xs text-charcoal">{t('newOnly')}</span>
             </label>
+            {activeCategory !== '__bundles__' && (
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={groupedOnly}
+                  onChange={e => { setGroupedOnly(e.target.checked); setPage(1); }}
+                  className="w-3 h-3 accent-gold"
+                />
+                <span className="text-xs text-charcoal">Bundle products only</span>
+              </label>
+            )}
           </div>
 
           {/* Download PDF */}
