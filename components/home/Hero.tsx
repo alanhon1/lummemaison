@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
@@ -36,6 +37,9 @@ export default function Hero() {
         animate={{ y: [0, -15, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
       />
+
+      {/* Sparkle particles */}
+      <Sparkles />
 
       {/* Grid pattern */}
       <div
@@ -141,5 +145,35 @@ export default function Hero() {
         </motion.div>
       </motion.div>
     </section>
+  );
+}
+
+function Sparkles() {
+  const particles = useMemo(() => Array.from({ length: 10 }, (_, i) => ({
+    id: i,
+    size: 4 + ((i * 0.8) % 8),
+    top: `${15 + ((i * 17.3) % 75)}%`,
+    left: `${30 + ((i * 23.1) % 65)}%`,
+    delay: (i * 0.7) % 3.5,
+    duration: 3 + ((i * 0.4) % 3),
+  })), []);
+
+  return (
+    <>
+      {particles.map(p => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full bg-gold/40 blur-sm pointer-events-none"
+          style={{ width: p.size, height: p.size, top: p.top, left: p.left }}
+          animate={{ opacity: [0, 0.7, 0], scale: [0.8, 1.2, 0.8], y: [0, -20, 0] }}
+          transition={{
+            duration: p.duration,
+            delay: p.delay,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      ))}
+    </>
   );
 }
