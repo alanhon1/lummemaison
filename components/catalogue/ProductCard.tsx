@@ -22,6 +22,10 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const { addItem } = useCartStore();
   const { currency } = useCurrencyStore();
 
+  const isGroup = variantCount > 1;
+  const displayName = isGroup && product.groupName ? product.groupName : product.name;
+  const displayImage = isGroup && product.groupImage ? product.groupImage : product.image;
+
   function handleAddToCart(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
@@ -42,8 +46,8 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       >
         <div className="w-20 h-20 flex-shrink-0 relative overflow-hidden">
           <ProductImage
-            src={product.image}
-            alt={product.name}
+            src={displayImage}
+            alt={displayName}
             productId={product.id}
             categoryId={product.categoryId}
             fill
@@ -59,7 +63,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
                 {product.isBestSeller && <span className="badge-best">{tProduct('tags.bestSeller')}</span>}
               </div>
               <h3 className="text-sm font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight">
-                #{product.id} {product.name}
+                #{product.id} {displayName}
               </h3>
               {variantCount > 1 && (
                 <p className="text-[9px] text-gold/80 font-medium tracking-wide mt-0.5">
@@ -99,8 +103,8 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       {/* Image */}
       <div className="aspect-square relative overflow-hidden">
         <ProductImage
-          src={product.image}
-          alt={product.name}
+          src={displayImage}
+          alt={displayName}
           productId={product.id}
           categoryId={product.categoryId}
           fill
@@ -131,7 +135,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       <div className="p-4">
         <p className="text-xs text-mist mb-1">#{product.id}</p>
         <h3 className="text-xs font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-1">
-          {product.name}
+          {displayName}
         </h3>
         {variantCount > 1 && (
           <p className="text-[9px] text-gold/80 font-medium tracking-wide mb-1">
