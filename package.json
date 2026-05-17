@@ -17,7 +17,8 @@
     "group-products": "tsx scripts/group-products.ts",
     "scrape-descriptions": "tsx scripts/scrape-descriptions.ts",
     "scrape-gallery": "tsx scripts/scrape-gallery-images.ts",
-    "audit-prep": "tsx scripts/audit-prep.ts"
+    "audit-prep": "tsx scripts/audit-prep.ts",
+    "audit-apply": "tsx scripts/audit-apply.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",

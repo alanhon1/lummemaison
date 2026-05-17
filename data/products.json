@@ -212,7 +212,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-3.webp",
+      "image": "",
       "moq": 1,
       "groupId": "regenovue-sub-q",
       "variantLabel": "FINE"
@@ -229,7 +229,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-4.webp",
+      "image": "",
       "moq": 1,
       "groupId": "regenovue-sub-q",
       "variantLabel": "DEEP"
@@ -246,7 +246,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-5.webp",
+      "image": "",
       "moq": 1,
       "groupId": "regenovue-sub-q",
       "variantLabel": "SUB - Q"
@@ -314,14 +314,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-9.webp",
+      "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "S",
-      "images": [
-        "/images/products/product-9-2.webp",
-        "/images/products/product-9-3.webp"
-      ]
+      "variantLabel": "S"
     },
     {
       "id": 10,
@@ -335,14 +331,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-10.webp",
+      "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "M",
-      "images": [
-        "/images/products/product-9-2.webp",
-        "/images/products/product-9-3.webp"
-      ]
+      "variantLabel": "M"
     },
     {
       "id": 11,
@@ -356,14 +348,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-11.webp",
+      "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "H",
-      "images": [
-        "/images/products/product-9-2.webp",
-        "/images/products/product-9-3.webp"
-      ]
+      "variantLabel": "H"
     },
     {
       "id": 12,
@@ -377,14 +365,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-12.webp",
+      "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "SOFT",
-      "images": [
-        "/images/products/product-9-2.webp",
-        "/images/products/product-9-3.webp"
-      ]
+      "variantLabel": "SOFT"
     },
     {
       "id": 13,
@@ -398,14 +382,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-13.webp",
+      "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "HARD",
-      "images": [
-        "/images/products/product-9-2.webp",
-        "/images/products/product-9-3.webp"
-      ]
+      "variantLabel": "HARD"
     },
     {
       "id": 14,
@@ -419,7 +399,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-14.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -434,7 +414,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-15.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -449,7 +429,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-16.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -464,7 +444,7 @@
       "isSale": false,
       "isBestSeller": true,
       "inStock": true,
-      "image": "/images/products/product-17.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -479,7 +459,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-18.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -494,7 +474,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-19.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -509,15 +489,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-20.webp",
+      "image": "",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "LIGHT (MESO)",
-      "images": [
-        "/images/products/product-20-2.webp",
-        "/images/products/product-20-3.webp",
-        "/images/products/product-20-4.webp"
-      ]
+      "variantLabel": "LIGHT (MESO)"
     },
     {
       "id": 21,
@@ -531,15 +506,10 @@
       "isSale": false,
       "isBestSeller": true,
       "inStock": true,
-      "image": "/images/products/product-21.webp",
+      "image": "",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "NEURAMIS",
-      "images": [
-        "/images/products/product-20-2.webp",
-        "/images/products/product-20-3.webp",
-        "/images/products/product-20-4.webp"
-      ]
+      "variantLabel": "NEURAMIS"
     },
     {
       "id": 22,
@@ -553,15 +523,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-22.webp",
+      "image": "",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "DEEP",
-      "images": [
-        "/images/products/product-20-2.webp",
-        "/images/products/product-20-3.webp",
-        "/images/products/product-20-4.webp"
-      ]
+      "variantLabel": "DEEP"
     },
     {
       "id": 23,
@@ -575,15 +540,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-23.webp",
+      "image": "",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "DEEP",
-      "images": [
-        "/images/products/product-20-2.webp",
-        "/images/products/product-20-3.webp",
-        "/images/products/product-20-4.webp"
-      ]
+      "variantLabel": "DEEP"
     },
     {
       "id": 24,
@@ -597,7 +557,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-24.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -657,15 +617,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-28.webp",
+      "image": "",
       "moq": 1,
       "groupId": "dermalax",
-      "variantLabel": "DERMALAX PLUS",
-      "images": [
-        "/images/products/product-28-2.webp",
-        "/images/products/product-28-3.webp",
-        "/images/products/product-28-4.webp"
-      ]
+      "variantLabel": "DERMALAX PLUS"
     },
     {
       "id": 29,
@@ -679,15 +634,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-29.webp",
+      "image": "",
       "moq": 1,
       "groupId": "dermalax",
-      "variantLabel": "DEEP",
-      "images": [
-        "/images/products/product-28-2.webp",
-        "/images/products/product-28-3.webp",
-        "/images/products/product-28-4.webp"
-      ]
+      "variantLabel": "DEEP"
     },
     {
       "id": 30,
@@ -701,15 +651,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-30.webp",
+      "image": "",
       "moq": 1,
       "groupId": "dermalax",
-      "variantLabel": "IMPLANT",
-      "images": [
-        "/images/products/product-28-2.webp",
-        "/images/products/product-28-3.webp",
-        "/images/products/product-28-4.webp"
-      ]
+      "variantLabel": "IMPLANT"
     },
     {
       "id": 31,
@@ -723,15 +668,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-31.webp",
+      "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "FINE PLUS",
-      "images": [
-        "/images/products/product-31-2.webp",
-        "/images/products/product-31-3.webp",
-        "/images/products/product-31-4.webp"
-      ]
+      "variantLabel": "FINE PLUS"
     },
     {
       "id": 32,
@@ -745,7 +685,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-32.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -760,15 +700,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-33.webp",
+      "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "SUB - Q PLUS",
-      "images": [
-        "/images/products/product-31-2.webp",
-        "/images/products/product-31-3.webp",
-        "/images/products/product-31-4.webp"
-      ]
+      "variantLabel": "SUB - Q PLUS"
     },
     {
       "id": 34,
@@ -782,7 +717,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-34.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -797,15 +732,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-35.webp",
+      "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "FINE",
-      "images": [
-        "/images/products/product-31-2.webp",
-        "/images/products/product-31-3.webp",
-        "/images/products/product-31-4.webp"
-      ]
+      "variantLabel": "FINE"
     },
     {
       "id": 36,
@@ -819,15 +749,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-36.webp",
+      "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "DEEP",
-      "images": [
-        "/images/products/product-31-2.webp",
-        "/images/products/product-31-3.webp",
-        "/images/products/product-31-4.webp"
-      ]
+      "variantLabel": "DEEP"
     },
     {
       "id": 37,
@@ -841,15 +766,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-37.webp",
+      "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "SUB - Q",
-      "images": [
-        "/images/products/product-31-2.webp",
-        "/images/products/product-31-3.webp",
-        "/images/products/product-31-4.webp"
-      ]
+      "variantLabel": "SUB - Q"
     },
     {
       "id": 38,
@@ -863,7 +783,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-38.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -878,7 +798,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-39.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -893,7 +813,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-40.webp",
+      "image": "",
       "moq": 1,
       "groupId": "youthfill-pn-with-lido",
       "variantLabel": "SHAPE"
@@ -910,7 +830,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-41.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -925,7 +845,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-42.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -940,7 +860,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-43.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -955,7 +875,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-44.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -970,7 +890,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-45.webp",
+      "image": "",
       "moq": 1,
       "groupId": "celosome",
       "variantLabel": "MID"
@@ -987,7 +907,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-46.webp",
+      "image": "",
       "moq": 1,
       "groupId": "celosome",
       "variantLabel": "STRONG"
@@ -1004,7 +924,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-47.webp",
+      "image": "",
       "moq": 1,
       "groupId": "celosome",
       "variantLabel": "IMPLANT"
@@ -1066,7 +986,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-51.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1081,7 +1001,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-52.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1096,7 +1016,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-53.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1111,7 +1031,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-54.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1126,7 +1046,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-55.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1141,7 +1061,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-56.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1156,7 +1076,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-57.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1171,7 +1091,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-58.webp",
+      "image": "",
       "moq": 1,
       "groupId": "ultrafill-nose",
       "variantLabel": "KISS"
@@ -1188,7 +1108,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-59.webp",
+      "image": "",
       "moq": 1,
       "groupId": "ultrafill-nose",
       "variantLabel": "FINE"
@@ -1205,7 +1125,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-60.webp",
+      "image": "",
       "moq": 1,
       "groupId": "ultrafill-nose",
       "variantLabel": "DEEP"
@@ -1222,7 +1142,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-61.webp",
+      "image": "",
       "moq": 1,
       "groupId": "ultrafill-nose",
       "variantLabel": "SHAPE"
@@ -1239,7 +1159,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-62.webp",
+      "image": "",
       "moq": 1,
       "groupId": "ultrafill-nose",
       "variantLabel": "IMPLANT"
@@ -1256,7 +1176,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-63.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1273,7 +1193,7 @@
       "isSale": true,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-64.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1288,7 +1208,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-65.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1303,13 +1223,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-66.webp",
+      "image": "",
       "moq": 1,
       "groupId": "misadi-pdlla-200-mg",
-      "variantLabel": "H",
-      "images": [
-        "/images/products/product-66-2.webp"
-      ]
+      "variantLabel": "H"
     },
     {
       "id": 67,
@@ -1323,7 +1240,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-67.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1413,7 +1330,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-73.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1428,7 +1345,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-74.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1443,7 +1360,7 @@
       "isSale": false,
       "isBestSeller": true,
       "inStock": true,
-      "image": "/images/products/product-75.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1458,7 +1375,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-76.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1578,7 +1495,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-84.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1670,7 +1587,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-90.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1685,7 +1602,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-91.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1700,7 +1617,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-92.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1730,7 +1647,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-94.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1745,7 +1662,7 @@
       "isSale": false,
       "isBestSeller": true,
       "inStock": true,
-      "image": "/images/products/product-95.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1775,7 +1692,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-97.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1790,7 +1707,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-98.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1805,7 +1722,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-99.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1865,13 +1782,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-103.webp",
+      "image": "",
       "moq": 1,
       "groupId": "misadi-pdlla-200-mg",
-      "variantLabel": "C O",
-      "images": [
-        "/images/products/product-66-2.webp"
-      ]
+      "variantLabel": "C O"
     },
     {
       "id": 104,
@@ -1915,13 +1829,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-106.webp",
+      "image": "",
       "moq": 1,
       "groupId": "cindella-set",
-      "variantLabel": "I (PN)",
-      "images": [
-        "/images/products/product-106-2.webp"
-      ]
+      "variantLabel": "I (PN)"
     },
     {
       "id": 107,
@@ -1950,7 +1861,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-108.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2075,7 +1986,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-116.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2090,7 +2001,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-117.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2142,15 +2053,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-120.webp",
+      "image": "",
       "moq": 1,
       "groupId": "miracle-x",
-      "variantLabel": "H HA",
-      "images": [
-        "/images/products/product-119-2.webp",
-        "/images/products/product-119-3.webp",
-        "/images/products/product-119-4.webp"
-      ]
+      "variantLabel": "H HA"
     },
     {
       "id": 121,
@@ -2164,15 +2070,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-121.webp",
+      "image": "",
       "moq": 1,
       "groupId": "miracle-x",
-      "variantLabel": "L PCL",
-      "images": [
-        "/images/products/product-119-2.webp",
-        "/images/products/product-119-3.webp",
-        "/images/products/product-119-4.webp"
-      ]
+      "variantLabel": "L PCL"
     },
     {
       "id": 122,
@@ -2282,14 +2183,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-128.webp",
+      "image": "",
       "moq": 1,
       "groupId": "lapuroon-aurora-super",
-      "variantLabel": "V IVID",
-      "images": [
-        "/images/products/product-127-2.webp",
-        "/images/products/product-127-3.webp"
-      ]
+      "variantLabel": "V IVID"
     },
     {
       "id": 129,
@@ -2333,7 +2230,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-131.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2363,7 +2260,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-133.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2483,7 +2380,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-141.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2498,7 +2395,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-142.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2513,7 +2410,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-143.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2528,7 +2425,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-144.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2558,7 +2455,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-146.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2573,7 +2470,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-147.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2588,7 +2485,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-148.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2603,7 +2500,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-149.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2618,7 +2515,7 @@
       "isSale": false,
       "isBestSeller": true,
       "inStock": true,
-      "image": "/images/products/product-150.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2633,7 +2530,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-151.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2663,7 +2560,7 @@
       "isSale": false,
       "isBestSeller": true,
       "inStock": true,
-      "image": "/images/products/product-153.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2755,7 +2652,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-159.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2800,7 +2697,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-162.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2815,7 +2712,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-163.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2830,7 +2727,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-164.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2845,7 +2742,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-165.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2860,7 +2757,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-166.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2920,7 +2817,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-170.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2965,7 +2862,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-173.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -2980,7 +2877,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-174.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3010,7 +2907,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-176.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3025,7 +2922,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-177.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3070,7 +2967,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-180.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3085,7 +2982,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-181.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3102,7 +2999,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-182.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3119,7 +3016,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-183.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3134,7 +3031,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-184.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3149,7 +3046,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-185.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3179,7 +3076,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-187.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3194,7 +3091,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-188.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3224,7 +3121,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-190.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3269,7 +3166,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-193.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3284,7 +3181,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-194.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3299,7 +3196,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-195.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3314,7 +3211,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-196.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3329,7 +3226,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-197.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3344,7 +3241,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-198.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3374,7 +3271,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-200.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3389,7 +3286,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-201.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3404,7 +3301,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-202.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3419,7 +3316,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-203.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3464,7 +3361,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-206.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3479,7 +3376,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-207.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3494,7 +3391,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-208.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3524,7 +3421,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-210.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3539,7 +3436,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-211.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3599,7 +3496,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-215.webp",
+      "image": "",
       "moq": 1,
       "groupId": "curenex-bundle",
       "variantLabel": "SCULP (PLLA)"
@@ -3616,7 +3513,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-216.webp",
+      "image": "",
       "moq": 1,
       "groupId": "curenex-bundle",
       "variantLabel": "PDRN, MULTI"
@@ -3633,7 +3530,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-217.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3695,7 +3592,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-221.webp",
+      "image": "",
       "moq": 1,
       "groupId": "curenex-dailycare-rejuvenating-cream",
       "variantLabel": "MASK"
@@ -3727,7 +3624,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-223.webp",
+      "image": "",
       "moq": 1,
       "groupId": "curenex-bundle",
       "variantLabel": "EYE PN"
@@ -3744,7 +3641,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-224.webp",
+      "image": "",
       "moq": 1,
       "groupId": "curenex-bundle",
       "variantLabel": "SCULP (PLLA)"
@@ -3776,7 +3673,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-226.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3791,7 +3688,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-227.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3806,7 +3703,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-228.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3821,7 +3718,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-229.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3836,7 +3733,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-230.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3851,7 +3748,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-231.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3881,7 +3778,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-233.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3896,7 +3793,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-234.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3911,7 +3808,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-235.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3926,7 +3823,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-236.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3941,7 +3838,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-237.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3971,7 +3868,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-239.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3986,7 +3883,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-240.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4001,7 +3898,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-241.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4016,7 +3913,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-242.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4031,7 +3928,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-243.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4046,7 +3943,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-244.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4061,7 +3958,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-245.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4076,7 +3973,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-246.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4108,7 +4005,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-248.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4168,7 +4065,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-252.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4202,7 +4099,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-254.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4217,7 +4114,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-255.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4232,7 +4129,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-256.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4249,7 +4146,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-257.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4264,7 +4161,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-258.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4279,7 +4176,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-259.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4296,7 +4193,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-260.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4313,7 +4210,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-261.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4328,7 +4225,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-262.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4343,7 +4240,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-263.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4360,7 +4257,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-264.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4375,7 +4272,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-265.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4390,7 +4287,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-266.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4480,7 +4377,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-272.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4510,7 +4407,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-274.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4570,7 +4467,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-278.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4630,7 +4527,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-282.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4660,7 +4557,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-284.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4720,7 +4617,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-288.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4735,7 +4632,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-289.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4750,7 +4647,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-290.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4765,7 +4662,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-291.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4780,7 +4677,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-292.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4888,7 +4785,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-298.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4933,7 +4830,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-301.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5040,7 +4937,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-308.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5275,7 +5172,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-321.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5290,7 +5187,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-322.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5320,7 +5217,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-324.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5335,7 +5232,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-325.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5538,7 +5435,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-338.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5583,7 +5480,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-341.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5600,7 +5497,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-342.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5630,7 +5527,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-344.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5715,7 +5612,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-349.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5730,7 +5627,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-350.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5760,7 +5657,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-352.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5830,13 +5727,10 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-356.webp",
+      "image": "",
       "moq": 1,
       "groupId": "cindella-set",
-      "variantLabel": "INJ",
-      "images": [
-        "/images/products/product-106-2.webp"
-      ]
+      "variantLabel": "INJ"
     },
     {
       "id": 357,
@@ -5850,7 +5744,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-357.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5942,7 +5836,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-363.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5957,7 +5851,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-364.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5987,7 +5881,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-366.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6002,7 +5896,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-367.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6017,7 +5911,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-368.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6152,7 +6046,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-376.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6184,7 +6078,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-378.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6214,7 +6108,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-380.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6229,7 +6123,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-381.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6244,7 +6138,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-382.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6259,7 +6153,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-383.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6274,7 +6168,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-384.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6336,7 +6230,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-388.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6368,7 +6262,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-390.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6428,7 +6322,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-394.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6603,7 +6497,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-405.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6618,7 +6512,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-406.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6633,7 +6527,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-407.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6648,7 +6542,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-408.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6663,7 +6557,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-409.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6678,7 +6572,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-410.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6693,7 +6587,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-411.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6708,7 +6602,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-412.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6723,7 +6617,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-413.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6738,7 +6632,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-414.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6753,7 +6647,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-415.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6768,7 +6662,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-416.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6868,7 +6762,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-422.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6883,7 +6777,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-423.webp",
+      "image": "",
       "moq": 1,
       "groupId": "dk-cannula-18g-50-7050pcs",
       "variantLabel": "NEO CANNULA"
@@ -6900,7 +6794,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-424.webp",
+      "image": "",
       "moq": 1,
       "groupId": "dk-cannula-18g-50-7050pcs",
       "variantLabel": "NEO CANNULA"
@@ -7011,7 +6905,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-431.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -7026,7 +6920,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-432.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -7041,7 +6935,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-433.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -7056,7 +6950,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-434.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -7116,7 +7010,7 @@
       "isSale": false,
       "isBestSeller": true,
       "inStock": true,
-      "image": "/images/products/product-438.webp",
+      "image": "",
       "moq": 1
     }
   ]
