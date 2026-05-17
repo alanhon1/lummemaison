@@ -19,7 +19,8 @@
     "scrape-gallery": "tsx scripts/scrape-gallery-images.ts",
     "audit-prep": "tsx scripts/audit-prep.ts",
     "audit-apply": "tsx scripts/audit-apply.ts",
-    "sync-gofillerss": "tsx scripts/sync-from-gofillerss.ts"
+    "sync-gofillerss": "tsx scripts/sync-from-gofillerss.ts",
+    "refill-secondary": "tsx scripts/refill-from-secondary.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
