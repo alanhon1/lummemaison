@@ -17,9 +17,11 @@ const fuseOptions = {
   threshold: 0.4,
   keys: [
     { name: 'name', weight: 2 },
+    { name: 'groupName', weight: 1.5 },
     { name: 'specification', weight: 1 },
     { name: 'description', weight: 0.8 },
     { name: 'categoryId', weight: 0.5 },
+    { name: 'groupId', weight: 0.3 },
   ],
 };
 
