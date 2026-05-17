@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Tag, Layers } from 'lucide-react';
-import { getProductById, getCategoryById, getProductsByCategory, getProductVariants, categories } from '@/lib/products';
+import { getProductById, getCategoryById, getProductsByCategory, getProductVariants, getLocalizedDescription, getLocalizedSpecification, categories } from '@/lib/products';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
 import ProductDetailTabs from '@/components/catalogue/ProductDetailTabs';
@@ -115,7 +115,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
                     {t('specification')}
                   </span>
                 </div>
-                <p className="text-sm text-charcoal leading-relaxed">{product.specification}</p>
+                <p className="text-sm text-charcoal leading-relaxed">{getLocalizedSpecification(product, locale)}</p>
               </div>
             )}
 
@@ -124,7 +124,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
                 <h3 className="text-xs font-semibold tracking-wider uppercase text-mist mb-3">
                   {t('description')}
                 </h3>
-                <p className="text-sm text-charcoal leading-relaxed">{product.description}</p>
+                <p className="text-sm text-charcoal leading-relaxed">{getLocalizedDescription(product, locale)}</p>
               </div>
             )}
 

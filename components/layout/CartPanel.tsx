@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
+import { getProductById, getLocalizedSpecification } from '@/lib/products';
 
 export default function CartPanel() {
   const t = useTranslations('cart');
@@ -78,9 +79,13 @@ export default function CartPanel() {
                     <p className="text-xs font-semibold text-charcoal leading-tight line-clamp-2 mb-1">
                       {item.name}
                     </p>
-                    {item.specification && (
-                      <p className="text-xs text-mist line-clamp-1">{item.specification}</p>
-                    )}
+                    {(() => {
+                      const liveProduct = getProductById(item.id);
+                      const spec = liveProduct ? getLocalizedSpecification(liveProduct, locale) : item.specification;
+                      return spec ? (
+                        <p className="text-xs text-mist line-clamp-1">{spec}</p>
+                      ) : null;
+                    })()}
                     <p className="text-sm font-semibold text-gold mt-1">{formatPrice(item.price, currency)}</p>
 
                     {/* Quantity */}

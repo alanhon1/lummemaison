@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
-import type { Product } from '@/lib/products';
+import { getLocalizedSpecification, type Product } from '@/lib/products';
 import ProductImage from './ProductImage';
 
 interface ProductCardProps {
@@ -71,7 +71,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
                 </p>
               )}
               {product.specification && (
-                <p className="text-xs text-mist mt-1 line-clamp-1">{product.specification}</p>
+                <p className="text-xs text-mist mt-1 line-clamp-1">{getLocalizedSpecification(product, locale)}</p>
               )}
             </div>
             <div className="flex-shrink-0 text-right">
@@ -143,7 +143,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
           </p>
         )}
         {product.specification && (
-          <p className="text-xs text-mist line-clamp-1 mb-3">{product.specification}</p>
+          <p className="text-xs text-mist line-clamp-1 mb-3">{getLocalizedSpecification(product, locale)}</p>
         )}
         <div className="flex items-center justify-between">
           <div>
