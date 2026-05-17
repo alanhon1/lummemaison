@@ -1,0 +1,184 @@
+=== PROMOTED IMAGES (40) ===
+#3  REGENOVUE FINE (CE)  ←  regenovue-fine-plus-lidocain-2-reviews
+#4  REGENOVUE DEEP (CE)  ←  regenovue-deep-plus-lidocaine
+#5  REGENOVUE SUB - Q (CE)  ←  regenovue-sub-q-plus-lidocaine-and-non-lidocainece-approved
+#14  ELASTY FINE PLUS  ←  elasty-f-and-elasty-f-non-lidocaine-on-sale-near-you
+#20  NEURAMIS LIGHT (MESO)  ←  neuramis-light-lidocaine
+#22  NEURAMIS DEEP  ←  neuramis-deep-lidocaine
+#23  NEURAMIS DEEP WITH LIDOCAINE  ←  neuramis-deep-lidocaine
+#29  DERMALAX DEEP PLUS  ←  dermalax-deep-plus-h-a-lidocaine
+#30  DERMALAX IMPLANT PLUS  ←  dermalax-implant-plus-lidocaine
+#38  YOUTHFILL FINE  ←  youthfill-fine-lidocaine
+#44  CELOSOME SOFT  ←  celosome-soft
+#45  CELOSOME MID  ←  celosome-mid
+#46  CELOSOME STRONG  ←  celosome-strong
+#47  CELOSOME IMPLANT  ←  celosome-implant
+#51  THE CHAEUM PREMIUM  ←  chaeum-premium-2
+#52  THE CHAEUM PREMIUM  ←  chaeum-premium-2
+#53  THE CHAEUM PREMIUM  ←  chaeum-premium-2
+#54  THE CHAEUM PREMIUM  ←  chaeum-premium-2
+#58  ULTRAFILL KISS  ←  caratfill-sub-q-deep-kiss-filler-ce
+#63  LINE BODY  ←  perfect-line-volume-body-10ml
+#65  LINE BODY  ←  perfect-line-volume-body-10ml
+#97  KIARA REJU  ←  kiara-reju-pdrn-3syringe
+#106  CINDELLA I (PN)  ←  cindella
+#120  MIRACLE H HA  ←  miracle-h
+#128  LAPUROON AURORA V IVID  ←  lapuroon-aurora-v
+#151  DR.H.RICH HAIR FILLER  ←  best-selling-dr-h-rich-hair-filler-on-sales-near-you
+#211  LXC LACTO EXO COLLA Exosome  ←  lxc-lacto-exo-colla-exosomes-100mg-6ml
+#215  CURENEX SCULP (PLLA)  ←  curenex
+#217  CURENEX DAILY CARE SKINBOOSTER (SERUM)  ←  curenex
+#224  CURENEX SCULP (PLLA)  ←  curenex
+#308  SLIM POINT FACE & BODY  ←  slim-point-body
+#324  Meditoxin  ←  cheap-wholesale-best-quality-meditoxin-50-200u-for-sale
+#356  CINDELLA INJ  ←  cindella-inj-i-v
+#380  BeeCom Hexa Vitamin B Comple  ←  beecom-hexa-inj
+#394  J - CAIN  ←  j-cain-cream-10-56
+#423  NEO CANNULA  ←  neo-filler-cannula-ce
+#424  NEO CANNULA  ←  neo-filler-cannula-ce
+#430  RESTYLANE LVFT  ←  restylane-lift-with-lidocane
+#432  RESTYLANE LYFT LIDOCAINE  ←  restylane-lyft
+#438  JUVIDERM: VOLUMA HA  ←  juvederm-voluma
+
+=== REJECTED CANDIDATES (141) ===
+#9  SOSUM S (CE) NO Lidocaine  ←  hyaldew-mid  reason: Image shows HyalDew Mid packaging, not SOSUM S.
+#10  SOSUM M (CE) NO Lidocaine  ←  hyaldew-mid  reason: Image shows HyalDew Mid packaging, not SOSUM M.
+#11  SOSUM H (CE) NO Lidocaine  ←  hyaldew-mid  reason: Image shows HyalDew Mid packaging, not SOSUM H.
+#12  SOSUM SOFT (CE)  ←  bellast-soft-l  reason: Image shows Bellast Soft-L packaging, not SOSUM SOFT.
+#13  SOSUM HARD  ←  monalisa-lido-hard  reason: Image shows MONALISA Lidocaine Hard Type packaging, not SOSUM HARD.
+#15  ELASTY DEEP PLUS  ←  shop-revolax-deep-online  reason: Image shows REVOLAX DEEP with Lidocaine packaging, not ELASTY DEEP PLUS.
+#16  ELASTY GRAND PLUS  ←  elasty-f-and-elasty-f-non-lidocaine-on-sale-near-you  reason: Image shows ELASTY F plus packaging, but product is ELASTY GRAND PLUS — different variant.
+#17  VOM LIGHT (CE) NO Lidocaine  ←  elravie-premier-light-l-lidocaine  reason: Image shows Elravie Premier Light-L packaging, not VOM LIGHT.
+#19  VOM VOLUME (CE)  ←  elravie-premier-ultra-volume-l-lidocaine  reason: Image shows Elravie Premier Ultra Volume-L packaging, not VOM VOLUME.
+#21  NEURAMIS  ←  neuramis-light-lidocaine  reason: Image shows Neuramis LIGHT packaging, but product is plain NEURAMIS — different variant.
+#24  NEURAMIS VOLUME LIDOCAINE  ←  elravie-premier-ultra-volume-l-lidocaine  reason: Image shows Elravie Premier Ultra Volume-L packaging, not NEURAMIS VOLUME LIDOCAINE.
+#28  DERMALAX PLUS  ←  dermalax-plus-lidocaine  reason: Image shows Dermalax DEEP PLUS packaging, but product is DERMALAX PLUS — different variant.
+#31  TESORO FINE PLUS  ←  revofil-fine  reason: Image shows REVOFIL Fine packaging, not TESORO FINE PLUS.
+#32  T ESORO DEEP PLUS  ←  shop-revolax-deep-online  reason: Image shows REVOLAX DEEP with Lidocaine packaging, not T ESORO DEEP PLUS.
+#33  TESORO SUB - Q PLUS  ←  tesoro-non-lido  reason: Image shows Tesoro brand box but sub-variant text is not clearly readable as Sub-Q Plus.
+#34  T ESORO IMPLANT WITH LIDOCAINE  ←  hyaldew-mid  reason: Image shows HyalDew Mid packaging, not T ESORO IMPLANT WITH LIDOCAINE.
+#35  TESORO FINE  ←  revofil-fine  reason: Image shows REVOFIL Fine packaging, not TESORO FINE.
+#36  TESORO DEEP  ←  shop-revolax-deep-online  reason: Image shows REVOLAX DEEP with Lidocaine packaging, not TESORO DEEP.
+#37  TESORO SUB - Q  ←  tesoro-non-lido  reason: Image shows Tesoro brand box but sub-variant text is not clearly readable as Sub-Q.
+#39  YOUTFILL DEEP  ←  shop-revolax-deep-online  reason: Image shows REVOLAX DEEP with Lidocaine packaging, not YOUTFILL DEEP.
+#40  YOUTHFILL SHAPE  ←  youthfill-fine-lidocaine  reason: Image shows YOUTHFILL FINE packaging, but product is YOUTHFILL SHAPE — different variant.
+#41  SOONSU FILL (E . P . T . Q)  ←  sedy-fill-body-filler-60-ml  reason: Image shows SEDY FILL Body Filler packaging, not SOONSU FILL.
+#42  SOONSU FILL (E . P . T . Q)  ←  sedy-fill-body-filler-60-ml  reason: Image shows SEDY FILL Body Filler packaging, not SOONSU FILL.
+#43  SOONSU FILL (E . P . T . Q)  ←  sedy-fill-body-filler-60-ml  reason: Image shows SEDY FILL Body Filler packaging, not SOONSU FILL.
+#55  VOLUDERM FINE HA  ←  revofil-fine  reason: Image shows REVOFIL Fine packaging, not VOLUDERM FINE HA.
+#56  VOLUDERM DEEP HA  ←  starfill-deep-plus-lido-ce-certified-ha-filler-buy  reason: Image shows Starfill Deep Plus Lidocaine packaging, not VOLUDERM DEEP HA.
+#57  VOLUDERM SUB - Q HA  ←  flawless-sub-q-fillerce-approved  reason: Image shows Flawless Deep with Lidocaine packaging, not VOLUDERM SUB-Q HA.
+#59  ULTRAFILL FINE  ←  revofil-fine  reason: Image shows REVOFIL Fine packaging, not ULTRAFILL FINE.
+#60  ULTRAFILL DEEP  ←  shop-revolax-deep-online  reason: Image shows REVOLAX DEEP with Lidocaine packaging, not ULTRAFILL DEEP.
+#61  ULTRAFILL SHAPE  ←  rejeunesse-shape  reason: Image shows Rejeunesse SHAPE packaging, not ULTRAFILL SHAPE — different brand.
+#62  ULTRAFILL IMPLANT  ←  celosome-implant  reason: Image shows CELOSOME Implant packaging, not ULTRAFILL IMPLANT — different brand.
+#64  BEADS MAX S  ←  beads-max-classic-h-ce-certified-body-filler-on-sale  reason: Image shows Beads Max Classic-H packaging, but product is BEADS MAX S — different variant.
+#66  MisAdi H  ←  misadi-h-60-ml  reason: Image shows Misadi branded vials but the H variant designation is not clearly readable on label.
+#67  AdiMis Body  ←  beads-max-classic-h-ce-certified-body-filler-on-sale  reason: Image shows Beads Max Classic-H packaging, not AdiMis Body — different brand entirely.
+#74  LEXYAL REJU PDRN+PN  ←  kiara-reju-pdrn-3syringe  reason: Image shows Kiara Reju PDRN packaging, not LEXYAL REJU PDRN+PN.
+#75  BELLONA AQUA  ←  celosome-aqua-lidocaine  reason: Image shows CELOSOME Aqua packaging, not BELLONA AQUA.
+#76  BELLONA OPACIOUS SERUM  ←  rejuner-serum-claracel  reason: Image shows Rejuner Serum Claracel packaging, not BELLONA OPACIOUS SERUM.
+#77  DERMAGEN Plus NA D⁺ Solution  ←  best-quality-miss-gisele-magic-solution-for-sale-online  reason: Image shows vials in a red box but brand/product name text is not clearly readable.
+#84  ULTRA GEN Collagen + Exosome  ←  bellast-ultra-v  reason: Image shows Bellast Ultra V packaging, not ULTRA GEN Collagen + Exosome.
+#90  REGENOVUE PN Non  ←  regenovue-sub-q-plus-lidocaine-and-non-lidocainece-approved  reason: Image shows REGENOVUE SUB-Q PLUS HA filler packaging, not REGENOVUE PN Non.
+#91  R EGENOVUE AQUASHINE PLUS GOLD  ←  aquashine-br  reason: Image shows REVOFIL AQUASHINE BR Soft Filler, not R EGENOVUE AQUASHINE PLUS GOLD — wrong brand.
+#92  R EGENOVUE AQUASHINE SILVER  ←  aquashine-br  reason: Image shows REVOFIL AQUASHINE BR Soft Filler, not R EGENOVUE AQUASHINE SILVER — wrong brand.
+#94  REJEUNESSE SPARKLE HA  ←  rejeunesse-shape  reason: Image shows Rejeunesse SHAPE packaging, but product is REJEUNESSE SPARKLE HA — different variant.
+#99  MI SFILL+ PDRN  ←  kiara-reju-pdrn-3syringe  reason: Image shows Kiara Reju PDRN packaging, not MI SFILL+ PDRN — different brand.
+#103  MISADI C O  ←  misadi-h-60-ml  reason: Image shows Misadi branded body filler vials but the C O variant designation is not clearly readable.
+#108  ULTRA EYE  ←  bellast-ultra-v  reason: Image shows Bellast Ultra V packaging, not ULTRA EYE.
+#116  MisAdi White Skin Glazer  ←  rejuran-true-skin-essence  reason: Image shows REJURAN Healer Trueskin Essence packaging, not MisAdi White Skin Glazer.
+#117  EVE WHITE  ←  where-to-buy-best-quality-dermarcane-white-lidocain  reason: Image shows DermArcane Venus Again White packaging, not EVE WHITE.
+#121  MIRACLE L PCL  ←  miracle-h  reason: Image shows Miracle H packaging, but product is MIRACLE L PCL — different variant.
+#131  EXOGEN FOR HAIR AND SKIN  ←  cytovesicle-hair-skin  reason: Image shows Cytovesicle HAIR/SKIN packaging, not EXOGEN FOR HAIR AND SKIN.
+#133  E XOBOOM SKIN  ←  rejuran-true-skin-essence  reason: Image shows REJURAN Healer Trueskin Essence packaging, not E XOBOOM SKIN.
+#142  ESRELLA TEA TREE ESSENCE  ←  rejuran-true-skin-essence  reason: Image shows REJURAN Healer Trueskin Essence packaging, not ESRELLA TEA TREE ESSENCE.
+#143  REPIDA CLEARNEST INTENSIVE FOAM CLEANSER  ←  beauty-cleanser  reason: Image shows a plasma pen device, not REPIDA CLEARNEST INTENSIVE FOAM CLEANSER.
+#144  ACON DEEP CLEANSING FOAM  ←  shop-revolax-deep-online  reason: Image shows REVOLAX DEEP with Lidocaine filler, not ACON DEEP CLEANSING FOAM.
+#146  ACLEAN BODY ACNE TREATMENT SPRAY  ←  beads-max-classic-h-ce-certified-body-filler-on-sale  reason: Image shows Beads Max Classic-H body filler, not ACLEAN BODY ACNE TREATMENT SPRAY.
+#147  ACNON CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not ACNON CREAM.
+#148  AZALEA CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not AZALEA CREAM.
+#153  ASCE HRLV EXO SOME HAIR FILLER  ←  dr-cyj-hair-filler  reason: Image shows DR.CYJ Hair Filler packaging, not ASCE HRLV EXO SOME HAIR FILLER.
+#164  MelaNosa Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not MelaNosa Cream.
+#166  D PANSEPTIC CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not D PANSEPTIC CREAM.
+#170  EYEOCOOL RENEW PDRN  ←  kiara-reju-pdrn-3syringe  reason: Image shows Kiara Reju PDRN packaging, not EYEOCOOL RENEW PDRN — different brand.
+#173  MELATONING CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not MELATONING CREAM.
+#174  EGF ACTIVE VITAL CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not EGF ACTIVE VITAL CREAM.
+#176  D - Panthenol Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not D - Panthenol Cream.
+#177  Rejuvenex PDRN Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not Rejuvenex PDRN Cream.
+#180  Rejunera EXO - PDRN CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not Rejunera EXO-PDRN CREAM.
+#182  CELLEXO Bio - Cellulose Exosome  ←  buy-neostem-3d-exosome-online  reason: Image shows NEOSTEM Exosome packaging, not CELLEXO Bio-Cellulose Exosome — different brand.
+#183  CREBEAU Placenta Pearl Essence Mask  ←  rejuran-true-skin-essence  reason: Image shows REJURAN Healer Trueskin Essence packaging, not CREBEAU Placenta Pearl Essence Mask.
+#184  SPIDER TOXIN PROGRAM Toxin  ←  buy-paratox-toxin  reason: Image shows Paratox botulinum toxin vial, not SPIDER TOXIN PROGRAM Toxin — different brand.
+#185  Rejuran Healer Calming Lip Balm  ←  rejuran-healer  reason: Image shows injectable REJURAN syringes, not Rejuran Healer Calming Lip Balm — wrong product format.
+#187  Vanhalla NIACINAMIDE Skin Tone Balance  ←  rejuran-true-skin-essence  reason: Image shows REJURAN Healer Trueskin Essence packaging, not Vanhalla NIACINAMIDE Skin Tone Balance.
+#188  Vanhalla ETINOL 3R SERUM Wrinkle  ←  rejuner-serum-claracel  reason: Image shows REJUNER SERUM Claracel packaging, not Vanhalla ETINOL 3R SERUM Wrinkle.
+#190  VANHALLA Ceramide Moisturizing Serum  ←  rejuner-serum-claracel  reason: Image shows REJUNER SERUM Claracel packaging, not VANHALLA Ceramide Moisturizing Serum.
+#193  SKIN MARKER PEN (White  ←  rejuran-true-skin-essence  reason: Image shows REJURAN Healer Trueskin Essence packaging, not SKIN MARKER PEN (White).
+#194  Mask  ←  hiptok-hybridgel-butt-mask  reason: Image shows HIPTOK Hybridgel Butt Mask; product name is only Mask which could apply but brand mismatch.
+#195  OPACIOUS COLLAGEN MASK  ←  hiptok-hybridgel-butt-mask  reason: Image shows HIPTOK Hybridgel Butt Mask packaging, not OPACIOUS COLLAGEN MASK — different brand and type.
+#197  REPIDA BODY TONE - UP RADIANCE SERUM  ←  buy-cheap-rejuran-tone-up-booster-collagen-stimulators  reason: Image shows REJURAN TONE-UP BOOSTER packaging, not REPIDA BODY TONE-UP RADIANCE SERUM.
+#198  V V REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not V V REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM.
+#200  WHEAT GERM AMPOULE  ←  eldermafill-hair-forest-ampoule-1  reason: Image shows ELDERMAFILL vials, not WHEAT GERM AMPOULE — completely different product.
+#201  EU.MEI SUN ESSENCE  ←  rejuran-true-skin-essence  reason: Image shows REJURAN Healer Trueskin Essence packaging, not EU.MEI SUN ESSENCE.
+#202  E U.MEI YOUTH FIRMING EYE CREAM 30G A  ←  sm-lido-cream-30g-regular-price  reason: Image shows SM Lido Cream 10.56% packaging, not E U.MEI YOUTH FIRMING EYE CREAM.
+#210  CAMELLEX Camellia Exo No.5 Exosome  ←  buy-neostem-3d-exosome-online  reason: Image shows NEOSTEM Exosome packaging, not CAMELLEX Camellia Exo No.5 Exosome — different brand.
+#216  CURENEX PDRN, Multi  ←  kiara-reju-pdrn-3syringe  reason: Image shows Kiara Reju PDRN packaging, not CURENEX PDRN Multi — wrong brand.
+#221  CURENEX REJUVENATING MASK  ←  curenex  reason: Image shows CURENEX injectable vials, not CURENEX REJUVENATING MASK — wrong product format.
+#223  CURENEX EYE PN  ←  curenex  reason: CURENEX brand is confirmed on packaging but the EYE PN variant designation cannot be verified from the image.
+#227  DERMAGEN Egensia Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not DERMAGEN Egensia Cream.
+#228  Dr. PICOS EGENCICA CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not Dr. PICOS EGENCICA CREAM.
+#229  Dr. Picos RMV Repair Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not Dr. Picos RMV Repair Cream.
+#230  Dr. Picos Ureanol Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not Dr. Picos Ureanol Cream.
+#231  Cindelria Tone - Up Sun  ←  buy-cheap-rejuran-tone-up-booster-collagen-stimulators  reason: Image shows REJURAN TONE-UP BOOSTER vial, not Cindelria Tone-Up Sun — different brand.
+#233  DERMAGEN Well  ←  obsess-well  reason: Image shows ObsessWell HA filler syringe packaging, not DERMAGEN Well.
+#234  DERMAGEN White Sun Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not DERMAGEN White Sun Cream.
+#235  DERMAGEN Urea Cream Deep  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not DERMAGEN Urea Cream Deep.
+#236  DERMAGEN RM Repair Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not DERMAGEN RM Repair Cream.
+#240  DERMAGEN Cicarown Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not DERMAGEN Cicarown Cream.
+#241  DERMAGEN Cindelria Tone - U  ←  buy-cheap-rejuran-tone-up-booster-collagen-stimulators  reason: Image shows REJURAN TONE-UP BOOSTER vial, not DERMAGEN Cindelria Tone-U.
+#242  DERMAGEN Bichaeahn Pore Toning Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not DERMAGEN Bichaeahn Pore Toning Cream.
+#243  DERMAGEN Cellsia Post  ←  avalon-betaglucan-laser-post-treatment-hydrogel-mask  reason: Image shows AVALON Beta-Glucan Hydrogel Mask, not DERMAGEN Cellsia Post.
+#244  DERMAGEN Cellsia Post  ←  avalon-betaglucan-laser-post-treatment-hydrogel-mask  reason: Image shows AVALON Beta-Glucan Hydrogel Mask, not DERMAGEN Cellsia Post.
+#246  EXOSIA Skin Booster Part  ←  richesse-pla  reason: Image shows Richesse PLA vials by JD Bio, not EXOSIA Skin Booster Part.
+#248  GTM EXOMELA - EXO Signal  ←  asce-derma-signal-kit-for-sale-online  reason: Image shows ASCE+ Derma Signal Kit SRLV-S, not GTM EXOMELA-EXO Signal — different brand.
+#252  MELACELL THE PREMIUM  ←  chaeum-premium-2  reason: Image shows THE CHAEUM Premium 2 packaging, not MELACELL THE PREMIUM — different brand.
+#254  GTM Balance Cleansing Gel  ←  elravie-balance  reason: Image shows Elravie Balance packaging, not GTM Balance Cleansing Gel — different brand.
+#255  PDRENZA Serum  ←  rejuner-serum-claracel  reason: Image shows REJUNER SERUM Claracel packaging, not PDRENZA Serum.
+#256  PDRENZA Cream  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not PDRENZA Cream.
+#257  GTM MELA DUAL Day  ←  shop-mesoheal-dual-filler-online  reason: Image shows MESOHEAL DUAL vials in tin, not GTM MELA DUAL Day — different brand.
+#258  VITA K REPAIR CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not VITA K REPAIR CREAM.
+#259  COLLAGEN SERUM  ←  karisma-rh-collagen-face-1-x-2ml  reason: Image shows KARISMA Rh Collagen Softfiller (injectable), not COLLAGEN SERUM — different product format.
+#260  T - TOX PEEL  ←  b-tox-peel  reason: Image shows Matrigen Feel B-TOX PEEL, not T-TOX PEEL — different brand name.
+#261  T - TOX PEEL  ←  b-tox-peel  reason: Image shows Matrigen Feel B-TOX PEEL, not T-TOX PEEL — different brand name.
+#262  PEPTICULE ULTIMATE REJUVENATION CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not PEPTICULE ULTIMATE REJUVENATION CREAM.
+#263  PEPTICULE ULTIMATE REJUVENATION SERUM  ←  rejuner-serum-claracel  reason: Image shows REJUNER SERUM Claracel packaging, not PEPTICULE ULTIMATE REJUVENATION SERUM.
+#264  GTM Active Protect Sun Serum  ←  rejuner-serum-claracel  reason: Image shows REJUNER SERUM Claracel packaging, not GTM Active Protect Sun Serum.
+#272  DIASONO.310 Diacell Peel: Dia/Aqua  ←  aqua-peel  reason: Image shows a large trolley-mounted medical device but the brand name is not clearly readable from the image.
+#274  WILLCAM PLUS Skin/scalp Diagnosis System  ←  rejuran-true-skin-essence  reason: Image shows REJURAN Healer Trueskin Essence packaging, not WILLCAM PLUS Skin/scalp Diagnosis System.
+#278  ULTRA SKIN MASTER Multi  ←  bellast-ultra-v  reason: Image shows Bellast Ultra V HA filler packaging, not ULTRA SKIN MASTER Multi device.
+#282  HERA VACUUM RF Suction Equipment  ←  rejumate-injector-vacuum-filter  reason: Image shows REJUMATE Vacuum Filter Large Size packaging, not HERA VACUUM RF Suction Equipment.
+#289  JOLLA GREEN TEA MODELING MASK  ←  glomedic-aqua-peptide-modeling-mask  reason: Image shows GLOMEDIC Aqua Peptide Coenzyme Q10 Modeling Mask, not JOLLA GREEN TEA MODELING MASK.
+#290  JOLLA PEPPERMINT MODELING MASK  ←  glomedic-aqua-peptide-modeling-mask  reason: Image shows GLOMEDIC Aqua Peptide Coenzyme Q10 Modeling Mask, not JOLLA PEPPERMINT MODELING MASK.
+#291  JOLLA HIGH FREQUENCY MASSAGE CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not JOLLA HIGH FREQUENCY MASSAGE CREAM.
+#301  YELLOW BOTTLE  ←  lemon-bottle-5x-10ml-fat-dissolver-for-sale-online  reason: Image shows LEMONBOTTLE ampoule; YELLOW BOTTLE is a colloquial name but the packaging says LEMONBOTTLE — cannot confirm strict brand match.
+#307  VNS Lipolytic Solution, VNS, Fat  ←  best-quality-miss-gisele-magic-solution-for-sale-online  reason: Image shows luxury red vials in box but no brand text is clearly readable to confirm VNS Lipolytic Solution.
+#341  P LACENTEX Inj. Polydeoxyribonucleotide Sodium  ←  buy-isotonic-sodium-chloride-syringe-inj  reason: Image shows Korean isotonic sodium chloride saline packaging, not P LACENTEX Inj. PDRN.
+#344  BM Hylunidase Inj. Hyaluronidase  ←  innoaesthetics-hyaluronidase-4x500iu  reason: Image shows INNO-TDS Hyaluronidase 500 IU, not BM Hylunidase Inj. — different brand.
+#349  Ravello PLLA  ←  le-ciel-rosy-plla-filler-ce  reason: Image shows REJUBEAU STYLISH LE CIEL ROSY PLLA packaging, not Ravello PLLA — different brand.
+#350  POWER COLTRA  ←  pcl-power-booster  reason: Image shows PCL POWER BOOSTER by STUN Medical, not POWER COLTRA — different brand and product name.
+#352  PDLLA RAVENNA Collagen Booster PDLLA  ←  pcl-power-booster  reason: Image shows PCL POWER BOOSTER by STUN Medical, not PDLLA RAVENNA Collagen Booster PDLLA.
+#363  Acogen Inj. Ascorbic Acid  ←  vitamin-c-ascorbic-acid-inj  reason: Image shows Huons Ascorbic Acid Inj., not Acogen Inj. Ascorbic Acid — different brand.
+#364  ASCORBIC INJ A  ←  vitamin-c-ascorbic-acid-inj  reason: Image shows Huons Ascorbic Acid Inj. which matches the product type (ASCORBIC INJ A) but the Huons brand is not the confirmed ASCORBIC INJ A brand.
+#388  LIDCAIN CREAM  ←  sm-lido-cream-10-56  reason: Image shows SM Plus Cream 10.56% packaging, not LIDCAIN CREAM.
+#390  BERACAINE SPRAY Lidocaine  ←  hyaldew-mid  reason: Image shows HyalDew Mid HA filler packaging, not BERACAINE SPRAY Lidocaine — completely different product type.
+#407  ELASTY MESO NEEDLE  ←  elasty-f-and-elasty-f-non-lidocaine-on-sale-near-you  reason: Image shows ELASTY F plus HA filler packaging, not ELASTY MESO NEEDLE — different product type.
+#408  REJUBEAU MESO NEEDLE  ←  meso-18aa  reason: Image shows HYAMELY Mesotherapy Solution vials, not REJUBEAU MESO NEEDLE — different brand and product.
+#409  REJUBEAU MESO NEEDLE  ←  meso-18aa  reason: Image shows HYAMELY Mesotherapy Solution vials, not REJUBEAU MESO NEEDLE — different brand and product.
+#410  REJUBEAU MESO NEEDLE  ←  meso-18aa  reason: Image shows HYAMELY Mesotherapy Solution vials, not REJUBEAU MESO NEEDLE — different brand and product.
+#411  REJUBEAU MESO NEEDLE  ←  meso-18aa  reason: Image shows HYAMELY Mesotherapy Solution vials, not REJUBEAU MESO NEEDLE — different brand and product.
+#412  EVERLINE MEZO NEEDLE  ←  v-lift-pro-silk-micro-filler-needle-25g-50mm-x-24  reason: Image shows SiLk Micro Filler Needle by VLift PRO, not EVERLINE MEZO NEEDLE — different brand.
+#422  DK ULTRA Thin Meso  ←  bellast-ultra-v  reason: Image shows Bellast Ultra V HA filler packaging, not DK ULTRA Thin Meso needle.
+#431  RESTYLANE + LIDOCAINE  ←  hyaldew-mid  reason: Image shows HyalDew Mid HA filler, not RESTYLANE + LIDOCAINE — wrong brand.
+#433  RESTYLANE SKINBOOSTERS VITAL LIDOCAINE  ←  hyaldew-mid  reason: Image shows HyalDew Mid HA filler, not RESTYLANE SKINBOOSTERS VITAL LIDOCAINE — wrong brand.
+#434  RESTYLANE VITAL LIGHT LIDOCAINE  ←  elravie-premier-light-l-lidocaine  reason: Image shows Elravie Premier Light-L by Filler Exchange, not RESTYLANE VITAL LIGHT LIDOCAINE — different brand.

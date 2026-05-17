@@ -1,0 +1,216 @@
+# missingproducts.txt
+# Last generated: 2026-05-17
+# Products that could not be enriched from aesthetics-shop.com or mg.gofillerss.com.
+# Manually source images and/or descriptions for these and add them via the admin UI.
+
+ID   | Name                                    | Category              | Missing
+---- | --------------------------------------- | --------------------- | -----------------
+9    | SOSUM S (CE) NO Lidocaine               | Fillers               | image
+10   | SOSUM M (CE) NO Lidocaine               | Fillers               | image
+11   | SOSUM H (CE) NO Lidocaine               | Fillers               | image
+12   | SOSUM SOFT (CE)                         | Fillers               | image
+13   | SOSUM HARD                              | Fillers               | image
+15   | ELASTY DEEP PLUS                        | Fillers               | image
+16   | ELASTY GRAND PLUS                       | Fillers               | image
+17   | VOM LIGHT (CE) NO Lidocaine             | Fillers               | image
+18   | VOM INTEN S E                           | Fillers               | image
+19   | VOM VOLUME (CE)                         | Fillers               | image
+21   | NEURAMIS                                | Fillers               | image
+24   | NEURAMIS VOLUME LIDOCAINE               | Fillers               | image
+28   | DERMALAX PLUS                           | Fillers               | image
+31   | TESORO FINE PLUS                        | Fillers               | image
+32   | T ESORO DEEP PLUS                       | Fillers               | image
+33   | TESORO SUB - Q PLUS                     | Fillers               | image, description
+34   | T ESORO IMPLANT WITH LIDOCAINE          | Fillers               | image
+35   | TESORO FINE                             | Fillers               | image
+36   | TESORO DEEP                             | Fillers               | image
+37   | TESORO SUB - Q                          | Fillers               | image, description
+39   | YOUTFILL DEEP                           | Fillers               | image
+40   | YOUTHFILL SHAPE                         | Fillers               | image
+41   | SOONSU FILL (E . P . T . Q)             | Fillers               | image
+42   | SOONSU FILL (E . P . T . Q)             | Fillers               | image
+43   | SOONSU FILL (E . P . T . Q)             | Fillers               | image
+55   | VOLUDERM FINE HA                        | Fillers               | image
+56   | VOLUDERM DEEP HA                        | Fillers               | image
+57   | VOLUDERM SUB - Q HA                     | Fillers               | image
+59   | ULTRAFILL FINE                          | Fillers               | image
+60   | ULTRAFILL DEEP                          | Fillers               | image
+61   | ULTRAFILL SHAPE                         | Fillers               | image
+62   | ULTRAFILL IMPLANT                       | Fillers               | image
+64   | BEADS MAX S                             | Fillers               | image
+66   | MisAdi H                                | Fillers               | image
+67   | AdiMis Body                             | Fillers               | image
+70   | Product 70                              | Fillers               | name, image
+73   | P198 Filcore SB Plus                    | Mesotherapy / Biorevitalization / HA | image
+74   | LEXYAL REJU PDRN+PN                     | Mesotherapy / Biorevitalization / HA | image
+75   | BELLONA AQUA                            | Mesotherapy / Biorevitalization / HA | image
+76   | BELLONA OPACIOUS SERUM                  | Mesotherapy / Biorevitalization / HA | image
+77   | DERMAGEN Plus NA D⁺ Solution            | Mesotherapy / Biorevitalization / HA | image
+84   | ULTRA GEN Collagen + Exosome            | Mesotherapy / Biorevitalization / HA | image
+90   | REGENOVUE PN Non                        | Mesotherapy / Biorevitalization / HA | image
+91   | R EGENOVUE AQUASHINE PLUS GOLD          | Mesotherapy / Biorevitalization / HA | image
+92   | R EGENOVUE AQUASHINE SILVER             | Mesotherapy / Biorevitalization / HA | image
+94   | REJEUNESSE SPARKLE HA                   | Mesotherapy / Biorevitalization / HA | image
+95   | Oasis                                   | Mesotherapy / Biorevitalization / HA | image
+98   | GemVous PN                              | Mesotherapy / Biorevitalization / HA | image
+99   | MI SFILL+ PDRN                          | Mesotherapy / Biorevitalization / HA | image
+103  | MISADI C O                              | Mesotherapy / Biorevitalization / HA | image
+108  | ULTRA EYE                               | Mesotherapy / Biorevitalization / HA | image
+116  | MisAdi White Skin Glazer                | Mesotherapy / Biorevitalization / HA | image
+117  | EVE WHITE                               | Mesotherapy / Biorevitalization / HA | image
+121  | MIRACLE L PCL                           | Mesotherapy / Biorevitalization / HA | image
+131  | EXOGEN FOR HAIR AND SKIN                | Mesotherapy / Biorevitalization / HA | image
+133  | E XOBOOM SKIN                           | Mesotherapy / Biorevitalization / HA | image
+141  | Product 141                             | Mesotherapy / Biorevitalization / HA | name, image
+142  | ESRELLA TEA TREE ESSENCE                | Acne Treatment        | image
+143  | REPIDA CLEARNEST INTENSIVE FOAM CLEANSER | Acne Treatment        | image
+144  | ACON DEEP CLEANSING FOAM                | Acne Treatment        | image
+146  | ACLEAN BODY ACNE TREATMENT SPRAY        | Acne Treatment        | image
+147  | ACNON CREAM                             | Acne Treatment        | image
+148  | AZALEA CREAM                            | Acne Treatment        | image
+149  | Product 149                             | Acne Treatment        | name, image
+150  | P198 Filcore HB Plus                    | Hair Treatment        | image
+153  | ASCE HRLV EXO SOME HAIR FILLER          | Hair Treatment        | image
+159  | DERMAGEN Many Shoot Plus                | Hair Treatment        | image
+162  | DERMAGEN Mohealer Shampoo               | Hair Treatment        | image
+163  | DERMAGEN Mohealer Tonic Scalp           | Hair Treatment        | image
+164  | MelaNosa Cream                          | Pharmacy Favourites   | image
+165  | ALBENDAZOLE                             | Pharmacy Favourites   | image
+166  | D PANSEPTIC CREAM                       | Pharmacy Favourites   | image
+168  | SCARDERM GEL                            | Pharmacy Favourites   | description
+169  | RECLAN (PDRN SOLUTION)                  | Pharmacy Favourites   | image
+170  | EYEOCOOL RENEW PDRN                     | Pharmacy Favourites   | image
+172  | MADECASSOL GEL                          | Pharmacy Favourites   | description
+173  | MELATONING CREAM                        | Pharmacy Favourites   | image
+174  | EGF ACTIVE VITAL CREAM                  | Pharmacy Favourites   | image
+176  | D - Panthenol Cream                     | Pharmacy Favourites   | image
+177  | Rejuvenex PDRN Cream                    | Pharmacy Favourites   | image
+180  | Rejunera EXO - PDRN CREAM               | Topical Cosmetics     | image
+181  | ASCEplus HomeCare Sunshine Cushion PRO  | Topical Cosmetics     | image
+182  | CELLEXO Bio - Cellulose Exosome         | Topical Cosmetics     | image
+183  | CREBEAU Placenta Pearl Essence Mask     | Topical Cosmetics     | image
+184  | SPIDER TOXIN PROGRAM Toxin              | Topical Cosmetics     | image
+185  | Rejuran Healer Calming Lip Balm         | Topical Cosmetics     | image
+187  | Vanhalla NIACINAMIDE Skin Tone Balance  | Topical Cosmetics     | image
+188  | Vanhalla ETINOL 3R SERUM Wrinkle        | Topical Cosmetics     | image
+190  | VANHALLA Ceramide Moisturizing Serum    | Topical Cosmetics     | image
+193  | SKIN MARKER PEN (White                  | Topical Cosmetics     | image
+194  | Mask                                    | Topical Cosmetics     | image
+195  | OPACIOUS COLLAGEN MASK                  | Topical Cosmetics     | image
+196  | INVU REPARATIVE BB                      | Topical Cosmetics     | image
+197  | REPIDA BODY TONE - UP RADIANCE SERUM    | Topical Cosmetics     | image
+198  | V V REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM | Topical Cosmetics     | image
+200  | WHEAT GERM AMPOULE                      | Topical Cosmetics     | image
+201  | EU.MEI SUN ESSENCE                      | Topical Cosmetics     | image
+202  | E U.MEI YOUTH FIRMING EYE CREAM 30G A   | Topical Cosmetics     | image
+203  | Product 203                             | Topical Cosmetics     | name, image
+206  | ASCE+ IRLV                              | Intimate Care         | image
+207  | Product 207                             | Intimate Care         | name, image
+208  | Product 208                             | Growth Factor & Exosome Therapy | name, image, description
+210  | CAMELLEX Camellia Exo No.5 Exosome      | Growth Factor & Exosome Therapy | image
+216  | CURENEX PDRN, Multi                     | Curenex Products Line | image
+221  | CURENEX REJUVENATING MASK               | Curenex Products Line | image
+223  | CURENEX EYE PN                          | Curenex Products Line | image
+226  | Product 226                             | Curenex Products Line | name, image
+227  | DERMAGEN Egensia Cream                  | Dermagen Products Line | image
+228  | Dr. PICOS EGENCICA CREAM                | Dermagen Products Line | image
+229  | Dr. Picos RMV Repair Cream              | Dermagen Products Line | image
+230  | Dr. Picos Ureanol Cream                 | Dermagen Products Line | image
+231  | Cindelria Tone - Up Sun                 | Dermagen Products Line | image
+233  | DERMAGEN Well                           | Dermagen Products Line | image
+234  | DERMAGEN White Sun Cream                | Dermagen Products Line | image
+235  | DERMAGEN Urea Cream Deep                | Dermagen Products Line | image
+236  | DERMAGEN RM Repair Cream                | Dermagen Products Line | image
+237  | DERMAGEN Scargel                        | Dermagen Products Line | image
+239  | DERMAGEN Lunato                         | Dermagen Products Line | image
+240  | DERMAGEN Cicarown Cream                 | Dermagen Products Line | image
+241  | DERMAGEN Cindelria Tone - U             | Dermagen Products Line | image
+242  | DERMAGEN Bichaeahn Pore Toning Cream    | Dermagen Products Line | image
+243  | DERMAGEN Cellsia Post                   | Dermagen Products Line | image
+244  | DERMAGEN Cellsia Post                   | Dermagen Products Line | image
+245  | DERMAGEN EZ C                           | Dermagen Products Line | image
+246  | EXOSIA Skin Booster Part                | Dermagen Products Line | image
+247  | Product 247                             | Dermagen Products Line | name, image
+248  | GTM EXOMELA - EXO Signal                | GTM Products Line     | image
+252  | MELACELL THE PREMIUM                    | GTM Products Line     | image
+254  | GTM Balance Cleansing Gel               | GTM Products Line     | image
+255  | PDRENZA Serum                           | GTM Products Line     | image
+256  | PDRENZA Cream                           | GTM Products Line     | image
+257  | GTM MELA DUAL Day                       | GTM Products Line     | image
+258  | VITA K REPAIR CREAM                     | GTM Products Line     | image
+259  | COLLAGEN SERUM                          | GTM Products Line     | image
+260  | T - TOX PEEL                            | GTM Products Line     | image
+261  | T - TOX PEEL                            | GTM Products Line     | image
+262  | PEPTICULE ULTIMATE REJUVENATION CREAM   | GTM Products Line     | image
+263  | PEPTICULE ULTIMATE REJUVENATION SERUM   | GTM Products Line     | image
+264  | GTM Active Protect Sun Serum            | GTM Products Line     | image
+265  | ALOE SOOTHING GEL                       | GTM Products Line     | image
+266  | ROSE HERB TONER                         | GTM Products Line     | image
+267  | Product 267                             | GTM Products Line     | name, image
+270  | O2TODERM LED PLUS + ULDM                | Equipment             | description
+272  | DIASONO.310 Diacell Peel: Dia/Aqua      | Equipment             | image
+274  | WILLCAM PLUS Skin/scalp Diagnosis System | Equipment             | image
+278  | ULTRA SKIN MASTER Multi                 | Equipment             | image
+279  | HYSONIC THREE WAY Multi                 | Equipment             | image
+282  | HERA VACUUM RF Suction Equipment        | Equipment             | image
+284  | AUTO - DN MTS PEN                       | Equipment             | image
+287  | Product 287                             | Equipment             | name, image
+288  | JOLLA CLEANSING LOTION                  | Salon-Grade Products (Large Format) | image
+289  | JOLLA GREEN TEA MODELING MASK           | Salon-Grade Products (Large Format) | image
+290  | JOLLA PEPPERMINT MODELING MASK          | Salon-Grade Products (Large Format) | image
+291  | JOLLA HIGH FREQUENCY MASSAGE CREAM      | Salon-Grade Products (Large Format) | image
+292  | Product 292                             | Salon-Grade Products (Large Format) | name, image
+293  | MisAdi Lipo                             | Lipolytics Fat Burning Cocktails | description
+294  | MisAdi Lipo                             | Lipolytics Fat Burning Cocktails | description
+298  | LIPOLAB GMS                             | Lipolytics Fat Burning Cocktails | image
+301  | YELLOW BOTTLE                           | Lipolytics Fat Burning Cocktails | image
+307  | VNS Lipolytic Solution, VNS, Fat        | Lipolytics Fat Burning Cocktails | image
+309  | Product 309                             | Lipolytics Fat Burning Cocktails | name, image
+321  | Huto                                    | Botulinum Therapy     | image, description
+322  | Huto                                    | Botulinum Therapy     | image, description
+323  | M EDITOXIN                              | Botulinum Therapy     | description
+325  | RE N TOX                                | Botulinum Therapy     | image, description
+326  | Re N To                                 | Botulinum Therapy     | description
+327  | TOXSTA                                  | Botulinum Therapy     | description
+335  | ROSETOX                                 | Botulinum Therapy     | description
+336  | HITOX                                   | Botulinum Therapy     | description
+338  | Product 338                             | Injections            | name, image, description
+341  | P LACENTEX Inj. Polydeoxyribonucleotide Sodium | Injections            | image
+342  | Fere                                    | Injections            | image
+344  | BM Hylunidase Inj. Hyaluronidase        | Injections            | image
+349  | Ravello PLLA                            | Injections            | image
+350  | POWER COLTRA                            | Injections            | image
+352  | PDLLA RAVENNA Collagen Booster PDLLA    | Injections            | image
+357  | C                                       | Injections            | image
+363  | Acogen Inj. Ascorbic Acid               | Injections            | image
+364  | ASCORBIC INJ A                          | Injections            | image
+366  | ATP - S Inj                             | Injections            | image
+367  | ARGININE INJ. L - Arginine              | Injections            | image
+368  | Acepain Inj. Acetaminophen              | Injections            | image
+376  | MESOCARTIN INJ                          | Injections            | image
+378  | HYCOBAL INJ. Hydroxocobalamin           | Injections            | image
+381  | ZINC INJ                                | Injections            | image, description
+382  | Zinc S Inj. Zinc Sulfate                | Injections            | image
+383  | MAXYBLUE INJ                            | Injections            | image
+384  | Hishiphagen - C Inj. Deto               | Injections            | image
+386  | Product 386                             | Injections            | name, image
+388  | LIDCAIN CREAM                           | Anesthetics           | image
+390  | BERACAINE SPRAY Lidocaine               | Anesthetics           | image
+405  | Melamin Inj. Placenta Extract           | Placental Therapy     | image
+406  | Product 406                             | Placental Therapy     | name, image
+407  | ELASTY MESO NEEDLE                      | Nano Needle and Cannula | image
+408  | REJUBEAU MESO NEEDLE                    | Nano Needle and Cannula | image
+409  | REJUBEAU MESO NEEDLE                    | Nano Needle and Cannula | image
+410  | REJUBEAU MESO NEEDLE                    | Nano Needle and Cannula | image
+411  | REJUBEAU MESO NEEDLE                    | Nano Needle and Cannula | image
+412  | EVERLINE MEZO NEEDLE                    | Nano Needle and Cannula | image
+413  | JBP                                     | Nano Needle and Cannula | image, description
+414  | JBP                                     | Nano Needle and Cannula | image, description
+415  | JBP                                     | Nano Needle and Cannula | image, description
+416  | JBP                                     | Nano Needle and Cannula | image, description
+420  | DK Filler Cannula with                  | Nano Needle and Cannula | description
+421  | DK Filler Cannula with                  | Nano Needle and Cannula | description
+422  | DK ULTRA Thin Meso                      | Nano Needle and Cannula | image
+431  | RESTYLANE + LIDOCAINE                   | Imported Products     | image
+433  | RESTYLANE SKINBOOSTERS VITAL LIDOCAINE  | Imported Products     | image
+434  | RESTYLANE VITAL LIGHT LIDOCAINE         | Imported Products     | image
