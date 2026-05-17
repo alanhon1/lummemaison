@@ -32,6 +32,8 @@ export interface Product {
   groupId?: string;
   variantLabel?: string;
   images?: string[];
+  groupName?: string;
+  groupImage?: string;
 }
 
 export const categories: Category[] = productsData.categories as Category[];

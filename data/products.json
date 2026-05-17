@@ -181,7 +181,9 @@
       "images": [
         "/images/products/product-1-2.webp",
         "/images/products/product-1-3.webp"
-      ]
+      ],
+      "groupName": "Barbie Slim",
+      "groupImage": "/images/products/product-1.webp"
     },
     {
       "id": 2,
@@ -215,7 +217,9 @@
       "image": "/images/products/product-3.webp",
       "moq": 1,
       "groupId": "regenovue-sub-q",
-      "variantLabel": "FINE"
+      "variantLabel": "FINE",
+      "groupName": "Regenovue",
+      "groupImage": "/images/products/product-3.webp"
     },
     {
       "id": 4,
@@ -232,7 +236,9 @@
       "image": "/images/products/product-4.webp",
       "moq": 1,
       "groupId": "regenovue-sub-q",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "groupName": "Regenovue",
+      "groupImage": "/images/products/product-3.webp"
     },
     {
       "id": 5,
@@ -249,7 +255,9 @@
       "image": "/images/products/product-5.webp",
       "moq": 1,
       "groupId": "regenovue-sub-q",
-      "variantLabel": "SUB - Q"
+      "variantLabel": "SUB - Q",
+      "groupName": "Regenovue",
+      "groupImage": "/images/products/product-3.webp"
     },
     {
       "id": 6,
@@ -266,7 +274,9 @@
       "image": "/images/products/product-6.webp",
       "moq": 1,
       "groupId": "regenovue-sub-q",
-      "variantLabel": "FINE PLUS"
+      "variantLabel": "FINE PLUS",
+      "groupName": "Regenovue",
+      "groupImage": "/images/products/product-3.webp"
     },
     {
       "id": 7,
@@ -283,7 +293,9 @@
       "image": "/images/products/product-7.webp",
       "moq": 1,
       "groupId": "regenovue-sub-q",
-      "variantLabel": "DEEP PLUS"
+      "variantLabel": "DEEP PLUS",
+      "groupName": "Regenovue",
+      "groupImage": "/images/products/product-3.webp"
     },
     {
       "id": 8,
@@ -300,7 +312,9 @@
       "image": "/images/products/product-8.webp",
       "moq": 1,
       "groupId": "regenovue-sub-q",
-      "variantLabel": "SUB - Q PLUS"
+      "variantLabel": "SUB - Q PLUS",
+      "groupName": "Regenovue",
+      "groupImage": "/images/products/product-3.webp"
     },
     {
       "id": 9,
@@ -317,7 +331,9 @@
       "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "S"
+      "variantLabel": "S",
+      "groupName": "Sosum",
+      "groupImage": ""
     },
     {
       "id": 10,
@@ -334,7 +350,9 @@
       "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "M"
+      "variantLabel": "M",
+      "groupName": "Sosum",
+      "groupImage": ""
     },
     {
       "id": 11,
@@ -351,7 +369,9 @@
       "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "H"
+      "variantLabel": "H",
+      "groupName": "Sosum",
+      "groupImage": ""
     },
     {
       "id": 12,
@@ -368,7 +388,9 @@
       "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "SOFT"
+      "variantLabel": "SOFT",
+      "groupName": "Sosum",
+      "groupImage": ""
     },
     {
       "id": 13,
@@ -385,7 +407,9 @@
       "image": "",
       "moq": 1,
       "groupId": "sosum",
-      "variantLabel": "HARD"
+      "variantLabel": "HARD",
+      "groupName": "Sosum",
+      "groupImage": ""
     },
     {
       "id": 14,
@@ -492,7 +516,9 @@
       "image": "/images/products/product-20.webp",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "LIGHT (MESO)"
+      "variantLabel": "LIGHT (MESO)",
+      "groupName": "Neuramis",
+      "groupImage": "/images/products/product-20.webp"
     },
     {
       "id": 21,
@@ -509,7 +535,9 @@
       "image": "",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "NEURAMIS"
+      "variantLabel": "NEURAMIS",
+      "groupName": "Neuramis",
+      "groupImage": "/images/products/product-20.webp"
     },
     {
       "id": 22,
@@ -526,7 +554,9 @@
       "image": "/images/products/product-22.webp",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "groupName": "Neuramis",
+      "groupImage": "/images/products/product-20.webp"
     },
     {
       "id": 23,
@@ -543,7 +573,9 @@
       "image": "/images/products/product-23.webp",
       "moq": 1,
       "groupId": "neuramis",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "groupName": "Neuramis",
+      "groupImage": "/images/products/product-20.webp"
     },
     {
       "id": 24,
@@ -620,7 +652,9 @@
       "image": "",
       "moq": 1,
       "groupId": "dermalax",
-      "variantLabel": "DERMALAX PLUS"
+      "variantLabel": "DERMALAX PLUS",
+      "groupName": "Dermalax",
+      "groupImage": "/images/products/product-29.webp"
     },
     {
       "id": 29,
@@ -637,7 +671,9 @@
       "image": "/images/products/product-29.webp",
       "moq": 1,
       "groupId": "dermalax",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "groupName": "Dermalax",
+      "groupImage": "/images/products/product-29.webp"
     },
     {
       "id": 30,
@@ -654,7 +690,9 @@
       "image": "/images/products/product-30.webp",
       "moq": 1,
       "groupId": "dermalax",
-      "variantLabel": "IMPLANT"
+      "variantLabel": "IMPLANT",
+      "groupName": "Dermalax",
+      "groupImage": "/images/products/product-29.webp"
     },
     {
       "id": 31,
@@ -671,7 +709,9 @@
       "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "FINE PLUS"
+      "variantLabel": "FINE PLUS",
+      "groupName": "Tesoro",
+      "groupImage": ""
     },
     {
       "id": 32,
@@ -703,7 +743,9 @@
       "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "SUB - Q PLUS"
+      "variantLabel": "SUB - Q PLUS",
+      "groupName": "Tesoro",
+      "groupImage": ""
     },
     {
       "id": 34,
@@ -735,7 +777,9 @@
       "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "FINE"
+      "variantLabel": "FINE",
+      "groupName": "Tesoro",
+      "groupImage": ""
     },
     {
       "id": 36,
@@ -752,7 +796,9 @@
       "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "groupName": "Tesoro",
+      "groupImage": ""
     },
     {
       "id": 37,
@@ -769,7 +815,9 @@
       "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
-      "variantLabel": "SUB - Q"
+      "variantLabel": "SUB - Q",
+      "groupName": "Tesoro",
+      "groupImage": ""
     },
     {
       "id": 38,
@@ -816,7 +864,9 @@
       "image": "",
       "moq": 1,
       "groupId": "youthfill-pn-with-lido",
-      "variantLabel": "SHAPE"
+      "variantLabel": "SHAPE",
+      "groupName": "Youthfill",
+      "groupImage": "/images/products/product-89.webp"
     },
     {
       "id": 41,
@@ -893,7 +943,9 @@
       "image": "/images/products/product-45.webp",
       "moq": 1,
       "groupId": "celosome",
-      "variantLabel": "MID"
+      "variantLabel": "MID",
+      "groupName": "Celosome",
+      "groupImage": "/images/products/product-45.webp"
     },
     {
       "id": 46,
@@ -910,7 +962,9 @@
       "image": "/images/products/product-46.webp",
       "moq": 1,
       "groupId": "celosome",
-      "variantLabel": "STRONG"
+      "variantLabel": "STRONG",
+      "groupName": "Celosome",
+      "groupImage": "/images/products/product-45.webp"
     },
     {
       "id": 47,
@@ -927,7 +981,9 @@
       "image": "/images/products/product-47.webp",
       "moq": 1,
       "groupId": "celosome",
-      "variantLabel": "IMPLANT"
+      "variantLabel": "IMPLANT",
+      "groupName": "Celosome",
+      "groupImage": "/images/products/product-45.webp"
     },
     {
       "id": 48,
@@ -1094,7 +1150,9 @@
       "image": "/images/products/product-58.webp",
       "moq": 1,
       "groupId": "ultrafill-nose",
-      "variantLabel": "KISS"
+      "variantLabel": "KISS",
+      "groupName": "Ultrafill",
+      "groupImage": "/images/products/product-58.webp"
     },
     {
       "id": 59,
@@ -1111,7 +1169,9 @@
       "image": "",
       "moq": 1,
       "groupId": "ultrafill-nose",
-      "variantLabel": "FINE"
+      "variantLabel": "FINE",
+      "groupName": "Ultrafill",
+      "groupImage": "/images/products/product-58.webp"
     },
     {
       "id": 60,
@@ -1128,7 +1188,9 @@
       "image": "",
       "moq": 1,
       "groupId": "ultrafill-nose",
-      "variantLabel": "DEEP"
+      "variantLabel": "DEEP",
+      "groupName": "Ultrafill",
+      "groupImage": "/images/products/product-58.webp"
     },
     {
       "id": 61,
@@ -1145,7 +1207,9 @@
       "image": "",
       "moq": 1,
       "groupId": "ultrafill-nose",
-      "variantLabel": "SHAPE"
+      "variantLabel": "SHAPE",
+      "groupName": "Ultrafill",
+      "groupImage": "/images/products/product-58.webp"
     },
     {
       "id": 62,
@@ -1162,7 +1226,9 @@
       "image": "",
       "moq": 1,
       "groupId": "ultrafill-nose",
-      "variantLabel": "IMPLANT"
+      "variantLabel": "IMPLANT",
+      "groupName": "Ultrafill",
+      "groupImage": "/images/products/product-58.webp"
     },
     {
       "id": 63,
@@ -1226,7 +1292,9 @@
       "image": "",
       "moq": 1,
       "groupId": "misadi-pdlla-200-mg",
-      "variantLabel": "H"
+      "variantLabel": "H",
+      "groupName": "Misadi Pdlla 200 Mg",
+      "groupImage": ""
     },
     {
       "id": 67,
@@ -1573,7 +1641,9 @@
       "image": "/images/products/product-89.webp",
       "moq": 1,
       "groupId": "youthfill-pn-with-lido",
-      "variantLabel": "PN WITH"
+      "variantLabel": "PN WITH",
+      "groupName": "Youthfill",
+      "groupImage": "/images/products/product-89.webp"
     },
     {
       "id": 90,
@@ -1785,7 +1855,9 @@
       "image": "",
       "moq": 1,
       "groupId": "misadi-pdlla-200-mg",
-      "variantLabel": "C O"
+      "variantLabel": "C O",
+      "groupName": "Misadi Pdlla 200 Mg",
+      "groupImage": ""
     },
     {
       "id": 104,
@@ -1832,7 +1904,9 @@
       "image": "/images/products/product-106.webp",
       "moq": 1,
       "groupId": "cindella-set",
-      "variantLabel": "I (PN)"
+      "variantLabel": "I (PN)",
+      "groupName": "Cindella",
+      "groupImage": "/images/products/product-106.webp"
     },
     {
       "id": 107,
@@ -1897,7 +1971,9 @@
       "variantLabel": "JUVELOOK",
       "images": [
         "/images/products/product-110-2.webp"
-      ]
+      ],
+      "groupName": "Juvelook",
+      "groupImage": "/images/products/product-110.webp"
     },
     {
       "id": 111,
@@ -2039,7 +2115,9 @@
         "/images/products/product-119-2.webp",
         "/images/products/product-119-3.webp",
         "/images/products/product-119-4.webp"
-      ]
+      ],
+      "groupName": "Miracle",
+      "groupImage": "/images/products/product-119.webp"
     },
     {
       "id": 120,
@@ -2056,7 +2134,9 @@
       "image": "/images/products/product-120.webp",
       "moq": 1,
       "groupId": "miracle-x",
-      "variantLabel": "H HA"
+      "variantLabel": "H HA",
+      "groupName": "Miracle",
+      "groupImage": "/images/products/product-119.webp"
     },
     {
       "id": 121,
@@ -2073,7 +2153,9 @@
       "image": "",
       "moq": 1,
       "groupId": "miracle-x",
-      "variantLabel": "L PCL"
+      "variantLabel": "L PCL",
+      "groupName": "Miracle",
+      "groupImage": "/images/products/product-119.webp"
     },
     {
       "id": 122,
@@ -2169,7 +2251,9 @@
       "images": [
         "/images/products/product-127-2.webp",
         "/images/products/product-127-3.webp"
-      ]
+      ],
+      "groupName": "Lapuroon Aurora",
+      "groupImage": "/images/products/product-127.webp"
     },
     {
       "id": 128,
@@ -2186,7 +2270,9 @@
       "image": "/images/products/product-128.webp",
       "moq": 1,
       "groupId": "lapuroon-aurora-super",
-      "variantLabel": "V IVID"
+      "variantLabel": "V IVID",
+      "groupName": "Lapuroon Aurora",
+      "groupImage": "/images/products/product-127.webp"
     },
     {
       "id": 129,
@@ -3499,7 +3585,9 @@
       "image": "/images/products/product-215.webp",
       "moq": 1,
       "groupId": "curenex-bundle",
-      "variantLabel": "SCULP (PLLA)"
+      "variantLabel": "SCULP (PLLA)",
+      "groupName": "Curenex",
+      "groupImage": "/images/products/product-215.webp"
     },
     {
       "id": 216,
@@ -3516,7 +3604,9 @@
       "image": "",
       "moq": 1,
       "groupId": "curenex-bundle",
-      "variantLabel": "PDRN, MULTI"
+      "variantLabel": "PDRN, MULTI",
+      "groupName": "Curenex",
+      "groupImage": "/images/products/product-215.webp"
     },
     {
       "id": 217,
@@ -3548,7 +3638,9 @@
       "image": "/images/products/product-218.webp",
       "moq": 1,
       "groupId": "curenex-dailycare-rejuvenating-cream",
-      "variantLabel": "CREAM"
+      "variantLabel": "CREAM",
+      "groupName": "Curenex Rejuvenating",
+      "groupImage": "/images/products/product-218.webp"
     },
     {
       "id": 219,
@@ -3595,7 +3687,9 @@
       "image": "",
       "moq": 1,
       "groupId": "curenex-dailycare-rejuvenating-cream",
-      "variantLabel": "MASK"
+      "variantLabel": "MASK",
+      "groupName": "Curenex Rejuvenating",
+      "groupImage": "/images/products/product-218.webp"
     },
     {
       "id": 222,
@@ -3627,7 +3721,9 @@
       "image": "",
       "moq": 1,
       "groupId": "curenex-bundle",
-      "variantLabel": "EYE PN"
+      "variantLabel": "EYE PN",
+      "groupName": "Curenex",
+      "groupImage": "/images/products/product-215.webp"
     },
     {
       "id": 224,
@@ -3644,7 +3740,9 @@
       "image": "/images/products/product-224.webp",
       "moq": 1,
       "groupId": "curenex-bundle",
-      "variantLabel": "SCULP (PLLA)"
+      "variantLabel": "SCULP (PLLA)",
+      "groupName": "Curenex",
+      "groupImage": "/images/products/product-215.webp"
     },
     {
       "id": 225,
@@ -4699,7 +4797,9 @@
       "images": [
         "/images/products/product-293-2.webp",
         "/images/products/product-293-3.webp"
-      ]
+      ],
+      "groupName": "Misadi Lipo",
+      "groupImage": "/images/products/product-293.webp"
     },
     {
       "id": 294,
@@ -4720,7 +4820,9 @@
       "images": [
         "/images/products/product-293-2.webp",
         "/images/products/product-293-3.webp"
-      ]
+      ],
+      "groupName": "Misadi Lipo",
+      "groupImage": "/images/products/product-293.webp"
     },
     {
       "id": 295,
@@ -4741,7 +4843,9 @@
       "images": [
         "/images/products/product-1-2.webp",
         "/images/products/product-1-3.webp"
-      ]
+      ],
+      "groupName": "Barbie Slim",
+      "groupImage": "/images/products/product-1.webp"
     },
     {
       "id": 296,
@@ -4974,7 +5078,9 @@
       "images": [
         "/images/products/product-310-2.webp",
         "/images/products/product-310-3.webp"
-      ]
+      ],
+      "groupName": "Botulax",
+      "groupImage": "/images/products/product-310.webp"
     },
     {
       "id": 311,
@@ -4995,7 +5101,9 @@
       "images": [
         "/images/products/product-310-2.webp",
         "/images/products/product-310-3.webp"
-      ]
+      ],
+      "groupName": "Botulax",
+      "groupImage": "/images/products/product-310.webp"
     },
     {
       "id": 312,
@@ -5016,7 +5124,9 @@
       "images": [
         "/images/products/product-310-2.webp",
         "/images/products/product-310-3.webp"
-      ]
+      ],
+      "groupName": "Botulax",
+      "groupImage": "/images/products/product-310.webp"
     },
     {
       "id": 313,
@@ -5033,7 +5143,9 @@
       "image": "/images/products/product-313.webp",
       "moq": 1,
       "groupId": "metox",
-      "variantLabel": "METOX"
+      "variantLabel": "METOX",
+      "groupName": "Metox",
+      "groupImage": "/images/products/product-313.webp"
     },
     {
       "id": 314,
@@ -5050,7 +5162,9 @@
       "image": "/images/products/product-314.webp",
       "moq": 1,
       "groupId": "metox",
-      "variantLabel": "METOX"
+      "variantLabel": "METOX",
+      "groupName": "Metox",
+      "groupImage": "/images/products/product-313.webp"
     },
     {
       "id": 315,
@@ -5070,7 +5184,9 @@
       "variantLabel": "INNOTOX",
       "images": [
         "/images/products/product-315-2.webp"
-      ]
+      ],
+      "groupName": "Innotox",
+      "groupImage": "/images/products/product-315.webp"
     },
     {
       "id": 316,
@@ -5090,7 +5206,9 @@
       "variantLabel": "INNOTOX",
       "images": [
         "/images/products/product-315-2.webp"
-      ]
+      ],
+      "groupName": "Innotox",
+      "groupImage": "/images/products/product-315.webp"
     },
     {
       "id": 317,
@@ -5107,7 +5225,9 @@
       "image": "/images/products/product-317.webp",
       "moq": 1,
       "groupId": "nabota-200unit",
-      "variantLabel": "NABOTA"
+      "variantLabel": "NABOTA",
+      "groupName": "Nabota",
+      "groupImage": "/images/products/product-317.webp"
     },
     {
       "id": 318,
@@ -5124,7 +5244,9 @@
       "image": "/images/products/product-318.webp",
       "moq": 1,
       "groupId": "nabota-200unit",
-      "variantLabel": "NABOTA"
+      "variantLabel": "NABOTA",
+      "groupName": "Nabota",
+      "groupImage": "/images/products/product-317.webp"
     },
     {
       "id": 319,
@@ -5141,7 +5263,9 @@
       "image": "/images/products/product-319.webp",
       "moq": 1,
       "groupId": "liztox-100u",
-      "variantLabel": "LIZTOX"
+      "variantLabel": "LIZTOX",
+      "groupName": "Liztox",
+      "groupImage": "/images/products/product-319.webp"
     },
     {
       "id": 320,
@@ -5158,7 +5282,9 @@
       "image": "/images/products/product-320.webp",
       "moq": 1,
       "groupId": "liztox-100u",
-      "variantLabel": "LIZTOX"
+      "variantLabel": "LIZTOX",
+      "groupName": "Liztox",
+      "groupImage": "/images/products/product-319.webp"
     },
     {
       "id": 321,
@@ -5280,7 +5406,9 @@
       "image": "/images/products/product-328.webp",
       "moq": 1,
       "groupId": "kaimax-100u",
-      "variantLabel": "KAIMAX"
+      "variantLabel": "KAIMAX",
+      "groupName": "Kaimax",
+      "groupImage": "/images/products/product-328.webp"
     },
     {
       "id": 329,
@@ -5297,7 +5425,9 @@
       "image": "/images/products/product-329.webp",
       "moq": 1,
       "groupId": "kaimax-100u",
-      "variantLabel": "KAIMAX"
+      "variantLabel": "KAIMAX",
+      "groupName": "Kaimax",
+      "groupImage": "/images/products/product-328.webp"
     },
     {
       "id": 330,
@@ -5314,7 +5444,9 @@
       "image": "/images/products/product-330.webp",
       "moq": 1,
       "groupId": "wondertox-200",
-      "variantLabel": "WONDERTOX"
+      "variantLabel": "WONDERTOX",
+      "groupName": "Wondertox",
+      "groupImage": "/images/products/product-330.webp"
     },
     {
       "id": 331,
@@ -5331,7 +5463,9 @@
       "image": "/images/products/product-331.webp",
       "moq": 1,
       "groupId": "wondertox-200",
-      "variantLabel": "WONDERTOX"
+      "variantLabel": "WONDERTOX",
+      "groupName": "Wondertox",
+      "groupImage": "/images/products/product-330.webp"
     },
     {
       "id": 332,
@@ -5578,7 +5712,9 @@
       "variantLabel": "PLA",
       "images": [
         "/images/products/product-347-2.webp"
-      ]
+      ],
+      "groupName": "Mennus",
+      "groupImage": "/images/products/product-347.webp"
     },
     {
       "id": 348,
@@ -5598,7 +5734,9 @@
       "variantLabel": "PL L A",
       "images": [
         "/images/products/product-347-2.webp"
-      ]
+      ],
+      "groupName": "Mennus",
+      "groupImage": "/images/products/product-347.webp"
     },
     {
       "id": 349,
@@ -5678,7 +5816,9 @@
       "variantLabel": "JUVELOOK",
       "images": [
         "/images/products/product-110-2.webp"
-      ]
+      ],
+      "groupName": "Juvelook",
+      "groupImage": "/images/products/product-110.webp"
     },
     {
       "id": 354,
@@ -5713,7 +5853,9 @@
       "variantLabel": "SET",
       "images": [
         "/images/products/product-106-2.webp"
-      ]
+      ],
+      "groupName": "Cindella",
+      "groupImage": "/images/products/product-106.webp"
     },
     {
       "id": 356,
@@ -5730,7 +5872,9 @@
       "image": "/images/products/product-356.webp",
       "moq": 1,
       "groupId": "cindella-set",
-      "variantLabel": "INJ"
+      "variantLabel": "INJ",
+      "groupName": "Cindella",
+      "groupImage": "/images/products/product-106.webp"
     },
     {
       "id": 357,
@@ -5762,7 +5906,9 @@
       "image": "/images/products/product-358.webp",
       "moq": 1,
       "groupId": "lipotocin",
-      "variantLabel": "LIPOTOCIN INJ Thioctic Acid"
+      "variantLabel": "LIPOTOCIN INJ Thioctic Acid",
+      "groupName": "Lipotocin Inj",
+      "groupImage": "/images/products/product-358.webp"
     },
     {
       "id": 359,
@@ -5947,7 +6093,9 @@
       "variantLabel": "Vita D",
       "images": [
         "/images/products/product-370-2.webp"
-      ]
+      ],
+      "groupName": "D",
+      "groupImage": "/images/products/product-370.webp"
     },
     {
       "id": 371,
@@ -5967,7 +6115,9 @@
       "variantLabel": "-",
       "images": [
         "/images/products/product-370-2.webp"
-      ]
+      ],
+      "groupName": "D",
+      "groupImage": "/images/products/product-370.webp"
     },
     {
       "id": 372,
@@ -5987,7 +6137,9 @@
       "variantLabel": "-",
       "images": [
         "/images/products/product-370-2.webp"
-      ]
+      ],
+      "groupName": "D",
+      "groupImage": "/images/products/product-370.webp"
     },
     {
       "id": 373,
@@ -6064,7 +6216,9 @@
       "image": "/images/products/product-377.webp",
       "moq": 1,
       "groupId": "lipotocin",
-      "variantLabel": "LIPOTOCIN INJ Thioctic Acid"
+      "variantLabel": "LIPOTOCIN INJ Thioctic Acid",
+      "groupName": "Lipotocin Inj",
+      "groupImage": "/images/products/product-358.webp"
     },
     {
       "id": 378,
@@ -6216,7 +6370,9 @@
       "image": "/images/products/product-387.webp",
       "moq": 1,
       "groupId": "wellscaine-plus-cream-450g",
-      "variantLabel": "PLUS"
+      "variantLabel": "PLUS",
+      "groupName": "Wellscaine",
+      "groupImage": "/images/products/product-387.webp"
     },
     {
       "id": 388,
@@ -6248,7 +6404,9 @@
       "image": "/images/products/product-389.webp",
       "moq": 1,
       "groupId": "wellscaine-plus-cream-450g",
-      "variantLabel": "WELLSCAINE CREAM"
+      "variantLabel": "WELLSCAINE CREAM",
+      "groupName": "Wellscaine",
+      "groupImage": "/images/products/product-387.webp"
     },
     {
       "id": 390,
@@ -6340,7 +6498,9 @@
       "image": "/images/products/product-395.webp",
       "moq": 1,
       "groupId": "sm-cream-2",
-      "variantLabel": "SM CREAM"
+      "variantLabel": "SM CREAM",
+      "groupName": "Sm Cream",
+      "groupImage": "/images/products/product-395.webp"
     },
     {
       "id": 396,
@@ -6357,7 +6517,9 @@
       "image": "/images/products/product-396.webp",
       "moq": 1,
       "groupId": "sm-cream-2",
-      "variantLabel": "SM CREAM"
+      "variantLabel": "SM CREAM",
+      "groupName": "Sm Cream",
+      "groupImage": "/images/products/product-395.webp"
     },
     {
       "id": 397,
@@ -6436,7 +6598,9 @@
       "image": "/images/products/product-401.webp",
       "moq": 1,
       "groupId": "laennec",
-      "variantLabel": "LAENNEC"
+      "variantLabel": "LAENNEC",
+      "groupName": "Laennec",
+      "groupImage": "/images/products/product-401.webp"
     },
     {
       "id": 402,
@@ -6453,7 +6617,9 @@
       "image": "/images/products/product-402.webp",
       "moq": 1,
       "groupId": "laennec",
-      "variantLabel": "LAENNEC"
+      "variantLabel": "LAENNEC",
+      "groupName": "Laennec",
+      "groupImage": "/images/products/product-401.webp"
     },
     {
       "id": 403,
@@ -6728,7 +6894,9 @@
       "variantLabel": "DK Filler Cannula with",
       "images": [
         "/images/products/product-420-2.webp"
-      ]
+      ],
+      "groupName": "Dk",
+      "groupImage": "/images/products/product-420.webp"
     },
     {
       "id": 421,
@@ -6748,7 +6916,9 @@
       "variantLabel": "DK Filler Cannula with",
       "images": [
         "/images/products/product-420-2.webp"
-      ]
+      ],
+      "groupName": "Dk",
+      "groupImage": "/images/products/product-420.webp"
     },
     {
       "id": 422,
@@ -6780,7 +6950,9 @@
       "image": "/images/products/product-423.webp",
       "moq": 1,
       "groupId": "dk-cannula-18g-50-7050pcs",
-      "variantLabel": "NEO CANNULA"
+      "variantLabel": "NEO CANNULA",
+      "groupName": "Neo Cannula",
+      "groupImage": "/images/products/product-423.webp"
     },
     {
       "id": 424,
@@ -6797,7 +6969,9 @@
       "image": "/images/products/product-424.webp",
       "moq": 1,
       "groupId": "dk-cannula-18g-50-7050pcs",
-      "variantLabel": "NEO CANNULA"
+      "variantLabel": "NEO CANNULA",
+      "groupName": "Neo Cannula",
+      "groupImage": "/images/products/product-423.webp"
     },
     {
       "id": 425,
@@ -6814,7 +6988,9 @@
       "image": "/images/products/product-425.webp",
       "moq": 1,
       "groupId": "syringe-mixing-tube",
-      "variantLabel": "MI X ING (FOR"
+      "variantLabel": "MI X ING (FOR",
+      "groupName": "Syringe",
+      "groupImage": "/images/products/product-425.webp"
     },
     {
       "id": 426,
@@ -6831,7 +7007,9 @@
       "image": "/images/products/product-426.webp",
       "moq": 1,
       "groupId": "syringe-mixing-tube",
-      "variantLabel": "MIXING"
+      "variantLabel": "MIXING",
+      "groupName": "Syringe",
+      "groupImage": "/images/products/product-425.webp"
     },
     {
       "id": 427,

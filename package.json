@@ -21,7 +21,8 @@
     "audit-apply": "tsx scripts/audit-apply.ts",
     "sync-gofillerss": "tsx scripts/sync-from-gofillerss.ts",
     "refill-secondary": "tsx scripts/refill-from-secondary.ts",
-    "refill-apply": "tsx scripts/refill-apply.ts"
+    "refill-apply": "tsx scripts/refill-apply.ts",
+    "derive-groups": "tsx scripts/derive-group-display.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
