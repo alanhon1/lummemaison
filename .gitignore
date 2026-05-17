@@ -57,3 +57,7 @@ scripts/audit-batches/
 scripts/audit-results.json
 scripts/secondary-candidates.json
 public/images/products/product-*-secondary.webp
+
+# Spec 4 translation intermediates (regenerated on every run)
+scripts/translate-batches/
+scripts/translate-results/
