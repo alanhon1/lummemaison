@@ -60,8 +60,10 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
       result = fuse.search(searchQuery).map(r => r.item);
     }
 
-    // Category filter
-    if (activeCategory) {
+    // Category filter (Bundles sentinel narrows to grouped products only)
+    if (activeCategory === '__bundles__') {
+      result = result.filter(p => Boolean(p.groupId));
+    } else if (activeCategory) {
       result = result.filter(p => p.categoryId === activeCategory);
     }
 
@@ -176,6 +178,19 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                 >
                   All Categories
                   <span className="float-right text-xs opacity-50">{products.length}</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleCategoryClick('__bundles__')}
+                  className={`w-full text-left px-3 py-2 text-xs transition-colors ${
+                    activeCategory === '__bundles__'
+                      ? 'bg-gold text-white font-semibold'
+                      : 'text-charcoal hover:text-gold hover:bg-cream'
+                  }`}
+                >
+                  Bundles
+                  <span className="float-right text-xs opacity-50">{variantCounts.size}</span>
                 </button>
               </li>
               {categories.map(cat => {
@@ -320,7 +335,9 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             <div className="flex items-center gap-2 mt-2 pt-2 border-t border-bone">
               <span className="text-xs text-mist">Viewing:</span>
               <span className="text-xs font-semibold text-gold">
-                {categories.find(c => c.id === activeCategory)?.name}
+                {activeCategory === '__bundles__'
+                  ? 'Bundles'
+                  : categories.find(c => c.id === activeCategory)?.name}
               </span>
               <button
                 onClick={() => setActiveCategory('')}
