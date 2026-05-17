@@ -59,7 +59,9 @@ function deriveGroupName(names: string[], fallback: string): string {
     else break;
   }
   if (shared.length === 0) return titleCase(fallback.replace(/-/g, ' '));
-  return titleCase(shared.join(' '));
+  const derived = titleCase(shared.join(' '));
+  if (derived.length < 3) return titleCase(fallback.replace(/-/g, ' '));
+  return derived;
 }
 
 function main(): void {
