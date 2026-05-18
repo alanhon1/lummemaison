@@ -65,3 +65,6 @@ scripts/translate-results/
 # Sync-from-jotform runtime artifacts
 scripts/jotform-raw.html
 scripts/jotform-scrape.json
+
+# Clean-mangled-names runtime artifact
+scripts/clean-mangled-names-report.txt
