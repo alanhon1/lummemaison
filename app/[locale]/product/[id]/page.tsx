@@ -8,7 +8,7 @@ import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
 import ProductDetailTabs from '@/components/catalogue/ProductDetailTabs';
 import ProductPrice from '@/components/catalogue/ProductPrice';
 import ProductCard from '@/components/catalogue/ProductCard';
-import ProductGallery from '@/components/catalogue/ProductGallery';
+import ProductGallery, { type GalleryItem } from '@/components/catalogue/ProductGallery';
 import VariantSelector from '@/components/catalogue/VariantSelector';
 import BackToCatalogueButton from '@/components/catalogue/BackToCatalogueButton';
 
@@ -34,6 +34,44 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
     .slice(0, 4);
 
   const variants = product.groupId ? getProductVariants(product.groupId) : [];
+
+  const galleryItems: GalleryItem[] = product.groupId
+    ? variants.flatMap(v => {
+        const main: GalleryItem = {
+          productId: v.id,
+          href: `/${locale}/product/${v.id}`,
+          src: v.image,
+          alt: v.name,
+          variantLabel: v.variantLabel,
+        };
+        const extras: GalleryItem[] = (v.images ?? []).map(img => ({
+          productId: v.id,
+          href: `/${locale}/product/${v.id}`,
+          src: img,
+          alt: v.name,
+          variantLabel: v.variantLabel,
+        }));
+        return [main, ...extras];
+      }).filter(it => it.src)
+    : [
+        {
+          productId: product.id,
+          href: `/${locale}/product/${product.id}`,
+          src: product.image,
+          alt: product.name,
+        },
+        ...(product.images ?? []).map(img => ({
+          productId: product.id,
+          href: `/${locale}/product/${product.id}`,
+          src: img,
+          alt: product.name,
+        } as GalleryItem)),
+      ].filter(it => it.src);
+
+  const initialActiveIndex = Math.max(
+    0,
+    galleryItems.findIndex(it => it.productId === product.id && it.src === product.image)
+  );
 
   const hasEnriched = !!(
     product.enrichedInfo?.benefits?.length ||
@@ -70,8 +108,8 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Image gallery — sticky on large screens */}
           <ProductGallery
-            mainImage={product.image}
-            extraImages={product.images ?? []}
+            items={galleryItems}
+            initialActiveIndex={initialActiveIndex}
             alt={product.name}
             productId={product.id}
             categoryId={product.categoryId}

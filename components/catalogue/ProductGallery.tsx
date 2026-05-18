@@ -4,9 +4,17 @@ import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ProductImage from './ProductImage';
 
+export type GalleryItem = {
+  productId: number;
+  href: string;
+  src: string;
+  alt: string;
+  variantLabel?: string;
+};
+
 interface ProductGalleryProps {
-  mainImage: string;
-  extraImages: string[];
+  items: GalleryItem[];
+  initialActiveIndex: number;
   alt: string;
   productId: number;
   categoryId: string;
@@ -15,29 +23,34 @@ interface ProductGalleryProps {
 }
 
 export default function ProductGallery({
-  mainImage,
-  extraImages,
+  items,
+  initialActiveIndex,
   alt,
   productId,
   categoryId,
   categoryName,
   badges,
 }: ProductGalleryProps) {
-  const allImages = [mainImage, ...extraImages].filter(Boolean);
+  const safeInitial = Math.max(0, Math.min(initialActiveIndex, items.length - 1));
 
   // Ping-pong crossfade layers.
-  // `front` is the visible layer; `back` is preloaded for the next transition.
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(safeInitial);
   const [layers, setLayers] = useState<{ a: number; b: number; front: 'a' | 'b' }>({
-    a: 0,
-    b: 0,
+    a: safeInitial,
+    b: safeInitial,
     front: 'a',
   });
-  const [trackedIdx, setTrackedIdx] = useState(0);
+  const [trackedIdx, setTrackedIdx] = useState(safeInitial);
+  const [trackedInitial, setTrackedInitial] = useState(safeInitial);
+
+  // Resync at render-time if the parent passes a new initialActiveIndex
+  // (Task 4 boundary crossing). React-canonical pattern, accepted by the compiler.
+  if (trackedInitial !== safeInitial) {
+    setTrackedInitial(safeInitial);
+    setActiveIdx(safeInitial);
+  }
 
   // Render-time state update: swap layers when activeIdx changes.
-  // This is the React-canonical pattern for state derived from other state,
-  // and the React Compiler accepts it (set-state-in-effect rule is satisfied).
   if (trackedIdx !== activeIdx) {
     setTrackedIdx(activeIdx);
     setLayers(prev =>
@@ -50,20 +63,43 @@ export default function ProductGallery({
   }
 
   useEffect(() => {
-    if (allImages.length <= 1) return;
+    if (items.length <= 1) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
-        setActiveIdx(i => (i - 1 + allImages.length) % allImages.length);
+        setActiveIdx(i => (i - 1 + items.length) % items.length);
       } else if (e.key === 'ArrowRight') {
-        setActiveIdx(i => (i + 1) % allImages.length);
+        setActiveIdx(i => (i + 1) % items.length);
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [allImages.length]);
+  }, [items.length]);
 
-  const srcA = allImages[layers.a] ?? mainImage;
-  const srcB = allImages[layers.b] ?? mainImage;
+  // Empty-items fallback (post-photo-wipe: items.length === 0).
+  if (items.length === 0) {
+    return (
+      <div className="lg:sticky lg:top-28">
+        <div className="border border-bone aspect-square relative overflow-hidden">
+          <ProductImage
+            src=""
+            alt={alt}
+            productId={productId}
+            categoryId={categoryId}
+            categoryName={categoryName}
+            fill={false}
+          />
+          {badges && (
+            <div className="absolute top-4 left-4 flex flex-col gap-1.5 pointer-events-none">
+              {badges}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  const srcA = items[layers.a]?.src ?? '';
+  const srcB = items[layers.b]?.src ?? '';
 
   return (
     <div className="lg:sticky lg:top-28">
@@ -104,17 +140,17 @@ export default function ProductGallery({
             {badges}
           </div>
         )}
-        {allImages.length > 1 && (
+        {items.length > 1 && (
           <>
             <button
-              onClick={() => setActiveIdx(i => (i - 1 + allImages.length) % allImages.length)}
+              onClick={() => setActiveIdx(i => (i - 1 + items.length) % items.length)}
               className="absolute top-1/2 left-3 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-charcoal/70 hover:bg-charcoal text-cream flex items-center justify-center transition-opacity"
               aria-label="Previous image"
             >
               <ChevronLeft size={18} />
             </button>
             <button
-              onClick={() => setActiveIdx(i => (i + 1) % allImages.length)}
+              onClick={() => setActiveIdx(i => (i + 1) % items.length)}
               className="absolute top-1/2 right-3 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-charcoal/70 hover:bg-charcoal text-cream flex items-center justify-center transition-opacity"
               aria-label="Next image"
             >
@@ -124,20 +160,21 @@ export default function ProductGallery({
         )}
       </div>
 
-      {allImages.length > 1 && (
+      {items.length > 1 && (
         <div className="flex gap-2 mt-3">
-          {allImages.map((img, i) => (
+          {items.map((it, i) => (
             <button
               key={i}
               onClick={() => setActiveIdx(i)}
               className={`w-16 h-16 border relative overflow-hidden flex-shrink-0 transition-all duration-200 ${
                 activeIdx === i ? 'border-gold' : 'border-bone hover:border-gold/50'
               }`}
+              aria-label={it.variantLabel ? `${it.alt} (${it.variantLabel}) view ${i + 1}` : `${alt} view ${i + 1}`}
             >
               <ProductImage
-                src={img}
+                src={it.src}
                 alt={`${alt} view ${i + 1}`}
-                productId={productId}
+                productId={it.productId}
                 categoryId={categoryId}
                 fill={false}
                 sizes="64px"
