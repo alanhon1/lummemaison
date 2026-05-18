@@ -30,7 +30,9 @@
     "clean-mangled-names": "tsx scripts/clean-mangled-names.ts",
     "refill-from-jotform": "tsx scripts/refill-from-jotform.ts",
     "fix-variant-labels": "tsx scripts/fix-variant-labels.ts",
-    "extend-grouping": "tsx scripts/extend-grouping.ts"
+    "extend-grouping": "tsx scripts/extend-grouping.ts",
+    "enrich-prep": "tsx scripts/enrich-prep.ts",
+    "enrich-apply": "tsx scripts/enrich-apply.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",

@@ -77,3 +77,5 @@ scripts/fix-variant-labels-report.txt
 
 # Extend-grouping runtime artifact
 scripts/extend-grouping-report.txt
+scripts/enrich-batches/
+scripts/enrich-report.txt
