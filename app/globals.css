@@ -215,6 +215,18 @@
     text-transform: uppercase;
     border-radius: 4px;
   }
+  .badge-bundle {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background-color: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
 
   /* Skeleton */
   .skeleton {

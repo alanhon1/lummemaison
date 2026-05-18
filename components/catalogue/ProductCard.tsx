@@ -13,9 +13,10 @@ interface ProductCardProps {
   product: Product;
   layout?: 'grid' | 'list';
   variantCount?: number;
+  isBundle?: boolean;
 }
 
-export default function ProductCard({ product, layout = 'grid', variantCount = 1 }: ProductCardProps) {
+export default function ProductCard({ product, layout = 'grid', variantCount = 1, isBundle = false }: ProductCardProps) {
   const t = useTranslations('catalogue');
   const tProduct = useTranslations('product');
   const locale = useLocale();
@@ -63,6 +64,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
           <div className="flex items-start justify-between gap-2">
             <div>
               <div className="flex gap-1.5 mb-1.5">
+                {isBundle && <span className="badge-bundle">BUNDLE</span>}
                 {product.isNew && <span className="badge-new">{tProduct('tags.new')}</span>}
                 {product.isSale && <span className="badge-sale">{tProduct('tags.sale')}</span>}
                 {product.isBestSeller && <span className="badge-best">{tProduct('tags.bestSeller')}</span>}
@@ -119,6 +121,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
 
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1">
+          {isBundle && <span className="badge-bundle">BUNDLE</span>}
           {product.isNew && <span className="badge-new">{tProduct('tags.new')}</span>}
           {product.isSale && <span className="badge-sale">{tProduct('tags.sale')}</span>}
           {product.isBestSeller && <span className="badge-best">{tProduct('tags.bestSeller')}</span>}
