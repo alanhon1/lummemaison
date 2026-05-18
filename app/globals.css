@@ -228,6 +228,15 @@
     border-radius: 4px;
   }
 
+  /* Slow ambient pulse — soft glow drift for hero backdrops */
+  .animate-pulse-slow {
+    animation: pulse-slow 8s ease-in-out infinite;
+  }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50%      { opacity: 0.8; transform: scale(1.08); }
+  }
+
   /* Skeleton */
   .skeleton {
     background: linear-gradient(90deg, var(--border-color) 25%, color-mix(in srgb, var(--border-color) 60%, transparent) 50%, var(--border-color) 75%);
