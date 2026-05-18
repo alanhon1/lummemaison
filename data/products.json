@@ -930,7 +930,7 @@
       "image": "/images/products/product-42.webp",
       "moq": 1,
       "groupId": "soonsu",
-      "variantLabel": "FILL",
+      "variantLabel": "FILL (Q))",
       "groupName": "Soonsu Fill P T",
       "groupImage": "/images/products/product-41.webp"
     },
@@ -949,7 +949,7 @@
       "image": "/images/products/product-43.webp",
       "moq": 1,
       "groupId": "soonsu",
-      "variantLabel": "FILL",
+      "variantLabel": "FILL (#2)",
       "groupName": "Soonsu Fill P T",
       "groupImage": "/images/products/product-41.webp"
     },
@@ -3032,7 +3032,7 @@
       "image": "/images/products/product-168.webp",
       "moq": 1,
       "groupId": "scarderm",
-      "variantLabel": "GEL",
+      "variantLabel": "GEL (GEL)",
       "groupName": "Scarderm Gel",
       "groupImage": "/images/products/product-167.webp"
     },
@@ -3100,7 +3100,7 @@
       "image": "/images/products/product-172.webp",
       "moq": 1,
       "groupId": "madecassol",
-      "variantLabel": "GEL",
+      "variantLabel": "GEL (GEL)",
       "groupName": "Madecassol Gel",
       "groupImage": "/images/products/product-171.webp"
     },
@@ -4308,7 +4308,7 @@
       "image": "/images/products/product-244.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Cellsia Post",
+      "variantLabel": "Cellsia Post (CE)",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp"
     },
@@ -6865,7 +6865,7 @@
       "image": "",
       "moq": 1,
       "groupId": "muchcaine",
-      "variantLabel": "MUCHCAINE",
+      "variantLabel": "MUCHCAINE (MUCHCAINE)",
       "groupName": "Muchcaine",
       "groupImage": ""
     },
@@ -7031,7 +7031,7 @@
       "image": "/images/products/product-409.webp",
       "moq": 1,
       "groupId": "rejubeau",
-      "variantLabel": "MESO NEEDLE",
+      "variantLabel": "MESO NEEDLE (MESO)",
       "groupName": "Rejubeau Meso Needle",
       "groupImage": "/images/products/product-408.webp"
     },
@@ -7050,7 +7050,7 @@
       "image": "/images/products/product-410.webp",
       "moq": 1,
       "groupId": "rejubeau",
-      "variantLabel": "MESO NEEDLE",
+      "variantLabel": "MESO NEEDLE (#2)",
       "groupName": "Rejubeau Meso Needle",
       "groupImage": "/images/products/product-408.webp"
     },
@@ -7069,7 +7069,7 @@
       "image": "/images/products/product-411.webp",
       "moq": 1,
       "groupId": "rejubeau",
-      "variantLabel": "MESO NEEDLE",
+      "variantLabel": "MESO NEEDLE (#3)",
       "groupName": "Rejubeau Meso Needle",
       "groupImage": "/images/products/product-408.webp"
     },
