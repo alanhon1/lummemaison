@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
-import { getLocalizedSpecification, type Product } from '@/lib/products';
+import { getLocalizedSpecification, getGroupRange, type Product } from '@/lib/products';
 import ProductImage from './ProductImage';
 
 interface ProductCardProps {
@@ -25,6 +25,11 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const isGroup = variantCount > 1;
   const displayName = isGroup && product.groupName ? product.groupName : product.name;
   const displayImage = isGroup && product.groupImage ? product.groupImage : product.image;
+  const range = isGroup && product.groupId ? getGroupRange(product.groupId) : null;
+  const displayId =
+    range && range.max !== range.min
+      ? (range.max - range.min > 50 ? `#${range.min}+` : `#${range.min}-${range.max}`)
+      : `#${product.id}`;
 
   function handleAddToCart(e: React.MouseEvent) {
     e.preventDefault();
@@ -63,7 +68,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
                 {product.isBestSeller && <span className="badge-best">{tProduct('tags.bestSeller')}</span>}
               </div>
               <h3 className="text-sm font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight">
-                #{product.id} {displayName}
+                {displayId} {displayName}
               </h3>
               {variantCount > 1 && (
                 <p className="text-[9px] text-gold/80 font-medium tracking-wide mt-0.5">
@@ -133,7 +138,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
 
       {/* Info */}
       <div className="p-4">
-        <p className="text-xs text-mist mb-1">#{product.id}</p>
+        <p className="text-xs text-mist mb-1">{displayId}</p>
         <h3 className="text-xs font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-1">
           {displayName}
         </h3>

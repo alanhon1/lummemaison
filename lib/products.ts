@@ -86,6 +86,21 @@ export function getProductVariants(groupId: string): Product[] {
   return products.filter(p => p.groupId === groupId).sort((a, b) => a.id - b.id);
 }
 
+const _groupRangeCache: Map<string, { min: number; max: number }> = (() => {
+  const m = new Map<string, { min: number; max: number }>();
+  for (const p of products) {
+    if (!p.groupId) continue;
+    const cur = m.get(p.groupId);
+    if (!cur) m.set(p.groupId, { min: p.id, max: p.id });
+    else m.set(p.groupId, { min: Math.min(cur.min, p.id), max: Math.max(cur.max, p.id) });
+  }
+  return m;
+})();
+
+export function getGroupRange(groupId: string): { min: number; max: number } | null {
+  return _groupRangeCache.get(groupId) ?? null;
+}
+
 export function getLocalizedDescription(product: Product, locale: string): string {
   const t = TRANSLATIONS[locale]?.[String(product.id)]?.description;
   return t || product.description;
