@@ -179,7 +179,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <li>
                 <button
                   onClick={() => handleCategoryClick('')}
-                  className={`w-full text-left px-3 py-2 text-xs transition-colors ${
+                  className={`w-full text-left px-3 py-2 text-xs rounded-sm transition-colors ${
                     !activeCategory
                       ? 'bg-obsidian text-cream font-semibold'
                       : 'text-charcoal hover:text-gold hover:bg-cream'
@@ -192,7 +192,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <li>
                 <button
                   onClick={() => handleCategoryClick('__bundles__')}
-                  className={`w-full text-left px-3 py-2 text-xs transition-colors ${
+                  className={`w-full text-left px-3 py-2 text-xs rounded-sm transition-colors ${
                     activeCategory === '__bundles__'
                       ? 'bg-gold text-white font-semibold'
                       : 'text-charcoal hover:text-gold hover:bg-cream'
@@ -208,7 +208,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                   <li key={cat.id}>
                     <button
                       onClick={() => handleCategoryClick(cat.id)}
-                      className={`w-full text-left px-3 py-2 text-xs transition-colors ${
+                      className={`w-full text-left px-3 py-2 text-xs rounded-sm transition-colors ${
                         activeCategory === cat.id
                           ? 'bg-gold text-white font-semibold'
                           : 'text-charcoal hover:text-gold hover:bg-cream'
@@ -318,7 +318,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             </div>
 
             {/* Layout toggle */}
-            <div className="hidden sm:flex border border-bone">
+            <div className="hidden sm:flex border border-bone rounded-sm overflow-hidden">
               <button
                 onClick={() => setLayout('grid')}
                 className={`p-2 ${layout === 'grid' ? 'bg-obsidian text-cream' : 'text-mist hover:text-charcoal'} transition-colors`}
@@ -409,7 +409,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <button
                 onClick={() => { setPage(p => Math.max(1, p - 1)); window.scrollTo(0, 0); }}
                 disabled={page === 1}
-                className="px-4 py-2 text-xs border border-bone hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 text-xs border border-bone rounded-sm hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 ←
               </button>
@@ -424,7 +424,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                   <button
                     key={pageNum}
                     onClick={() => { setPage(pageNum); window.scrollTo(0, 0); }}
-                    className={`w-8 h-8 text-xs border transition-colors ${
+                    className={`w-8 h-8 text-xs border rounded-sm transition-colors ${
                       page === pageNum
                         ? 'bg-obsidian text-cream border-obsidian'
                         : 'border-bone hover:border-gold hover:text-gold'
@@ -437,7 +437,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <button
                 onClick={() => { setPage(p => Math.min(totalPages, p + 1)); window.scrollTo(0, 0); }}
                 disabled={page === totalPages}
-                className="px-4 py-2 text-xs border border-bone hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 text-xs border border-bone rounded-sm hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 →
               </button>
