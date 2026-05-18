@@ -17,7 +17,11 @@ const REPORT_PATH = path.join(ROOT, 'scripts', 'jotform-sync-report.txt');
 
 const FORCE = process.argv.includes('--force');
 const DRY_RUN = process.argv.includes('--dry-run');
-const MATCH_THRESHOLD = 4;
+// A score of 2 = one distinctive long token shared (e.g. "MIRACLE X" vs
+// "MIRACLE X" — only "miracle" is >1 char and scores 2). Lower thresholds
+// risk false positives but the greedy longest-first ordering plus the
+// uniqueness of brand tokens in this catalogue keep them rare.
+const MATCH_THRESHOLD = 2;
 
 interface JotformProduct {
   name: string;
@@ -58,78 +62,47 @@ async function fetchHtml(): Promise<string> {
 /**
  * Extract products from JotForm HTML.
  *
- * JotForm structures vary by widget. We try cheerio selectors first, then
- * fall back to a regex that pulls every <img> whose src points at the
- * uploads bucket and finds the nearest text node above it.
+ * The order form lays out each product as a card containing:
+ *   - a checkbox whose aria-label is `Select Product: <NAME>` (canonical name)
+ *   - a sibling `.p_image` `<img>` whose `src` points at the uploads bucket
+ *
+ * We scan for every aria-label occurrence (regex — fastest + most reliable on
+ * the giant HTML blob) and look ahead a few KB for the next uploads `<img>`.
+ * `cheerio` is kept imported for future use but isn't needed here.
  */
 function parseProducts(html: string): JotformProduct[] {
-  const $ = cheerio.load(html);
+  // Sanity: cheerio kept available for future tweaks.
+  void cheerio;
+
   const products: JotformProduct[] = [];
-  const seen = new Set<string>();
+  const ariaRe = /aria-label="Select Product: ([^"]+)"/g;
+  const imgInCardRe =
+    /<img[^>]+src="(https?:\/\/[^"]*jotform\.com\/uploads\/[^"]+)"/;
 
-  // Strategy 1: walk every image with a JotForm uploads URL and find nearby text.
-  $('img').each((_, el) => {
-    const src = $(el).attr('src') || $(el).attr('data-src') || '';
-    if (!src.includes('jotform.com/uploads/')) return;
-    if (seen.has(src)) return;
-
-    // Look for the nearest preceding text that looks like a product name.
-    // JotForm cards usually have the name in a label or heading element
-    // within the same parent container.
-    let name = '';
-    let node = $(el).parent();
-    for (let i = 0; i < 6 && !name && node.length; i++) {
-      // Try labels, headings, common JotForm name classes
-      const candidates = node
-        .find('label, h1, h2, h3, h4, h5, .form-product-name, [class*="product-name"]')
-        .toArray();
-      for (const c of candidates) {
-        const txt = $(c).text().trim();
-        if (txt && txt.length < 200 && !/^\$|^\d/.test(txt)) {
-          name = txt;
-          break;
-        }
-      }
-      if (!name) node = node.parent();
-    }
-
-    if (name) {
-      seen.add(src);
-      products.push({ name: cleanName(name), imageUrl: src });
-    }
-  });
-
-  // Strategy 2: regex fallback for anything Strategy 1 missed.
-  // Scan for <img ... src="..jotform.com/uploads/..." ...> and back-walk text.
-  if (products.length < 200) {
-    console.warn(
-      `Cheerio extraction returned only ${products.length} products; running regex fallback.`,
-    );
-    const imgRe =
-      /<img[^>]+src="(https?:\/\/[^"]*jotform\.com\/uploads\/[^"]+)"[^>]*>/gi;
-    let m: RegExpExecArray | null;
-    while ((m = imgRe.exec(html)) !== null) {
-      const url = m[1];
-      if (seen.has(url)) continue;
-      // Look back ~2000 chars for the nearest plausible name string.
-      const start = Math.max(0, m.index - 2000);
-      const slice = html.slice(start, m.index);
-      const textMatches = slice.match(/>([A-Za-z][A-Za-z0-9 +\-/().#]{2,80})</g) || [];
-      const candidates = textMatches
-        .map(t => t.replace(/^>|<$/g, '').trim())
-        .filter(t => t.length > 2 && !/^\$/.test(t))
-        .filter(t => !/^(home|next|prev|select|quantity|item)$/i.test(t));
-      const name = candidates[candidates.length - 1];
-      if (name) {
-        seen.add(url);
-        products.push({ name: cleanName(name), imageUrl: url });
-      }
-    }
+  let m: RegExpExecArray | null;
+  while ((m = ariaRe.exec(html)) !== null) {
+    const rawName = decodeHtmlEntities(m[1]);
+    // Look ahead up to 6 KB for the next image in the same card. Each card
+    // is well under that size in the current form layout.
+    const slice = html.slice(m.index, m.index + 6000);
+    const imgMatch = slice.match(imgInCardRe);
+    if (!imgMatch) continue;
+    products.push({ name: cleanName(rawName), imageUrl: imgMatch[1] });
   }
 
   console.log(`Parsed ${products.length} products from JotForm HTML.`);
   fs.writeFileSync(SCRAPE_JSON_PATH, JSON.stringify(products, null, 2) + '\n', 'utf8');
   return products;
+}
+
+function decodeHtmlEntities(s: string): string {
+  return s
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ');
 }
 
 function cleanName(raw: string): string {
