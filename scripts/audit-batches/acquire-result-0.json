@@ -1,0 +1,62 @@
+[
+  {
+    "id": 4,
+    "status": "MISMATCH",
+    "reason": "Name is REGENOVUE DEEP but image shows REGENOVUE DEEP PLUS (1.1ml, with Lidocaine). Wrong variant - DEEP and DEEP PLUS are distinct SKUs."
+  },
+  {
+    "id": 7,
+    "status": "CONFIRMED",
+    "reason": "Image shows REGENOVUE DEEP PLUS Hyaluronic Acid Gel with Lidocaine 1.1ml. Brand and variant match the name REGENOVUE DEEP PLUS (CE)."
+  },
+  {
+    "id": 17,
+    "status": "MISMATCH",
+    "reason": "Name is VOM LIGHT (CE) NO Lidocaine but image shows Elravie Premier LIGHT-L WITH LIDOCAINE. Wrong brand (Elravie vs VOM) and wrong lidocaine spec."
+  },
+  {
+    "id": 24,
+    "status": "MISMATCH",
+    "reason": "Name is NEURAMIS VOLUME LIDOCAINE but image shows Elravie Premier ULTRA VOLUME-L. Wrong brand (Elravie vs Neuramis)."
+  },
+  {
+    "id": 34,
+    "status": "MISMATCH",
+    "reason": "Name is TESORO IMPLANT WITH LIDOCAINE but image shows HyalDew Mid HA filler. Wrong brand entirely."
+  },
+  {
+    "id": 69,
+    "status": "MISMATCH",
+    "reason": "Name is MAX Y FILL Body but image shows SEDY FILL Body Filler. Wrong brand (Sedy Fill vs Max Y Fill)."
+  },
+  {
+    "id": 91,
+    "status": "MISMATCH",
+    "reason": "Name is REGENOVUE AQUASHINE PLUS GOLD but image shows generic REGENOVUE Aqua Shine Plus (Neogenesis, Skin Serum 3ml x 3). The GOLD variant is a distinct SKU not shown here."
+  },
+  {
+    "id": 92,
+    "status": "MISMATCH",
+    "reason": "Name is REGENOVUE AQUASHINE SILVER but image shows REGENOVUE Aqua Shine PLUS, not the SILVER variant. Wrong variant."
+  },
+  {
+    "id": 102,
+    "status": "MISMATCH",
+    "reason": "Name is ELAXEN PLLA MASK Poly-L but image shows PETARAN Poly PLLA (PLLA+PN) vial. Wrong brand (Petaran vs Elaxen) and wrong form factor (vial vs mask)."
+  },
+  {
+    "id": 129,
+    "status": "CONFIRMED",
+    "reason": "Image shows NMN Bottle NAD+ Booster with vial. Matches NMN BOTTLE NAD."
+  },
+  {
+    "id": 302,
+    "status": "CONFIRMED",
+    "reason": "Image shows Pine Bottle packaging and vial. Matches PINE BOTTLE."
+  },
+  {
+    "id": 434,
+    "status": "MISMATCH",
+    "reason": "Name is RESTYLANE VITAL LIGHT LIDOCAINE (Galderma) but image shows Elravie Premier LIGHT-L with Lidocaine. Wrong brand entirely - Restylane is not Elravie."
+  }
+]

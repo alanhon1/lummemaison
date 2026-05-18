@@ -33,7 +33,8 @@
     "extend-grouping": "tsx scripts/extend-grouping.ts",
     "enrich-prep": "tsx scripts/enrich-prep.ts",
     "enrich-apply": "tsx scripts/enrich-apply.ts",
-    "upgrade-low-quality": "tsx scripts/upgrade-low-quality-images.ts"
+    "upgrade-low-quality": "tsx scripts/upgrade-low-quality-images.ts",
+    "acquire-missing": "tsx scripts/acquire-missing-images.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",

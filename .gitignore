@@ -80,3 +80,4 @@ scripts/extend-grouping-report.txt
 scripts/enrich-batches/
 scripts/enrich-report.txt
 scripts/upgrade-low-quality-report.txt
+scripts/acquire-missing-report.txt
