@@ -24,7 +24,25 @@ export default function ProductGallery({
   badges,
 }: ProductGalleryProps) {
   const allImages = [mainImage, ...extraImages].filter(Boolean);
+
+  // Ping-pong crossfade layers.
+  // `front` is the visible layer; `back` is preloaded for the next transition.
   const [activeIdx, setActiveIdx] = useState(0);
+  const [layers, setLayers] = useState<{ a: number; b: number; front: 'a' | 'b' }>({
+    a: 0,
+    b: 0,
+    front: 'a',
+  });
+
+  useEffect(() => {
+    setLayers(prev => {
+      if (prev[prev.front] === activeIdx) return prev;
+      // Load new image into the back layer and swap.
+      return prev.front === 'a'
+        ? { a: prev.a, b: activeIdx, front: 'b' }
+        : { a: activeIdx, b: prev.b, front: 'a' };
+    });
+  }, [activeIdx]);
 
   useEffect(() => {
     if (allImages.length <= 1) return;
@@ -39,21 +57,45 @@ export default function ProductGallery({
     return () => window.removeEventListener('keydown', onKey);
   }, [allImages.length]);
 
+  const srcA = allImages[layers.a] ?? mainImage;
+  const srcB = allImages[layers.b] ?? mainImage;
+
   return (
     <div className="lg:sticky lg:top-28">
-      {/* Main image */}
       <div className="border border-bone aspect-square relative overflow-hidden">
-        <ProductImage
-          src={allImages[activeIdx] ?? mainImage}
-          alt={alt}
-          productId={productId}
-          categoryId={categoryId}
-          categoryName={categoryName}
-          fill={false}
-          sizes="(max-width: 1024px) 100vw, 50vw"
-        />
+        {/* Layer A */}
+        <div
+          className="absolute inset-0 transition-opacity duration-200"
+          style={{ opacity: layers.front === 'a' ? 1 : 0 }}
+        >
+          <ProductImage
+            src={srcA}
+            alt={alt}
+            productId={productId}
+            categoryId={categoryId}
+            categoryName={categoryName}
+            fill={false}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
+        {/* Layer B */}
+        <div
+          className="absolute inset-0 transition-opacity duration-200"
+          style={{ opacity: layers.front === 'b' ? 1 : 0 }}
+        >
+          <ProductImage
+            src={srcB}
+            alt={alt}
+            productId={productId}
+            categoryId={categoryId}
+            categoryName={categoryName}
+            fill={false}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
+
         {badges && (
-          <div className="absolute top-4 left-4 flex flex-col gap-1.5">
+          <div className="absolute top-4 left-4 flex flex-col gap-1.5 pointer-events-none">
             {badges}
           </div>
         )}
@@ -77,7 +119,6 @@ export default function ProductGallery({
         )}
       </div>
 
-      {/* Thumbnails — only shown when there are extra images */}
       {allImages.length > 1 && (
         <div className="flex gap-2 mt-3">
           {allImages.map((img, i) => (
@@ -85,9 +126,7 @@ export default function ProductGallery({
               key={i}
               onClick={() => setActiveIdx(i)}
               className={`w-16 h-16 border relative overflow-hidden flex-shrink-0 transition-all duration-200 ${
-                activeIdx === i
-                  ? 'border-gold'
-                  : 'border-bone hover:border-gold/50'
+                activeIdx === i ? 'border-gold' : 'border-bone hover:border-gold/50'
               }`}
             >
               <ProductImage
