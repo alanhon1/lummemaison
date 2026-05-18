@@ -281,6 +281,26 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             )}
           </div>
 
+          {/* Catalogue stats */}
+          <div className="mt-10 pt-6 border-t border-bone grid grid-cols-2 gap-3 text-center">
+            <div>
+              <div className="font-display text-2xl font-light text-gold">{products.length}</div>
+              <div className="text-[10px] tracking-widest uppercase text-mist mt-0.5">Products</div>
+            </div>
+            <div>
+              <div className="font-display text-2xl font-light text-gold">{categories.length}</div>
+              <div className="text-[10px] tracking-widest uppercase text-mist mt-0.5">Categories</div>
+            </div>
+            <div>
+              <div className="font-display text-2xl font-light text-gold">50+</div>
+              <div className="text-[10px] tracking-widest uppercase text-mist mt-0.5">Countries</div>
+            </div>
+            <div>
+              <div className="font-display text-2xl font-light text-gold">B2B</div>
+              <div className="text-[10px] tracking-widest uppercase text-mist mt-0.5">Specialist</div>
+            </div>
+          </div>
+
         </div>
       </aside>
 

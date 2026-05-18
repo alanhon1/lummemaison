@@ -171,6 +171,25 @@
       "quality": "품질",
       "reliability": "신뢰성",
       "expertise": "전문성"
+    },
+    "process": {
+      "title": "주문 프로세스",
+      "browse": {
+        "title": "둘러보기",
+        "desc": "20개 전문 카테고리의 카탈로그를 살펴보세요."
+      },
+      "request": {
+        "title": "요청",
+        "desc": "견적 요청을 보내거나 저희 팀을 통해 주문하세요."
+      },
+      "authenticate": {
+        "title": "정품 인증",
+        "desc": "모든 제품은 인증된 한국 제조사로부터 직접 공급됩니다."
+      },
+      "ship": {
+        "title": "배송",
+        "desc": "서울에서 FedEx 콜드체인을 통해 전 세계로 직접 배송됩니다."
+      }
     }
   },
   "contact": {

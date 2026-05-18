@@ -70,20 +70,26 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Process */}
       <section className="py-24 px-6 bg-obsidian text-cream">
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { value: '438', label: 'Products' },
-            { value: '20', label: 'Categories' },
-            { value: '50+', label: 'Countries' },
-            { value: 'B2B', label: 'Specialist' },
-          ].map(stat => (
-            <div key={stat.label}>
-              <div className="font-display text-4xl font-light text-gold mb-2">{stat.value}</div>
-              <div className="text-xs tracking-widest uppercase text-cream/50">{stat.label}</div>
-            </div>
-          ))}
+        <div className="max-w-5xl mx-auto">
+          <h2 className="section-title text-center text-cream mb-4">{t('process.title')}</h2>
+          <div className="gold-divider mx-auto mb-16" />
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {(['browse', 'request', 'authenticate', 'ship'] as const).map((step, idx) => (
+              <div key={step} className="relative">
+                <div className="text-xs font-semibold tracking-widest uppercase text-gold mb-3">
+                  {String(idx + 1).padStart(2, '0')}
+                </div>
+                <h3 className="font-display text-xl font-light text-cream mb-2">
+                  {t(`process.${step}.title`)}
+                </h3>
+                <p className="text-xs text-cream/60 leading-relaxed">
+                  {t(`process.${step}.desc`)}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>

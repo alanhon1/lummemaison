@@ -171,6 +171,25 @@
       "quality": "Quality",
       "reliability": "Reliability",
       "expertise": "Expertise"
+    },
+    "process": {
+      "title": "How We Work",
+      "browse": {
+        "title": "Browse",
+        "desc": "Explore our catalogue across 20 specialised categories."
+      },
+      "request": {
+        "title": "Request",
+        "desc": "Send a quote request or place an order through our team."
+      },
+      "authenticate": {
+        "title": "Authenticate",
+        "desc": "Every item is sourced directly from certified Korean manufacturers."
+      },
+      "ship": {
+        "title": "Ship",
+        "desc": "Direct cold-chain dispatch from Seoul via FedEx, worldwide."
+      }
     }
   },
   "contact": {
