@@ -33,16 +33,21 @@ export default function ProductGallery({
     b: 0,
     front: 'a',
   });
+  const [trackedIdx, setTrackedIdx] = useState(0);
 
-  useEffect(() => {
-    setLayers(prev => {
-      if (prev[prev.front] === activeIdx) return prev;
-      // Load new image into the back layer and swap.
-      return prev.front === 'a'
-        ? { a: prev.a, b: activeIdx, front: 'b' }
-        : { a: activeIdx, b: prev.b, front: 'a' };
-    });
-  }, [activeIdx]);
+  // Render-time state update: swap layers when activeIdx changes.
+  // This is the React-canonical pattern for state derived from other state,
+  // and the React Compiler accepts it (set-state-in-effect rule is satisfied).
+  if (trackedIdx !== activeIdx) {
+    setTrackedIdx(activeIdx);
+    setLayers(prev =>
+      prev[prev.front] === activeIdx
+        ? prev
+        : prev.front === 'a'
+          ? { a: prev.a, b: activeIdx, front: 'b' }
+          : { a: activeIdx, b: prev.b, front: 'a' }
+    );
+  }
 
   useEffect(() => {
     if (allImages.length <= 1) return;
