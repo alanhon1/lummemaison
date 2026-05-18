@@ -71,3 +71,41 @@ export function strictScoreMatch(rawA: string, normA: string, rawB: string, norm
   if (!tokensB.has(brandA) && !tokensA.has(brandB)) return 0;
   return scoreMatch(normA, normB);
 }
+
+/**
+ * Variant markers — tokens that distinguish sibling SKUs within a brand.
+ * Used by variantStrictScoreMatch to reject cross-variant matches
+ * (e.g. REGENOVUE DEEP vs REGENOVUE DEEP PLUS).
+ */
+// normalise() replaces "plus" with "+" — both forms tracked here.
+const VARIANT_MARKERS = new Set([
+  'fine', 'deep', 'sub', 'subq', 'volume', 'shape', 'kiss', 'soft', 'hard',
+  'implant', 'grand', 'light', 'intense', 'meso', 'plus', '+',
+  'gold', 'silver',
+]);
+
+function variantTokens(norm: string): Set<string> {
+  const out = new Set<string>();
+  for (const t of norm.split(' ')) {
+    if (VARIANT_MARKERS.has(t)) out.add(t);
+  }
+  return out;
+}
+
+/**
+ * Variant-strict match: brand-strict + the candidate's variant marker set
+ * must equal the product's variant marker set. Returns 0 if either fails.
+ *
+ * Catches cases the brand-strict matcher misses, e.g.:
+ *   "REGENOVUE DEEP"      variant set = {deep}
+ *   "REGENOVUE DEEP PLUS" variant set = {deep, plus} → reject
+ */
+export function variantStrictScoreMatch(rawA: string, normA: string, rawB: string, normB: string): number {
+  const base = strictScoreMatch(rawA, normA, rawB, normB);
+  if (base === 0) return 0;
+  const va = variantTokens(normA);
+  const vb = variantTokens(normB);
+  if (va.size !== vb.size) return 0;
+  for (const t of va) if (!vb.has(t)) return 0;
+  return base;
+}

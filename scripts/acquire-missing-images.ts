@@ -10,7 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import axios from 'axios';
 import sharp from 'sharp';
-import { normalise, strictScoreMatch } from './lib/fuzzy-match';
+import { normalise, variantStrictScoreMatch } from './lib/fuzzy-match';
 import { fetchAllGofillerssProducts, GofillerssProduct } from './sync-from-gofillerss';
 
 const ROOT = process.cwd();
@@ -119,14 +119,14 @@ async function main(): Promise<void> {
     // Score gofillerss candidates — strict brand-prefix-aware.
     let bestGf: { c: GofillerssProduct; score: number } | null = null;
     for (const c of gf) {
-      const s = strictScoreMatch(product.name, pnorm, c.name, normalise(c.name));
+      const s = variantStrictScoreMatch(product.name, pnorm, c.name, normalise(c.name));
       if (!bestGf || s > bestGf.score) bestGf = { c, score: s };
     }
 
     // Score aesthetics-shop candidates — strict brand-prefix-aware.
     let bestAs: { c: ASProduct; score: number } | null = null;
     for (const c of as) {
-      const s = strictScoreMatch(product.name, pnorm, c.name, normalise(c.name));
+      const s = variantStrictScoreMatch(product.name, pnorm, c.name, normalise(c.name));
       if (!bestAs || s > bestAs.score) bestAs = { c, score: s };
     }
 
