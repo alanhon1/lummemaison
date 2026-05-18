@@ -68,3 +68,6 @@ scripts/jotform-scrape.json
 
 # Clean-mangled-names runtime artifact
 scripts/clean-mangled-names-report.txt
+
+# Refill-from-jotform runtime artifact
+scripts/refill-from-jotform-report.txt
