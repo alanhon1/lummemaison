@@ -25,7 +25,8 @@
     "derive-groups": "tsx scripts/derive-group-display.ts",
     "translate-prep": "tsx scripts/translate-prep.ts",
     "translate-apply": "tsx scripts/translate-apply.ts",
-    "wipe-product-images": "tsx scripts/wipe-product-images.ts"
+    "wipe-product-images": "tsx scripts/wipe-product-images.ts",
+    "sync-from-jotform": "tsx scripts/sync-from-jotform.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",

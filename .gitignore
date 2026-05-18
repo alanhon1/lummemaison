@@ -61,3 +61,7 @@ public/images/products/product-*-secondary.webp
 # Spec 4 translation intermediates (regenerated on every run)
 scripts/translate-batches/
 scripts/translate-results/
+
+# Sync-from-jotform runtime artifacts
+scripts/jotform-raw.html
+scripts/jotform-scrape.json
