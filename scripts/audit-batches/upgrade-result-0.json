@@ -1,0 +1,82 @@
+[
+  {
+    "id": 2,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows MisAdi beso 1ml 24HA filler box matching brand and variant."
+  },
+  {
+    "id": 78,
+    "status": "CONFIRMED",
+    "reason": "Image shows Tesoro Collagen (Recombinant Collagen) box matching brand and variant."
+  },
+  {
+    "id": 96,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Plus Cindella Healer with PN marking, matching the PN variant."
+  },
+  {
+    "id": 104,
+    "status": "CONFIRMED",
+    "reason": "Image shows SOONSU ULTRA REJU (PN 1% + PDRN 1% solution) matching name exactly."
+  },
+  {
+    "id": 112,
+    "status": "CONFIRMED",
+    "reason": "Image shows Stunmedical SPIDER AQUA EYE BOOSTER syringe and box, matching name."
+  },
+  {
+    "id": 116,
+    "status": "MISMATCH",
+    "reason": "Image shows MisAdi white BRIGHTENING BOOSTER, not the Skin Glazer variant — different MisAdi product."
+  },
+  {
+    "id": 118,
+    "status": "CONFIRMED",
+    "reason": "Image shows SOONSU ULTRAWHITE whitening solution box, matching the ULTRA WHITE product."
+  },
+  {
+    "id": 153,
+    "status": "MISMATCH",
+    "reason": "Image shows EXOBOOM HAIR (different brand), not ASCE HRLV Exosome Hair Filler."
+  },
+  {
+    "id": 155,
+    "status": "CONFIRMED",
+    "reason": "Image shows HairLuma Exosome PDRN Peptides Nurturing Solution, matching the brand and variant."
+  },
+  {
+    "id": 185,
+    "status": "MISMATCH",
+    "reason": "Image shows Rejuran Healer Trueskin Essence, not the Calming Lip Balm variant."
+  },
+  {
+    "id": 219,
+    "status": "CONFIRMED",
+    "reason": "Image shows CURENEX HYDRATING CLEANSER tube and box, matching brand and variant."
+  },
+  {
+    "id": 222,
+    "status": "CONFIRMED",
+    "reason": "Image shows CURENEX EXO BRIGHTENING CREAM box, matching brand and variant."
+  },
+  {
+    "id": 246,
+    "status": "MISMATCH",
+    "reason": "Image shows REJURAN Skin Booster (c-PDRN+HA), not EXOSIA Skin Booster — different brand."
+  },
+  {
+    "id": 249,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM PDRN MASK The Premium box, matching the GTM PDRN Mask product."
+  },
+  {
+    "id": 250,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM GOLDCELL+ The Premium DNA Skin Booster, matching GTM Gold Cell Plus."
+  },
+  {
+    "id": 379,
+    "status": "CONFIRMED",
+    "reason": "Image shows B-colamin Injection (Hydroxocobalamin 5mg), which is the vitamin B12 form matching the name."
+  }
+]

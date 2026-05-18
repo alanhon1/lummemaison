@@ -79,3 +79,4 @@ scripts/fix-variant-labels-report.txt
 scripts/extend-grouping-report.txt
 scripts/enrich-batches/
 scripts/enrich-report.txt
+scripts/upgrade-low-quality-report.txt
