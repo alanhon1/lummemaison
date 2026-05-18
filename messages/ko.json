@@ -75,8 +75,7 @@
     "noResultsHint": "검색어나 필터를 조정해 보세요",
     "products": "개 제품",
     "addToCart": "장바구니 추가",
-    "viewDetails": "상세 보기",
-    "downloadPdf": "카탈로그 PDF 다운로드"
+    "viewDetails": "상세 보기"
   },
   "product": {
     "specification": "규격",
@@ -201,8 +200,7 @@
     "shipping": "배송",
     "legal": "법적 고지",
     "copyright": "© 2026 SH Core Stetics Global. All rights reserved.",
-    "disclaimer": "전문가 전용. B2B 판매만 가능. 최종 소비자 재판매 불가.",
-    "downloadCatalogue": "카탈로그 다운로드"
+    "disclaimer": "전문가 전용. B2B 판매만 가능. 최종 소비자 재판매 불가."
   },
   "common": {
     "loading": "로딩 중...",

@@ -37,9 +37,5 @@ export const siteConfig = {
     fedexNote: "FedEx rates apply to USA only. Contact us for other destinations.",
   },
 
-  catalogue: {
-    pdfUrl: "/APR2026-CATALOGUE.pdf",
-  },
-
   restrictedCountries: ["KR"],
 };

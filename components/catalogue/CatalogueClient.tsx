@@ -5,11 +5,10 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Search, Filter, X, LayoutGrid, List, ChevronDown, Download } from 'lucide-react';
+import { Search, Filter, X, LayoutGrid, List, ChevronDown } from 'lucide-react';
 import Fuse from 'fuse.js';
 import ProductCard from './ProductCard';
 import { categories, products, type Product } from '@/lib/products';
-import { siteConfig } from '@/lib/site-config';
 
 type SortOption = 'default' | 'price-asc' | 'price-desc' | 'name';
 
@@ -282,15 +281,6 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             )}
           </div>
 
-          {/* Download PDF */}
-          <a
-            href={siteConfig.catalogue.pdfUrl}
-            download
-            className="flex items-center gap-2 text-xs text-mist hover:text-gold transition-colors"
-          >
-            <Download size={13} />
-            {t('downloadPdf')}
-          </a>
         </div>
       </aside>
 

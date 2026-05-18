@@ -75,8 +75,7 @@
     "noResultsHint": "Try adjusting your search or filters",
     "products": "products",
     "addToCart": "Add to Cart",
-    "viewDetails": "View Details",
-    "downloadPdf": "Download Catalogue PDF"
+    "viewDetails": "View Details"
   },
   "product": {
     "specification": "Specification",
@@ -201,8 +200,7 @@
     "shipping": "Shipping",
     "legal": "Legal",
     "copyright": "© 2026 SH Core Stetics Global. All rights reserved.",
-    "disclaimer": "For professional use only. B2B sales only. Not for resale to end consumers.",
-    "downloadCatalogue": "Download Catalogue"
+    "disclaimer": "For professional use only. B2B sales only. Not for resale to end consumers."
   },
   "common": {
     "loading": "Loading...",

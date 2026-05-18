@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { siteConfig } from '@/lib/site-config';
-import { Share2, Link2, MessageCircle, Send, Download } from 'lucide-react';
+import { Share2, Link2, MessageCircle, Send } from 'lucide-react';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -157,14 +157,6 @@ export default function Footer() {
               </li>
             </ul>
 
-            <a
-              href={siteConfig.catalogue.pdfUrl}
-              download
-              className="mt-6 inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-gold border border-gold px-3 py-2 hover:bg-gold hover:text-white transition-colors"
-            >
-              <Download size={13} />
-              {t('downloadCatalogue')}
-            </a>
           </div>
         </div>
 
