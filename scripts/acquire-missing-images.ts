@@ -10,8 +10,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import axios from 'axios';
 import sharp from 'sharp';
-import { normalise, variantStrictScoreMatch } from './lib/fuzzy-match';
+import { normalise, strictScoreMatch } from './lib/fuzzy-match';
 import { fetchAllGofillerssProducts, GofillerssProduct } from './sync-from-gofillerss';
+import { fetchAllJdbioshopProducts, JdbioshopProduct } from './sync-from-jdbioshop';
 
 const ROOT = process.cwd();
 const DATA_FILE = path.join(ROOT, 'data', 'products.json');
@@ -99,6 +100,10 @@ async function main(): Promise<void> {
   const as = await fetchASSitemap();
   console.log(`aesthetics-shop: ${as.length} products`);
 
+  console.log('Fetching jdbioshop sitemap…');
+  const jd = await fetchAllJdbioshopProducts();
+  console.log(`jdbioshop: ${jd.length} products`);
+
   const acquired: Array<{ product: Product; source: string; sourceName: string; oldDim: number | null; newDim: number; score: number }> = [];
   const failed: Array<{ product: Product; reason: string }> = [];
 
@@ -119,22 +124,30 @@ async function main(): Promise<void> {
     // Score gofillerss candidates — strict brand-prefix-aware.
     let bestGf: { c: GofillerssProduct; score: number } | null = null;
     for (const c of gf) {
-      const s = variantStrictScoreMatch(product.name, pnorm, c.name, normalise(c.name));
+      const s = strictScoreMatch(product.name, pnorm, c.name, normalise(c.name));
       if (!bestGf || s > bestGf.score) bestGf = { c, score: s };
     }
 
     // Score aesthetics-shop candidates — strict brand-prefix-aware.
     let bestAs: { c: ASProduct; score: number } | null = null;
     for (const c of as) {
-      const s = variantStrictScoreMatch(product.name, pnorm, c.name, normalise(c.name));
+      const s = strictScoreMatch(product.name, pnorm, c.name, normalise(c.name));
       if (!bestAs || s > bestAs.score) bestAs = { c, score: s };
     }
 
+    // Score jdbioshop candidates — strict brand-prefix-aware.
+    let bestJd: { c: JdbioshopProduct; score: number } | null = null;
+    for (const c of jd) {
+      const s = strictScoreMatch(product.name, pnorm, c.name, normalise(c.name));
+      if (!bestJd || s > bestJd.score) bestJd = { c, score: s };
+    }
+
     // Pick which to try: highest score, must be >= STRICT_SCORE.
-    type Cand = { source: 'gofillerss' | 'aesthetics-shop'; name: string; url: string; score: number };
+    type Cand = { source: 'gofillerss' | 'aesthetics-shop' | 'jdbioshop'; name: string; url: string; score: number };
     const cands: Cand[] = [];
     if (bestGf && bestGf.score >= STRICT_SCORE) cands.push({ source: 'gofillerss', name: bestGf.c.name, url: bestGf.c.imageUrl, score: bestGf.score });
     if (bestAs && bestAs.score >= STRICT_SCORE) cands.push({ source: 'aesthetics-shop', name: bestAs.c.name, url: bestAs.c.imageUrl, score: bestAs.score });
+    if (bestJd && bestJd.score >= STRICT_SCORE) cands.push({ source: 'jdbioshop', name: bestJd.c.name, url: bestJd.c.imageUrl, score: bestJd.score });
     cands.sort((a, b) => b.score - a.score);
 
     if (cands.length === 0) {
