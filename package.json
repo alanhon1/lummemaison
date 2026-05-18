@@ -34,7 +34,8 @@
     "enrich-prep": "tsx scripts/enrich-prep.ts",
     "enrich-apply": "tsx scripts/enrich-apply.ts",
     "upgrade-low-quality": "tsx scripts/upgrade-low-quality-images.ts",
-    "acquire-missing": "tsx scripts/acquire-missing-images.ts"
+    "acquire-missing": "tsx scripts/acquire-missing-images.ts",
+    "inventory-quality": "tsx scripts/inventory-image-quality.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
