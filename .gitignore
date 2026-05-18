@@ -71,3 +71,6 @@ scripts/clean-mangled-names-report.txt
 
 # Refill-from-jotform runtime artifact
 scripts/refill-from-jotform-report.txt
+
+# Fix-variant-labels runtime artifact
+scripts/fix-variant-labels-report.txt

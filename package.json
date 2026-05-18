@@ -28,7 +28,8 @@
     "wipe-product-images": "tsx scripts/wipe-product-images.ts",
     "sync-from-jotform": "tsx scripts/sync-from-jotform.ts",
     "clean-mangled-names": "tsx scripts/clean-mangled-names.ts",
-    "refill-from-jotform": "tsx scripts/refill-from-jotform.ts"
+    "refill-from-jotform": "tsx scripts/refill-from-jotform.ts",
+    "fix-variant-labels": "tsx scripts/fix-variant-labels.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
