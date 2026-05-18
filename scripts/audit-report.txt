@@ -1,432 +1,391 @@
-=== MISMATCH (177) ===
-#3  REGENOVUE FINE (CE)  →  Image shows REGENOVUE FINE PLUS but product is REGENOVUE FINE (CE) - different variant
-#4  REGENOVUE DEEP (CE)  →  Image shows REGENOVUE DEEP PLUS but product is REGENOVUE DEEP (CE) - different variant
-#5  REGENOVUE SUB - Q (CE)  →  Image shows REGENOVUE SUB-Q PLUS but product is REGENOVUE SUB-Q (CE) - different variant
-#12  SOSUM SOFT (CE)  →  Image shows SOSUM S/M/H group shot but product is SOSUM SOFT - different variant not visible
-#13  SOSUM HARD  →  Image shows SOSUM S/M/H group shot but product is SOSUM HARD - different variant not visible
-#14  ELASTY FINE PLUS  →  Image shows Bonetta Filler-Fine, not ELASTY FINE PLUS - completely different brand
-#15  ELASTY DEEP PLUS  →  Image shows Bonetta Filler-Deep, not ELASTY DEEP PLUS - completely different brand
-#17  VOM LIGHT (CE) NO Lidocaine  →  Image shows Korean lidocaine pharmaceutical vial, not VOM LIGHT filler
-#19  VOM VOLUME (CE)  →  Image shows YVOIRE VOLUME by LG Chem, not VOM VOLUME - completely different brand
-#24  NEURAMIS VOLUME LIDOCAINE  →  Image shows YVOIRE VOLUME by LG Chem, not NEURAMIS VOLUME LIDOCAINE - completely different brand
-#32  T ESORO DEEP PLUS  →  Image shows Bonetta Filler-Deep, not T ESORO DEEP PLUS - completely different brand
-#34  T ESORO IMPLANT WITH LIDOCAINE  →  Image shows Korean lidocaine pharmaceutical vial, not TESORO IMPLANT WITH LIDOCAINE filler
-#38  YOUTHFILL FINE  →  Image shows Bonetta Filler-Fine, not YOUTHFILL FINE - completely different brand
-#39  YOUTFILL DEEP  →  Image shows Bonetta Filler-Deep, not YOUTFILL DEEP - completely different brand
-#40  YOUTHFILL SHAPE  →  Image shows YOUTHFILL PN+ Polynucleotide, not YOUTHFILL SHAPE - different product variant
-#41  SOONSU FILL (E . P . T . Q)  →  Image shows MAXY FILL BODY FILLER, not SOONSU FILL (E.P.T.Q) - completely different brand
-#42  SOONSU FILL (E . P . T . Q)  →  Image shows MAXY FILL BODY FILLER, not SOONSU FILL (E.P.T.Q) - completely different brand
-#43  SOONSU FILL (E . P . T . Q)  →  Image shows MAXY FILL BODY FILLER, not SOONSU FILL (E.P.T.Q) - completely different brand
-#44  CELOSOME SOFT  →  Image shows Bellast Premium products, not CELOSOME SOFT - completely different brand
-#55  VOLUDERM FINE HA  →  Image shows Bonetta Filler-Fine, not VOLUDERM FINE HA - completely different brand
-#56  VOLUDERM DEEP HA  →  Image shows Bonetta Filler-Deep, not VOLUDERM DEEP HA - completely different brand
-#57  VOLUDERM SUB - Q HA  →  Image shows TESORO group shot, not VOLUDERM SUB-Q HA - completely different brand
-#58  ULTRAFILL KISS  →  Image shows ULTRAFILL NOSE, not ULTRAFILL KISS - different variant of the brand
-#59  ULTRAFILL FINE  →  Image shows ULTRAFILL NOSE, not ULTRAFILL FINE - different variant of the brand
-#60  ULTRAFILL DEEP  →  Image shows ULTRAFILL NOSE, not ULTRAFILL DEEP - different variant of the brand
-#61  ULTRAFILL SHAPE  →  Image shows ULTRAFILL NOSE, not ULTRAFILL SHAPE - different variant of the brand
-#62  ULTRAFILL IMPLANT  →  Image shows ULTRAFILL NOSE, not ULTRAFILL IMPLANT - different variant of the brand
-#63  LINE BODY  →  Image shows Lipo Lab V-Line Premium, not LINE BODY - completely different brand
-#64  BEADS MAX S  →  Image shows Beads Max Classic-S, product name is BEADS MAX S - variant name mismatch (Classic-S vs S)
-#65  LINE BODY  →  Image shows Lipo Lab V-Line Premium, not LINE BODY - completely different brand
-#66  MisAdi H  →  Image shows MisAdi Pdlla Collagen Booster, not MisAdi H - different product variant
-#67  AdiMis Body  →  Image shows B-esta Body Filler, not AdiMis Body - completely different brand
-#74  LEXYAL REJU PDRN+PN  →  Image shows SOONSU ULTRA REJU PN+PDRN, not LEXYAL REJU PDRN+PN - completely different brand
-#75  BELLONA AQUA  →  Image shows Spider Aqua Eye Booster by STUN MEDICAL, not BELLONA AQUA - completely different brand
-#76  BELLONA OPACIOUS SERUM  →  Image shows BETA SERUM Beta-Glugan, not BELLONA OPACIOUS SERUM - completely different brand
-#84  ULTRA GEN Collagen + Exosome  →  Image shows Juvederm ULTRA XC, not ULTRA GEN Collagen + Exosome - completely different brand
-#90  REGENOVUE PN Non  →  Image shows REGENOVUE PN PLUS, but product is REGENOVUE PN Non - different variant (Non vs Plus)
-#91  R EGENOVUE AQUASHINE PLUS GOLD  →  Image shows GOLDCELL+ The Premium DNA Skin Booster, not R EGENOVUE AQUASHINE PLUS GOLD - wrong brand
-#92  R EGENOVUE AQUASHINE SILVER  →  Image shows REGENOVUE Aqua Shine Plus, not AQUASHINE SILVER - different variant
-#94  REJEUNESSE SPARKLE HA  →  Image shows Rejeunesse Fine/Deep/Shape group shot, not REJEUNESSE SPARKLE HA - different variant
-#95  Oasis  →  Image shows OASIS REPAIR PN, but product is simply Oasis - different product name
-#97  KIARA REJU  →  Image shows SOONSU ULTRA REJU, not KIARA REJU - completely different brand
-#98  GemVous PN  →  Image shows ELAXEN HA-PN, not GemVous PN - completely different brand
-#99  MI SFILL+ PDRN  →  Image shows Sappire PDRN High Purity Rejuvenating Solution, not MI SFILL+ PDRN - different brand
-#103  MISADI C O  →  Image shows MisAdi Pdlla Collagen Booster, not MISADI C O - different variant of MisAdi brand
-#106  CINDELLA I (PN)  →  Image shows Cindella IV drip products with Vitamin C and Luthione, not CINDELLA I PN injectable
-#108  ULTRA EYE  →  Image shows Juvederm ULTRA XC, not ULTRA EYE - completely different brand
-#116  MisAdi White Skin Glazer  →  Image shows MisAdi white Brightening Booster, not MisAdi White Skin Glazer - different variant
-#117  EVE WHITE  →  Image shows SOONSU ULTRAWHITE, but product is EVE WHITE - different brand entirely
-#120  MIRACLE H HA  →  Image shows Miracle X PCL, but product is MIRACLE H HA - same image for different variant
-#121  MIRACLE L PCL  →  Image shows Miracle X PCL, but product is MIRACLE L PCL - same image for different variant
-#128  LAPUROON AURORA V IVID  →  Image shows LAPUROON Aurora Super, but product is LAPUROON AURORA V IVID - different variant with same image
-#131  EXOGEN FOR HAIR AND SKIN  →  Image shows Hair Luma Exosome+PDRN+Peptides, not EXOGEN FOR HAIR AND SKIN - different brand
-#133  E XOBOOM SKIN  →  Image shows REJURAN SKIN BOOSTER, not E XOBOOM SKIN - completely different brand
-#142  ESRELLA TEA TREE ESSENCE  →  Image shows generic Tea Tree Essence brand, not ESRELLA TEA TREE ESSENCE - brand name not visible
-#143  REPIDA CLEARNEST INTENSIVE FOAM CLEANSER  →  Image shows CURENEX Hydrating Cleanser, not REPIDA CLEARNEST INTENSIVE FOAM CLEANSER - wrong brand
-#144  ACON DEEP CLEANSING FOAM  →  Image shows Bonetta Filler-Deep, not ACON DEEP CLEANSING FOAM - completely wrong product category
-#146  ACLEAN BODY ACNE TREATMENT SPRAY  →  Image shows B-esta Body Filler, not ACLEAN BODY ACNE TREATMENT SPRAY - completely wrong product
-#147  ACNON CREAM  →  Image shows CURENEX EXO Brightening Cream, not ACNON CREAM - completely different brand
-#148  AZALEA CREAM  →  Image shows CURENEX EXO Brightening Cream, not AZALEA CREAM - completely different brand
-#150  P198 Filcore HB Plus  →  Image shows REJURAN HB Hydro Booster, not P198 Filcore HB Plus - completely different brand
-#151  DR.H.RICH HAIR FILLER  →  Image shows EXOBOOM HAIR, not DR.H.RICH HAIR FILLER - completely different brand
-#153  ASCE HRLV EXO SOME HAIR FILLER  →  Image shows EXOBOOM HAIR, not ASCE HRLV EXO SOME HAIR FILLER - completely different brand
-#159  DERMAGEN Many Shoot Plus  →  Image shows generic Dermagen antibiotic/antifungal cream, not DERMAGEN Many Shoot Plus hair product
-#162  DERMAGEN Mohealer Shampoo  →  Image shows Italian Dermagen Soft Shampoo, not Korean DERMAGEN Mohealer Shampoo - different brand
-#163  DERMAGEN Mohealer Tonic Scalp  →  Image shows Dermagen Liquid Hydrolyzed Collagen drink, not DERMAGEN Mohealer Tonic Scalp product
-#164  MelaNosa Cream  →  Image shows CURENEX EXO Brightening Cream, not MelaNosa Cream - completely different brand
-#165  ALBENDAZOLE  →  Image shows Cassiel-Pet veterinary Albendazole for cats/dogs, not pharmaceutical ALBENDAZOLE
-#166  D PANSEPTIC CREAM  →  Image shows CURENEX EXO Brightening Cream, not D PANSEPTIC CREAM - completely different product
-#170  EYEOCOOL RENEW PDRN  →  Image shows Sappire PDRN High Purity Rejuvenating Solution, not EYEOCOOL RENEW PDRN - different brand
-#173  MELATONING CREAM  →  Image shows CURENEX EXO Brightening Cream, not MELATONING CREAM - completely different brand
-#174  EGF ACTIVE VITAL CREAM  →  Image shows CURENEX EXO Brightening Cream, not EGF ACTIVE VITAL CREAM - completely different brand
-#176  D - Panthenol Cream  →  Image shows CURENEX EXO Brightening Cream, not D-Panthenol Cream - completely different brand
-#177  Rejuvenex PDRN Cream  →  Image shows CURENEX EXO Brightening Cream, not Rejuvenex PDRN Cream - completely different brand
-#180  Rejunera EXO - PDRN CREAM  →  Image shows CURENEX EXO Brightening Cream, not Rejunera EXO-PDRN CREAM - different brand
-#181  ASCEplus HomeCare Sunshine Cushion PRO  →  Image shows NEO PRO CREAM Lidocaine Local Anesthetic, not ASCEplus HomeCare Sunshine Cushion PRO
-#182  CELLEXO Bio - Cellulose Exosome  →  Image shows HAIRNA EXOSOME HAIR FILL, not CELLEXO Bio-Cellulose Exosome - completely different product
-#183  CREBEAU Placenta Pearl Essence Mask  →  Image shows Riox Neo CO2 Carbon Mask, not CREBEAU Placenta Pearl Essence Mask - different brand
-#184  SPIDER TOXIN PROGRAM Toxin  →  Image shows SPIDER AQUA EYE BOOSTER, not SPIDER TOXIN PROGRAM Toxin - different product in same brand
-#185  Rejuran Healer Calming Lip Balm  →  Image shows REJURAN Healer Trueskin Essence, not Calming Lip Balm - wrong product from Rejuran brand
-#187  Vanhalla NIACINAMIDE Skin Tone Balance  →  Image shows AMI TONE UP Brightening, not Vanhalla NIACINAMIDE Skin Tone Balance - completely different brand
-#188  Vanhalla ETINOL 3R SERUM Wrinkle  →  Image shows BETA SERUM Beta-Glugan, not Vanhalla ETINOL 3R SERUM - completely different brand
-#190  VANHALLA Ceramide Moisturizing Serum  →  Image shows BETA SERUM Beta-Glugan, not VANHALLA Ceramide Moisturizing Serum - completely different brand
-#193  SKIN MARKER PEN (White  →  Image shows VISCOT E-Z Removable Ink Skin Marker, not SKIN MARKER PEN (White) - different brand
-#195  OPACIOUS COLLAGEN MASK  →  Image shows Riox NEO CO2 CARBON MASK, not OPACIOUS COLLAGEN MASK - completely different product
-#196  INVU REPARATIVE BB  →  Image shows Korean Sun BB Cream brand, not INVU REPARATIVE BB - completely different brand
-#197  REPIDA BODY TONE - UP RADIANCE SERUM  →  Image shows AMI TONE UP Brightening, not REPIDA BODY TONE UP RADIANCE SERUM - completely different brand
-#198  V V REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM  →  Image shows PCL POWER BOOSTER by STUN MEDICAL, not REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM
-#200  WHEAT GERM AMPOULE  →  Image shows HANHEAL HA AMPOULE, not WHEAT GERM AMPOULE - completely different brand and product
-#201  EU.MEI SUN ESSENCE  →  Image shows Korean Sun BB Cream brand, not EU.MEI SUN ESSENCE - completely different brand
-#202  E U.MEI YOUTH FIRMING EYE CREAM 30G A  →  Image shows EVE CAIN Lidocaine Topical Anesthetic Cream, not EU.MEI YOUTH FIRMING EYE CREAM
-#210  CAMELLEX Camellia Exo No.5 Exosome  →  Image shows HAIRNA EXOSOME HAIR FILL, not CAMELLEX Camellia Exo No.5 Exosome - completely different brand
-#211  LXC LACTO EXO COLLA Exosome  →  Image shows RXC RED EXO COLLA, not LXC LACTO EXO COLLA - different variant in same family
-#217  CURENEX DAILY CARE SKINBOOSTER (SERUM)  →  Image shows CURENEX DAILY SHEER SUNSCREEN SPF 50+, not CURENEX DAILY CARE SKINBOOSTER SERUM - different product
-#221  CURENEX REJUVENATING MASK  →  Image shows CURENEX REJUVENATING CREAM, not CURENEX REJUVENATING MASK - different product in same brand
-#223  CURENEX EYE PN  →  Image shows Curenex product line group shot without EYE PN visible - cannot confirm CURENEX EYE PN
-#224  CURENEX SCULP (PLLA)  →  Image shows Curenex product line group shot without SCULP PLLA visible - different products shown
-#227  DERMAGEN Egensia Cream  →  Image shows CURENEX EXO BRIGHTENING CREAM, not DERMAGEN Egensia Cream - completely different brand
-#228  Dr. PICOS EGENCICA CREAM  →  Image shows CURENEX EXO BRIGHTENING CREAM, not Dr. PICOS EGENCICA CREAM - completely different brand
-#229  Dr. Picos RMV Repair Cream  →  Image shows CURENEX EXO BRIGHTENING CREAM, not Dr. Picos RMV Repair Cream - completely different brand
-#230  Dr. Picos Ureanol Cream  →  Image shows CURENEX EXO BRIGHTENING CREAM, not Dr. Picos Ureanol Cream - completely different brand
-#231  Cindelria Tone - Up Sun  →  Image shows AMI TONE UP Brightening, not Cindelria Tone-Up Sun - completely different brand
-#233  DERMAGEN Well  →  Image shows Wellspot acne patches, not DERMAGEN Well - completely different brand and product category
-#234  DERMAGEN White Sun Cream  →  Image shows Korean Sun BB Cream brand, not DERMAGEN White Sun Cream - different brand
-#235  DERMAGEN Urea Cream Deep  →  Image shows CURENEX EXO BRIGHTENING CREAM, not DERMAGEN Urea Cream Deep - completely different brand
-#236  DERMAGEN RM Repair Cream  →  Image shows CURENEX EXO BRIGHTENING CREAM, not DERMAGEN RM Repair Cream - completely different brand
-#239  DERMAGEN Lunato  →  Image shows RAPPORAPY LUNATOX, not DERMAGEN Lunato - completely different brand
-#240  DERMAGEN Cicarown Cream  →  Image shows CURENEX EXO BRIGHTENING CREAM, not DERMAGEN Cicarown Cream - completely different brand
-#241  DERMAGEN Cindelria Tone - U  →  Image shows AMI TONE UP Brightening, not DERMAGEN Cindelria Tone-U - completely different brand
-#242  DERMAGEN Bichaeahn Pore Toning Cream  →  Image shows CURENEX EXO BRIGHTENING CREAM, not DERMAGEN Bichaeahn Pore Toning Cream - wrong brand
-#243  DERMAGEN Cellsia Post  →  Image shows Dermagen Egensia Cream, not DERMAGEN Cellsia Post - different product within Dermagen brand
-#245  DERMAGEN EZ C  →  Image shows Dermagen Egensia Cream, not DERMAGEN EZ C - different product within Dermagen brand
-#246  EXOSIA Skin Booster Part  →  Image shows REJURAN SKIN BOOSTER, not EXOSIA Skin Booster - completely different brand
-#248  GTM EXOMELA - EXO Signal  →  Image shows RXC RED EXO COLLA, not GTM EXOMELA EXO Signal - completely different brand
-#252  MELACELL THE PREMIUM  →  Image shows THE CHAEUM premium red box, not MELACELL THE PREMIUM - completely different brand
-#254  GTM Balance Cleansing Gel  →  Image shows GTM GOLDCELL+ THE PREMIUM, not GTM Balance Cleansing Gel - different GTM product
-#255  PDRENZA Serum  →  Image shows BETA SERUM Beta-Glugan, not PDRENZA Serum - completely different brand
-#256  PDRENZA Cream  →  Image shows CURENEX EXO BRIGHTENING CREAM, not PDRENZA Cream - completely different brand
-#257  GTM MELA DUAL Day  →  Image shows GTM MELA CELL THE PREMIUM, not GTM MELA DUAL Day - different GTM product
-#258  VITA K REPAIR CREAM  →  Image shows CURENEX EXO BRIGHTENING CREAM, not VITA K REPAIR CREAM - completely different brand
-#259  COLLAGEN SERUM  →  Image shows BETA SERUM Beta-Glugan, not COLLAGEN SERUM - completely different brand and product
-#260  T - TOX PEEL  →  Image shows CURENEX SNOW PEEL, not T-TOX PEEL - completely different brand
-#261  T - TOX PEEL  →  Image shows CURENEX SNOW PEEL, not T-TOX PEEL - completely different brand (duplicate wrong image)
-#262  PEPTICULE ULTIMATE REJUVENATION CREAM  →  Image shows CURENEX EXO BRIGHTENING CREAM, not PEPTICULE ULTIMATE REJUVENATION CREAM - wrong brand
-#263  PEPTICULE ULTIMATE REJUVENATION SERUM  →  Image shows BETA SERUM Beta-Glugan, not PEPTICULE ULTIMATE REJUVENATION SERUM - wrong brand
-#264  GTM Active Protect Sun Serum  →  Image shows BETA SERUM Beta-Glugan, not GTM Active Protect Sun Serum - completely different brand
-#265  ALOE SOOTHING GEL  →  Image shows JIGOTT Natural Aloe Vera Soothing Gel, not ALOE SOOTHING GEL (GTM) - different brand
-#272  DIASONO.310 Diacell Peel: Dia/Aqua  →  Image shows SPIDER AQUA EYE BOOSTER, not DIASONO.310 Diacell Peel - completely different brand and product
-#274  WILLCAM PLUS Skin/scalp Diagnosis System  →  Image shows REJURAN SKIN BOOSTER, not WILLCAM PLUS Skin/scalp Diagnosis System - completely different product
-#278  ULTRA SKIN MASTER Multi  →  Shows Juvederm ULTRA XC injectable filler; product is ULTRA SKIN MASTER Multi
-#284  AUTO - DN MTS PEN  →  Shows SUNGSHIM Sterile Single-Use Insulin Pen Needle; product is AUTO - DN MTS PEN
-#288  JOLLA CLEANSING LOTION  →  Shows SUNDAY Simply Perfect No.9 Body Lotion; product is JOLLA CLEANSING LOTION
-#289  JOLLA GREEN TEA MODELING MASK  →  Shows Riox Rich in Oxygen Neo CO2 Carbon Mask; product is JOLLA GREEN TEA MODELING MASK
-#290  JOLLA PEPPERMINT MODELING MASK  →  Shows Riox Rich in Oxygen Neo CO2 Carbon Mask; product is JOLLA PEPPERMINT MODELING MASK
-#291  JOLLA HIGH FREQUENCY MASSAGE CREAM  →  Shows CURENEX EXO BRIGHTENING CREAM; product is JOLLA HIGH FREQUENCY MASSAGE CREAM
-#301  YELLOW BOTTLE  →  Shows NMN Bottle NAD+ Booster; product is YELLOW BOTTLE
-#308  SLIM POINT FACE & BODY  →  Shows F&B Premium V-Line for Face; product is SLIM POINT FACE & BODY
-#324  Meditoxin  →  Shows Neuronox Purified Botulinum Toxin by Medytox; product is Meditoxin (different product same manufacturer)
-#325  RE N TOX  →  Shows SAPPIRE S-TOX Complex of Growth Factors; product is RE N TOX botulinum toxin
-#341  P LACENTEX Inj. Polydeoxyribonucleotide Sodium  →  Shows Revitalex (리비탈렉스주) PDRN; product is P LACENTEX Inj. Polydeoxyribonucleotide Sodium
-#344  BM Hylunidase Inj. Hyaluronidase  →  Shows Revitalex PDRN by Huons/Humedix; product is BM Hylunidase Inj. Hyaluronidase
-#349  Ravello PLLA  →  Shows ELAXEN PLLA Feel PLLA Premium Skin Solution; product is Ravello PLLA
-#352  PDLLA RAVENNA Collagen Booster PDLLA  →  Shows Tesoro COLLAGEN Recombinant Collagen; product is PDLLA RAVENNA Collagen Booster PDLLA
-#356  CINDELLA INJ  →  Shows CINDELLA SET packaging; product is CINDELLA INJ (individual injection, not full set)
-#363  Acogen Inj. Ascorbic Acid  →  Shows Revitalex PDRN by Huons/Humedix; product is Acogen Inj. Ascorbic Acid
-#364  ASCORBIC INJ A  →  Shows Revitalex PDRN by Huons/Humedix; product is ASCORBIC INJ A
-#366  ATP - S Inj  →  Shows Revitalex PDRN by Huons/Humedix; product is ATP - S Inj
-#367  ARGININE INJ. L - Arginine  →  Shows Revitalex PDRN by Huons/Humedix; product is ARGININE INJ. L - Arginine
-#368  Acepain Inj. Acetaminophen  →  Shows Revitalex PDRN by Huons/Humedix; product is Acepain Inj. Acetaminophen
-#376  MESOCARTIN INJ  →  Shows Revitalex PDRN by Huons/Humedix; product is MESOCARTIN INJ
-#378  HYCOBAL INJ. Hydroxocobalamin  →  Shows Revitalex PDRN by Huons/Humedix; product is HYCOBAL INJ. Hydroxocobalamin
-#380  BeeCom Hexa Vitamin B Comple  →  Shows DHNP Vitamin C Inj. by Daehan NewPharm; product is BeeCom Hexa Vitamin B Complex
-#381  ZINC INJ  →  Shows Revitalex PDRN by Huons/Humedix; product is ZINC INJ
-#382  Zinc S Inj. Zinc Sulfate  →  Shows Revitalex PDRN by Huons/Humedix; product is Zinc S Inj. Zinc Sulfate
-#383  MAXYBLUE INJ  →  Shows Revitalex PDRN by Huons/Humedix; product is MAXYBLUE INJ
-#384  Hishiphagen - C Inj. Deto  →  Shows Revitalex PDRN by Huons/Humedix; product is Hishiphagen - C Inj. Deto
-#388  LIDCAIN CREAM  →  Shows CURENEX EXO BRIGHTENING CREAM; product is LIDCAIN CREAM anesthetic
-#390  BERACAINE SPRAY Lidocaine  →  Shows Daehan Lidocaine HCl injectable vial; product is BERACAINE SPRAY Lidocaine
-#394  J - CAIN  →  Shows NEO-CAIN CREAM 10.56%; product is J - CAIN (different anesthetic cream brand)
-#405  Melamin Inj. Placenta Extract  →  Shows Revitalex PDRN by Huons/Humedix; product is Melamin Inj. Placenta Extract
-#407  ELASTY MESO NEEDLE  →  Shows SUNGSHIM 30G Sterile Single Use Needle; product is ELASTY MESO NEEDLE
-#408  REJUBEAU MESO NEEDLE  →  Shows SUNGSHIM 30G Sterile Single Use Needle; product is REJUBEAU MESO NEEDLE
-#409  REJUBEAU MESO NEEDLE  →  Shows SUNGSHIM 30G Sterile Single Use Needle; product is REJUBEAU MESO NEEDLE
-#410  REJUBEAU MESO NEEDLE  →  Shows SUNGSHIM 30G Sterile Single Use Needle; product is REJUBEAU MESO NEEDLE
-#411  REJUBEAU MESO NEEDLE  →  Shows SUNGSHIM 30G Sterile Single Use Needle; product is REJUBEAU MESO NEEDLE
-#413  JBP  →  Shows JBP Plamon placenta injection (not a needle); product is JBP in Nano Needle category
-#414  JBP  →  Shows JBP Plamon placenta injection; product is JBP in Nano Needle category
-#415  JBP  →  Shows JBP Plamon placenta injection; product is JBP in Nano Needle category
-#416  JBP  →  Shows JBP Plamon placenta injection; product is JBP in Nano Needle category
-#422  DK ULTRA Thin Meso  →  Shows Juvederm ULTRA XC HA filler; product is DK ULTRA Thin Meso (needle)
-#423  NEO CANNULA  →  Shows DK Filler Cannula 18G 70mm; product is NEO CANNULA (different brand)
-#424  NEO CANNULA  →  Shows DK Filler Cannula 18G 70mm; product is NEO CANNULA (different brand)
-#431  RESTYLANE + LIDOCAINE  →  Shows Daehan Lidocaine HCl injectable vial; product is RESTYLANE + LIDOCAINE (HA filler)
-#432  RESTYLANE LYFT LIDOCAINE  →  Shows Daehan Lidocaine HCl injectable vial; product is RESTYLANE LYFT LIDOCAINE (HA filler)
-#433  RESTYLANE SKINBOOSTERS VITAL LIDOCAINE  →  Shows Daehan Lidocaine HCl injectable vial; product is RESTYLANE SKINBOOSTERS VITAL LIDOCAINE (HA filler)
-#434  RESTYLANE VITAL LIGHT LIDOCAINE  →  Shows Daehan Lidocaine HCl injectable vial; product is RESTYLANE VITAL LIGHT LIDOCAINE (HA filler)
-#438  JUVIDERM: VOLUMA HA  →  Shows SKINVIVE by Juvederm Injectable Gel with Lidocaine; product is JUVIDERM: VOLUMA HA (different Juvederm product)
+=== MISMATCH (65) ===
+#3  REGENOVUE FINE (CE)  →  Image shows ELASTY F dermal filler, not REGENOVUE FINE.
+#4  REGENOVUE DEEP (CE)  →  Image shows ELASTY D dermal filler, not REGENOVUE DEEP.
+#5  REGENOVUE SUB - Q (CE)  →  Image shows REGENOVUE GLAM, not REGENOVUE SUB-Q.
+#6  REGENOVUE FINE PLUS (CE)  →  Image shows REGENOVUE DEEP PLUS, not REGENOVUE FINE PLUS.
+#7  REGENOVUE DEEP PLUS (CE)  →  Image shows REGENOVUE SUB-Q PLUS, not REGENOVUE DEEP PLUS.
+#8  REGENOVUE SUB - Q PLUS (CE)  →  Image shows REGENOVUE SUB-Q (without PLUS), not REGENOVUE SUB-Q PLUS.
+#14  ELASTY FINE PLUS  →  Image shows HyalDew Fine, not ELASTY FINE PLUS.
+#15  ELASTY DEEP PLUS  →  Image shows Neuramis DEEP, not ELASTY DEEP PLUS.
+#16  ELASTY GRAND PLUS  →  Image shows ELASTY G (single-syringe G variant) without PLUS, not ELASTY GRAND PLUS.
+#17  VOM LIGHT (CE) NO Lidocaine  →  Image shows REGENOVUE FINE, not VOM LIGHT.
+#20  NEURAMIS LIGHT (MESO)  →  Image shows Neuramis LIGHT LIDOCAINE, but product is NEURAMIS LIGHT (MESO) which is the non-lidocaine meso variant.
+#22  NEURAMIS DEEP  →  Image shows Neuramis LIDOCAINE box (no DEEP marker), product is NEURAMIS DEEP (no lidocaine).
+#23  NEURAMIS DEEP WITH LIDOCAINE  →  Image shows REGENOVUE DEEP, not NEURAMIS DEEP WITH LIDOCAINE.
+#24  NEURAMIS VOLUME LIDOCAINE  →  Image shows REGENOVUE FINE PLUS with Lidocaine, not NEURAMIS VOLUME LIDOCAINE.
+#25  REVOLAX FINE PLUS  →  Image shows REVOLAX FINE with Lidocaine, not REVOLAX FINE PLUS.
+#26  REVOLAX DEEP PLUS  →  Image shows REVOLAX DEEP, not REVOLAX DEEP PLUS.
+#27  REVOLAX SUB - Q PLUS  →  Image shows REVOLAX SUB-Q, not REVOLAX SUB-Q PLUS.
+#32  TESORO DEEP PLUS  →  Image shows DEEP IN MISFILL+ (pink box), not TESORO DEEP PLUS.
+#64  BEADS MAX S  →  Product name specifies variant 'S' but the box clearly shows the 'MID' variant of Beads Max.
+#66  MisAdi H  →  Product name is 'MisAdi H' but the image shows the 'MisAdi CO2 Carboxy Therapy' variant.
+#67  AdiMis Body  →  Product name is 'AdiMis Body' but the image shows STUNMEDICAL 'LINE BODY Safe & Easy 50', a completely different product.
+#69  MAX Y FILL Body  →  Product name is 'MAX Y FILL Body' but the image shows STUNMEDICAL 'LINE BODY 10' Hard filler, a different brand and product.
+#71  P198 Filcore SB  →  Product name is 'P198 Filcore SB' but the image shows the 'Filcore SB Plus Program' kit with the SB PLUS vial, a different variant.
+#73  P198 Filcore SB Plus  →  Product name is 'P198 Filcore SB Plus' but the image shows the 'Filcore SB' (492 Particles) variant, not the Plus version.
+#77  DERMAGEN Plus NA D⁺ Solution  →  Product name is 'DERMAGEN Plus NA D+ Solution' but the image shows Dermagen 'Acssak Acne Clear Facial Foam', a completely different product.
+#84  ULTRA GEN Collagen + Exosome  →  Product name is 'ULTRA GEN Collagen + Exosome' but the image shows 'Tesoro Collagen', a different brand.
+#91  REGENOVUE AQUASHINE PLUS GOLD  →  Product name specifies 'AQUASHINE PLUS GOLD' but the image shows the basic 'REGENOVUE AQUA SHINE PLUS' without the Gold designation.
+#92  REGENOVUE AQUASHINE SILVER  →  Product name specifies 'AQUASHINE SILVER' but the image shows 'REGENOVUE AQUA SHINE PLUS', a different variant of the Aquashine line.
+#102  ELAXEN PLLA MASK Poly - L  →  Image shows ELAXEN PLLA ampoule and mist set, not the PLLA MASK Poly-L variant specified in the name.
+#125  REJURAN SKIN BOOSTER Vial  →  Image shows EXOSIA branded vial and box rather than REJURAN SKIN BOOSTER, a different brand entirely.
+#129  NMN BOTTLE NAD  →  Image shows YELLOW BOTTLE Bromelain/Riboflavin/Lecithin ampoule rather than an NMN/NAD product.
+#157  DERMAHEAL HL  →  Image shows Dermaheal SR (Skin Rejuvenating) variant, but the product name specifies the HL (hair loss) variant.
+#171  MADECASSOL GEL  →  Image shows Madecassol Care 연고 (ointment) form, not the GEL variant specified in the product name.
+#172  MADECASSOL GEL  →  Same Madecassol Care ointment image as 171, not the GEL form specified in the product name.
+#187  Vanhalla NIACINAMIDE Skin Tone Balance  →  Image shows Vanhalla Niacinamide 15 Triple Power Booster, not the Niacinamide Skin Tone Balance variant named in the product.
+#189  VANHALLA Ceramide Moisturizing Essence  →  Image shows Vanhalla Ceramide Moisturizing Essence in Toner (100ml toner format), not a plain Moisturizing Essence variant.
+#190  VANHALLA Ceramide Moisturizing Serum  →  Image shows Vanhalla Ceramide Moisturizing Serum in Cream (50ml jar), not a Moisturizing Serum bottle variant.
+#216  CURENEX PDRN, Multi  →  Image shows MISFILL+ PDR syringe (different brand) not a CURENEX PDRN Multi product.
+#218  CURENEX REJUVENATING CREAM  →  Image shows CURENEX Intense Glow & Shine sheet mask sachets, not a Rejuvenating Cream.
+#221  CURENEX REJUVENATING MASK  →  Image shows CURENEX Rejuvenating Solution vials (injectable), not a Rejuvenating Mask.
+#224  CURENEX SCULP (PLLA)  →  Image shows CURENEX Snow Peel powder vials and activator, not CURENEX SCULP PLLA.
+#233  DERMAGEN Well  →  Image shows a Rapporapy Lunatox tube, not the Dermagen Well product.
+#235  DERMAGEN Urea Cream Deep  →  Image shows a Urea Cream labeled 'Skin softener' with no 'Deep' variant indication on the packaging.
+#239  DERMAGEN Lunato  →  Image shows Dermagen Wellspot hydrocolloid acne patches, not a Lunato product.
+#245  DERMAGEN EZ C  →  Image shows an EZera Cream tube, not the EZ C product variant.
+#262  PEPTICULE ULTIMATE REJUVENATION CREAM  →  Image shows 'PEPTICULE-GOLD' cream (peptide & spicule & gold cream 2500K shot), a different specific variant than 'PEPTICULE ULTIMATE REJUVENATION CREAM'.
+#263  PEPTICULE ULTIMATE REJUVENATION SERUM  →  Image shows 'PEPTICULE 1500K Shot peptide & spicule ampoule' which is a different specific variant than 'PEPTICULE ULTIMATE REJUVENATION SERUM'.
+#274  WILLCAM PLUS Skin/scalp Diagnosis System  →  Image shows REJURAN SKIN BOOSTER vials and box, not a WILLCAM PLUS skin/scalp diagnosis system.
+#283  ULTRATONING Ultrasonic & RF Beauty  →  Image shows a Beauty Monster plasma pen with plasma/fractional/thermal tips, not an ULTRATONING Ultrasonic & RF beauty device.
+#284  AUTO - DN MTS PEN  →  Image shows a SkinCulture-branded microneedling pen, not an Auto-DN MTS PEN.
+#291  JOLLA HIGH FREQUENCY MASSAGE CREAM  →  Image shows a GTM PDRENZA Advanced Rejuvenation Set with serum and creams, not a JOLLA HIGH FREQUENCY MASSAGE CREAM.
+#296  DR.LIPO  →  Image shows 'LIPO SHRINKER' by Stunmedical, not DR.LIPO.
+#307  VNS Lipolytic Solution, VNS, Fat  →  Image shows 'Dermagen Plus NAD+ Solution', not a VNS lipolytic product.
+#349  Ravello PLLA  →  Image shows meNnus Plus 360mg, not Ravello PLLA — different brand entirely.
+#365  Ascorbic Acid Injection  →  Image shows MASI Injection 10% Magnesium Sulfate Hydrate, not Ascorbic Acid Injection.
+#367  ARGININE INJ. L - Arginine  →  Image shows Acetphen Premix Injection 1g (Acetaminophen) by inno.N, not L-Arginine.
+#370  Vita D  →  Image shows MultiVita Inj. (I.V. Infusion multivitamin), not Vita D alone.
+#371  Vita - D  →  Image shows 비타디본 주 (Vitadibon) Vitamin A AND D combo injection, not pure Vita-D.
+#377  LIPOTOCIN INJ Thioctic Acid  →  Image shows Huons ASCORBIC ACID (vitamin C) injection, not LIPOTOCIN/Thioctic Acid.
+#382  Zinc S Inj. Zinc Sulfate  →  Image shows GCZINC inj. (Green Cross brand zinc) rather than Zinc S Inj., a different brand/variant.
+#389  WELLSCAINE CREAM  →  Image shows Melanosa cream (Hydroquinone 4%) by Dong-A, not Wellscaine cream.
+#396  SM CREAM  →  Image shows SM Lido Cream 30g tube (the Lido variant), not plain SM Cream.
+#408  REJUBEAU MESO NEEDLE  →  Image shows REJUBEAU FINE MESO NEEDLE (the FINE variant) while the name is the generic REJUBEAU MESO NEEDLE without variant qualifier.
+#430  RESTYLANE LVFT  →  Name RESTYLANE LVFT (LYFT) does not specify lidocaine but image shows RESTYLANE LYFT with Lidocaine variant.
+#434  RESTYLANE VITAL LIGHT LIDOCAINE  →  Name specifies VITAL LIGHT but image shows RESTYLANE SKINBOOSTERS VITAL (regular, not LIGHT variant).
 
-=== UNCERTAIN (49) ===
-#9  SOSUM S (CE) NO Lidocaine  →  Group shot of SOSUM S, M, H; correct brand but cannot confirm individual S variant only
-#10  SOSUM M (CE) NO Lidocaine  →  Group shot of SOSUM S, M, H; correct brand but cannot confirm individual M variant only
-#11  SOSUM H (CE) NO Lidocaine  →  Group shot of SOSUM S, M, H; correct brand but cannot confirm individual H variant only
-#16  ELASTY GRAND PLUS  →  Group shot of ELASTY G/D/F; ELASTY brand matches but Grand Plus specific variant unclear in group
-#18  VOM INTEN S E  →  Group shot of VOM light/intens/volum; brand matches but cannot confirm individual INTEN S E variant
-#20  NEURAMIS LIGHT (MESO)  →  Group marketing shot of Neuramis product line; brand matches but cannot confirm individual LIGHT variant
-#21  NEURAMIS  →  Group marketing shot of Neuramis product line; brand matches but cannot confirm individual NEURAMIS variant
-#22  NEURAMIS DEEP  →  Group marketing shot of Neuramis product line; brand matches but cannot confirm NEURAMIS DEEP specifically
-#23  NEURAMIS DEEP WITH LIDOCAINE  →  Group marketing shot of Neuramis product line; brand matches but cannot confirm NEURAMIS DEEP WITH LIDOCAINE specifically
-#28  DERMALAX PLUS  →  Group shot of Dermalax Implant Plus, Deep Plus, Plus; brand matches but cannot confirm DERMALAX PLUS specifically
-#29  DERMALAX DEEP PLUS  →  Group shot of Dermalax Implant Plus, Deep Plus, Plus; brand matches but cannot confirm DERMALAX DEEP PLUS specifically
-#30  DERMALAX IMPLANT PLUS  →  Group shot of Dermalax Implant Plus, Deep Plus, Plus; brand matches but cannot confirm DERMALAX IMPLANT PLUS specifically
-#31  TESORO FINE PLUS  →  Group shot of TESORO Fine/Sub-Q/Deep with Lidocaine; brand matches but cannot confirm Fine Plus variant individually
-#33  TESORO SUB - Q PLUS  →  Group shot of TESORO Fine/Sub-Q/Deep with Lidocaine; brand matches but cannot confirm Sub-Q Plus variant individually
-#35  TESORO FINE  →  Group shot of TESORO Fine/Sub-Q/Deep with Lidocaine; brand matches but cannot confirm Fine variant individually
-#36  TESORO DEEP  →  Group shot of TESORO Fine/Sub-Q/Deep with Lidocaine; brand matches but cannot confirm Deep variant individually
-#37  TESORO SUB - Q  →  Group shot of TESORO Fine/Sub-Q/Deep with Lidocaine; brand matches but cannot confirm Sub-Q variant individually
-#45  CELOSOME MID  →  Group shot of CELOSOME Soft/Mid/Strong/Implant; brand matches but cannot confirm Mid variant individually
-#46  CELOSOME STRONG  →  Group shot of CELOSOME Soft/Mid/Strong/Implant; brand matches but cannot confirm Strong variant individually
-#47  CELOSOME IMPLANT  →  Group shot of CELOSOME Soft/Mid/Strong/Implant; brand matches but cannot confirm Implant variant individually
-#51  THE CHAEUM PREMIUM  →  Image shows THE CHAEUM premium red box; brand matches but same image used for all 4 variants - cannot distinguish specific variant
-#52  THE CHAEUM PREMIUM  →  Image shows THE CHAEUM premium red box; brand matches but same image used for all 4 variants - cannot distinguish specific variant
-#53  THE CHAEUM PREMIUM  →  Image shows THE CHAEUM premium red box; brand matches but same image used for all 4 variants - cannot distinguish specific variant
-#54  THE CHAEUM PREMIUM  →  Image shows THE CHAEUM premium red box; brand matches but same image used for all 4 variants - cannot distinguish specific variant
-#73  P198 Filcore SB Plus  →  Marketing image shows Filcore SB product; cannot distinguish SB from SB Plus based on visible text
-#141  Product 141  →  Product name is generic placeholder Product 141; image shows Dermaheal SR vial - cannot confirm match
-#149  Product 149  →  Product name is generic placeholder Product 149; image shows Acssak Acne Clear Facial Foam - cannot confirm match
-#194  Mask  →  Product name is generic placeholder Mask; image shows Riox NEO CO2 CARBON MASK - cannot confirm match
-#203  Product 203  →  Product name is generic placeholder Product 203; image shows eu.mei Collagen Skin Care Set - cannot confirm match
-#206  ASCE+ IRLV  →  Image could not be loaded (rejected by API) - cannot classify ASCE+ IRLV
-#207  Product 207  →  Product name is generic placeholder Product 207; image shows ExoNature P198 - cannot confirm match
-#208  Product 208  →  Product name is generic placeholder Product 208; image shows VELATOX GF11 - cannot confirm match
-#215  CURENEX SCULP (PLLA)  →  Group shot shows multiple Curenex products; CURENEX brand matches but SCULP PLLA specific product not visibly labeled
-#216  CURENEX PDRN, Multi  →  Group shot shows multiple Curenex products; CURENEX brand matches but PDRN Multi specific product not visibly labeled
-#226  Product 226  →  Product name is generic placeholder Product 226; image shows CURENEX DAILY SHEER SUNSCREEN SPF 50+ - cannot confirm match
-#237  DERMAGEN Scargel  →  Image could not be loaded (rejected by API) - cannot classify DERMAGEN Scargel
-#244  DERMAGEN Cellsia Post  →  Image shows Dermagen Cellsia Cream marketing page; Dermagen brand matches but Cellsia Post vs Cellsia Cream distinction unclear
-#266  ROSE HERB TONER  →  Image shows HERB SOLUTION TONER ROSE but no visible brand name matches ROSE HERB TONER - brand unconfirmed
-#282  HERA VACUUM RF Suction Equipment  →  Shows multi-function RF vacuum equipment with no visible brand text to confirm HERA VACUUM RF Suction Equipment
-#292  Product 292  →  Placeholder name Product 292; image shows Dr.PaceLeader Premium Olive Massage Cream, no name to verify against
-#298  LIPOLAB GMS  →  Shows Lipo Lab PPC Solution but not the specific GMS variant; cannot confirm LIPOLAB GMS
-#321  Huto  →  Shows HUTOX INJ; product name is Huto which may be abbreviated HUTOX but cannot confirm exact match
-#322  Huto  →  Shows HUTOX INJ 200 Units; product name is Huto which may be abbreviated HUTOX but cannot confirm exact match
-#338  Product 338  →  Image could not be loaded (rejected by API); placeholder product name Product 338
-#342  Fere  →  Shows Korean Herex ampoules by Samyang; product name is Fere - cannot confirm match
-#350  POWER COLTRA  →  Shows PCL POWER BOOSTER by STUN MEDICAL; product is POWER COLTRA - partial name match but cannot confirm
-#357  C  →  Shows Chioctocin inj. Thioctic acid; product name is just C - cannot determine if this matches
-#406  Product 406  →  Shows Laennec inj. Human Placenta Hydrolysate; product has placeholder name Product 406
-#412  EVERLINE MEZO NEEDLE  →  Shows EVELINE COSMETICS COLLAGEN SUPER NEEDLES; product is EVERLINE MEZO NEEDLE - similar but not exact brand name match
+=== UNCERTAIN (12) ===
+#31  TESORO FINE PLUS  →  Image is very small and only the Tesoro brand mark is legible; the FINE PLUS variant text cannot be confirmed.
+#33  TESORO SUB - Q PLUS  →  Green Tesoro box is visible but the SUB-Q PLUS variant text is too small to read clearly.
+#34  TESORO IMPLANT WITH LIDOCAINE  →  Black Tesoro box is visible but the IMPLANT WITH LIDOCAINE variant text is not legible.
+#35  TESORO FINE  →  Beige/gold Tesoro box is visible but the FINE variant text is not legible.
+#36  TESORO DEEP  →  Blue Tesoro box is visible but the DEEP variant text is not legible.
+#37  TESORO SUB - Q  →  Green Tesoro box is visible but the SUB-Q variant text is not legible.
+#90  REGENOVUE PN Non  →  Image shows 'REGENOVUE PN Skin Serum' but does not visibly indicate whether this is the Non-Lidocaine variant required by the product name.
+#103  MISADI C O  →  Image shows a generic Misadi 60ml hyaluronic acid gel box without any visible 'C O' variant marking.
+#275  DN64 NEEDLE  →  Image shows a generic microneedling stamp tip in a dome case with no visible DN64 branding to confirm the specific variant.
+#276  DN16 NEEDLE  →  Image shows a generic Auto-BN Needle 20PCS BOX without a visible DN16 marking to confirm the specific variant.
+#298  LIPOLAB GMS  →  Image shows generic 'Lipo Lab' PPC Solution with no visible GMS variant marking.
+#412  EVERLINE MEZO NEEDLE  →  Image shows a generic microneedle cartridge dome with no visible EVERLINE branding or label.
 
-=== CONFIRMED (201) ===
-#1  BARBIE SLIM  →  Packaging clearly shows BARBIE SLIM lipolytic solution
-#2  MisAdi Beso  →  Packaging clearly shows MisAdi beso brand and product name
-#6  REGENOVUE FINE PLUS (CE)  →  Packaging clearly shows REGENOVUE FINE PLUS matching the product name
-#7  REGENOVUE DEEP PLUS (CE)  →  Packaging clearly shows REGENOVUE DEEP PLUS matching the product name
-#8  REGENOVUE SUB - Q PLUS (CE)  →  Packaging clearly shows REGENOVUE SUB-Q PLUS matching the product name
-#25  REVOLAX FINE PLUS  →  Packaging clearly shows REVOLAX FINE with Lidocaine matching REVOLAX FINE PLUS product
-#26  REVOLAX DEEP PLUS  →  Packaging clearly shows REVOLAX DEEP with Lidocaine matching REVOLAX DEEP PLUS product
-#27  REVOLAX SUB - Q PLUS  →  Packaging clearly shows REVOLAX SUB-Q with Lidocaine matching REVOLAX SUB-Q PLUS product
-#48  BONETTA FINE  →  Packaging clearly shows Bonetta Filler-Fine matching BONETTA FINE product name
-#49  BONETTA DEEP  →  Packaging clearly shows Bonetta Filler-Deep matching BONETTA DEEP product name
-#50  BONETTA VOLUME  →  Packaging clearly shows Bonetta Filler-Volume matching BONETTA VOLUME product name
-#68  SEDY FILL Body  →  Packaging clearly shows Sedy Fill Body Filler matching SEDY FILL Body product name
-#69  MAX Y FILL Body  →  Packaging clearly shows MAXY FILL Body Filler matching MAX Y FILL Body product name
-#71  P198 Filcore SB  →  Vial label clearly shows FILCORE SB P198 matching P198 Filcore SB product name
-#72  P198 Filcore Activating Solution  →  Vial label clearly shows FILCORE P198 ACTIVATING SOLUTION matching P198 Filcore Activating Solution
-#78  TESORO COLLAGEN  →  Packaging clearly shows Tesoro Collagen Recombinant Collagen matching TESORO COLLAGEN
-#79  ULTRAHILO  →  Packaging clearly shows ULTRAHILO HA skin booster matching ULTRAHILO product name
-#80  EVEHILO  →  Packaging clearly shows EVEHILO HA matching EVEHILO product name
-#81  H YALACE  →  Syringe and marketing image shows HYALACE branding matching H YALACE product name
-#82  REVS PRO  →  Packaging clearly shows REVS PRO 32 by REANZEN matching REVS PRO product name
-#83  AIOR50  →  Packaging clearly shows AIOR 50 HA Skin booster matching AIOR50 product name
-#85  HYALMASS  →  Packaging clearly shows HYALMASS 50 Hyaluronic acid matching HYALMASS product name
-#86  HYARON  →  Packaging clearly shows Hyaron Prefilled Inj. Sodium Hyaluronate matching HYARON product name
-#87  POWERHEALER  →  Packaging clearly shows Power Healer Multifunctional Skin Booster matching POWERHEALER product name
-#88  TRUE BELLA  →  Packaging clearly shows True Bella HA product matching TRUE BELLA product name
-#89  YOUTHFILL PN with  →  Packaging clearly shows YOUTHFILL PN+ Polynucleotide matching YOUTHFILL PN with product name
-#93  CELOSOME AQUA  →  Packaging clearly shows CELOSOME Aqua matching CELOSOME AQUA product name
-#96  Cindella Healer PN  →  Packaging clearly shows CINDELLA HEALER with PN matching Cindella Healer PN product name
-#100  HANHEAL PDRN BOOSTER  →  Packaging clearly shows HANHEAL PDRN BOOSTER matching product name
-#101  HANHEAL HA AMPOULE  →  Packaging clearly shows HANHEAL HA AMPOULE matching product name
-#102  ELAXEN PLLA MASK Poly - L  →  Packaging clearly shows ELAXEN PLLA matching ELAXEN PLLA MASK Poly-L product
-#104  SOONSU ULTRA REJU  →  Packaging clearly shows SOONSU ULTRA REJU matching product name
-#105  SOONSU SHINING PEEL  →  Packaging clearly shows SOONSU SHINING PEEL TCA 35% matching product name
-#107  Clair Eyes  →  Packaging clearly shows CLAIReyes Polynucleotide matching Clair Eyes product name
-#109  AMI EYES  →  Packaging clearly shows AMI eyes Polynucleotide matching AMI EYES product name
-#110  JUVELOOK  →  Vial label clearly shows JUVE LOOK i PLA/HA Hybrid filler matching JUVELOOK product name
-#111  EVE EYES  →  Packaging clearly shows EVE EYES PRO+ Polynucleotides matching EVE EYES product name
-#112  SPIDER AQUA EYE BOOSTER  →  Packaging clearly shows SPIDER AQUA EYE BOOSTER matching product name
-#113  EYEBELLA  →  Packaging clearly shows EYEBELLA Polynucleotide matching EYEBELLA product name
-#114  JUVE EYES  →  Packaging clearly shows JUVE Eyes Polynucleotide 1% matching JUVE EYES product name
-#115  SNOW FLOWER BLOOM Glutathione+PDRN+HA  →  Packaging clearly shows SNOW FLOWER BLOOM with Glutathione, Salmon DNA, HA matching product name
-#118  ULTRA WHITE  →  Packaging shows SOONSU ULTRAWHITE which corresponds to ULTRA WHITE product name
-#119  MIRACLE X  →  Packaging clearly shows Miracle X PCL + Botulinum Peptide Serum matching MIRACLE X product name
-#122  TOUCH UP PCL  →  Packaging clearly shows Miracle Touch Up PCL matching TOUCH UP PCL product name
-#123  TOUCH BR  →  Packaging clearly shows Miracle Touch BR matching TOUCH BR product name
-#124  PCL POWER BOOSTER  →  Packaging clearly shows PCL POWER BOOSTER by STUN MEDICAL matching product name
-#125  REJURAN SKIN BOOSTER Vial  →  Packaging clearly shows REJURAN SKIN BOOSTER matching product name
-#126  SELA TOX  →  Packaging clearly shows SELA TOX 10 by Sela Cosmetics matching SELA TOX product name
-#127  LAPUROON AURORA S UPER  →  Packaging clearly shows LAPUROON Aurora Super matching LAPUROON AURORA S UPER product name
-#129  NMN BOTTLE NAD  →  Packaging clearly shows NMN Bottle NAD+ Booster matching NMN BOTTLE NAD product name
-#130  2 XSOME  →  Packaging clearly shows 2 XSOME SKIN BOOSTER matching 2 XSOME product name
-#132  E XOXE  →  Packaging clearly shows EXOXE PURE EXO Lyophilized powder matching E XOXE product name
-#134  Botanic EXO  →  Vials clearly show BOTANIC EXO Calli EV Series I matching Botanic EXO product name
-#135  ASCE  →  Packaging clearly shows ASCE plus Scalp Care HRLV matching ASCE product name
-#136  AMMI CAPTURE TIME  →  Packaging clearly shows Ammi Capture Time PREMIUM matching AMMI CAPTURE TIME product name
-#137  ULTRA CA Bio Stimulator  →  Packaging clearly shows ULTRA CA+ Calcium Hydroxyapatite Filler Collagen Stimulator matching product name
-#138  VOLASSOM  →  Packaging clearly shows VoLassom Volumizing Bio Stimulator matching VOLASSOM product name
-#139  GOURI  →  Packaging clearly shows GOURI Polycaprolactone Injectable Implant matching GOURI product name
-#140  DERMAHEAL HSR Skin Rejuvenating  →  Packaging clearly shows Dermaheal HSR Hyaluronic Acid Skin Rejuvenating matching product name
-#145  ACLEAN GEL  →  Packaging shows aclean Gel (ACELAN) matching ACLEAN GEL product name
-#152  HAIRNA EXO SOME HAIR FILLER  →  Packaging clearly shows HAIRNA EXOSOME HAIR FILL matching HAIRNA EXO SOME HAIR FILLER product name
-#154  EXOBOOM HAIR FILLER  →  Packaging clearly shows EXOBOOM HAIR Transparent Liquid & Lyophilized Powder matching EXOBOOM HAIR FILLER
-#155  HAIR LUMA Exosome Hair Growth  →  Packaging clearly shows Hair Luma Exosome+PDRN+Peptides matching HAIR LUMA Exosome Hair Growth product
-#156  ULTRA HAIR  →  Packaging clearly shows ULTRA HAIR Hair Growth & Anti Hair Loss Solution matching product name
-#157  DERMAHEAL HL  →  Packaging clearly shows Dermaheal HL Anti-hair Loss Solution matching DERMAHEAL HL product name
-#158  FINASTE RIDE Tab  →  Packaging clearly shows Finasteride Tablets USP 1mg matching FINASTE RIDE Tab product name
-#160  DERMAGEN Trimo90 Shampoo  →  Marketing image shows Trimo90 Shampoo by Dermagen matching DERMAGEN Trimo90 Shampoo product
-#161  DERMAGEN Trimo90 Tonic  →  Packaging shows Dermagen Trimo90 Scalp Active Tonic matching DERMAGEN Trimo90 Tonic product
-#167  SCARDERM GEL  →  Packaging shows SCARDERM GEL (?ㅼ뭅?ㅺ쾾) scar treatment matching product name
-#168  SCARDERM GEL  →  Packaging shows SCARDERM GEL (?ㅼ뭅?ㅺ쾾) scar treatment matching product name
-#171  MADECASSOL GEL  →  Packaging clearly shows MADECASSOL GEL by Dongkook matching product name
-#172  MADECASSOL GEL  →  Packaging clearly shows Madecassol gel 10, 20g by Dongkook matching product name
-#175  EASYEF  →  Packaging shows Easyef Cream Skin Regeneration Ointment matching EASYEF product name
-#178  Noscarna  →  Packaging clearly shows noscarna Gel+ by Dong-A Pharm matching Noscarna product name
-#179  Bentpla Gel For Bruise, Swelling  →  Packaging shows Bentpla Gel (踰ㅽ듃?뚮씪寃? matching Bentpla Gel For Bruise, Swelling product name
-#186  Vanhalla BLEMISH Tranexamic Acid  →  Packaging clearly shows V'anhalla BLEMISH CARE TRANEXAMIC ACID SERUM matching product name
-#189  VANHALLA Ceramide Moisturizing Essence  →  Packaging clearly shows V'anhalla CERAMIDE MOISTURIZING ESSENCE IN TONER matching product name
-#191  Vanhalla CICA CALM MIST TONER  →  Packaging clearly shows V'anhalla CICA CALM MIST TONER matching product name
-#192  SOONSU AQUA CREAM  →  Packaging clearly shows SOONSU AQUA CREAM matching product name
-#199  G2 OIL LIFTING PACK  →  Packaging clearly shows G2 OIL LIFTING PACK WRINKLE MASK PACK CREAM matching product name
-#204  KLARGEN LactoBath  →  Packaging clearly shows KLARGEN LactoBath Inner Cleanser matching product name
-#205  KLARGEN  →  Packaging clearly shows KLARGEN Soln intimate care product matching KLARGEN product name
-#209  VELASH SHGF11  →  Packaging clearly shows VELASH SHGF11 Scalp Advanced Clinic 11 Cell Growth Factors matching product name
-#212  RXC RED EXO COLLA Exosome  →  Packaging clearly shows RXC RED EXO COLLA Exosome matching product name
-#213  SELASTIN TOX GF11  →  Packaging clearly shows SELASTIN TOX GF11 Anti Wrinkle and Glutathione Whitening matching product name
-#214  SELASTIN EXO PLUS Exosome Powder  →  Packaging clearly shows SELASTIN EXO PLUS Exosome PDRN Growth Factor Peptides matching product name
-#218  CURENEX REJUVENATING CREAM  →  Packaging clearly shows CURENEX REJUVENATING CREAM matching product name
-#219  CURENEX HYDRATING CLEANSER  →  Packaging clearly shows CURENEX HYDRATING CLEANSER matching product name
-#220  CURENEX LIPO (FACE AND BODY)  →  Packaging clearly shows CURENEX LIPO Slim and Contouring Solution matching CURENEX LIPO product name
-#222  CURENEX EXO BRIGHTENING CREAM  →  Packaging clearly shows CURENEX EXO BRIGHTENING CREAM matching product name
-#225  CURENEX SNOW PEEL  →  Packaging clearly shows CURENEX SNOW PEEL matching product name
-#232  DERMAGEN Soothing  →  Packaging clearly shows Dermagen Soothing Mask matching DERMAGEN Soothing product name
-#238  DERMAGEN Centellase Ointment  →  Packaging clearly shows Dermagen Centellase Ointment matching product name
-#249  GTM PDRN MASK for  →  Packaging clearly shows GTM PDRN MASK THE PREMIUM matching product name
-#250  GTM GOLD CELL PLUS  →  Packaging clearly shows GTM GOLDCELL+ THE PREMIUM matching GTM GOLD CELL PLUS product name
-#251  GTM GOLD CELL THE PREMIUM  →  Packaging shows GTM GOLDCELL+ THE PREMIUM matching GTM GOLD CELL THE PREMIUM product name
-#253  MELACELL + - Sterile  →  Marketing image clearly shows GTM MELACELL+ Brightening Skin Booster matching MELACELL+ Sterile product
-#268  O2TODERM LED PLUS Oxygen  →  Image shows OtoDerm O2TODERM equipment being used in clinic matching O2TODERM LED PLUS Oxygen product
-#269  ULDM Ult  →  Image shows ULDM equipment with explanatory text matching ULDM Ult product
-#270  O2TODERM LED PLUS + ULDM  →  Image shows O2toDerm with LED therapy dome matching O2TODERM LED PLUS + ULDM bundle product
-#271  OMEGA PDT LED Therapy Equipment for  →  Image shows OMEGA light PDT LED therapy device by O'melon matching OMEGA PDT LED Therapy Equipment
-#273  HIFFECT PLUS RMF Core Elasticity  →  Image shows HIFFECT Plus RF machine matching HIFFECT PLUS RMF Core Elasticity product
-#275  DN64 NEEDLE  →  Packaging shows DN64 by SKINCULTURE needle set matching DN64 NEEDLE product name
-#276  DN16 NEEDLE  →  Shows DN16 needle synchronization diagram matching DN16 NEEDLE
-#277  I COOL - PLUS 2ND  →  Shows i-COOL plus+ multi-function skin care equipment matching I COOL - PLUS 2ND
-#280  HERA POINT HIFU  →  Shows HERAPOINT dermal HIFU system matching HERA POINT HIFU
-#281  ACCUTONING  →  Shows Accu Tonning 1450nm laser system matching ACCUTONING
-#283  ULTRATONING Ultrasonic & RF Beauty  →  Shows ULTRA TONING brand logo and device matching ULTRATONING Ultrasonic & RF Beauty
-#285  AUTO - DN SMART Wireless  →  Shows Auto-DN smart wireless microneedling pen matching AUTO - DN SMART Wireless
-#286  12 PIN  →  Shows Auto-BN MTS needle cartridges; 12 PIN is a needle cartridge type for Auto-BN system
-#293  MisAdi Lipo  →  Shows MisAdi lipo Contouring Serum matching MisAdi Lipo
-#294  MisAdi Lipo  →  Shows MisAdi lipo Contouring Serum matching MisAdi Lipo (variant)
-#295  BARBIE SLIM  →  Shows BARBIE SLIM Lipolytic Solution matching BARBIE SLIM
-#296  DR.LIPO  →  Shows DR.LIPO+ New Generation PPC Solution matching DR.LIPO
-#297  DR.LIPO+V  →  Shows DR.LIPO+ matching DR.LIPO+V variant
-#299  LIPOLAB V LINE  →  Shows Lipo Lab V-Line V-Line Solution Premium matching LIPOLAB V LINE
-#300  SUPER V - LINE SOL  →  Shows Super V-Line Sol. matching SUPER V - LINE SOL
-#302  PINE BOTTLE  →  Shows Pine Bottle Contouring Serum matching PINE BOTTLE
-#303  ULTRA LIGHT  →  Shows SOONSU ULTRA LIGHT ampoules matching ULTRA LIGHT
-#304  F&B  →  Shows F&B Premium V-Line for Face matching F&B
-#305  Dr . LIPO PRIME  →  Shows Prime DR.LIPO+ Fat Dissolving Solution matching Dr . LIPO PRIME
-#306  KABELLINE  →  Shows Kabelline Contouring Serum matching KABELLINE
-#310  BOTULAX  →  Shows Botulax Inj. 300 UNITS Clostridium Botulinum Toxin Type A matching BOTULAX
-#311  BOTULAX  →  Shows Botulax Inj. 300 UNITS matching BOTULAX (variant)
-#312  BOTULAX  →  Shows Botulax Inj. 300 UNITS matching BOTULAX (variant)
-#313  METOX  →  Shows METOX Purified Neurotoxin Complex 100 Units matching METOX
-#314  METOX  →  Shows METOX 100 Units matching METOX (variant)
-#315  INNOTOX  →  Shows INNOTOX Botulinum Toxin Type A Complex Liquid 50 Units matching INNOTOX
-#316  INNOTOX  →  Shows INNOTOX 50 Units matching INNOTOX (variant)
-#317  NABOTA  →  Shows DAEWOONG NABOTA Botulinum Toxin Type A 200 Units matching NABOTA
-#318  NABOTA  →  Shows NABOTA 200 Units matching NABOTA (variant)
-#319  LIZTOX  →  Shows LIZTOX Inj. 100 Unit Clostridium Botulinum Toxin Type A matching LIZTOX
-#320  LIZTOX  →  Shows LIZTOX 100 Unit matching LIZTOX (variant)
-#323  M EDITOXIN  →  Shows Meditoxin Purified Botulinum Toxin Type A Complex 100 Units matching M EDITOXIN
-#326  Re N To  →  Shows Re N Tox Clostridium Botulinum Toxin Type A 200 Units matching Re N To
-#327  TOXSTA  →  Shows TOXTA Inj. Botulinum Toxin Type A 100 units matching TOXSTA
-#328  KAIMAX  →  Shows Kaimax Classic Inj. 100 units Botulinum Toxin Type A matching KAIMAX
-#329  KAIMAX  →  Shows Kaimax 100 units matching KAIMAX (variant)
-#330  WONDERTOX  →  Shows WonderTox Inj. Clostridium Botulinum Toxin 200 Units matching WONDERTOX
-#331  WONDERTOX  →  Shows WonderTox Inj. 200 Units matching WONDERTOX (variant)
-#332  LINETOX  →  Shows Linetox inj. 100 units Clostridium Botulinum Toxin Type A matching LINETOX
-#333  ZEROTOX  →  Shows ZEROTOX inj. 100 UNITS Clostridium Botulinum Toxin Type A matching ZEROTOX
-#334  CORETOX  →  Shows CORETOX Botulinum Toxin Type A 100 units matching CORETOX
-#335  ROSETOX  →  Shows ROSETOX Inj. Botulinum Toxin 100 units matching ROSETOX
-#336  HITOX  →  Shows Korean Haitox/HITOX Clostridium Botulinum Toxin Type A 100 units matching HITOX
-#337  SALINE  →  Shows Korean saline solution ampoule 180mg/20mL matching SALINE
-#339  REVITALEX INJ  →  Shows Revitalex Inj. polydeoxyribonucleotide sodium by Huons/Humedix matching REVITALEX INJ
-#340  HiDr  →  Shows HiDr inj. Polydeoxyribonucleotide sodium BMI Korea matching HiDr
-#343  LIPORASE INJ  →  Shows LIPORASE Inj. Hyaluronidase by Daehan NewPharm matching LIPORASE INJ
-#345  Belissima CE  →  Shows Belissima Sterile Absorbable PLLA Dermal Filler 365mg matching Belissima CE
-#346  E TREBELLE  →  Shows etrebelle PLA+HA Filler 200mg/Vial ROSEMEDICAL matching E TREBELLE
-#347  MENNUS PLA  →  Shows meNnus Poly lactic acid & Carboxymethyl cellulose 200mg matching MENNUS PLA
-#348  MENNUS PL L A  →  Shows meNnus 200mg matching MENNUS PL L A (variant)
-#351  POLYBOOST VOLA  →  Shows POLYBOOST VOLA PLA 450mg + HA 150mg matching POLYBOOST VOLA
-#353  JUVELOOK  →  Shows JUVE LOOK i PLA/HA Hybrid filler 30mg/vial matching JUVELOOK
-#354  JUVELOOK Volume  →  Shows JUVE LOOK Volume PLA/HA Hybrid filler 200mg/vial matching JUVELOOK Volume
-#355  CINDELLA SET  →  Shows set with CINDELLA IV, Vitamin C, and LUTHIONE matching CINDELLA SET
-#358  LIPOTOCIN INJ Thioctic Acid  →  Shows Lipotocin Inj. Thioctic acid 300mg/12mL matching LIPOTOCIN INJ Thioctic Acid
-#359  GLUTAONE INJ  →  Shows Glutaone Inj. 1200mg Glutathione reduced matching GLUTAONE INJ
-#360  Glutatine Tab  →  Shows Glutatine Tab. 100mg Glutathione reduced 60 Tab matching Glutatine Tab
-#361  DERMAGEN Glutathione Film 6X  →  Shows Dermagen Glutathione Film 6X White Tomato matching DERMAGEN Glutathione Film 6X
-#362  Vitamin C  →  Shows DHNP Vitamin C Inj. Ascorbic acid 10g/20mL matching Vitamin C
-#365  Ascorbic Acid Injection  →  Shows Huons Ascorbic Acid Inj. 500mg/2mL matching Ascorbic Acid Injection
-#369  Multivita Lyophilized  →  Shows MultiVita Inj. I.V. Infusion by Daehan NewPharm matching Multivita Lyophilized
-#370  Vita D  →  Shows Vita-D I.M. Inj. Cholecalciferol 200,000IU K-ONE PHARMA matching Vita D
-#371  Vita - D  →  Shows Vita-D I.M. Inj. Cholecalciferol matching Vita - D (variant)
-#372  Vita - D  →  Shows Vita-D I.M. Inj. Cholecalciferol matching Vita - D (variant)
-#373  BM Hid  →  Shows BM Haidi Inj. Cholecalciferol 200,000 IU/mL by BMI Korea matching BM Hid
-#374  Doxy Tab  →  Shows DOXY-T Doxycycline Hyclate Tablets USP 100mg Omega Pharma matching Doxy Tab
-#375  Doxy Tab  →  Shows DOXY-T Doxycycline Hyclate Tablets USP 100mg matching Doxy Tab (variant)
-#377  LIPOTOCIN INJ Thioctic Acid  →  Shows Lipotocin Inj. Thioctic acid 300mg matching LIPOTOCIN INJ Thioctic Acid
-#379  B - COLAMIN VIT B12  →  Shows B-colamin Inj. 2mL Hydroxocobalamin 5mg Daehan NewPharm matching B - COLAMIN VIT B12
-#385  CARTIN Inj. L - Carnitine  →  Shows Mesocartin Inj. L-Carnitine 2g/10mL Daehan NewPharm matching CARTIN Inj. L - Carnitine
-#387  WELLSCAINE PLUS CREAM Lidocaine  →  Shows Wellscaineplus Cream 450g Lidocaine+Prilocaine matching WELLSCAINE PLUS CREAM Lidocaine
-#389  WELLSCAINE CREAM  →  Shows Wellscaineplus Cream 450g Lidocaine matching WELLSCAINE CREAM
-#391  NEO - CAIN CREAM  →  Shows NEO-CAIN CREAM 10.56% Lidocaine 30g matching NEO - CAIN CREAM
-#392  NEO - CAIN CREAM  →  Shows NEO-CAIN CREAM 10.56% Lidocaine 30g matching NEO - CAIN CREAM (variant)
-#393  NEO PRO CREAM  →  Shows NEO PRO CREAM 450g Lidocaine+Prilocaine NEOGENESIS matching NEO PRO CREAM
-#395  SM CREAM  →  Shows SM Cream 10.56% Lidocaine 500g Austin Pharm matching SM CREAM
-#396  SM CREAM  →  Shows SM Cream 10.56% Lidocaine 500g matching SM CREAM (variant)
-#397  Muchcain  →  Shows MUCHCAINE Topical Anesthetic Cream Lidocaine 10.56mg matching Muchcain
-#398  M UCHCAINE  →  Shows MUCHCAINE 5% Plus Lidocaine+Prilocaine 500g matching M UCHCAINE
-#399  M UCHCAINE  →  Shows MUCHCAINE 5% Plus Lidocaine+Prilocaine 500g matching M UCHCAINE (variant)
-#400  LIDOCAINE HCI I  →  Shows Daehan Lidocaine HCl injection vial matching LIDOCAINE HCI I
-#401  LAENNEC  →  Shows Laennec inj. Human Placenta Hydrolysate 2mL x 50 Amp matching LAENNEC
-#402  LAENNEC  →  Shows Laennec inj. Human Placenta Hydrolysate matching LAENNEC (variant)
-#403  MELSMON  →  Shows MELSMON Japanese placental ampoules matching MELSMON
-#404  C URACEN JBP PLAMON INJ  →  Shows JBP Plamon Inj. placenta extract 2mL x 10 Amp matching C URACEN JBP PLAMON INJ
-#417  Sungshim meso  →  Shows SUNGSHIM 30G Sterile Single Use Needle matching Sungshim meso
-#418  Sungshim  →  Shows SUNGSHIM 30G Sterile Single Use Needle matching Sungshim
-#419  Sungshim PEN NEEDLES  →  Shows SUNGSHIM Sterile Single-Use Insulin Pen Needle 32G matching Sungshim PEN NEEDLES
-#420  DK Filler Cannula with  →  Shows DK Filler Cannula in various gauges matching DK Filler Cannula with
-#421  DK Filler Cannula with  →  Shows DK Filler Cannula in various gauges matching DK Filler Cannula with (variant)
-#425  SYRINGE MI X ING TUBE (CONNECTOR) (For  →  Shows clear plastic syringe mixing tube connector matching SYRINGE MI X ING TUBE (CONNECTOR)
-#426  SYRINGE MIXING TUBE (CONNECTOR)  →  Shows clear plastic syringe mixing tube connector matching SYRINGE MIXING TUBE (CONNECTOR)
-#427  RESTYLANE DEFYNE  →  Shows Restylane DEFYNE The Emervel Collection Injectable Gel with Lidocaine matching RESTYLANE DEFYNE
-#428  RESTYLANE VOLY ME  →  Shows Restylane VOLYME The Emervel Collection Injectable Gel with Lidocaine matching RESTYLANE VOLY ME
-#429  RESTYLANE KYSSE  →  Shows Restylane KYSSE The Emervel Collection Injectable Gel with Lidocaine matching RESTYLANE KYSSE
-#435  DYSPORT  →  Shows Dysport dbotulinumtoxin 500 units/vial by Ipsen Biopharm matching DYSPORT
-#436  XEOMIN  →  Shows XEOMIN incobotulinumtoxinA 100 units/vial by Merz Aesthetics matching XEOMIN
-#437  BOTOX  →  Shows BOTOX VISTA Botulinum Toxin Type A 50 units by Allergan matching BOTOX
+=== CONFIRMED (309) ===
+#1  BARBIE SLIM  →  Packaging clearly shows BARBIE SLIM lipolytic solution box and vial.
+#2  MisAdi Beso  →  Box clearly labeled MisAdi beso 1ml 24HA matching the product name.
+#9  SOSUM S (CE) NO Lidocaine  →  Packaging clearly shows SOSUM with variant S highlighted (yellow box).
+#10  SOSUM M (CE) NO Lidocaine  →  Packaging clearly shows SOSUM with variant M highlighted (blue box).
+#11  SOSUM H (CE) NO Lidocaine  →  Packaging clearly shows SOSUM with variant H highlighted (purple box).
+#12  SOSUM SOFT (CE)  →  Packaging clearly labeled SOSUM SOFT matching the product.
+#13  SOSUM HARD  →  Packaging clearly labeled SOSUM HARD matching the product.
+#19  VOM VOLUME (CE)  →  Packaging clearly shows VOM volume cross-linked HA filler matching the product.
+#28  DERMALAX PLUS  →  Packaging clearly shows Dermalax PLUS with lidocaine matching the product.
+#29  DERMALAX DEEP PLUS  →  Packaging clearly shows Dermalax DEEP PLUS with lidocaine matching the product.
+#30  DERMALAX IMPLANT PLUS  →  Packaging clearly shows Dermalax IMPLANT PLUS with lidocaine matching the product.
+#38  YOUTHFILL FINE  →  Box clearly shows YOUTHFILL FINE with Lidocaine.
+#39  YOUTFILL DEEP  →  Box clearly shows YOUTHFILL DEEP with Lidocaine.
+#40  YOUTHFILL SHAPE  →  Box clearly shows YOUTHFILL SHAPE with Lidocaine.
+#41  SOONSU FILL (E . P . T . Q)  →  Green Soonsu/E.P.T.Q. style box with 100 marking matches the SOONSU FILL line.
+#42  SOONSU FILL (E . P . T . Q)  →  Orange Soonsu/E.P.T.Q. style box with 300 marking matches the SOONSU FILL line.
+#43  SOONSU FILL (E . P . T . Q)  →  Blue Soonsu/E.P.T.Q. style box with 500 marking matches the SOONSU FILL line.
+#44  CELOSOME SOFT  →  Box clearly shows CELOSOME Soft with Lidocaine.
+#45  CELOSOME MID  →  Box clearly shows CELOSOME Mid with Lidocaine.
+#46  CELOSOME STRONG  →  Box clearly shows CELOSOME Strong with Lidocaine.
+#47  CELOSOME IMPLANT  →  Box clearly shows CELOSOME Implant with Lidocaine.
+#48  BONETTA FINE  →  Box clearly shows Bonetta Filler-Fine.
+#49  BONETTA DEEP  →  Box clearly shows Bonetta Filler-Deep.
+#50  BONETTA VOLUME  →  Box clearly shows Bonetta Filler-Volume.
+#51  THE CHAEUM PREMIUM  →  THE CHAEUM Premium red box with 1 filled dot indicator matches the premium line first variant.
+#52  THE CHAEUM PREMIUM  →  THE CHAEUM Premium red box with 2 filled dots indicator matches the premium line second variant.
+#53  THE CHAEUM PREMIUM  →  THE CHAEUM Premium red box with 3 filled dots indicator matches the premium line third variant.
+#54  THE CHAEUM PREMIUM  →  THE CHAEUM Premium red box with 4 filled dots indicator matches the premium line fourth variant.
+#55  VOLUDERM FINE HA  →  Box clearly shows VOLUDERM FINE, Cross-linked HA with Lidocaine.
+#56  VOLUDERM DEEP HA  →  Box clearly shows VOLUDERM deep variant.
+#57  VOLUDERM SUB - Q HA  →  Box clearly shows VOLUDERM sub q variant.
+#58  ULTRAFILL KISS  →  Box clearly shows ULTRA FILL KISS For lips with Lidocaine.
+#59  ULTRAFILL FINE  →  Box clearly shows ULTRA FILL Fine with Lidocaine.
+#60  ULTRAFILL DEEP  →  Box clearly shows ULTRA FILL Deep with Lidocaine.
+#61  ULTRAFILL SHAPE  →  Box clearly shows ULTRA FILL Shape with Lidocaine.
+#62  ULTRAFILL IMPLANT  →  Box clearly shows ULTRA FILL Implant with Lidocaine.
+#68  SEDY FILL Body  →  Image shows 'SEDY FILL Sexy +Body' HA filler box matching the product name.
+#72  P198 Filcore Activating Solution  →  Image shows the ExoHealer 'P198 Filcore Activating Solution' vial and box matching the product name.
+#74  LEXYAL REJU PDRN+PN  →  Image shows 'LEXYAL REJU' vial and box advertising 'Innovative PDRN & PN Technology', matching the product name.
+#75  BELLONA AQUA  →  Image shows 'Bellona Aqua' Repair Hyaluronic Acid HA 45 box, matching the product name.
+#76  BELLONA OPACIOUS SERUM  →  Image shows 'Bellona Opacious' serum vial and pink box, matching the product name.
+#78  TESORO COLLAGEN  →  Image shows a 'Tesoro' branded package, consistent with TESORO COLLAGEN despite low resolution.
+#79  ULTRAHILO  →  Image shows 'ULTRAHILO' HA prefilled syringe box matching the product name.
+#82  REVS PRO  →  Image shows 'REVS PRO 32' by Reanzen, matching the product name.
+#83  AIOR50  →  Image shows green 'AIOR 50' High Molecular HA Skin booster box matching the product name.
+#85  HYALMASS  →  Image shows 'HYALMASS 50' Hyaluronic acid box matching the product name.
+#86  HYARON  →  Image shows Dongkook 'Hyaron' Prefilled Inj box matching the product name.
+#88  TRUE BELLA  →  Image shows 'True Bella' High/Low molecule HA box matching the product name.
+#89  YOUTHFILL PN with  →  Image shows 'YOUTHFILL PN with LIDOCAINE' box matching the (truncated) product name 'YOUTHFILL PN with'.
+#93  CELOSOME AQUA  →  Image shows 'CELOSOME Aqua HA60' light-blue box matching the product name.
+#94  REJEUNESSE SPARKLE HA  →  Image shows 'Rejeunesse Sparkle HA 50' with Lidocaine box matching the product name.
+#95  Oasis  →  Image shows 'OASIS REPAIR PN Polynucleotide' box, consistent with the 'Oasis' brand product name.
+#96  Cindella Healer PN  →  Image shows Dermagen Plus 'CINDELLA HEALER' box with PN labeling, matching the product name.
+#97  KIARA REJU  →  Image shows 'Kiara Reju PDRN' Elastic & Rejuvenating box matching the product name.
+#98  GemVous PN  →  Image shows red 'GemVous PN' Skin Booster box matching the product name.
+#100  HANHEAL PDRN BOOSTER  →  Image shows HANHEAL PDRN BOOSTER box with 5ml x 5vial pink ampoules matching the brand and variant.
+#101  HANHEAL HA AMPOULE  →  Image clearly shows HANHEAL HA AMPOULE box with 5 vials matching brand and variant.
+#104  SOONSU ULTRA REJU  →  Image shows SOONSU ULTRA REJU box with PN/PDRN multi amino acid formulation matching brand and variant.
+#105  SOONSU SHINING PEEL  →  Image shows SOONSU SHINING PEEL box with TCA 35% + Multi-Acids labeling matching brand and variant.
+#106  CINDELLA I (PN)  →  Image shows Dermagen Plus CINDELLA i (PN) syringe box matching brand and variant.
+#107  Clair Eyes  →  Image shows Daesung Enterprise CLAIReyes polynucleotide syringe box matching the Clair Eyes name.
+#108  ULTRA EYE  →  Image shows ULTRA EYES box with HA + Polynucleotide formulation matching the brand and variant.
+#109  AMI EYES  →  Image shows AMI eyes Polynucleotide PN rejuvenation box matching brand and variant.
+#110  JUVELOOK  →  Image shows JUVELOOK PLA/HA Hybrid filler vial matching brand and variant.
+#111  EVE EYES  →  Image shows EVE EYES PRO+ under eye rejuvenation polynucleotide box matching brand and variant.
+#112  SPIDER AQUA EYE BOOSTER  →  Image shows SPIDER AQUA EYE BOOSTER syringe by Stunmedical matching brand and variant.
+#113  EYEBELLA  →  Image shows EYEBELLA polynucleotide 1% pre-filled syringe box matching brand and variant.
+#114  JUVE EYES  →  Image shows JUVE Eyes 2mL rejuvenation polynucleotide box matching brand and variant.
+#115  SNOW FLOWER BLOOM Glutathione+PDRN+HA  →  Image shows SNOW FLOWER BLOOM Time Bridge Vial with Glutathione, Salmon DNA and Hyaluronic Acid matching brand and variant.
+#116  MisAdi White Skin Glazer  →  Image shows MisAdi white Brightening Booster vial box matching the Skin Glazer brand.
+#117  EVE WHITE  →  Image shows EVE WHITE Skin Booster 5 Elements box with PDRN/Glutathione matching brand and variant.
+#118  ULTRA WHITE  →  Image shows SOONSU ULTRA WHITE biological sterilized whitening solution box matching brand and variant.
+#119  MIRACLE X  →  Image shows Miracle X PCL + Botulinum Peptide Serum Liquid Facelift box and vial matching brand and variant.
+#120  MIRACLE H HA  →  Image shows Miracle H PCL + HA based Serum Liquid Face Lift box with 5 vials matching brand and variant.
+#121  MIRACLE L PCL  →  Image shows Miracle L PCL based Serum Liquid Face Lift box and vial matching brand and variant.
+#122  TOUCH UP PCL  →  Image shows Miracle Touch Up PCL based Serum box with 5 vials matching the brand and variant.
+#123  TOUCH BR  →  Image shows Miracle Touch BR box with 5 dark vials matching brand and variant.
+#124  PCL POWER BOOSTER  →  Image shows Stunmedical PCL POWER BOOSTER 2ml vial and box matching brand and variant.
+#126  SELA TOX  →  Image shows SELA TOX 10 Anti Wrinkle and Whitening System ampoule by Sela Cosmetics matching brand and variant.
+#127  LAPUROON AURORA SUPER  →  Image shows LAPUROON Aurora Super Sodium DNA PDRN box matching brand and variant.
+#128  LAPUROON AURORA VIVID  →  Image shows LAPUROON Aurora Vivid Sodium DNA PDRN box and vial matching brand and variant.
+#131  EXOGEN FOR HAIR AND SKIN  →  Image shows Exogen Pure Exo x Sterilized HA Solution vial and box, matching the brand and variant.
+#133  EXOBOOM SKIN  →  Image shows ExoBoom Skin box with two-vial kit, matching the product name and category.
+#134  Botanic EXO  →  Image shows BotanicExo Advanced EV Complex Revitalizer Calli EV Series I box by SPHEBIO, matching the name.
+#135  ASCE  →  Image shows ASCE plus Derma Signal Kit SRLV lyophilized powder/diluent vials, matching the ASCE brand.
+#136  AMMI CAPTURE TIME  →  Image shows Ammi Capture Time Premium Whitening & Anti-Wrinkle box with five pre-filled syringes, matching the name.
+#137  ULTRA CA Bio Stimulator  →  Image shows Ultra CA+ Calcium Hydroxyapatite Filler Collagen Stimulator box, matching the name and bio-stimulator variant.
+#138  VOLASSOM  →  Image shows Volassom Volumizing Bio Stimulator box, matching the product name.
+#139  GOURI  →  Image shows Gouri Polycaprolactone Injectable Implant by Dexlevo, matching the brand name.
+#140  DERMAHEAL HSR Skin Rejuvenating  →  Image shows Dermaheal HSR Hyaluronic Acid Skin Rejuvenating box with vials, matching the exact variant.
+#142  ESRELLA TEA TREE ESSENCE  →  Image shows Bellona Esrella Tea Tree Essence 3ml/5vials box, matching the product name.
+#143  REPIDA CLEARNEST INTENSIVE FOAM CLEANSER  →  Image shows Repida Clearnest Intensive Foam Cleanser tube, matching the full product name.
+#144  ACON DEEP CLEANSING FOAM  →  Image shows Acon Deep Cleansing Foam tube, matching the product name and variant.
+#145  ACLEAN GEL  →  Image shows aclean gel tube and box by Dong-A Pharm, matching the product name.
+#146  ACLEAN BODY ACNE TREATMENT SPRAY  →  Image shows aclean Body Acne Treatment Spray 2% Salicylic Acid 100ml, matching the name and variant.
+#147  ACNON CREAM  →  Image shows acnon cream tube and box 13g by Dong-A Pharm, matching the product name.
+#148  AZALEA CREAM  →  Image shows Azalea Cream 30g tube and box by Leo, matching the product name.
+#150  P198 Filcore HB Plus  →  Image shows ExoHealer Filcore HB Plus P198 vials by K-One Pharma, matching the P198 Filcore HB Plus name.
+#151  DR.H.RICH HAIR FILLER  →  Image shows Dr.H.Rich active complex for scalp revitalising box with 2 syringes, matching the hair filler name.
+#152  HAIRNA EXO SOME HAIR FILLER  →  Image shows Hairna Exosome Hair Fill box, matching the product name.
+#153  ASCE HRLV EXO SOME HAIR FILLER  →  Image shows ASCE plus Scalp Care HRLV lyophilized powder kit, matching the ASCE HRLV hair filler name.
+#154  EXOBOOM HAIR FILLER  →  Image shows ExoBoom Hair box with two vials, matching the hair filler name.
+#155  HAIR LUMA Exosome Hair Growth  →  Image shows HairLuma Exosome/PDRN/Peptides kit with vials, matching the Hair Luma exosome hair growth name.
+#156  ULTRA HAIR  →  Image shows Ultra Hair Hair Growth & Anti Hair Loss Solution box from Korea, matching the product name.
+#159  DERMAGEN Many Shoot Plus  →  Image shows Dr.Cho Many Shoot+ anti-hairloss micelle complex ampoule, matching the Many Shoot Plus variant.
+#160  DERMAGEN Trimo90 Shampoo  →  Image shows Dermagen Trimo90 Scalp Active Shampoo 500ml bottle, matching the product name.
+#161  DERMAGEN Trimo90 Tonic  →  Image shows Dermagen Trimo90 Scalp Active Tonic bottle and box, matching the product name.
+#162  DERMAGEN Mohealer Shampoo  →  Image shows Mohealer shampoo bottle with Dermagen branding, matching the product name.
+#163  DERMAGEN Mohealer Tonic Scalp  →  Image shows Mohealer Tonic scalp bottle by Dermagen, matching the product name.
+#164  MelaNosa Cream  →  Image shows MelaNosa Cream Hydroquinone 4% Melasma Treatment 30g tube and box, matching the product name.
+#165  ALBENDAZOLE  →  Korean text reads 젠타졸/알벤다졸 (Gentazol/Albendazole) tablets matching the ALBENDAZOLE pharmacy product.
+#166  D PANSEPTIC CREAM  →  Image shows Dong-A 디판셉틱 크림 (D-Panseptic Cream) tube and box matching the product name.
+#167  SCARDERM GEL  →  Image clearly shows 스카덤 겔 (Scardum Gel) 20g tube and box from Shinshin Pharmaceutical.
+#168  SCARDERM GEL  →  Same Scardum Gel product image as 167 matching the duplicate SCARDERM GEL listing.
+#169  RECLAN (PDRN SOLUTION)  →  Image shows Dongkook 리클란 (Reclan) PDRN ampoule solution box matching the product.
+#170  EYEOCOOL RENEW PDRN  →  Image shows Dong-A 아이오쿨 리뉴 PDRN (EyeOcool Renew PDRN) eye solution box matching the name.
+#173  MELATONING CREAM  →  Image shows MelaToning Cream Hydroquinone 2% 30g tube and box matching the product name.
+#174  EGF ACTIVE VITAL CREAM  →  Image shows Hanmi PRO-CALM EGF Active Vital Cream tube and box matching the product.
+#175  EASYEF  →  Image shows Easyef 이지에프 ointment 10g tube and box matching the EASYEF product name.
+#176  D - Panthenol Cream  →  Image shows Dong-A :D-판테놀 (D-Panthenol) ointment tube and box matching the product name.
+#177  Rejuvenex PDRN Cream  →  Image shows 리쥬비넥스 (Rejuvinex/Rejuvenex) PDRN cream 10g tube and box matching the product.
+#178  Noscarna  →  Image shows Dong-A 노스카나 (Noscarna / no scar) gel 10g tube and box matching the product.
+#179  Bentpla Gel For Bruise, Swelling  →  Image shows Bentpla Gel 15g labelled For Bruise, Swelling, Contusion matching the product name.
+#180  Rejunera EXO - PDRN CREAM  →  Image shows Rejunera EXO-PDRN Cream squalane+PDRN tube matching the product name.
+#181  ASCEplus HomeCare Sunshine Cushion PRO  →  Image shows ASCEplus blue Sunshine Cushion compact with puff matching the HomeCare Sunshine Cushion PRO.
+#182  CELLEXO Bio - Cellulose Exosome  →  Image shows STUN MEDICAL CELLEXO Bio-Cellulose Mask formulated with exosome matching the Bio-Cellulose Exosome product.
+#183  CREBEAU Placenta Pearl Essence Mask  →  Image shows CreBeau Placenta Pearl Essence Mask sheet and pouch matching the product name.
+#184  SPIDER TOXIN PROGRAM Toxin  →  Image shows OPACIOUS Spider Toxin Program red box with spider web logo matching the SPIDER TOXIN PROGRAM Toxin product.
+#185  Rejuran Healer Calming Lip Balm  →  Image shows REJURAN Healer Calming Lip Balm 3.7g c-PDRN 0.3% stick and box matching the product name.
+#186  Vanhalla BLEMISH Tranexamic Acid  →  Image shows Vanhalla Blemish Care Tranexamic Acid 3 Serum pink bottle matching the BLEMISH Tranexamic Acid product.
+#188  Vanhalla ETINOL 3R SERUM Wrinkle  →  Image shows Vanhalla Retinol 3R Serum purple bottle and box matching the ETINOL 3R SERUM Wrinkle product (likely typo for Retinol).
+#191  Vanhalla CICA CALM MIST TONER  →  Image shows Vanhalla CICA Calm Mist Toner 250ml white bottle matching the product name exactly.
+#192  SOONSU AQUA CREAM  →  Image shows SOONSU Aqua Cream 50ml green and silver box matching the product name.
+#193  SKIN MARKER PEN (White  →  Image shows Tondaus white surgical skin marker pen matching the SKIN MARKER PEN (White) product.
+#194  Mask  →  Image shows multiple Dewy sheet mask variants (Pearl, Aloe Vera, Snail, Collagen, etc.) matching the generic Mask product name.
+#195  OPACIOUS COLLAGEN MASK  →  Image shows OPACIOUS Real Collagen Sleeping Mask box matching brand and product type.
+#196  INVU REPARATIVE BB  →  Image shows INVU Reparative BB tube with SPF 50+ matching the product name.
+#197  REPIDA BODY TONE - UP RADIANCE SERUM  →  Image shows repida INVU by Seoul Body Tone-Up Radiance Serum tube and box matching exactly.
+#198  VV REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM  →  Image shows repida AZULENE H9 DERMA PLUS BOOSTER CREAM purple tube matching the product name.
+#199  G2 OIL LIFTING PACK  →  Image shows G2 Oil Lifting Pack Wrinkle Mask Pack Cream tube and box matching the name.
+#200  WHEAT GERM AMPOULE  →  Image shows Wheat Germ Ampoule dropper bottle and box matching the product name.
+#201  EU.MEI SUN ESSENCE  →  Image shows eu.mei Sun Essence SPF 50+ tube and box matching brand and product.
+#202  E U.MEI YOUTH FIRMING EYE CREAM 30G A  →  Image shows eu.mei Youth Firming Eye Cream lifting & anti-wrinkle bottle matching the name.
+#204  KLARGEN LactoBath  →  Image shows KLARGEN LactoBath Inner Cleanser tube matching the brand and product.
+#205  KLARGEN  →  Image shows KLARGEN Soln pump bottle and box, consistent with the generic KLARGEN name.
+#206  ASCE+ IRLV  →  Image shows ASCE+ Intimate Care IRLV box with vials 1 (lyophilized powder) and 2 (diluent) matching exactly.
+#209  VELASH SHGF11  →  Image shows VELASH SHGF11 Scalp Advanced Clinic box matching brand and variant.
+#210  CAMELLEX Camellia Exo No.5 Exosome  →  Image shows Camellex Camellia Exo No.5 exosome kit with paired vials matching the product.
+#211  LXC LACTO EXO COLLA Exosome  →  Image shows LXC Lacto Exo Colla exosome boxes and vials matching the product name.
+#212  RXC RED EXO COLLA Exosome  →  Image shows RXC Red Exo Colla exosome box and vials matching brand and variant.
+#213  SELASTIN TOX GF11  →  Image shows SELASTIN TOX yellow vials and box, consistent with the SELASTIN TOX GF11 product.
+#214  SELASTIN EXO PLUS Exosome Powder  →  Image shows SELASTIN EXO PLUS Exosome + PDRN + Growth Factor Peptide kit matching the product.
+#215  CURENEX SCULP (PLLA)  →  Image shows CURENEX Sculp PLLA Collagen Biostimulator vial matching brand and variant.
+#217  CURENEX DAILY CARE SKINBOOSTER (SERUM)  →  Image shows CURENEX Dailycare Skin Booster serum dropper with PDRN peptide complex matching the name.
+#219  CURENEX HYDRATING CLEANSER  →  Image shows CURENEX Hydrating Cleanser box with PDRN and rose extract matching the product.
+#220  CURENEX LIPO (FACE AND BODY)  →  Image shows CURENEX LIPO Slim & Contouring vials and box matching the product name.
+#222  CURENEX EXO BRIGHTENING CREAM  →  Image shows CURENEX Exo Brightening Cream tube and box matching the product name.
+#223  CURENEX EYE PN  →  Image shows CURENEX eye Polynucleotide 1% + HA syringe box matching the Eye PN product.
+#225  CURENEX SNOW PEEL  →  Image shows CURENEX Snow Peel powder vials and activator matching the product.
+#227  DERMAGEN Egensia Cream  →  Image shows Dermagen Egensia Cream Post Laser tube and box matching brand and variant.
+#228  Dr. PICOS EGENCICA CREAM  →  Image shows Dr.Picos Egencica Cream tube with PDRN Transome and Centella matching the name.
+#229  Dr. Picos RMV Repair Cream  →  Image shows Dr.Picos RMV Repair Cream tube matching the name and Dermagen line branding.
+#230  Dr. Picos Ureanol Cream  →  Image shows Dr.Picos Ureanol Cream tube matching the name and Dermagen line branding.
+#232  DERMAGEN Soothing  →  Image shows Dermagen Soothing Mask sachets matching the Soothing product name.
+#234  DERMAGEN White Sun Cream  →  Image shows Dermagen White Sun Cream SPF50+ tube and box matching the name.
+#236  DERMAGEN RM Repair Cream  →  Image shows Dermagen RM Repair Moisturizing Cream tube and box matching the name.
+#237  DERMAGEN Scargel  →  Image shows Dermagen Scargel silicone gel tube matching the name.
+#238  DERMAGEN Centellase Ointment  →  Image shows Dermagen Centellase Ointment tube and box matching the name.
+#240  DERMAGEN Cicarown Cream  →  Image shows a Cicarown cream tube matching the product variant under the Dermagen line.
+#241  DERMAGEN Cindelria Tone - U  →  Image shows Cindelria Tone-Up Sun Cream tube matching the product variant.
+#242  DERMAGEN Bichaeahn Pore Toning Cream  →  Image shows a Bichaeahn Pore Toning bottle matching the product name.
+#243  DERMAGEN Cellsia Post  →  Image shows Cellsia Cream tube labeled Post Laser matching the Cellsia Post variant.
+#244  DERMAGEN Cellsia Post  →  Image shows a 500g Cellsia Cream pump bottle labeled Post Laser matching the Cellsia Post variant.
+#246  EXOSIA Skin Booster Part  →  Image shows an Exosia skin booster vial and box matching the product name.
+#248  GTM EXOMELA - EXO Signal  →  Image shows GTM Exomela Exosome Skin Booster with EXO Signal 1000 Powder matching the name.
+#249  GTM PDRN MASK for  →  Image shows GTM PDRN Mask The Premium box matching the product name.
+#250  GTM GOLD CELL PLUS  →  Image shows GTM Goldcell+ The Premium box matching the Gold Cell Plus variant.
+#251  GTM GOLD CELL THE PREMIUM  →  Image shows GTM Gold Cell The Premium orange box and vials matching the product name.
+#252  MELACELL THE PREMIUM  →  Image shows GTM Melacell The Premium whitening skin booster matching the product name.
+#253  MELACELL + - Sterile  →  Image shows GTM Melacell+ The Premium sterile vials matching the Melacell+ variant.
+#254  GTM Balance Cleansing Gel  →  Image shows GTM Balance Cleansing Gel box matching the product name.
+#255  PDRENZA Serum  →  Image shows GTM PDRENZA Serum bottle and box matching the product name.
+#256  PDRENZA Cream  →  Image shows GTM PDRENZA Cream jar matching the product name.
+#257  GTM MELA DUAL Day  →  Image shows GTM Mela Dual Day & Night Cream matching the product name.
+#258  VITA K REPAIR CREAM  →  Image shows GTM Vita-K Repair Cream tube and box matching the product name.
+#259  COLLAGEN SERUM  →  Image shows GTM Collagen Serum bottle and box matching the product name.
+#260  T - TOX PEEL  →  Image shows GTM T-Tox Peel vials in a box matching the product name.
+#261  T - TOX PEEL  →  Image shows GTM T-TOX PEEL kit with branded powder and solution vials, matching the name and GTM category.
+#264  GTM Active Protect Sun Serum  →  Image shows GTM Active Protection Sun Serum SPF50+ PA++++ tube and box, matching the product name.
+#265  ALOE SOOTHING GEL  →  Image shows GTM Aloe Soothing Gel 500ml pump bottle, matching the name and category.
+#266  ROSE HERB TONER  →  Image shows GTM Rose Herb Toner 500ml bottle, matching the name and category.
+#268  O2TODERM LED PLUS Oxygen  →  Image shows the O2toDerm LED-equipped oxygen dome unit matching the O2TODERM LED PLUS Oxygen name.
+#269  ULDM Ult  →  Image shows a uldm-branded lifting device with handpieces, matching the ULDM Ult name.
+#270  O2TODERM LED PLUS + ULDM  →  Image shows the O2toDerm dome unit alongside the ULDM device with a plus sign, matching the combined product name.
+#271  OMEGA PDT LED Therapy Equipment for  →  Image shows an OMEGA PDT branded LED therapy arch device, matching the name.
+#272  DIASONO.310 Diacell Peel: Dia/Aqua  →  Image shows DIASONO-310 puREyoung peel station, matching the DIASONO.310 Diacell Peel name.
+#273  HIFFECT PLUS RMF Core Elasticity  →  Image shows HIFFECT Plus RF device with fractional RF, multipolar RF and cooling modes, matching the name.
+#277  I COOL - PLUS 2ND  →  Image shows i-COOL plus device by K.L Global with multiple handpieces, matching the I COOL - PLUS 2ND name.
+#278  ULTRA SKIN MASTER Multi  →  Image shows ULTRA SKIN MASTER integrated skin care system with multiple handpieces, matching the name.
+#279  HYSONIC THREE WAY Multi  →  Image shows HYSONIC THREE WAY multifunction device with several handpieces, matching the name.
+#280  HERA POINT HIFU  →  Image shows HERA POINT branded HIFU device with cartridges, matching the name.
+#281  ACCUTONING  →  Image shows the ACCU TONING upright laser tower by K.L Global, matching the ACCUTONING name.
+#282  HERA VACUUM RF Suction Equipment  →  Image shows HERA Vacuum multi-RF suction device with vacuum and RF handpieces, matching the name.
+#285  AUTO - DN SMART Wireless  →  Image shows the Auto-DN Smart wireless skin care master pen with its presentation box, matching the name.
+#288  JOLLA CLEANSING LOTION  →  Image shows a jolla-branded Cleansing Lotion pump bottle, matching the name and salon-grade category.
+#289  JOLLA GREEN TEA MODELING MASK  →  Image shows a jolla Premium Modeling Mask with Green Tea large pouch, matching the name.
+#290  JOLLA PEPPERMINT MODELING MASK  →  Image shows a jolla Premium Modeling Peppermint Mask large pouch, matching the name.
+#293  MisAdi Lipo  →  Image shows the MisAdi lipo contouring serum box for face and body, matching the name and lipolytics category.
+#294  MisAdi Lipo  →  Image shows the MisAdi lipo contouring serum carton (front view), matching the name and lipolytics category.
+#297  DR.LIPO+V  →  Image shows red 'DR.LIPO+' V-Line Contour Solution box matching DR.LIPO+V.
+#299  LIPOLAB V LINE  →  Image clearly shows 'Lipo Lab V-Line Premium' purple box and vial.
+#300  SUPER V - LINE SOL  →  Image shows 'Super V-Line Sol.' black box with amber vial matching the name.
+#303  ULTRA LIGHT  →  Image shows SOONSU 'ULTRA LIGHT' box and vial matching the name.
+#305  Dr . LIPO PRIME  →  Image shows 'Prime DR.LIPO+' set matching Dr. LIPO PRIME.
+#306  KABELLINE  →  Image clearly shows 'Kabelline' Contouring Serum matching the name.
+#308  SLIM POINT FACE & BODY  →  Image clearly shows 'SLIM POINT Solution for Face & Body' matching the name.
+#310  BOTULAX  →  Image shows Botulax 100 Units/Vial vial and box matching the name.
+#311  BOTULAX  →  Image shows Botulax 200 Units/Vial with purple wave design matching the name.
+#312  BOTULAX  →  Image shows Botulax 300 Units/Vial with orange cap matching the name.
+#313  METOX  →  Image shows METOX 100 Units teal box and vial matching the name.
+#314  METOX  →  Image shows METOX 200 Units purple box with green cap vial matching the name.
+#315  INNOTOX  →  Image shows gold Innotox box and vial matching the name.
+#316  INNOTOX  →  Image shows red Innotox box and vial matching the name.
+#317  NABOTA  →  Image shows Daewoong Nabota 100U Spanish-labeled vial matching the name.
+#318  NABOTA  →  Image shows Daewoong Nabota 200 Units box and vial matching the name.
+#319  LIZTOX  →  Image shows LIZTOX 100 unit orange-themed box and vial matching the name.
+#320  LIZTOX  →  Image shows LIZTOX 200 unit green-themed box and vial matching the name.
+#324  Meditoxin  →  Image shows Meditoxin 100 units pink box and vial matching the name.
+#328  KAIMAX  →  Image shows Kaimax Classic 100 units blue-themed box and vial matching the name.
+#329  KAIMAX  →  Image shows Kaimax Classic 200 units purple-themed box and vial matching the name.
+#330  WONDERTOX  →  Image shows WonderTox Inj. 100 units red box and vial matching the name.
+#331  WONDERTOX  →  Image shows WonderTox Inj. 200 units gold box and vial matching the name.
+#332  LINETOX  →  Image shows Linetox Inj. box and vial matching the name.
+#333  ZEROTOX  →  Image shows ZEROTOX inj. 100 Units purple box and vial matching the name.
+#335  ROSETOX  →  Image shows pink RoseTox-branded 100 units box and vial with large 'R' matching the name.
+#336  HITOX  →  Image shows HITOX 100 units Ethical box and vial matching the name.
+#337  SALINE  →  Image shows BASE Laboratories Sterile Hypertonic Saline Solution ampoules, matching SALINE.
+#339  REVITALEX INJ  →  Korean label reads 리비탈렉스주 (Revitalex Inj) by Humedix, matching REVITALEX INJ.
+#340  HiDr  →  Korean label reads 하이디알 주 (HiDiAl/HiDr Inj) by BMI, matching HiDr product name.
+#343  LIPORASE INJ  →  Image clearly shows LIPORASE Inj. (Hyaluronidase) by Daehan NewPharm, matching the product name.
+#344  BM Hylunidase Inj. Hyaluronidase  →  Korean label reads 비엠 히루니다제 주 (BM Hirunidase/Hylunidase) Hyaluronidase 1,500 IU by BMI, matching the product.
+#345  Belissima CE  →  Image shows Belissima PLLA Dermal Filler box with CE 1434 marking, matching Belissima CE.
+#348  MENNUS PL L A  →  Image shows meNnus vial 200mg labeled Poly-L-lactic acid, matching MENNUS PLLA.
+#350  POWER COLTRA  →  Image shows POWER COL-TRA Poly-L-Lactic Acid 365mg by Stunmedical, matching POWER COLTRA.
+#351  POLYBOOST VOLA  →  Image shows POLYBOOST VOLA vial 600mg with PLA 450mg + HA 150mg, matching the product.
+#352  PDLLA RAVENNA Collagen Booster PDLLA  →  Image shows PDLLA RAVENNA Collagen Booster (PDLLA 1000mg/HA 350mg), matching the product.
+#353  JUVELOOK  →  Image shows JuveLook Soft Tissue Injectable Implant (PLA/HA Hybrid) 50mg/vial, matching JUVELOOK.
+#354  JUVELOOK Volume  →  Image shows JUVELOOK Volume PLA/HA Hybrid filler 200mg/vial, matching the variant.
+#355  CINDELLA SET  →  Image shows three boxes (Cindella Inj. IV, Vitamin C Inj., Glutaone Inj.) which is the typical CINDELLA SET combo.
+#356  CINDELLA INJ  →  Image shows CINDELLA Inj. I.V. (Thioctic acid 25mg/5mL) by Daehan NewPharm, matching CINDELLA INJ.
+#358  LIPOTOCIN INJ Thioctic Acid  →  Korean label reads 리포토신 주사 (Lipotocin Inj.) Thioctic acid, matching the product name.
+#359  GLUTAONE INJ  →  Image shows Glutaone Inj. 1200mg Glutathione (Reduced), matching GLUTAONE INJ.
+#360  Glutatine Tab  →  Image shows a pill bottle labeled 글루타틴 (Glutatin) tablets, matching Glutatine Tab.
+#361  DERMAGEN Glutathione Film 6X  →  Image shows Dermagen Glutathione Film 6X White Tomato, matching the product name.
+#362  Vitamin C  →  Image shows DHNP Vitamin C Inj. (Ascorbic acid 10g/20mL) by Daehan Nupharm, matching Vitamin C.
+#363  Acogen Inj. Ascorbic Acid  →  Image shows ACOGEN Inj. (Ascorbic acid) 10g/20mL x 10 vials, matching Acogen Inj. Ascorbic Acid.
+#364  ASCORBIC INJ A  →  Image shows ASCORBIC Inj. High Potency VitaminC (Ascorbic Acid 500mg/mL) by BCWorld, matching ASCORBIC INJ A.
+#366  ATP - S Inj  →  Korean label reads 에티피에스 주 (ATPS Inj) Adenosine Triphosphate, matching ATP-S Inj.
+#368  Acepain Inj. Acetaminophen  →  Korean label reads 아세페인 주 (Acepain Inj) Acetaminophen 100mL by GUJU, matching the product.
+#372  Vita - D  →  Image shows Vita-D Inj. I.M. (Cholecalciferol) 200,000IU/1mL, matching Vita-D.
+#373  BM Hid  →  Korean label reads 비엠 하이디 주 (BM HiDi) Cholecalciferol 200,000IU/mL by BMI, matching BM Hid.
+#374  Doxy Tab  →  Image clearly shows DOXY tab bottles in Korean packaging, matching the Doxy Tab brand and variant.
+#375  Doxy Tab  →  Image clearly shows DOXY tab bottles in Korean packaging, matching the Doxy Tab brand and variant.
+#376  MESOCARTIN INJ  →  Image shows Mesocartin 10mL I.V./I.M. injection ampoules (L-Carnitine), matching MESOCARTIN INJ.
+#378  HYCOBAL INJ. Hydroxocobalamin  →  Image shows HYCOBAL inj. (Hydroxocobalamin 5mg) box and ampoule, matching the name exactly.
+#379  B - COLAMIN VIT B12  →  Image shows B-colamin Inj. (Hydroxocobalamin 5mg), the B12 variant brand matching B-COLAMIN VIT B12.
+#380  BeeCom Hexa Vitamin B Comple  →  Image shows BEECOM HEXA Injection (Yuhan) 2mL x 50 ampoules, matching the BeeCom Hexa Vitamin B complex name.
+#381  ZINC INJ  →  Image shows a Korean Zinc injection vial (징크에스 주) labeled zinc sulfate hydrate, matching the generic ZINC INJ name.
+#384  Hishiphagen - C Inj. Deto  →  Image shows HISHIPHAGEN-C INJECTION 20mL x 50 ampoules, matching the Hishiphagen-C Inj. detox product.
+#385  CARTIN Inj. L - Carnitine  →  Image shows CARTIN Inj. (L-carnitine 1000mg) box and ampoules, matching the name exactly.
+#387  WELLSCAINE PLUS CREAM Lidocaine  →  Image shows Wellscaine cream 500g jar (Lidocaine), matching the WELLSCAINE PLUS CREAM Lidocaine product.
+#388  LIDCAIN CREAM  →  Image shows Lidcaine cream 500g jar (10.56% lidocaine), matching the LIDCAIN CREAM name.
+#390  BERACAINE SPRAY Lidocaine  →  Image shows Beracaine Spray (Lidocaine 10%) 50ml bottle and box, matching the BERACAINE SPRAY name exactly.
+#391  NEO - CAIN CREAM  →  Image shows NEO-CAIN CREAM 10.56% (Lidocaine 105.6mg) 30g tube and box, matching the NEO-CAIN CREAM name.
+#392  NEO - CAIN CREAM  →  Image shows NEO-CAIN CREAM 10.56% 500g jar (Neogenesis), matching the NEO-CAIN CREAM name.
+#393  NEO PRO CREAM  →  Image shows NEO PRO CREAM 450g jar and box (Lidocaine + Prilocaine), matching the NEO PRO CREAM name exactly.
+#394  J - CAIN  →  Image shows J-CAIN cream 10.56% 500g jar (Lidocaine), matching the J-CAIN name.
+#395  SM CREAM  →  Image shows SM Cream 10.56% (Lidocaine) 500g jar, matching the SM CREAM name.
+#397  Muchcain  →  Image shows MUCHCAINE 5% Plus box (Lidocaine cream), matching the Muchcain brand.
+#400  LIDOCAINE HCI I  →  Image shows DAI HAN LIDOCAINE HCl inj. 2% box, matching the generic LIDOCAINE HCI injection name.
+#401  LAENNEC  →  Image shows Laennec inj. (Human Placenta Hydrolysate) 2ml x 50 amp box and ampoule, matching LAENNEC.
+#402  LAENNEC  →  Image shows Laennec 2ml x 10 ampoule box, matching the LAENNEC brand name.
+#403  MELSMON  →  Image shows MELSMON 2mL x 50 ampoules and box, matching the MELSMON name exactly.
+#404  CURACEN JBP PLAMON INJ  →  Image shows JBP PLAMON injection (제이비피 플라몬) 2ml x 10 Amp box and ampoules, matching the JBP PLAMON portion of the name.
+#405  Melamin Inj. Placenta Extract  →  Image shows GUJU Melamin (멜라민) Human placenta extract injection box 2mL x 50 Amp, matching the Melamin Inj. Placenta Extract name.
+#407  ELASTY MESO NEEDLE  →  Image shows ELASTY Ultra-Thin 32G Meso Needle box, matching the ELASTY MESO NEEDLE name.
+#409  REJUBEAU MESO NEEDLE  →  Image shows REJUBEAU FINE MESO NEEDLE (orange box), matching brand and product category.
+#410  REJUBEAU MESO NEEDLE  →  Image shows REJUBEAU FINE MESO NEEDLE (orange box), matching brand and product category.
+#411  REJUBEAU MESO NEEDLE  →  Image shows REJUBEAU FINE MESO NEEDLE (green box variant), matching brand and product category.
+#417  Sungshim meso  →  Image shows SUNGSHIM 27G sterile single use needles box, matching brand and meso needle category.
+#418  Sungshim  →  Image shows SUNGSHIM 27G sterile single use needles box, matching the SUNGSHIM brand name.
+#419  Sungshim PEN NEEDLES  →  Image shows SUNGSHIM INSULIN PEN NEEDLE box, matching the SUNGSHIM PEN NEEDLES name.
+#420  DK Filler Cannula with  →  Image shows DK Filler Cannula 18G 70mm, matching brand and product.
+#421  DK Filler Cannula with  →  Image shows DK Filler Cannula 22G 70mm, matching brand and product.
+#422  DK ULTRA Thin Meso  →  Image shows DK Ultra Thin Meso Needles 30G, matching brand and product.
+#423  NEO CANNULA  →  Image shows NEO FILLER CANNULA by Neogenesis, matching the NEO CANNULA name.
+#424  NEO CANNULA  →  Image shows NEO FILLER CANNULA by Neogenesis, matching the NEO CANNULA name.
+#425  SYRINGE MIXING TUBE (CONNECTOR) (For  →  Image shows a clear syringe mixing tube connector, matching the product name.
+#426  SYRINGE MIXING TUBE (CONNECTOR)  →  Image shows multiple syringe mixing tube connectors, matching the product name.
+#427  RESTYLANE DEFYNE  →  Image shows RESTYLANE DEFYNE box by Galderma, matching brand and variant.
+#428  RESTYLANE VOLY ME  →  Image shows RESTYLANE VOLYME box by Galderma, matching the RESTYLANE VOLY ME name.
+#429  RESTYLANE KYSSE  →  Image shows RESTYLANE KYSSE box by Galderma, matching brand and variant.
+#431  RESTYLANE + LIDOCAINE  →  Image shows RESTYLANE Lidocaine box by Galderma, matching brand and lidocaine variant.
+#432  RESTYLANE LYFT LIDOCAINE  →  Image shows RESTYLANE LYFT LIDOCAINE box by Galderma, matching brand and variant.
+#433  RESTYLANE SKINBOOSTERS VITAL LIDOCAINE  →  Image shows RESTYLANE SKINBOOSTERS VITAL with Lidocaine, matching brand and variant.
+#435  DYSPORT  →  Image shows DYSPORT 500 units vial by Ipsen, matching brand.
+#436  XEOMIN  →  Image shows XEOMIN 100 units injection box by Merz, matching brand.
+#437  BOTOX  →  Image shows BOTOX 50 Allergan Units vial and box, matching brand.
+#438  JUVIDERM: VOLUMA HA  →  Image shows Juvederm VOLUMA with Lidocaine box, matching brand and HA filler variant.

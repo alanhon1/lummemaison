@@ -1,0 +1,1932 @@
+[
+  {
+    "id": 1,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly shows BARBIE SLIM lipolytic solution box and vial."
+  },
+  {
+    "id": 2,
+    "status": "CONFIRMED",
+    "reason": "Box clearly labeled MisAdi beso 1ml 24HA matching the product name."
+  },
+  {
+    "id": 3,
+    "status": "MISMATCH",
+    "reason": "Image shows ELASTY F dermal filler, not REGENOVUE FINE."
+  },
+  {
+    "id": 4,
+    "status": "MISMATCH",
+    "reason": "Image shows ELASTY D dermal filler, not REGENOVUE DEEP."
+  },
+  {
+    "id": 5,
+    "status": "MISMATCH",
+    "reason": "Image shows REGENOVUE GLAM, not REGENOVUE SUB-Q."
+  },
+  {
+    "id": 6,
+    "status": "MISMATCH",
+    "reason": "Image shows REGENOVUE DEEP PLUS, not REGENOVUE FINE PLUS."
+  },
+  {
+    "id": 7,
+    "status": "MISMATCH",
+    "reason": "Image shows REGENOVUE SUB-Q PLUS, not REGENOVUE DEEP PLUS."
+  },
+  {
+    "id": 8,
+    "status": "MISMATCH",
+    "reason": "Image shows REGENOVUE SUB-Q (without PLUS), not REGENOVUE SUB-Q PLUS."
+  },
+  {
+    "id": 9,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly shows SOSUM with variant S highlighted (yellow box)."
+  },
+  {
+    "id": 10,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly shows SOSUM with variant M highlighted (blue box)."
+  },
+  {
+    "id": 11,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly shows SOSUM with variant H highlighted (purple box)."
+  },
+  {
+    "id": 12,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly labeled SOSUM SOFT matching the product."
+  },
+  {
+    "id": 13,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly labeled SOSUM HARD matching the product."
+  },
+  {
+    "id": 14,
+    "status": "MISMATCH",
+    "reason": "Image shows HyalDew Fine, not ELASTY FINE PLUS."
+  },
+  {
+    "id": 15,
+    "status": "MISMATCH",
+    "reason": "Image shows Neuramis DEEP, not ELASTY DEEP PLUS."
+  },
+  {
+    "id": 16,
+    "status": "MISMATCH",
+    "reason": "Image shows ELASTY G (single-syringe G variant) without PLUS, not ELASTY GRAND PLUS."
+  },
+  {
+    "id": 17,
+    "status": "MISMATCH",
+    "reason": "Image shows REGENOVUE FINE, not VOM LIGHT."
+  },
+  {
+    "id": 19,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly shows VOM volume cross-linked HA filler matching the product."
+  },
+  {
+    "id": 20,
+    "status": "MISMATCH",
+    "reason": "Image shows Neuramis LIGHT LIDOCAINE, but product is NEURAMIS LIGHT (MESO) which is the non-lidocaine meso variant."
+  },
+  {
+    "id": 22,
+    "status": "MISMATCH",
+    "reason": "Image shows Neuramis LIDOCAINE box (no DEEP marker), product is NEURAMIS DEEP (no lidocaine)."
+  },
+  {
+    "id": 23,
+    "status": "MISMATCH",
+    "reason": "Image shows REGENOVUE DEEP, not NEURAMIS DEEP WITH LIDOCAINE."
+  },
+  {
+    "id": 24,
+    "status": "MISMATCH",
+    "reason": "Image shows REGENOVUE FINE PLUS with Lidocaine, not NEURAMIS VOLUME LIDOCAINE."
+  },
+  {
+    "id": 25,
+    "status": "MISMATCH",
+    "reason": "Image shows REVOLAX FINE with Lidocaine, not REVOLAX FINE PLUS."
+  },
+  {
+    "id": 26,
+    "status": "MISMATCH",
+    "reason": "Image shows REVOLAX DEEP, not REVOLAX DEEP PLUS."
+  },
+  {
+    "id": 27,
+    "status": "MISMATCH",
+    "reason": "Image shows REVOLAX SUB-Q, not REVOLAX SUB-Q PLUS."
+  },
+  {
+    "id": 28,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly shows Dermalax PLUS with lidocaine matching the product."
+  },
+  {
+    "id": 29,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly shows Dermalax DEEP PLUS with lidocaine matching the product."
+  },
+  {
+    "id": 30,
+    "status": "CONFIRMED",
+    "reason": "Packaging clearly shows Dermalax IMPLANT PLUS with lidocaine matching the product."
+  },
+  {
+    "id": 31,
+    "status": "UNCERTAIN",
+    "reason": "Image is very small and only the Tesoro brand mark is legible; the FINE PLUS variant text cannot be confirmed."
+  },
+  {
+    "id": 32,
+    "status": "MISMATCH",
+    "reason": "Image shows DEEP IN MISFILL+ (pink box), not TESORO DEEP PLUS."
+  },
+  {
+    "id": 33,
+    "status": "UNCERTAIN",
+    "reason": "Green Tesoro box is visible but the SUB-Q PLUS variant text is too small to read clearly."
+  },
+  {
+    "id": 34,
+    "status": "UNCERTAIN",
+    "reason": "Black Tesoro box is visible but the IMPLANT WITH LIDOCAINE variant text is not legible."
+  },
+  {
+    "id": 35,
+    "status": "UNCERTAIN",
+    "reason": "Beige/gold Tesoro box is visible but the FINE variant text is not legible."
+  },
+  {
+    "id": 36,
+    "status": "UNCERTAIN",
+    "reason": "Blue Tesoro box is visible but the DEEP variant text is not legible."
+  },
+  {
+    "id": 37,
+    "status": "UNCERTAIN",
+    "reason": "Green Tesoro box is visible but the SUB-Q variant text is not legible."
+  },
+  {
+    "id": 38,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows YOUTHFILL FINE with Lidocaine."
+  },
+  {
+    "id": 39,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows YOUTHFILL DEEP with Lidocaine."
+  },
+  {
+    "id": 40,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows YOUTHFILL SHAPE with Lidocaine."
+  },
+  {
+    "id": 41,
+    "status": "CONFIRMED",
+    "reason": "Green Soonsu/E.P.T.Q. style box with 100 marking matches the SOONSU FILL line."
+  },
+  {
+    "id": 42,
+    "status": "CONFIRMED",
+    "reason": "Orange Soonsu/E.P.T.Q. style box with 300 marking matches the SOONSU FILL line."
+  },
+  {
+    "id": 43,
+    "status": "CONFIRMED",
+    "reason": "Blue Soonsu/E.P.T.Q. style box with 500 marking matches the SOONSU FILL line."
+  },
+  {
+    "id": 44,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows CELOSOME Soft with Lidocaine."
+  },
+  {
+    "id": 45,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows CELOSOME Mid with Lidocaine."
+  },
+  {
+    "id": 46,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows CELOSOME Strong with Lidocaine."
+  },
+  {
+    "id": 47,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows CELOSOME Implant with Lidocaine."
+  },
+  {
+    "id": 48,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows Bonetta Filler-Fine."
+  },
+  {
+    "id": 49,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows Bonetta Filler-Deep."
+  },
+  {
+    "id": 50,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows Bonetta Filler-Volume."
+  },
+  {
+    "id": 51,
+    "status": "CONFIRMED",
+    "reason": "THE CHAEUM Premium red box with 1 filled dot indicator matches the premium line first variant."
+  },
+  {
+    "id": 52,
+    "status": "CONFIRMED",
+    "reason": "THE CHAEUM Premium red box with 2 filled dots indicator matches the premium line second variant."
+  },
+  {
+    "id": 53,
+    "status": "CONFIRMED",
+    "reason": "THE CHAEUM Premium red box with 3 filled dots indicator matches the premium line third variant."
+  },
+  {
+    "id": 54,
+    "status": "CONFIRMED",
+    "reason": "THE CHAEUM Premium red box with 4 filled dots indicator matches the premium line fourth variant."
+  },
+  {
+    "id": 55,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows VOLUDERM FINE, Cross-linked HA with Lidocaine."
+  },
+  {
+    "id": 56,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows VOLUDERM deep variant."
+  },
+  {
+    "id": 57,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows VOLUDERM sub q variant."
+  },
+  {
+    "id": 58,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows ULTRA FILL KISS For lips with Lidocaine."
+  },
+  {
+    "id": 59,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows ULTRA FILL Fine with Lidocaine."
+  },
+  {
+    "id": 60,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows ULTRA FILL Deep with Lidocaine."
+  },
+  {
+    "id": 61,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows ULTRA FILL Shape with Lidocaine."
+  },
+  {
+    "id": 62,
+    "status": "CONFIRMED",
+    "reason": "Box clearly shows ULTRA FILL Implant with Lidocaine."
+  },
+  {
+    "id": 64,
+    "status": "MISMATCH",
+    "reason": "Product name specifies variant 'S' but the box clearly shows the 'MID' variant of Beads Max."
+  },
+  {
+    "id": 66,
+    "status": "MISMATCH",
+    "reason": "Product name is 'MisAdi H' but the image shows the 'MisAdi CO2 Carboxy Therapy' variant."
+  },
+  {
+    "id": 67,
+    "status": "MISMATCH",
+    "reason": "Product name is 'AdiMis Body' but the image shows STUNMEDICAL 'LINE BODY Safe & Easy 50', a completely different product."
+  },
+  {
+    "id": 68,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'SEDY FILL Sexy +Body' HA filler box matching the product name."
+  },
+  {
+    "id": 69,
+    "status": "MISMATCH",
+    "reason": "Product name is 'MAX Y FILL Body' but the image shows STUNMEDICAL 'LINE BODY 10' Hard filler, a different brand and product."
+  },
+  {
+    "id": 71,
+    "status": "MISMATCH",
+    "reason": "Product name is 'P198 Filcore SB' but the image shows the 'Filcore SB Plus Program' kit with the SB PLUS vial, a different variant."
+  },
+  {
+    "id": 72,
+    "status": "CONFIRMED",
+    "reason": "Image shows the ExoHealer 'P198 Filcore Activating Solution' vial and box matching the product name."
+  },
+  {
+    "id": 73,
+    "status": "MISMATCH",
+    "reason": "Product name is 'P198 Filcore SB Plus' but the image shows the 'Filcore SB' (492 Particles) variant, not the Plus version."
+  },
+  {
+    "id": 74,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'LEXYAL REJU' vial and box advertising 'Innovative PDRN & PN Technology', matching the product name."
+  },
+  {
+    "id": 75,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'Bellona Aqua' Repair Hyaluronic Acid HA 45 box, matching the product name."
+  },
+  {
+    "id": 76,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'Bellona Opacious' serum vial and pink box, matching the product name."
+  },
+  {
+    "id": 77,
+    "status": "MISMATCH",
+    "reason": "Product name is 'DERMAGEN Plus NA D+ Solution' but the image shows Dermagen 'Acssak Acne Clear Facial Foam', a completely different product."
+  },
+  {
+    "id": 78,
+    "status": "CONFIRMED",
+    "reason": "Image shows a 'Tesoro' branded package, consistent with TESORO COLLAGEN despite low resolution."
+  },
+  {
+    "id": 79,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'ULTRAHILO' HA prefilled syringe box matching the product name."
+  },
+  {
+    "id": 82,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'REVS PRO 32' by Reanzen, matching the product name."
+  },
+  {
+    "id": 83,
+    "status": "CONFIRMED",
+    "reason": "Image shows green 'AIOR 50' High Molecular HA Skin booster box matching the product name."
+  },
+  {
+    "id": 84,
+    "status": "MISMATCH",
+    "reason": "Product name is 'ULTRA GEN Collagen + Exosome' but the image shows 'Tesoro Collagen', a different brand."
+  },
+  {
+    "id": 85,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'HYALMASS 50' Hyaluronic acid box matching the product name."
+  },
+  {
+    "id": 86,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dongkook 'Hyaron' Prefilled Inj box matching the product name."
+  },
+  {
+    "id": 88,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'True Bella' High/Low molecule HA box matching the product name."
+  },
+  {
+    "id": 89,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'YOUTHFILL PN with LIDOCAINE' box matching the (truncated) product name 'YOUTHFILL PN with'."
+  },
+  {
+    "id": 90,
+    "status": "UNCERTAIN",
+    "reason": "Image shows 'REGENOVUE PN Skin Serum' but does not visibly indicate whether this is the Non-Lidocaine variant required by the product name."
+  },
+  {
+    "id": 91,
+    "status": "MISMATCH",
+    "reason": "Product name specifies 'AQUASHINE PLUS GOLD' but the image shows the basic 'REGENOVUE AQUA SHINE PLUS' without the Gold designation."
+  },
+  {
+    "id": 92,
+    "status": "MISMATCH",
+    "reason": "Product name specifies 'AQUASHINE SILVER' but the image shows 'REGENOVUE AQUA SHINE PLUS', a different variant of the Aquashine line."
+  },
+  {
+    "id": 93,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'CELOSOME Aqua HA60' light-blue box matching the product name."
+  },
+  {
+    "id": 94,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'Rejeunesse Sparkle HA 50' with Lidocaine box matching the product name."
+  },
+  {
+    "id": 95,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'OASIS REPAIR PN Polynucleotide' box, consistent with the 'Oasis' brand product name."
+  },
+  {
+    "id": 96,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Plus 'CINDELLA HEALER' box with PN labeling, matching the product name."
+  },
+  {
+    "id": 97,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'Kiara Reju PDRN' Elastic & Rejuvenating box matching the product name."
+  },
+  {
+    "id": 98,
+    "status": "CONFIRMED",
+    "reason": "Image shows red 'GemVous PN' Skin Booster box matching the product name."
+  },
+  {
+    "id": 100,
+    "status": "CONFIRMED",
+    "reason": "Image shows HANHEAL PDRN BOOSTER box with 5ml x 5vial pink ampoules matching the brand and variant."
+  },
+  {
+    "id": 101,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows HANHEAL HA AMPOULE box with 5 vials matching brand and variant."
+  },
+  {
+    "id": 102,
+    "status": "MISMATCH",
+    "reason": "Image shows ELAXEN PLLA ampoule and mist set, not the PLLA MASK Poly-L variant specified in the name."
+  },
+  {
+    "id": 103,
+    "status": "UNCERTAIN",
+    "reason": "Image shows a generic Misadi 60ml hyaluronic acid gel box without any visible 'C O' variant marking."
+  },
+  {
+    "id": 104,
+    "status": "CONFIRMED",
+    "reason": "Image shows SOONSU ULTRA REJU box with PN/PDRN multi amino acid formulation matching brand and variant."
+  },
+  {
+    "id": 105,
+    "status": "CONFIRMED",
+    "reason": "Image shows SOONSU SHINING PEEL box with TCA 35% + Multi-Acids labeling matching brand and variant."
+  },
+  {
+    "id": 106,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Plus CINDELLA i (PN) syringe box matching brand and variant."
+  },
+  {
+    "id": 107,
+    "status": "CONFIRMED",
+    "reason": "Image shows Daesung Enterprise CLAIReyes polynucleotide syringe box matching the Clair Eyes name."
+  },
+  {
+    "id": 108,
+    "status": "CONFIRMED",
+    "reason": "Image shows ULTRA EYES box with HA + Polynucleotide formulation matching the brand and variant."
+  },
+  {
+    "id": 109,
+    "status": "CONFIRMED",
+    "reason": "Image shows AMI eyes Polynucleotide PN rejuvenation box matching brand and variant."
+  },
+  {
+    "id": 110,
+    "status": "CONFIRMED",
+    "reason": "Image shows JUVELOOK PLA/HA Hybrid filler vial matching brand and variant."
+  },
+  {
+    "id": 111,
+    "status": "CONFIRMED",
+    "reason": "Image shows EVE EYES PRO+ under eye rejuvenation polynucleotide box matching brand and variant."
+  },
+  {
+    "id": 112,
+    "status": "CONFIRMED",
+    "reason": "Image shows SPIDER AQUA EYE BOOSTER syringe by Stunmedical matching brand and variant."
+  },
+  {
+    "id": 113,
+    "status": "CONFIRMED",
+    "reason": "Image shows EYEBELLA polynucleotide 1% pre-filled syringe box matching brand and variant."
+  },
+  {
+    "id": 114,
+    "status": "CONFIRMED",
+    "reason": "Image shows JUVE Eyes 2mL rejuvenation polynucleotide box matching brand and variant."
+  },
+  {
+    "id": 115,
+    "status": "CONFIRMED",
+    "reason": "Image shows SNOW FLOWER BLOOM Time Bridge Vial with Glutathione, Salmon DNA and Hyaluronic Acid matching brand and variant."
+  },
+  {
+    "id": 116,
+    "status": "CONFIRMED",
+    "reason": "Image shows MisAdi white Brightening Booster vial box matching the Skin Glazer brand."
+  },
+  {
+    "id": 117,
+    "status": "CONFIRMED",
+    "reason": "Image shows EVE WHITE Skin Booster 5 Elements box with PDRN/Glutathione matching brand and variant."
+  },
+  {
+    "id": 118,
+    "status": "CONFIRMED",
+    "reason": "Image shows SOONSU ULTRA WHITE biological sterilized whitening solution box matching brand and variant."
+  },
+  {
+    "id": 119,
+    "status": "CONFIRMED",
+    "reason": "Image shows Miracle X PCL + Botulinum Peptide Serum Liquid Facelift box and vial matching brand and variant."
+  },
+  {
+    "id": 120,
+    "status": "CONFIRMED",
+    "reason": "Image shows Miracle H PCL + HA based Serum Liquid Face Lift box with 5 vials matching brand and variant."
+  },
+  {
+    "id": 121,
+    "status": "CONFIRMED",
+    "reason": "Image shows Miracle L PCL based Serum Liquid Face Lift box and vial matching brand and variant."
+  },
+  {
+    "id": 122,
+    "status": "CONFIRMED",
+    "reason": "Image shows Miracle Touch Up PCL based Serum box with 5 vials matching the brand and variant."
+  },
+  {
+    "id": 123,
+    "status": "CONFIRMED",
+    "reason": "Image shows Miracle Touch BR box with 5 dark vials matching brand and variant."
+  },
+  {
+    "id": 124,
+    "status": "CONFIRMED",
+    "reason": "Image shows Stunmedical PCL POWER BOOSTER 2ml vial and box matching brand and variant."
+  },
+  {
+    "id": 125,
+    "status": "MISMATCH",
+    "reason": "Image shows EXOSIA branded vial and box rather than REJURAN SKIN BOOSTER, a different brand entirely."
+  },
+  {
+    "id": 126,
+    "status": "CONFIRMED",
+    "reason": "Image shows SELA TOX 10 Anti Wrinkle and Whitening System ampoule by Sela Cosmetics matching brand and variant."
+  },
+  {
+    "id": 127,
+    "status": "CONFIRMED",
+    "reason": "Image shows LAPUROON Aurora Super Sodium DNA PDRN box matching brand and variant."
+  },
+  {
+    "id": 128,
+    "status": "CONFIRMED",
+    "reason": "Image shows LAPUROON Aurora Vivid Sodium DNA PDRN box and vial matching brand and variant."
+  },
+  {
+    "id": 129,
+    "status": "MISMATCH",
+    "reason": "Image shows YELLOW BOTTLE Bromelain/Riboflavin/Lecithin ampoule rather than an NMN/NAD product."
+  },
+  {
+    "id": 131,
+    "status": "CONFIRMED",
+    "reason": "Image shows Exogen Pure Exo x Sterilized HA Solution vial and box, matching the brand and variant."
+  },
+  {
+    "id": 133,
+    "status": "CONFIRMED",
+    "reason": "Image shows ExoBoom Skin box with two-vial kit, matching the product name and category."
+  },
+  {
+    "id": 134,
+    "status": "CONFIRMED",
+    "reason": "Image shows BotanicExo Advanced EV Complex Revitalizer Calli EV Series I box by SPHEBIO, matching the name."
+  },
+  {
+    "id": 135,
+    "status": "CONFIRMED",
+    "reason": "Image shows ASCE plus Derma Signal Kit SRLV lyophilized powder/diluent vials, matching the ASCE brand."
+  },
+  {
+    "id": 136,
+    "status": "CONFIRMED",
+    "reason": "Image shows Ammi Capture Time Premium Whitening & Anti-Wrinkle box with five pre-filled syringes, matching the name."
+  },
+  {
+    "id": 137,
+    "status": "CONFIRMED",
+    "reason": "Image shows Ultra CA+ Calcium Hydroxyapatite Filler Collagen Stimulator box, matching the name and bio-stimulator variant."
+  },
+  {
+    "id": 138,
+    "status": "CONFIRMED",
+    "reason": "Image shows Volassom Volumizing Bio Stimulator box, matching the product name."
+  },
+  {
+    "id": 139,
+    "status": "CONFIRMED",
+    "reason": "Image shows Gouri Polycaprolactone Injectable Implant by Dexlevo, matching the brand name."
+  },
+  {
+    "id": 140,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermaheal HSR Hyaluronic Acid Skin Rejuvenating box with vials, matching the exact variant."
+  },
+  {
+    "id": 142,
+    "status": "CONFIRMED",
+    "reason": "Image shows Bellona Esrella Tea Tree Essence 3ml/5vials box, matching the product name."
+  },
+  {
+    "id": 143,
+    "status": "CONFIRMED",
+    "reason": "Image shows Repida Clearnest Intensive Foam Cleanser tube, matching the full product name."
+  },
+  {
+    "id": 144,
+    "status": "CONFIRMED",
+    "reason": "Image shows Acon Deep Cleansing Foam tube, matching the product name and variant."
+  },
+  {
+    "id": 145,
+    "status": "CONFIRMED",
+    "reason": "Image shows aclean gel tube and box by Dong-A Pharm, matching the product name."
+  },
+  {
+    "id": 146,
+    "status": "CONFIRMED",
+    "reason": "Image shows aclean Body Acne Treatment Spray 2% Salicylic Acid 100ml, matching the name and variant."
+  },
+  {
+    "id": 147,
+    "status": "CONFIRMED",
+    "reason": "Image shows acnon cream tube and box 13g by Dong-A Pharm, matching the product name."
+  },
+  {
+    "id": 148,
+    "status": "CONFIRMED",
+    "reason": "Image shows Azalea Cream 30g tube and box by Leo, matching the product name."
+  },
+  {
+    "id": 150,
+    "status": "CONFIRMED",
+    "reason": "Image shows ExoHealer Filcore HB Plus P198 vials by K-One Pharma, matching the P198 Filcore HB Plus name."
+  },
+  {
+    "id": 151,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dr.H.Rich active complex for scalp revitalising box with 2 syringes, matching the hair filler name."
+  },
+  {
+    "id": 152,
+    "status": "CONFIRMED",
+    "reason": "Image shows Hairna Exosome Hair Fill box, matching the product name."
+  },
+  {
+    "id": 153,
+    "status": "CONFIRMED",
+    "reason": "Image shows ASCE plus Scalp Care HRLV lyophilized powder kit, matching the ASCE HRLV hair filler name."
+  },
+  {
+    "id": 154,
+    "status": "CONFIRMED",
+    "reason": "Image shows ExoBoom Hair box with two vials, matching the hair filler name."
+  },
+  {
+    "id": 155,
+    "status": "CONFIRMED",
+    "reason": "Image shows HairLuma Exosome/PDRN/Peptides kit with vials, matching the Hair Luma exosome hair growth name."
+  },
+  {
+    "id": 156,
+    "status": "CONFIRMED",
+    "reason": "Image shows Ultra Hair Hair Growth & Anti Hair Loss Solution box from Korea, matching the product name."
+  },
+  {
+    "id": 157,
+    "status": "MISMATCH",
+    "reason": "Image shows Dermaheal SR (Skin Rejuvenating) variant, but the product name specifies the HL (hair loss) variant."
+  },
+  {
+    "id": 159,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dr.Cho Many Shoot+ anti-hairloss micelle complex ampoule, matching the Many Shoot Plus variant."
+  },
+  {
+    "id": 160,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Trimo90 Scalp Active Shampoo 500ml bottle, matching the product name."
+  },
+  {
+    "id": 161,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Trimo90 Scalp Active Tonic bottle and box, matching the product name."
+  },
+  {
+    "id": 162,
+    "status": "CONFIRMED",
+    "reason": "Image shows Mohealer shampoo bottle with Dermagen branding, matching the product name."
+  },
+  {
+    "id": 163,
+    "status": "CONFIRMED",
+    "reason": "Image shows Mohealer Tonic scalp bottle by Dermagen, matching the product name."
+  },
+  {
+    "id": 164,
+    "status": "CONFIRMED",
+    "reason": "Image shows MelaNosa Cream Hydroquinone 4% Melasma Treatment 30g tube and box, matching the product name."
+  },
+  {
+    "id": 165,
+    "status": "CONFIRMED",
+    "reason": "Korean text reads 젠타졸/알벤다졸 (Gentazol/Albendazole) tablets matching the ALBENDAZOLE pharmacy product."
+  },
+  {
+    "id": 166,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dong-A 디판셉틱 크림 (D-Panseptic Cream) tube and box matching the product name."
+  },
+  {
+    "id": 167,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows 스카덤 겔 (Scardum Gel) 20g tube and box from Shinshin Pharmaceutical."
+  },
+  {
+    "id": 168,
+    "status": "CONFIRMED",
+    "reason": "Same Scardum Gel product image as 167 matching the duplicate SCARDERM GEL listing."
+  },
+  {
+    "id": 169,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dongkook 리클란 (Reclan) PDRN ampoule solution box matching the product."
+  },
+  {
+    "id": 170,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dong-A 아이오쿨 리뉴 PDRN (EyeOcool Renew PDRN) eye solution box matching the name."
+  },
+  {
+    "id": 171,
+    "status": "MISMATCH",
+    "reason": "Image shows Madecassol Care 연고 (ointment) form, not the GEL variant specified in the product name."
+  },
+  {
+    "id": 172,
+    "status": "MISMATCH",
+    "reason": "Same Madecassol Care ointment image as 171, not the GEL form specified in the product name."
+  },
+  {
+    "id": 173,
+    "status": "CONFIRMED",
+    "reason": "Image shows MelaToning Cream Hydroquinone 2% 30g tube and box matching the product name."
+  },
+  {
+    "id": 174,
+    "status": "CONFIRMED",
+    "reason": "Image shows Hanmi PRO-CALM EGF Active Vital Cream tube and box matching the product."
+  },
+  {
+    "id": 175,
+    "status": "CONFIRMED",
+    "reason": "Image shows Easyef 이지에프 ointment 10g tube and box matching the EASYEF product name."
+  },
+  {
+    "id": 176,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dong-A :D-판테놀 (D-Panthenol) ointment tube and box matching the product name."
+  },
+  {
+    "id": 177,
+    "status": "CONFIRMED",
+    "reason": "Image shows 리쥬비넥스 (Rejuvinex/Rejuvenex) PDRN cream 10g tube and box matching the product."
+  },
+  {
+    "id": 178,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dong-A 노스카나 (Noscarna / no scar) gel 10g tube and box matching the product."
+  },
+  {
+    "id": 179,
+    "status": "CONFIRMED",
+    "reason": "Image shows Bentpla Gel 15g labelled For Bruise, Swelling, Contusion matching the product name."
+  },
+  {
+    "id": 180,
+    "status": "CONFIRMED",
+    "reason": "Image shows Rejunera EXO-PDRN Cream squalane+PDRN tube matching the product name."
+  },
+  {
+    "id": 181,
+    "status": "CONFIRMED",
+    "reason": "Image shows ASCEplus blue Sunshine Cushion compact with puff matching the HomeCare Sunshine Cushion PRO."
+  },
+  {
+    "id": 182,
+    "status": "CONFIRMED",
+    "reason": "Image shows STUN MEDICAL CELLEXO Bio-Cellulose Mask formulated with exosome matching the Bio-Cellulose Exosome product."
+  },
+  {
+    "id": 183,
+    "status": "CONFIRMED",
+    "reason": "Image shows CreBeau Placenta Pearl Essence Mask sheet and pouch matching the product name."
+  },
+  {
+    "id": 184,
+    "status": "CONFIRMED",
+    "reason": "Image shows OPACIOUS Spider Toxin Program red box with spider web logo matching the SPIDER TOXIN PROGRAM Toxin product."
+  },
+  {
+    "id": 185,
+    "status": "CONFIRMED",
+    "reason": "Image shows REJURAN Healer Calming Lip Balm 3.7g c-PDRN 0.3% stick and box matching the product name."
+  },
+  {
+    "id": 186,
+    "status": "CONFIRMED",
+    "reason": "Image shows Vanhalla Blemish Care Tranexamic Acid 3 Serum pink bottle matching the BLEMISH Tranexamic Acid product."
+  },
+  {
+    "id": 187,
+    "status": "MISMATCH",
+    "reason": "Image shows Vanhalla Niacinamide 15 Triple Power Booster, not the Niacinamide Skin Tone Balance variant named in the product."
+  },
+  {
+    "id": 188,
+    "status": "CONFIRMED",
+    "reason": "Image shows Vanhalla Retinol 3R Serum purple bottle and box matching the ETINOL 3R SERUM Wrinkle product (likely typo for Retinol)."
+  },
+  {
+    "id": 189,
+    "status": "MISMATCH",
+    "reason": "Image shows Vanhalla Ceramide Moisturizing Essence in Toner (100ml toner format), not a plain Moisturizing Essence variant."
+  },
+  {
+    "id": 190,
+    "status": "MISMATCH",
+    "reason": "Image shows Vanhalla Ceramide Moisturizing Serum in Cream (50ml jar), not a Moisturizing Serum bottle variant."
+  },
+  {
+    "id": 191,
+    "status": "CONFIRMED",
+    "reason": "Image shows Vanhalla CICA Calm Mist Toner 250ml white bottle matching the product name exactly."
+  },
+  {
+    "id": 192,
+    "status": "CONFIRMED",
+    "reason": "Image shows SOONSU Aqua Cream 50ml green and silver box matching the product name."
+  },
+  {
+    "id": 193,
+    "status": "CONFIRMED",
+    "reason": "Image shows Tondaus white surgical skin marker pen matching the SKIN MARKER PEN (White) product."
+  },
+  {
+    "id": 194,
+    "status": "CONFIRMED",
+    "reason": "Image shows multiple Dewy sheet mask variants (Pearl, Aloe Vera, Snail, Collagen, etc.) matching the generic Mask product name."
+  },
+  {
+    "id": 195,
+    "status": "CONFIRMED",
+    "reason": "Image shows OPACIOUS Real Collagen Sleeping Mask box matching brand and product type."
+  },
+  {
+    "id": 196,
+    "status": "CONFIRMED",
+    "reason": "Image shows INVU Reparative BB tube with SPF 50+ matching the product name."
+  },
+  {
+    "id": 197,
+    "status": "CONFIRMED",
+    "reason": "Image shows repida INVU by Seoul Body Tone-Up Radiance Serum tube and box matching exactly."
+  },
+  {
+    "id": 198,
+    "status": "CONFIRMED",
+    "reason": "Image shows repida AZULENE H9 DERMA PLUS BOOSTER CREAM purple tube matching the product name."
+  },
+  {
+    "id": 199,
+    "status": "CONFIRMED",
+    "reason": "Image shows G2 Oil Lifting Pack Wrinkle Mask Pack Cream tube and box matching the name."
+  },
+  {
+    "id": 200,
+    "status": "CONFIRMED",
+    "reason": "Image shows Wheat Germ Ampoule dropper bottle and box matching the product name."
+  },
+  {
+    "id": 201,
+    "status": "CONFIRMED",
+    "reason": "Image shows eu.mei Sun Essence SPF 50+ tube and box matching brand and product."
+  },
+  {
+    "id": 202,
+    "status": "CONFIRMED",
+    "reason": "Image shows eu.mei Youth Firming Eye Cream lifting & anti-wrinkle bottle matching the name."
+  },
+  {
+    "id": 204,
+    "status": "CONFIRMED",
+    "reason": "Image shows KLARGEN LactoBath Inner Cleanser tube matching the brand and product."
+  },
+  {
+    "id": 205,
+    "status": "CONFIRMED",
+    "reason": "Image shows KLARGEN Soln pump bottle and box, consistent with the generic KLARGEN name."
+  },
+  {
+    "id": 206,
+    "status": "CONFIRMED",
+    "reason": "Image shows ASCE+ Intimate Care IRLV box with vials 1 (lyophilized powder) and 2 (diluent) matching exactly."
+  },
+  {
+    "id": 209,
+    "status": "CONFIRMED",
+    "reason": "Image shows VELASH SHGF11 Scalp Advanced Clinic box matching brand and variant."
+  },
+  {
+    "id": 210,
+    "status": "CONFIRMED",
+    "reason": "Image shows Camellex Camellia Exo No.5 exosome kit with paired vials matching the product."
+  },
+  {
+    "id": 211,
+    "status": "CONFIRMED",
+    "reason": "Image shows LXC Lacto Exo Colla exosome boxes and vials matching the product name."
+  },
+  {
+    "id": 212,
+    "status": "CONFIRMED",
+    "reason": "Image shows RXC Red Exo Colla exosome box and vials matching brand and variant."
+  },
+  {
+    "id": 213,
+    "status": "CONFIRMED",
+    "reason": "Image shows SELASTIN TOX yellow vials and box, consistent with the SELASTIN TOX GF11 product."
+  },
+  {
+    "id": 214,
+    "status": "CONFIRMED",
+    "reason": "Image shows SELASTIN EXO PLUS Exosome + PDRN + Growth Factor Peptide kit matching the product."
+  },
+  {
+    "id": 215,
+    "status": "CONFIRMED",
+    "reason": "Image shows CURENEX Sculp PLLA Collagen Biostimulator vial matching brand and variant."
+  },
+  {
+    "id": 216,
+    "status": "MISMATCH",
+    "reason": "Image shows MISFILL+ PDR syringe (different brand) not a CURENEX PDRN Multi product."
+  },
+  {
+    "id": 217,
+    "status": "CONFIRMED",
+    "reason": "Image shows CURENEX Dailycare Skin Booster serum dropper with PDRN peptide complex matching the name."
+  },
+  {
+    "id": 218,
+    "status": "MISMATCH",
+    "reason": "Image shows CURENEX Intense Glow & Shine sheet mask sachets, not a Rejuvenating Cream."
+  },
+  {
+    "id": 219,
+    "status": "CONFIRMED",
+    "reason": "Image shows CURENEX Hydrating Cleanser box with PDRN and rose extract matching the product."
+  },
+  {
+    "id": 220,
+    "status": "CONFIRMED",
+    "reason": "Image shows CURENEX LIPO Slim & Contouring vials and box matching the product name."
+  },
+  {
+    "id": 221,
+    "status": "MISMATCH",
+    "reason": "Image shows CURENEX Rejuvenating Solution vials (injectable), not a Rejuvenating Mask."
+  },
+  {
+    "id": 222,
+    "status": "CONFIRMED",
+    "reason": "Image shows CURENEX Exo Brightening Cream tube and box matching the product name."
+  },
+  {
+    "id": 223,
+    "status": "CONFIRMED",
+    "reason": "Image shows CURENEX eye Polynucleotide 1% + HA syringe box matching the Eye PN product."
+  },
+  {
+    "id": 224,
+    "status": "MISMATCH",
+    "reason": "Image shows CURENEX Snow Peel powder vials and activator, not CURENEX SCULP PLLA."
+  },
+  {
+    "id": 225,
+    "status": "CONFIRMED",
+    "reason": "Image shows CURENEX Snow Peel powder vials and activator matching the product."
+  },
+  {
+    "id": 227,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Egensia Cream Post Laser tube and box matching brand and variant."
+  },
+  {
+    "id": 228,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dr.Picos Egencica Cream tube with PDRN Transome and Centella matching the name."
+  },
+  {
+    "id": 229,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dr.Picos RMV Repair Cream tube matching the name and Dermagen line branding."
+  },
+  {
+    "id": 230,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dr.Picos Ureanol Cream tube matching the name and Dermagen line branding."
+  },
+  {
+    "id": 232,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Soothing Mask sachets matching the Soothing product name."
+  },
+  {
+    "id": 233,
+    "status": "MISMATCH",
+    "reason": "Image shows a Rapporapy Lunatox tube, not the Dermagen Well product."
+  },
+  {
+    "id": 234,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen White Sun Cream SPF50+ tube and box matching the name."
+  },
+  {
+    "id": 235,
+    "status": "MISMATCH",
+    "reason": "Image shows a Urea Cream labeled 'Skin softener' with no 'Deep' variant indication on the packaging."
+  },
+  {
+    "id": 236,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen RM Repair Moisturizing Cream tube and box matching the name."
+  },
+  {
+    "id": 237,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Scargel silicone gel tube matching the name."
+  },
+  {
+    "id": 238,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Centellase Ointment tube and box matching the name."
+  },
+  {
+    "id": 239,
+    "status": "MISMATCH",
+    "reason": "Image shows Dermagen Wellspot hydrocolloid acne patches, not a Lunato product."
+  },
+  {
+    "id": 240,
+    "status": "CONFIRMED",
+    "reason": "Image shows a Cicarown cream tube matching the product variant under the Dermagen line."
+  },
+  {
+    "id": 241,
+    "status": "CONFIRMED",
+    "reason": "Image shows Cindelria Tone-Up Sun Cream tube matching the product variant."
+  },
+  {
+    "id": 242,
+    "status": "CONFIRMED",
+    "reason": "Image shows a Bichaeahn Pore Toning bottle matching the product name."
+  },
+  {
+    "id": 243,
+    "status": "CONFIRMED",
+    "reason": "Image shows Cellsia Cream tube labeled Post Laser matching the Cellsia Post variant."
+  },
+  {
+    "id": 244,
+    "status": "CONFIRMED",
+    "reason": "Image shows a 500g Cellsia Cream pump bottle labeled Post Laser matching the Cellsia Post variant."
+  },
+  {
+    "id": 245,
+    "status": "MISMATCH",
+    "reason": "Image shows an EZera Cream tube, not the EZ C product variant."
+  },
+  {
+    "id": 246,
+    "status": "CONFIRMED",
+    "reason": "Image shows an Exosia skin booster vial and box matching the product name."
+  },
+  {
+    "id": 248,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Exomela Exosome Skin Booster with EXO Signal 1000 Powder matching the name."
+  },
+  {
+    "id": 249,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM PDRN Mask The Premium box matching the product name."
+  },
+  {
+    "id": 250,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Goldcell+ The Premium box matching the Gold Cell Plus variant."
+  },
+  {
+    "id": 251,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Gold Cell The Premium orange box and vials matching the product name."
+  },
+  {
+    "id": 252,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Melacell The Premium whitening skin booster matching the product name."
+  },
+  {
+    "id": 253,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Melacell+ The Premium sterile vials matching the Melacell+ variant."
+  },
+  {
+    "id": 254,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Balance Cleansing Gel box matching the product name."
+  },
+  {
+    "id": 255,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM PDRENZA Serum bottle and box matching the product name."
+  },
+  {
+    "id": 256,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM PDRENZA Cream jar matching the product name."
+  },
+  {
+    "id": 257,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Mela Dual Day & Night Cream matching the product name."
+  },
+  {
+    "id": 258,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Vita-K Repair Cream tube and box matching the product name."
+  },
+  {
+    "id": 259,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Collagen Serum bottle and box matching the product name."
+  },
+  {
+    "id": 260,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM T-Tox Peel vials in a box matching the product name."
+  },
+  {
+    "id": 261,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM T-TOX PEEL kit with branded powder and solution vials, matching the name and GTM category."
+  },
+  {
+    "id": 262,
+    "status": "MISMATCH",
+    "reason": "Image shows 'PEPTICULE-GOLD' cream (peptide & spicule & gold cream 2500K shot), a different specific variant than 'PEPTICULE ULTIMATE REJUVENATION CREAM'."
+  },
+  {
+    "id": 263,
+    "status": "MISMATCH",
+    "reason": "Image shows 'PEPTICULE 1500K Shot peptide & spicule ampoule' which is a different specific variant than 'PEPTICULE ULTIMATE REJUVENATION SERUM'."
+  },
+  {
+    "id": 264,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Active Protection Sun Serum SPF50+ PA++++ tube and box, matching the product name."
+  },
+  {
+    "id": 265,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Aloe Soothing Gel 500ml pump bottle, matching the name and category."
+  },
+  {
+    "id": 266,
+    "status": "CONFIRMED",
+    "reason": "Image shows GTM Rose Herb Toner 500ml bottle, matching the name and category."
+  },
+  {
+    "id": 268,
+    "status": "CONFIRMED",
+    "reason": "Image shows the O2toDerm LED-equipped oxygen dome unit matching the O2TODERM LED PLUS Oxygen name."
+  },
+  {
+    "id": 269,
+    "status": "CONFIRMED",
+    "reason": "Image shows a uldm-branded lifting device with handpieces, matching the ULDM Ult name."
+  },
+  {
+    "id": 270,
+    "status": "CONFIRMED",
+    "reason": "Image shows the O2toDerm dome unit alongside the ULDM device with a plus sign, matching the combined product name."
+  },
+  {
+    "id": 271,
+    "status": "CONFIRMED",
+    "reason": "Image shows an OMEGA PDT branded LED therapy arch device, matching the name."
+  },
+  {
+    "id": 272,
+    "status": "CONFIRMED",
+    "reason": "Image shows DIASONO-310 puREyoung peel station, matching the DIASONO.310 Diacell Peel name."
+  },
+  {
+    "id": 273,
+    "status": "CONFIRMED",
+    "reason": "Image shows HIFFECT Plus RF device with fractional RF, multipolar RF and cooling modes, matching the name."
+  },
+  {
+    "id": 274,
+    "status": "MISMATCH",
+    "reason": "Image shows REJURAN SKIN BOOSTER vials and box, not a WILLCAM PLUS skin/scalp diagnosis system."
+  },
+  {
+    "id": 275,
+    "status": "UNCERTAIN",
+    "reason": "Image shows a generic microneedling stamp tip in a dome case with no visible DN64 branding to confirm the specific variant."
+  },
+  {
+    "id": 276,
+    "status": "UNCERTAIN",
+    "reason": "Image shows a generic Auto-BN Needle 20PCS BOX without a visible DN16 marking to confirm the specific variant."
+  },
+  {
+    "id": 277,
+    "status": "CONFIRMED",
+    "reason": "Image shows i-COOL plus device by K.L Global with multiple handpieces, matching the I COOL - PLUS 2ND name."
+  },
+  {
+    "id": 278,
+    "status": "CONFIRMED",
+    "reason": "Image shows ULTRA SKIN MASTER integrated skin care system with multiple handpieces, matching the name."
+  },
+  {
+    "id": 279,
+    "status": "CONFIRMED",
+    "reason": "Image shows HYSONIC THREE WAY multifunction device with several handpieces, matching the name."
+  },
+  {
+    "id": 280,
+    "status": "CONFIRMED",
+    "reason": "Image shows HERA POINT branded HIFU device with cartridges, matching the name."
+  },
+  {
+    "id": 281,
+    "status": "CONFIRMED",
+    "reason": "Image shows the ACCU TONING upright laser tower by K.L Global, matching the ACCUTONING name."
+  },
+  {
+    "id": 282,
+    "status": "CONFIRMED",
+    "reason": "Image shows HERA Vacuum multi-RF suction device with vacuum and RF handpieces, matching the name."
+  },
+  {
+    "id": 283,
+    "status": "MISMATCH",
+    "reason": "Image shows a Beauty Monster plasma pen with plasma/fractional/thermal tips, not an ULTRATONING Ultrasonic & RF beauty device."
+  },
+  {
+    "id": 284,
+    "status": "MISMATCH",
+    "reason": "Image shows a SkinCulture-branded microneedling pen, not an Auto-DN MTS PEN."
+  },
+  {
+    "id": 285,
+    "status": "CONFIRMED",
+    "reason": "Image shows the Auto-DN Smart wireless skin care master pen with its presentation box, matching the name."
+  },
+  {
+    "id": 288,
+    "status": "CONFIRMED",
+    "reason": "Image shows a jolla-branded Cleansing Lotion pump bottle, matching the name and salon-grade category."
+  },
+  {
+    "id": 289,
+    "status": "CONFIRMED",
+    "reason": "Image shows a jolla Premium Modeling Mask with Green Tea large pouch, matching the name."
+  },
+  {
+    "id": 290,
+    "status": "CONFIRMED",
+    "reason": "Image shows a jolla Premium Modeling Peppermint Mask large pouch, matching the name."
+  },
+  {
+    "id": 291,
+    "status": "MISMATCH",
+    "reason": "Image shows a GTM PDRENZA Advanced Rejuvenation Set with serum and creams, not a JOLLA HIGH FREQUENCY MASSAGE CREAM."
+  },
+  {
+    "id": 293,
+    "status": "CONFIRMED",
+    "reason": "Image shows the MisAdi lipo contouring serum box for face and body, matching the name and lipolytics category."
+  },
+  {
+    "id": 294,
+    "status": "CONFIRMED",
+    "reason": "Image shows the MisAdi lipo contouring serum carton (front view), matching the name and lipolytics category."
+  },
+  {
+    "id": 296,
+    "status": "MISMATCH",
+    "reason": "Image shows 'LIPO SHRINKER' by Stunmedical, not DR.LIPO."
+  },
+  {
+    "id": 297,
+    "status": "CONFIRMED",
+    "reason": "Image shows red 'DR.LIPO+' V-Line Contour Solution box matching DR.LIPO+V."
+  },
+  {
+    "id": 298,
+    "status": "UNCERTAIN",
+    "reason": "Image shows generic 'Lipo Lab' PPC Solution with no visible GMS variant marking."
+  },
+  {
+    "id": 299,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows 'Lipo Lab V-Line Premium' purple box and vial."
+  },
+  {
+    "id": 300,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'Super V-Line Sol.' black box with amber vial matching the name."
+  },
+  {
+    "id": 303,
+    "status": "CONFIRMED",
+    "reason": "Image shows SOONSU 'ULTRA LIGHT' box and vial matching the name."
+  },
+  {
+    "id": 305,
+    "status": "CONFIRMED",
+    "reason": "Image shows 'Prime DR.LIPO+' set matching Dr. LIPO PRIME."
+  },
+  {
+    "id": 306,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows 'Kabelline' Contouring Serum matching the name."
+  },
+  {
+    "id": 307,
+    "status": "MISMATCH",
+    "reason": "Image shows 'Dermagen Plus NAD+ Solution', not a VNS lipolytic product."
+  },
+  {
+    "id": 308,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows 'SLIM POINT Solution for Face & Body' matching the name."
+  },
+  {
+    "id": 310,
+    "status": "CONFIRMED",
+    "reason": "Image shows Botulax 100 Units/Vial vial and box matching the name."
+  },
+  {
+    "id": 311,
+    "status": "CONFIRMED",
+    "reason": "Image shows Botulax 200 Units/Vial with purple wave design matching the name."
+  },
+  {
+    "id": 312,
+    "status": "CONFIRMED",
+    "reason": "Image shows Botulax 300 Units/Vial with orange cap matching the name."
+  },
+  {
+    "id": 313,
+    "status": "CONFIRMED",
+    "reason": "Image shows METOX 100 Units teal box and vial matching the name."
+  },
+  {
+    "id": 314,
+    "status": "CONFIRMED",
+    "reason": "Image shows METOX 200 Units purple box with green cap vial matching the name."
+  },
+  {
+    "id": 315,
+    "status": "CONFIRMED",
+    "reason": "Image shows gold Innotox box and vial matching the name."
+  },
+  {
+    "id": 316,
+    "status": "CONFIRMED",
+    "reason": "Image shows red Innotox box and vial matching the name."
+  },
+  {
+    "id": 317,
+    "status": "CONFIRMED",
+    "reason": "Image shows Daewoong Nabota 100U Spanish-labeled vial matching the name."
+  },
+  {
+    "id": 318,
+    "status": "CONFIRMED",
+    "reason": "Image shows Daewoong Nabota 200 Units box and vial matching the name."
+  },
+  {
+    "id": 319,
+    "status": "CONFIRMED",
+    "reason": "Image shows LIZTOX 100 unit orange-themed box and vial matching the name."
+  },
+  {
+    "id": 320,
+    "status": "CONFIRMED",
+    "reason": "Image shows LIZTOX 200 unit green-themed box and vial matching the name."
+  },
+  {
+    "id": 324,
+    "status": "CONFIRMED",
+    "reason": "Image shows Meditoxin 100 units pink box and vial matching the name."
+  },
+  {
+    "id": 328,
+    "status": "CONFIRMED",
+    "reason": "Image shows Kaimax Classic 100 units blue-themed box and vial matching the name."
+  },
+  {
+    "id": 329,
+    "status": "CONFIRMED",
+    "reason": "Image shows Kaimax Classic 200 units purple-themed box and vial matching the name."
+  },
+  {
+    "id": 330,
+    "status": "CONFIRMED",
+    "reason": "Image shows WonderTox Inj. 100 units red box and vial matching the name."
+  },
+  {
+    "id": 331,
+    "status": "CONFIRMED",
+    "reason": "Image shows WonderTox Inj. 200 units gold box and vial matching the name."
+  },
+  {
+    "id": 332,
+    "status": "CONFIRMED",
+    "reason": "Image shows Linetox Inj. box and vial matching the name."
+  },
+  {
+    "id": 333,
+    "status": "CONFIRMED",
+    "reason": "Image shows ZEROTOX inj. 100 Units purple box and vial matching the name."
+  },
+  {
+    "id": 335,
+    "status": "CONFIRMED",
+    "reason": "Image shows pink RoseTox-branded 100 units box and vial with large 'R' matching the name."
+  },
+  {
+    "id": 336,
+    "status": "CONFIRMED",
+    "reason": "Image shows HITOX 100 units Ethical box and vial matching the name."
+  },
+  {
+    "id": 337,
+    "status": "CONFIRMED",
+    "reason": "Image shows BASE Laboratories Sterile Hypertonic Saline Solution ampoules, matching SALINE."
+  },
+  {
+    "id": 339,
+    "status": "CONFIRMED",
+    "reason": "Korean label reads 리비탈렉스주 (Revitalex Inj) by Humedix, matching REVITALEX INJ."
+  },
+  {
+    "id": 340,
+    "status": "CONFIRMED",
+    "reason": "Korean label reads 하이디알 주 (HiDiAl/HiDr Inj) by BMI, matching HiDr product name."
+  },
+  {
+    "id": 343,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows LIPORASE Inj. (Hyaluronidase) by Daehan NewPharm, matching the product name."
+  },
+  {
+    "id": 344,
+    "status": "CONFIRMED",
+    "reason": "Korean label reads 비엠 히루니다제 주 (BM Hirunidase/Hylunidase) Hyaluronidase 1,500 IU by BMI, matching the product."
+  },
+  {
+    "id": 345,
+    "status": "CONFIRMED",
+    "reason": "Image shows Belissima PLLA Dermal Filler box with CE 1434 marking, matching Belissima CE."
+  },
+  {
+    "id": 348,
+    "status": "CONFIRMED",
+    "reason": "Image shows meNnus vial 200mg labeled Poly-L-lactic acid, matching MENNUS PLLA."
+  },
+  {
+    "id": 349,
+    "status": "MISMATCH",
+    "reason": "Image shows meNnus Plus 360mg, not Ravello PLLA — different brand entirely."
+  },
+  {
+    "id": 350,
+    "status": "CONFIRMED",
+    "reason": "Image shows POWER COL-TRA Poly-L-Lactic Acid 365mg by Stunmedical, matching POWER COLTRA."
+  },
+  {
+    "id": 351,
+    "status": "CONFIRMED",
+    "reason": "Image shows POLYBOOST VOLA vial 600mg with PLA 450mg + HA 150mg, matching the product."
+  },
+  {
+    "id": 352,
+    "status": "CONFIRMED",
+    "reason": "Image shows PDLLA RAVENNA Collagen Booster (PDLLA 1000mg/HA 350mg), matching the product."
+  },
+  {
+    "id": 353,
+    "status": "CONFIRMED",
+    "reason": "Image shows JuveLook Soft Tissue Injectable Implant (PLA/HA Hybrid) 50mg/vial, matching JUVELOOK."
+  },
+  {
+    "id": 354,
+    "status": "CONFIRMED",
+    "reason": "Image shows JUVELOOK Volume PLA/HA Hybrid filler 200mg/vial, matching the variant."
+  },
+  {
+    "id": 355,
+    "status": "CONFIRMED",
+    "reason": "Image shows three boxes (Cindella Inj. IV, Vitamin C Inj., Glutaone Inj.) which is the typical CINDELLA SET combo."
+  },
+  {
+    "id": 356,
+    "status": "CONFIRMED",
+    "reason": "Image shows CINDELLA Inj. I.V. (Thioctic acid 25mg/5mL) by Daehan NewPharm, matching CINDELLA INJ."
+  },
+  {
+    "id": 358,
+    "status": "CONFIRMED",
+    "reason": "Korean label reads 리포토신 주사 (Lipotocin Inj.) Thioctic acid, matching the product name."
+  },
+  {
+    "id": 359,
+    "status": "CONFIRMED",
+    "reason": "Image shows Glutaone Inj. 1200mg Glutathione (Reduced), matching GLUTAONE INJ."
+  },
+  {
+    "id": 360,
+    "status": "CONFIRMED",
+    "reason": "Image shows a pill bottle labeled 글루타틴 (Glutatin) tablets, matching Glutatine Tab."
+  },
+  {
+    "id": 361,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Glutathione Film 6X White Tomato, matching the product name."
+  },
+  {
+    "id": 362,
+    "status": "CONFIRMED",
+    "reason": "Image shows DHNP Vitamin C Inj. (Ascorbic acid 10g/20mL) by Daehan Nupharm, matching Vitamin C."
+  },
+  {
+    "id": 363,
+    "status": "CONFIRMED",
+    "reason": "Image shows ACOGEN Inj. (Ascorbic acid) 10g/20mL x 10 vials, matching Acogen Inj. Ascorbic Acid."
+  },
+  {
+    "id": 364,
+    "status": "CONFIRMED",
+    "reason": "Image shows ASCORBIC Inj. High Potency VitaminC (Ascorbic Acid 500mg/mL) by BCWorld, matching ASCORBIC INJ A."
+  },
+  {
+    "id": 365,
+    "status": "MISMATCH",
+    "reason": "Image shows MASI Injection 10% Magnesium Sulfate Hydrate, not Ascorbic Acid Injection."
+  },
+  {
+    "id": 366,
+    "status": "CONFIRMED",
+    "reason": "Korean label reads 에티피에스 주 (ATPS Inj) Adenosine Triphosphate, matching ATP-S Inj."
+  },
+  {
+    "id": 367,
+    "status": "MISMATCH",
+    "reason": "Image shows Acetphen Premix Injection 1g (Acetaminophen) by inno.N, not L-Arginine."
+  },
+  {
+    "id": 368,
+    "status": "CONFIRMED",
+    "reason": "Korean label reads 아세페인 주 (Acepain Inj) Acetaminophen 100mL by GUJU, matching the product."
+  },
+  {
+    "id": 370,
+    "status": "MISMATCH",
+    "reason": "Image shows MultiVita Inj. (I.V. Infusion multivitamin), not Vita D alone."
+  },
+  {
+    "id": 371,
+    "status": "MISMATCH",
+    "reason": "Image shows 비타디본 주 (Vitadibon) Vitamin A AND D combo injection, not pure Vita-D."
+  },
+  {
+    "id": 372,
+    "status": "CONFIRMED",
+    "reason": "Image shows Vita-D Inj. I.M. (Cholecalciferol) 200,000IU/1mL, matching Vita-D."
+  },
+  {
+    "id": 373,
+    "status": "CONFIRMED",
+    "reason": "Korean label reads 비엠 하이디 주 (BM HiDi) Cholecalciferol 200,000IU/mL by BMI, matching BM Hid."
+  },
+  {
+    "id": 374,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows DOXY tab bottles in Korean packaging, matching the Doxy Tab brand and variant."
+  },
+  {
+    "id": 375,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows DOXY tab bottles in Korean packaging, matching the Doxy Tab brand and variant."
+  },
+  {
+    "id": 376,
+    "status": "CONFIRMED",
+    "reason": "Image shows Mesocartin 10mL I.V./I.M. injection ampoules (L-Carnitine), matching MESOCARTIN INJ."
+  },
+  {
+    "id": 377,
+    "status": "MISMATCH",
+    "reason": "Image shows Huons ASCORBIC ACID (vitamin C) injection, not LIPOTOCIN/Thioctic Acid."
+  },
+  {
+    "id": 378,
+    "status": "CONFIRMED",
+    "reason": "Image shows HYCOBAL inj. (Hydroxocobalamin 5mg) box and ampoule, matching the name exactly."
+  },
+  {
+    "id": 379,
+    "status": "CONFIRMED",
+    "reason": "Image shows B-colamin Inj. (Hydroxocobalamin 5mg), the B12 variant brand matching B-COLAMIN VIT B12."
+  },
+  {
+    "id": 380,
+    "status": "CONFIRMED",
+    "reason": "Image shows BEECOM HEXA Injection (Yuhan) 2mL x 50 ampoules, matching the BeeCom Hexa Vitamin B complex name."
+  },
+  {
+    "id": 381,
+    "status": "CONFIRMED",
+    "reason": "Image shows a Korean Zinc injection vial (징크에스 주) labeled zinc sulfate hydrate, matching the generic ZINC INJ name."
+  },
+  {
+    "id": 382,
+    "status": "MISMATCH",
+    "reason": "Image shows GCZINC inj. (Green Cross brand zinc) rather than Zinc S Inj., a different brand/variant."
+  },
+  {
+    "id": 384,
+    "status": "CONFIRMED",
+    "reason": "Image shows HISHIPHAGEN-C INJECTION 20mL x 50 ampoules, matching the Hishiphagen-C Inj. detox product."
+  },
+  {
+    "id": 385,
+    "status": "CONFIRMED",
+    "reason": "Image shows CARTIN Inj. (L-carnitine 1000mg) box and ampoules, matching the name exactly."
+  },
+  {
+    "id": 387,
+    "status": "CONFIRMED",
+    "reason": "Image shows Wellscaine cream 500g jar (Lidocaine), matching the WELLSCAINE PLUS CREAM Lidocaine product."
+  },
+  {
+    "id": 388,
+    "status": "CONFIRMED",
+    "reason": "Image shows Lidcaine cream 500g jar (10.56% lidocaine), matching the LIDCAIN CREAM name."
+  },
+  {
+    "id": 389,
+    "status": "MISMATCH",
+    "reason": "Image shows Melanosa cream (Hydroquinone 4%) by Dong-A, not Wellscaine cream."
+  },
+  {
+    "id": 390,
+    "status": "CONFIRMED",
+    "reason": "Image shows Beracaine Spray (Lidocaine 10%) 50ml bottle and box, matching the BERACAINE SPRAY name exactly."
+  },
+  {
+    "id": 391,
+    "status": "CONFIRMED",
+    "reason": "Image shows NEO-CAIN CREAM 10.56% (Lidocaine 105.6mg) 30g tube and box, matching the NEO-CAIN CREAM name."
+  },
+  {
+    "id": 392,
+    "status": "CONFIRMED",
+    "reason": "Image shows NEO-CAIN CREAM 10.56% 500g jar (Neogenesis), matching the NEO-CAIN CREAM name."
+  },
+  {
+    "id": 393,
+    "status": "CONFIRMED",
+    "reason": "Image shows NEO PRO CREAM 450g jar and box (Lidocaine + Prilocaine), matching the NEO PRO CREAM name exactly."
+  },
+  {
+    "id": 394,
+    "status": "CONFIRMED",
+    "reason": "Image shows J-CAIN cream 10.56% 500g jar (Lidocaine), matching the J-CAIN name."
+  },
+  {
+    "id": 395,
+    "status": "CONFIRMED",
+    "reason": "Image shows SM Cream 10.56% (Lidocaine) 500g jar, matching the SM CREAM name."
+  },
+  {
+    "id": 396,
+    "status": "MISMATCH",
+    "reason": "Image shows SM Lido Cream 30g tube (the Lido variant), not plain SM Cream."
+  },
+  {
+    "id": 397,
+    "status": "CONFIRMED",
+    "reason": "Image shows MUCHCAINE 5% Plus box (Lidocaine cream), matching the Muchcain brand."
+  },
+  {
+    "id": 400,
+    "status": "CONFIRMED",
+    "reason": "Image shows DAI HAN LIDOCAINE HCl inj. 2% box, matching the generic LIDOCAINE HCI injection name."
+  },
+  {
+    "id": 401,
+    "status": "CONFIRMED",
+    "reason": "Image shows Laennec inj. (Human Placenta Hydrolysate) 2ml x 50 amp box and ampoule, matching LAENNEC."
+  },
+  {
+    "id": 402,
+    "status": "CONFIRMED",
+    "reason": "Image shows Laennec 2ml x 10 ampoule box, matching the LAENNEC brand name."
+  },
+  {
+    "id": 403,
+    "status": "CONFIRMED",
+    "reason": "Image shows MELSMON 2mL x 50 ampoules and box, matching the MELSMON name exactly."
+  },
+  {
+    "id": 404,
+    "status": "CONFIRMED",
+    "reason": "Image shows JBP PLAMON injection (제이비피 플라몬) 2ml x 10 Amp box and ampoules, matching the JBP PLAMON portion of the name."
+  },
+  {
+    "id": 405,
+    "status": "CONFIRMED",
+    "reason": "Image shows GUJU Melamin (멜라민) Human placenta extract injection box 2mL x 50 Amp, matching the Melamin Inj. Placenta Extract name."
+  },
+  {
+    "id": 407,
+    "status": "CONFIRMED",
+    "reason": "Image shows ELASTY Ultra-Thin 32G Meso Needle box, matching the ELASTY MESO NEEDLE name."
+  },
+  {
+    "id": 408,
+    "status": "MISMATCH",
+    "reason": "Image shows REJUBEAU FINE MESO NEEDLE (the FINE variant) while the name is the generic REJUBEAU MESO NEEDLE without variant qualifier."
+  },
+  {
+    "id": 409,
+    "status": "CONFIRMED",
+    "reason": "Image shows REJUBEAU FINE MESO NEEDLE (orange box), matching brand and product category."
+  },
+  {
+    "id": 410,
+    "status": "CONFIRMED",
+    "reason": "Image shows REJUBEAU FINE MESO NEEDLE (orange box), matching brand and product category."
+  },
+  {
+    "id": 411,
+    "status": "CONFIRMED",
+    "reason": "Image shows REJUBEAU FINE MESO NEEDLE (green box variant), matching brand and product category."
+  },
+  {
+    "id": 412,
+    "status": "UNCERTAIN",
+    "reason": "Image shows a generic microneedle cartridge dome with no visible EVERLINE branding or label."
+  },
+  {
+    "id": 417,
+    "status": "CONFIRMED",
+    "reason": "Image shows SUNGSHIM 27G sterile single use needles box, matching brand and meso needle category."
+  },
+  {
+    "id": 418,
+    "status": "CONFIRMED",
+    "reason": "Image shows SUNGSHIM 27G sterile single use needles box, matching the SUNGSHIM brand name."
+  },
+  {
+    "id": 419,
+    "status": "CONFIRMED",
+    "reason": "Image shows SUNGSHIM INSULIN PEN NEEDLE box, matching the SUNGSHIM PEN NEEDLES name."
+  },
+  {
+    "id": 420,
+    "status": "CONFIRMED",
+    "reason": "Image shows DK Filler Cannula 18G 70mm, matching brand and product."
+  },
+  {
+    "id": 421,
+    "status": "CONFIRMED",
+    "reason": "Image shows DK Filler Cannula 22G 70mm, matching brand and product."
+  },
+  {
+    "id": 422,
+    "status": "CONFIRMED",
+    "reason": "Image shows DK Ultra Thin Meso Needles 30G, matching brand and product."
+  },
+  {
+    "id": 423,
+    "status": "CONFIRMED",
+    "reason": "Image shows NEO FILLER CANNULA by Neogenesis, matching the NEO CANNULA name."
+  },
+  {
+    "id": 424,
+    "status": "CONFIRMED",
+    "reason": "Image shows NEO FILLER CANNULA by Neogenesis, matching the NEO CANNULA name."
+  },
+  {
+    "id": 425,
+    "status": "CONFIRMED",
+    "reason": "Image shows a clear syringe mixing tube connector, matching the product name."
+  },
+  {
+    "id": 426,
+    "status": "CONFIRMED",
+    "reason": "Image shows multiple syringe mixing tube connectors, matching the product name."
+  },
+  {
+    "id": 427,
+    "status": "CONFIRMED",
+    "reason": "Image shows RESTYLANE DEFYNE box by Galderma, matching brand and variant."
+  },
+  {
+    "id": 428,
+    "status": "CONFIRMED",
+    "reason": "Image shows RESTYLANE VOLYME box by Galderma, matching the RESTYLANE VOLY ME name."
+  },
+  {
+    "id": 429,
+    "status": "CONFIRMED",
+    "reason": "Image shows RESTYLANE KYSSE box by Galderma, matching brand and variant."
+  },
+  {
+    "id": 430,
+    "status": "MISMATCH",
+    "reason": "Name RESTYLANE LVFT (LYFT) does not specify lidocaine but image shows RESTYLANE LYFT with Lidocaine variant."
+  },
+  {
+    "id": 431,
+    "status": "CONFIRMED",
+    "reason": "Image shows RESTYLANE Lidocaine box by Galderma, matching brand and lidocaine variant."
+  },
+  {
+    "id": 432,
+    "status": "CONFIRMED",
+    "reason": "Image shows RESTYLANE LYFT LIDOCAINE box by Galderma, matching brand and variant."
+  },
+  {
+    "id": 433,
+    "status": "CONFIRMED",
+    "reason": "Image shows RESTYLANE SKINBOOSTERS VITAL with Lidocaine, matching brand and variant."
+  },
+  {
+    "id": 434,
+    "status": "MISMATCH",
+    "reason": "Name specifies VITAL LIGHT but image shows RESTYLANE SKINBOOSTERS VITAL (regular, not LIGHT variant)."
+  },
+  {
+    "id": 435,
+    "status": "CONFIRMED",
+    "reason": "Image shows DYSPORT 500 units vial by Ipsen, matching brand."
+  },
+  {
+    "id": 436,
+    "status": "CONFIRMED",
+    "reason": "Image shows XEOMIN 100 units injection box by Merz, matching brand."
+  },
+  {
+    "id": 437,
+    "status": "CONFIRMED",
+    "reason": "Image shows BOTOX 50 Allergan Units vial and box, matching brand."
+  },
+  {
+    "id": 438,
+    "status": "CONFIRMED",
+    "reason": "Image shows Juvederm VOLUMA with Lidocaine box, matching brand and HA filler variant."
+  }
+]
