@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ProductImage from './ProductImage';
 
@@ -62,18 +63,36 @@ export default function ProductGallery({
     );
   }
 
+  const router = useRouter();
+
+  const goTo = (rawIdx: number) => {
+    if (items.length === 0) return;
+    const nextIdx = ((rawIdx % items.length) + items.length) % items.length;
+    if (nextIdx === activeIdx) return;
+    const crossingBoundary = items[nextIdx].productId !== items[activeIdx].productId;
+    setActiveIdx(nextIdx);
+    if (crossingBoundary) {
+      router.push(items[nextIdx].href, { scroll: false });
+    }
+  };
+
+  useEffect(() => {
+    const uniqueHrefs = new Set(items.map(it => it.href));
+    uniqueHrefs.forEach(href => router.prefetch(href));
+  }, [items, router]);
+
   useEffect(() => {
     if (items.length <= 1) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
-        setActiveIdx(i => (i - 1 + items.length) % items.length);
+        goTo(activeIdx - 1);
       } else if (e.key === 'ArrowRight') {
-        setActiveIdx(i => (i + 1) % items.length);
+        goTo(activeIdx + 1);
       }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [items.length]);
+  }, [activeIdx, items.length]);
 
   // Empty-items fallback (post-photo-wipe: items.length === 0).
   if (items.length === 0) {
@@ -143,14 +162,14 @@ export default function ProductGallery({
         {items.length > 1 && (
           <>
             <button
-              onClick={() => setActiveIdx(i => (i - 1 + items.length) % items.length)}
+              onClick={() => goTo(activeIdx - 1)}
               className="absolute top-1/2 left-3 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-charcoal/70 hover:bg-charcoal text-cream flex items-center justify-center transition-opacity"
               aria-label="Previous image"
             >
               <ChevronLeft size={18} />
             </button>
             <button
-              onClick={() => setActiveIdx(i => (i + 1) % items.length)}
+              onClick={() => goTo(activeIdx + 1)}
               className="absolute top-1/2 right-3 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-charcoal/70 hover:bg-charcoal text-cream flex items-center justify-center transition-opacity"
               aria-label="Next image"
             >
@@ -165,7 +184,7 @@ export default function ProductGallery({
           {items.map((it, i) => (
             <button
               key={i}
-              onClick={() => setActiveIdx(i)}
+              onClick={() => goTo(i)}
               className={`w-16 h-16 border relative overflow-hidden flex-shrink-0 transition-all duration-200 ${
                 activeIdx === i ? 'border-gold' : 'border-bone hover:border-gold/50'
               }`}
