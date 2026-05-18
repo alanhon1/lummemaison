@@ -1,0 +1,157 @@
+[
+  {
+    "id": 408,
+    "status": "CONFIRMED",
+    "reason": "Image shows REJUBEAU FINE MESO NEEDLE box which matches the REJUBEAU MESO NEEDLE product line."
+  },
+  {
+    "id": 33,
+    "status": "UNCERTAIN",
+    "reason": "Image shows TESORO green/teal box matching Sub-Q variant color, but PLUS vs non-PLUS distinction is not visually clear at this resolution."
+  },
+  {
+    "id": 16,
+    "status": "CONFIRMED",
+    "reason": "Image shows ELASTY G box where G corresponds to GRAND variant of the ELASTY line."
+  },
+  {
+    "id": 25,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows REVOLAX FINE with Lidocaine, which is the PLUS (with lidocaine) variant."
+  },
+  {
+    "id": 26,
+    "status": "CONFIRMED",
+    "reason": "Image shows REVOLAX DEEP box matching the deep variant of the REVOLAX product line."
+  },
+  {
+    "id": 284,
+    "status": "MISMATCH",
+    "reason": "Image shows a SkinCulture branded MTS pen, not an Auto-DN branded MTS pen — brand mismatch."
+  },
+  {
+    "id": 14,
+    "status": "CONFIRMED",
+    "reason": "Image shows ELASTY F (Fine) yellow box, matching the FINE variant of ELASTY."
+  },
+  {
+    "id": 15,
+    "status": "CONFIRMED",
+    "reason": "Image shows ELASTY D (Deep) teal box, matching the DEEP variant of ELASTY."
+  },
+  {
+    "id": 31,
+    "status": "UNCERTAIN",
+    "reason": "Image shows TESORO brown/gold box consistent with FINE variant color, but PLUS vs non-PLUS variant is not visually distinguishable at this resolution."
+  },
+  {
+    "id": 32,
+    "status": "UNCERTAIN",
+    "reason": "Image shows TESORO blue box consistent with DEEP variant color, but PLUS vs non-PLUS variant is not visually distinguishable at this resolution."
+  },
+  {
+    "id": 90,
+    "status": "UNCERTAIN",
+    "reason": "Image shows REGENOVUE PN box but the 'Non' subvariant label is not visible in the image to confirm the Non vs standard PN distinction."
+  },
+  {
+    "id": 389,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows Wellscaine cream 500g tub matching WELLSCAINE CREAM."
+  },
+  {
+    "id": 71,
+    "status": "CONFIRMED",
+    "reason": "Image shows ExoHealer Filcore SB Plus Program with P198 vials, matching P198 Filcore SB."
+  },
+  {
+    "id": 37,
+    "status": "CONFIRMED",
+    "reason": "Image shows TESORO green box consistent with SUB-Q variant of the TESORO line."
+  },
+  {
+    "id": 171,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dongkook Madecassol Care tube matching the MADECASSOL product line."
+  },
+  {
+    "id": 172,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dongkook Madecassol Care tube matching the MADECASSOL product line."
+  },
+  {
+    "id": 22,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows Neuramis DEEP box matching the NEURAMIS DEEP product."
+  },
+  {
+    "id": 301,
+    "status": "CONFIRMED",
+    "reason": "Image shows Yellow Bottle ampoule and box, matching the YELLOW BOTTLE lipolytic product."
+  },
+  {
+    "id": 18,
+    "status": "CONFIRMED",
+    "reason": "Image shows VOM 'intense' branded green box, matching VOM INTENSE filler."
+  },
+  {
+    "id": 35,
+    "status": "CONFIRMED",
+    "reason": "Image shows TESORO brown/gold box matching the FINE variant of the TESORO line."
+  },
+  {
+    "id": 36,
+    "status": "CONFIRMED",
+    "reason": "Image shows TESORO blue box matching the DEEP variant of the TESORO line."
+  },
+  {
+    "id": 64,
+    "status": "MISMATCH",
+    "reason": "Image clearly shows Beads Max MID variant, but product name is BEADS MAX S — variant mismatch (S vs MID)."
+  },
+  {
+    "id": 275,
+    "status": "MISMATCH",
+    "reason": "Image shows a single-row needle cartridge consistent with DN16, but product is DN64 NEEDLE — needle count mismatch, appears swapped with ID 276."
+  },
+  {
+    "id": 276,
+    "status": "MISMATCH",
+    "reason": "Image shows a multi-row grid cartridge with ~64 pins consistent with DN64, but product is DN16 NEEDLE — needle count mismatch, appears swapped with ID 275."
+  },
+  {
+    "id": 295,
+    "status": "CONFIRMED",
+    "reason": "Image clearly shows BARBIE SLIM lipolytic solution box and vial matching the product."
+  },
+  {
+    "id": 347,
+    "status": "CONFIRMED",
+    "reason": "Image shows meNnus vial labeled Polylactic Acid, matching MENNUS PLA."
+  },
+  {
+    "id": 63,
+    "status": "CONFIRMED",
+    "reason": "Image shows LINE BODY 10 (Hard) box with syringe, matching the LINE BODY product line."
+  },
+  {
+    "id": 65,
+    "status": "CONFIRMED",
+    "reason": "Image shows LINE BODY Safe & Easy 50 box, matching the LINE BODY product line."
+  },
+  {
+    "id": 396,
+    "status": "CONFIRMED",
+    "reason": "Image shows SM Cream 10.56% lidocaine tub matching the SM CREAM anesthetic product."
+  },
+  {
+    "id": 296,
+    "status": "CONFIRMED",
+    "reason": "Image shows Prime DR.LIPO+ vial set matching the DR.LIPO lipolytic product."
+  },
+  {
+    "id": 286,
+    "status": "MISMATCH",
+    "reason": "Image shows SkinCulture Auto-BN MTS needle box (20pcs) with no '12 PIN' branding or pin-count specification visible."
+  }
+]

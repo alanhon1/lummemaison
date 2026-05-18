@@ -1,0 +1,157 @@
+[
+  {
+    "id": 341,
+    "status": "CONFIRMED",
+    "reason": "Image shows Placentex Polydeoxyribonucleotide ampoules by Mastelli matching brand and variant."
+  },
+  {
+    "id": 187,
+    "status": "MISMATCH",
+    "reason": "Image shows Vanhalla Niacinamide 15 Triple Power Booster, not the Skin Tone Balance variant."
+  },
+  {
+    "id": 189,
+    "status": "CONFIRMED",
+    "reason": "Image shows Vanhalla Ceramide Moisturizing Essence (in Toner) matching brand and product."
+  },
+  {
+    "id": 262,
+    "status": "MISMATCH",
+    "reason": "Image shows Pepticule GOLD cream jar, not the Ultimate Rejuvenation Cream variant."
+  },
+  {
+    "id": 263,
+    "status": "MISMATCH",
+    "reason": "Image shows Pepticule 1500K Shot peptide & spicule ampoule, not the Ultimate Rejuvenation Serum."
+  },
+  {
+    "id": 190,
+    "status": "CONFIRMED",
+    "reason": "Image shows Vanhalla Ceramide Moisturizing Serum in Cream jar matching brand and product."
+  },
+  {
+    "id": 434,
+    "status": "MISMATCH",
+    "reason": "Image shows Restylane Skinboosters Vital with Lidocaine, not the Vital LIGHT variant."
+  },
+  {
+    "id": 34,
+    "status": "UNCERTAIN",
+    "reason": "Image shows a small Tesoro-branded box but is too low resolution to confirm the Implant with Lidocaine variant."
+  },
+  {
+    "id": 91,
+    "status": "MISMATCH",
+    "reason": "Image shows Regenovue Aqua Shine Plus, not the GOLD variant specified in the name."
+  },
+  {
+    "id": 23,
+    "status": "MISMATCH",
+    "reason": "Image shows Regenovue Deep filler, not Neuramis Deep with Lidocaine (brand mismatch)."
+  },
+  {
+    "id": 77,
+    "status": "CONFIRMED",
+    "reason": "Image shows Dermagen Plus NAD+ Solution vial matching brand and active ingredient."
+  },
+  {
+    "id": 8,
+    "status": "MISMATCH",
+    "reason": "Image shows Regenovue SUB-Q (1.0ml) without PLUS label, but name specifies SUB-Q PLUS variant."
+  },
+  {
+    "id": 17,
+    "status": "MISMATCH",
+    "reason": "Image shows Regenovue FINE filler, not VOM LIGHT (CE) (brand and variant both wrong)."
+  },
+  {
+    "id": 377,
+    "status": "CONFIRMED",
+    "reason": "Image shows Lipotocin Inj. Thioctic Acid ampoule and box matching name."
+  },
+  {
+    "id": 92,
+    "status": "MISMATCH",
+    "reason": "Image shows Regenovue Aqua Shine Plus, not the SILVER variant specified in the name."
+  },
+  {
+    "id": 218,
+    "status": "MISMATCH",
+    "reason": "Image shows Curenex Intense Glow & Shine sheet masks, not a Rejuvenating Cream."
+  },
+  {
+    "id": 367,
+    "status": "MISMATCH",
+    "reason": "Image shows Acetphen Premix Injection (acetaminophen) bag, not an L-Arginine injection."
+  },
+  {
+    "id": 102,
+    "status": "MISMATCH",
+    "reason": "Image shows Elaxen PLLA ampoules and mist set, not the PLLA MASK product."
+  },
+  {
+    "id": 125,
+    "status": "CONFIRMED",
+    "reason": "Image shows Rejuran Skin Booster vials (c-PDRN+HA and Amino Acid) matching the named product."
+  },
+  {
+    "id": 221,
+    "status": "MISMATCH",
+    "reason": "Image shows Curenex Intense Glow & Shine Rejuvenating Solution vials, not a Rejuvenating Mask."
+  },
+  {
+    "id": 6,
+    "status": "UNCERTAIN",
+    "reason": "Image shows Regenovue FINE PLUS with Lidocaine; name lists FINE PLUS (CE) without lidocaine spec so variant is ambiguous."
+  },
+  {
+    "id": 7,
+    "status": "UNCERTAIN",
+    "reason": "Image shows Regenovue DEEP PLUS Implant with Lidocaine; name lists DEEP PLUS (CE) without lidocaine spec so variant is ambiguous."
+  },
+  {
+    "id": 235,
+    "status": "UNCERTAIN",
+    "reason": "Image shows Dermagen Urea Cream Skin Softener; brand matches but the Deep variant is not labelled on the tube."
+  },
+  {
+    "id": 382,
+    "status": "MISMATCH",
+    "reason": "Image shows GCZINC Inj. by another manufacturer, not the Zinc S Inj. Zinc Sulfate brand."
+  },
+  {
+    "id": 231,
+    "status": "CONFIRMED",
+    "reason": "Image shows Rapporapy Cindelria Tone-Up Sun Cream SPF50+ matching the named product."
+  },
+  {
+    "id": 365,
+    "status": "CONFIRMED",
+    "reason": "Image shows Huons Ascorbic Acid Injection ampoules matching the generic name."
+  },
+  {
+    "id": 5,
+    "status": "MISMATCH",
+    "reason": "Image shows Regenovue SUB-Q PLUS with Lidocaine, but the name specifies SUB-Q (without PLUS)."
+  },
+  {
+    "id": 20,
+    "status": "MISMATCH",
+    "reason": "Image shows Neuramis LIGHT Lidocaine box, but the name specifies the LIGHT MESO variant (without lidocaine)."
+  },
+  {
+    "id": 27,
+    "status": "MISMATCH",
+    "reason": "Image shows Revolax SUB-Q box without PLUS label, but the name specifies SUB-Q PLUS."
+  },
+  {
+    "id": 73,
+    "status": "MISMATCH",
+    "reason": "Image shows ExoHealer P198 Filcore SB vial without a Plus label visible."
+  },
+  {
+    "id": 224,
+    "status": "CONFIRMED",
+    "reason": "Image shows Curenex Sculp PLLA Collagen Biostimulator vial matching brand and variant."
+  }
+]

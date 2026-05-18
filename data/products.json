@@ -248,7 +248,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-5.webp",
+      "image": "",
       "moq": 1,
       "groupId": "regenovue-sub-q",
       "variantLabel": "SUB - Q",
@@ -267,7 +267,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-6.webp",
+      "image": "",
       "moq": 1,
       "groupId": "regenovue-sub-q",
       "variantLabel": "FINE PLUS",
@@ -286,7 +286,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-7.webp",
+      "image": "",
       "moq": 1,
       "groupId": "regenovue-sub-q",
       "variantLabel": "DEEP PLUS",
@@ -305,7 +305,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-8.webp",
+      "image": "",
       "moq": 1,
       "groupId": "regenovue-sub-q",
       "variantLabel": "SUB - Q PLUS",
@@ -464,7 +464,7 @@
       "isSale": false,
       "isBestSeller": true,
       "inStock": true,
-      "image": "/images/products/product-17.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -509,7 +509,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-20.webp",
+      "image": "",
       "moq": 1,
       "groupId": "neuramis",
       "variantLabel": "LIGHT (MESO)",
@@ -566,7 +566,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-23.webp",
+      "image": "",
       "moq": 1,
       "groupId": "neuramis",
       "variantLabel": "DEEP",
@@ -630,7 +630,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-27.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -702,7 +702,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-31.webp",
+      "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
       "variantLabel": "FINE PLUS",
@@ -721,7 +721,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-32.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -736,7 +736,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-33.webp",
+      "image": "",
       "moq": 1,
       "groupId": "tesoro-sub-q-with-lido",
       "variantLabel": "SUB - Q PLUS",
@@ -755,7 +755,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-34.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1255,7 +1255,7 @@
       "isSale": true,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-64.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1394,7 +1394,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-73.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1653,7 +1653,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-90.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1668,7 +1668,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-91.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1683,7 +1683,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-92.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -1833,7 +1833,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-102.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3146,7 +3146,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-187.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -3619,7 +3619,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-218.webp",
+      "image": "",
       "moq": 1,
       "groupId": "curenex-dailycare-rejuvenating-cream",
       "variantLabel": "CREAM",
@@ -3668,7 +3668,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-221.webp",
+      "image": "",
       "moq": 1,
       "groupId": "curenex-dailycare-rejuvenating-cream",
       "variantLabel": "MASK",
@@ -3890,7 +3890,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-235.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4307,7 +4307,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-262.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4322,7 +4322,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-263.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4504,7 +4504,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-275.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4519,7 +4519,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-276.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4639,7 +4639,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-284.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -4669,7 +4669,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-286.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -5984,7 +5984,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-367.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -6225,7 +6225,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-382.webp",
+      "image": "",
       "moq": 1
     },
     {
@@ -7055,7 +7055,7 @@
       "isSale": false,
       "isBestSeller": false,
       "inStock": true,
-      "image": "/images/products/product-434.webp",
+      "image": "",
       "moq": 1
     },
     {

@@ -1,0 +1,41 @@
+Refill audit cleanup — 2026-05-18T09:46:28.630Z
+================================================
+
+Audited: 62
+  CONFIRMED: 31
+  MISMATCH:  23
+  UNCERTAIN: 8
+
+Cleared: 31
+
+#187  Vanhalla NIACINAMIDE Skin Tone Balance  →  [MISMATCH]  Image shows Vanhalla Niacinamide 15 Triple Power Booster, not the Skin Tone Balance variant.
+#262  PEPTICULE ULTIMATE REJUVENATION CREAM  →  [MISMATCH]  Image shows Pepticule GOLD cream jar, not the Ultimate Rejuvenation Cream variant.
+#263  PEPTICULE ULTIMATE REJUVENATION SERUM  →  [MISMATCH]  Image shows Pepticule 1500K Shot peptide & spicule ampoule, not the Ultimate Rejuvenation Serum.
+#434  RESTYLANE VITAL LIGHT LIDOCAINE  →  [MISMATCH]  Image shows Restylane Skinboosters Vital with Lidocaine, not the Vital LIGHT variant.
+#34  TESORO IMPLANT WITH LIDOCAINE  →  [UNCERTAIN]  Image shows a small Tesoro-branded box but is too low resolution to confirm the Implant with Lidocaine variant.
+#91  REGENOVUE AQUASHINE PLUS GOLD  →  [MISMATCH]  Image shows Regenovue Aqua Shine Plus, not the GOLD variant specified in the name.
+#23  NEURAMIS DEEP WITH LIDOCAINE  →  [MISMATCH]  Image shows Regenovue Deep filler, not Neuramis Deep with Lidocaine (brand mismatch).
+#8  REGENOVUE SUB - Q PLUS (CE)  →  [MISMATCH]  Image shows Regenovue SUB-Q (1.0ml) without PLUS label, but name specifies SUB-Q PLUS variant.
+#17  VOM LIGHT (CE) NO Lidocaine  →  [MISMATCH]  Image shows Regenovue FINE filler, not VOM LIGHT (CE) (brand and variant both wrong).
+#92  REGENOVUE AQUASHINE SILVER  →  [MISMATCH]  Image shows Regenovue Aqua Shine Plus, not the SILVER variant specified in the name.
+#218  CURENEX REJUVENATING CREAM  →  [MISMATCH]  Image shows Curenex Intense Glow & Shine sheet masks, not a Rejuvenating Cream.
+#367  ARGININE INJ. L - Arginine  →  [MISMATCH]  Image shows Acetphen Premix Injection (acetaminophen) bag, not an L-Arginine injection.
+#102  ELAXEN PLLA MASK Poly - L  →  [MISMATCH]  Image shows Elaxen PLLA ampoules and mist set, not the PLLA MASK product.
+#221  CURENEX REJUVENATING MASK  →  [MISMATCH]  Image shows Curenex Intense Glow & Shine Rejuvenating Solution vials, not a Rejuvenating Mask.
+#6  REGENOVUE FINE PLUS (CE)  →  [UNCERTAIN]  Image shows Regenovue FINE PLUS with Lidocaine; name lists FINE PLUS (CE) without lidocaine spec so variant is ambiguous.
+#7  REGENOVUE DEEP PLUS (CE)  →  [UNCERTAIN]  Image shows Regenovue DEEP PLUS Implant with Lidocaine; name lists DEEP PLUS (CE) without lidocaine spec so variant is ambiguous.
+#235  DERMAGEN Urea Cream Deep  →  [UNCERTAIN]  Image shows Dermagen Urea Cream Skin Softener; brand matches but the Deep variant is not labelled on the tube.
+#382  Zinc S Inj. Zinc Sulfate  →  [MISMATCH]  Image shows GCZINC Inj. by another manufacturer, not the Zinc S Inj. Zinc Sulfate brand.
+#5  REGENOVUE SUB - Q (CE)  →  [MISMATCH]  Image shows Regenovue SUB-Q PLUS with Lidocaine, but the name specifies SUB-Q (without PLUS).
+#20  NEURAMIS LIGHT (MESO)  →  [MISMATCH]  Image shows Neuramis LIGHT Lidocaine box, but the name specifies the LIGHT MESO variant (without lidocaine).
+#27  REVOLAX SUB - Q PLUS  →  [MISMATCH]  Image shows Revolax SUB-Q box without PLUS label, but the name specifies SUB-Q PLUS.
+#73  P198 Filcore SB Plus  →  [MISMATCH]  Image shows ExoHealer P198 Filcore SB vial without a Plus label visible.
+#33  TESORO SUB - Q PLUS  →  [UNCERTAIN]  Image shows TESORO green/teal box matching Sub-Q variant color, but PLUS vs non-PLUS distinction is not visually clear at this resolution.
+#284  AUTO - DN MTS PEN  →  [MISMATCH]  Image shows a SkinCulture branded MTS pen, not an Auto-DN branded MTS pen — brand mismatch.
+#31  TESORO FINE PLUS  →  [UNCERTAIN]  Image shows TESORO brown/gold box consistent with FINE variant color, but PLUS vs non-PLUS variant is not visually distinguishable at this resolution.
+#32  TESORO DEEP PLUS  →  [UNCERTAIN]  Image shows TESORO blue box consistent with DEEP variant color, but PLUS vs non-PLUS variant is not visually distinguishable at this resolution.
+#90  REGENOVUE PN Non  →  [UNCERTAIN]  Image shows REGENOVUE PN box but the 'Non' subvariant label is not visible in the image to confirm the Non vs standard PN distinction.
+#64  BEADS MAX S  →  [MISMATCH]  Image clearly shows Beads Max MID variant, but product name is BEADS MAX S — variant mismatch (S vs MID).
+#275  DN64 NEEDLE  →  [MISMATCH]  Image shows a single-row needle cartridge consistent with DN16, but product is DN64 NEEDLE — needle count mismatch, appears swapped with ID 276.
+#276  DN16 NEEDLE  →  [MISMATCH]  Image shows a multi-row grid cartridge with ~64 pins consistent with DN64, but product is DN16 NEEDLE — needle count mismatch, appears swapped with ID 275.
+#286  12 PIN  →  [MISMATCH]  Image shows SkinCulture Auto-BN MTS needle box (20pcs) with no '12 PIN' branding or pin-count specification visible.
