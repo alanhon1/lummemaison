@@ -279,14 +279,14 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             {/* Mobile filter toggle */}
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase border border-bone px-3 py-2 hover:border-gold hover:text-gold transition-colors"
+              className="lg:hidden flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase border border-bone rounded-sm px-3 py-2 hover:border-gold hover:text-gold transition-colors"
             >
               <Filter size={13} />
               {t('filter')}
             </button>
 
             {/* Search */}
-            <div className="flex-1 min-w-48 max-w-sm flex items-center gap-2 border border-bone px-3 py-2 focus-within:border-gold transition-colors">
+            <div className="flex-1 min-w-48 max-w-sm flex items-center gap-2 border border-bone rounded-sm px-3 py-2 focus-within:border-gold transition-colors">
               <Search size={14} className="text-mist flex-shrink-0" />
               <input
                 type="text"
@@ -307,7 +307,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <select
                 value={sortBy}
                 onChange={e => { setSortBy(e.target.value as SortOption); setPage(1); }}
-                className="text-xs border border-bone px-3 py-2 pr-7 bg-white text-charcoal outline-none hover:border-gold transition-colors appearance-none cursor-pointer"
+                className="text-xs border border-bone rounded-sm px-3 py-2 pr-7 bg-white text-charcoal outline-none hover:border-gold transition-colors appearance-none cursor-pointer"
               >
                 <option value="default">{t('sortDefault')}</option>
                 <option value="price-asc">{t('sortPriceAsc')}</option>

@@ -97,7 +97,7 @@ export default function CheckoutClient() {
     <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {/* Shipping Form */}
       <div className="lg:col-span-2 space-y-6">
-        <div className="bg-white border border-bone p-6">
+        <div className="bg-white border border-bone rounded-sm p-6">
           <h2 className="font-display text-xl font-light mb-6">{t('shipping')}</h2>
 
           <div className="grid grid-cols-2 gap-4">
@@ -150,7 +150,7 @@ export default function CheckoutClient() {
         </div>
 
         {/* Payment Method */}
-        <div className="bg-white border border-bone p-6">
+        <div className="bg-white border border-bone rounded-sm p-6">
           <h2 className="font-display text-xl font-light mb-6">{t('paymentMethod')}</h2>
           <div className="space-y-3">
             {[
@@ -182,7 +182,7 @@ export default function CheckoutClient() {
       </div>
 
       {/* Order Summary */}
-      <div className="bg-white border border-bone p-6 h-fit sticky top-24">
+      <div className="bg-white border border-bone rounded-sm p-6 h-fit sticky top-24">
         <h2 className="font-display text-xl font-light mb-6">{t('orderSummary')}</h2>
         <div className="space-y-2 mb-6 pb-6 border-b border-bone max-h-60 overflow-y-auto">
           {items.map(item => (

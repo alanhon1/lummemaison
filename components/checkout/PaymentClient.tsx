@@ -37,11 +37,11 @@ export default function PaymentClient() {
   return (
     <div className="space-y-8">
       {/* Success Header */}
-      <div className="bg-white border border-bone p-8 text-center">
+      <div className="bg-white border border-bone rounded-sm p-8 text-center">
         <CheckCircle size={48} className="text-green-500 mx-auto mb-4" />
         <h1 className="font-display text-3xl font-light mb-2">{t('orderPlaced')}</h1>
         <p className="text-sm text-mist mb-4">{t('instructions')}</p>
-        <div className="inline-block bg-cream border border-bone px-6 py-3">
+        <div className="inline-block bg-cream border border-bone rounded-sm px-6 py-3">
           <span className="text-xs text-mist mr-2">{t('orderNumber')}</span>
           <span className="font-semibold text-charcoal tracking-wider">{orderId}</span>
           <button
@@ -55,11 +55,11 @@ export default function PaymentClient() {
 
       {/* Payment Instructions */}
       {paymentMethod === 'wise' ? (
-        <div className="bg-white border border-bone p-6">
+        <div className="bg-white border border-bone rounded-sm p-6">
           <h2 className="font-display text-xl font-light mb-4">{t('wise.title')}</h2>
           <div className="gold-divider mb-4" />
           <p className="text-sm text-charcoal mb-4">{t('wise.instructions')}</p>
-          <div className="bg-cream border border-bone p-4 space-y-3">
+          <div className="bg-cream border border-bone rounded-sm p-4 space-y-3">
             <div className="flex justify-between text-sm">
               <span className="text-mist">Account Name</span>
               <span className="font-semibold">{siteConfig.payment.wise.accountName}</span>
@@ -81,11 +81,11 @@ export default function PaymentClient() {
           <p className="text-xs text-mist mt-4">{siteConfig.payment.wise.accountDetails}</p>
         </div>
       ) : (
-        <div className="bg-white border border-bone p-6">
+        <div className="bg-white border border-bone rounded-sm p-6">
           <h2 className="font-display text-xl font-light mb-4">{t('usdt.title')}</h2>
           <div className="gold-divider mb-4" />
           <p className="text-sm text-charcoal mb-4">{t('usdt.instructions')}</p>
-          <div className="bg-cream border border-bone p-4 space-y-3">
+          <div className="bg-cream border border-bone rounded-sm p-4 space-y-3">
             <div>
               <span className="text-xs text-mist block mb-1">{t('usdt.network')}</span>
               <span className="font-semibold text-sm">{siteConfig.payment.usdt.network}</span>
@@ -128,7 +128,7 @@ export default function PaymentClient() {
 
       {/* Order Summary */}
       {order && (
-        <div className="bg-white border border-bone p-6">
+        <div className="bg-white border border-bone rounded-sm p-6">
           <h2 className="font-display text-xl font-light mb-4">{t('orderDetails')}</h2>
           <div className="gold-divider mb-4" />
           <div className="grid grid-cols-2 gap-4 text-sm mb-6">

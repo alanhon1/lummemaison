@@ -42,7 +42,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
     return (
       <Link
         href={`/${locale}/product/${product.id}`}
-        className="flex gap-4 p-4 bg-white border border-bone hover:border-gold transition-all duration-300 group"
+        className="flex gap-4 p-4 bg-white border border-bone rounded-sm hover:border-gold transition-all duration-300 group"
       >
         <div className="w-20 h-20 flex-shrink-0 relative overflow-hidden">
           <ProductImage
@@ -86,7 +86,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         </div>
         <button
           onClick={handleAddToCart}
-          className="self-center flex-shrink-0 w-9 h-9 border border-bone flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors"
+          className="self-center flex-shrink-0 w-9 h-9 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors"
           aria-label={t('addToCart')}
         >
           <ShoppingBag size={16} />

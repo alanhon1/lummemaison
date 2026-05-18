@@ -92,14 +92,14 @@ export default function CartPanel() {
                     <div className="flex items-center gap-2 mt-2">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="w-6 h-6 border border-bone flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
+                        className="w-6 h-6 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
                       >
                         <Minus size={10} />
                       </button>
                       <span className="text-xs font-semibold w-6 text-center">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-6 h-6 border border-bone flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
+                        className="w-6 h-6 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
                       >
                         <Plus size={10} />
                       </button>

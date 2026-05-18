@@ -146,7 +146,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             <ProductPrice price={product.price} moq={product.moq} moqLabel={t('units')} />
 
             {product.specification && (
-              <div className="mb-6 p-4 bg-white border border-bone">
+              <div className="mb-6 p-4 bg-white border border-bone rounded-sm">
                 <div className="flex items-center gap-2 mb-2">
                   <Layers size={14} className="text-gold" />
                   <span className="text-xs font-semibold tracking-wider uppercase text-charcoal">
