@@ -21,7 +21,7 @@ export default function Hero() {
         <div className="w-full h-full bg-gradient-to-bl from-gold/30 to-transparent" />
       </div>
 
-      {/* Animated floating orbs */}
+      {/* Animated floating orbs — right side */}
       <motion.div
         className="absolute top-1/4 right-1/4 w-64 h-64 bg-gold/8 rounded-full blur-3xl pointer-events-none"
         animate={{ y: [0, -30, 0] }}
@@ -36,6 +36,23 @@ export default function Hero() {
         className="absolute top-1/2 right-1/3 w-32 h-32 bg-gold/12 rounded-full blur-2xl pointer-events-none"
         animate={{ y: [0, -15, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Animated floating orbs — left side (subtler) */}
+      <motion.div
+        className="absolute top-1/3 left-1/6 w-56 h-56 bg-gold/6 rounded-full blur-3xl pointer-events-none"
+        animate={{ y: [0, 25, 0], x: [0, 10, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 left-1/5 w-72 h-72 bg-gold/4 rounded-full blur-3xl pointer-events-none"
+        animate={{ y: [0, -18, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute top-2/3 left-1/3 w-28 h-28 bg-gold/10 rounded-full blur-2xl pointer-events-none"
+        animate={{ y: [0, 12, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Sparkle particles */}
@@ -149,12 +166,13 @@ export default function Hero() {
 }
 
 function Sparkles() {
-  const particles = useMemo(() => Array.from({ length: 10 }, (_, i) => ({
+  // Spread across the full viewport (5% – 95%) so left and right both get particles.
+  const particles = useMemo(() => Array.from({ length: 16 }, (_, i) => ({
     id: i,
-    size: 4 + ((i * 0.8) % 8),
-    top: `${15 + ((i * 17.3) % 75)}%`,
-    left: `${30 + ((i * 23.1) % 65)}%`,
-    delay: (i * 0.7) % 3.5,
+    size: 3 + ((i * 0.9) % 7),
+    top: `${10 + ((i * 13.7) % 80)}%`,
+    left: `${5 + ((i * 19.3) % 90)}%`,
+    delay: (i * 0.6) % 3.5,
     duration: 3 + ((i * 0.4) % 3),
   })), []);
 

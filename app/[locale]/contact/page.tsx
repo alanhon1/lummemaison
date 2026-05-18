@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { Mail, MessageCircle, Send, MapPin } from 'lucide-react';
 import { siteConfig } from '@/lib/site-config';
+import AnimatedSection from '@/components/layout/AnimatedSection';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -15,22 +16,24 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
   return (
     <div className="pt-24 min-h-screen bg-cream">
-      {/* Hero */}
-      <section className="bg-obsidian text-cream py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* Hero with ambient glow */}
+      <section className="relative bg-obsidian text-cream py-20 px-6 overflow-hidden">
+        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-gold/8 rounded-full blur-3xl pointer-events-none animate-pulse-slow" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gold/5 rounded-full blur-3xl pointer-events-none animate-pulse-slow" />
+        <AnimatedSection className="relative max-w-4xl mx-auto text-center" direction="up">
           <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-6">
             B2B Inquiries
           </p>
           <h1 className="font-display text-5xl font-light mb-4">{t('title')}</h1>
           <div className="gold-divider mx-auto mb-4" />
           <p className="text-cream/70">{t('subtitle')}</p>
-        </div>
+        </AnimatedSection>
       </section>
 
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Info */}
-          <div>
+          <AnimatedSection direction="left">
             <h2 className="font-display text-2xl font-light mb-8">{t('info.title')}</h2>
             <div className="space-y-6">
               <a
@@ -86,10 +89,10 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 </div>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
 
           {/* Form */}
-          <div>
+          <AnimatedSection direction="right">
             <h2 className="font-display text-2xl font-light mb-8">Send a Message</h2>
             <form className="space-y-4" action={siteConfig.social.whatsapp}>
               <div className="grid grid-cols-2 gap-4">
@@ -146,7 +149,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 {t('form.send')} via WhatsApp
               </a>
             </form>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
     </div>
