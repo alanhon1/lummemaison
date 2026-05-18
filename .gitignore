@@ -74,3 +74,6 @@ scripts/refill-from-jotform-report.txt
 
 # Fix-variant-labels runtime artifact
 scripts/fix-variant-labels-report.txt
+
+# Extend-grouping runtime artifact
+scripts/extend-grouping-report.txt
