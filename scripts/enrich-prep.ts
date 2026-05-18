@@ -30,19 +30,25 @@ interface BatchEntry {
   categoryName: string;
   specification: string;
   description: string;
+  indication: string;
+  packaging: string;
+  protocol: string;
 }
 
 function main(): void {
   const data: DataFile = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8').replace(/^﻿/, ''));
   const catName = new Map(data.categories.map(c => [c.id, c.name]));
 
-  // Target: every product (overwrite/regenerate any existing content for consistency).
+  // Target: every product (subagents may expand existing content).
   const entries: BatchEntry[] = data.products.map(p => ({
     id: p.id,
     name: p.name,
     categoryName: catName.get(p.categoryId) ?? p.categoryId,
     specification: p.specification,
     description: p.description,
+    indication: p.indication ?? '',
+    packaging: p.packaging ?? '',
+    protocol: p.protocol ?? '',
   }));
 
   if (fs.existsSync(OUT_DIR)) fs.rmSync(OUT_DIR, { recursive: true, force: true });
