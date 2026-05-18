@@ -2,7 +2,13 @@ import productsData from '@/data/products.json';
 import translationsRu from '@/data/translations/ru.json';
 import translationsKo from '@/data/translations/ko.json';
 
-type ProductTranslation = { description?: string; specification?: string };
+type ProductTranslation = {
+  description?: string;
+  specification?: string;
+  indication?: string;
+  packaging?: string;
+  protocol?: string;
+};
 
 const TRANSLATIONS: Record<string, Record<string, ProductTranslation>> = {
   ru: translationsRu as Record<string, ProductTranslation>,
@@ -29,6 +35,9 @@ export interface Product {
   categoryId: string;
   specification: string;
   description: string;
+  indication?: string;
+  packaging?: string;
+  protocol?: string;
   price: number;
   tags: string[];
   isNew: boolean;
@@ -109,4 +118,19 @@ export function getLocalizedDescription(product: Product, locale: string): strin
 export function getLocalizedSpecification(product: Product, locale: string): string {
   const t = TRANSLATIONS[locale]?.[String(product.id)]?.specification;
   return t || product.specification;
+}
+
+export function getLocalizedIndication(product: Product, locale: string): string {
+  const t = TRANSLATIONS[locale]?.[String(product.id)]?.indication;
+  return t || product.indication || '';
+}
+
+export function getLocalizedPackaging(product: Product, locale: string): string {
+  const t = TRANSLATIONS[locale]?.[String(product.id)]?.packaging;
+  return t || product.packaging || '';
+}
+
+export function getLocalizedProtocol(product: Product, locale: string): string {
+  const t = TRANSLATIONS[locale]?.[String(product.id)]?.protocol;
+  return t || product.protocol || '';
 }

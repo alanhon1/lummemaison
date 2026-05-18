@@ -2,10 +2,10 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Tag, Layers } from 'lucide-react';
-import { getProductById, getCategoryById, getProductsByCategory, getProductVariants, getLocalizedDescription, getLocalizedSpecification, categories } from '@/lib/products';
+import { getProductById, getCategoryById, getProductsByCategory, getProductVariants, getLocalizedSpecification, categories } from '@/lib/products';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
-import ProductDetailTabs from '@/components/catalogue/ProductDetailTabs';
+import ProductDetailContent from '@/components/catalogue/ProductDetailContent';
 import ProductPrice from '@/components/catalogue/ProductPrice';
 import ProductCard from '@/components/catalogue/ProductCard';
 import ProductGallery, { type GalleryItem } from '@/components/catalogue/ProductGallery';
@@ -71,12 +71,6 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
   const initialActiveIndex = Math.max(
     0,
     galleryItems.findIndex(it => it.productId === product.id && it.src === product.image)
-  );
-
-  const hasEnriched = !!(
-    product.enrichedInfo?.benefits?.length ||
-    product.enrichedInfo?.protocol ||
-    product.enrichedInfo?.ingredients
   );
 
   const categoriesById: Record<string, string> = Object.fromEntries(
@@ -157,15 +151,6 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
               </div>
             )}
 
-            {!hasEnriched && product.description && (
-              <div className="mb-6">
-                <h3 className="text-xs font-semibold tracking-wider uppercase text-mist mb-3">
-                  {t('description')}
-                </h3>
-                <p className="text-sm text-charcoal leading-relaxed">{getLocalizedDescription(product, locale)}</p>
-              </div>
-            )}
-
             <div className="flex items-center gap-2 mb-8">
               <div className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-400'}`} />
               <span className="text-xs font-semibold text-charcoal">
@@ -186,15 +171,19 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
               </div>
             )}
 
-            {hasEnriched && (
-              <ProductDetailTabs
-                description={product.description}
-                specification={product.specification}
-                enrichedInfo={product.enrichedInfo}
-              />
-            )}
           </div>
         </div>
+
+        <ProductDetailContent
+          product={product}
+          locale={locale}
+          labels={{
+            description: t('description'),
+            indication: t('indication'),
+            packaging: t('packaging'),
+            protocol: t('protocol'),
+          }}
+        />
 
         {related.length > 0 && (
           <div className="mt-20">

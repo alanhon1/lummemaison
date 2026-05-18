@@ -81,6 +81,9 @@
   "product": {
     "specification": "Спецификация",
     "description": "Описание",
+    "indication": "Показания",
+    "packaging": "Упаковка",
+    "protocol": "Протокол",
     "price": "Цена",
     "moq": "МОЗ",
     "unit": "единица",

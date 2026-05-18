@@ -81,6 +81,9 @@
   "product": {
     "specification": "규격",
     "description": "설명",
+    "indication": "효능",
+    "packaging": "포장",
+    "protocol": "프로토콜",
     "price": "가격",
     "moq": "최소주문수량",
     "unit": "개",

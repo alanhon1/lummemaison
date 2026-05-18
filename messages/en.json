@@ -81,6 +81,9 @@
   "product": {
     "specification": "Specification",
     "description": "Description",
+    "indication": "Indication",
+    "packaging": "Packaging",
+    "protocol": "Protocol",
     "price": "Price",
     "moq": "MOQ",
     "unit": "unit",
