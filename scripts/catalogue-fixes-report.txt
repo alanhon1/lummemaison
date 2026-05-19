@@ -1,0 +1,97 @@
+# catalogue-fixes report
+generated: 2026-05-19T05:31:32.275Z
+
+## Bundle merges (17)
+  #24  (none) -> neuramis
+  #38  (none) -> youthfill
+  #39  (none) -> youthfill
+  #40  youthfill-pn-with-lido -> youthfill
+  #44  (none) -> celosome
+  #51  (none) -> chaeum
+  #52  (none) -> chaeum
+  #53  (none) -> chaeum
+  #54  (none) -> chaeum
+  #228  (none) -> dermagen-dermagen
+  #229  (none) -> dermagen-dermagen
+  #230  (none) -> dermagen-dermagen
+  #231  (none) -> dermagen-dermagen
+  #323  (none) -> meditoxin
+  #324  (none) -> meditoxin
+  #325  (none) -> re-n-tox
+  #326  (none) -> re-n-tox
+
+## Bundle splits (6)
+  #89  cleared from youthfill-pn-with-lido
+  #66  cleared from misadi-pdlla-200-mg
+  #103  cleared from misadi-pdlla-200-mg
+  #106  cleared from cindella-set
+  #387  cleared from wellscaine-plus-cream-450g
+  #389  cleared from wellscaine-plus-cream-450g
+
+## Image cleared (12)
+  #3  was=/images/products/product-3.webp
+  #4  was=/images/products/product-4.webp
+  #17  was=/images/products/product-17.webp
+  #84  was=/images/products/product-84.webp
+  #216  was=/images/products/product-216.webp
+  #348  was=/images/products/product-348.webp
+  #349  was=/images/products/product-349.webp
+  #387  was=/images/products/product-387.webp
+  #408  was=/images/products/product-408.webp
+  #409  was=/images/products/product-409.webp
+  #410  was=/images/products/product-410.webp
+  #411  was=/images/products/product-411.webp
+
+## Deleted (1)
+  #224  CURENEX SCULP
+
+## Image swaps (3)
+  #21 <-> #22  /images/products/product-22.webp  /  /images/products/product-21.png
+  #66 <-> #103  /images/products/product-103.webp  /  /images/products/product-66.webp
+  #119 <-> #121  /images/products/product-121.webp  /  /images/products/product-119.webp
+
+## Manual missing-finds mappings (28)
+  Adimis-Body-Filler.jpg  ->  #67  ->  /images/products/product-67.jpg
+  maxy-fill-2.webp  ->  #69  ->  /images/products/product-69.webp
+  ULTRAGEN_X_Middle.webp  ->  #84  ->  /images/products/product-84.webp
+  neuramis light(meso).jpg  ->  #20  ->  /images/products/product-20.jpg
+  Neuramis-Lidocain.jpg  ->  #21  ->  /images/products/product-21.jpg
+  neuramis deep lido.png  ->  #23  ->  /images/products/product-23.png
+  REGENOVUE_SUB_Q.webp  ->  #5  ->  /images/products/product-5.webp
+  eng_pl_Regenovue-Fine-Plus-1-1-ml-CE-94_1_1.jpg  ->  #6  ->  /images/products/product-6.jpg
+  eng_pl_Regenovue-Deep-Plus-1-1-ml-CE-97_1_1.jpg  ->  #7  ->  /images/products/product-7.jpg
+  eng_pl_Regenovue-Sub-Q-Plus-1-1-ml-CE-96_1_1.jpg  ->  #8  ->  /images/products/product-8.jpg
+  curenex-rejuvenating-cream-for-day-and-night-with-pdrn-4.06-fl-oz-getglowing-skincare__88885.jpg  ->  #218  ->  /images/products/product-218.jpg
+  dermagen-well.jpg  ->  #233  ->  /images/products/product-233.jpg
+  dermagen urea cream deep.jpg  ->  #235  ->  /images/products/product-235.jpg
+  dermagen lunatox (not lunato).jpg  ->  #239  ->  /images/products/product-239.jpg
+  PEPTICULE ULTIMATE REJUVENATION CREAM.webp  ->  #264  ->  /images/products/product-264.webp
+  PEPTICULE ULTIMATE REJUVENATION SERUM.png  ->  #265  ->  /images/products/product-265.png
+  vns lipolyticsolution vns fat.jpg  ->  #307  ->  /images/products/product-307.jpg
+  meditoxin-200u-botox-injections.jpg  ->  #324  ->  /images/products/product-324.jpg
+  MASI Injection 10% (Magnesium.jpg  ->  #338  ->  /images/products/product-338.jpg
+  CHIOCTOCIN_INJ_2.jpg  ->  #386  ->  /images/products/product-386.jpg
+  Zinc S Inj..jpg  ->  #382  ->  /images/products/product-382.jpg
+  CORETOX_100U___MEDYTOX__2.png  ->  #334  ->  /images/products/product-334.png
+  multivita-lyophilized.jpg  ->  #372  ->  /images/products/product-372.jpg
+  regenovue-aqua-shine-plus-getglowing-skincare__30485.jpg  ->  #91  ->  /images/products/product-91.jpg
+  regenovue-aqua-shine-silver-9ml-getglowing-skincare__07632.jpg  ->  #92  ->  /images/products/product-92.jpg
+  regenovue-pn-non.jpg  ->  #90  ->  /images/products/product-90.jpg
+  revolax-sub-q-with-lidocaine-12.webp  ->  #28  ->  /images/products/product-28.webp
+  vanhalla niacinamide skin tone balance.webp  ->  #195  ->  /images/products/product-195.webp
+
+## Manual mappings skipped (1)
+  elaxenpllaaestheticsukforskin.jpg  id=101  reason=product id not found
+
+## CURENEX labels (11)
+  #215  SCULP (PLLA)
+  #216  PDRN, Multi
+  #217  DAILY CARE SKINBOOSTER (SERUM)
+  #218  REJUVENATING CREAM
+  #219  HYDRATING CLEANSER
+  #220  LIPO (FACE AND BODY)
+  #221  REJUVENATING MASK
+  #222  EXO BRIGHTENING CREAM
+  #223  EYE PN
+  #225  SNOW PEEL
+  #226  SHEER SUNSCREEN
