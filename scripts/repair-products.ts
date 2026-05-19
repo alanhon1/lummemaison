@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseProductsTxt } from './lib/parse-products-txt';
+import { matchByCategoryThenOrdinal, type JsonProduct } from './lib/match-products';
 
 const ROOT = process.cwd();
 const DATA_FILE = path.join(ROOT, 'data', 'products.json');
@@ -15,10 +16,15 @@ function main(): void {
   // populated by later tasks
 
   const txt = parseProductsTxt(PRODUCTS_TXT);
-  console.log(`repair-products: parsed ${txt.length} entries from products.txt`);
-  const byCat = new Map<string, number>();
-  for (const e of txt) byCat.set(e.categoryId, (byCat.get(e.categoryId) ?? 0) + 1);
-  for (const [cat, n] of byCat) console.log(`  ${cat}: ${n}`);
+  const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8').replace(/^﻿/, '')) as { products: JsonProduct[]; categories: unknown[] };
+  const result = matchByCategoryThenOrdinal(data.products, txt);
+
+  console.log(`repair-products: ${result.matches.length} matches`);
+  console.log(`  unmatched products: ${result.unmatchedProducts.length}`);
+  console.log(`  unmatched entries:  ${result.unmatchedEntries.length}`);
+  for (const row of result.perCategoryReport) {
+    console.log(`  ${row.categoryId.padEnd(28)} prods=${row.productCount} txt=${row.entryCount} matched=${row.matched}`);
+  }
 }
 
 main();
