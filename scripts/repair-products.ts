@@ -10,6 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parseProductsTxt } from './lib/parse-products-txt';
 import { matchByCategoryThenOrdinal, type JsonProduct } from './lib/match-products';
+import { formatReport, type ImageReport } from './lib/repair-report';
 
 const ROOT = process.cwd();
 const DATA_FILE = path.join(ROOT, 'data', 'products.json');
@@ -132,6 +133,60 @@ function cleanupOrphanedGroups(products: JsonProduct[]): number {
   return cleaned;
 }
 
+const NUMBERED_RE = /(\d+)\s*product/i;
+
+function mapImages(products: JsonProduct[]): ImageReport {
+  const autoMapped: ImageReport['autoMapped'] = [];
+  const needsManual: ImageReport['needsManual'] = [];
+  const byId = new Map<number, JsonProduct>();
+  for (const p of products) byId.set(p.id, p);
+
+  if (!fs.existsSync(MISSING_FINDS)) return { autoMapped, needsManual };
+  const files = fs.readdirSync(MISSING_FINDS).filter(f => !f.startsWith('.'));
+
+  for (const file of files) {
+    const src = path.join(MISSING_FINDS, file);
+    if (!fs.statSync(src).isFile()) continue;
+    const ext = path.extname(file).toLowerCase();
+    if (!['.jpg', '.jpeg', '.png', '.webp', '.avif'].includes(ext)) continue;
+
+    const numMatch = NUMBERED_RE.exec(file);
+    if (numMatch) {
+      const id = parseInt(numMatch[1], 10);
+      const product = byId.get(id);
+      if (!product) continue;            // deleted or out of range
+      const targetName = `product-${id}${ext}`;
+      const targetPath = path.join(IMG_DIR, targetName);
+      const existing = product.image as string | undefined;
+      const targetExists = fs.existsSync(targetPath) && fs.statSync(targetPath).size > 0;
+      if (!targetExists && !existing) {
+        fs.copyFileSync(src, targetPath);
+        product.image = `/images/products/${targetName}`;
+        autoMapped.push({ file, productId: id, targetPath: product.image as string });
+      }
+      continue;
+    }
+
+    // No number — rank by simple token-overlap score.
+    const stem = file.replace(ext, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+    const tokens = new Set(stem.split(' ').filter(t => t.length >= 3));
+    const scored = products
+      .filter(p => !(p.image as string | undefined))
+      .map(p => {
+        const nameTokens = new Set(String(p.name).toLowerCase().replace(/[^a-z0-9]+/g, ' ').split(' ').filter(t => t.length >= 3));
+        let score = 0;
+        for (const t of tokens) if (nameTokens.has(t)) score++;
+        return { id: p.id, name: p.name as string, score };
+      })
+      .filter(c => c.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 5);
+    needsManual.push({ file, candidates: scored });
+  }
+
+  return { autoMapped, needsManual };
+}
+
 function main(): void {
   const backupPath = backupDataFile();
   console.log(`repair-products: backup → ${backupPath}`);
@@ -164,17 +219,18 @@ function main(): void {
   const counters = applyRewrites(result.matches);
   counters.groupCleanup = cleanupOrphanedGroups(data.products);
 
+  const imageReport = mapImages(data.products);
+
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2) + '\n', 'utf8');
 
   console.log(`repair-products: wrote ${data.products.length} products (was ${before})`);
-  console.log(`  name fixes: ${counters.nameFixes}`);
-  console.log(`  spec fixes: ${counters.specFixes}`);
-  console.log(`  description regenerations: ${counters.descRegenerated}`);
-  console.log(`  group cleanup (single-member groups flattened): ${counters.groupCleanup}`);
-  console.log(`  unmatched products: ${result.unmatchedProducts.length}`);
-  if (result.unmatchedProducts.length > 0) {
-    for (const p of result.unmatchedProducts) console.log(`    UNMATCHED #${p.id} (${p.categoryId}): ${p.name}`);
-  }
+  console.log(`  name/spec/desc fix counters: name=${counters.nameFixes} spec=${counters.specFixes} desc=${counters.descRegenerated} groups=${counters.groupCleanup}`);
+  console.log(`  images auto-mapped: ${imageReport.autoMapped.length}`);
+  console.log(`  images needing manual mapping: ${imageReport.needsManual.length}`);
+
+  const reportText = formatReport(imageReport, result.unmatchedProducts);
+  fs.writeFileSync(REPORT_PATH, reportText, 'utf8');
+  console.log(`repair-products: report → ${REPORT_PATH}`);
 }
 
 main();

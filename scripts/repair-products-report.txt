@@ -1,0 +1,269 @@
+# repair-products report
+generated: 2026-05-19T02:08:21.412Z
+
+## Auto-mapped images (12)
+  BEAUTY MONSTER BLACK(PLASMA beauty devise) 267product.webp  →  #267  →  /images/products/product-267.webp
+  CURENEX SHEER SUNSCREEN 226product.webp  →  #226  →  /images/products/product-226.webp
+  Dermagen-Acssak-Acne-149product.webp  →  #149  →  /images/products/product-149.webp
+  dermaheal-sr-141product.jpg  →  #141  →  /images/products/product-141.jpg
+  eu_mei_Collagen_Skin_Care_Set_3 203product.jpg  →  #203  →  /images/products/product-203.jpg
+  exosia 245 product.png  →  #245  →  /images/products/product-245.png
+  GITACO Inj.386product.jpg  →  #386  →  /images/products/product-386.jpg
+  Hutox 100 unit321 product.jpg  →  #321  →  /images/products/product-321.jpg
+  hutox-200-units-322product.webp  →  #322  →  /images/products/product-322.webp
+  Nano Needle for the AUTO MTS PEN 287product.jpg  →  #287  →  /images/products/product-287.jpg
+  velatox-gf11-getglowing-skincare__34844 208product.webp  →  #208  →  /images/products/product-208.webp
+  wanna-fill-h 70product.webp  →  #70  →  /images/products/product-70.webp
+
+## Manual-mapping required (70)
+  12075-Beads-Max-Body-Classic-S.jpg
+     candidate #64 score=2 BEADS MAX S
+  Adimis-Body-Filler.jpg
+     candidate #67 score=1 AdiMis
+  autodn_mtsdevice_skinculture_hero.jpg
+  CHIOCTOCIN_INJ_2.jpg
+     candidate #386 score=2 Chioctocin inj (Thioctic acid)
+     candidate #382 score=1 Zinc S Inj.
+     candidate #383 score=1 MAXYBLUE INJ
+  CORETOX_100U___MEDYTOX__2.png
+     candidate #334 score=1 CORETOX 100 units
+  CURENEX REJUVENATING MASK.avif
+     candidate #221 score=3 CURENEX REJUVENATING MASK
+     candidate #218 score=2 CURENEX REJUVENATING CREAM
+     candidate #102 score=1 ELAXEN PLLA MASK
+     candidate #103 score=1 MISADI CO2 Mask
+     candidate #216 score=1 CURENEX PDRN
+  curenex-rejuvenating-cream-for-day-and-night-with-pdrn-4.06-fl-oz-getglowing-skincare__88885.jpg
+     candidate #218 score=3 CURENEX REJUVENATING CREAM
+     candidate #216 score=2 CURENEX PDRN
+     candidate #221 score=2 CURENEX REJUVENATING MASK
+     candidate #23 score=1 NEURAMIS DEEP WITH LIDOCAINE
+     candidate #99 score=1 MISFILL+ PDRN
+  curenex-skin-boosterpdrn multi.jpg
+     candidate #187 score=1 Vanhalla NIACINAMIDE Skin Tone Balance Serum
+     candidate #203 score=1 WHEAT GERM COLLAGEN SKIN CARE SET
+     candidate #216 score=1 CURENEX PDRN
+     candidate #218 score=1 CURENEX REJUVENATING CREAM
+     candidate #221 score=1 CURENEX REJUVENATING MASK
+  DERMAGEN EZCera Cream.avif
+     candidate #245 score=3 DERMAGEN EZCera Cream
+     candidate #235 score=2 DERMAGEN Urea Cream
+     candidate #149 score=1 DERMAGEN Acssak Acne Clear Facial Foam Cleanser
+     candidate #218 score=1 CURENEX REJUVENATING CREAM
+     candidate #233 score=1 DERMAGEN Well-spot Hydrocolloid
+  dermagen lunatox (not lunato).jpg
+     candidate #239 score=2 DERMAGEN Lunatox
+     candidate #149 score=1 DERMAGEN Acssak Acne Clear Facial Foam Cleanser
+     candidate #233 score=1 DERMAGEN Well-spot Hydrocolloid
+     candidate #235 score=1 DERMAGEN Urea Cream
+     candidate #245 score=1 DERMAGEN EZCera Cream
+  dermagen urea cream deep.jpg
+     candidate #235 score=3 DERMAGEN Urea Cream
+     candidate #245 score=2 DERMAGEN EZCera Cream
+     candidate #4 score=1 REGENOVUE DEEP (CE)
+     candidate #23 score=1 NEURAMIS DEEP WITH LIDOCAINE
+     candidate #149 score=1 DERMAGEN Acssak Acne Clear Facial Foam Cleanser
+  dermagen-well.jpg
+     candidate #233 score=2 DERMAGEN Well-spot Hydrocolloid
+     candidate #235 score=1 DERMAGEN Urea Cream
+     candidate #239 score=1 DERMAGEN Lunatox
+     candidate #245 score=1 DERMAGEN EZCera Cream
+  Dermaheal-HL.jpg
+     candidate #141 score=1 DERMAHEAL SR
+     candidate #157 score=1 DERMAHEAL HL
+  DN16 NEEDLE.webp
+     candidate #276 score=2 DN16 NEEDLE
+     candidate #275 score=1 DN64 NEEDLE
+     candidate #286 score=1 12 PIN & 42 PIN NEEDLE
+     candidate #287 score=1 NANO NEEDLE
+  dn64needle.webp
+  elaxenpllaaestheticsukforskin.jpg
+  eng_pl_Regenovue-Deep-Plus-1-1-ml-CE-97_1_1.jpg
+     candidate #4 score=2 REGENOVUE DEEP (CE)
+     candidate #6 score=2 REGENOVUE FINE PLUS (CE)
+     candidate #8 score=2 REGENOVUE SUB-Q PLUS (CE)
+     candidate #91 score=2 REGENOVUE AQUASHINE PLUS GOLD
+     candidate #3 score=1 REGENOVUE FINE (CE)
+  eng_pl_Regenovue-Fine-Plus-1-1-ml-CE-94_1_1.jpg
+     candidate #6 score=3 REGENOVUE FINE PLUS (CE)
+     candidate #3 score=2 REGENOVUE FINE (CE)
+     candidate #8 score=2 REGENOVUE SUB-Q PLUS (CE)
+     candidate #91 score=2 REGENOVUE AQUASHINE PLUS GOLD
+     candidate #4 score=1 REGENOVUE DEEP (CE)
+  eng_pl_Regenovue-Sub-Q-Plus-1-1-ml-CE-96_1_1.jpg
+     candidate #8 score=3 REGENOVUE SUB-Q PLUS (CE)
+     candidate #5 score=2 REGENOVUE SUB-Q (CE)
+     candidate #6 score=2 REGENOVUE FINE PLUS (CE)
+     candidate #27 score=2 REVOLAX SUB-Q PLUS
+     candidate #91 score=2 REGENOVUE AQUASHINE PLUS GOLD
+  eng_pm_Regenovue-Fine-Plus-1-1-ml-CE-94_2_1.jpg
+     candidate #6 score=3 REGENOVUE FINE PLUS (CE)
+     candidate #3 score=2 REGENOVUE FINE (CE)
+     candidate #8 score=2 REGENOVUE SUB-Q PLUS (CE)
+     candidate #91 score=2 REGENOVUE AQUASHINE PLUS GOLD
+     candidate #4 score=1 REGENOVUE DEEP (CE)
+  ETREBELLE.jpg
+     candidate #346 score=1 ETREBELLE 200 MG
+  EVEHILO_CENTRE_1800x1800.webp
+     candidate #80 score=1 EVEHILO
+  EXOXE_middle_1800x1800.webp
+     candidate #132 score=1 EXOXE
+  hyalace-023.webp
+     candidate #81 score=1 HYALACE
+  JBP nano cannula 22G.png
+     candidate #413 score=4 JBP nano cannula 22G
+     candidate #414 score=3 JBP nano cannula 25G
+     candidate #415 score=3 JBP nano cannula 27G
+     candidate #416 score=3 JBP nano cannula 30G
+     candidate #287 score=1 NANO NEEDLE
+  JBP nano cannula27g50mm.png
+     candidate #413 score=2 JBP nano cannula 22G
+     candidate #414 score=2 JBP nano cannula 25G
+     candidate #415 score=2 JBP nano cannula 27G
+     candidate #416 score=2 JBP nano cannula 30G
+     candidate #287 score=1 NANO NEEDLE
+  JBP-Nano-Cannula-30G-25mm-–-Box-of-24-2.webp
+     candidate #416 score=4 JBP nano cannula 30G
+     candidate #413 score=3 JBP nano cannula 22G
+     candidate #414 score=3 JBP nano cannula 25G
+     candidate #415 score=3 JBP nano cannula 27G
+     candidate #287 score=1 NANO NEEDLE
+  JBPNanoCannula25g_50mmSupplierAestheticsUKWholesale.jpg
+  Lipo-Shrinker309peoduct.avif
+     candidate #309 score=1 LIPO SHRINKER
+  lipolabgms.webp
+  MASI Injection 10% (Magnesium.jpg
+     candidate #338 score=3 MASI Injection 10% (Magnesium Sulfate)
+  maxy-fill-2.webp
+     candidate #69 score=2 MAXY FILL
+     candidate #70 score=1 WANNA FILL H
+  maxyblueinj.png
+  meditoxin-200u-botox-injections.jpg
+     candidate #323 score=1 MEDITOXIN 100 units
+  misadi co2.avif
+     candidate #103 score=2 MISADI CO2 Mask
+     candidate #66 score=1 MisAdi Hard
+     candidate #357 score=1 MISADI PDLLA 200 MG + Collagen booster (Analogue of Aesthefill)
+  misadi-h.webp
+     candidate #66 score=1 MisAdi Hard
+     candidate #103 score=1 MISADI CO2 Mask
+     candidate #357 score=1 MISADI PDLLA 200 MG + Collagen booster (Analogue of Aesthefill)
+  misfill pdrn.jpg
+     candidate #99 score=2 MISFILL+ PDRN
+     candidate #216 score=1 CURENEX PDRN
+  muchaine-500g.png
+  Muchcaine_30g.webp
+     candidate #398 score=1 MUCHCAINE
+     candidate #399 score=1 MUCHCAINE
+     candidate #416 score=1 JBP nano cannula 30G
+  multivita-lyophilized.jpg
+     candidate #369 score=1 Multivita
+  neuramis deep lido.png
+     candidate #23 score=2 NEURAMIS DEEP WITH LIDOCAINE
+     candidate #4 score=1 REGENOVUE DEEP (CE)
+     candidate #20 score=1 NEURAMIS LIGHT (MESO)
+     candidate #21 score=1 NEURAMIS
+  neuramis light(meso).jpg
+     candidate #20 score=3 NEURAMIS LIGHT (MESO)
+     candidate #17 score=1 VOM LIGHT (CE) NO Lidocaine
+     candidate #21 score=1 NEURAMIS
+     candidate #23 score=1 NEURAMIS DEEP WITH LIDOCAINE
+  Neuramis-Lidocain.jpg
+     candidate #20 score=1 NEURAMIS LIGHT (MESO)
+     candidate #21 score=1 NEURAMIS
+     candidate #23 score=1 NEURAMIS DEEP WITH LIDOCAINE
+  P198 filcore sb plus.jpg
+     candidate #73 score=3 P198 Filcore SB Plus program
+     candidate #6 score=1 REGENOVUE FINE PLUS (CE)
+     candidate #8 score=1 REGENOVUE SUB-Q PLUS (CE)
+     candidate #27 score=1 REVOLAX SUB-Q PLUS
+     candidate #91 score=1 REGENOVUE AQUASHINE PLUS GOLD
+  p198-exonature.png
+     candidate #207 score=2 P198 RECORE INNER GEL (ExoNature)
+     candidate #73 score=1 P198 Filcore SB Plus program
+  PEPTICULE ULTIMATE REJUVENATION CREAM.webp
+     candidate #262 score=4 PEPTICULE ULTIMATE REJUVENATION CREAM
+     candidate #263 score=3 PEPTICULE ULTIMATE REJUVENATION SERUM
+     candidate #218 score=1 CURENEX REJUVENATING CREAM
+     candidate #235 score=1 DERMAGEN Urea Cream
+  PEPTICULE ULTIMATE REJUVENATION SERUM.png
+     candidate #263 score=4 PEPTICULE ULTIMATE REJUVENATION SERUM
+     candidate #262 score=3 PEPTICULE ULTIMATE REJUVENATION CREAM
+     candidate #187 score=1 Vanhalla NIACINAMIDE Skin Tone Balance Serum
+  PLATINUM-FnB-box fnb.webp
+  Power_Healer_Centre.webp
+  RAVELLO_plla1800x1800.webp
+     candidate #349 score=1 Ravello
+  Re-N-Tox-200u-.jpg
+     candidate #325 score=1 Re N Tox 200 units
+     candidate #326 score=1 RE N TOX 100 units
+  regenovue-aqua-shine-plus-getglowing-skincare__30485.jpg
+     candidate #6 score=2 REGENOVUE FINE PLUS (CE)
+     candidate #8 score=2 REGENOVUE SUB-Q PLUS (CE)
+     candidate #91 score=2 REGENOVUE AQUASHINE PLUS GOLD
+     candidate #3 score=1 REGENOVUE FINE (CE)
+     candidate #4 score=1 REGENOVUE DEEP (CE)
+  regenovue-aqua-shine-silver-9ml-getglowing-skincare__07632.jpg
+     candidate #92 score=2 REGENOVUE AQUASHINE SILVER
+     candidate #3 score=1 REGENOVUE FINE (CE)
+     candidate #4 score=1 REGENOVUE DEEP (CE)
+     candidate #5 score=1 REGENOVUE SUB-Q (CE)
+     candidate #6 score=1 REGENOVUE FINE PLUS (CE)
+  regenovue-pn-non.jpg
+     candidate #3 score=1 REGENOVUE FINE (CE)
+     candidate #4 score=1 REGENOVUE DEEP (CE)
+     candidate #5 score=1 REGENOVUE SUB-Q (CE)
+     candidate #6 score=1 REGENOVUE FINE PLUS (CE)
+     candidate #8 score=1 REGENOVUE SUB-Q PLUS (CE)
+  REGENOVUE-SUB-Q-PLUS-LIDOCAINE-Cosmetics.avif
+     candidate #8 score=3 REGENOVUE SUB-Q PLUS (CE)
+     candidate #5 score=2 REGENOVUE SUB-Q (CE)
+     candidate #6 score=2 REGENOVUE FINE PLUS (CE)
+     candidate #27 score=2 REVOLAX SUB-Q PLUS
+     candidate #91 score=2 REGENOVUE AQUASHINE PLUS GOLD
+  REGENOVUE_SUB_Q.webp
+     candidate #5 score=2 REGENOVUE SUB-Q (CE)
+     candidate #8 score=2 REGENOVUE SUB-Q PLUS (CE)
+     candidate #3 score=1 REGENOVUE FINE (CE)
+     candidate #4 score=1 REGENOVUE DEEP (CE)
+     candidate #6 score=1 REGENOVUE FINE PLUS (CE)
+  Rentox100u.webp
+  restylane-lyft-1.jpg
+     candidate #430 score=2 RESTYLANE LYFT
+  revolax-sub-q-with-lidocaine-12.webp
+     candidate #23 score=2 NEURAMIS DEEP WITH LIDOCAINE
+     candidate #27 score=2 REVOLAX SUB-Q PLUS
+     candidate #5 score=1 REGENOVUE SUB-Q (CE)
+     candidate #8 score=1 REGENOVUE SUB-Q PLUS (CE)
+     candidate #17 score=1 VOM LIGHT (CE) NO Lidocaine
+  TOXSTA-100U-BOTULINUM-TOXIN.webp
+     candidate #327 score=1 TOXSTA 100 units
+  ULTRAGEN_X_Middle.webp
+  ULTRATONING Ultrasonic & RF Beauty.png
+     candidate #283 score=1 ULTRATONING
+  vanhalla niacinamide skin tone balance.webp
+     candidate #187 score=5 Vanhalla NIACINAMIDE Skin Tone Balance Serum
+     candidate #247 score=1 EXOSIA Skin Booster Part 2
+  Vita-D 200u.webp
+     candidate #370 score=1 Vita-D
+     candidate #371 score=1 Vita-D
+  Vita_D_Bone_Injection_Made_in_Korea_Cholecalciferol_2.jpg
+     candidate #338 score=1 MASI Injection 10% (Magnesium Sulfate)
+     candidate #370 score=1 Vita-D
+     candidate #371 score=1 Vita-D
+  vns lipolyticsolution vns fat.jpg
+     candidate #307 score=1 VNS
+  VOM-Intensive-Glow-Up-Supply.png
+     candidate #17 score=1 VOM LIGHT (CE) NO Lidocaine
+  WILLCAM PLUS Skinscalp Diagnosis System.jpg
+     candidate #274 score=2 WILLCAM PLUS
+     candidate #6 score=1 REGENOVUE FINE PLUS (CE)
+     candidate #8 score=1 REGENOVUE SUB-Q PLUS (CE)
+     candidate #27 score=1 REVOLAX SUB-Q PLUS
+     candidate #73 score=1 P198 Filcore SB Plus program
+  Zinc S Inj..jpg
+     candidate #382 score=2 Zinc S Inj.
+     candidate #383 score=1 MAXYBLUE INJ
+  _2_XSOME_2.png
+
+## Unmatched products (0)
