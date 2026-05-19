@@ -1,0 +1,428 @@
+# shorten-protocols report
+generated: 2026-05-19T07:32:19.277Z
+applied: 310  skipped: 111
+
+## Applied (310)
+  #1  [fillers]  BARBIE SLIM
+  #2  [fillers]  MisAdi Beso
+  #3  [fillers]  REGENOVUE FINE (CE)
+  #4  [fillers]  REGENOVUE DEEP (CE)
+  #5  [fillers]  REGENOVUE SUB-Q (CE)
+  #6  [fillers]  REGENOVUE FINE PLUS (CE)
+  #7  [fillers]  REGENOVUE DEEP PLUS (CE)
+  #8  [fillers]  REGENOVUE SUB-Q PLUS (CE)
+  #9  [fillers]  SOSUM S (CE) NO Lidocaine
+  #10  [fillers]  SOSUM M (CE) NO Lidocaine
+  #11  [fillers]  SOSUM H (CE) NO Lidocaine
+  #12  [fillers]  SOSUM SOFT (CE)
+  #13  [fillers]  SOSUM HARD
+  #14  [fillers]  ELASTY FINE PLUS
+  #15  [fillers]  ELASTY DEEP PLUS
+  #16  [fillers]  ELASTY GRAND PLUS
+  #17  [fillers]  VOM LIGHT (CE) NO Lidocaine
+  #18  [fillers]  VOM INTENSE
+  #19  [fillers]  VOM VOLUME (CE)
+  #20  [fillers]  NEURAMIS LIGHT (MESO)
+  #21  [fillers]  NEURAMIS
+  #22  [fillers]  NEURAMIS DEEP
+  #23  [fillers]  NEURAMIS DEEP WITH LIDOCAINE
+  #24  [fillers]  NEURAMIS VOLUME LIDOCAINE
+  #25  [fillers]  REVOLAX FINE PLUS
+  #26  [fillers]  REVOLAX DEEP PLUS
+  #27  [fillers]  REVOLAX SUB-Q PLUS
+  #28  [fillers]  DERMALAX PLUS
+  #29  [fillers]  DERMALAX DEEP PLUS
+  #30  [fillers]  DERMALAX IMPLANT PLUS
+  #38  [fillers]  YOUTHFILL FINE
+  #39  [fillers]  YOUTHFILL DEEP
+  #40  [fillers]  YOUTHFILL SHAPE
+  #41  [fillers]  SOONSU FILL (E.P.T.Q) 100
+  #42  [fillers]  SOONSU FILL (E.P.T.Q) 300
+  #43  [fillers]  SOONSU FILL (E.P.T.Q) 500
+  #44  [fillers]  CELOSOME SOFT
+  #45  [fillers]  CELOSOME MID
+  #46  [fillers]  CELOSOME STRONG
+  #47  [fillers]  CELOSOME IMPLANT
+  #48  [fillers]  BONETTA FINE
+  #49  [fillers]  BONETTA DEEP
+  #50  [fillers]  BONETTA VOLUME
+  #51  [fillers]  THE CHAEUM PREMIUM #1 (MESO)
+  #52  [fillers]  THE CHAEUM PREMIUM #2
+  #53  [fillers]  THE CHAEUM PREMIUM #3
+  #54  [fillers]  THE CHAEUM PREMIUM #4
+  #55  [fillers]  VOLUDERM FINE
+  #56  [fillers]  VOLUDERM DEEP
+  #57  [fillers]  VOLUDERM SUB-Q
+  #58  [fillers]  ULTRAFILL KISS
+  #59  [fillers]  ULTRAFILL FINE
+  #60  [fillers]  ULTRAFILL DEEP
+  #61  [fillers]  ULTRAFILL SHAPE
+  #62  [fillers]  ULTRAFILL IMPLANT
+  #63  [fillers]  LINE BODY 10 HARD
+  #64  [fillers]  BEADS MAX S
+  #65  [fillers]  LINE BODY 50
+  #66  [fillers]  MisAdi Hard
+  #67  [fillers]  AdiMis
+  #68  [fillers]  SEDY FILL
+  #69  [fillers]  MAXY FILL
+  #70  [fillers]  WANNA FILL H
+  #71  [mesotherapy]  P198 Filcore SB (ExoHealer™)
+  #72  [mesotherapy]  P198 Filcore Activating Solution (Solvent)
+  #73  [mesotherapy]  P198 Filcore SB Plus program
+  #74  [mesotherapy]  LEXYAL REJU
+  #75  [mesotherapy]  BELLONA AQUA
+  #76  [mesotherapy]  BELLONA OPACIOUS SERUM
+  #77  [mesotherapy]  DERMAGEN Plus NAD⁺ Solution
+  #78  [mesotherapy]  TESORO COLLAGEN
+  #79  [mesotherapy]  ULTRAHILO
+  #80  [mesotherapy]  EVEHILO
+  #81  [mesotherapy]  HYALACE
+  #82  [mesotherapy]  REVS PRO 32
+  #83  [mesotherapy]  AIOR50
+  #84  [mesotherapy]  ULTRA GEN
+  #85  [mesotherapy]  HYALMASS 50
+  #86  [mesotherapy]  HYARON
+  #87  [mesotherapy]  POWERHEALER
+  #88  [mesotherapy]  TRUE BELLA
+  #89  [mesotherapy]  YOUTHFILL PN
+  #90  [mesotherapy]  REGENOVUE PN
+  #91  [mesotherapy]  REGENOVUE AQUASHINE PLUS GOLD
+  #92  [mesotherapy]  REGENOVUE AQUASHINE SILVER
+  #93  [mesotherapy]  CELOSOME AQUA
+  #94  [mesotherapy]  REJEUNESSE SPARKLE
+  #95  [mesotherapy]  Oasis repair PN 2%
+  #96  [mesotherapy]  Cindella Healer PN
+  #97  [mesotherapy]  KIARA REJU
+  #98  [mesotherapy]  GemVous PN
+  #99  [mesotherapy]  MISFILL+ PDRN
+  #102  [mesotherapy]  ELAXEN PLLA MASK
+  #103  [mesotherapy]  MISADI CO2 Mask
+  #104  [mesotherapy]  SOONSU ULTRA REJU
+  #105  [mesotherapy]  SOONSU SHINING PEEL
+  #106  [mesotherapy]  CINDELLA I (PN 1%)
+  #107  [mesotherapy]  Clair Eyes (PN 1%)
+  #108  [mesotherapy]  ULTRA EYE (PN 1%)
+  #109  [mesotherapy]  AMI EYES (PN 1%)
+  #111  [mesotherapy]  EVE EYES (PN 1%, 20mg)
+  #112  [mesotherapy]  SPIDER AQUA EYE BOOSTER
+  #113  [mesotherapy]  EYEBELLA (PN 1%)
+  #114  [mesotherapy]  JUVE EYES (PN 1%)
+  #115  [mesotherapy]  SNOW FLOWER BLOOM
+  #116  [mesotherapy]  MisAdi White Skin Glazer
+  #117  [mesotherapy]  EVE WHITE
+  #118  [mesotherapy]  ULTRA WHITE
+  #119  [mesotherapy]  MIRACLE X
+  #120  [mesotherapy]  MIRACLE H
+  #121  [mesotherapy]  MIRACLE L
+  #122  [mesotherapy]  TOUCH UP PCL
+  #123  [mesotherapy]  TOUCH BR
+  #124  [mesotherapy]  PCL POWER BOOSTER
+  #125  [mesotherapy]  REJURAN SKIN BOOSTER
+  #126  [mesotherapy]  SELA TOX 10
+  #127  [mesotherapy]  LAPUROON AURORA SUPER
+  #128  [mesotherapy]  LAPUROON AURORA VIVID
+  #129  [mesotherapy]  NMN BOTTLE NAD+
+  #130  [mesotherapy]  2XSOME
+  #131  [mesotherapy]  EXOGEN FOR HAIR AND SKIN
+  #132  [mesotherapy]  EXOXE
+  #133  [mesotherapy]  EXOBOOM SKIN
+  #134  [mesotherapy]  Botanic EXO
+  #135  [mesotherapy]  ASCE
+  #136  [mesotherapy]  AMMI CAPTURE TIME
+  #137  [mesotherapy]  ULTRA CA Bio Stimulator
+  #138  [mesotherapy]  VOLASSOM calcium Bio Stimulator (Analogue of FACETEM)
+  #139  [mesotherapy]  GOURI
+  #140  [mesotherapy]  DERMAHEAL HSR
+  #141  [mesotherapy]  DERMAHEAL SR
+  #142  [acne-treatment]  ESRELLA TEA TREE ESSENCE
+  #150  [hair-treatment]  P198 Filcore HB Plus program
+  #152  [hair-treatment]  HAIRNA EXOSOME HAIR FILLER
+  #154  [hair-treatment]  EXOBOOM HAIR FILLER
+  #155  [hair-treatment]  HAIRLUMA Exosome Hair Growth Solution
+  #156  [hair-treatment]  ULTRA HAIR
+  #157  [hair-treatment]  DERMAHEAL HL
+  #159  [hair-treatment]  DERMAGEN Many Shoot Plus+
+  #175  [pharmacy-favourites]  EASYEF
+  #206  [intimate-care]  ASCE+ IRLV (Exosome Solution)
+  #208  [growth-factor-exosome]  VELATOX GF11
+  #210  [growth-factor-exosome]  CAMELLEX Camellia Exo No.5
+  #211  [growth-factor-exosome]  LXC LACTO EXO COLLA
+  #212  [growth-factor-exosome]  RXC RED EXO COLLA
+  #213  [growth-factor-exosome]  SELASTIN TOX GF11
+  #214  [growth-factor-exosome]  SELASTIN EXO PLUS
+  #215  [curenex]  CURENEX SCULP
+  #216  [curenex]  CURENEX PDRN
+  #220  [curenex]  CURENEX LIPO (FACE AND BODY)
+  #223  [curenex]  CURENEX EYE
+  #225  [curenex]  CURENEX SNOW PEEL
+  #246  [dermagen]  EXOSIA Skin Booster Part 1
+  #247  [dermagen]  EXOSIA Skin Booster Part 2
+  #248  [gtm]  GTM EXOMELA
+  #250  [gtm]  GTM GOLD CELL PLUS
+  #251  [gtm]  GTM GOLD CELL THE PREMIUM
+  #252  [gtm]  MELACELL THE PREMIUM
+  #253  [gtm]  MELACELL +
+  #260  [gtm]  T-TOX PEEL 6 SET
+  #261  [gtm]  T-TOX PEEL mini
+  #267  [gtm]  BEAUTY MONSTER BLACK (Plasma Beauty Device)
+  #268  [equipment]  O2TODERM LED PLUS + ULDM
+  #269  [equipment]  ULDM
+  #270  [equipment]  O2TODERM LED PLUS
+  #271  [equipment]  OMEGA PDT
+  #273  [equipment]  HIFFECT PLUS
+  #274  [equipment]  WILLCAM PLUS
+  #277  [equipment]  I COOL-PLUS 2ND
+  #278  [equipment]  ULTRA SKIN MASTER
+  #279  [equipment]  HYSONIC THREE WAY
+  #282  [equipment]  HERA VACUUM
+  #283  [equipment]  ULTRATONING
+  #288  [salon-grade]  JOLLA CLEANSING LOTION
+  #289  [salon-grade]  JOLLA GREEN TEA MODELING MASK
+  #290  [salon-grade]  JOLLA PEPPERMINT MODELING MASK
+  #301  [lipolytics]  YELLOW BOTTLE
+  #302  [lipolytics]  PINE BOTTLE
+  #303  [lipolytics]  ULTRA LIGHT
+  #304  [lipolytics]  F&B
+  #305  [lipolytics]  Dr. LIPO PRIME
+  #306  [lipolytics]  KABELLINE
+  #307  [lipolytics]  VNS
+  #308  [lipolytics]  SLIM POINT FACE & BODY
+  #309  [lipolytics]  LIPO SHRINKER
+  #310  [botulinum]  BOTULAX 100 units
+  #311  [botulinum]  BOTULAX 200 units
+  #312  [botulinum]  BOTULAX 300 units
+  #313  [botulinum]  METOX 100 units
+  #314  [botulinum]  METOX 200 units
+  #315  [botulinum]  INNOTOX 50 units
+  #316  [botulinum]  INNOTOX 100 units
+  #317  [botulinum]  NABOTA 100 units
+  #318  [botulinum]  NABOTA 200 units
+  #319  [botulinum]  LIZTOX 100 units
+  #320  [botulinum]  LIZTOX 200 units
+  #321  [botulinum]  Hutox 100 units
+  #322  [botulinum]  Hutox 200 units
+  #323  [botulinum]  MEDITOXIN 100 units
+  #324  [botulinum]  Meditoxin 200 units
+  #325  [botulinum]  Re N Tox 200 units
+  #326  [botulinum]  RE N TOX 100 units
+  #327  [botulinum]  TOXSTA 100 units
+  #328  [botulinum]  KAIMAX 100 units
+  #329  [botulinum]  KAIMAX 200 units
+  #330  [botulinum]  WONDERTOX 100 units
+  #331  [botulinum]  WONDERTOX 200 units
+  #332  [botulinum]  LINETOX 100 units
+  #333  [botulinum]  ZEROTOX 100 units
+  #334  [botulinum]  CORETOX 100 units
+  #335  [botulinum]  ROSETOX 100 units
+  #336  [botulinum]  HITOX 100 units
+  #337  [botulinum]  SALINE
+  #338  [injections]  MASI Injection 10% (Magnesium Sulfate)
+  #339  [injections]  REVITALEX INJ.
+  #340  [injections]  HiDr inj.
+  #341  [injections]  PLACENTEX Inj.
+  #343  [injections]  LIPORASE INJ
+  #344  [injections]  BM Hylunidase Inj.
+  #345  [injections]  Belissima CE 365mg PLLA (Identical to Olidia CE)
+  #346  [injections]  ETREBELLE 200 MG
+  #347  [injections]  MENNUS PLA 200 MG
+  #348  [injections]  MENNUS PLLA 360 MG
+  #349  [injections]  Ravello
+  #350  [injections]  POWER COLTRA 365 MG PLLA
+  #351  [injections]  POLYBOOST VOLA 600 MG
+  #352  [injections]  PDLLA RAVENNA Collagen Booster
+  #353  [injections]  JUVELOOK (50 mg)
+  #354  [injections]  JUVELOOK Volume (200 mg)
+  #355  [injections]  CINDELLA SET 1200 mg
+  #356  [injections]  CINDELLA INJ
+  #357  [injections]  MISADI PDLLA 200 MG + Collagen booster (Analogue of Aesthefill)
+  #358  [injections]  LIPOTOCIN INJ
+  #359  [injections]  GLUTAONE INJ. 1200 mg
+  #360  [injections]  Glutatine Tab. 100 mg
+  #361  [injections]  DERMAGEN Glutathione Film 6X
+  #362  [injections]  Vitamin C
+  #363  [injections]  Acogen Inj.
+  #364  [injections]  ASCORBIC INJ
+  #365  [injections]  Ascorbic Acid Injection (Huons)
+  #366  [injections]  ATP-S Inj. (Adenosine Triphosphate) Injection
+  #368  [injections]  Acepain Inj.
+  #369  [injections]  Multivita
+  #370  [injections]  Vita-D
+  #371  [injections]  Vita-D
+  #372  [injections]  Vita D-bone Inj.
+  #373  [injections]  BM Hid inj
+  #374  [injections]  Doxy Tab. (300)
+  #375  [injections]  Doxy Tab. (30)
+  #376  [injections]  MESOCARTIN INJ
+  #377  [injections]  LIPOTOCIN INJ
+  #378  [injections]  HYCOBAL INJ.
+  #379  [injections]  B-COLAMIN VIT B12
+  #380  [injections]  BeeCom Hexa Vitamin B Complex
+  #381  [injections]  ZINC INJ
+  #382  [injections]  Zinc S Inj.
+  #383  [injections]  MAXYBLUE INJ
+  #384  [injections]  Hishiphagen-C Inj. Detox Agent
+  #385  [injections]  CARTIN Inj.
+  #386  [injections]  Chioctocin inj (Thioctic acid)
+  #387  [anesthetics]  WELLSCAINE PLUS CREAM
+  #388  [anesthetics]  LIDCAIN CREAM
+  #389  [anesthetics]  WELLSCAINE CREAM
+  #390  [anesthetics]  BERACAINE SPRAY
+  #391  [anesthetics]  NEO-CAIN CREAM
+  #392  [anesthetics]  NEO-CAIN CREAM
+  #393  [anesthetics]  NEO PRO CREAM
+  #394  [anesthetics]  J-CAIN
+  #395  [anesthetics]  SM CREAM
+  #396  [anesthetics]  SM CREAM
+  #397  [anesthetics]  Muchcaine
+  #398  [anesthetics]  MUCHCAINE
+  #399  [anesthetics]  MUCHCAINE
+  #400  [anesthetics]  LIDOCAINE HCl Inj 2%
+  #401  [placental-therapy]  LAENNEC
+  #402  [placental-therapy]  LAENNEC
+  #403  [placental-therapy]  MELSMON
+  #404  [placental-therapy]  CURACEN JBP PLAMON INJ
+  #405  [placental-therapy]  Melamin Inj.
+  #407  [nano-needle-cannula]  ELASTY MESO NEEDLE
+  #408  [nano-needle-cannula]  REJUBEAU MESO NEEDLE 30G
+  #409  [nano-needle-cannula]  REJUBEAU MESO NEEDLE 32G
+  #410  [nano-needle-cannula]  REJUBEAU MESO NEEDLE 33G
+  #411  [nano-needle-cannula]  REJUBEAU MESO NEEDLE 34G
+  #413  [nano-needle-cannula]  JBP nano cannula 22G
+  #414  [nano-needle-cannula]  JBP nano cannula 25G
+  #415  [nano-needle-cannula]  JBP nano cannula 27G
+  #416  [nano-needle-cannula]  JBP nano cannula 30G
+  #417  [nano-needle-cannula]  Sungshim meso needles
+  #418  [nano-needle-cannula]  Sungshim syringes (for botox)
+  #419  [nano-needle-cannula]  Sungshim PEN NEEDLES
+  #420  [nano-needle-cannula]  DK Filler Cannula with punching needle
+  #421  [nano-needle-cannula]  DK Filler Cannula with punching needle
+  #422  [nano-needle-cannula]  DK ULTRA Thin Meso needles
+  #423  [nano-needle-cannula]  NEO CANNULA
+  #424  [nano-needle-cannula]  NEO CANNULA
+  #425  [nano-needle-cannula]  SYRINGE MIXING TUBE (CONNECTOR)
+  #426  [nano-needle-cannula]  SYRINGE MIXING TUBE (CONNECTOR)
+  #427  [imported-products]  RESTYLANE DEFYNE
+  #428  [imported-products]  RESTYLANE VOLYME
+  #429  [imported-products]  RESTYLANE KYSSE
+  #430  [imported-products]  RESTYLANE LYFT
+  #431  [imported-products]  RESTYLANE + LIDOCAINE
+  #432  [imported-products]  RESTYLANE LYFT LIDOCAINE
+  #433  [imported-products]  RESTYLANE SKINBOOSTERS VITAL LIDOCAINE
+  #434  [imported-products]  RESTYLANE VITAL LIGHT LIDOCAINE
+  #435  [imported-products]  DYSPORT 500 unit
+  #436  [imported-products]  XEOMIN 100 unit
+  #437  [imported-products]  BOTOX 50 (Allergan)
+  #438  [imported-products]  JUVIDERM
+
+## Skipped (111)
+  #110  JUVELOOK i (Juvelook Eye)  --  preserve (not long template)
+  #143  REPIDA CLEARNEST INTENSIVE FOAM CLEANSER  --  preserve (not long template)
+  #144  ACON DEEP CLEANSING FOAM  --  preserve (not long template)
+  #145  ACLEAN GEL  --  preserve (not long template)
+  #146  ACLEAN BODY ACNE TREATMENT SPRAY  --  preserve (not long template)
+  #147  ACNON CREAM  --  preserve (not long template)
+  #148  AZALEA CREAM  --  preserve (not long template)
+  #149  DERMAGEN Acssak Acne Clear Facial Foam Cleanser  --  preserve (not long template)
+  #151  DR.H.RICH HAIR FILLER  --  preserve (not long template)
+  #153  ASCE HRLV EXOSOME HAIR FILLER  --  preserve (not long template)
+  #160  DERMAGEN Trimo90 Shampoo (Anti-hair Loss)  --  preserve (not long template)
+  #161  DERMAGEN Trimo90 Tonic (Anti-hair Loss)  --  preserve (not long template)
+  #162  DERMAGEN Mohealer Shampoo  --  preserve (not long template)
+  #163  DERMAGEN Mohealer Tonic  --  preserve (not long template)
+  #164  MelaNosa Cream 4%  --  preserve (not long template)
+  #165  ALBENDAZOLE (Dewormer)  --  preserve (not long template)
+  #166  D PANSEPTIC CREAM  --  preserve (not long template)
+  #167  SCARDERM GEL  --  preserve (not long template)
+  #168  SCARDERM GEL  --  preserve (not long template)
+  #169  RECLAN (PDRN SOLUTION)  --  preserve (not long template)
+  #170  EYEOCOOL RENEW PDRN  --  preserve (not long template)
+  #171  MADECASSOL GEL  --  preserve (not long template)
+  #172  MADECASSOL GEL  --  preserve (not long template)
+  #173  MELATONING CREAM 2%  --  preserve (not long template)
+  #174  EGF ACTIVE VITAL CREAM  --  preserve (not long template)
+  #176  D-Panthenol Cream  --  preserve (not long template)
+  #177  Rejuvenex PDRN Cream  --  preserve (not long template)
+  #178  Noscarna  --  preserve (not long template)
+  #179  Bentpla Gel  --  preserve (not long template)
+  #180  Rejunera EXO-PDRN CREAM  --  preserve (not long template)
+  #181  ASCEplus HomeCare Sunshine Cushion PRO  --  preserve (not long template)
+  #182  CELLEXO Bio-Cellulose Exosome Mask  --  preserve (not long template)
+  #183  CREBEAU Placenta Pearl Essence Mask  --  preserve (not long template)
+  #184  SPIDER TOXIN PROGRAM  --  preserve (not long template)
+  #185  Rejuran Healer Calming Lip Balm  --  preserve (not long template)
+  #186  Vanhalla BLEMISH Tranexamic Acid 3 Serum  --  preserve (not long template)
+  #187  Vanhalla NIACINAMIDE Skin Tone Balance Serum  --  preserve (not long template)
+  #188  Vanhalla ETINOL 3R SERUM  --  preserve (not long template)
+  #189  VANHALLA Ceramide Moisturizing Essence in Toner  --  preserve (not long template)
+  #190  VANHALLA Ceramide Moisturizing Serum in Cream  --  preserve (not long template)
+  #191  Vanhalla CICA CALM MIST TONER  --  preserve (not long template)
+  #192  SOONSU AQUA CREAM  --  preserve (not long template)
+  #193  SKIN MARKER PEN (White)  --  preserve (not long template)
+  #194  Mask sheets for face (Random masks)  --  preserve (not long template)
+  #195  OPACIOUS COLLAGEN MASK  --  preserve (not long template)
+  #196  INVU REPARATIVE BB  --  preserve (not long template)
+  #197  REPIDA BODY TONE-UP RADIANCE SERUM  --  preserve (not long template)
+  #198  REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM  --  preserve (not long template)
+  #199  G2 OIL LIFTING PACK (Wrinkle Mask Pack Cream)  --  preserve (not long template)
+  #200  WHEAT GERM AMPOULE  --  preserve (not long template)
+  #201  EU.MEI SUN ESSENCE  --  preserve (not long template)
+  #202  EU.MEI YOUTH FIRMING EYE CREAM  --  preserve (not long template)
+  #203  WHEAT GERM COLLAGEN SKIN CARE SET  --  preserve (not long template)
+  #204  KLARGEN LactoBath  --  preserve (not long template)
+  #205  KLARGEN soln.  --  preserve (not long template)
+  #207  P198 RECORE INNER GEL (ExoNature)  --  preserve (not long template)
+  #209  VELASH SHGF11  --  preserve (not long template)
+  #217  CURENEX DAILY CARE SKINBOOSTER (SERUM)  --  preserve (not long template)
+  #218  CURENEX REJUVENATING CREAM  --  preserve (not long template)
+  #219  CURENEX HYDRATING CLEANSER  --  preserve (not long template)
+  #221  CURENEX REJUVENATING MASK  --  preserve (not long template)
+  #222  CURENEX EXO BRIGHTENING CREAM  --  preserve (not long template)
+  #226  CURENEX SHEER SUNSCREEN  --  preserve (not long template)
+  #227  DERMAGEN Egensia Cream  --  preserve (not long template)
+  #228  Dr. PICOS EGENCICA CREAM  --  preserve (not long template)
+  #229  Dr. Picos RMV Repair Cream  --  preserve (not long template)
+  #230  Dr. Picos Ureanol Cream  --  preserve (not long template)
+  #231  Cindelria Tone-Up Sun Cream  --  preserve (not long template)
+  #232  DERMAGEN Soothing mask  --  preserve (not long template)
+  #233  DERMAGEN Well-spot Hydrocolloid  --  preserve (not long template)
+  #234  DERMAGEN White Sun Cream  --  preserve (not long template)
+  #235  DERMAGEN Urea Cream  --  preserve (not long template)
+  #236  DERMAGEN RM Repair Cream  --  preserve (not long template)
+  #237  DERMAGEN Scargel  --  preserve (not long template)
+  #238  DERMAGEN Centellase Ointment  --  preserve (not long template)
+  #239  DERMAGEN Lunatox  --  preserve (not long template)
+  #240  DERMAGEN Cicarown Cream  --  preserve (not long template)
+  #241  DERMAGEN Cindelria Tone-Up Cream  --  preserve (not long template)
+  #242  DERMAGEN Bichaeahn Pore Toning Cream  --  preserve (not long template)
+  #243  DERMAGEN Cellsia Post-laser regenerating cream  --  preserve (not long template)
+  #244  DERMAGEN Cellsia Post-laser regenerating cream  --  preserve (not long template)
+  #245  DERMAGEN EZCera Cream  --  preserve (not long template)
+  #249  GTM PDRN MASK for face and neck  --  preserve (not long template)
+  #254  GTM Balance Cleansing Gel  --  preserve (not long template)
+  #255  PDRENZA Serum  --  preserve (not long template)
+  #256  PDRENZA Cream  --  preserve (not long template)
+  #257  GTM MELA DUAL Day & Night Cream  --  preserve (not long template)
+  #258  VITA K REPAIR CREAM  --  preserve (not long template)
+  #259  COLLAGEN SERUM  --  preserve (not long template)
+  #262  PEPTICULE ULTIMATE REJUVENATION CREAM  --  preserve (not long template)
+  #263  PEPTICULE ULTIMATE REJUVENATION SERUM  --  preserve (not long template)
+  #264  GTM Active Protect Sun Serum  --  preserve (not long template)
+  #265  ALOE SOOTHING GEL  --  preserve (not long template)
+  #266  ROSE HERB TONER  --  preserve (not long template)
+  #272  DIASONO.310  --  preserve (not long template)
+  #275  DN64 NEEDLE  --  preserve (not long template)
+  #276  DN16 NEEDLE  --  preserve (not long template)
+  #280  HERA POINT  --  preserve (not long template)
+  #281  ACCUTONING  --  preserve (not long template)
+  #284  AUTO-DN MTS PEN  --  preserve (not long template)
+  #285  AUTO-DN SMART  --  preserve (not long template)
+  #286  12 PIN & 42 PIN NEEDLE  --  preserve (not long template)
+  #287  NANO NEEDLE  --  preserve (not long template)
+  #293  MisAdi Lipo (Face and Body)  --  preserve (not long template)
+  #294  MisAdi Lipo (Face and Body)  --  preserve (not long template)
+  #295  BARBIE SLIM  --  preserve (not long template)
+  #296  DR.LIPO+  --  preserve (not long template)
+  #297  DR.LIPO+V  --  preserve (not long template)
+  #298  LIPOLAB GMS  --  preserve (not long template)
+  #299  LIPOLAB V LINE MEDIHUE  --  preserve (not long template)
+  #300  SUPER V-LINE SOL GMS  --  preserve (not long template)

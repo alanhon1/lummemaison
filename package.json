@@ -43,7 +43,9 @@
     "catalogue-fixes": "tsx scripts/catalogue-fixes.ts",
     "import-jotform-descriptions": "tsx scripts/import-jotform-descriptions.ts",
     "verify-jotform-matches": "tsx scripts/verify-jotform-matches.ts",
-    "apply-protocol-templates": "tsx scripts/apply-protocol-templates.ts"
+    "apply-protocol-templates": "tsx scripts/apply-protocol-templates.ts",
+    "shorten-protocols": "tsx scripts/shorten-protocols.ts",
+    "compose-bundle-covers": "tsx scripts/compose-bundle-covers.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
