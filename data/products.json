@@ -179,7 +179,7 @@
       "groupId": "barbie-slim",
       "variantLabel": "Variant 1",
       "groupName": "Barbie Slim",
-      "groupImage": "/images/products/product-1.webp",
+      "groupImage": "/images/bundles/bundle-barbie-slim.webp",
       "indication": "Designed for use in defined areas presenting localized subcutaneous fat where contouring is desired. Intended for application in the face and body where focal sculpting is the practitioner's objective.",
       "packaging": "Supplied as a carton of 5 vials, each containing 10 mL of injectable solution.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -221,7 +221,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE FINE (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-5.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
       "indication": "Suitable for the correction of fine lines and superficial skin depressions. Recommended for use in areas where light, superficial filler placement is the practitioner's objective.",
       "packaging": "Supplied as a single pre-filled syringe of 1.1 mL containing hyaluronic acid at 24 mg/mL.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -243,7 +243,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE DEEP (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-5.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
       "indication": "Suitable for moderate facial folds and mid-depth volume restoration. Intended for use in areas requiring filler support beyond the superficial dermis.",
       "packaging": "Supplied as a single pre-filled syringe of 1.1 mL containing hyaluronic acid at 24 mg/mL.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -265,7 +265,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE SUB-Q (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-5.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
       "indication": "Suitable for deep volume restoration and facial contouring such as chin and jawline definition. Recommended for procedures requiring filler placement in the subcutaneous plane.",
       "packaging": "Supplied as a single pre-filled syringe of 1.1 mL containing hyaluronic acid at 24 mg/mL.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -287,7 +287,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE FINE PLUS (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-5.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
       "indication": "Suitable for fine lines and superficial skin corrections where added injection comfort is desired. Recommended for refinement of subtle surface irregularities of the skin.",
       "packaging": "Supplied as a single 1.1 mL pre-filled syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -309,7 +309,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE DEEP PLUS (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-5.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
       "indication": "Suitable for moderate folds and mid-depth volume restoration where added injection comfort is desired. Intended for practitioners targeting the mid-dermal layer.",
       "packaging": "Supplied as a single 1.1 mL pre-filled syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -331,7 +331,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE SUB-Q PLUS (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-5.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
       "indication": "Suitable for deep volume restoration and facial contouring where added injection comfort is desired. Recommended for procedures targeting the subcutaneous plane.",
       "packaging": "Supplied as a single 1.1 mL pre-filled syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -353,7 +353,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM S (CE) NO Lidocaine",
       "groupName": "Sosum",
-      "groupImage": "/images/products/product-9.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp",
       "indication": "Suitable for superficial corrections such as fine lines. Recommended for practitioners requiring a lidocaine-free option for surface-level placement.",
       "packaging": "Supplied as 2 pre-filled syringes of 1.1 mL containing hyaluronic acid at 24 mg/mL, without lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -375,7 +375,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM M (CE) NO Lidocaine",
       "groupName": "Sosum",
-      "groupImage": "/images/products/product-9.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp",
       "indication": "Suitable for moderate folds and mid-depth volume support. Recommended for practitioners requiring a lidocaine-free option targeting the mid-dermal layer.",
       "packaging": "Supplied as 2 pre-filled syringes of 1.1 mL containing hyaluronic acid at 24 mg/mL, without lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -397,7 +397,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM H (CE) NO Lidocaine",
       "groupName": "Sosum",
-      "groupImage": "/images/products/product-9.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for practitioners requiring a lidocaine-free option for structural support.",
       "packaging": "Supplied as 2 pre-filled syringes of 1.1 mL containing hyaluronic acid at 24 mg/mL, without lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -419,7 +419,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM SOFT (CE)",
       "groupName": "Sosum",
-      "groupImage": "/images/products/product-9.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp",
       "indication": "Suitable for superficial and mid-dermal corrections. Recommended for areas where a softer, more pliable filler texture is desired by the practitioner.",
       "packaging": "Supplied as a single pre-filled syringe of 3 mL hyaluronic acid filler.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -441,7 +441,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM HARD",
       "groupName": "Sosum",
-      "groupImage": "/images/products/product-9.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for procedures where a firmer, more cohesive filler is required for structural definition.",
       "packaging": "Supplied as 3 pre-filled syringes of 3 mL hyaluronic acid filler per pack.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -463,7 +463,7 @@
       "groupId": "elasty",
       "variantLabel": "ELASTY FINE PLUS",
       "groupName": "Elasty",
-      "groupImage": "/images/products/product-14.webp",
+      "groupImage": "/images/bundles/bundle-elasty.webp",
       "indication": "Suitable for fine lines and superficial skin corrections. Recommended for subtle refinement of surface features where added injection comfort is desired.",
       "packaging": "Supplied as a single 1.0 mL pre-filled syringe of hyaluronic acid filler containing 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -485,7 +485,7 @@
       "groupId": "elasty",
       "variantLabel": "ELASTY DEEP PLUS",
       "groupName": "Elasty",
-      "groupImage": "/images/products/product-14.webp",
+      "groupImage": "/images/bundles/bundle-elasty.webp",
       "indication": "Suitable for moderate folds and mid-depth volume restoration. Intended for practitioners targeting the mid-dermal layer with added patient comfort.",
       "packaging": "Supplied as a single 1.0 mL pre-filled syringe of hyaluronic acid filler containing 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -507,7 +507,7 @@
       "groupId": "elasty",
       "variantLabel": "ELASTY GRAND PLUS",
       "groupName": "Elasty",
-      "groupImage": "/images/products/product-14.webp",
+      "groupImage": "/images/bundles/bundle-elasty.webp",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for procedures requiring more pronounced volumetric support with added injection comfort.",
       "packaging": "Supplied as a single 1.0 mL pre-filled syringe of hyaluronic acid filler containing 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -583,7 +583,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS LIGHT (MESO)",
       "groupName": "Neuramis",
-      "groupImage": "/images/products/product-20.jpg",
+      "groupImage": "/images/bundles/bundle-neuramis.webp",
       "indication": "Suitable for fine lines, superficial wrinkles, and skin hydration support. Recommended for refined surface-level applications where added injection comfort is desired.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -605,7 +605,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS",
       "groupName": "Neuramis",
-      "groupImage": "/images/products/product-20.jpg",
+      "groupImage": "/images/bundles/bundle-neuramis.webp",
       "indication": "Suitable for moderate folds and soft tissue contouring. Recommended for general dermal augmentation procedures where added patient comfort is desired.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -627,7 +627,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS DEEP",
       "groupName": "Neuramis",
-      "groupImage": "/images/products/product-20.jpg",
+      "groupImage": "/images/bundles/bundle-neuramis.webp",
       "indication": "Suitable for deep folds and mid-to-deep volume support. Recommended for practitioners requiring a lidocaine-free option for deeper placement.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL, without lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -649,7 +649,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS DEEP WITH LIDOCAINE",
       "groupName": "Neuramis",
-      "groupImage": "/images/products/product-20.jpg",
+      "groupImage": "/images/bundles/bundle-neuramis.webp",
       "indication": "Suitable for deep folds and mid-to-deep volume support. Intended for deeper placement where added injection comfort is desired by the practitioner.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -673,7 +673,7 @@
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus.",
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS VOLUME LIDOCAINE",
-      "groupImage": "/images/products/product-20.jpg"
+      "groupImage": "/images/bundles/bundle-neuramis.webp"
     },
     {
       "id": 25,
@@ -692,7 +692,7 @@
       "groupId": "revolax",
       "variantLabel": "REVOLAX FINE PLUS",
       "groupName": "Revolax",
-      "groupImage": "/images/products/product-25.webp",
+      "groupImage": "/images/bundles/bundle-revolax.webp",
       "indication": "Suitable for fine lines and superficial skin corrections. Recommended for subtle surface refinement where added injection comfort is desired.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -714,7 +714,7 @@
       "groupId": "revolax",
       "variantLabel": "REVOLAX DEEP PLUS",
       "groupName": "Revolax",
-      "groupImage": "/images/products/product-25.webp",
+      "groupImage": "/images/bundles/bundle-revolax.webp",
       "indication": "Suitable for moderate folds and mid-depth volume restoration. Intended for practitioners targeting the mid-dermal layer where added injection comfort is desired.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -736,7 +736,7 @@
       "groupId": "revolax",
       "variantLabel": "REVOLAX SUB-Q PLUS",
       "groupName": "Revolax",
-      "groupImage": "/images/products/product-25.webp",
+      "groupImage": "/images/bundles/bundle-revolax.webp",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for procedures targeting the subcutaneous plane with added injection comfort.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -758,7 +758,7 @@
       "groupId": "dermalax",
       "variantLabel": "DERMALAX PLUS",
       "groupName": "Dermalax",
-      "groupImage": "/images/products/product-28.webp",
+      "groupImage": "/images/bundles/bundle-dermalax.webp",
       "indication": "Suitable for fine to moderate skin corrections and soft contouring. Recommended for practitioners working across superficial and mid-dermal layers.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -780,7 +780,7 @@
       "groupId": "dermalax",
       "variantLabel": "DERMALAX DEEP PLUS",
       "groupName": "Dermalax",
-      "groupImage": "/images/products/product-28.webp",
+      "groupImage": "/images/bundles/bundle-dermalax.webp",
       "indication": "Suitable for moderate to deep folds and volume restoration. Intended for practitioners targeting the deeper dermal layer with added injection comfort.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -802,7 +802,7 @@
       "groupId": "dermalax",
       "variantLabel": "DERMALAX IMPLANT PLUS",
       "groupName": "Dermalax",
-      "groupImage": "/images/products/product-28.webp",
+      "groupImage": "/images/bundles/bundle-dermalax.webp",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for procedures requiring pronounced volumetric support with added injection comfort.",
       "packaging": "Supplied as 2 pre-filled syringes of 1.1 mL containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -826,7 +826,7 @@
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus.",
       "groupId": "youthfill",
       "variantLabel": "YOUTHFILL FINE",
-      "groupImage": "/images/products/product-38.webp"
+      "groupImage": "/images/bundles/bundle-youthfill.webp"
     },
     {
       "id": 39,
@@ -847,7 +847,7 @@
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus.",
       "groupId": "youthfill",
       "variantLabel": "YOUTHFILL DEEP",
-      "groupImage": "/images/products/product-38.webp"
+      "groupImage": "/images/bundles/bundle-youthfill.webp"
     },
     {
       "id": 40,
@@ -866,7 +866,7 @@
       "groupId": "youthfill",
       "variantLabel": "YOUTHFILL SHAPE",
       "groupName": "Youthfill",
-      "groupImage": "/images/products/product-38.webp",
+      "groupImage": "/images/bundles/bundle-youthfill.webp",
       "indication": "Designed for facial contouring and structural volume support. Suitable for treatment areas requiring firmer reinforcement and defined shaping.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -888,7 +888,7 @@
       "groupId": "soonsu",
       "variantLabel": "SOONSU FILL (E.P.T.Q) 100",
       "groupName": "Soonsu Fill P T",
-      "groupImage": "/images/products/product-41.webp",
+      "groupImage": "/images/bundles/bundle-soonsu.webp",
       "indication": "Designed for superficial to mid-dermal placement and fine line smoothing. Suitable for treatment areas requiring delicate, refined correction.",
       "packaging": "Supplied as one 1.0 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -910,7 +910,7 @@
       "groupId": "soonsu",
       "variantLabel": "SOONSU FILL (E.P.T.Q) 300",
       "groupName": "Soonsu Fill P T",
-      "groupImage": "/images/products/product-41.webp",
+      "groupImage": "/images/bundles/bundle-soonsu.webp",
       "indication": "Intended for mid-dermal placement and moderate volumizing. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as one 1.0 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -932,7 +932,7 @@
       "groupId": "soonsu",
       "variantLabel": "SOONSU FILL (E.P.T.Q) 500",
       "groupName": "Soonsu Fill P T",
-      "groupImage": "/images/products/product-41.webp",
+      "groupImage": "/images/bundles/bundle-soonsu.webp",
       "indication": "Designed for deep dermal or subcutaneous placement and structural contouring. Suitable for treatment plans where firmer support is desired.",
       "packaging": "Supplied as one 1.0 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -956,7 +956,7 @@
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus.",
       "groupId": "celosome",
       "variantLabel": "CELOSOME SOFT",
-      "groupImage": "/images/products/product-44.webp"
+      "groupImage": "/images/bundles/bundle-celosome.webp"
     },
     {
       "id": 45,
@@ -975,7 +975,7 @@
       "groupId": "celosome",
       "variantLabel": "CELOSOME MID",
       "groupName": "Celosome",
-      "groupImage": "/images/products/product-44.webp",
+      "groupImage": "/images/bundles/bundle-celosome.webp",
       "indication": "Intended for mid-dermal placement and moderate volume support. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -997,7 +997,7 @@
       "groupId": "celosome",
       "variantLabel": "CELOSOME STRONG",
       "groupName": "Celosome",
-      "groupImage": "/images/products/product-44.webp",
+      "groupImage": "/images/bundles/bundle-celosome.webp",
       "indication": "Designed for deep dermal placement and structural contouring. Suitable for treatment plans where firmer reinforcement is preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1019,7 +1019,7 @@
       "groupId": "celosome",
       "variantLabel": "CELOSOME IMPLANT",
       "groupName": "Celosome",
-      "groupImage": "/images/products/product-44.webp",
+      "groupImage": "/images/bundles/bundle-celosome.webp",
       "indication": "Intended for deep placement where firmer volume restoration is desired. Suitable for treatment plans involving structural contouring of deeper facial regions.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1041,7 +1041,7 @@
       "groupId": "bonetta",
       "variantLabel": "BONETTA FINE",
       "groupName": "Bonetta",
-      "groupImage": "/images/products/product-48.webp",
+      "groupImage": "/images/bundles/bundle-bonetta.webp",
       "indication": "Designed for fine line smoothing and superficial dermal placement. Suitable for treatment areas where subtle, refined results are preferred.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1063,7 +1063,7 @@
       "groupId": "bonetta",
       "variantLabel": "BONETTA DEEP",
       "groupName": "Bonetta",
-      "groupImage": "/images/products/product-48.webp",
+      "groupImage": "/images/bundles/bundle-bonetta.webp",
       "indication": "Intended for mid-to-deep dermal placement and moderate volumizing. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1085,7 +1085,7 @@
       "groupId": "bonetta",
       "variantLabel": "BONETTA VOLUME",
       "groupName": "Bonetta",
-      "groupImage": "/images/products/product-48.webp",
+      "groupImage": "/images/bundles/bundle-bonetta.webp",
       "indication": "Designed for deep placement and facial volume support. Suitable for treatment plans where firmer reinforcement and structural contouring are desired.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1109,7 +1109,7 @@
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus.",
       "groupId": "chaeum",
       "variantLabel": "THE CHAEUM PREMIUM #1 (MESO)",
-      "groupImage": "/images/products/product-51.webp"
+      "groupImage": "/images/bundles/bundle-chaeum.webp"
     },
     {
       "id": 52,
@@ -1130,7 +1130,7 @@
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus.",
       "groupId": "chaeum",
       "variantLabel": "THE CHAEUM PREMIUM #2",
-      "groupImage": "/images/products/product-51.webp"
+      "groupImage": "/images/bundles/bundle-chaeum.webp"
     },
     {
       "id": 53,
@@ -1151,7 +1151,7 @@
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus.",
       "groupId": "chaeum",
       "variantLabel": "THE CHAEUM PREMIUM #3",
-      "groupImage": "/images/products/product-51.webp"
+      "groupImage": "/images/bundles/bundle-chaeum.webp"
     },
     {
       "id": 54,
@@ -1172,7 +1172,7 @@
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus.",
       "groupId": "chaeum",
       "variantLabel": "THE CHAEUM PREMIUM #4",
-      "groupImage": "/images/products/product-51.webp"
+      "groupImage": "/images/bundles/bundle-chaeum.webp"
     },
     {
       "id": 55,
@@ -1191,7 +1191,7 @@
       "groupId": "voluderm",
       "variantLabel": "VOLUDERM FINE",
       "groupName": "Voluderm",
-      "groupImage": "/images/products/product-55.webp",
+      "groupImage": "/images/bundles/bundle-voluderm.webp",
       "indication": "Designed for fine line smoothing and superficial dermal placement. Suitable for treatment areas where subtle, refined results are preferred.",
       "packaging": "Supplied as one pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1213,7 +1213,7 @@
       "groupId": "voluderm",
       "variantLabel": "VOLUDERM DEEP",
       "groupName": "Voluderm",
-      "groupImage": "/images/products/product-55.webp",
+      "groupImage": "/images/bundles/bundle-voluderm.webp",
       "indication": "Intended for mid-to-deep dermal placement and moderate volumizing. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as one pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1235,7 +1235,7 @@
       "groupId": "voluderm",
       "variantLabel": "VOLUDERM SUB-Q",
       "groupName": "Voluderm",
-      "groupImage": "/images/products/product-55.webp",
+      "groupImage": "/images/bundles/bundle-voluderm.webp",
       "indication": "Designed for subcutaneous placement and deeper facial contouring. Suitable for treatment plans where firmer structural support is desired.",
       "packaging": "Supplied as one pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1257,7 +1257,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL KISS",
       "groupName": "Ultrafill",
-      "groupImage": "/images/products/product-58.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
       "indication": "Designed for soft tissue placement in the lip region and surrounding areas. Suitable for treatments where delicate, refined results are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1279,7 +1279,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL FINE",
       "groupName": "Ultrafill",
-      "groupImage": "/images/products/product-58.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
       "indication": "Designed for fine line smoothing and superficial dermal placement. Suitable for treatment areas where subtle, refined results are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1301,7 +1301,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL DEEP",
       "groupName": "Ultrafill",
-      "groupImage": "/images/products/product-58.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
       "indication": "Intended for mid-to-deep dermal placement and moderate volumizing. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1323,7 +1323,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL SHAPE",
       "groupName": "Ultrafill",
-      "groupImage": "/images/products/product-58.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
       "indication": "Designed for non-surgical facial contouring and shaping procedures intended for use by qualified aesthetic practitioners in a clinical setting.",
       "packaging": "Supplied as a 1.1 mL sterile pre-filled syringe, with one syringe per individually sealed pack.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1345,7 +1345,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL IMPLANT",
       "groupName": "Ultrafill",
-      "groupImage": "/images/products/product-58.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
       "indication": "Designed for use in aesthetic implantation and volumization procedures intended for trained practitioners performing structured volume restoration.",
       "packaging": "Supplied as a 1.1 mL sterile pre-filled syringe, with one syringe per individually sealed pack.",
       "protocol": "Inject at the indicated dermal depth using a 27-30G needle; aspirate before each bolus."
@@ -1513,7 +1513,7 @@
       "groupId": "p198",
       "variantLabel": "P198 Filcore SB (ExoHealer™)",
       "groupName": "P198",
-      "groupImage": "/images/products/product-71.webp",
+      "groupImage": "/images/bundles/bundle-p198.webp",
       "indication": "Designed for use as a professional skin booster intended to support overall skin firmness, hydration, and radiance in adult patients.",
       "packaging": "Supplied as 2 mL x 10 lyophilized vials per individually sealed pack.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -1535,7 +1535,7 @@
       "groupId": "p198",
       "variantLabel": "P198 Filcore Activating Solution (Solvent)",
       "groupName": "P198",
-      "groupImage": "/images/products/product-71.webp",
+      "groupImage": "/images/bundles/bundle-p198.webp",
       "indication": "Intended for use as an activating solvent designed for pairing with compatible exosome skin boosters in professional skin-quality procedures.",
       "packaging": "Supplied as 5 mL x 10 sterile vials per individually sealed pack.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -1557,7 +1557,7 @@
       "groupId": "p198",
       "variantLabel": "P198 Filcore SB Plus program",
       "groupName": "P198",
-      "groupImage": "/images/products/product-71.webp",
+      "groupImage": "/images/bundles/bundle-p198.webp",
       "indication": "Designed for use as a professional skin booster program intended to support skin firmness, hydration, and overall radiance in adult patients.",
       "packaging": "Supplied as 2 mL + 5 mL paired vials, with 5 pairs per individually sealed pack.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -1597,7 +1597,7 @@
       "groupId": "bellona",
       "variantLabel": "BELLONA AQUA",
       "groupName": "Bellona",
-      "groupImage": "/images/products/product-75.webp",
+      "groupImage": "/images/bundles/bundle-bellona.webp",
       "indication": "Intended for professional hydration and skin-quality treatments designed for use by trained aesthetic practitioners in clinical settings.",
       "packaging": "Supplied as 3 mL x 3 sterile pre-filled syringes per individually sealed pack.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -1619,7 +1619,7 @@
       "groupId": "bellona",
       "variantLabel": "BELLONA OPACIOUS SERUM",
       "groupName": "Bellona",
-      "groupImage": "/images/products/product-75.webp",
+      "groupImage": "/images/bundles/bundle-bellona.webp",
       "indication": "Designed for professional skin-brightening and rejuvenation procedures suitable for trained practitioners performing skin-quality treatments.",
       "packaging": "Supplied as 3 mL x 5 sterile vials per individually sealed pack.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -1767,7 +1767,7 @@
       "groupId": "ultra",
       "variantLabel": "ULTRA GEN",
       "groupName": "Ultra",
-      "groupImage": "/images/products/product-84.webp",
+      "groupImage": "/images/bundles/bundle-ultra.webp",
       "indication": "Suitable for professional skin rejuvenation procedures intended for trained practitioners performing comprehensive skin-quality treatments.",
       "packaging": "Supplied as 100 mg distributed across 3 sterile vials per individually sealed pack.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -1879,7 +1879,7 @@
       "groupId": "regenovue",
       "variantLabel": "REGENOVUE PN",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-90.jpg",
+      "groupImage": "/images/bundles/bundle-regenovue.webp",
       "indication": "Designed for professional bio-revitalization procedures suitable for trained practitioners performing skin-quality and hydration treatments.",
       "packaging": "Supplied as 1 sterile pre-filled syringe of 3 mL, one syringe per individually sealed pack.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -1901,7 +1901,7 @@
       "groupId": "regenovue",
       "variantLabel": "REGENOVUE AQUASHINE PLUS GOLD",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-90.jpg",
+      "groupImage": "/images/bundles/bundle-regenovue.webp",
       "indication": "Designed for professional bio-revitalization sessions and intended for general skin conditioning, surface hydration support, and adjunctive use within structured in-clinic skin-quality programs.",
       "packaging": "Supplied as 3 prefilled syringes of 3 mL each, providing a total volume of 9 mL per pack for in-clinic use.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -1923,7 +1923,7 @@
       "groupId": "regenovue",
       "variantLabel": "REGENOVUE AQUASHINE SILVER",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-90.jpg",
+      "groupImage": "/images/bundles/bundle-regenovue.webp",
       "indication": "Designed for professional bio-revitalization protocols and intended for general skin hydration, quality maintenance, and adjunctive in-clinic conditioning of the facial and adjacent treatment areas.",
       "packaging": "Supplied as 3 prefilled syringes of 3 mL each, providing a total volume of 9 mL per pack for professional use.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2107,7 +2107,7 @@
       "groupId": "soonsu-mesotherapy",
       "variantLabel": "SOONSU ULTRA REJU",
       "groupName": "Soonsu",
-      "groupImage": "/images/products/product-104.webp",
+      "groupImage": "/images/bundles/bundle-soonsu-mesotherapy.webp",
       "indication": "Designed for professional mesotherapy protocols and intended to support general skin rejuvenation, surface tone, and adjunctive use within structured in-clinic conditioning programs.",
       "packaging": "Supplied as 5 vials of 3 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2129,7 +2129,7 @@
       "groupId": "soonsu-mesotherapy",
       "variantLabel": "SOONSU SHINING PEEL",
       "groupName": "Soonsu",
-      "groupImage": "/images/products/product-104.webp",
+      "groupImage": "/images/bundles/bundle-soonsu-mesotherapy.webp",
       "indication": "Designed for professional chemical peel protocols and intended for surface tone refinement, controlled exfoliation support, and adjunctive use within structured in-clinic renewal programs.",
       "packaging": "Supplied as 5 units of 6 mL each per pack, providing a multi-session in-clinic working set in a single carton.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2187,7 +2187,7 @@
       "groupId": "ultra",
       "variantLabel": "ULTRA EYE (PN 1%)",
       "groupName": "Ultra",
-      "groupImage": "/images/products/product-84.webp",
+      "groupImage": "/images/bundles/bundle-ultra.webp",
       "indication": "Designed for professional mesotherapy of the periorbital and tear-valley areas and intended for hydration support, surface conditioning, and adjunctive use within structured in-clinic programs.",
       "packaging": "Supplied as 1 prefilled syringe containing 20 mg polynucleotide per 1.1 mL for in-clinic use.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2227,7 +2227,7 @@
       "groupId": "juvelook-i-30mg",
       "variantLabel": "JUVELOOK i (Juvelook Eye)",
       "groupName": "Juvelook",
-      "groupImage": "/images/products/product-110.webp",
+      "groupImage": "/images/bundles/bundle-juvelook-i-30mg.webp",
       "indication": "-Under-eye area (dark circles, fine lines) -Crow’s feet -Perioral “barcode” lines -Thin skin (neck, delicate zones) -Skin texture & elasticity improvement",
       "packaging": "Supplied as a single vial containing 25.5 mg PDLLA and 4.5 mg hyaluronic acid (30 mg per vial in total).",
       "protocol": "•2–3 sessions recommended •Interval: every 4–6 weeks •Injection: superficial dermis / mesotherapy technique"
@@ -2375,7 +2375,7 @@
       "groupId": "ultra",
       "variantLabel": "ULTRA WHITE",
       "groupName": "Ultra",
-      "groupImage": "/images/products/product-84.webp",
+      "groupImage": "/images/bundles/bundle-ultra.webp",
       "indication": "Designed for professional facial mesotherapy and intended to support surface tone, brightness, and adjunctive use within structured in-clinic facial conditioning programs.",
       "packaging": "Supplied as 5 vials of 3 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2397,7 +2397,7 @@
       "groupId": "miracle-x",
       "variantLabel": "MIRACLE X",
       "groupName": "Miracle",
-      "groupImage": "/images/products/product-121.webp",
+      "groupImage": "/images/bundles/bundle-miracle-x.webp",
       "indication": "Designed for professional skin booster and meso-lifting protocols, intended to support facial hydration, surface quality, and adjunctive use within structured in-clinic conditioning programs.",
       "packaging": "Supplied as 5 vials of 2 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2419,7 +2419,7 @@
       "groupId": "miracle-x",
       "variantLabel": "MIRACLE H",
       "groupName": "Miracle",
-      "groupImage": "/images/products/product-121.webp",
+      "groupImage": "/images/bundles/bundle-miracle-x.webp",
       "indication": "Designed for professional meso-lifting and skin booster protocols and intended to support facial hydration, surface tone, and adjunctive use within structured in-clinic conditioning programs.",
       "packaging": "Supplied as 5 vials of 2 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2441,7 +2441,7 @@
       "groupId": "miracle-x",
       "variantLabel": "MIRACLE L",
       "groupName": "Miracle",
-      "groupImage": "/images/products/product-121.webp",
+      "groupImage": "/images/bundles/bundle-miracle-x.webp",
       "indication": "Designed for facial skin lifting routines and collagen-support objectives in professional aesthetic protocols, intended for practitioners working on overall firmness and skin quality refinement.",
       "packaging": "Box containing 5 vials of 2 mL each, supplied as a meso solution for face lifting and skin lift collagen care.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2463,7 +2463,7 @@
       "groupId": "touch",
       "variantLabel": "TOUCH UP PCL",
       "groupName": "Touch",
-      "groupImage": "/images/products/product-122.webp",
+      "groupImage": "/images/bundles/bundle-touch.webp",
       "indication": "Intended for use as a stem cell booster and skin rejuvenation aid within professional aesthetic protocols, designed for practitioners addressing overall skin quality and freshness.",
       "packaging": "Box containing 5 vials of 2 mL each, supplied as a stem cell booster and skin rejuvenation solution.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2485,7 +2485,7 @@
       "groupId": "touch",
       "variantLabel": "TOUCH BR",
       "groupName": "Touch",
-      "groupImage": "/images/products/product-122.webp",
+      "groupImage": "/images/bundles/bundle-touch.webp",
       "indication": "Designed for use in brightening-focused professional skincare protocols targeting the appearance of uneven pigmentation, dullness, and lack of luminosity in facial skin.",
       "packaging": "Box containing 5 vials of 5 mL each, supplied as a meso solution focused on brightening and even-tone support.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2561,7 +2561,7 @@
       "groupId": "lapuroon-aurora-super",
       "variantLabel": "LAPUROON AURORA SUPER",
       "groupName": "Lapuroon Aurora",
-      "groupImage": "/images/products/product-127.webp",
+      "groupImage": "/images/bundles/bundle-lapuroon-aurora-super.webp",
       "indication": "Designed for professional use as a skin booster supporting overall skin quality, hydration routines, and the appearance of refreshed, well-conditioned facial skin.",
       "packaging": "Box containing 2 pre-filled syringes of 2.5 mL each, supplied as a 2% PDRN skin booster for professional use.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2583,7 +2583,7 @@
       "groupId": "lapuroon-aurora-super",
       "variantLabel": "LAPUROON AURORA VIVID",
       "groupName": "Lapuroon Aurora",
-      "groupImage": "/images/products/product-127.webp",
+      "groupImage": "/images/bundles/bundle-lapuroon-aurora-super.webp",
       "indication": "Suitable for professional skin booster protocols supporting general skin care, intended for practitioners addressing overall skin quality and the appearance of healthy, conditioned skin.",
       "packaging": "Box containing 5 vials of 5 mL each, supplied as a 0.2% PDRN skin booster for professional use.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2749,7 +2749,7 @@
       "groupId": "ultra",
       "variantLabel": "ULTRA CA Bio Stimulator",
       "groupName": "Ultra",
-      "groupImage": "/images/products/product-84.webp",
+      "groupImage": "/images/bundles/bundle-ultra.webp",
       "indication": "Intended for professional protocols supporting volume restoration routines and collagen-stimulation objectives, designed for practitioners performing structured injection-based aesthetic care.",
       "packaging": "Box containing 2 pre-filled syringes of 0.8 mL each, supplied as a CaHA bio-stimulator for professional use.",
       "protocol": "Inject intradermally at 1-4 mm depth using a 30G needle; cycle weekly for 4-8 sessions."
@@ -2897,7 +2897,7 @@
       "groupId": "aclean",
       "variantLabel": "ACLEAN GEL",
       "groupName": "Aclean",
-      "groupImage": "/images/products/product-145.webp",
+      "groupImage": "/images/bundles/bundle-aclean.webp",
       "indication": "Suitable for blemish-prone skin and the appearance of clogged pores or uneven texture; avoid application on broken, highly sensitive, or compromised skin areas.",
       "packaging": "20 g tube, supplied as a topical leave-on gel containing 2% salicylic acid for targeted skin care.",
       "protocol": "Apply a thin layer to clean, dry affected areas once or twice daily following manufacturer guidance. Discontinue use if irritation, redness, or excessive dryness occurs and consult a professional."
@@ -2919,7 +2919,7 @@
       "groupId": "aclean",
       "variantLabel": "ACLEAN BODY ACNE TREATMENT SPRAY",
       "groupName": "Aclean",
-      "groupImage": "/images/products/product-145.webp",
+      "groupImage": "/images/bundles/bundle-aclean.webp",
       "indication": "Designed for body skin care on the back, chest, and shoulders prone to the appearance of blemishes, congestion, and uneven texture, intended for daily structured use.",
       "packaging": "100 mL spray bottle with 360-degree applicator, supplied for body acne care with 2% salicylic acid.",
       "protocol": "Spray onto clean, dry affected body areas twice daily following label instructions, allow to dry, and avoid clothing contact until absorbed. Discontinue use if irritation occurs."
@@ -3141,7 +3141,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Many Shoot Plus+",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-159.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp",
       "indication": "Helps reduce hair loss, nourish hair follicles, and improve scalp condition",
       "packaging": "Supplied as a 50 mL bottle per unit, as stated in the product specification.",
       "protocol": "Apply or inject at the scalp at 2-3 mm depth; cycle weekly for 4-6 sessions."
@@ -3163,7 +3163,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Trimo90 Shampoo (Anti-hair Loss)",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-159.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp",
       "indication": "Suitable for use within daily routines designed to address scalp sensitivity concerns and to provide structured hair-care support for sensitive or stressed scalps.",
       "packaging": "Supplied as a 500 mL bottle per unit, as stated in the product specification.",
       "protocol": "Intended for routine use. Apply to wet hair, massage gently into the scalp, leave briefly to allow contact, then rinse thoroughly with water, following the practitioner's recommendation regarding frequency."
@@ -3185,7 +3185,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Trimo90 Tonic (Anti-hair Loss)",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-159.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp",
       "indication": "Designed for daily scalp care routines that are intended to support overall hair and scalp condition within structured, practitioner-led or home-based hair-care programs.",
       "packaging": "Supplied as a 120 mL bottle per unit, as stated in the product specification.",
       "protocol": "Intended for routine use. Apply directly to a clean, towel-dried scalp and massage gently with the fingertips per the practitioner's or product label guidance regarding frequency and combined use with other products."
@@ -3207,7 +3207,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Mohealer Shampoo",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-159.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp",
       "indication": "Designed to support structured scalp-care routines and to provide a comfortable cleansing experience as part of practitioner-recommended hair-care programs.",
       "packaging": "Supplied as a 500 mL bottle per unit, as stated in the product specification.",
       "protocol": "Intended for routine use. Apply to wet hair, massage gently into the scalp, leave briefly to allow contact with the scalp, then rinse thoroughly, following the product label and practitioner guidance."
@@ -3229,7 +3229,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Mohealer Tonic",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-159.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp",
       "indication": "Suitable for inclusion in routine scalp-care programs designed to support hair and scalp condition as part of structured, practitioner-recommended hair-care routines.",
       "packaging": "Supplied as a 120 mL bottle per unit, as stated in the product specification.",
       "protocol": "Intended for routine use. Apply directly to a clean scalp and massage gently with the fingertips per the practitioner's or product label guidance regarding frequency, quantity, and combination with other scalp products."
@@ -3305,7 +3305,7 @@
       "groupId": "scarderm",
       "variantLabel": "10g",
       "groupName": "Scarderm Gel",
-      "groupImage": "/images/products/product-167.webp",
+      "groupImage": "/images/bundles/bundle-scarderm.webp",
       "indication": "Designed to support routines aimed at softening and smoothing the visible appearance of scars and helping to maintain pliable, comfortable scar tissue over time.",
       "packaging": "Supplied as a 10 g tube per unit, as stated in the product specification.",
       "protocol": "Intended for routine topical use. Apply gently to the scar area two to three times daily and massage lightly with the fingertips, in accordance with the product label and practitioner guidance regarding duration of use."
@@ -3327,7 +3327,7 @@
       "groupId": "scarderm",
       "variantLabel": "20g",
       "groupName": "Scarderm Gel",
-      "groupImage": "/images/products/product-167.webp",
+      "groupImage": "/images/bundles/bundle-scarderm.webp",
       "indication": "Designed to support routines aimed at softening and smoothing the visible appearance of scars, suitable for extended use cases due to the larger pack size.",
       "packaging": "Supplied as a 20 g tube per unit (larger format), as stated in the product specification.",
       "protocol": "Intended for routine topical use. Apply gently to the scar area two to three times daily and massage lightly with the fingertips, in accordance with the product label and practitioner guidance regarding duration of use."
@@ -3385,7 +3385,7 @@
       "groupId": "madecassol",
       "variantLabel": "10g",
       "groupName": "Madecassol Gel",
-      "groupImage": "/images/products/product-171.webp",
+      "groupImage": "/images/bundles/bundle-madecassol.webp",
       "indication": "Designed for post-procedure skin-care routines and for inclusion in programs addressing the appearance of scars, burns, and general skin irritation comfort.",
       "packaging": "Supplied as a 10 g tube per unit, as stated in the product specification.",
       "protocol": "Intended for routine topical use. Apply a thin layer of the gel to the target area as needed throughout the day, in accordance with the product label and practitioner guidance regarding frequency and duration of use."
@@ -3407,7 +3407,7 @@
       "groupId": "madecassol",
       "variantLabel": "20g",
       "groupName": "Madecassol Gel",
-      "groupImage": "/images/products/product-171.webp",
+      "groupImage": "/images/bundles/bundle-madecassol.webp",
       "indication": "• Sensitive / irritated skin • Post-procedure care (laser, peeling, MTS) • Minor wounds (non-infected) • Redness and skin recovery",
       "packaging": "Supplied as a 20 g tube per unit (larger format), as stated in the product specification.",
       "protocol": "Apply thin layer 1–2× daily on clean skin."
@@ -3721,7 +3721,7 @@
       "groupId": "vanhalla",
       "variantLabel": "VANHALLA Ceramide Moisturizing Essence in Toner",
       "groupName": "Vanhalla",
-      "groupImage": "/images/products/product-189.webp",
+      "groupImage": "/images/bundles/bundle-vanhalla.webp",
       "indication": "Intended for dry or barrier-weakened complexions and designed for daily hydration, soothing care, and texture refinement on all skin types.",
       "packaging": "Single retail bottle containing 100 mL of essence toner with a flip-top dispensing cap.",
       "protocol": "For professional use, apply to cleansed skin using a cotton pad or by gently pressing with the palms, morning and evening, before applying serum, eye care, and finishing cream."
@@ -3743,7 +3743,7 @@
       "groupId": "vanhalla",
       "variantLabel": "VANHALLA Ceramide Moisturizing Serum in Cream",
       "groupName": "Vanhalla",
-      "groupImage": "/images/products/product-189.webp",
+      "groupImage": "/images/bundles/bundle-vanhalla.webp",
       "indication": "Designed for dry complexions or a compromised barrier and intended for skin seeking softer, more supple appearance through consistent daily moisturizing care.",
       "packaging": "Single retail jar containing 50 mL of serum-cream with an inner sealing disc and screw lid.",
       "protocol": "For professional use, apply an even layer to cleansed skin morning and evening as the final hydration step. Gently massage until absorbed and reapply on particularly dry zones as needed."
@@ -3999,7 +3999,7 @@
       "groupId": "klargen",
       "variantLabel": "KLARGEN LactoBath",
       "groupName": "Klargen",
-      "groupImage": "/images/products/product-204.webp",
+      "groupImage": "/images/bundles/bundle-klargen.webp",
       "indication": "Helps cleanse the intimate area, maintain healthy pH balance, soothe sensitive skin, and reduce odor and irritation.",
       "packaging": "Single retail bottle containing 300 mL of feminine cleanser with a pump dispenser.",
       "protocol": "For professional guidance on personal hygiene use, dispense a small amount onto the hands, lather gently across the external intimate area, and rinse thoroughly with lukewarm water until clean."
@@ -4021,7 +4021,7 @@
       "groupId": "klargen",
       "variantLabel": "KLARGEN soln.",
       "groupName": "Klargen",
-      "groupImage": "/images/products/product-204.webp",
+      "groupImage": "/images/bundles/bundle-klargen.webp",
       "indication": "Helps cleanse the intimate area, maintain healthy pH balance, reduce odor, and soothe sensitive skin.",
       "packaging": "Single portable retail bottle containing 50 mL of feminine cleanser with a travel-friendly cap.",
       "protocol": "For professional guidance on personal hygiene use, apply a small amount to the external intimate area, lather lightly between the hands, and rinse thoroughly with water until completely clean."
@@ -4169,7 +4169,7 @@
       "groupId": "selastin",
       "variantLabel": "SELASTIN TOX GF11",
       "groupName": "Selastin",
-      "groupImage": "/images/products/product-213.webp",
+      "groupImage": "/images/bundles/bundle-selastin.webp",
       "indication": "Helps reduce wrinkles, improve firmness, brighten skin, and support anti-aging care.",
       "packaging": "Supplied as a kit containing 5 mL x 5 vials for professional skin booster applications.",
       "protocol": "Reconstitute with the supplied diluent; apply via microneedling or 30G mesotherapy."
@@ -4191,7 +4191,7 @@
       "groupId": "selastin",
       "variantLabel": "SELASTIN EXO PLUS",
       "groupName": "Selastin",
-      "groupImage": "/images/products/product-213.webp",
+      "groupImage": "/images/bundles/bundle-selastin.webp",
       "indication": "Intended for professional skin booster protocols designed to support elasticity, soothing, and regenerative-focused aesthetic care routines in clinical settings.",
       "packaging": "Kit with 100 mg exosome powder x 5 vials plus PDRN, collagen, and peptide solution 5 mL x 5 vials.",
       "protocol": "Reconstitute with the supplied diluent; apply via microneedling or 30G mesotherapy."
@@ -4213,7 +4213,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX SCULP",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Designed for professional collagen biostimulation procedures intended to support firmness and elasticity-focused aesthetic care in qualified clinical settings.",
       "packaging": "Supplied as 360 mg of poly-L-lactic acid biostimulator powder per vial for professional use.",
       "protocol": "Use per the Curenex product type; injectables go intradermally at 1-2 mm with a 30G needle."
@@ -4235,7 +4235,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX PDRN",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Suitable for professional revitalizing skin booster protocols designed for use in clinical aesthetic settings by qualified practitioners.",
       "packaging": "Supplied as a kit containing 5 mL x 5 vials of salmon-derived PDRN booster solution.",
       "protocol": "Use per the Curenex product type; injectables go intradermally at 1-2 mm with a 30G needle."
@@ -4257,7 +4257,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX DAILY CARE SKINBOOSTER (SERUM)",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Designed for daily home care use, intended to support skin hydration, a smooth appearance, and balanced moisture across normal skin types.",
       "packaging": "Supplied in a 30 mL serum bottle for daily home care application.",
       "protocol": "For daily home use. Dispense a small amount onto cleansed skin morning and evening, then press gently across the face and neck until fully absorbed before applying further care steps."
@@ -4279,7 +4279,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX REJUVENATING CREAM",
       "groupName": "Curenex Rejuvenating",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Designed for daily home care and as part of a post-procedure routine, intended to support skin comfort and conditioning after aesthetic treatments.",
       "packaging": "Supplied as a single-unit cream tube for daily home care use.",
       "protocol": "For daily home use. Apply an appropriate amount to cleansed skin morning and evening, then massage gently in upward motions across the face and neck until fully absorbed."
@@ -4301,7 +4301,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX HYDRATING CLEANSER",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Designed for daily cleansing across all skin types, including sensitive skin, and intended to support a comfortable, balanced after-cleanse feel.",
       "packaging": "Supplied in a 150 mL bottle for daily home use cleansing routines.",
       "protocol": "For daily home use. Dispense an appropriate amount onto damp skin, massage gently across the face in circular motions morning and evening, then rinse thoroughly with lukewarm water."
@@ -4323,7 +4323,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX LIPO (FACE AND BODY)",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Designed for professional facial and body contouring procedures, intended for use by qualified medical practitioners in clinical aesthetic settings.",
       "packaging": "Supplied as a kit containing 10 mL x 5 vials of PPC-based lipolytic solution for professional use.",
       "protocol": "Use per the Curenex product type; injectables go intradermally at 1-2 mm with a 30G needle."
@@ -4345,7 +4345,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX REJUVENATING MASK",
       "groupName": "Curenex Rejuvenating",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Designed for regular home care use and as part of a post-procedure recovery routine, intended to support skin comfort and refreshment.",
       "packaging": "Supplied as a single-unit mask per individual pack for daily home use.",
       "protocol": "For daily home use. Apply the mask to cleansed skin and leave in place for the duration indicated on the packaging, then remove and gently pat any remaining essence into the skin until absorbed."
@@ -4367,7 +4367,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX EXO BRIGHTENING CREAM",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Designed for daily home care use, intended to support brightening and hydration across normal skin types as part of a regular skincare routine.",
       "packaging": "Supplied in a 50 mL tube or jar for daily home care application.",
       "protocol": "For daily home use. Dispense a pea-sized amount onto cleansed skin morning and evening, then gently massage across the face and neck in upward motions until fully absorbed."
@@ -4389,7 +4389,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX EYE",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Designed for professional under-eye revitalization procedures, intended for use by qualified medical practitioners in clinical aesthetic settings.",
       "packaging": "Supplied as a 2 mL x 1 prefilled syringe of polynucleotide-based solution with lidocaine for professional use.",
       "protocol": "Use per the Curenex product type; injectables go intradermally at 1-2 mm with a 30G needle."
@@ -4411,7 +4411,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX SNOW PEEL",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-215.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
       "indication": "Designed for professional peeling and skin renewal procedures, intended to support exfoliation-focused aesthetic care performed by trained practitioners.",
       "packaging": "Supplied as a kit containing 4 vials x 1 g of C-TOX powder together with 30 mL of Snowpeel Activator solution.",
       "protocol": "Use per the Curenex product type; injectables go intradermally at 1-2 mm with a 30G needle."
@@ -4435,7 +4435,7 @@
       "protocol": "For daily home use. Apply an even layer to exposed skin as the final step of the morning routine, then reapply approximately every two hours during prolonged sun exposure or after sweating.",
       "variantLabel": "CURENEX SHEER SUNSCREEN",
       "groupId": "curenex-bundle",
-      "groupImage": "/images/products/product-215.webp"
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp"
     },
     {
       "id": 227,
@@ -4454,7 +4454,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 1",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed to soothe and condition post-laser skin and to support the skin barrier following professional aesthetic procedures in daily care routines.",
       "packaging": "Supplied in a 50 g tube for daily home care use after aesthetic procedures.",
       "protocol": "For home and clinic use. Apply a thin layer to cleansed skin twice daily following aesthetic procedures, massaging gently until absorbed, or as advised by the treating practitioner."
@@ -4478,7 +4478,7 @@
       "protocol": "For home and clinic use. Apply a thin layer to cleansed skin twice daily after aesthetic procedures, gently pressing in until absorbed, or as advised by the treating practitioner.",
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 2",
-      "groupImage": "/images/products/product-227.webp"
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp"
     },
     {
       "id": 229,
@@ -4499,7 +4499,7 @@
       "protocol": "For daily home use. Apply liberally to cleansed skin morning and evening, focusing on dry or stressed areas, then massage gently in upward motions until fully absorbed.",
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 3",
-      "groupImage": "/images/products/product-227.webp"
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp"
     },
     {
       "id": 230,
@@ -4520,7 +4520,7 @@
       "protocol": "For daily home use. Apply an appropriate amount to affected body areas once or twice daily, then massage thoroughly into the skin until fully absorbed for comfortable wear.",
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 4",
-      "groupImage": "/images/products/product-227.webp"
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp"
     },
     {
       "id": 231,
@@ -4541,7 +4541,7 @@
       "protocol": "For daily home use. Apply an even layer to the face as the final morning skincare step, then reapply approximately every two hours during prolonged sun exposure or after sweating.",
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 5",
-      "groupImage": "/images/products/product-227.webp"
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp"
     },
     {
       "id": 232,
@@ -4560,7 +4560,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 6",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed to support skin hydration and refreshment after laser and aesthetic procedures, suitable for sensitive skin during recovery routines.",
       "packaging": "Supplied as 10 sheets per box, each sheet weighing 23 g (0.81 oz) for individual single-use application.",
       "protocol": "For home and clinic use. Apply one sheet to cleansed skin and leave in place for 15 to 20 minutes, then remove and gently pat any remaining essence into the skin until absorbed."
@@ -4582,7 +4582,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 7",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Suitable for daily care of pimples, blemishes, and post-procedure spots, intended to support a clean, protected environment over targeted areas.",
       "packaging": "Supplied as 15 spots per sheet with 4 sheets per pack for daily home care use.",
       "protocol": "For daily home use. Apply one patch to clean, dry skin directly over the target spot and leave in place until saturated or no longer adherent, then replace with a fresh patch as needed."
@@ -4604,7 +4604,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 8",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed for daily UV protection together with brightening and smoothing benefits, suitable for sensitive and post-procedure skin in morning routines.",
       "packaging": "Supplied in a 50 g tube for daily home use sun protection and brightening care routines.",
       "protocol": "For daily home use. Apply an even layer to the face as the final morning skincare step, then reapply approximately every two hours during prolonged sun exposure or after sweating."
@@ -4626,7 +4626,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 9",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed for deep hydration of elbows, heels, knees, and overwashed hands prone to cracking, intended to support softening and conditioning of rough skin.",
       "packaging": "Supplied in a 100 g tube for daily home care use across rough body and problem-area routines.",
       "protocol": "For daily home use. Apply an appropriate amount to affected body areas once or twice daily, then massage thoroughly into the skin until fully absorbed for comfortable wear throughout the day."
@@ -4648,7 +4648,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 10",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Intended for daily care after laser and aesthetic procedures, designed to help replenish moisture and condition stressed, recovering facial skin.",
       "packaging": "Supplied in a 200 g tube for daily home and clinic-recommended post-procedure care routines.",
       "protocol": "For home and clinic use. Apply a thin layer to cleansed skin morning and evening, massaging gently across the face and neck until absorbed, or as advised by the treating practitioner."
@@ -4670,7 +4670,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 11",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed to help support the appearance and flattening of raised post-surgical and post-trauma scars during long-term daily home care routines.",
       "packaging": "Supplied in a 15 g tube for daily home care use across targeted scar areas.",
       "protocol": "For daily home use. Apply a thin layer to clean, dry skin directly over the target scar area twice daily, then allow the gel to dry fully before covering with clothing or dressings."
@@ -4692,7 +4692,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 12",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed to support the healing care of wounds and skin ulcers, intended for use as directed on the packaging or by a qualified healthcare professional.",
       "packaging": "Supplied in a 50 g tube as a quasi-drug wound treatment ointment for daily home or clinic use.",
       "protocol": "For home and clinic use. Apply a thin layer to the affected area as directed on the product packaging or by a qualified healthcare professional, taking care to keep the area clean."
@@ -4714,7 +4714,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 13",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed for the care of pigmentation, melasma-prone, and uneven skin tone, intended to support brightening and conditioning daily routines.",
       "packaging": "Supplied in a 50 g tube for daily home care use across brightening-focused routines.",
       "protocol": "For daily home use. Apply a thin layer to cleansed skin morning and evening, focusing on areas of uneven tone, then gently pat in until fully absorbed before the next care step."
@@ -4736,7 +4736,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 14",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed for instant cooling and hydration on stressed or sensitive skin, suitable as a daily comfort step within regular home care routines.",
       "packaging": "Supplied in a 50 g tube for daily home care use across cooling and hydration-focused routines.",
       "protocol": "For daily home use. Apply an appropriate amount to cleansed skin as needed for cooling and hydration, then gently massage across the face and neck until fully absorbed."
@@ -4758,7 +4758,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 15",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed for dull, fatigued-looking skin requiring daily UV protection and an even, radiant finish. Intended for use as the closing step of a daily skincare routine.",
       "packaging": "Supplied in a 40 mL tube for individual or in-clinic dispensing use.",
       "protocol": "For professional use: after cleansing, toning, and serum application, dispense a small pearl-sized amount and apply evenly across the face and neck. Reapply throughout the day as required to maintain continuous UV protection."
@@ -4780,7 +4780,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 16",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed for sensitive or combination skin presenting with visible pores and uneven surface tone. Intended for daily brightening and pore-care routines.",
       "packaging": "Supplied in an 80 g tube for daily or in-clinic professional dispensing use.",
       "protocol": "For professional use: apply an even layer to thoroughly cleansed skin, focusing on regions with visible pores. May be incorporated into post-procedure regimens once the barrier has stabilized, per practitioner judgment."
@@ -4802,7 +4802,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 17",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed for sensitive, reactive skin following in-clinic laser or peeling procedures. Intended for use during post-procedure recovery as part of a barrier-support routine.",
       "packaging": "Supplied in a 60 g tube for individual post-procedure dispensing use.",
       "protocol": "For professional use: apply a thin, even layer to gently cleansed skin immediately following the procedure. May be reapplied at intervals throughout the recovery period as directed by the practitioner."
@@ -4824,7 +4824,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 18",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "Designed for sensitive, post-procedure skin in clinic environments where larger working volumes are required. Intended for use within professional recovery protocols.",
       "packaging": "Supplied in a 500 g clinic-size tube for high-volume professional dispensing.",
       "protocol": "For professional use: apply a thin even layer to cleansed skin following clinic procedures. Decant individual clinic portions hygienically using sterile spatulas and reapply as recommended by the treating practitioner."
@@ -4846,7 +4846,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 19",
       "groupName": "Dermagen",
-      "groupImage": "/images/products/product-227.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
       "indication": "• Melasma (chloasma) • Freckles • Post-inflammatory hyperpigmentation • Age spots / sun spots • Uneven skin tone due to excess melanin",
       "packaging": "Supplied in a 200 g tube for daily home or in-clinic dispensing use.",
       "protocol": "Apply a thin layer to affected areas 1–2 times daily (morning & evening). Use sunscreen during daytime to prevent recurrence and protect results."
@@ -4978,7 +4978,7 @@
       "groupId": "melacell",
       "variantLabel": "MELACELL THE PREMIUM",
       "groupName": "Melacell",
-      "groupImage": "/images/products/product-252.webp",
+      "groupImage": "/images/bundles/bundle-melacell.webp",
       "indication": "Designed for professional brightening protocols. Intended for skin presenting with uneven tone, dark spots, and overall dullness in clinic environments.",
       "packaging": "Supplied as 5 mL x 10 vials per box for in-clinic professional use.",
       "protocol": "Apply per product type; in-clinic peels follow neutralization per the manufacturer protocol."
@@ -5002,7 +5002,7 @@
       "groupId": "melacell",
       "variantLabel": "MELACELL +",
       "groupName": "Melacell",
-      "groupImage": "/images/products/product-252.webp",
+      "groupImage": "/images/bundles/bundle-melacell.webp",
       "indication": "- Melasma, freckles, and hyperpigmentation - Uneven or dull skin tone - Post-inflammatory pigmentation - Early signs of aging and loss of elasticity - Skin brightening and tone correction - Professional procedures (MTS / mesotherapy)",
       "packaging": "Supplied as 3.5 mL x 10 vials per box for in-clinic professional use.",
       "protocol": "Apply per product type; in-clinic peels follow neutralization per the manufacturer protocol."
@@ -5044,7 +5044,7 @@
       "groupId": "pdrenza",
       "variantLabel": "PDRENZA Serum",
       "groupName": "Pdrenza",
-      "groupImage": "/images/products/product-255.webp",
+      "groupImage": "/images/bundles/bundle-pdrenza.webp",
       "indication": "Helps improve skin elasticity, moisture, radiance, and fine lines.",
       "packaging": "Supplied in a 50 mL bottle for daily personal use.",
       "protocol": "For daily use: apply a few drops to thoroughly cleansed skin morning and evening, pat in gently across the face and neck, and follow with a suitable moisturizer. Use consistently for optimal results."
@@ -5066,7 +5066,7 @@
       "groupId": "pdrenza",
       "variantLabel": "PDRENZA Cream",
       "groupName": "Pdrenza",
-      "groupImage": "/images/products/product-255.webp",
+      "groupImage": "/images/bundles/bundle-pdrenza.webp",
       "indication": "Helps improve hydration, skin tone, firmness, and fine lines.",
       "packaging": "Supplied in a 50 mL jar for daily personal or in-clinic dispensing use.",
       "protocol": "For daily use: apply an even layer to cleansed skin both morning and evening as the closing step of the skincare routine. May be layered after serum application for enhanced finish."
@@ -5184,7 +5184,7 @@
       "groupId": "pepticule",
       "variantLabel": "PEPTICULE ULTIMATE REJUVENATION CREAM",
       "groupName": "Pepticule Ultimate Rejuvenation",
-      "groupImage": "/images/products/product-262.webp",
+      "groupImage": "/images/bundles/bundle-pepticule.webp",
       "indication": "Designed for skin presenting with reduced elasticity, dullness, or mild fine lines. Intended for post-procedure finishing care only when the skin barrier is fully intact.",
       "packaging": "Supplied in a 50 mL jar for daily personal or in-clinic professional use.",
       "protocol": "For professional or home use: apply an even layer to thoroughly cleansed skin as the closing step of the routine, both morning and evening. May be combined with the matching serum for enhanced results."
@@ -5206,7 +5206,7 @@
       "groupId": "pepticule",
       "variantLabel": "PEPTICULE ULTIMATE REJUVENATION SERUM",
       "groupName": "Pepticule Ultimate Rejuvenation",
-      "groupImage": "/images/products/product-262.webp",
+      "groupImage": "/images/bundles/bundle-pepticule.webp",
       "indication": "Designed for skin presenting with fine lines, reduced firmness, uneven tone, or rough surface texture. Intended for targeted rejuvenation routines within structured care.",
       "packaging": "Supplied as 10 mL x 3 ampoules per box for personal or in-clinic professional use.",
       "protocol": "For professional use: apply the ampoule contents to thoroughly cleansed skin and follow with the recommended matching cream. Treatment frequency should be determined per clinic protocol and skin tolerance."
@@ -5302,7 +5302,7 @@
       "groupId": "o2toderm",
       "variantLabel": "O2TODERM LED PLUS + ULDM",
       "groupName": "O2toderm Led Plus",
-      "groupImage": "/images/products/product-268.webp",
+      "groupImage": "/images/bundles/bundle-o2toderm.webp",
       "indication": "Designed for professional in-clinic LED and oxygen therapy protocols. Intended for use across a range of structured skin-care procedures performed by trained operators.",
       "packaging": "Supplied as a professional device with a multi-color LED panel and integrated oxygen and anion therapy modules.",
       "protocol": "Reserved for trained operators; calibrate, configure per indication, treat in even passes."
@@ -5342,7 +5342,7 @@
       "groupId": "o2toderm",
       "variantLabel": "O2TODERM LED PLUS",
       "groupName": "O2toderm Led Plus",
-      "groupImage": "/images/products/product-268.webp",
+      "groupImage": "/images/bundles/bundle-o2toderm.webp",
       "indication": "Designed for professional clinics performing combined LED, oxygen, and ultrasound procedures. Intended for trained operators integrating multiple modalities in structured protocols.",
       "packaging": "Supplied as a set including the O2TODERM LED PLUS device and the ULDM ultrasound device.",
       "protocol": "Reserved for trained operators; calibrate, configure per indication, treat in even passes."
@@ -5526,7 +5526,7 @@
       "groupId": "hera",
       "variantLabel": "HERA POINT",
       "groupName": "Hera",
-      "groupImage": "/images/products/product-280.webp",
+      "groupImage": "/images/bundles/bundle-hera.webp",
       "indication": "Designed for professional lifting protocols and fine-line care that benefit from focused ultrasonic stimulation, delivered by trained operators within established procedures.",
       "packaging": "Supplied as a point-type HIFU equipment unit with professional cartridges.",
       "protocol": "For trained operators only. Map the planned treatment lines, select the appropriate cartridge depth, and deliver shots per the manufacturer's recommended energy levels, spacing, and shot count."
@@ -5566,7 +5566,7 @@
       "groupId": "hera",
       "variantLabel": "HERA VACUUM",
       "groupName": "Hera",
-      "groupImage": "/images/products/product-280.webp",
+      "groupImage": "/images/bundles/bundle-hera.webp",
       "indication": "Designed for professional protocols intended for body shape support, cellulite softening, and muscle relief, delivered by trained operators within established procedures.",
       "packaging": "Supplied as a vacuum RF equipment unit with three interchangeable professional handpieces.",
       "protocol": "Reserved for trained operators; calibrate, configure per indication, treat in even passes."
@@ -5606,7 +5606,7 @@
       "groupId": "auto",
       "variantLabel": "AUTO-DN MTS PEN",
       "groupName": "Auto Dn",
-      "groupImage": "/images/products/product-284.webp",
+      "groupImage": "/images/bundles/bundle-auto.webp",
       "indication": "Designed for professional auto-MTS protocols intended for facial skin, performed by trained operators following established cabin procedures and hygiene standards.",
       "packaging": "Supplied as an auto MTS pen unit with adjustable depth and three-step speed control.",
       "protocol": "For single-client professional use only with disposable cartridges. Set the working depth and speed per the planned protocol, move the pen evenly across the target area in cross-hatch passes."
@@ -5628,7 +5628,7 @@
       "groupId": "auto",
       "variantLabel": "AUTO-DN SMART",
       "groupName": "Auto Dn",
-      "groupImage": "/images/products/product-284.webp",
+      "groupImage": "/images/bundles/bundle-auto.webp",
       "indication": "Intended for professional wireless auto-MTS protocols intended for facial and body skin, performed by trained operators within established procedures.",
       "packaging": "Supplied as a wireless auto MTS pen unit with adjustable depth and six-level speed control.",
       "protocol": "For single-client professional use only with disposable cartridges. Charge the device fully, set depth and speed per the planned protocol, pass evenly across target areas, and discard the cartridge."
@@ -5686,7 +5686,7 @@
       "groupId": "jolla",
       "variantLabel": "JOLLA CLEANSING LOTION",
       "groupName": "Jolla",
-      "groupImage": "/images/products/product-288.webp",
+      "groupImage": "/images/bundles/bundle-jolla.webp",
       "indication": "Designed for daily professional and salon cleansing routines intended for hydration-focused care delivered within established cabin workflows.",
       "packaging": "1000 mL bottle, salon-grade large format for professional cabin use.",
       "protocol": "Professional spa use; apply per product type and rinse or remove per the protocol."
@@ -5708,7 +5708,7 @@
       "groupId": "jolla",
       "variantLabel": "JOLLA GREEN TEA MODELING MASK",
       "groupName": "Jolla",
-      "groupImage": "/images/products/product-288.webp",
+      "groupImage": "/images/bundles/bundle-jolla.webp",
       "indication": "Suitable for hydration-focused mask steps within salon facial protocols delivered by trained estheticians following established cabin workflows.",
       "packaging": "1000 g alginate mask powder, salon-grade large format for professional use.",
       "protocol": "Professional spa use; apply per product type and rinse or remove per the protocol."
@@ -5730,7 +5730,7 @@
       "groupId": "jolla",
       "variantLabel": "JOLLA PEPPERMINT MODELING MASK",
       "groupName": "Jolla",
-      "groupImage": "/images/products/product-288.webp",
+      "groupImage": "/images/bundles/bundle-jolla.webp",
       "indication": "Designed for soothing, cooling mask steps within salon facial protocols delivered by trained estheticians following established cabin procedures.",
       "packaging": "1000 g alginate mask powder, salon-grade large format for professional use.",
       "protocol": "Professional spa use; apply per product type and rinse or remove per the protocol."
@@ -5752,7 +5752,7 @@
       "groupId": "misadi-lipo",
       "variantLabel": "4 vial",
       "groupName": "Misadi Lipo",
-      "groupImage": "/images/products/product-293.webp",
+      "groupImage": "/images/bundles/bundle-misadi-lipo.webp",
       "indication": "Designed for professional body contour care protocols administered by licensed and trained practitioners within established cabin workflows.",
       "packaging": "8 mL x 4 vials per pack, sterile single-use format for licensed professional use.",
       "protocol": "For licensed professional use only. Follow the protocol, dosage, injection technique, and session interval recommendations provided by the manufacturer, and observe standard sterile procedures."
@@ -5774,7 +5774,7 @@
       "groupId": "misadi-lipo",
       "variantLabel": "1 vial",
       "groupName": "Misadi Lipo",
-      "groupImage": "/images/products/product-293.webp",
+      "groupImage": "/images/bundles/bundle-misadi-lipo.webp",
       "indication": "Intended for professional body contour care protocols administered by licensed and trained practitioners within established cabin workflows.",
       "packaging": "8 mL x 1 vial, sterile single-use format for licensed professional use.",
       "protocol": "For licensed professional use only. Follow the protocol, dosage, injection technique, and session interval recommendations provided by the manufacturer, and observe standard sterile procedures."
@@ -5796,7 +5796,7 @@
       "groupId": "barbie-slim",
       "variantLabel": "Variant 2",
       "groupName": "Barbie Slim",
-      "groupImage": "/images/products/product-1.webp",
+      "groupImage": "/images/bundles/bundle-barbie-slim.webp",
       "indication": "Designed for professional face and body contour protocols administered by licensed and trained practitioners within established cabin procedures.",
       "packaging": "5 vials x 10 mL each, sterile professional format for licensed cabin use.",
       "protocol": "For licensed professional use only. Follow the manufacturer's recommended dosage, injection technique, and session spacing, and observe standard sterile and hygiene procedures during each session."
@@ -5854,7 +5854,7 @@
       "groupId": "lipolab",
       "variantLabel": "LIPOLAB GMS",
       "groupName": "Lipolab",
-      "groupImage": "/images/products/product-298.webp",
+      "groupImage": "/images/bundles/bundle-lipolab.webp",
       "indication": "Intended for professional body contour protocols administered by licensed and trained practitioners within established cabin procedures and workflows.",
       "packaging": "10 mL x 10 vials, sterile professional format for licensed cabin use.",
       "protocol": "For licensed professional use only. Follow the manufacturer's recommended dosage, injection technique, and session spacing guidance, and observe standard sterile and hygiene procedures throughout."
@@ -5876,7 +5876,7 @@
       "groupId": "lipolab",
       "variantLabel": "LIPOLAB V LINE MEDIHUE",
       "groupName": "Lipolab",
-      "groupImage": "/images/products/product-298.webp",
+      "groupImage": "/images/bundles/bundle-lipolab.webp",
       "indication": "Designed for professional facial V-line contour protocols administered by licensed and trained practitioners within established cabin procedures.",
       "packaging": "10 mL x 5 vials, sterile professional format for licensed cabin use.",
       "protocol": "For licensed professional use only. Follow the manufacturer's recommended dosage, injection technique, and treatment interval guidance, and observe standard sterile and hygiene procedures."
@@ -6080,7 +6080,7 @@
       "groupId": "botulax-300unit",
       "variantLabel": "BOTULAX 100 units",
       "groupName": "Botulax",
-      "groupImage": "/images/products/product-310.webp",
+      "groupImage": "/images/bundles/bundle-botulax-300unit.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6102,7 +6102,7 @@
       "groupId": "botulax-300unit",
       "variantLabel": "BOTULAX 200 units",
       "groupName": "Botulax",
-      "groupImage": "/images/products/product-310.webp",
+      "groupImage": "/images/bundles/bundle-botulax-300unit.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6124,7 +6124,7 @@
       "groupId": "botulax-300unit",
       "variantLabel": "BOTULAX 300 units",
       "groupName": "Botulax",
-      "groupImage": "/images/products/product-310.webp",
+      "groupImage": "/images/bundles/bundle-botulax-300unit.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 300 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6146,7 +6146,7 @@
       "groupId": "metox",
       "variantLabel": "METOX 100 units",
       "groupName": "Metox",
-      "groupImage": "/images/products/product-313.webp",
+      "groupImage": "/images/bundles/bundle-metox.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6168,7 +6168,7 @@
       "groupId": "metox",
       "variantLabel": "METOX 200 units",
       "groupName": "Metox",
-      "groupImage": "/images/products/product-313.webp",
+      "groupImage": "/images/bundles/bundle-metox.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6190,7 +6190,7 @@
       "groupId": "innotox-50",
       "variantLabel": "INNOTOX 50 units",
       "groupName": "Innotox",
-      "groupImage": "/images/products/product-315.webp",
+      "groupImage": "/images/bundles/bundle-innotox-50.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 50 units of liquid botulinum toxin, supplied for professional use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6212,7 +6212,7 @@
       "groupId": "innotox-50",
       "variantLabel": "INNOTOX 100 units",
       "groupName": "Innotox",
-      "groupImage": "/images/products/product-315.webp",
+      "groupImage": "/images/bundles/bundle-innotox-50.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of liquid botulinum toxin, supplied for professional use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6234,7 +6234,7 @@
       "groupId": "nabota-200unit",
       "variantLabel": "NABOTA 100 units",
       "groupName": "Nabota",
-      "groupImage": "/images/products/product-317.webp",
+      "groupImage": "/images/bundles/bundle-nabota-200unit.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of glabellar lines, intended for application by trained practitioners within established aesthetic treatment frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6256,7 +6256,7 @@
       "groupId": "nabota-200unit",
       "variantLabel": "NABOTA 200 units",
       "groupName": "Nabota",
-      "groupImage": "/images/products/product-317.webp",
+      "groupImage": "/images/bundles/bundle-nabota-200unit.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of glabellar lines, intended for application by trained practitioners within established aesthetic treatment frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6278,7 +6278,7 @@
       "groupId": "liztox-100u",
       "variantLabel": "LIZTOX 100 units",
       "groupName": "Liztox",
-      "groupImage": "/images/products/product-319.webp",
+      "groupImage": "/images/bundles/bundle-liztox-100u.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6300,7 +6300,7 @@
       "groupId": "liztox-100u",
       "variantLabel": "LIZTOX 200 units",
       "groupName": "Liztox",
-      "groupImage": "/images/products/product-319.webp",
+      "groupImage": "/images/bundles/bundle-liztox-100u.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6360,7 +6360,7 @@
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle.",
       "groupId": "meditoxin",
       "variantLabel": "MEDITOXIN 100 units",
-      "groupImage": "/images/products/product-323.jpg"
+      "groupImage": "/images/bundles/bundle-meditoxin.webp"
     },
     {
       "id": 324,
@@ -6381,7 +6381,7 @@
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle.",
       "groupId": "meditoxin",
       "variantLabel": "Meditoxin 200 units",
-      "groupImage": "/images/products/product-323.jpg"
+      "groupImage": "/images/bundles/bundle-meditoxin.webp"
     },
     {
       "id": 325,
@@ -6402,7 +6402,7 @@
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle.",
       "groupId": "re-n-tox",
       "variantLabel": "Re N Tox 200 units",
-      "groupImage": "/images/products/product-325.jpg"
+      "groupImage": "/images/bundles/bundle-re-n-tox.webp"
     },
     {
       "id": 326,
@@ -6423,7 +6423,7 @@
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle.",
       "groupId": "re-n-tox",
       "variantLabel": "RE N TOX 100 units",
-      "groupImage": "/images/products/product-325.jpg"
+      "groupImage": "/images/bundles/bundle-re-n-tox.webp"
     },
     {
       "id": 327,
@@ -6460,7 +6460,7 @@
       "groupId": "kaimax-100u",
       "variantLabel": "KAIMAX 100 units",
       "groupName": "Kaimax",
-      "groupImage": "/images/products/product-328.webp",
+      "groupImage": "/images/bundles/bundle-kaimax-100u.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Supplied in vials of high-purity botulinum toxin for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6482,7 +6482,7 @@
       "groupId": "kaimax-100u",
       "variantLabel": "KAIMAX 200 units",
       "groupName": "Kaimax",
-      "groupImage": "/images/products/product-328.webp",
+      "groupImage": "/images/bundles/bundle-kaimax-100u.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Supplied in vials of high-purity botulinum toxin for professional aesthetic use.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6504,7 +6504,7 @@
       "groupId": "wondertox-200",
       "variantLabel": "WONDERTOX 100 units",
       "groupName": "Wondertox",
-      "groupImage": "/images/products/product-330.webp",
+      "groupImage": "/images/bundles/bundle-wondertox-200.webp",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin with stabilizer and isotonic agent.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6526,7 +6526,7 @@
       "groupId": "wondertox-200",
       "variantLabel": "WONDERTOX 200 units",
       "groupName": "Wondertox",
-      "groupImage": "/images/products/product-330.webp",
+      "groupImage": "/images/bundles/bundle-wondertox-200.webp",
       "indication": "Listed in the Botulinum Therapy product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: Refer to manufacturer documentation.",
       "protocol": "Reconstitute with 0.9% saline; inject 0.1 mL per point using a 30-32G needle."
@@ -6800,7 +6800,7 @@
       "groupId": "mennus-pla-200mg",
       "variantLabel": "MENNUS PLA 200 MG",
       "groupName": "Mennus",
-      "groupImage": "/images/products/product-347.webp",
+      "groupImage": "/images/bundles/bundle-mennus-pla-200mg.webp",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 200 MG 200 mg / vial, porosity PLA (microparticle of polyethylene.",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -6822,7 +6822,7 @@
       "groupId": "mennus-pla-200mg",
       "variantLabel": "MENNUS PLLA 360 MG",
       "groupName": "Mennus",
-      "groupImage": "/images/products/product-347.webp",
+      "groupImage": "/images/bundles/bundle-mennus-pla-200mg.webp",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 36 0 MG PL L A(Poly L - L actic Acid) + CMC(Carboxymethyl celulose).",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -6916,7 +6916,7 @@
       "groupId": "juvelook-i-30mg",
       "variantLabel": "JUVELOOK (50 mg)",
       "groupName": "Juvelook",
-      "groupImage": "/images/products/product-110.webp",
+      "groupImage": "/images/bundles/bundle-juvelook-i-30mg.webp",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 50 mg) 50 mg / vial 1 vial per box PLA/HA hybrid skin booster des.",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -6956,7 +6956,7 @@
       "groupId": "cindella-set",
       "variantLabel": "CINDELLA SET 1200 mg",
       "groupName": "Cindella",
-      "groupImage": "/images/products/product-355.webp",
+      "groupImage": "/images/bundles/bundle-cindella-set.webp",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 25 mg / 5 Ml, VITAMIN C 10g / 20 mL / 10 vials De - age De - TOX Whitening injec….",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -6978,7 +6978,7 @@
       "groupId": "cindella-set",
       "variantLabel": "CINDELLA INJ",
       "groupName": "Cindella",
-      "groupImage": "/images/products/product-355.webp",
+      "groupImage": "/images/bundles/bundle-cindella-set.webp",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 5 mL x 10 vials Thioctic acid 25mg.",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -7018,7 +7018,7 @@
       "groupId": "lipotocin",
       "variantLabel": "LIPOTOCIN INJ Thioctic Acid",
       "groupName": "Lipotocin Inj",
-      "groupImage": "/images/products/product-358.webp",
+      "groupImage": "/images/bundles/bundle-lipotocin.webp",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 12mL x 10 ampoules These injections deliver a number of different benefits for i….",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -7220,7 +7220,7 @@
       "groupId": "vita-d-200000iu",
       "variantLabel": "1mL",
       "groupName": "Vita D 200000iu",
-      "groupImage": "/images/products/product-370.webp",
+      "groupImage": "/images/bundles/bundle-vita-d-200000iu.webp",
       "indication": "Designed for clinician-supervised protocols intended to address reduced vitamin D status in adults within professional care settings and structured supportive regimens.",
       "packaging": "Vitamin D solution, supplied as 0.5 mL × 10 single-dose vials per box.",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -7242,7 +7242,7 @@
       "groupId": "vita-d-200000iu",
       "variantLabel": "1.5mL",
       "groupName": "Vita D 200000iu",
-      "groupImage": "/images/products/product-370.webp",
+      "groupImage": "/images/bundles/bundle-vita-d-200000iu.webp",
       "indication": "-Vitamin deficiency / malnutrition -Fatigue and low energy -Post-illness or post-procedure recovery -Hair, skin, and nail support -General wellness IV therapy",
       "packaging": "Cholecalciferol 5 mg/mL, supplied as 1 mL × 10 single-dose ampoules per box.",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -7264,7 +7264,7 @@
       "groupId": "vita-d-200000iu",
       "variantLabel": "0.5mL",
       "groupName": "Vita D 200000iu",
-      "groupImage": "/images/products/product-370.webp",
+      "groupImage": "/images/bundles/bundle-vita-d-200000iu.webp",
       "indication": "Designed for clinician-supervised, rapid correction protocols intended to address reduced vitamin D status within professional care settings.",
       "packaging": "High-dose Cholecalciferol solution, supplied as 1.5 mL × 10 single-dose ampoules per box.",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -7358,7 +7358,7 @@
       "groupId": "lipotocin",
       "variantLabel": "LIPOTOCIN INJ Thioctic Acid (Acid)",
       "groupName": "Lipotocin Inj",
-      "groupImage": "/images/products/product-358.webp",
+      "groupImage": "/images/bundles/bundle-lipotocin.webp",
       "indication": "Designed for clinician-supervised protocols intended to support metabolic balance, nervous system wellness, and antioxidant care within professional settings.",
       "packaging": "Thioctic acid solution, supplied as 12 mL × 10 ampoules per box.",
       "protocol": "Restricted to licensed practitioners; administer per package insert with a 27-30G needle."
@@ -7686,7 +7686,7 @@
       "groupId": "sm-cream-2",
       "variantLabel": "500g",
       "groupName": "Sm Cream",
-      "groupImage": "/images/products/product-395.webp",
+      "groupImage": "/images/bundles/bundle-sm-cream-2.webp",
       "indication": "Designed for topical application by trained professionals prior to MTS, semi-permanent makeup, laser, and cosmetology procedures requiring superficial numbing.",
       "packaging": "Each unit contains one 500g jar of SM anesthetic surface cream.",
       "protocol": "Apply a thick layer under occlusion for 20-60 min; remove and start the procedure immediately."
@@ -7708,7 +7708,7 @@
       "groupId": "sm-cream-2",
       "variantLabel": "30g",
       "groupName": "Sm Cream",
-      "groupImage": "/images/products/product-395.webp",
+      "groupImage": "/images/bundles/bundle-sm-cream-2.webp",
       "indication": "Designed for topical application by trained professionals prior to MTS, semi-permanent makeup, laser, and cosmetology procedures requiring superficial numbing.",
       "packaging": "Each unit contains one 30g tube of SM anesthetic surface cream.",
       "protocol": "Apply a thick layer under occlusion for 20-60 min; remove and start the procedure immediately."
@@ -7750,7 +7750,7 @@
       "groupId": "muchcaine",
       "variantLabel": "500g",
       "groupName": "Muchcaine",
-      "groupImage": "/images/products/product-398.png",
+      "groupImage": "/images/bundles/bundle-muchcaine.webp",
       "indication": "Designed for topical application by trained professionals prior to aesthetic and minor dermatological procedures requiring controlled superficial skin numbing.",
       "packaging": "Each unit contains one 500g jar of Muchcaine anesthetic surface cream.",
       "protocol": "Apply a thick layer under occlusion for 20-60 min; remove and start the procedure immediately."
@@ -7772,7 +7772,7 @@
       "groupId": "muchcaine",
       "variantLabel": "30g",
       "groupName": "Muchcaine",
-      "groupImage": "/images/products/product-398.png",
+      "groupImage": "/images/bundles/bundle-muchcaine.webp",
       "indication": "Designed for topical application by trained professionals prior to aesthetic and minor dermatological procedures requiring controlled superficial skin numbing.",
       "packaging": "Each unit contains one 30g tube of Muchcaine anesthetic surface cream.",
       "protocol": "Apply a thick layer under occlusion for 20-60 min; remove and start the procedure immediately."
@@ -7812,7 +7812,7 @@
       "groupId": "laennec",
       "variantLabel": "Variant 1",
       "groupName": "Laennec",
-      "groupImage": "/images/products/product-401.webp",
+      "groupImage": "/images/bundles/bundle-laennec.webp",
       "indication": "Intended for use within placental therapy protocols administered by qualified medical professionals under appropriate clinical supervision and established treatment frameworks.",
       "packaging": "Each box contains 50 ampoules of 2mL LAENNEC placenta injection.",
       "protocol": "Administer intramuscularly or via subcutaneous mesotherapy 2-3× weekly for 4-8 weeks."
@@ -7834,7 +7834,7 @@
       "groupId": "laennec",
       "variantLabel": "Variant 2",
       "groupName": "Laennec",
-      "groupImage": "/images/products/product-401.webp",
+      "groupImage": "/images/bundles/bundle-laennec.webp",
       "indication": "Intended for use within placental therapy protocols administered by qualified medical professionals under appropriate clinical supervision and established treatment frameworks.",
       "packaging": "Each box contains 10 ampoules of 2mL LAENNEC placenta injection.",
       "protocol": "Administer intramuscularly or via subcutaneous mesotherapy 2-3× weekly for 4-8 weeks."
@@ -7928,7 +7928,7 @@
       "groupId": "rejubeau",
       "variantLabel": "REJUBEAU MESO NEEDLE 30G",
       "groupName": "Rejubeau Meso Needle",
-      "groupImage": "/images/products/product-408.webp",
+      "groupImage": "/images/bundles/bundle-rejubeau.webp",
       "indication": "Designed for use in precise superficial injection procedures performed by trained aesthetic professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 100 pieces of sterile 30G REJUBEAU nano needles in 4mm, 6mm, or 13mm.",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
@@ -7950,7 +7950,7 @@
       "groupId": "rejubeau",
       "variantLabel": "REJUBEAU MESO NEEDLE 32G",
       "groupName": "Rejubeau Meso Needle",
-      "groupImage": "/images/products/product-408.webp",
+      "groupImage": "/images/bundles/bundle-rejubeau.webp",
       "indication": "Designed for use in precise superficial injection procedures performed by trained aesthetic professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 100 pieces of sterile 32G REJUBEAU nano needles in 4mm, 6mm, or 13mm.",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
@@ -7972,7 +7972,7 @@
       "groupId": "rejubeau",
       "variantLabel": "REJUBEAU MESO NEEDLE 33G",
       "groupName": "Rejubeau Meso Needle",
-      "groupImage": "/images/products/product-408.webp",
+      "groupImage": "/images/bundles/bundle-rejubeau.webp",
       "indication": "Designed for use in precise superficial injection procedures performed by trained aesthetic professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 100 pieces of sterile 33G REJUBEAU nano needles in 4mm, 6mm, or 13mm.",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
@@ -7994,7 +7994,7 @@
       "groupId": "rejubeau",
       "variantLabel": "REJUBEAU MESO NEEDLE 34G",
       "groupName": "Rejubeau Meso Needle",
-      "groupImage": "/images/products/product-408.webp",
+      "groupImage": "/images/bundles/bundle-rejubeau.webp",
       "indication": "Designed for use in precise superficial injection procedures performed by trained aesthetic professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 100 pieces of sterile 34G / 4mm REJUBEAU nano needles.",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
@@ -8142,7 +8142,7 @@
       "groupId": "dk-filler-cannula",
       "variantLabel": "21g",
       "groupName": "Dk Filler Cannula",
-      "groupImage": "/images/products/product-420.webp",
+      "groupImage": "/images/bundles/bundle-dk-filler-cannula.webp",
       "indication": "Designed for use in filler-based aesthetic injection procedures performed by trained professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 50 sterile DK filler cannulas in 21G, 23G, or 25G with 50/70mm.",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
@@ -8164,7 +8164,7 @@
       "groupId": "dk-filler-cannula",
       "variantLabel": "18g",
       "groupName": "Dk Filler Cannula",
-      "groupImage": "/images/products/product-420.webp",
+      "groupImage": "/images/bundles/bundle-dk-filler-cannula.webp",
       "indication": "Designed for professional aesthetic procedures requiring precise placement of injectable solutions through a single entry point with reduced tissue trauma.",
       "packaging": "Supplied as 50 pieces per box. Available in 18G with 50mm and 70mm lengths.",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
@@ -8204,7 +8204,7 @@
       "groupId": "dk-cannula-18g-50-7050pcs",
       "variantLabel": "17g",
       "groupName": "Neo Cannula",
-      "groupImage": "/images/products/product-423.webp",
+      "groupImage": "/images/bundles/bundle-dk-cannula-18g-50-7050pcs.webp",
       "indication": "Designed for professional aesthetic procedures requiring controlled delivery of injectable solutions through a single entry point across multiple treatment regions.",
       "packaging": "Supplied as 20 pieces per box. 17G in lengths 100mm (FC17100), 120mm (FC17120), 150mm (FC17150).",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
@@ -8226,7 +8226,7 @@
       "groupId": "dk-cannula-18g-50-7050pcs",
       "variantLabel": "14g",
       "groupName": "Neo Cannula",
-      "groupImage": "/images/products/product-423.webp",
+      "groupImage": "/images/bundles/bundle-dk-cannula-18g-50-7050pcs.webp",
       "indication": "Designed for professional aesthetic procedures requiring controlled delivery of injectable solutions across extended treatment areas through a single entry point.",
       "packaging": "Supplied as 20 pieces per box. 14G in lengths 100mm (FC14100), 150mm (FC14150), 200mm (FC14200).",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
@@ -8248,7 +8248,7 @@
       "groupId": "syringe-mixing-tube",
       "variantLabel": "100 pc",
       "groupName": "Syringe Mixing Tube",
-      "groupImage": "/images/products/product-425.webp",
+      "groupImage": "/images/bundles/bundle-syringe-mixing-tube.webp",
       "indication": "Intended for connecting compatible syringes during product preparation and transfer steps within professional treatment settings and workflows.",
       "packaging": "Supplied per box for connecting compatible syringes during product preparation workflows.",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
@@ -8270,7 +8270,7 @@
       "groupId": "syringe-mixing-tube",
       "variantLabel": "10 pc",
       "groupName": "Syringe Mixing Tube",
-      "groupImage": "/images/products/product-425.webp",
+      "groupImage": "/images/bundles/bundle-syringe-mixing-tube.webp",
       "indication": "Intended for connecting compatible syringes during product preparation and transfer steps within professional treatment settings and workflows.",
       "packaging": "Supplied as 10 pieces per pack for connecting compatible syringes during product preparation workflows.",
       "protocol": "Sterile single-patient use; insert at the planned depth and deliver the product slowly."
