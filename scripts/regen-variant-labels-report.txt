@@ -1,0 +1,15 @@
+# regen-variant-labels report
+generated: 2026-05-19T03:01:01.687Z
+
+## Changed labels (0)
+
+## Fallback "Variant N" groups (4)
+  group=barbie-slim  ids=1,295
+  group=curenex-bundle  ids=215,216,223,224
+  group=dermagen-dermagen  ids=227,232,233,234,235,236,237,238,239,240,241,242,243,244,245
+  group=laennec  ids=401,402
+
+## True duplicates — needs manual review (1)
+  group=lipotocin  ids=358,377  name="LIPOTOCIN INJ"  spec="Thioctic Acid 300mg, 12 mL x 10 ampoules"
+
+## groupImage filled (0)
