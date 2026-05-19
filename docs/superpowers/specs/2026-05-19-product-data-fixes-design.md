@@ -90,11 +90,25 @@ Steps in order:
 1. **Backup**: copy current `data/products.json` to
    `data/backups/products.{ISO-timestamp}.json`.
 2. **Parse `products.txt`** into a list of `{ categoryId, lineIndex, name, spec }`
-   tuples. Category headers map by id range.
-3. **Build product-id → canonical-entry map**: walk each category section in
-   order, assigning section line *k* to the *k*-th product currently in
-   `products.json` for that `categoryId`. Skip lines that are pure section
-   separators or notes.
+   tuples. Category headers `(N) CATEGORY (#X-Y)` define the bucket; skip
+   blank lines, headers, and lines without an em dash unless they are a
+   recognised header-free entry.
+3. **Build product-id → canonical-entry map** in two passes per category:
+   1. **Name-similarity pass** — for each json product in the category whose
+      current name is non-empty and does NOT match a broken pattern, find the
+      products.txt entry in the same category whose name has the highest
+      normalised prefix overlap (case- and punctuation-insensitive, after
+      stripping suffixes like `(CE)`, `PLUS`, `LIDOCAINE`). Require ≥ 6
+      shared characters to count as a match. Lock those matches.
+   2. **Ordinal pass for the rest** — for the remaining json products
+      (broken names + `Product NNN` placeholders) and the remaining
+      products.txt entries in that category, pair them up in the order they
+      appear. If counts disagree, abort with a per-category report; the
+      operator resolves manually before re-running.
+
+   The line/ID counts are expected to differ (products.txt has section
+   headers and a small number of trailing notes); the parser strips those
+   before pairing.
 4. **Apply deletions (16 ids)** before anything else, so the per-category
    ordinal matches `products.txt`:
    - TESORO ids `39, 40, 41, 42, 43, 44, 45`
