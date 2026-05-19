@@ -92,7 +92,7 @@ function main(): void {
   for (const b of perBatch) lines.push(`  ${b.file}  ko=${b.ko}  ru=${b.ru}`);
   fs.writeFileSync(REPORT_PATH, lines.join('\n') + '\n', 'utf8');
 
-  console.log(`merge-translations: ko=${koUpdates} ru=${ruUpdates} batches=${batchFiles.length}`);
+  console.log(`merge-translations: ko=${koUpdates} ru=${ruUpdates} batches=${perBatch.length}`);
   console.log(`merge-translations: report -> ${REPORT_PATH}`);
 }
 
