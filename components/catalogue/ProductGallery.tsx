@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ProductImage from './ProductImage';
-import ProductLightbox from './ProductLightbox';
 
 export type GalleryItem = {
   productId: number;
@@ -44,7 +43,6 @@ export default function ProductGallery({
   });
   const [trackedIdx, setTrackedIdx] = useState(safeInitial);
   const [trackedInitial, setTrackedInitial] = useState(safeInitial);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   // Resync at render-time if the parent passes a new initialActiveIndex
   // (Task 4 boundary crossing). React-canonical pattern, accepted by the compiler.
@@ -85,7 +83,6 @@ export default function ProductGallery({
 
   useEffect(() => {
     if (items.length <= 1) return;
-    if (lightboxOpen) return; // Lightbox owns keyboard nav while open
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
         goTo(activeIdx - 1);
@@ -95,7 +92,7 @@ export default function ProductGallery({
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [activeIdx, items.length, lightboxOpen]);
+  }, [activeIdx, items.length]);
 
   // Empty-items fallback (post-photo-wipe: items.length === 0).
   if (items.length === 0) {
@@ -126,8 +123,7 @@ export default function ProductGallery({
   return (
     <div className="lg:sticky lg:top-28">
       <div
-        className="border border-bone aspect-square relative overflow-hidden cursor-zoom-in"
-        onClick={() => items.length > 0 && setLightboxOpen(true)}
+        className="border border-bone aspect-square relative overflow-hidden"
       >
         {/* Layer A */}
         <div
@@ -209,15 +205,6 @@ export default function ProductGallery({
         </div>
       )}
 
-      <ProductLightbox
-        open={lightboxOpen}
-        onClose={() => setLightboxOpen(false)}
-        items={items}
-        activeIdx={activeIdx}
-        onPrev={() => goTo(activeIdx - 1)}
-        onNext={() => goTo(activeIdx + 1)}
-        categoryId={categoryId}
-      />
     </div>
   );
 }
