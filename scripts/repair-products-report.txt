@@ -1,7 +1,8 @@
 # repair-products report
-generated: 2026-05-19T02:08:21.412Z
+generated: 2026-05-19T02:17:54.681Z
 
-## Auto-mapped images (12)
+## Auto-mapped images (13)
+  12 PIN & 42 PIN NEEDLE 286product.webp  →  #286  →  /images/products/product-286.webp
   BEAUTY MONSTER BLACK(PLASMA beauty devise) 267product.webp  →  #267  →  /images/products/product-267.webp
   CURENEX SHEER SUNSCREEN 226product.webp  →  #226  →  /images/products/product-226.webp
   Dermagen-Acssak-Acne-149product.webp  →  #149  →  /images/products/product-149.webp
@@ -74,7 +75,6 @@ generated: 2026-05-19T02:08:21.412Z
   DN16 NEEDLE.webp
      candidate #276 score=2 DN16 NEEDLE
      candidate #275 score=1 DN64 NEEDLE
-     candidate #286 score=1 12 PIN & 42 PIN NEEDLE
      candidate #287 score=1 NANO NEEDLE
   dn64needle.webp
   elaxenpllaaestheticsukforskin.jpg
