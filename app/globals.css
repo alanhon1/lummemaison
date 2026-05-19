@@ -38,6 +38,21 @@
   --page-text:    #0a0a0a;
   --page-text-2:  #6b6b6b;
   --border-color: #e8e2d9;
+  /* Append: */
+  --accent-glow: 0 0 24px rgba(201, 169, 110, 0.25);
+  --gold-shimmer: linear-gradient(120deg, transparent 30%, rgba(201,169,110,0.35) 50%, transparent 70%);
+  --obsidian-band: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+  --glass-strong: rgba(255, 255, 255, 0.55);
+}
+
+/* Body radial gold dust at corners */
+body {
+  background-image:
+    radial-gradient(at 0% 0%, rgba(201, 169, 110, 0.05) 0%, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(201, 169, 110, 0.04) 0%, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(201, 169, 110, 0.04) 0%, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(201, 169, 110, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
 }
 
 /* ─── Base ─── */
@@ -94,7 +109,7 @@
     text-transform: uppercase;
     transition: all 300ms ease;
     border: 1px solid transparent;
-    border-radius: 6px;
+    border-radius: 10px;
   }
   .btn-primary:hover {
     background-color: var(--accent);
@@ -116,7 +131,7 @@
     text-transform: uppercase;
     border: 1px solid var(--page-text);
     transition: all 300ms ease;
-    border-radius: 6px;
+    border-radius: 10px;
   }
   .btn-secondary:hover {
     background-color: var(--page-text);
@@ -136,12 +151,24 @@
     text-transform: uppercase;
     border: 1px solid var(--accent);
     transition: all 300ms ease;
-    border-radius: 6px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
   }
+  .btn-gold::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-shimmer);
+    transform: translateX(-100%);
+    transition: transform 600ms ease;
+    pointer-events: none;
+  }
+  .btn-gold:hover::after { transform: translateX(200%); }
   .btn-gold:hover {
     background-color: var(--accent-dark);
     border-color: var(--accent-dark);
-    box-shadow: var(--glow);
+    box-shadow: var(--accent-glow);
   }
 
   /* Section typography */
@@ -173,12 +200,12 @@
     border: 1px solid var(--border-color);
     transition: all 300ms ease;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 12px;
   }
   .product-card:hover {
     border-color: var(--accent);
-    box-shadow: var(--card-shadow);
-    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201, 169, 110, 0.18);
+    transform: translateY(-4px);
   }
 
   /* Badges */
@@ -191,7 +218,7 @@
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    border-radius: 4px;
+    border-radius: 6px;
   }
   .badge-sale {
     display: inline-block;
@@ -202,7 +229,7 @@
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    border-radius: 4px;
+    border-radius: 6px;
   }
   .badge-best {
     display: inline-block;
@@ -213,7 +240,7 @@
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    border-radius: 4px;
+    border-radius: 6px;
   }
   .badge-bundle {
     display: inline-block;
@@ -225,7 +252,7 @@
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
   /* Slow ambient pulse — soft glow drift for hero backdrops */
@@ -285,4 +312,43 @@
   select {
     border-radius: 6px;
   }
+
+  .glass {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: var(--glass-strong);
+    border: 1px solid var(--glass-border);
+  }
+  .bg-obsidian-band { background: var(--obsidian-band); }
+
+  /* Page enter fade */
+  main { animation: page-enter 300ms ease both; }
+  @keyframes page-enter {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Sidebar category gold bar slide */
+  .cat-item { position: relative; transition: color 200ms ease; }
+  .cat-item::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    background: var(--accent);
+    transform: translateX(-12px);
+    opacity: 0;
+    transition: transform 200ms ease, opacity 200ms ease;
+  }
+  .cat-item:hover::before { transform: translateX(0); opacity: 1; }
+
+  /* Floating gold particle animations */
+  @keyframes float-1 { 0%, 100% { transform: translate(0, 0); opacity: 0.25; } 50% { transform: translate(15px, -25px); opacity: 0.4; } }
+  @keyframes float-2 { 0%, 100% { transform: translate(0, 0); opacity: 0.35; } 50% { transform: translate(-20px, 30px); opacity: 0.18; } }
+  @keyframes float-3 { 0%, 100% { transform: translate(0, 0); opacity: 0.2; } 50% { transform: translate(25px, 20px); opacity: 0.35; } }
+  @keyframes float-4 { 0%, 100% { transform: translate(0, 0); opacity: 0.4; } 50% { transform: translate(-15px, -30px); opacity: 0.2; } }
+  @keyframes float-5 { 0%, 100% { transform: translate(0, 0); opacity: 0.15; } 50% { transform: translate(30px, 15px); opacity: 0.3; } }
+  @keyframes float-6 { 0%, 100% { transform: translate(0, 0); opacity: 0.3; } 50% { transform: translate(-25px, -20px); opacity: 0.45; } }
 }

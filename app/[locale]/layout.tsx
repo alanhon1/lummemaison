@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CartPanel from '@/components/layout/CartPanel';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
+import GoldParticles from '@/components/effects/GoldParticles';
 import type { Metadata } from 'next';
 
 export function generateStaticParams() {
@@ -40,6 +41,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <div lang={locale} className="flex flex-col min-h-screen">
+        <GoldParticles />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

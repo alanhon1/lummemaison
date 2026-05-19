@@ -235,7 +235,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <li>
                 <button
                   onClick={() => handleCategoryClick('')}
-                  className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
+                  className={`w-full text-left px-3 py-2.5 text-sm rounded-md transition-colors cat-item ${
                     !activeCategory
                       ? 'bg-obsidian text-cream font-semibold'
                       : 'text-charcoal hover:text-gold hover:bg-cream'
@@ -248,7 +248,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <li>
                 <button
                   onClick={() => handleCategoryClick('__bundles__')}
-                  className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
+                  className={`w-full text-left px-3 py-2.5 text-sm rounded-md transition-colors cat-item ${
                     activeCategory === '__bundles__'
                       ? 'bg-gold text-white font-semibold'
                       : 'text-charcoal hover:text-gold hover:bg-cream'
@@ -264,7 +264,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                   <li key={cat.id}>
                     <button
                       onClick={() => handleCategoryClick(cat.id)}
-                      className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
+                      className={`w-full text-left px-3 py-2.5 text-sm rounded-md transition-colors cat-item ${
                         activeCategory === cat.id
                           ? 'bg-gold text-white font-semibold'
                           : 'text-charcoal hover:text-gold hover:bg-cream'

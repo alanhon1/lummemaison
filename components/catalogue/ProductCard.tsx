@@ -152,9 +152,9 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       </div>
 
       {/* Info */}
-      <div className="p-5">
-        <p className="text-xs text-mist mb-1">{displayId}</p>
-        <h3 className="text-sm font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-1">
+      <div className="p-6">
+        <p className="text-sm text-mist mb-1">{displayId}</p>
+        <h3 className="text-base font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-2">
           {displayName}
         </h3>
         {variantCount > 1 && (
@@ -167,7 +167,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         )}
         <div className="flex items-center justify-between">
           <div>
-            <span className="font-display text-base font-light text-charcoal">
+            <span className="font-display text-lg font-light text-charcoal">
               {formatPrice(product.price, currency)}
             </span>
             {product.moq > 1 && (
