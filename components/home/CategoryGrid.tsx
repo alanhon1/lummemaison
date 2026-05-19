@@ -32,6 +32,7 @@ const CATEGORY_ICONS: Record<string, LucideIcon> = {
 
 export default function CategoryGrid() {
   const t = useTranslations('home.categories');
+  const tCat = useTranslations('catalogue.categoryNames');
   const locale = useLocale();
 
   return (
@@ -75,7 +76,7 @@ export default function CategoryGrid() {
                   </div>
                   <div className="text-center">
                     <h3 className="text-[10px] font-semibold tracking-wide text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2">
-                      {cat.name}
+                      {tCat(cat.id as never)}
                     </h3>
                     <p className="text-[9px] text-mist mt-0.5">
                       #{cat.range[0]}–{cat.range[1]}

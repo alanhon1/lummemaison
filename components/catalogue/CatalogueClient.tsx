@@ -23,6 +23,7 @@ const fuseOptions = {
 
 export default function CatalogueClient({ initialCategory }: { initialCategory?: string }) {
   const t = useTranslations('catalogue');
+  const tCat = useTranslations('catalogue.categoryNames');
   const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -241,7 +242,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                       : 'text-charcoal hover:text-gold hover:bg-cream'
                   }`}
                 >
-                  All Categories
+                  {t('allCategoriesItem')}
                   <span className="float-right text-xs opacity-50">{products.length}</span>
                 </button>
               </li>
@@ -254,7 +255,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                       : 'text-charcoal hover:text-gold hover:bg-cream'
                   }`}
                 >
-                  Bundles
+                  {t('bundles')}
                   <span className="float-right text-xs opacity-50">{variantCounts.size}</span>
                 </button>
               </li>
@@ -270,7 +271,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                           : 'text-charcoal hover:text-gold hover:bg-cream'
                       }`}
                     >
-                      <span className="line-clamp-1">{cat.name}</span>
+                      <span className="line-clamp-1">{tCat(cat.id as never)}</span>
                       <span className="float-right text-xs opacity-50">{count}</span>
                     </button>
                   </li>
