@@ -23,6 +23,7 @@
     "refill-secondary": "tsx scripts/refill-from-secondary.ts",
     "refill-apply": "tsx scripts/refill-apply.ts",
     "derive-groups": "tsx scripts/derive-group-display.ts",
+    "sync-existing-images": "tsx scripts/sync-existing-images.ts",
     "translate-prep": "tsx scripts/translate-prep.ts",
     "translate-apply": "tsx scripts/translate-apply.ts",
     "wipe-product-images": "tsx scripts/wipe-product-images.ts",
