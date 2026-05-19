@@ -1,5 +1,5 @@
 # regen-variant-labels report
-generated: 2026-05-19T03:01:01.687Z
+generated: 2026-05-19T03:18:47.076Z
 
 ## Changed labels (0)
 
@@ -12,4 +12,5 @@ generated: 2026-05-19T03:01:01.687Z
 ## True duplicates — needs manual review (1)
   group=lipotocin  ids=358,377  name="LIPOTOCIN INJ"  spec="Thioctic Acid 300mg, 12 mL x 10 ampoules"
 
-## groupImage filled (0)
+## groupImage filled (1)
+  group=muchcaine  image=/images/products/product-398.png  ids=398,399
