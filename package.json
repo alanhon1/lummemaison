@@ -41,7 +41,9 @@
     "auto-map-name-images": "tsx scripts/auto-map-name-images.ts",
     "regen-variant-labels": "tsx scripts/regen-variant-labels.ts",
     "catalogue-fixes": "tsx scripts/catalogue-fixes.ts",
-    "import-jotform-descriptions": "tsx scripts/import-jotform-descriptions.ts"
+    "import-jotform-descriptions": "tsx scripts/import-jotform-descriptions.ts",
+    "verify-jotform-matches": "tsx scripts/verify-jotform-matches.ts",
+    "apply-protocol-templates": "tsx scripts/apply-protocol-templates.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",

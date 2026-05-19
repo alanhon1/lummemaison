@@ -1,0 +1,67 @@
+# verify-jotform-matches report
+generated: 2026-05-19T07:09:49.585Z
+total warnings: 57
+
+## missing-brand (57)
+  #39  YOUTHFILL DEEP  --  Youtfill Deep is a hyaluronic acid filler at 24 mg/mL formul
+  #104  SOONSU ULTRA REJU  --  PDRN+PN 3mL x 5 Vials Skin booster that utilizes PDRN (polyd
+  #110  JUVELOOK i (Juvelook Eye)  --  Hybrid PDLLA + HA skin booster designed for delicate areas. 
+  #143  REPIDA CLEARNEST INTENSIVE FOAM CLEANSER  --  A gentle yet effective foam cleanser for acne-prone and oily
+  #144  ACON DEEP CLEANSING FOAM  --  100mL Deep cleansing foam for acne-prone skin that removes e
+  #159  DERMAGEN Many Shoot Plus+  --  50 mL Hair and scalp treatment designed to support hair grow
+  #166  D PANSEPTIC CREAM  --  D Pansseptic Cream is a steroid-, preservative-, and fragran
+  #172  MADECASSOL GEL  --  Lightweight soothing gel with Centella Asiatica to promote h
+  #175  EASYEF  --  High potency active form of EGF Ideal for post laser, micron
+  #182  CELLEXO Bio-Cellulose Exosome Mask  --  Revitalizing bio-cellulose mask infused with plant-derived e
+  #183  CREBEAU Placenta Pearl Essence Mask  --  Brightening and rejuvenating sheet mask enriched with plant-
+  #189  VANHALLA Ceramide Moisturizing Essence in Toner  --  100 mL 2-in-1 essence toner that deeply hydrates, strengthen
+  #190  VANHALLA Ceramide Moisturizing Serum in Cream  --  50 mL 2-in-1 serum-cream that deeply moisturizes, nourishes,
+  #191  Vanhalla CICA CALM MIST TONER  --  250mL A vegan mist toner with enhanced centella asiatica ext
+  #196  INVU REPARATIVE BB  --  A reparative BB cream that combines natural-looking coverage
+  #197  REPIDA BODY TONE-UP RADIANCE SERUM  --  A body tone-up serum that combines instant radiance with ski
+  #198  REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM  --  A soothing booster cream designed for sensitive, acne-prone,
+  #199  G2 OIL LIFTING PACK (Wrinkle Mask Pack Cream)  --  All-in-one lifting mask cream with instant tightening and de
+  #202  EU.MEI YOUTH FIRMING EYE CREAM  --  A fragrance-free firming eye cream designed to improve wrink
+  #204  KLARGEN LactoBath  --  300 mL Gentle feminine cleanser designed to maintain intimat
+  #205  KLARGEN soln.  --  50ml Portable feminine cleanser designed for quick and conve
+  #206  ASCE+ IRLV (Exosome Solution)  --  Lyophilized exosome powder 20 mg × 1 vial + Diluent 2.5 mL ×
+  #207  P198 RECORE INNER GEL (ExoNature)  --  2.5 g × 4 applicators (single-use). Intimate care gel formul
+  #208  VELATOX GF11  --  3 mL × 5 vials, 2serums Skin booster with 11 cell growth fac
+  #209  VELASH SHGF11  --  10 mL × 5 vials & Soothing Moisturizer Scalp ampoule with 11
+  #210  CAMELLEX Camellia Exo No.5  --  Exosome Powder 100 mg × 3 vials + Solvent Ampoule (PDRN + Co
+  #211  LXC LACTO EXO COLLA  --  Exosome Powder 100 mg × 5 vials + PDRN + Peptides 6 mL × 5 v
+  #212  RXC RED EXO COLLA  --  Exosome Powder 100 mg × 5 vials + PDRN + Peptides 6 mL × 5 v
+  #213  SELASTIN TOX GF11  --  5 mL × 5 vials Anti-wrinkle and brightening skin booster wit
+  #214  SELASTIN EXO PLUS  --  Exosome Powder 100 mg × 5 vials + PDRN + Collagen + Peptides
+  #245  DERMAGEN EZCera Cream  --  Medical depigmenting cream formulated with 4% hydroquinone t
+  #248  GTM EXOMELA  --  EXO Signal 1000 Powder 180 mg Mela Vital Solution 5 mL (5 se
+  #253  MELACELL +  --  Sterile solution - 3.5 mL × 10 vials per box - Key active: 3
+  #254  GTM Balance Cleansing Gel  --  Gentle foaming cleanser that removes impurities and excess o
+  #255  PDRENZA Serum  --  50 mL Intensive rejuvenation serum for hydration, brightenin
+  #256  PDRENZA Cream  --  50mL Moisturizing anti-aging cream for brighter, firmer, smo
+  #257  GTM MELA DUAL Day & Night Cream  --  Key actives: PDRN, NMN, Pearl Tomato, Retinol Functional ing
+  #264  GTM Active Protect Sun Serum  --  • 50 ml / 1.69 fl. oz. • SPF50+ PA++++ • Anti-UV sun serum L
+  #269  ULDM  --  Ultra + Dynamic Massage - High Density Collimation Ultrasoun
+  #271  OMEGA PDT  --  LED Therapy Equipment for Face and BODY - Total skin care ef
+  #273  HIFFECT PLUS  --  RMF Core Elasticity Project - Fractional RF , Mutipolar RF &
+  #274  WILLCAM PLUS  --  Skin/scalp Diagnosis System - Smart design and convenient us
+  #275  DN64 NEEDLE  --  Roller Type Needle for SKIN - MTS device (64PIN) - Can combi
+  #276  DN16 NEEDLE  --  Stamp Type Needle for SCULP - MTS device (16PIN) - Can combi
+  #277  I COOL-PLUS 2ND  --  Integrated Skin Care Equipment (6 kinds of the treatments av
+  #278  ULTRA SKIN MASTER  --  Multi-care Combined Beauty Equipment - HIFU, Skin Scrubber, 
+  #280  HERA POINT  --  HIFU (High Intensity Focused Ultrasond) Equipment - skin lif
+  #281  ACCUTONING  --  1450nm Laser for Acne Skin - Laser for facial inflammatory a
+  #282  HERA VACUUM  --  RF Suction Equipment - High frequency stimulator that consis
+  #283  ULTRATONING  --  Ultrasonic & RF Beauty Equipment - 1MHz/3MHz, 3MHz/10MHz, 4M
+  #284  AUTO-DN MTS PEN  --  Perforate and Stimulate the Skin with a Micro Needle - needl
+  #285  AUTO-DN SMART  --  AUTO - DN SMART is a professional wireless auto-MTS device f
+  #325  Re N Tox 200 units  --  Rentox is a botulinum toxin product intended for professiona
+  #339  REVITALEX INJ.  --  3 mL x 10vial PDRN injection that helps repair skin damage, 
+  #366  ATP-S Inj. (Adenosine Triphosphate) Injection  --  5mL x 20 amp (Magnesium Sulfate) is a medical magnesium prep
+  #378  HYCOBAL INJ.  --  Hydroxocobalamin 5mg/2mL (Vit.B12a) 2mL x 50 ampules Periphe
+  #438  JUVIDERM  --  Juvederm is a range of hyaluronic acid injectable fillers fo
+
+## description-too-short (0)
+
+## cross-brand (0)
+
