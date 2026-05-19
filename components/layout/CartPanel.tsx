@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
@@ -13,6 +14,10 @@ export default function CartPanel() {
   const locale = useLocale();
   const { items, isOpen, closeCart, removeItem, updateQuantity, clearCart, totalItems, totalPrice } = useCartStore();
   const { currency } = useCurrencyStore();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  const itemCount = mounted ? totalItems() : 0;
+  const hasItems = mounted && items.length > 0;
 
   return (
     <>
@@ -29,8 +34,8 @@ export default function CartPanel() {
           <div className="flex items-center gap-2">
             <ShoppingBag size={18} className="text-gold" />
             <h2 className="font-display text-xl font-light">{t('title')}</h2>
-            {totalItems() > 0 && (
-              <span className="text-xs text-mist">({totalItems()} {t('items')})</span>
+            {itemCount > 0 && (
+              <span className="text-xs text-mist">({itemCount} {t('items')})</span>
             )}
           </div>
           <button
@@ -43,7 +48,7 @@ export default function CartPanel() {
         </div>
 
         {/* Items */}
-        {items.length === 0 ? (
+        {!hasItems ? (
           <div className="flex flex-col items-center justify-center py-20 px-6 text-center">
             <ShoppingBag size={40} className="text-bone mb-4" />
             <p className="font-display text-xl font-light mb-2">{t('empty')}</p>
