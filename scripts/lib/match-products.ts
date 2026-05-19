@@ -19,7 +19,7 @@ export interface MatchResult {
 const BROKEN_PATTERNS: RegExp[] = [
   /^Product \d+$/,        // pure placeholder
   /^[A-Z]\.?$/,           // single capital, e.g. "C"
-  /^[A-Za-z]{1,3}$/,      // 1-3 char fragments e.g. "Fere", "JBP"
+  /^[A-Za-z]{2}$/,        // 2 char fragments e.g. "JB" (3+ letters like "VNS" are likely legitimate product codes)
 ];
 
 export function isBrokenName(name: string): boolean {

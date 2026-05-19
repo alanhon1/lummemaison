@@ -9,7 +9,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseProductsTxt } from './lib/parse-products-txt';
-import { matchByCategoryThenOrdinal, type JsonProduct } from './lib/match-products';
+import { matchByCategoryThenOrdinal, isBrokenName, type JsonProduct } from './lib/match-products';
 import { formatReport, type ImageReport } from './lib/repair-report';
 
 const ROOT = process.cwd();
@@ -135,6 +135,42 @@ function cleanupOrphanedGroups(products: JsonProduct[]): number {
 
 const NUMBERED_RE = /(\d+)\s*product/i;
 
+interface ValidationFailure { kind: string; detail: string }
+
+function validate(data: { products: JsonProduct[]; categories: Array<{ id: string }> }): ValidationFailure[] {
+  const failures: ValidationFailure[] = [];
+
+  // 1. Every category has at least one product.
+  for (const cat of data.categories) {
+    const n = data.products.filter(p => p.categoryId === cat.id).length;
+    if (n === 0) failures.push({ kind: 'empty-category', detail: cat.id });
+  }
+
+  // 2. No surviving broken-name patterns.
+  for (const p of data.products) {
+    if (isBrokenName(p.name)) failures.push({ kind: 'broken-name', detail: `#${p.id} ${p.name}` });
+  }
+
+  // 3. Deletion targets are absent.
+  for (const rule of DELETIONS) {
+    if (data.products.some(p => p.categoryId === rule.categoryId && rule.namePattern.test(p.name))) {
+      failures.push({ kind: 'undeleted', detail: rule.label });
+    }
+  }
+
+  // 4. Every groupId has either 0 or >=2 members.
+  const groups = new Map<string, number>();
+  for (const p of data.products) {
+    const gid = p.groupId as string | undefined;
+    if (gid) groups.set(gid, (groups.get(gid) ?? 0) + 1);
+  }
+  for (const [gid, n] of groups) {
+    if (n < 2) failures.push({ kind: 'orphan-group', detail: `${gid} has ${n} member(s)` });
+  }
+
+  return failures;
+}
+
 function mapImages(products: JsonProduct[]): ImageReport {
   const autoMapped: ImageReport['autoMapped'] = [];
   const needsManual: ImageReport['needsManual'] = [];
@@ -231,6 +267,14 @@ function main(): void {
   const reportText = formatReport(imageReport, result.unmatchedProducts);
   fs.writeFileSync(REPORT_PATH, reportText, 'utf8');
   console.log(`repair-products: report → ${REPORT_PATH}`);
+
+  const failures = validate(data as never);
+  if (failures.length > 0) {
+    console.error(`repair-products: ${failures.length} validation failure(s):`);
+    for (const f of failures) console.error(`  [${f.kind}] ${f.detail}`);
+    process.exit(2);
+  }
+  console.log('repair-products: validation passed');
 }
 
 main();
