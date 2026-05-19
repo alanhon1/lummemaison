@@ -221,7 +221,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE FINE (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-3.webp",
+      "groupImage": "/images/products/product-5.webp",
       "indication": "Suitable for the correction of fine lines and superficial skin depressions. Recommended for use in areas where light, superficial filler placement is the practitioner's objective.",
       "packaging": "Supplied as a single pre-filled syringe of 1.1 mL containing hyaluronic acid at 24 mg/mL.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -243,7 +243,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE DEEP (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-3.webp",
+      "groupImage": "/images/products/product-5.webp",
       "indication": "Suitable for moderate facial folds and mid-depth volume restoration. Intended for use in areas requiring filler support beyond the superficial dermis.",
       "packaging": "Supplied as a single pre-filled syringe of 1.1 mL containing hyaluronic acid at 24 mg/mL.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -265,7 +265,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE SUB-Q (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-3.webp",
+      "groupImage": "/images/products/product-5.webp",
       "indication": "Suitable for deep volume restoration and facial contouring such as chin and jawline definition. Recommended for procedures requiring filler placement in the subcutaneous plane.",
       "packaging": "Supplied as a single pre-filled syringe of 1.1 mL containing hyaluronic acid at 24 mg/mL.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -287,7 +287,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE FINE PLUS (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-3.webp",
+      "groupImage": "/images/products/product-5.webp",
       "indication": "Suitable for fine lines and superficial skin corrections where added injection comfort is desired. Recommended for refinement of subtle surface irregularities of the skin.",
       "packaging": "Supplied as a single 1.1 mL pre-filled syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -309,7 +309,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE DEEP PLUS (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-3.webp",
+      "groupImage": "/images/products/product-5.webp",
       "indication": "Suitable for moderate folds and mid-depth volume restoration where added injection comfort is desired. Intended for practitioners targeting the mid-dermal layer.",
       "packaging": "Supplied as a single 1.1 mL pre-filled syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -331,7 +331,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE SUB-Q PLUS (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-3.webp",
+      "groupImage": "/images/products/product-5.webp",
       "indication": "Suitable for deep volume restoration and facial contouring where added injection comfort is desired. Recommended for procedures targeting the subcutaneous plane.",
       "packaging": "Supplied as a single 1.1 mL pre-filled syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -583,7 +583,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS LIGHT (MESO)",
       "groupName": "Neuramis",
-      "groupImage": "/images/products/product-20.webp",
+      "groupImage": "/images/products/product-20.jpg",
       "indication": "Suitable for fine lines, superficial wrinkles, and skin hydration support. Recommended for refined surface-level applications where added injection comfort is desired.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -605,7 +605,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS",
       "groupName": "Neuramis",
-      "groupImage": "/images/products/product-20.webp",
+      "groupImage": "/images/products/product-20.jpg",
       "indication": "Suitable for moderate folds and soft tissue contouring. Recommended for general dermal augmentation procedures where added patient comfort is desired.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -627,7 +627,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS DEEP",
       "groupName": "Neuramis",
-      "groupImage": "/images/products/product-20.webp",
+      "groupImage": "/images/products/product-20.jpg",
       "indication": "Suitable for deep folds and mid-to-deep volume support. Recommended for practitioners requiring a lidocaine-free option for deeper placement.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL, without lidocaine.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -649,7 +649,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS DEEP WITH LIDOCAINE",
       "groupName": "Neuramis",
-      "groupImage": "/images/products/product-20.webp",
+      "groupImage": "/images/products/product-20.jpg",
       "indication": "Suitable for deep folds and mid-to-deep volume support. Intended for deeper placement where added injection comfort is desired by the practitioner.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use."
@@ -671,7 +671,9 @@
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for procedures requiring volumetric support with added injection comfort.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Reserved for administration by trained, licensed professionals. Follow standard aseptic technique and the manufacturer's instructions for use. Each syringe is intended for single-patient use.",
-      "groupId": "neuramis"
+      "groupId": "neuramis",
+      "variantLabel": "NEURAMIS VOLUME LIDOCAINE",
+      "groupImage": "/images/products/product-20.jpg"
     },
     {
       "id": 25,
@@ -822,7 +824,9 @@
       "indication": "Suitable for fine line correction and superficial dermal placement. Designed for treatment areas where subtle, refined results are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Intended for professional use only. Inject superficially into the dermis using sterile technique. Depth and quantity should be adjusted to the treatment area and clinical judgment.",
-      "groupId": "youthfill"
+      "groupId": "youthfill",
+      "variantLabel": "YOUTHFILL FINE",
+      "groupImage": "/images/products/product-38.webp"
     },
     {
       "id": 39,
@@ -841,7 +845,9 @@
       "indication": "Intended for mid-to-deep dermal placement and moderate volume support. Suitable for treatment areas where balanced lift and tissue integration are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Intended for professional use only. Inject into the mid-to-deep dermis using sterile technique. Adjust depth and quantity based on the area treated and clinical assessment.",
-      "groupId": "youthfill"
+      "groupId": "youthfill",
+      "variantLabel": "YOUTHFILL DEEP",
+      "groupImage": "/images/products/product-38.webp"
     },
     {
       "id": 40,
@@ -860,7 +866,7 @@
       "groupId": "youthfill",
       "variantLabel": "YOUTHFILL SHAPE",
       "groupName": "Youthfill",
-      "groupImage": "/images/products/product-40.webp",
+      "groupImage": "/images/products/product-38.webp",
       "indication": "Designed for facial contouring and structural volume support. Suitable for treatment areas requiring firmer reinforcement and defined shaping.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Intended for professional use only. Place in the deep dermis or subcutaneous plane using sterile technique. Adjust depth and quantity based on the area treated and clinical judgment."
@@ -948,7 +954,9 @@
       "indication": "Suitable for fine line correction and superficial dermal placement. Designed for treatment areas requiring a soft, even integration.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Intended for professional use only. Inject superficially into the dermis using sterile technique. Depth and quantity should be adjusted to the treatment area and clinical judgment.",
-      "groupId": "celosome"
+      "groupId": "celosome",
+      "variantLabel": "CELOSOME SOFT",
+      "groupImage": "/images/products/product-44.webp"
     },
     {
       "id": 45,
@@ -967,7 +975,7 @@
       "groupId": "celosome",
       "variantLabel": "CELOSOME MID",
       "groupName": "Celosome",
-      "groupImage": "/images/products/product-45.webp",
+      "groupImage": "/images/products/product-44.webp",
       "indication": "Intended for mid-dermal placement and moderate volume support. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Intended for professional use only. Inject into the mid-dermis using sterile technique. Adjust depth and quantity based on the area treated and clinical assessment."
@@ -989,7 +997,7 @@
       "groupId": "celosome",
       "variantLabel": "CELOSOME STRONG",
       "groupName": "Celosome",
-      "groupImage": "/images/products/product-45.webp",
+      "groupImage": "/images/products/product-44.webp",
       "indication": "Designed for deep dermal placement and structural contouring. Suitable for treatment plans where firmer reinforcement is preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Intended for professional use only. Place in the deep dermis using sterile technique. Adjust depth and quantity based on the area treated and clinical judgment."
@@ -1011,7 +1019,7 @@
       "groupId": "celosome",
       "variantLabel": "CELOSOME IMPLANT",
       "groupName": "Celosome",
-      "groupImage": "/images/products/product-45.webp",
+      "groupImage": "/images/products/product-44.webp",
       "indication": "Intended for deep placement where firmer volume restoration is desired. Suitable for treatment plans involving structural contouring of deeper facial regions.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Intended for professional use only. Place in the deep dermis or supraperiosteal plane using sterile technique. Adjust depth and quantity based on the area treated and clinical assessment."
@@ -1099,7 +1107,9 @@
       "indication": "Suitable for superficial mesotherapy-style placement and skin quality enhancement. Designed for treatments where light, even distribution is preferred.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes with four 30G needles, ready for single-patient use.",
       "protocol": "Intended for professional use only. Place superficially using the included fine-gauge needles and sterile technique. Adjust depth and quantity based on the area treated and clinical judgment.",
-      "groupId": "chaeum"
+      "groupId": "chaeum",
+      "variantLabel": "THE CHAEUM PREMIUM #1 (MESO)",
+      "groupImage": "/images/products/product-51.webp"
     },
     {
       "id": 52,
@@ -1118,7 +1128,9 @@
       "indication": "Designed for superficial to mid-dermal placement and fine line correction. Suitable for treatment areas requiring refined, even integration.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes with four 27G needles, ready for single-patient use.",
       "protocol": "Intended for professional use only. Inject into the appropriate dermal layer using the included needles and sterile technique. Adjust depth and quantity based on the area treated and clinical assessment.",
-      "groupId": "chaeum"
+      "groupId": "chaeum",
+      "variantLabel": "THE CHAEUM PREMIUM #2",
+      "groupImage": "/images/products/product-51.webp"
     },
     {
       "id": 53,
@@ -1137,7 +1149,9 @@
       "indication": "Intended for mid-to-deep dermal placement and moderate volume support. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes with four 25G needles, ready for single-patient use.",
       "protocol": "Intended for professional use only. Inject into the mid-to-deep dermis using the included needles and sterile technique. Adjust depth and quantity based on the area treated and clinical judgment.",
-      "groupId": "chaeum"
+      "groupId": "chaeum",
+      "variantLabel": "THE CHAEUM PREMIUM #3",
+      "groupImage": "/images/products/product-51.webp"
     },
     {
       "id": 54,
@@ -1156,7 +1170,9 @@
       "indication": "Designed for deep dermal or subcutaneous placement and structural contouring. Suitable for treatment plans where firmer support is desired.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes with four 23G needles, ready for single-patient use.",
       "protocol": "Intended for professional use only. Place in the deep dermis or subcutaneous plane using the included needles and sterile technique. Adjust depth and quantity based on the area treated and clinical assessment.",
-      "groupId": "chaeum"
+      "groupId": "chaeum",
+      "variantLabel": "THE CHAEUM PREMIUM #4",
+      "groupImage": "/images/products/product-51.webp"
     },
     {
       "id": 55,
@@ -1863,7 +1879,7 @@
       "groupId": "regenovue",
       "variantLabel": "REGENOVUE PN",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-90.webp",
+      "groupImage": "/images/products/product-90.jpg",
       "indication": "Designed for professional bio-revitalization procedures suitable for trained practitioners performing skin-quality and hydration treatments.",
       "packaging": "Supplied as 1 sterile pre-filled syringe of 3 mL, one syringe per individually sealed pack.",
       "protocol": "For professional use only. Administer via mesotherapy or microinjection technique per manufacturer instructions, observing recommended injection depths and standard aseptic precautions."
@@ -1885,7 +1901,7 @@
       "groupId": "regenovue",
       "variantLabel": "REGENOVUE AQUASHINE PLUS GOLD",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-90.webp",
+      "groupImage": "/images/products/product-90.jpg",
       "indication": "Designed for professional bio-revitalization sessions and intended for general skin conditioning, surface hydration support, and adjunctive use within structured in-clinic skin-quality programs.",
       "packaging": "Supplied as 3 prefilled syringes of 3 mL each, providing a total volume of 9 mL per pack for in-clinic use.",
       "protocol": "For professional use only. Intended to be administered by trained practitioners via standard mesotherapy or intradermal injection technique, following manufacturer guidance and accepted clinical practice."
@@ -1907,7 +1923,7 @@
       "groupId": "regenovue",
       "variantLabel": "REGENOVUE AQUASHINE SILVER",
       "groupName": "Regenovue",
-      "groupImage": "/images/products/product-90.webp",
+      "groupImage": "/images/products/product-90.jpg",
       "indication": "Designed for professional bio-revitalization protocols and intended for general skin hydration, quality maintenance, and adjunctive in-clinic conditioning of the facial and adjacent treatment areas.",
       "packaging": "Supplied as 3 prefilled syringes of 3 mL each, providing a total volume of 9 mL per pack for professional use.",
       "protocol": "For professional use only. Intended to be administered by trained practitioners via mesotherapy or intradermal injection technique, in line with manufacturer instructions and established clinical protocols."
@@ -2381,7 +2397,7 @@
       "groupId": "miracle-x",
       "variantLabel": "MIRACLE X",
       "groupName": "Miracle",
-      "groupImage": "/images/products/product-119.webp",
+      "groupImage": "/images/products/product-121.webp",
       "indication": "Designed for professional skin booster and meso-lifting protocols, intended to support facial hydration, surface quality, and adjunctive use within structured in-clinic conditioning programs.",
       "packaging": "Supplied as 5 vials of 2 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "For professional use only. Intended to be reconstituted as required and administered by trained practitioners via intradermal injection, in accordance with manufacturer guidance and accepted clinical practice."
@@ -2403,7 +2419,7 @@
       "groupId": "miracle-x",
       "variantLabel": "MIRACLE H",
       "groupName": "Miracle",
-      "groupImage": "/images/products/product-119.webp",
+      "groupImage": "/images/products/product-121.webp",
       "indication": "Designed for professional meso-lifting and skin booster protocols and intended to support facial hydration, surface tone, and adjunctive use within structured in-clinic conditioning programs.",
       "packaging": "Supplied as 5 vials of 2 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "For professional use only. Intended to be reconstituted if required and administered by trained practitioners via intradermal mesotherapy injection, per manufacturer instructions and accepted clinical practice."
@@ -2425,7 +2441,7 @@
       "groupId": "miracle-x",
       "variantLabel": "MIRACLE L",
       "groupName": "Miracle",
-      "groupImage": "/images/products/product-119.webp",
+      "groupImage": "/images/products/product-121.webp",
       "indication": "Designed for facial skin lifting routines and collagen-support objectives in professional aesthetic protocols, intended for practitioners working on overall firmness and skin quality refinement.",
       "packaging": "Box containing 5 vials of 2 mL each, supplied as a meso solution for face lifting and skin lift collagen care.",
       "protocol": "Intended for professional use only. Administer via standard mesotherapy technique per manufacturer guidance, observing aseptic preparation, controlled injection depth, and post-procedure care recommendations."
@@ -4195,7 +4211,7 @@
       "image": "/images/products/product-215.webp",
       "moq": 1,
       "groupId": "curenex-bundle",
-      "variantLabel": "SCULP (PLLA)",
+      "variantLabel": "CURENEX SCULP",
       "groupName": "Curenex",
       "groupImage": "/images/products/product-215.webp",
       "indication": "Designed for professional collagen biostimulation procedures intended to support firmness and elasticity-focused aesthetic care in qualified clinical settings.",
@@ -4217,7 +4233,7 @@
       "image": "",
       "moq": 1,
       "groupId": "curenex-bundle",
-      "variantLabel": "PDRN, Multi",
+      "variantLabel": "CURENEX PDRN",
       "groupName": "Curenex",
       "groupImage": "/images/products/product-215.webp",
       "indication": "Suitable for professional revitalizing skin booster protocols designed for use in clinical aesthetic settings by qualified practitioners.",
@@ -4238,10 +4254,10 @@
       "inStock": true,
       "image": "/images/products/product-217.webp",
       "moq": 1,
-      "groupId": "curenex",
-      "variantLabel": "DAILY CARE SKINBOOSTER (SERUM)",
+      "groupId": "curenex-bundle",
+      "variantLabel": "CURENEX DAILY CARE SKINBOOSTER (SERUM)",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-217.webp",
+      "groupImage": "/images/products/product-215.webp",
       "indication": "Designed for daily home care use, intended to support skin hydration, a smooth appearance, and balanced moisture across normal skin types.",
       "packaging": "Supplied in a 30 mL serum bottle for daily home care application.",
       "protocol": "For daily home use. Dispense a small amount onto cleansed skin morning and evening, then press gently across the face and neck until fully absorbed before applying further care steps."
@@ -4260,10 +4276,10 @@
       "inStock": true,
       "image": "/images/products/product-218.jpg",
       "moq": 1,
-      "groupId": "curenex-dailycare-rejuvenating-cream",
-      "variantLabel": "REJUVENATING CREAM",
+      "groupId": "curenex-bundle",
+      "variantLabel": "CURENEX REJUVENATING CREAM",
       "groupName": "Curenex Rejuvenating",
-      "groupImage": "/images/products/product-218.webp",
+      "groupImage": "/images/products/product-215.webp",
       "indication": "Designed for daily home care and as part of a post-procedure routine, intended to support skin comfort and conditioning after aesthetic treatments.",
       "packaging": "Supplied as a single-unit cream tube for daily home care use.",
       "protocol": "For daily home use. Apply an appropriate amount to cleansed skin morning and evening, then massage gently in upward motions across the face and neck until fully absorbed."
@@ -4282,10 +4298,10 @@
       "inStock": true,
       "image": "/images/products/product-219.webp",
       "moq": 1,
-      "groupId": "curenex",
-      "variantLabel": "HYDRATING CLEANSER",
+      "groupId": "curenex-bundle",
+      "variantLabel": "CURENEX HYDRATING CLEANSER",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-217.webp",
+      "groupImage": "/images/products/product-215.webp",
       "indication": "Designed for daily cleansing across all skin types, including sensitive skin, and intended to support a comfortable, balanced after-cleanse feel.",
       "packaging": "Supplied in a 150 mL bottle for daily home use cleansing routines.",
       "protocol": "For daily home use. Dispense an appropriate amount onto damp skin, massage gently across the face in circular motions morning and evening, then rinse thoroughly with lukewarm water."
@@ -4304,10 +4320,10 @@
       "inStock": true,
       "image": "/images/products/product-220.webp",
       "moq": 1,
-      "groupId": "curenex",
-      "variantLabel": "LIPO (FACE AND BODY)",
+      "groupId": "curenex-bundle",
+      "variantLabel": "CURENEX LIPO (FACE AND BODY)",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-217.webp",
+      "groupImage": "/images/products/product-215.webp",
       "indication": "Designed for professional facial and body contouring procedures, intended for use by qualified medical practitioners in clinical aesthetic settings.",
       "packaging": "Supplied as a kit containing 10 mL x 5 vials of PPC-based lipolytic solution for professional use.",
       "protocol": "For professional use only. Administer in accordance with the manufacturer's guidelines and established clinic protocols by qualified medical practitioners using standard aseptic technique."
@@ -4326,10 +4342,10 @@
       "inStock": true,
       "image": "/images/products/product-221.webp",
       "moq": 1,
-      "groupId": "curenex-dailycare-rejuvenating-cream",
-      "variantLabel": "REJUVENATING MASK",
+      "groupId": "curenex-bundle",
+      "variantLabel": "CURENEX REJUVENATING MASK",
       "groupName": "Curenex Rejuvenating",
-      "groupImage": "/images/products/product-218.webp",
+      "groupImage": "/images/products/product-215.webp",
       "indication": "Designed for regular home care use and as part of a post-procedure recovery routine, intended to support skin comfort and refreshment.",
       "packaging": "Supplied as a single-unit mask per individual pack for daily home use.",
       "protocol": "For daily home use. Apply the mask to cleansed skin and leave in place for the duration indicated on the packaging, then remove and gently pat any remaining essence into the skin until absorbed."
@@ -4348,10 +4364,10 @@
       "inStock": true,
       "image": "/images/products/product-222.webp",
       "moq": 1,
-      "groupId": "curenex",
-      "variantLabel": "EXO BRIGHTENING CREAM",
+      "groupId": "curenex-bundle",
+      "variantLabel": "CURENEX EXO BRIGHTENING CREAM",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-217.webp",
+      "groupImage": "/images/products/product-215.webp",
       "indication": "Designed for daily home care use, intended to support brightening and hydration across normal skin types as part of a regular skincare routine.",
       "packaging": "Supplied in a 50 mL tube or jar for daily home care application.",
       "protocol": "For daily home use. Dispense a pea-sized amount onto cleansed skin morning and evening, then gently massage across the face and neck in upward motions until fully absorbed."
@@ -4371,7 +4387,7 @@
       "image": "/images/products/product-223.webp",
       "moq": 1,
       "groupId": "curenex-bundle",
-      "variantLabel": "EYE PN",
+      "variantLabel": "CURENEX EYE",
       "groupName": "Curenex",
       "groupImage": "/images/products/product-215.webp",
       "indication": "Designed for professional under-eye revitalization procedures, intended for use by qualified medical practitioners in clinical aesthetic settings.",
@@ -4392,10 +4408,10 @@
       "inStock": true,
       "image": "/images/products/product-225.webp",
       "moq": 1,
-      "groupId": "curenex",
-      "variantLabel": "SNOW PEEL",
+      "groupId": "curenex-bundle",
+      "variantLabel": "CURENEX SNOW PEEL",
       "groupName": "Curenex",
-      "groupImage": "/images/products/product-217.webp",
+      "groupImage": "/images/products/product-215.webp",
       "indication": "Designed for professional peeling and skin renewal procedures, intended to support exfoliation-focused aesthetic care performed by trained practitioners.",
       "packaging": "Supplied as a kit containing 4 vials x 1 g of C-TOX powder together with 30 mL of Snowpeel Activator solution.",
       "protocol": "For professional use only. Mix the C-TOX powder with the Snowpeel Activator and apply in accordance with the manufacturer's guidelines and established clinic protocols by trained aesthetic practitioners."
@@ -4417,7 +4433,9 @@
       "indication": "Designed for daily broad-spectrum UV protection, suitable for use on sensitive or post-procedure skin as part of a regular morning skincare routine.",
       "packaging": "Supplied in a 50 mL tube for daily home care sun protection use.",
       "protocol": "For daily home use. Apply an even layer to exposed skin as the final step of the morning routine, then reapply approximately every two hours during prolonged sun exposure or after sweating.",
-      "variantLabel": "SHEER SUNSCREEN"
+      "variantLabel": "CURENEX SHEER SUNSCREEN",
+      "groupId": "curenex-bundle",
+      "groupImage": "/images/products/product-215.webp"
     },
     {
       "id": 227,
@@ -4458,7 +4476,9 @@
       "indication": "Designed to support skin comfort, hydration, and barrier-focused care after aesthetic procedures, suitable for sensitive and reactive skin types.",
       "packaging": "Supplied in a 60 g tube for daily home and clinic-recommended post-procedure care use.",
       "protocol": "For home and clinic use. Apply a thin layer to cleansed skin twice daily after aesthetic procedures, gently pressing in until absorbed, or as advised by the treating practitioner.",
-      "groupId": "dermagen-dermagen"
+      "groupId": "dermagen-dermagen",
+      "variantLabel": "Variant 2",
+      "groupImage": "/images/products/product-227.webp"
     },
     {
       "id": 229,
@@ -4477,7 +4497,9 @@
       "indication": "Intended for use during skin recovery and daily care, designed to help calm, condition, and comfort irritated or stressed facial and body skin.",
       "packaging": "Supplied in a 200 g tube for daily home use across face and body care routines.",
       "protocol": "For daily home use. Apply liberally to cleansed skin morning and evening, focusing on dry or stressed areas, then massage gently in upward motions until fully absorbed.",
-      "groupId": "dermagen-dermagen"
+      "groupId": "dermagen-dermagen",
+      "variantLabel": "Variant 3",
+      "groupImage": "/images/products/product-227.webp"
     },
     {
       "id": 230,
@@ -4496,7 +4518,9 @@
       "indication": "Suitable for body and problem-area care, designed to soften skin and support hydration and barrier-focused conditioning across dry, rough zones.",
       "packaging": "Supplied in a 200 g tube for daily home use across body and problem-area care routines.",
       "protocol": "For daily home use. Apply an appropriate amount to affected body areas once or twice daily, then massage thoroughly into the skin until fully absorbed for comfortable wear.",
-      "groupId": "dermagen-dermagen"
+      "groupId": "dermagen-dermagen",
+      "variantLabel": "Variant 4",
+      "groupImage": "/images/products/product-227.webp"
     },
     {
       "id": 231,
@@ -4515,7 +4539,9 @@
       "indication": "Designed for daily broad-spectrum UV protection together with a brightened complexion, suitable for use as a finishing step in the morning routine.",
       "packaging": "Supplied in a 40 mL tube for daily home use sun protection routines.",
       "protocol": "For daily home use. Apply an even layer to the face as the final morning skincare step, then reapply approximately every two hours during prolonged sun exposure or after sweating.",
-      "groupId": "dermagen-dermagen"
+      "groupId": "dermagen-dermagen",
+      "variantLabel": "Variant 5",
+      "groupImage": "/images/products/product-227.webp"
     },
     {
       "id": 232,
@@ -4532,7 +4558,7 @@
       "image": "/images/products/product-232.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 2",
+      "variantLabel": "Variant 6",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed to support skin hydration and refreshment after laser and aesthetic procedures, suitable for sensitive skin during recovery routines.",
@@ -4554,7 +4580,7 @@
       "image": "/images/products/product-233.jpg",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 3",
+      "variantLabel": "Variant 7",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Suitable for daily care of pimples, blemishes, and post-procedure spots, intended to support a clean, protected environment over targeted areas.",
@@ -4576,7 +4602,7 @@
       "image": "/images/products/product-234.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 4",
+      "variantLabel": "Variant 8",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed for daily UV protection together with brightening and smoothing benefits, suitable for sensitive and post-procedure skin in morning routines.",
@@ -4598,7 +4624,7 @@
       "image": "/images/products/product-235.jpg",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 5",
+      "variantLabel": "Variant 9",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed for deep hydration of elbows, heels, knees, and overwashed hands prone to cracking, intended to support softening and conditioning of rough skin.",
@@ -4620,7 +4646,7 @@
       "image": "/images/products/product-236.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 6",
+      "variantLabel": "Variant 10",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Intended for daily care after laser and aesthetic procedures, designed to help replenish moisture and condition stressed, recovering facial skin.",
@@ -4642,7 +4668,7 @@
       "image": "/images/products/product-237.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 7",
+      "variantLabel": "Variant 11",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed to help support the appearance and flattening of raised post-surgical and post-trauma scars during long-term daily home care routines.",
@@ -4664,7 +4690,7 @@
       "image": "/images/products/product-238.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 8",
+      "variantLabel": "Variant 12",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed to support the healing care of wounds and skin ulcers, intended for use as directed on the packaging or by a qualified healthcare professional.",
@@ -4686,7 +4712,7 @@
       "image": "/images/products/product-239.jpg",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 9",
+      "variantLabel": "Variant 13",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed for the care of pigmentation, melasma-prone, and uneven skin tone, intended to support brightening and conditioning daily routines.",
@@ -4708,7 +4734,7 @@
       "image": "/images/products/product-240.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 10",
+      "variantLabel": "Variant 14",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed for instant cooling and hydration on stressed or sensitive skin, suitable as a daily comfort step within regular home care routines.",
@@ -4730,7 +4756,7 @@
       "image": "/images/products/product-241.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 11",
+      "variantLabel": "Variant 15",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed for dull, fatigued-looking skin requiring daily UV protection and an even, radiant finish. Intended for use as the closing step of a daily skincare routine.",
@@ -4752,7 +4778,7 @@
       "image": "/images/products/product-242.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 12",
+      "variantLabel": "Variant 16",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed for sensitive or combination skin presenting with visible pores and uneven surface tone. Intended for daily brightening and pore-care routines.",
@@ -4774,7 +4800,7 @@
       "image": "/images/products/product-243.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 13",
+      "variantLabel": "Variant 17",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed for sensitive, reactive skin following in-clinic laser or peeling procedures. Intended for use during post-procedure recovery as part of a barrier-support routine.",
@@ -4796,7 +4822,7 @@
       "image": "/images/products/product-244.webp",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 14",
+      "variantLabel": "Variant 18",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed for sensitive, post-procedure skin in clinic environments where larger working volumes are required. Intended for use within professional recovery protocols.",
@@ -4818,7 +4844,7 @@
       "image": "/images/products/product-245.avif",
       "moq": 1,
       "groupId": "dermagen-dermagen",
-      "variantLabel": "Variant 15",
+      "variantLabel": "Variant 19",
       "groupName": "Dermagen",
       "groupImage": "/images/products/product-227.webp",
       "indication": "Designed for daily post-procedure care and for skin in need of moisture replenishment and barrier reinforcement. Intended for sensitive and recovering skin types.",
@@ -6332,7 +6358,9 @@
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Intended for professional use only by trained practitioners. Reconstitute and administer following manufacturer instructions, maintaining aseptic handling and established clinical conventions.",
-      "groupId": "meditoxin"
+      "groupId": "meditoxin",
+      "variantLabel": "MEDITOXIN 100 units",
+      "groupImage": "/images/products/product-323.jpg"
     },
     {
       "id": 324,
@@ -6351,7 +6379,9 @@
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Intended for professional use only by trained practitioners. Reconstitute and administer following manufacturer instructions, maintaining aseptic handling and established clinical conventions.",
-      "groupId": "meditoxin"
+      "groupId": "meditoxin",
+      "variantLabel": "Meditoxin 200 units",
+      "groupImage": "/images/products/product-323.jpg"
     },
     {
       "id": 325,
@@ -6370,7 +6400,9 @@
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Intended for professional use only by trained practitioners. Reconstitute and administer following manufacturer instructions, maintaining aseptic handling and established clinical conventions.",
-      "groupId": "re-n-tox"
+      "groupId": "re-n-tox",
+      "variantLabel": "Re N Tox 200 units",
+      "groupImage": "/images/products/product-325.jpg"
     },
     {
       "id": 326,
@@ -6389,7 +6421,9 @@
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Intended for professional use only by trained practitioners. Reconstitute and administer following manufacturer instructions, maintaining aseptic handling and established clinical conventions.",
-      "groupId": "re-n-tox"
+      "groupId": "re-n-tox",
+      "variantLabel": "RE N TOX 100 units",
+      "groupImage": "/images/products/product-325.jpg"
     },
     {
       "id": 327,
@@ -6922,7 +6956,7 @@
       "groupId": "cindella-set",
       "variantLabel": "CINDELLA SET 1200 mg",
       "groupName": "Cindella",
-      "groupImage": "/images/products/product-106.webp",
+      "groupImage": "/images/products/product-355.webp",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 25 mg / 5 Ml, VITAMIN C 10g / 20 mL / 10 vials De - age De - TOX Whitening injec….",
       "protocol": "Professional-use product. Storage, handling, reconstitution, and administration must follow the original manufacturer instructions and applicable local regulations. Restricted to licensed practitioners. Single-patient use."
@@ -6944,7 +6978,7 @@
       "groupId": "cindella-set",
       "variantLabel": "CINDELLA INJ",
       "groupName": "Cindella",
-      "groupImage": "/images/products/product-106.webp",
+      "groupImage": "/images/products/product-355.webp",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 5 mL x 10 vials Thioctic acid 25mg.",
       "protocol": "Professional-use product. Storage, handling, reconstitution, and administration must follow the original manufacturer instructions and applicable local regulations. Restricted to licensed practitioners. Single-patient use."

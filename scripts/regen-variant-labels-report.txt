@@ -1,16 +1,16 @@
 # regen-variant-labels report
-generated: 2026-05-19T03:18:47.076Z
+generated: 2026-05-19T05:36:36.975Z
 
-## Changed labels (0)
+## Changed labels (1)
+  #226  "SHEER SUNSCREEN" → "CURENEX SHEER SUNSCREEN"
 
-## Fallback "Variant N" groups (4)
+## Fallback "Variant N" groups (3)
   group=barbie-slim  ids=1,295
-  group=curenex-bundle  ids=215,216,223,224
-  group=dermagen-dermagen  ids=227,232,233,234,235,236,237,238,239,240,241,242,243,244,245
+  group=dermagen-dermagen  ids=227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245
   group=laennec  ids=401,402
 
 ## True duplicates — needs manual review (1)
   group=lipotocin  ids=358,377  name="LIPOTOCIN INJ"  spec="Thioctic Acid 300mg, 12 mL x 10 ampoules"
 
 ## groupImage filled (1)
-  group=muchcaine  image=/images/products/product-398.png  ids=398,399
+  group=curenex-bundle  image=/images/products/product-215.webp  ids=217,218,219,220,221,222,225,226
