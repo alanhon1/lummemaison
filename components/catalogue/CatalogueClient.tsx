@@ -130,6 +130,21 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
     };
   }, [searchQuery, activeCategory, saleOnly, newOnly, groupedOnly, sortBy, fuse]);
 
+  const totalProductsRepresented = useMemo(() => {
+    // Sum of bundle members displayed plus solo (non-grouped) products.
+    let total = 0;
+    for (const r of filterResult.renders) {
+      if (r.asBundle && r.product.groupId) {
+        total += variantCounts.get(r.product.groupId) ?? 1;
+      } else if (!r.product.groupId) {
+        total += 1;
+      }
+      // In dual-view, the individual solo cards for grouped products are
+      // already counted via the bundle card's variantCounts entry — don't double-count.
+    }
+    return total;
+  }, [filterResult, variantCounts]);
+
   const renders = filterResult.renders;
 
   const totalPages = Math.ceil(renders.length / PER_PAGE);
@@ -387,7 +402,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
 
             {/* Count */}
             <span className="text-xs text-mist ml-auto">
-              {renders.length} {t('products')}
+              {renders.length} cards / {totalProductsRepresented} products
             </span>
 
             {/* Clear */}

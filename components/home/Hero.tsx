@@ -134,7 +134,7 @@ export default function Hero() {
             className="flex gap-12 mt-16 pt-12 border-t border-cream/10"
           >
             {[
-              { value: '438', label: 'Products' },
+              { value: '421', label: 'Products' }, /* keep in sync with data/products.json */
               { value: '20', label: 'Categories' },
               { value: '50+', label: 'Countries Served' },
             ].map(stat => (
