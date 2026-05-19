@@ -1,3 +1,11 @@
+/**
+ * Repair pipeline: delete 16 specific products, match remaining products to
+ * products.txt entries by category + ordinal, and fix names/specs/descriptions.
+ *
+ * NOT idempotent: ordinal matching assumes a fixed txt file and product list.
+ * Re-running against a modified products.json will produce unexpected results.
+ * Always use the backup from BACKUP_DIR if you need to revert.
+ */
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseProductsTxt } from './lib/parse-products-txt';
