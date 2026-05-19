@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
     formats: ['image/webp'],
     localPatterns: [
       { pathname: '/images/products/**' },
+      { pathname: '/images/bundles/**' },
     ],
   },
 };
