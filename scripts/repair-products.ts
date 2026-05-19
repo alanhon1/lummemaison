@@ -21,7 +21,12 @@ function backupDataFile(): string {
 
 // Deletions resolved by name + categoryId so off-by-one ID drift in earlier
 // runs doesn't corrupt the list. Each entry must uniquely identify ONE product.
-const DELETIONS: ReadonlyArray<{ namePattern: RegExp; categoryId: string; label: string }> = [
+const DELETIONS: ReadonlyArray<{
+  namePattern: RegExp;
+  txtNamePattern?: RegExp;
+  categoryId: string;
+  label: string;
+}> = [
   // TESORO from fillers (all 7 — keep TESORO COLLAGEN in mesotherapy)
   { namePattern: /^TESORO\s+FINE\s+PLUS$/i,            categoryId: 'fillers',     label: 'TESORO FINE PLUS' },
   { namePattern: /^TESORO\s+DEEP\s+PLUS$/i,            categoryId: 'fillers',     label: 'TESORO DEEP PLUS' },
@@ -37,10 +42,10 @@ const DELETIONS: ReadonlyArray<{ namePattern: RegExp; categoryId: string; label:
   // (FINASTE RIDE, Fere, etc.). We re-key these to (categoryId, currentName-substring).
   { namePattern: /^FINASTE\s*RIDE/i,                   categoryId: 'hair-treatment', label: 'FINASTERIDE Tab. 1mg' },
   { namePattern: /^JOLLA\s+HIGH\s+FREQUENCY/i,         categoryId: 'salon-grade', label: 'JOLLA HIGH FREQUENCY MASSAGE CREAM' },
-  { namePattern: /^Product 292$/i,                     categoryId: 'salon-grade', label: 'JOLLA PREMIUM OLIVE MASSAGE CREAM (placeholder)' },
-  { namePattern: /^Fere$/i,                            categoryId: 'injections',  label: 'Ferex inj' },
+  { namePattern: /^Product 292$/i,                     txtNamePattern: /^JOLLA PREMIUM OLIVE MASSAGE CREAM$/i,               categoryId: 'salon-grade', label: 'JOLLA PREMIUM OLIVE MASSAGE CREAM (placeholder)' },
+  { namePattern: /^Fere$/i,                            txtNamePattern: /^Ferex inj$/i,                                       categoryId: 'injections',  label: 'Ferex inj' },
   { namePattern: /^ARGININE\s+INJ\./i,                 categoryId: 'injections',  label: 'ARGININE INJ.' },
-  { namePattern: /^Product 406$/i,                     categoryId: 'placental-therapy', label: 'REJUVE Inj. (placeholder)' },
+  { namePattern: /^Product 406$/i,                     txtNamePattern: /^REJUVE Inj\.?$/i,                                   categoryId: 'placental-therapy', label: 'REJUVE Inj. (placeholder)' },
   { namePattern: /^EVERLINE\s+MEZO\s+NEEDLE$/i,        categoryId: 'nano-needle-cannula', label: 'EVERLINE MEZO NEEDLE' },
 ];
 
@@ -59,6 +64,66 @@ function applyDeletions(products: JsonProduct[]): { kept: JsonProduct[]; deleted
   return { kept: products, deleted, missed };
 }
 
+interface RewriteCounters {
+  nameFixes: number;
+  specFixes: number;
+  descRegenerated: number;
+  groupCleanup: number;
+}
+
+function applyRewrites(
+  matches: Array<{ product: JsonProduct; entry: { name: string; spec: string } }>,
+): RewriteCounters {
+  const counters: RewriteCounters = { nameFixes: 0, specFixes: 0, descRegenerated: 0, groupCleanup: 0 };
+
+  for (const { product, entry } of matches) {
+    const oldName = product.name;
+    const oldSpec = product.specification;
+    const nameChanged = oldName !== entry.name;
+    const specChanged = entry.spec && entry.spec !== oldSpec;
+
+    if (nameChanged) {
+      product.name = entry.name;
+      counters.nameFixes++;
+    }
+    if (specChanged) {
+      product.specification = entry.spec;
+      counters.specFixes++;
+    }
+    // Regenerate description only if name was wrong AND the old name appears in description.
+    if (nameChanged && typeof product.description === 'string' && product.description.includes(oldName)) {
+      product.description = `${entry.name} is a professional-use product distributed for licensed practitioners. Specification: ${entry.spec || oldSpec || 'on file'}.`;
+      counters.descRegenerated++;
+    }
+  }
+
+  return counters;
+}
+
+function cleanupOrphanedGroups(products: JsonProduct[]): number {
+  const groupCounts = new Map<string, JsonProduct[]>();
+  for (const p of products) {
+    const gid = p.groupId as string | undefined;
+    if (!gid) continue;
+    const arr = groupCounts.get(gid) ?? [];
+    arr.push(p);
+    groupCounts.set(gid, arr);
+  }
+  let cleaned = 0;
+  for (const [, members] of groupCounts) {
+    if (members.length <= 1) {
+      for (const m of members) {
+        delete m.groupId;
+        delete m.variantLabel;
+        delete m.groupName;
+        delete m.groupImage;
+      }
+      cleaned += members.length;
+    }
+  }
+  return cleaned;
+}
+
 function main(): void {
   const backupPath = backupDataFile();
   console.log(`repair-products: backup → ${backupPath}`);
@@ -68,15 +133,40 @@ function main(): void {
   const before = data.products.length;
 
   const { deleted, missed } = applyDeletions(data.products);
-  console.log(`repair-products: deleted ${deleted.length} of ${DELETIONS.length} targets (missed ${missed.length})`);
-  for (const m of missed) console.log(`  MISS: ${m}`);
+  if (missed.length > 0) {
+    console.error(`repair-products: ${missed.length} deletion target(s) not found, aborting before write:`);
+    for (const m of missed) console.error(`  MISS: ${m}`);
+    process.exit(1);
+  }
+  console.log(`repair-products: deleted ${deleted.length} products`);
 
   const txt = parseProductsTxt(PRODUCTS_TXT);
-  const result = matchByCategoryThenOrdinal(data.products, txt);
-  console.log(`repair-products: ${data.products.length} products remaining (was ${before})`);
-  console.log(`  matches: ${result.matches.length}, unmatched products: ${result.unmatchedProducts.length}, unmatched entries: ${result.unmatchedEntries.length}`);
 
-  // No write yet — Task 5 wires it.
+  // Defensive: drop products.txt entries that correspond to deletions, so they
+  // don't leak into ordinal pairing and corrupt innocent products.
+  const filteredTxt = txt.filter(e => !DELETIONS.some(d => {
+    if (d.categoryId !== e.categoryId) return false;
+    const pattern = d.txtNamePattern ?? d.namePattern;
+    return pattern.test(e.name);
+  }));
+  console.log(`repair-products: filtered ${txt.length - filteredTxt.length} txt entries matching deletion rules`);
+
+  const result = matchByCategoryThenOrdinal(data.products, filteredTxt);
+
+  const counters = applyRewrites(result.matches);
+  counters.groupCleanup = cleanupOrphanedGroups(data.products);
+
+  fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2) + '\n', 'utf8');
+
+  console.log(`repair-products: wrote ${data.products.length} products (was ${before})`);
+  console.log(`  name fixes: ${counters.nameFixes}`);
+  console.log(`  spec fixes: ${counters.specFixes}`);
+  console.log(`  description regenerations: ${counters.descRegenerated}`);
+  console.log(`  group cleanup (single-member groups flattened): ${counters.groupCleanup}`);
+  console.log(`  unmatched products: ${result.unmatchedProducts.length}`);
+  if (result.unmatchedProducts.length > 0) {
+    for (const p of result.unmatchedProducts) console.log(`    UNMATCHED #${p.id} (${p.categoryId}): ${p.name}`);
+  }
 }
 
 main();
