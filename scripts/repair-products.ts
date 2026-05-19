@@ -195,8 +195,10 @@ function mapImages(products: JsonProduct[]): ImageReport {
       const targetPath = path.join(IMG_DIR, targetName);
       const existing = product.image as string | undefined;
       const targetExists = fs.existsSync(targetPath) && fs.statSync(targetPath).size > 0;
-      if (!targetExists && !existing) {
-        fs.copyFileSync(src, targetPath);
+      if (!existing) {
+        if (!targetExists) {
+          fs.copyFileSync(src, targetPath);
+        }
         product.image = `/images/products/${targetName}`;
         autoMapped.push({ file, productId: id, targetPath: product.image as string });
       }
