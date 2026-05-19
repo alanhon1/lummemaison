@@ -51,8 +51,10 @@ export async function composeBundleCover(
   for (let i = 0; i < take; i++) {
     const m = members[i];
     let srcAbs: string;
-    if (m.image && m.image.startsWith('/images/products/')) {
-      srcAbs = path.join(ROOT, 'public', m.image);
+    // Strip query-string cache-busters like "?v=1779183843163" before file lookup.
+    const cleanImage = (m.image || '').split('?')[0];
+    if (cleanImage.startsWith('/images/products/')) {
+      srcAbs = path.join(ROOT, 'public', cleanImage);
     } else {
       srcAbs = PLACEHOLDER;
     }
