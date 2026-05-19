@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
@@ -37,6 +37,8 @@ export default function CheckoutClient() {
   const locale = useLocale();
   const router = useRouter();
   const { items, totalPrice, clearCart } = useCartStore();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   const [form, setForm] = useState({
     firstName: '', lastName: '', company: '',
@@ -79,7 +81,7 @@ export default function CheckoutClient() {
     router.push(`/${locale}/payment?order=${orderId}`);
   }
 
-  if (items.length === 0) {
+  if (!mounted || items.length === 0) {
     return (
       <div className="text-center py-20">
         <p className="font-display text-2xl font-light mb-4">Your cart is empty</p>

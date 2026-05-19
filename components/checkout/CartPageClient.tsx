@@ -1,18 +1,20 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 
 export default function CartPageClient() {
   const t = useTranslations('cart');
   const locale = useLocale();
-  const { items, removeItem, updateQuantity, clearCart, totalItems, totalPrice } = useCartStore();
+  const { items, removeItem, updateQuantity, clearCart, totalPrice } = useCartStore();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
-  if (items.length === 0) {
+  if (!mounted || items.length === 0) {
     return (
       <div className="py-20 text-center">
         <ShoppingBag size={48} className="text-bone mx-auto mb-4" />
