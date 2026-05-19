@@ -183,7 +183,7 @@ const MANUAL_MAPPINGS: ReadonlyArray<{ file: string; id: number; expectedName?: 
   { file: 'regenovue-pn-non.jpg',                                                                                id: 90 },
   { file: 'revolax-sub-q-with-lidocaine-12.webp',                                                                id: 28 },
   { file: 'vanhalla niacinamide skin tone balance.webp',                                                         id: 195 },
-  { file: 'elaxenpllaaestheticsukforskin.jpg',                                                                   id: 101 },
+  { file: 'elaxenpllaaestheticsukforskin.jpg',                                                                   id: 102 },
 ];
 
 function applyManualMappings(byId: Map<number, Product>, report: Report): void {
