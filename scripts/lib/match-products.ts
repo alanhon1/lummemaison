@@ -64,19 +64,25 @@ export function matchByCategoryThenOrdinal(
     const entryClaimed = new Set<number>();     // by index in catEntries
 
     // Pass 1 — similarity, only for products with non-broken names.
+    // Exact normalized-equality wins regardless of length; otherwise require ≥ 4 prefix-overlap chars.
     for (const p of catProducts) {
       if (isBrokenName(p.name)) continue;
+      const np = normalize(p.name);
       let bestIdx = -1;
       let bestScore = 0;
+      let exactIdx = -1;
       for (let i = 0; i < catEntries.length; i++) {
         if (entryClaimed.has(i)) continue;
+        const ne = normalize(catEntries[i].name);
+        if (np.length > 0 && np === ne) { exactIdx = i; break; }
         const score = prefixOverlap(p.name, catEntries[i].name);
         if (score > bestScore) { bestScore = score; bestIdx = i; }
       }
-      if (bestIdx >= 0 && bestScore >= 6) {
-        matches.push({ product: p, entry: catEntries[bestIdx], reason: 'similarity' });
+      const winnerIdx = exactIdx !== -1 ? exactIdx : (bestScore >= 4 ? bestIdx : -1);
+      if (winnerIdx >= 0) {
+        matches.push({ product: p, entry: catEntries[winnerIdx], reason: 'similarity' });
         productClaimed.add(p.id);
-        entryClaimed.add(bestIdx);
+        entryClaimed.add(winnerIdx);
       }
     }
 
