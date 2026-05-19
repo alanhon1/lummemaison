@@ -34,6 +34,7 @@ interface ProductImageProps {
   fill?: boolean;
   className?: string;
   sizes?: string;
+  priority?: boolean;
 }
 
 export default function ProductImage({
@@ -45,13 +46,15 @@ export default function ProductImage({
   fill = true,
   className = '',
   sizes,
+  priority = false,
 }: ProductImageProps) {
   const [from, to] = getGradient(categoryId);
 
   if (src) {
     return fill ? (
-      <Image src={src} alt={alt} fill className={`object-contain ${className}`} sizes={sizes} />
+      <Image src={src} alt={alt} fill className={`object-contain ${className}`} sizes={sizes} priority={priority} />
     ) : (
+      // eslint-disable-next-line @next/next/no-img-element
       <img src={src} alt={alt} className={`w-full h-full object-contain ${className}`} />
     );
   }

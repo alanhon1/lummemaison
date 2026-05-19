@@ -403,7 +403,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
 
             {/* Count */}
             <span className="text-sm text-mist ml-auto">
-              {renders.length} cards / {totalProductsRepresented} products
+              {renders.length} {t('cards')} / {totalProductsRepresented} {t('productsLong')}
             </span>
 
             {/* Clear */}
