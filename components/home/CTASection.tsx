@@ -12,7 +12,7 @@ export default function CTASection() {
   const locale = useLocale();
 
   return (
-    <section className="py-28 bg-cream-dark overflow-hidden relative">
+    <section className="py-28 bg-transparent overflow-hidden relative">
       <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent" />
       <div className="max-w-4xl mx-auto px-6 text-center relative">
         <motion.div

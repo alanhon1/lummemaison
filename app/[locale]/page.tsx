@@ -28,7 +28,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       {/* Best Sellers */}
       {bestSellers.length > 0 && (
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-transparent">
           <div className="max-w-7xl mx-auto px-6">
             <div className="mb-12">
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-3">
@@ -50,7 +50,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       {/* New Arrivals */}
       {newProducts.length > 0 && (
-        <section className="py-24 bg-cream">
+        <section className="py-24">
           <div className="max-w-7xl mx-auto px-6">
             <div className="mb-12">
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-3">
