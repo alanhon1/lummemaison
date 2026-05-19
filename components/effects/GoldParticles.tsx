@@ -3,13 +3,13 @@
 // Slow-floating gold particles. Mounted once at the app shell.
 // pointer-events: none so it never intercepts clicks.
 
-const PARTICLES = Array.from({ length: 32 }, (_, i) => {
-  // Deterministic position: cluster in left and right 20% of viewport
+const PARTICLES = Array.from({ length: 14 }, (_, i) => {
+  // Deterministic position: cluster in left and right 18% of viewport
   const side = i % 2 === 0 ? 'left' : 'right';
-  const offsetPct = 2 + ((i * 7) % 18);
-  const top = ((i * 13) % 90) + 5;
+  const offsetPct = 2 + ((i * 11) % 16);
+  const top = ((i * 17) % 88) + 6;
   const size = (i % 4) + 2; // 2-5 px
-  const duration = 8 + (i % 5) * 1.5; // 8-14 s (was 18-26)
+  const duration = 9 + (i % 4) * 1.5; // 9-13.5 s
   const keyframe = `float-${(i % 6) + 1}`;
   return { side, offsetPct, top, size, duration, keyframe };
 });
