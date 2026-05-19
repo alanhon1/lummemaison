@@ -1,4 +1,4 @@
-{
+﻿{
   "nav": {
     "home": "Home",
     "catalogue": "Catalogue",
@@ -59,7 +59,7 @@
   },
   "catalogue": {
     "title": "Product Catalogue",
-    "subtitle": "421 products across 20 categories",
+    "subtitle": "420 products across 20 categories",
     "search": "Search products...",
     "filter": "Filters",
     "allCategories": "All Categories",

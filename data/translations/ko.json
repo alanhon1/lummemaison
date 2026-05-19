@@ -1,11 +1,11 @@
 {
   "1": {
-    "description": "BARBIE SLIM은 얼굴 및 신체 부위의 체지방 감소를 위해 개발된 신제품입니다. 제제에 포함된 데옥시콜산은 신체 특정 부위에서 지방 분해 효과를 발휘하며, 과도한 지방은 대사되어 체외로 배출됩니다.",
-    "specification": "10 mL x 5 vials. 성분이 지방 분해 및 배출에 긍정적인 효과를 발휘합니다."
-  },
-  "2": {
     "description": "MisAdi Beso는 가교 히알루론산 24mg/ml, 리도카인 염산염 3mg/ml, 인산완충식염수(pH 7) 및 비타민 B12를 함유한 볼륨 증대 필러입니다(1 mL x 1 Syr). 일반 히알루론산(HA) 주사 대비 다양한 이점을 제공하며, 특히 입술 시술에 효과적입니다.",
     "specification": "1 mL x 1 Syr. 볼륨 증대 필러. 가교 HA 24mg/ml, 리도카인 염산염 함유."
+  },
+  "2": {
+    "description": "REGENOVUE Sub-Q는 가교 히알루론산(HA)을 기반으로 한 주사용 겔입니다. 이 화학 구조는 필러의 안정성을 높여 피부 깊은 층에 주입 후에도 이동하지 않습니다. 턱선 등 얼굴 윤곽 교정 시 특히 중요한 특성입니다.",
+    "specification": "1.1 mL x 1 Syr, HA 24 mg/mL. 히알루론산 필러."
   },
   "3": {
     "description": "REGENOVUE Sub-Q는 가교 히알루론산(HA)을 기반으로 한 주사용 겔입니다. 이 화학 구조는 필러의 안정성을 높여 피부 깊은 층에 주입 후에도 이동하지 않습니다. 턱선 등 얼굴 윤곽 교정 시 특히 중요한 특성입니다.",
@@ -17,7 +17,7 @@
   },
   "5": {
     "description": "REGENOVUE Sub-Q는 가교 히알루론산(HA)을 기반으로 한 주사용 겔입니다. 이 화학 구조는 필러의 안정성을 높여 피부 깊은 층에 주입 후에도 이동하지 않습니다. 턱선 등 얼굴 윤곽 교정 시 특히 중요한 특성입니다.",
-    "specification": "1.1 mL x 1 Syr, HA 24 mg/mL. 히알루론산 필러."
+    "specification": "1.1 mL x 1 Syr, 리도카인 0.3%, HA 24 mg/mL. 히알루론산 필러."
   },
   "6": {
     "description": "REGENOVUE Sub-Q는 가교 히알루론산(HA)을 기반으로 한 주사용 겔입니다. 이 화학 구조는 필러의 안정성을 높여 피부 깊은 층에 주입 후에도 이동하지 않습니다. 턱선 등 얼굴 윤곽 교정 시 특히 중요한 특성입니다.",
@@ -28,8 +28,8 @@
     "specification": "1.1 mL x 1 Syr, 리도카인 0.3%, HA 24 mg/mL. 히알루론산 필러."
   },
   "8": {
-    "description": "REGENOVUE Sub-Q는 가교 히알루론산(HA)을 기반으로 한 주사용 겔입니다. 이 화학 구조는 필러의 안정성을 높여 피부 깊은 층에 주입 후에도 이동하지 않습니다. 턱선 등 얼굴 윤곽 교정 시 특히 중요한 특성입니다.",
-    "specification": "1.1 mL x 1 Syr, 리도카인 0.3%, HA 24 mg/mL. 히알루론산 필러."
+    "description": "SOSUM H는 고도로 가교결합된 안정화 히알루론산(HA) 진피 필러입니다.",
+    "specification": "1.1 mL x 2 Syr, HA 24mg. 히알루론산 필러."
   },
   "9": {
     "description": "SOSUM H는 고도로 가교결합된 안정화 히알루론산(HA) 진피 필러입니다.",
@@ -41,30 +41,30 @@
   },
   "11": {
     "description": "SOSUM H는 고도로 가교결합된 안정화 히알루론산(HA) 진피 필러입니다.",
-    "specification": "1.1 mL x 2 Syr, HA 24mg. 히알루론산 필러."
+    "specification": "3 mL x 1 Syr. 히알루론산 필러."
   },
   "12": {
     "description": "SOSUM H는 고도로 가교결합된 안정화 히알루론산(HA) 진피 필러입니다.",
-    "specification": "3 mL x 1 Syr. 히알루론산 필러."
-  },
-  "13": {
-    "description": "SOSUM H는 고도로 가교결합된 안정화 히알루론산(HA) 진피 필러입니다.",
     "specification": "3 mL x 3syr 히알루론산 필러"
   },
-  "14": {
+  "13": {
     "description": "ELASTY는 최첨단 가교 기술을 사용하여 제조된 프리미엄 히알루론산 진피 필러입니다. 독보적인 점탄성과 내구성을 자랑하며, 얼굴 및 신체 부위의 정밀한 윤곽 교정과 볼륨 보충에 최적화되어 있습니다.",
     "specification": "1.0 mL x 1syr, Lidocaine 0.3% 히알루론산 필러"
   },
-  "15": {
+  "14": {
     "description": "REVOLAX는 동물성 성분이 없는 순수 히알루론산 기반의 진피 필러입니다. BDDE 가교 결합만을 사용하여 높은 안전성을 보장하며, 깊은 주름 교정 및 볼륨 복원에 뛰어난 효과를 제공합니다.",
     "specification": "1.0 mL x 1syr, Lidocaine 0.3% 히알루론산 필러"
   },
-  "16": {
+  "15": {
     "description": "ELASTY는 최첨단 가교 기술을 사용하여 제조된 프리미엄 히알루론산 진피 필러입니다. 독보적인 점탄성과 내구성을 자랑하며, 얼굴 및 신체 부위의 정밀한 윤곽 교정과 볼륨 보충에 최적화되어 있습니다.",
     "specification": "1.0 mL x 1syr, Lidocaine 0.3% 히알루론산 필러"
   },
-  "17": {
+  "16": {
     "description": "교차 결합 히알루론산(HA 20mg/mL)을 기반으로 한 진피 필러로, Lidocaine이 함유되어 있어 시술 시 편안함을 제공합니다. 자연스러운 볼륨 보충과 주름 교정에 효과적입니다.",
+    "specification": "1.0 mL x 2syr, 교차 결합 HA 20mg/mL 히알루론산 필러"
+  },
+  "17": {
+    "description": "교차 결합 히알루론산(HA 20mg/mL)을 기반으로 한 고품질 진피 필러입니다. 자연스러운 외관과 장기 지속 효과를 제공합니다.",
     "specification": "1.0 mL x 2syr, 교차 결합 HA 20mg/mL 히알루론산 필러"
   },
   "18": {
@@ -72,1611 +72,1542 @@
     "specification": "1.0 mL x 2syr, 교차 결합 HA 20mg/mL 히알루론산 필러"
   },
   "19": {
-    "description": "교차 결합 히알루론산(HA 20mg/mL)을 기반으로 한 고품질 진피 필러입니다. 자연스러운 외관과 장기 지속 효과를 제공합니다.",
-    "specification": "1.0 mL x 2syr, 교차 결합 HA 20mg/mL 히알루론산 필러"
+    "description": "NEURAMIS Light Lidocaine은 입술 윤곽 개선 및 미세 주름 완화에 특화된 히알루론산 필러입니다. HA 20mg/mL와 Lidocaine 0.3%의 복합 성분으로 구성되어 시술 편의성과 효과를 모두 갖추고 있습니다.",
+    "specification": "1.0 mL, HA 20mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
   "20": {
     "description": "NEURAMIS Light Lidocaine은 입술 윤곽 개선 및 미세 주름 완화에 특화된 히알루론산 필러입니다. HA 20mg/mL와 Lidocaine 0.3%의 복합 성분으로 구성되어 시술 편의성과 효과를 모두 갖추고 있습니다.",
-    "specification": "1.0 mL, HA 20mg/mL, Lidocaine 0.3% 히알루론산 필러"
-  },
-  "21": {
-    "description": "NEURAMIS Light Lidocaine은 입술 윤곽 개선 및 미세 주름 완화에 특화된 히알루론산 필러입니다. HA 20mg/mL와 Lidocaine 0.3%의 복합 성분으로 구성되어 시술 편의성과 효과를 모두 갖추고 있습니다.",
     "specification": "1.1 mL, HA 20mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
-  "22": {
+  "21": {
     "description": "NEURAMIS Deep는 깊은 주름 교정과 안면 볼륨 보충에 특화된 히알루론산 필러입니다. 고점도 포뮬라로 장기간 지속되는 자연스러운 효과를 제공합니다.",
     "specification": "1.0 mL, Lidocaine 없음, HA 20mg/mL 히알루론산 필러"
   },
-  "23": {
+  "22": {
     "description": "NEURAMIS Deep Lidocaine은 깊은 주름 교정과 안면 볼륨 보충에 특화된 히알루론산 필러입니다. Lidocaine 0.3% 함유로 시술 시 통증을 최소화합니다.",
     "specification": "1.0 mL, HA 20mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
-  "24": {
+  "23": {
     "description": "NEURAMIS VOLUME LIDOCAINE은 탁월한 볼륨 보충 효과를 제공하는 프리미엄 히알루론산 필러입니다. HA 20mg/mL와 Lidocaine 0.3%로 구성되어 볼, 턱 등 대면적 교정에 적합합니다.",
     "specification": "1.0 mL, HA 20mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
-  "25": {
+  "24": {
     "description": "REVOLAX FINE PLUS는 미세 주름과 얕은 피부 결함 교정에 최적화된 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3%의 정밀 포뮬라로 섬세한 부위에 자연스러운 개선 효과를 제공합니다.",
     "specification": "1.1 mL, HA 24mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
-  "26": {
+  "25": {
     "description": "REVOLAX DEEP PLUS는 깊은 주름 및 볼륨 손실 교정에 특화된 고밀도 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3%가 함유되어 내구성과 시술 편안함을 동시에 제공합니다.",
     "specification": "1.1 mL, HA 24mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
-  "27": {
+  "26": {
     "description": "REVOLAX SUB-Q PLUS는 피부 깊은 층에 주입하여 얼굴 윤곽과 뚜렷한 볼륨을 형성하는 프리미엄 히알루론산 필러입니다. 내구성이 뛰어나고 장기 지속 효과를 자랑합니다.",
     "specification": "1.1 mL, HA 24mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
-  "28": {
+  "27": {
     "description": "DERMALAX PLUS는 눈가, 관자놀이, 이마 등 섬세한 부위에 적합한 정밀 히알루론산 필러입니다. 최적의 점도로 자연스럽고 부드러운 교정 효과를 제공합니다.",
     "specification": "1.1 mL, HA 20mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
-  "29": {
+  "28": {
     "description": "DERMALAX DEEP PLUS는 동물성 성분이 없는 순수 히알루론산 기반의 깊은 주름 교정 필러입니다. 저온 장시간 가교 결합 공정으로 최상의 순도와 안전성을 실현합니다.",
     "specification": "1.1 mL, HA 24mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
-  "30": {
+  "29": {
     "description": "DERMALAX IMPLANT PLUS는 광대뼈, 코, 턱 등 얼굴 윤곽 강화에 특화된 고밀도 히알루론산 필러입니다. 뛰어난 내구성과 정밀한 볼륨 형성 능력을 갖추고 있습니다.",
     "specification": "1.1 mL x 2syr, HA 24mg/mL, Lidocaine 0.3% 히알루론산 필러"
   },
-  "31": {
-    "description": "REVOFIL은 한국 고급 브랜드의 교차 결합 히알루론산 진피 필러로, Fine, Plus, Ultra 세 가지 타입으로 제공됩니다. 피부과 전문의들이 신뢰하는 안전하고 효과적인 필러 시리즈입니다.",
-    "specification": "1.0 mL x 1syr, 교차 결합 HA, Lidocaine 0.3% 히알루론산 필러"
-  },
-  "32": {
-    "description": "TESORO DEEP PLUS는 깊은 주름 및 피부 결함 교정에 최적화된 교차 결합 히알루론산 필러입니다. Lidocaine 0.3%가 함유되어 있어 시술 시 통증을 최소화합니다.",
-    "specification": "1.0 mL x 1syr, 교차 결합 HA, Lidocaine 0.3% 히알루론산 필러"
-  },
-  "33": {
-    "description": "교차 결합 히알루론산 기반의 고품질 진피 필러입니다. 안전하고 효과적인 주름 교정 및 볼륨 보충을 위한 전문 의료 시술용 제품입니다.",
-    "specification": "1.0 mL x 1syr, 교차 결합 HA, Lidocaine 0.3% 히알루론산 필러"
-  },
-  "34": {
-    "description": "TESORO IMPLANT WITH LIDOCAINE은 얼굴 윤곽 강화와 깊은 볼륨 복원을 위한 고밀도 히알루론산 필러입니다. Lidocaine 함유로 편안한 시술 경험을 보장합니다.",
-    "specification": "1.1 mL x 2syr, 교차 결합 HA, Lidocaine 0.3% 히알루론산 필러"
-  },
-  "35": {
-    "description": "REVOFIL은 한국 고급 브랜드의 교차 결합 히알루론산 진피 필러로, Fine, Plus, Ultra 세 가지 타입으로 제공됩니다. 피부과 전문의들이 신뢰하는 안전하고 효과적인 필러 시리즈입니다.",
-    "specification": "1.0 mL x 1syr, 교차 결합 히알루론산 20mg/mL 히알루론산 필러"
-  },
-  "36": {
-    "description": "REVOLAX는 동물성 성분이 없는 100% 순수 히알루론산 기반의 진피 필러입니다. BDDE 가교 결합만을 사용하여 높은 안전성을 보장합니다.",
-    "specification": "1.0 mL x 1syr, 교차 결합 히알루론산 20mg/mL 히알루론산 필러"
-  },
-  "37": {
-    "description": "교차 결합 히알루론산 기반의 고품질 진피 필러입니다. 안전하고 효과적인 주름 교정 및 볼륨 보충을 위한 전문 의료 시술용 제품입니다.",
-    "specification": "1.0 mL x 1syr, 교차 결합 히알루론산 HA 20mg/mL 히알루론산 필러"
-  },
-  "38": {
+  "30": {
     "description": "YOUTHFILL FINE은 미세 주름 및 얕은 피부 결함 교정에 최적화된 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3%로 구성된 Sardenya 대응 제품입니다.",
     "specification": "1.1 mL x 1syr, HA 24mg/mL, Lidocaine 0.3% 히알루론산 필러 (Sardenya 유사 제품)"
   },
-  "39": {
+  "31": {
     "description": "YOUTHFILL DEEP는 깊은 주름 교정 및 얼굴 볼륨 보충에 특화된 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3% 함유로 효과적이고 편안한 시술을 제공합니다.",
     "specification": "1.1 mL x 1syr, HA 24mg/mL, Lidocaine 0.3% 히알루론산 필러 (Sardenya 유사 제품)"
   },
-  "40": {
+  "32": {
     "description": "Youthfill PN+는 종합적인 피부 재생을 위해 설계된 점성 생체 적합성 젤입니다. 폴리뉴클레오타이드와 Lidocaine이 강화되어 다양한 피부 문제를 효과적으로 개선합니다.",
     "specification": "1.1 mL x 1syr, HA 24mg/mL, Lidocaine 0.3% 히알루론산 필러 (Sardenya 유사 제품)"
   },
-  "41": {
+  "33": {
     "description": "SOONSU FILL (E.P.T.Q) 100은 교차 결합 HA 24mg/mL를 기반으로 한 고품질 히알루론산 필러입니다. 미세 주름 교정과 피부 탄력 개선에 탁월한 효과를 발휘합니다.",
     "specification": "100 1.0 mL x 1syr, 교차 결합 HA 24mg/mL 히알루론산 필러"
   },
-  "42": {
+  "34": {
     "description": "SOONSU FILL (E.P.T.Q) 300은 중간 깊이의 주름 교정과 볼륨 보충에 최적화된 교차 결합 히알루론산 필러입니다. 자연스럽고 오래 지속되는 결과를 제공합니다.",
     "specification": "300 1.0 mL x 1syr, 교차 결합 HA 24mg/mL 히알루론산 필러"
   },
-  "43": {
+  "35": {
     "description": "SOONSU FILL (E.P.T.Q) 500은 깊은 주름 교정과 안면 윤곽 강화를 위한 고밀도 교차 결합 히알루론산 필러입니다. 장기 지속 효과로 전문 미용 시술에 최적화되어 있습니다.",
     "specification": "500 1.0 mL x 1syr, 교차 결합 HA 24mg/mL 히알루론산 필러"
   },
-  "44": {
+  "36": {
     "description": "CELOSOME SOFT는 부드러운 질감과 우수한 유연성을 갖춘 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3%로 구성되어 섬세한 부위 교정에 적합합니다.",
     "specification": "1.1 mL x 1syr, Lidocaine 0.3%, HA 24mg/mL 히알루론산 필러"
   },
-  "45": {
+  "37": {
     "description": "CELOSOME은 독자적인 HENM 가교 기술을 적용한 히알루론산 필러 시리즈입니다. 다양한 농도와 점도 옵션으로 개별 시술 요구에 맞춤화된 결과를 제공합니다.",
     "specification": "1.1 mL x 1syr, Lidocaine 0.3%, HA 24mg/mL 히알루론산 필러"
   },
-  "46": {
+  "38": {
     "description": "CELOSOME은 한국에서 제조된 프리미엄 히알루론산 진피 필러입니다. 국제 품질 기준을 충족하며 전 세계 전문 의료 시장에 공급됩니다.",
     "specification": "1.1 mL x 1syr, Lidocaine 0.3%, HA 24mg/mL 히알루론산 필러"
   },
-  "47": {
+  "39": {
     "description": "CELOSOME IMPLANT는 얼굴 볼륨 복원 및 윤곽 강화에 특화된 고밀도 히알루론산 필러입니다. 안면 대용량 부위 시술에 최적화된 임플란트형 제품입니다.",
     "specification": "1.1 mL x 1syr, Lidocaine 0.3%, HA 24mg/mL 히알루론산 필러"
   },
-  "48": {
+  "40": {
     "description": "BONETTA FINE은 미세 주름 및 피부 표면 개선에 최적화된 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3%로 구성되어 섬세하고 자연스러운 교정 효과를 제공합니다.",
     "specification": "1.1 mL x 2syr, Lidocaine 0.3%, HA 24mg/mL 히알루론산 필러"
   },
-  "49": {
+  "41": {
     "description": "BONETTA DEEP는 중등도에서 심한 주름 교정과 볼륨 보충에 특화된 히알루론산 필러입니다. 높은 점도와 내구성으로 장기 지속 효과를 제공합니다.",
     "specification": "1.1 mL x 2syr, Lidocaine 0.3%, HA 24mg/mL 히알루론산 필러"
   },
-  "50": {
+  "42": {
     "description": "BONETTA VOLUME은 볼, 광대뼈 등 대면적 볼륨 복원에 탁월한 고밀도 히알루론산 필러입니다. 자연스러운 리프팅 효과와 장기 지속성을 동시에 갖추고 있습니다.",
     "specification": "1.1 mL x 2syr, Lidocaine 0.3%, HA 24mg/mL 히알루론산 필러"
   },
-  "51": {
+  "43": {
     "description": "THE CHAEUM PREMIUM #1 (MESO)은 메조테라피 기법에 최적화된 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3%가 함유되어 있으며 30G 나노 니들 4개가 포함됩니다.",
     "specification": "1.1 mL x 2syr, HA 24mg/mL, Lidocaine 0.3%, 30G 니들 4개 포함 히알루론산 필러 MESO"
   },
-  "52": {
+  "44": {
     "description": "THE CHAEUM PREMIUM #2는 중간 깊이의 피부층에 적합한 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3% 함유, 27G 니들 4개 포함으로 정밀한 시술이 가능합니다.",
     "specification": "1.1 mL x 2syr, HA 24mg/mL, Lidocaine 0.3%, 27G 니들 4개 포함 히알루론산 필러"
   },
-  "53": {
+  "45": {
     "description": "THE CHAEUM PREMIUM #3는 깊은 주름과 볼륨 손실 교정에 특화된 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3% 함유, 25G 니들 4개 포함으로 전문적인 시술을 지원합니다.",
     "specification": "1.1 mL x 2syr, HA 24mg/mL, Lidocaine 0.3%, 25G 니들 4개 포함 히알루론산 필러"
   },
-  "54": {
+  "46": {
     "description": "THE CHAEUM PREMIUM #4는 대용량 볼륨 복원 및 깊은 조직 교정에 최적화된 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3% 함유, 23G 니들 4개 포함으로 고효율 시술이 가능합니다.",
     "specification": "1.1 mL x 2syr, HA 24mg/mL, Lidocaine 0.3%, 23G 니들 4개 포함 히알루론산 필러"
   },
-  "55": {
+  "47": {
     "description": "VOLUDERM FINE은 미세 주름 교정과 피부 표면 개선을 위한 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3%가 함유되어 있어 섬세한 부위에 자연스러운 결과를 제공합니다.",
     "specification": "HA 24mg/mL, Lidocaine 0.3%"
   },
-  "56": {
+  "48": {
     "description": "VOLUDERM DEEP는 깊은 주름과 볼륨 손실 교정에 탁월한 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3%의 고밀도 포뮬라로 오래 지속되는 효과를 제공합니다.",
     "specification": "HA 24mg/mL, Lidocaine 0.3%"
   },
-  "57": {
+  "49": {
     "description": "VOLUDERM SUB-Q는 얼굴 윤곽 강화 및 깊은 조직 볼륨 복원에 특화된 고밀도 히알루론산 필러입니다. HA 24mg/mL와 Lidocaine 0.3%가 함유되어 있습니다.",
     "specification": "HA 24mg/mL, Lidocaine 0.3%"
   },
-  "58": {
+  "50": {
     "description": "UltraFill Nose는 비외과적 코 윤곽 교정 및 높이 개선을 위해 특별히 개발된 프리미엄 단상성 진피 필러입니다. 교차 결합 히알루론산을 기반으로 하여 정밀한 리프팅, 장기 지속 효과, 높은 시술 안전성을 제공합니다. 다단계 정제 공정으로 최고의 순도를 실현하였습니다.",
     "specification": "1.1 mL x 1syr, 교차 결합 히알루론산 24mg/mL 히알루론산 필러"
   },
-  "59": {
+  "51": {
     "description": "UltraFill Nose는 비외과적 코 윤곽 교정 및 높이 개선을 위해 특별히 개발된 프리미엄 단상성 진피 필러입니다. 교차 결합 히알루론산을 기반으로 하여 정밀한 리프팅, 장기 지속 효과, 높은 시술 안전성을 제공합니다.",
     "specification": "1.1 mL x 1syr, 교차 결합 히알루론산 24mg/mL 히알루론산 필러"
   },
-  "60": {
+  "52": {
     "description": "UltraFill Nose는 비외과적 코 윤곽 교정 및 높이 개선을 위해 특별히 개발된 프리미엄 단상성 진피 필러입니다. 교차 결합 히알루론산을 기반으로 하여 정밀한 리프팅, 장기 지속 효과, 높은 시술 안전성을 제공합니다.",
     "specification": "1.1 mL x 1syr, 교차 결합 히알루론산 24mg/mL 히알루론산 필러"
   },
-  "61": {
+  "53": {
     "description": "UltraFill Nose는 비외과적 코 윤곽 교정 및 높이 개선을 위해 특별히 개발된 프리미엄 단상성 진피 필러입니다. 교차 결합 히알루론산을 기반으로 하여 정밀한 리프팅, 장기 지속 효과, 높은 시술 안전성을 제공합니다.",
     "specification": "1.1 mL x 1syr, 교차 결합 히알루론산 24mg/mL 히알루론산 필러"
   },
-  "62": {
+  "54": {
     "description": "UltraFill Nose는 비외과적 코 윤곽 교정 및 높이 개선을 위해 특별히 개발된 프리미엄 단상성 진피 필러입니다. 교차 결합 히알루론산을 기반으로 하여 정밀한 리프팅, 장기 지속 효과, 높은 시술 안전성을 제공합니다.",
     "specification": "1.1 mL x 1syr, 교차 결합 히알루론산 24mg/mL 히알루론산 필러"
   },
-  "63": {
+  "55": {
     "description": "LINE BODY 10 HARD BODY FILLER는 신체 윤곽 교정을 위한 고밀도 교차 결합 히알루론산 바디 필러입니다. HA 24mg/mL와 Lidocaine이 함유되어 있어 대면적 신체 부위에 효과적인 볼륨을 형성합니다.",
     "specification": "10 mL x 1syr, Lidocaine, HA 24mg/mL 교차 결합 히알루론산 바디 필러"
   },
-  "64": {
+  "56": {
     "description": "BEADS MAX S는 신체 대면적 볼륨 보충을 위한 교차 결합 히알루론산 바디 필러입니다. HA 20mg/mL와 Lidocaine이 함유되어 있습니다.",
     "specification": "10 mL x 1syr, Lidocaine, HA 20mg/mL 교차 결합 히알루론산 바디 필러"
   },
-  "65": {
+  "57": {
     "description": "LINE BODY 50 BODY FILLER는 광범위한 신체 윤곽 교정을 위한 대용량 히알루론산 바디 필러입니다. HA 20mg/mL의 교차 결합 포뮬라로 자연스럽고 오래 지속되는 볼륨을 제공합니다.",
     "specification": "50mL 1syr, HA 20mg/mL 교차 결합 히알루론산 바디 필러"
   },
-  "66": {
+  "58": {
     "description": "Misadi Filler는 Aesthefill의 유사 제품으로, 폴리락트산(D,L 형)에서 추출된 콜라겐 자극제입니다. 자연스럽고 오래 지속되는 피부 개선 효과를 위해 설계되었습니다.",
     "specification": "60cc, HA 24mg/mL 교차 결합 히알루론산 바디 필러"
   },
-  "67": {
+  "59": {
     "description": "AdiMis Body Filler는 광범위한 신체 부위의 볼륨 보충 및 윤곽 교정을 위한 대용량 교차 결합 히알루론산 바디 필러입니다. HA 24mg/mL의 고밀도 포뮬라로 우수한 내구성을 발휘합니다.",
     "specification": "80cc, HA 24mg/mL 교차 결합 히알루론산 바디 필러"
   },
-  "68": {
+  "60": {
     "description": "SEDY FILL Body Filler는 신체 윤곽 개선을 위한 교차 결합 히알루론산 바디 필러입니다. HA 24mg/cc의 고농도 포뮬라로 효과적인 볼륨 형성과 자연스러운 윤곽을 제공합니다.",
     "specification": "60cc, HA 24mg/cc 교차 결합 히알루론산 바디 필러"
   },
-  "69": {
+  "61": {
     "description": "MAX Y FILL Body Filler는 광범위한 신체 부위 윤곽 교정을 위한 대용량 교차 결합 히알루론산 바디 필러입니다. HA 24mg/mL의 고밀도 포뮬라로 자연스럽고 지속적인 볼륨 효과를 제공합니다.",
     "specification": "70cc, HA 24mg/mL 교차 결합 히알루론산 바디 필러"
   },
-  "70": {
+  "62": {
     "description": "WANNA FILL H Body Filler는 신체 볼륨 보충 및 윤곽 교정에 최적화된 교차 결합 히알루론산 바디 필러입니다. HA 24mg/mL의 고밀도 포뮬라를 사용합니다."
   },
-  "71": {
+  "63": {
     "description": "Filcore SB (ExoHealer™)는 49.2B 엑소좀 입자를 함유한 고급 엑소좀 스킨 부스터입니다. 콜라겐 생성을 촉진하고 미세 노화를 복구하며 피부를 더욱 탄력 있고 빛나게 재활성화합니다.",
     "specification": "2ml x 10vials 49.2B 입자 함유 고급 엑소좀 스킨 부스터"
   },
-  "72": {
+  "64": {
     "description": "Filcore Activating Solution은 펩타이드, 아미노산, 비타민, 히알루론산을 포함한 59가지 활성 성분의 엑소좀 강화 시너지 포뮬라입니다. 엑소좀 흡수를 촉진하고 피부를 영양 공급하며 수분을 유지하고 더욱 건강하고 탄력 있는 광채 피부를 만듭니다.",
     "specification": "5ml x 10vials 59가지 활성 성분 엑소좀 강화 시너지 포뮬라"
   },
-  "73": {
+  "65": {
     "description": "Filcore SB Plus 프로그램은 2.45조 엑소좀 입자와 1,470가지 세포 활성화 물질, 6가지 성장인자를 함유합니다. 스트레스 받거나 노화된 피부를 깊이 재활성화하고 탄력을 강화하며 피부의 자연스러운 힘과 광채를 증진합니다.",
     "specification": "2mL + 5mL (5쌍) 2.45조 엑소좀 입자 함유"
   },
-  "74": {
+  "66": {
     "description": "LEXYAL REJU PDRN+PN은 연어 DNA에서 추출한 PDRN과 PN을 활용하는 스킨 부스터입니다. 피부 재생과 활성화를 촉진하며, 눈가 등 섬세한 부위를 포함한 피로하고 칙칙하며 건조한 피부를 재활성화하도록 설계되었습니다.",
     "specification": "3mL x 5vials PDRN 활용 스킨 부스터"
   },
-  "75": {
+  "67": {
     "description": "BELLONA AQUA는 45일 구간 방출 및 60일 심층 수분 공급 기능을 갖춘 고급 스킨 부스터입니다. BDDE 이중 가교 결합을 사용하여 수분, 탄력, 광채를 회복하여 오래 지속되는 재생 효과를 제공합니다.",
     "specification": "3mL x 3syr 45일 구간 방출 및 60일 심층 수분 공급"
   },
-  "76": {
+  "68": {
     "description": "BELLONA OPACIOUS SERUM은 피부 미백, 밝기 개선, 재생을 위해 설계된 프리미엄 스킨 부스터입니다. 첨단 세포 재생 기술로 모공을 최소화하고 손상을 복구하며 탄력을 회복하고 피부를 깊이 수분 공급하여 더 매끄럽고 탄탄하며 빛나는 피부결을 만듭니다.",
     "specification": "3mL x 5vials 프리미엄 스킨 부스터"
   },
-  "77": {
+  "69": {
     "description": "DERMAGEN Plus NAD+ Solution은 NAD+와 NMN을 함유한 고급 스킨 부스터입니다. 세포 에너지를 강화하고 미토콘드리아 복구를 지원하며 피부 재생을 촉진합니다. 리포좀 기술로 안정성과 흡수율을 높여 노화를 늦추고 텔로미어 길이를 개선하며 젊은 피부 활력을 회복합니다."
   },
-  "78": {
+  "70": {
     "description": "TESORO COLLAGEN은 안전한 생동일 콜라겐으로 탄력, 수분, 광채를 증진하면서 잔주름을 감소시킵니다.",
     "specification": "2mL x 1syr 탄력, 수분, 광채 증진"
   },
-  "79": {
+  "71": {
     "description": "ULTRAHILO는 고분자(H-HA)와 저분자(I-HA) 히알루론산 나트륨이 각각 32mg씩 함유된 바이오 리바이탈라이징 제품입니다. Prophilo 대응 제품으로 심층 피부 수분 공급과 재생에 효과적입니다.",
     "specification": "2mL x 1syr, 32mg(H-HA) + 32mg(I-HA)/HA 나트륨염 바이오 리바이탈라이징 (Prophilo 유사 제품)"
   },
-  "80": {
+  "72": {
     "description": "EVEHILO는 3.2% 히알루론산 나트륨을 함유한 바이오 리바이탈라이징 주사 제품입니다. 고분자와 저분자 HA를 각각 32mg씩 함유하여 피부 깊이 수분을 공급하고 탄력을 회복합니다.",
     "specification": "32mg(H-HA) + 32mg(I-HA)/2mL HA 나트륨염 2mL 프리필드 시린지 바이오 리바이탈라이징"
   },
-  "81": {
+  "73": {
     "description": "HYALACE 3.2%는 고분자와 저분자 HA를 각각 32mg씩 함유한 바이오 리바이탈라이징 주사 제품입니다. 피부 깊은 층에서 수분을 유지하고 탄력과 광채를 회복합니다.",
     "specification": "32mg(H-HA) + 32mg(I-HA)/2mL HA 나트륨염 2mL 프리필드 시린지 바이오 리바이탈라이징"
   },
-  "82": {
+  "74": {
     "description": "REVS PRO 32는 3.2% 히알루론산 나트륨을 함유한 바이오 리바이탈라이징 주사 제품입니다. 고분자와 저분자 HA의 상호 보완 작용으로 피부 구조를 재건하고 탄력과 수분을 장기간 유지합니다.",
     "specification": "32mg(H-HA) + 32mg(I-HA)/2mL 히알루론산 나트륨염 2mL 프리필드 시린지 바이오 리바이탈라이징"
   },
-  "83": {
+  "75": {
     "description": "AIOR50은 50mg/2mL의 HA가 함유된 피부 재생 트리트먼트입니다. 피부 톤, 질감, 수분 공급 및 전반적인 광채를 개선합니다.",
     "specification": "50mg/2mL HA 피부 톤, 질감, 수분 공급 및 광채 개선 피부 재생 트리트먼트"
   },
-  "84": {
+  "76": {
     "description": "ULTRA GEN Collagen + Exosome은 콜라겐과 엑소좀이 복합된 피부 재생 트리트먼트입니다. 피부 톤, 질감, 수분 공급 및 전반적인 광채를 개선합니다.",
     "specification": "100mg/3vials 피부 톤, 질감, 수분 공급 및 광채 개선 피부 재생 트리트먼트"
   },
-  "85": {
+  "77": {
     "description": "HYALMASS 50은 50mg/2mL의 HA가 함유된 피부 재생 트리트먼트입니다. 피부 톤, 질감, 수분 공급 및 전반적인 광채를 개선합니다.",
     "specification": "50mg/2mL HA 피부 톤, 질감, 수분 공급 및 광채 개선 피부 재생 트리트먼트"
   },
-  "86": {
+  "78": {
     "description": "HYARON은 히알루론산 나트륨을 함유한 바이오 리바이탈라이징 주사 제품입니다. 피부 수분 공급, 탄력 회복, 전반적인 피부 재생에 효과적입니다.",
     "specification": "2.5mL x 10syr/1팩 히알루론산 나트륨 바이오 리바이탈라이징"
   },
-  "87": {
+  "79": {
     "description": "POWERHEALER는 숙신산, 콜라겐을 함유한 보습 및 미백 멀티 스킨 부스터입니다. 피부 수분 공급, 톤 개선, 전반적인 피부 재생에 효과적입니다.",
     "specification": "5mL x 5vials 숙신산, 콜라겐, 보습 및 미백 멀티 스킨 부스터"
   },
-  "88": {
+  "80": {
     "description": "TRUE BELLA는 HA를 함유한 멀티 스킨 부스터로, 피부 수분 공급, 콜라겐 합성 촉진, 보습 및 미백 효과를 제공합니다."
   },
-  "89": {
+  "81": {
     "description": "Youthfill PN+는 종합적인 피부 재생을 위해 설계된 점성 생체 적합성 젤입니다. 폴리뉴클레오타이드와 Lidocaine이 강화되어 다양한 피부 문제를 효과적으로 개선합니다.",
     "specification": "1syr x 2.5mL 바이오 리바이탈라이징"
   },
-  "90": {
+  "82": {
     "description": "REGENOVUE PN은 비가교 HA 20mg와 PN 5mg이 함유된 바이오 리바이탈라이징 주사 제품입니다. 연어 DNA에서 추출한 PN 성분이 피부 재생과 탄력 회복을 도와줍니다.",
     "specification": "1syr x 3mL 바이오 리바이탈라이징"
   },
-  "91": {
+  "83": {
     "description": "REGENOVUE AQUASHINE PLUS GOLD는 가교 HA 15mg/mL를 함유한 바이오 리바이탈라이징 주사 제품입니다. 피부 수분 공급, 광채 회복, 전반적인 피부 재생에 효과적입니다.",
     "specification": "3mL x 3ea = 9mL 바이오 리바이탈라이징"
   },
-  "92": {
+  "84": {
     "description": "REGENOVUE AQUASHINE SILVER는 비가교 HA 15mg/mL를 함유한 바이오 리바이탈라이징 주사 제품입니다. 피부 수분 공급, 탄력 개선, 전반적인 피부 활력 회복에 탁월합니다.",
     "specification": "3mL x 3ea = 9mL 바이오 리바이탈라이징"
   },
-  "93": {
+  "85": {
     "description": "CELOSOME AQUA는 히알루론산 나트륨을 함유한 바이오 리바이탈라이징 스킨 부스터입니다. 피부 깊은 층에 수분을 공급하고 탄력과 광채를 회복합니다.",
     "specification": "2.5mL x 5syr/1팩 히알루론산 나트륨 60mg/2.5mL 바이오 리바이탈라이징"
   },
-  "94": {
+  "86": {
     "description": "REJEUNESSE SPARKLE은 HA 20mg/mL와 Lidocaine 0.3%가 함유된 히알루론산 필러입니다. 피부 수분 공급과 자연스러운 볼륨 개선을 위한 전문 시술용 제품입니다.",
     "specification": "2.5mL x 3syr, Lidocaine 0.3% 히알루론산 필러"
   },
-  "95": {
+  "87": {
     "description": "Oasis Repair PN 2%는 Rejuran Healer 유사 제품으로, 2% 이상의 프리미엄 프랑스산 PN이 함유되어 있습니다. 피부 재생을 촉진하고 톤을 개선하며 높은 순도와 안정성으로 탄력을 강화합니다.",
     "specification": "2syr x 2mL Rejuran Healer 유사 제품 2% PN 함유"
   },
-  "96": {
+  "88": {
     "description": "Cindella Healer PN은 Rejuran Healer와 동일한 고순도 연어 유래 PN이 함유된 피부 재생 주사 제품입니다. 피부 탄력 개선, 주름 감소, 피지 조절, 깊은 수분 공급으로 항노화 및 미백 효과를 제공합니다. 눈가, 이마, 눈 밑 라인 등에 적합합니다.",
     "specification": "2syr x 2mL (Rejuran Healer와 동일) 고순도 연어 유래 PN 함유 피부 재생 주사"
   },
-  "97": {
+  "89": {
     "description": "KIARA REJU는 PN 폴리뉴클레오타이드 5mg/L와 히알루론산 20mg/mL가 함유된 바이오 리바이탈라이징 스킨 부스터입니다. JBP 나노 니들 33G 4mm가 포함되어 있습니다.",
     "specification": "2.2mL x 3syr/1팩 PN 폴리뉴클레오타이드 5mg/L + HA 20mg/mL JBP 나노 니들 33G 4mm 포함"
   },
-  "98": {
+  "90": {
     "description": "GemVous PN은 혁신적인 바이오 리바이탈라이제이션 스킨 부스터로, 피부 재생과 밝기 개선에 효과적입니다. 연어 DNA에서 추출한 PN 성분이 피부 활력을 되찾아줍니다.",
     "specification": "2.5mL x 3syr/1팩 혁신적인 바이오 리바이탈라이제이션 스킨 부스터"
   },
-  "99": {
+  "91": {
     "description": "KIARA REJU ELASTIC은 피부 탄력을 높이고 더 매끄럽고 젊고 빛나는 피부를 만들기 위해 설계된 피부 재생 제품입니다. 피부 탄력 회복에 특화된 전문 시술용 스킨 케어 제품입니다."
   },
-  "100": {
-    "description": "KIARA REJU ELASTIC은 피부 탄력을 높이고 더 매끄럽고 젊고 빛나는 피부를 만들기 위해 설계된 피부 재생 제품입니다. 피부 탄력 회복에 특화된 전문 시술용 스킨 케어 제품입니다.",
-    "specification": "5mL x 5vials 바이오 리바이탈라이징"
-  },
-  "101": {
-    "description": "HANHEAL HA AMPOULE은 피부 재생을 위한 앰플 제품입니다. HA 성분이 피부 수분 공급과 재생을 촉진합니다.",
-    "specification": "5mL x 5vials 피부 재생 앰플"
-  },
-  "102": {
+  "92": {
     "description": "ELAXEN PLLA MASK는 폴리-L-락트산, 미네랄, 펩타이드를 함유하여 피부 톤 개선과 주름 감소를 돕는 마스크입니다. 콜라겐 생성을 촉진하여 피부 톤을 개선하고 주름을 줄이며 더 밝고 건강한 피부를 만듭니다."
   },
-  "103": {
+  "93": {
     "description": "Misadi Filler는 Aesthefill의 유사 제품으로, 폴리락트산(D,L 형)에서 추출된 콜라겐 자극제입니다. 자연스럽고 오래 지속되는 피부 개선 효과를 위해 설계되었습니다.",
     "specification": "30mL x 5튜브 카르복시젤 함유, 얼굴 마스크 5매, 목 마스크 5매, 조직 복구 기능"
   },
-  "104": {
+  "94": {
     "description": "SOONSU ULTRA REJU는 PN 1%와 PDRN 1%가 복합된 멀티 아미노산 피부 재생 솔루션입니다. EGF, IGF-1, bFGF, IGF-2, SOD-1, 셀레늄, 아연 성분을 함유한 항노화 복합체입니다.",
     "specification": "3mL x 5ea PN 1%+PDRN 1% 멀티 아미노산 피부 재생 솔루션"
   },
-  "105": {
+  "95": {
     "description": "SOONSU SHINING PEEL은 TCA 35%와 멀티산이 복합된 필링 솔루션입니다. 비타민 B12와 레티놀 재생 복합체, 스쿠알렌 오일, 바이사 오렐라나 씨 오일을 포함한 바이페이식 기술을 사용합니다.",
     "specification": "6mL x 5ea TCA 35%+ 멀티산 필링 솔루션 비타민 B12+레티놀 재생 복합체"
   },
-  "106": {
+  "96": {
     "description": "고순도 PN 기반 재생 트리트먼트로, 섬세한 안구 주변 부위에 특화된 피부 재생 및 탄력 개선 시술용 제품입니다.",
     "specification": "2mL x 1syr Rejuran i 동일 제품 PN 기반 고급 재생 트리트먼트"
   },
-  "107": {
+  "97": {
     "description": "Clair Eyes는 PN 1%(폴리뉴클레오타이드) 성분을 함유한 눈가 메조테라피 제품입니다. 눈가와 눈물고랑 부위의 수분 공급, 리프팅, 다크서클 완화, 잔주름 개선에 효과적입니다.",
     "specification": "20mg/1.1mL x 1syr 눈가 및 눈물고랑 메조테라피"
   },
-  "108": {
+  "98": {
     "description": "ULTRA EYE는 PN 1%(폴리뉴클레오타이드) 성분을 함유한 눈가 메조테라피 제품입니다. 눈가와 눈물고랑 부위의 수분 공급, 리프팅, 다크서클 완화, 잔주름 개선에 효과적입니다.",
     "specification": "20mg/1.1mL x 1syr 눈가 및 눈물고랑 메조테라피"
   },
-  "109": {
+  "99": {
     "description": "AMI EYES는 PN 1%(폴리뉴클레오타이드 20mg/2mL) 성분을 함유한 눈가 메조테라피 제품입니다. 눈가와 눈물고랑 수분 공급, 리프팅, 다크서클 완화, 잔주름 개선에 효과적입니다.",
     "specification": "20mg/2mL x 1syr 눈가 및 눈물고랑 메조테라피"
   },
-  "110": {
+  "100": {
     "description": "Juvelook i는 눈가에 특화된 스킨 부스터로, PLA(폴리-L-락트산)와 히알루론산을 초미세 입자 포뮬라로 결합한 제품입니다. 기존 Juvelook보다 작은 입자로 눈가, 팔자주름, 입 주변 등 섬세한 부위에 안전하게 적용할 수 있습니다.",
     "specification": "25.5mg PDLLA + 4.5mg HA 30mg/vial 하이브리드 PDLLA + HA 스킨 부스터"
   },
-  "111": {
+  "101": {
     "description": "EVE EYES는 PN 1%(폴리뉴클레오타이드 20mg/2mL) 성분을 함유한 눈가 메조테라피 제품입니다. 눈가와 눈물고랑 수분 공급, 리프팅, 다크서클 완화, 잔주름 개선에 효과적입니다.",
     "specification": "2mL x 1syr 눈가 및 눈물고랑 메조테라피"
   },
-  "112": {
+  "102": {
     "description": "SPIDER AQUA EYE BOOSTER는 눈가와 눈물고랑을 위한 메조테라피 제품입니다. 섬세한 눈가 수분 공급, 리프팅, 다크서클 완화, 잔주름 개선에 효과적입니다.",
     "specification": "2mL x 1syr 눈가 및 눈물고랑 메조테라피"
   },
-  "113": {
+  "103": {
     "description": "EYEBELLA는 PN 1%(폴리뉴클레오타이드 20mg/2mL) 성분을 함유한 눈가 메조테라피 제품입니다. 눈가와 눈물고랑 수분 공급, 리프팅, 다크서클 완화, 잔주름 개선에 효과적입니다.",
     "specification": "20mg/2mL x 1syr 눈가 및 눈물고랑 메조테라피"
   },
-  "114": {
+  "104": {
     "description": "JUVE EYES는 PN 1%(폴리뉴클레오타이드 20mg/2mL) 성분을 함유한 눈가 메조테라피 제품입니다. 눈가와 눈물고랑 수분 공급, 리프팅, 다크서클 완화, 잔주름 개선에 효과적입니다.",
     "specification": "20mg/2mL x 1syr 눈가 및 눈물고랑 메조테라피"
   },
-  "115": {
+  "105": {
     "description": "SNOW FLOWER BLOOM은 글루타치온, PDRN, HA를 함유한 CPNP 피부 재생 메조테라피 제품입니다. 안면 케어, 피부 재생, 미백 효과를 제공합니다.",
     "specification": "2.5mL x 5vials CPNP 안면 케어, 메조테라피, 피부 재생"
   },
-  "116": {
+  "106": {
     "description": "MisAdi White Skin Glazer는 피부 미백과 재생을 위한 메조테라피 제품입니다. 광택 효과로 피부를 밝고 빛나게 만들어줍니다.",
     "specification": "5mL x 1vial 안면 케어, 메조테라피, 피부 미백 및 재생, 광택 효과"
   },
-  "117": {
+  "107": {
     "description": "EVE WHITE는 안면 케어 및 피부 재생에 특화된 메조테라피 제품입니다. 피부 미백과 전반적인 재생 효과를 제공합니다.",
     "specification": "5mL x 5vials 안면 케어, 메조테라피, 피부 재생"
   },
-  "118": {
+  "108": {
     "description": "ULTRA WHITE는 트라넥사모일 디펩타이드-23, 테트라펩타이드, 올리고펩타이드-2(IGF-1), 폴리펩타이드-1(bFGF), 글루타치온, 비타민 C, N-아세틸 글루코사민, 나이아신아마이드, 알부틴을 함유한 고급 메조테라피 제품입니다. 안면 케어, 피부 재생, 미백 효과를 제공합니다.",
     "specification": "3mL x 5vials 복합 성분 안면 케어, 메조테라피, 피부 재생"
   },
-  "119": {
+  "109": {
     "description": "MIRACLE H는 PCL(폴리카프로락톤)과 히알루론산이 결합된 차세대 스킨 부스터입니다. 생분해성 PCL 폴리머가 엘라스틴과 콜라겐 생성을 자극하여 피부 탄력과 볼륨을 개선합니다.",
     "specification": "2mL x 5vials PCL 및 히알루론산 복합 고급 피부 재생 트리트먼트"
   },
-  "120": {
+  "110": {
     "description": "MIRACLE H는 PCL(폴리카프로락톤)과 히알루론산이 결합된 차세대 스킨 부스터입니다. 생분해성 PCL 폴리머가 엘라스틴과 콜라겐 생성을 자극하여 피부 탄력과 볼륨을 개선합니다.",
     "specification": "5vials (2mL each) 메조 솔루션 안면 리프팅, 피부 수분 공급, 콜라겐 생성"
   },
-  "121": {
+  "111": {
     "description": "MIRACLE H는 PCL(폴리카프로락톤)과 히알루론산이 결합된 차세대 스킨 부스터입니다. 생분해성 PCL 폴리머가 엘라스틴과 콜라겐 생성을 자극하여 피부 탄력과 볼륨을 개선합니다.",
     "specification": "5vials (2mL each) 메조 솔루션 안면 리프팅, 피부 리프팅 콜라겐"
   },
-  "122": {
+  "112": {
     "description": "TOUCH UP PCL은 줄기세포 부스터 및 피부 재생을 위한 전문 시술용 제품입니다. PCL 성분이 피부 탄력과 콜라겐 생성을 촉진합니다.",
     "specification": "5vials (2mL each) 줄기세포 부스터 및 피부 재생"
   },
-  "123": {
+  "113": {
     "description": "TOUCH BR은 피부 내 멜라닌 색소 합성을 억제하여 미백 효과를 제공하는 전문 시술용 제품입니다.",
     "specification": "5vials (5mL each) 피부 내 멜라닌 색소 합성 억제 미백 효과"
   },
-  "124": {
+  "114": {
     "description": "PCL POWER BOOSTER는 줄기세포 촉진제 및 피부 재생 주사 제품입니다. 항노화 및 손상 피부 케어를 위한 전문 시술용 제품으로 널리 사용됩니다.",
     "specification": "1vial x 2mL 줄기세포 촉진제 및 피부 재생"
   },
-  "125": {
+  "115": {
     "description": "REJURAN SKIN BOOSTER는 c-PDRN과 4가지 아미노산이 복합된 피부 재생 부스터입니다. 민감한 피부의 콜라겐 생성 자극과 함께 더 강력한 수분 공급 효과를 제공합니다.",
     "specification": "4mL x 3vials, 0.1g x 3vials c-PDRN 및 4가지 아미노산 복합 피부 부스터"
   },
-  "126": {
+  "116": {
     "description": "SELA TOX 10은 피부 주름 제거와 리프팅에 특화된 바이오메디컬 트리트먼트입니다. 모공을 최소화하고 다크서클을 개선합니다.",
     "specification": "5mL x 5vials 주름 제거 및 피부 리프팅 바이오메디컬 트리트먼트"
   },
-  "127": {
+  "117": {
     "description": "AURORA는 LAPUROON의 독자적인 기술을 최초로 적용한 피부 재생 스킨 부스터입니다.",
     "specification": "2.5mL x 2syr PDRN 2% 스킨 부스터"
   },
-  "128": {
+  "118": {
     "description": "AURORA는 LAPUROON의 독자적인 기술을 최초로 적용한 피부 재생 스킨 부스터입니다.",
     "specification": "5mL x 5vials PDRN 0.2% 스킨 부스터"
   },
-  "129": {
+  "119": {
     "description": "NMN BOTTLE NAD+는 아데노신, PDRN, 나이아신아마이드, 니코틴아마이드 모노뉴클레오타이드를 함유한 항노화 스킨 부스터입니다.",
     "specification": "5mL x 10vials 아데노신, PDRN, 나이아신아마이드 함유 항노화 스킨 부스터"
   },
-  "130": {
+  "120": {
     "description": "2XSOME은 동결건조 엑소좀 스킨 재생 제품입니다. 항염증, 보습, 수분 공급, 피부 복구, 상처 치유, 탄력, 촉촉함, 주름 방지, 항산화, 피부 밝기 개선 효과를 제공합니다.",
     "specification": "엑소좀 파우더 100mg + 활성화 희석액 6mL 동결건조 엑소좀 피부 재생 솔루션"
   },
-  "131": {
+  "121": {
     "description": "EXOGEN FOR HAIR AND SKIN은 모발과 피부 재생을 위한 동결건조 엑소좀 제품입니다. 항염증, 보습, 수분 공급, 피부 복구, 상처 치유, 탄력, 주름 방지, 항산화, 피부 밝기 개선 효과를 제공합니다.",
     "specification": "엑소좀 파우더 100mg + 활성화 희석액 6mL 동결건조 엑소좀 피부 재생 솔루션"
   },
-  "132": {
+  "122": {
     "description": "EXOXE는 동결건조 엑소좀 피부 재생 제품입니다. 항염증, 보습, 수분 공급, 피부 복구, 상처 치유, 탄력, 주름 방지, 항산화, 피부 밝기 개선 효과를 제공합니다.",
     "specification": "엑소좀 파우더 50mg + 활성화 희석액 5mL 동결건조 엑소좀 피부 재생 솔루션"
   },
-  "133": {
+  "123": {
     "description": "EXOBOOM SKIN은 동결건조 엑소좀 피부 재생 제품입니다. 항염증, 보습, 수분 공급, 피부 복구, 상처 치유, 탄력, 주름 방지, 항산화, 피부 밝기 개선 효과를 제공합니다.",
     "specification": "엑소좀 파우더 50mg + 활성화 희석액 6mL 동결건조 엑소좀 피부 재생 솔루션"
   },
-  "134": {
+  "124": {
     "description": "Botanic EXO는 NAD+, 아미노산, 펩타이드, 글루타치온이 함유된 동결건조 엑소좀 피부 재생 제품입니다. 항염증, 보습, 수분 공급, 피부 복구, 상처 치유, 탄력, 주름 방지, 항산화, 피부 밝기 개선 효과를 제공합니다.",
     "specification": "엑소좀 파우더 50mg + 활성화 희석액 5mL (NAD+, 아미노산, 펩타이드, 글루타치온) 동결건조 엑소좀"
   },
-  "135": {
+  "125": {
     "description": "ASCE는 동결건조 엑소좀 피부 재생 제품입니다. 항염증, 보습, 수분 공급, 피부 복구, 상처 치유, 탄력, 주름 방지, 항산화, 피부 밝기 개선 효과를 제공합니다.",
     "specification": "엑소좀 파우더 20mg + 활성화 희석액 5mL 동결건조 엑소좀 피부 재생 솔루션"
   },
-  "136": {
+  "126": {
     "description": "AMMI CAPTURE TIME은 피부 보습, 탄력, 활력 강화를 위한 스킨 부스터입니다. 주름 방지, 볼륨 강화, 밝고 빛나는 피부 효과를 제공합니다.",
     "specification": "3mL x 5vials 피부 보습, 탄력, 활력 강화 안티에이징 스킨 부스터"
   },
-  "137": {
+  "127": {
     "description": "ULTRA CA는 칼슘 하이드록시아파타이트 기반의 바이오 스티뮬레이터 콜라겐 자극제입니다. FACETEM과 동일한 제품으로, 콜라겐 생성을 촉진하여 피부 탄력과 볼륨을 개선합니다."
   },
-  "138": {
+  "128": {
     "description": "VOLASSOM은 FACETEM 유사 제품인 칼슘 바이오 스티뮬레이터입니다. 칼슘 하이드록시아파타이트(CaHA)로 구성되어 콜라겐 생성을 자극하여 피부 탄력을 개선합니다.",
     "specification": "0.8mL 칼슘(CaHA) 필러"
   },
-  "139": {
+  "129": {
     "description": "GOURI는 주사용 풀 리퀴드 타입 PCL(폴리카프로락톤) 콜라겐 자극제입니다. 생분해성 성분이 피부 깊은 층에서 콜라겐 생성을 촉진하여 피부 탄력과 볼륨을 장기간 개선합니다.",
     "specification": "1mL x 1syr 풀 리퀴드 타입 PCL 주사 제품"
   },
-  "140": {
+  "130": {
     "description": "DERMAHEAL HSR은 피부 재생, 주름 방지, 보습 기능을 갖춘 피부 재생 솔루션입니다. 노화되고 탈수된 피부의 활력을 회복하는 데 효과적입니다.",
     "specification": "5mL x 10vials 피부 재생, 주름 방지 및 보습 솔루션"
   },
-  "141": {
+  "131": {
     "description": "DERMAHEAL SR은 핵산 주사를 통한 피부 재생을 위한 강력한 주름 방지, 항노화 솔루션입니다."
   },
-  "142": {
+  "132": {
     "description": "ESRELLA TEA TREE ESSENCE는 항균 펩타이드, 히알루론산, 성장인자가 함유된 진정 항여드름 솔루션입니다. 염증을 진정시키고 여드름을 감소시키며 색소침착을 옅게 하고 매끄럽고 수분이 풍부한 맑은 피부를 회복합니다.",
     "specification": "3mL x 5vials 항균 펩타이드, HA, 성장인자 함유 진정 항여드름 솔루션"
   },
-  "143": {
+  "133": {
     "description": "REPIDA CLEARNEST INTENSIVE FOAM CLEANSER는 여드름성 및 지성 피부를 위한 부드러운 폼 클렌저입니다. 특허받은 Anti Sebum P(HD)와 살리실산으로 과잉 피지를 조절하고 모공을 막는 원인을 제거합니다. 제주 병풀 추출물로 진정 효과를 제공하며 9가지 히알루론산으로 세안 후 건조함 없이 깊은 수분을 공급합니다.",
     "specification": "150mL 여드름성 및 지성 피부용 부드러운 폼 클렌저"
   },
-  "144": {
+  "134": {
     "description": "ACON DEEP CLEANSING FOAM은 여드름성 피부를 위한 딥 클렌징 폼입니다. BHA(살리실산), IPMP, 나이아신아마이드, 아연 PCA를 주요 성분으로 하여 과잉 피지를 제거하고 모공을 청소하며 블랙헤드와 여드름을 줄이는 데 도움을 줍니다.",
     "specification": "100mL 주요 성분: BHA(살리실산), IPMP, 나이아신아마이드, 아연 PCA"
   },
-  "145": {
+  "135": {
     "description": "ACLEAN GEL은 살리실산 2%가 함유된 국소 여드름 치료제입니다. 피부 세포 순환을 조절하고 모공 막힘을 방지하여 여드름을 효과적으로 치료합니다. 특히 면포성 여드름(블랙헤드, 화이트헤드) 치료에 효과적이며 장기적인 여드름 관리에 최적입니다.",
     "specification": "20g 살리실산 2% 함유 국소 여드름 치료제"
   },
-  "146": {
+  "136": {
     "description": "ACLEAN BODY ACNE TREATMENT SPRAY는 살리실산 2%가 함유된 신체 여드름 스프레이입니다. 등과 가슴 여드름에 특화되어 모공을 청소하고 염증을 감소시키며 피부 결을 개선합니다. 편리한 360° 스프레이로 쉽게 적용할 수 있습니다.",
     "specification": "100mL 살리실산 2% 함유 신체 여드름 스프레이"
   },
-  "147": {
+  "137": {
     "description": "ACNON CREAM은 이부프로펜 피코닐(항염증)과 이소프로필메틸페놀(항균)을 함유한 여드름 치료 크림입니다. 여드름 염증, 뾰루지, 블랙헤드를 타겟으로 모공을 청소하고 발적을 감소시키며 새로운 여드름 발생을 예방합니다.",
     "specification": "13g 이부프로펜 피코닐 및 이소프로필메틸페놀 함유 여드름 치료 크림"
   },
-  "148": {
+  "138": {
     "description": "AZALEA CREAM은 아젤라산 20%가 함유된 의학용 여드름 치료 크림입니다. 여드름, 색소침착, 주사(로사세아) 치료에 사용됩니다. 다크스팟을 감소시키고 여드름 균을 억제하며 피부 톤을 균일하게 개선합니다.",
     "specification": "30g 아젤라산 20% 함유 의학용 여드름 치료 크림"
   },
-  "149": {
+  "139": {
     "description": "DERMAGEN Acssak Acne Clear Facial Foam Cleanser는 각질을 부드럽게 제거하고 모공을 청소하여 여드름을 감소시키는 약산성 폼 클렌저입니다. 진정 식물 추출물과 세라마이드로 피부를 진정시키고 수분을 유지합니다."
   },
-  "150": {
+  "140": {
     "description": "P198 Filcore HB Plus 프로그램은 2.45조 엑소좀 입자, 1,470가지 바이오활성 물질, EGF, VEGF, IGF, KGF, Noggin 등 5가지 특화 성장인자를 함유한 메가 엑소좀 두피 및 모발 부스터입니다. 두피 건강을 강화하고 민감성을 감소시키며 모발 노화와 탈모에 효과적입니다.",
     "specification": "2mL + 5mL (5쌍) 메가 엑소좀 두피 및 모발 부스터"
   },
-  "151": {
+  "141": {
     "description": "DR.H.RICH HAIR FILLER는 탈모 치료를 위한 전문 시술용 모발 필러입니다.",
     "specification": "2 x 1.0mL syr 탈모 치료 요법"
   },
-  "152": {
+  "142": {
     "description": "HAIRNA EXOSOME HAIR FILLER는 탈모 치료를 위한 엑소좀 기반 모발 필러입니다. 엑소좀 성분이 두피를 재생하고 모발 성장을 촉진합니다.",
     "specification": "2.5mL syr 탈모를 위한 엑소좀 요법"
   },
-  "153": {
+  "143": {
     "description": "ASCE HRLV EXOSOME HAIR FILLER는 동결건조 분말 형태의 탈모 치료용 엑소좀 모발 필러입니다. 두피 재생과 모발 성장 촉진에 효과적입니다.",
     "specification": "1vial x 20mg 동결건조 분말 탈모를 위한 엑소좀 요법"
   },
-  "154": {
+  "144": {
     "description": "EXOBOOM HAIR FILLER는 탈모 치료를 위한 동결건조 엑소좀 모발 부스터입니다. 50mg 파우더와 6mL 활성화 액체로 구성됩니다.",
     "specification": "동결건조 파우더 50mg + 활성화 액체 6mL 탈모를 위한 엑소좀 요법"
   },
-  "155": {
+  "145": {
     "description": "HAIR LUMA는 식물 유래 엑소좀, PDRN, 펩타이드, 효소로 제조된 전문 두피 트리트먼트입니다. 모발 성장을 자극하고 모낭을 강화하며 두피 균형을 회복합니다. 가늘어지는 모발, 탈모 회복, 고급 두피 재생 시술에 이상적입니다.",
     "specification": "5mL x 10vials + 15mL x 1튜브 식물 유래 엑소좀, PDRN, 펩타이드 함유 두피 트리트먼트"
   },
-  "156": {
+  "146": {
     "description": "ULTRA HAIR는 건강한 모발을 위한 기능성 탈모 조절 앰플입니다. 취약한 두피를 강화하고 영양을 공급하여 건강한 모발 성장을 지원합니다.",
     "specification": "3mL x 5vials 기능성 탈모 조절 앰플"
   },
-  "157": {
+  "147": {
     "description": "DERMAHEAL HL은 항탈모 트리트먼트입니다. 모발과 두피를 보습하고 영양을 공급하여 건강한 두피 환경을 조성합니다.",
     "specification": "5mL x 10vials 항탈모 트리트먼트 보습 및 두피 영양 공급"
   },
-  "158": {
-    "description": "FINASTERIDE Tab. 1mg은 안드로겐성 탈모(남성형 탈모) 치료에 사용되는 경구 탈모 치료제입니다. 18~41세 성인 남성의 남성형 탈모 치료에 적합합니다.",
-    "specification": "1mg 30정 탈모 치료제, 남성형 탈모 치료 적응증"
-  },
-  "159": {
+  "148": {
     "description": "DERMAGEN Many Shoot Plus+는 모발 성장을 지원하고 두피 건강을 개선하는 모발 및 두피 트리트먼트입니다. 멘톨, 살리실산, 비오틴, 레티놀, 버섯 추출물이 주요 성분으로 탈모 감소, 모낭 영양 공급, 두피 상태 개선에 도움을 줍니다.",
     "specification": "50mL 모발 성장 지원 및 두피 건강 개선 트리트먼트"
   },
-  "160": {
+  "149": {
     "description": "DERMAGEN Trimo90 Shampoo는 탈모 증상 개선을 위한 기능성 샴푸입니다. 덱스판테놀, 살리실산, L-멘톨로 탈모 증상을 개선하며 구리 트라이펩타이드, HairVax™, 7가지 천연 추출물, 특허받은 MOplex™로 민감한 두피를 진정시키고 수분을 공급합니다.",
     "specification": "500mL 덱스판테놀, 살리실산, L-멘톨 함유 기능성 탈모 샴푸"
   },
-  "161": {
+  "150": {
     "description": "DERMAGEN Trimo90 Tonic은 항탈모 두피 토닉입니다. 덱스판테놀, 살리실산, L-멘톨, 구리 트라이펩타이드-1, HairVax 복합체, 발효 식물 복합체, 쏘팔메토 과일 추출물을 함유하여 두피 건강과 모발 성장을 지원합니다.",
     "specification": "120mL 덱스판테놀, 살리실산, L-멘톨, 구리 트라이펩타이드 함유 두피 토닉"
   },
-  "162": {
+  "151": {
     "description": "DERMAGEN Mohealer Shampoo는 탈모 증상 개선을 위한 기능성 샴푸입니다. 비오틴, 덱스판테놀, 나이아신아마이드, 아연 피리티온, 구리 트라이펩타이드-1을 함유하여 탈모 증상을 완화합니다.",
     "specification": "500mL 비오틴, 덱스판테놀, 나이아신아마이드, 아연 피리티온 함유 기능성 샴푸"
   },
-  "163": {
+  "152": {
     "description": "DERMAGEN Mohealer Tonic은 가늘어지는 모발을 영양 공급하고 강화하는 두피 토닉입니다. 덱스판테놀, 살리실산, L-멘톨, 구리 트라이펩타이드-1, 맥주 효모 추출물, HairVax, 발효 식물 복합체, 쏘팔메토 과일 추출물을 함유합니다.",
     "specification": "120mL 덱스판테놀, 살리실산, L-멘톨, 구리 트라이펩타이드 함유 두피 토닉"
   },
-  "164": {
+  "153": {
     "description": "MelaNosa Cream 4%는 하이드로퀴논 4%가 함유된 색소침착 타겟 트리트먼트입니다. 피부 미백 성분으로 잘 알려진 하이드로퀴논이 다크스팟, 기미, 노인성 반점을 효과적으로 밝혀줍니다.",
     "specification": "30g 하이드로퀴논 4% 함유 색소침착 트리트먼트"
   },
-  "165": {
+  "154": {
     "description": "ALBENDAZOLE(구충제)는 장내 기생충 구제를 위한 항기생충 약물입니다. 한국에서는 여러 브랜드명으로 판매되며 동등한 제품으로 제공될 수 있습니다.",
     "specification": "2정/팩 장내 구충에 사용되는 항기생충 약물"
   },
-  "166": {
+  "155": {
     "description": "D PANSEPTIC CREAM은 클로르헥시딘 염산염(5mg/g)과 덱스판테놀(50mg/g)을 함유한 방부 상처 치유 크림입니다. 상처를 소독하고 감염을 예방하며 피부 재생을 촉진합니다. 절개, 찰과상, 화상, 만성 피부 상처, 수술 후 상처, 염증성 피부 감염에 효과적입니다. 스테로이드 없음, 방부제 없음, 향료 없음.",
     "specification": "30g 클로르헥시딘 염산염(5mg/g) 및 덱스판테놀(50mg/g) 함유 방부 상처 치유 크림"
   },
-  "167": {
+  "156": {
     "description": "SCARDERM GEL은 켈로이드, 수술, 화상, 외상 흉터를 부드럽게 하는 흉터 연화 젤입니다. 알란토인, 헤파린, 양파 추출물을 함유하여 비후성 흉터, 켈로이드, 수술 후 흉터를 개선합니다. 하루 2-3회 가볍게 마사지하며 사용합니다.",
     "specification": "10g 켈로이드, 수술, 화상, 외상 흉터용 연화 젤"
   },
-  "168": {
+  "157": {
     "description": "SCARDERM GEL 20g는 위와 동일한 흉터 연화 젤의 더 큰 용량 제품입니다.",
     "specification": "20g 동일 제품 대용량"
   },
-  "169": {
+  "158": {
     "description": "RECLAN (PDRN SOLUTION)은 공식적으로는 안과용 제품이지만 피부 복구 및 재생을 위해 오프라벨로 피부과에서도 사용됩니다. 보존제 없는 재생 포뮬라로 세포 재생을 촉진하고, 손상된 피부를 복구하며, 수분을 공급하고 회복을 가속합니다.",
     "specification": "0.5mL x 30튜브 PDRN 솔루션 세포 복구 및 피부 재생"
   },
-  "170": {
+  "159": {
     "description": "EYEOCOOL RENEW PDRN은 PDRN이 풍부한 피부 재생 포뮬라입니다. 미세 손상 복구, 염증 진정, 콜라겐 재생을 지원합니다. 조직 치유에 사용되는 성분으로 피부 탄력을 증진하고 건강하고 빛나는 피부를 회복합니다.",
     "specification": "0.5mL x 30튜브 PDRN 함유 조직 재생 및 항노화 복구 포뮬라"
   },
-  "171": {
+  "160": {
     "description": "MADECASSOL GEL은 병풀(마데카소사이드)이 함유된 진정 회복 젤입니다. 흉터, 화상, 자극, 시술 후 피부 치유에 이상적입니다. 가볍고 기름기 없는 포뮬라입니다.",
     "specification": "10g 병풀(마데카소사이드) 함유 진정 회복 젤"
   },
-  "172": {
+  "161": {
     "specification": "20g 대용량"
   },
-  "173": {
+  "162": {
     "description": "MELATONING CREAM 2%는 멜라토닌과 나이아신아마이드가 함유된 피부 밝기 개선 크림입니다. 색소침착, 다크스팟, 불균일한 피부 톤을 타겟으로 합니다. 모든 피부 타입에 적합합니다.",
     "specification": "30g 멜라토닌 및 나이아신아마이드 함유 피부 밝기 개선 크림"
   },
-  "174": {
+  "163": {
     "description": "EGF ACTIVE VITAL CREAM은 표피 성장인자(EGF)를 함유한 피부 복구 및 항노화 재생 크림입니다. 탄력을 개선하고 잔주름을 감소시키며 세포 순환을 촉진합니다.",
     "specification": "20mL 표피 성장인자(EGF) 함유 피부 복구 및 항노화 크림"
   },
-  "175": {
+  "164": {
     "description": "EASYEF는 레이저, 마이크로니들링, 화학 필링 후 회복에 이상적인 고효능 EGF 포뮬라입니다. 빠른 재생과 피부 장벽 복구를 지원합니다.",
     "specification": "5g 고효능 EGF 포뮬라 레이저 및 시술 후 회복 지원"
   },
-  "176": {
+  "165": {
     "description": "D-Panthenol Cream은 프로비타민 B5가 풍부하여 건조하고 자극받거나 손상된 피부를 깊이 수분 공급하고 복구합니다. 민감한 피부, 아기 피부, 시술 후 케어에 완벽합니다.",
     "specification": "50g 프로비타민 B5 풍부 깊은 수분 공급 및 피부 복구 크림"
   },
-  "177": {
+  "166": {
     "description": "Rejuvenex PDRN Cream은 알란토인과 양파 추출물이 함유된 약용 흉터 치료 크림입니다. 지속적인 사용으로 흉터, 튼살, 불균일한 피부 결을 개선합니다.",
     "specification": "10g 알란토인 및 양파 추출물 함유 약용 흉터 치료 크림"
   },
-  "178": {
+  "167": {
     "description": "Noscarna는 한국에서 높은 평가를 받는 흉터 젤로, 알리움 세파(양파) 추출물, 헤파린, 알란토인이 함유되어 있습니다. 오래된 흉터와 새로운 흉터를 부드럽게 하고 납작하게 만들어줍니다. 피부과 전문의 권장 제품입니다.",
     "specification": "20g 알리움 세파(양파) 추출물, 헤파린, 알란토인 함유 흉터 젤"
   },
-  "179": {
+  "168": {
     "description": "Bentpla Gel은 멍, 부기, 타박상을 위한 국소 항염증 및 진통 젤입니다. 부상, 염좌, 정맥류, 과사용으로 인한 통증, 멍, 부기를 감소시킵니다. 빠른 흡수 포뮬라로 운동선수와 일상적인 응급 처치에 이상적입니다.",
     "specification": "15g 국소 항염증 및 진통 젤 멍, 부기, 타박상 치료"
   },
-  "180": {
+  "169": {
     "description": "Rejunera EXO-PDRN CREAM은 PDRN과 스쿠알렌이 함유된 고순도 피부 재생 프리미엄 크림입니다. 특히 미용 시술 후 집중적인 피부 재생, 깊은 보습, 손상 피부 복구를 촉진하도록 제조되었습니다.",
     "specification": "30mL 고순도 PDRN 및 스쿠알렌 함유 피부 재생 크림"
   },
-  "181": {
+  "170": {
     "description": "ASCEplus HomeCare Sunshine Cushion PRO는 SPF50+ PA+++ 쿠션 컴팩트 타입의 자외선 차단 스킨케어 제품입니다. 엑소좀, 펩타이드, 나이아신아마이드, 히알루론산이 함유되어 자외선 손상으로부터 피부를 보호하고 수분을 공급하며 더 밝고 건강한 피부를 유지합니다. 모든 피부 타입에 적합합니다.",
     "specification": "12g x 2 쿠션 컴팩트 SPF50+ PA+++ 엑소좀, 펩타이드, 나이아신아마이드 함유"
   },
-  "182": {
+  "171": {
     "description": "CELLEXO Bio-Cellulose Exosome Mask는 식물 유래 엑소좀과 트리플 히알루론산이 함유된 바이오 셀룰로스 마스크입니다. 피부를 깊이 수분 공급하고 진정시키며 피부 탄력과 광채를 개선합니다. 일반 시트 마스크와 달리 더 깊은 침투, 더 나은 수분 공급, 실질적인 피부 복구 효과를 제공합니다.",
     "specification": "30ml x 5마스크/박스 엑소좀 및 트리플 히알루론산 함유 바이오 셀룰로스 마스크"
   },
-  "183": {
+  "172": {
     "description": "CREBEAU Placenta Pearl Essence Mask는 식물성 태반 추출물, 펩타이드, 진주 추출물이 함유된 밝기 개선 및 재생 시트 마스크입니다. 피부를 수분 공급하고 매끄럽게 하며 전반적인 피부 광채와 탄력을 개선합니다.",
     "specification": "25ml x 10마스크 태반 추출물, 펩타이드, 진주 추출물 함유 밝기 개선 마스크"
   },
-  "184": {
+  "173": {
     "description": "SPIDER TOXIN PROGRAM은 주름, 피부 결, 탄력 개선을 위한 듀얼 스텝 국소 항노화 프로그램입니다. 독소 유사 스무딩 세럼과 바이오 마이크로니들 기술을 결합하여 성분 전달, 수분 공급, 피부 재생을 향상시킵니다.",
     "specification": "독소 세럼 0.6g/30포우치 마이크로 니들 세럼 0.9g/10포우치 듀얼 스텝 항노화 프로그램"
   },
-  "185": {
+  "174": {
     "description": "Rejuran Healer Calming Lip Balm은 c-PDRN과 시어버터가 함유된 수분 공급 립밤입니다. 건조하고 민감한 입술에 수분을 공급하고 복구하며 매끄럽고 윤기 있는 마무리를 제공합니다.",
     "specification": "3.7g c-PDRN 및 시어버터 함유 수분 공급 립밤"
   },
-  "186": {
+  "175": {
     "description": "Vanhalla BLEMISH Tranexamic Acid 3 Serum은 트라넥삼산 3%가 함유된 비건 세럼입니다. 피부 톤과 결을 개선하고 일상적으로 사용하기에 충분히 순하며 여드름성 피부에 이상적입니다.",
     "specification": "30mL 트라넥삼산 3% 함유 비건 세럼"
   },
-  "187": {
+  "176": {
     "description": "Vanhalla NIACINAMIDE Skin Tone Balance는 15% 나이아신아마이드 비건 부스터입니다. 피부 톤, 결, 피지 균형을 맞추고 가볍고 빠르게 흡수되어 일상적으로 사용하기에 적합합니다.",
     "specification": "30mL 15% 나이아신아마이드 비건 부스터"
   },
-  "188": {
+  "177": {
     "description": "Vanhalla ETINOL 3R SERUM은 순수 레티놀, 바쿠치올, 펩타이드 복합체가 함유된 부드러운 비건 레티놀 세럼입니다. 민감한 피부와 야간 슬로우 에이징 케어 루틴에 이상적입니다.",
     "specification": "30mL 순수 레티놀, 바쿠치올, 펩타이드 복합체 함유 비건 레티놀 세럼"
   },
-  "189": {
+  "178": {
     "description": "VANHALLA Ceramide Moisturizing Essence in Toner는 피부를 깊이 수분 공급하고 피부 장벽을 강화하며 부드럽게 각질을 제거하는 2-in-1 에센스 토너입니다. 세라마이드 NP, 판테놀, 히알루론산, 나이아신아마이드, 비타민 C, 알란토인이 함유되어 있습니다.",
     "specification": "100mL 2-in-1 에센스 토너 세라마이드 NP, 판테놀, HA 복합 함유"
   },
-  "190": {
+  "179": {
     "description": "VANHALLA Ceramide Moisturizing Serum in Cream은 피부 장벽을 깊이 수분 공급하고 영양을 공급하며 강화하는 2-in-1 세럼-크림입니다. 세라마이드 NP, 판테놀, 히알루론산 복합체, 글리세린, 토코페롤(비타민 E), 알란토인이 함유되어 있습니다.",
     "specification": "50mL 2-in-1 세럼-크림 세라마이드 NP, 판테놀, HA 복합 함유"
   },
-  "191": {
+  "180": {
     "description": "Vanhalla CICA CALM MIST TONER는 강화된 병풀 추출물(6%)이 함유된 비건 미스트 토너입니다. 민감한 피부를 진정시키고 수분을 공급합니다. 향료 없음, 착색료 없음, 부드러운 각질 제거 기능.",
     "specification": "250mL 병풀 추출물(6%) 함유 비건 미스트 토너"
   },
-  "192": {
+  "181": {
     "description": "SOONSU AQUA CREAM은 콜라겐 생성을 위해 미세 혈관과 섬유아세포를 활성화하는 조직 재생 크림입니다. 세라마이드가 피부 장벽을 형성하며 빠른 흡수로 오일과 수분 균형을 개선합니다. 특히 MTS, 레이저 등 시술 후 스킨케어에 효과적입니다.",
     "specification": "50mL 피부 조직 재생 및 보습 크림"
   },
-  "193": {
+  "182": {
     "description": "스킨 마커 펜 (화이트)는 시술 또는 타투 시 니들 위치를 표시하는 데 효과적입니다. 피부에 선명하게 표시되며 안전하게 사용할 수 있습니다."
   },
-  "194": {
+  "183": {
     "description": "HIPTOK Hybridgel Butt Mask는 엉덩이 피부를 위한 전문 하이브리드 젤 마스크입니다. 피부 탄력을 강화하고 영양을 공급하며 매끄럽고 건강한 피부를 만들어줍니다."
   },
-  "195": {
+  "184": {
     "description": "OPACIOUS COLLAGEN MASK는 35g의 콜라겐이 풍부한 에센스가 함유된 고효능 수면 마스크입니다. 하룻밤 사이에 피부에 스며들어 앰플과 같은 강력한 효과를 단 한 번의 사용으로 제공합니다.",
     "specification": "35g 콜라겐 에센스 함유 수면 마스크"
   },
-  "196": {
+  "185": {
     "description": "INVU REPARATIVE BB는 자연스러운 커버리지와 스킨케어 효과를 결합한 리퍼레이티브 BB 크림입니다. CICA 복합체, 나이아신아마이드, 아데노신, 히알루론산, 3가지 타입의 콜라겐이 함유되어 피부를 진정시키고 장벽을 지원하며 자국을 개선하고 수분과 탄력을 유지합니다. SPF50+ PA++++의 밝고 균일한 톤업 커버리지를 제공합니다.",
     "specification": "30mL SPF50+ PA++++ 리퍼레이티브 BB 크림"
   },
-  "197": {
+  "186": {
     "description": "REPIDA BODY TONE-UP RADIANCE SERUM은 즉각적인 광채와 스킨케어 효과를 결합한 바디 톤업 세럼입니다. EGF와 PDRN으로 피부를 탄탄하게 하고 나이아신아마이드, 히알루론산, 아데노신, 발효 추출물로 칙칙한 바디 피부를 밝히고 탄력을 개선합니다. 자외선 차단 효과도 제공합니다.",
     "specification": "200mL 튜브 EGF, PDRN, 나이아신아마이드 함유 바디 톤업 세럼"
   },
-  "198": {
+  "187": {
     "description": "REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM은 민감하고 여드름성이며 탈수된 피부를 위한 진정 부스터 크림입니다. 천연 아줄렌(1,000ppm), 9가지 히알루론산, 9가지 콜라겐, 8가지 펩타이드, 나이아신아마이드가 함유되어 수분을 공급하고 밝은 피부를 지원하며 탄력을 개선합니다.",
     "specification": "50mL 아줄렌(1,000ppm), 9가지 HA 및 콜라겐 함유 진정 부스터 크림"
   },
-  "199": {
+  "188": {
     "description": "G2 OIL LIFTING PACK은 즉각적인 리프팅과 깊은 수분 공급 효과를 제공하는 올인원 리프팅 마스크 크림입니다. G2 발효 복합체(마늘+생강), 펩타이드, 콜라겐, 세라마이드, 멀티 히알루론산이 함유되어 피부 탄력, 탄탄함, 피부 재생을 지원합니다.",
     "specification": "50mL 올인원 리프팅 마스크 크림"
   },
-  "200": {
+  "189": {
     "description": "WHEAT GERM AMPOULE은 민감하고 자극받기 쉬우며 여드름성 피부를 위한 가볍고 진정 효과가 있는 앰플입니다. 특허받은 밀 배아 추출물, 수분 공급 성분, 식물 추출물을 함유하여 발적을 진정시키고 피부 장벽을 강화하며 수분을 개선합니다.",
     "specification": "50g 민감하고 자극받기 쉬운 피부용 진정 앰플"
   },
-  "201": {
+  "190": {
     "description": "EU.MEI SUN ESSENCE는 민감한 피부를 위한 저자극 수분 선 에센스(SPF50+ PA++++)입니다. 75% 수분 에센스와 밀 배아 유래 성분으로 자외선으로 인한 자극을 진정시키고 피부 장벽을 강화하며 화이트닝이나 끈적임 없이 가벼운 수분을 제공합니다.",
     "specification": "50g 저자극 수분 선 에센스 SPF50+ PA++++ 민감한 피부용"
   },
-  "202": {
+  "191": {
     "description": "EU.MEI YOUTH FIRMING EYE CREAM은 눈가 주름, 부기, 다크서클, 건조함을 개선하도록 설계된 향료 없는 눈가 크림입니다. 고분자 및 저분자 히알루론산, 글리신 사포닌, 밀 배아 유래 성분을 함유하여 깊은 수분을 공급하고 탄력을 지원하며 눈가를 더 매끄럽고 탄탄하게 만들어줍니다.",
     "specification": "30g 향료 없는 눈가 탄력 크림 HA 복합체 및 글리신 사포닌 함유"
   },
-  "203": {
+  "192": {
     "description": "WHEAT GERM COLLAGEN SKIN CARE SET은 가수분해 콜라겐과 밀 배아 추출물을 함유한 수분 및 탄력 케어 세트입니다. 토너 120mL, 로션 120mL, 크림 50g로 구성되어 있습니다. 수분, 피부 장벽, 부드러움을 개선하며 민감한 피부에 적합한 빠른 흡수 포뮬라를 사용합니다."
   },
-  "204": {
+  "193": {
     "description": "KLARGEN LactoBath는 인티마이트 위생을 유지하고 자연스러운 pH 균형을 지원하는 부드러운 여성 청결제입니다. 젖산, 병풀 추출물, 유산균, 비타민 C가 함유되어 있으며 인티마이트 부위를 청결하게 유지하고 자극과 냄새를 줄여줍니다.",
     "specification": "300mL 젖산, 병풀 추출물 함유 부드러운 여성 청결제"
   },
-  "205": {
+  "194": {
     "description": "KLARGEN soln.은 언제 어디서나 편리하게 사용할 수 있는 휴대용 여성 청결제입니다. 젖산, 유산균 발효 추출물, 병풀 추출물, 비타민 C, 식물 추출물이 함유되어 인티마이트 부위를 청결하게 유지하고 pH 균형을 유지하며 자극과 냄새를 줄여줍니다.",
     "specification": "50mL 젖산, 유산균 발효 추출물 함유 휴대용 여성 청결제"
   },
-  "206": {
+  "195": {
     "description": "ASCE+ IRLV는 인티마이트 부위 재생, 수분 공급, 조직 복구를 지원하는 엑소좀 기반 포뮬라입니다. 질 건조증 개선, 윤활 향상, 조직 탄력 증진, 인티마이트 부위 피부 결 및 톤 개선에 도움을 줍니다.",
     "specification": "20mg x 1vial + 희석액 2.5mL x 1vial (박스당) 엑소좀 기반 인티마이트 부위 재생 포뮬라"
   },
-  "207": {
+  "196": {
     "description": "P198 RECORE INNER GEL(ExoNature)은 엑소좀, 젖산, 히알루론산이 함유된 인티마이트 케어 젤입니다. 인삼 엑소좀(PSC1994-EXPG™), 젖산, HA, 펩타이드, 인삼 추출물로 구성되어 pH 균형을 유지하고 수분을 개선하며 건조함, 냄새, 불편함을 줄이고 탄력과 인티마이트 피부 건강을 지원합니다."
   },
-  "209": {
+  "198": {
     "description": "VELASH SHGF11은 두피 케어 및 모발 성장 지원을 위한 11가지 세포 성장인자가 함유된 두피 앰플입니다. 두피를 청결하게 하고 모근을 강화하며 건조함을 줄이고 건강한 모발 성장을 지원합니다.",
     "specification": "10mL x 5vials + 진정 보습제 11가지 세포 성장인자 함유 두피 앰플"
   },
-  "210": {
+  "199": {
     "description": "CAMELLEX Camellia Exo No.5는 엑소좀, PDRN, 콜라겐, 펩타이드가 함유된 듀얼 앰플 스킨 부스터입니다. 식물 유래 엑소좀, PDRN, 콜라겐, 펩타이드, 식물 추출물로 수분, 탄력, 재생, 잔주름, 피부 광채를 개선합니다.",
     "specification": "엑소좀 파우더 100mg x 3vials + 용매 앰플(PDRN+콜라겐+펩타이드) 6mL x 3vials 듀얼 앰플 스킨 부스터"
   },
-  "211": {
+  "200": {
     "description": "LXC LACTO EXO COLLA는 유산균 유래 엑소좀, PDRN, 콜라겐이 함유된 재생 및 영양 공급 스킨 부스터입니다. 피부 복구, 수분 공급, 조직 재생, 탄력을 지원합니다.",
     "specification": "엑소좀 파우더 100mg x 5vials + PDRN + 펩타이드 6mL x 5vials 유산균 유래 엑소좀 스킨 부스터"
   },
-  "212": {
+  "201": {
     "description": "RXC RED EXO COLLA는 식물 엑소좀, PDRN, 콜라겐, 펩타이드가 함유된 재생 스킨 부스터입니다. 인삼, 병풀, 동백나무, 당근 엑소좀, PDRN, 콜라겐, 펩타이드, 글루타치온, 알부틴, 트라넥삼산, 비타민 C를 함유하여 피부 재생, 탄력, 수분, 밝기, 피부 톤을 개선합니다.",
     "specification": "엑소좀 파우더 100mg x 5vials + PDRN + 펩타이드 6mL x 5vials 재생 스킨 부스터"
   },
-  "213": {
+  "202": {
     "description": "SELASTIN TOX GF11은 성장인자, 펩타이드, 항산화 비타민이 함유된 항주름 및 밝기 개선 스킨 부스터입니다. 신-아케, 펩타이드, EGF, FGF, IGF, 글루타치온, 비타민 C, 알부틴, 아데노신이 함유되어 주름을 줄이고 피부 탄력을 개선하며 피부를 밝혀줍니다.",
     "specification": "5mL x 5vials 성장인자 및 펩타이드 함유 항주름 밝기 개선 스킨 부스터"
   },
-  "214": {
+  "203": {
     "description": "SELASTIN EXO PLUS는 PDRN, 콜라겐, 펩타이드가 함유된 엑소좀 기반 스킨 부스터입니다. 마데카소사이드, 아시아티코사이드, 피토스테롤이 함유되어 피부 복구, 탄력 개선, 염증 진정, 노화 징후 감소를 지원합니다.",
     "specification": "엑소좀 파우더 100mg x 5vials + PDRN + 콜라겐 + 펩타이드 5mL x 5vials 엑소좀 기반 스킨 부스터"
   },
-  "215": {
+  "204": {
     "description": "CURENEX는 PDRN, 펩타이드, 히알루론산, 글루타치온을 독자적인 방식으로 결합한 프리미엄 피부 재생 스킨 부스터입니다. 연어 유래 PDRN이 성장인자 생성을 촉진하고 피부 재생 및 콜라겐 합성을 지원합니다.",
     "specification": "360mg/vial 폴리-L-락트산 콜라겐 바이오스티뮬레이터"
   },
-  "216": {
+  "205": {
     "description": "CURENEX는 PDRN, 펩타이드, 히알루론산, 글루타치온을 독자적인 방식으로 결합한 프리미엄 피부 재생 스킨 부스터입니다. 피부 재생, 탄력 강화, 수분 공급에 탁월한 효과를 제공합니다.",
     "specification": "5mL x 5vials 바이오 리바이탈라이징 연어 유래 PDRN 세포 복구 자극"
   },
-  "217": {
+  "206": {
     "description": "CURENEX DAILY CARE SKINBOOSTER SERUM은 피부 세포 영양 공급을 위해 개발된 스킨케어 세럼입니다. 주요 성분인 연어 DNA가 미세 혈관과 섬유아세포를 활성화하여 콜라겐 생성을 돕습니다. 빠른 흡수로 피부 오일과 수분 균형을 개선하여 매끄럽고 실크 같은 피부를 만들어줍니다."
   },
-  "218": {
+  "207": {
     "description": "전문 마취 크림으로, 피부 시술, 주사, 레이저, 마이크로니들 등 미용 시술 시 통증을 최소화합니다. 안전하고 효과적인 국소 마취 효과를 제공합니다."
   },
-  "219": {
+  "208": {
     "description": "CURENEX HYDRATING CLEANSER는 식물 추출물이 함유된 깊고 부드러운 세정 클렌저입니다. 피부를 깨끗하고 진정되며 촉촉하게 유지합니다. 민감한 피부를 포함한 모든 피부 타입에 적합합니다."
   },
-  "220": {
+  "209": {
     "description": "CURENEX LIPO는 얼굴 및 신체의 지방 분해를 위한 PPC 지방 분해 칵테일입니다.",
     "specification": "10mL x 5vials PPC 지방 분해 칵테일"
   },
-  "221": {
+  "210": {
     "description": "CURENEX는 PDRN, 펩타이드, 히알루론산, 글루타치온을 독자적인 방식으로 결합한 프리미엄 피부 재생 스킨 부스터입니다. 연어 유래 PDRN이 성장인자 생성을 촉진하고 피부 재생을 지원합니다."
   },
-  "222": {
+  "211": {
     "description": "CURENEX EXO BRIGHTENING CREAM은 엑소좀, PDRN, 비타민, 펩타이드가 함유된 가볍고 일상적인 밝기 개선 크림입니다. 피부 광채를 높이고 깊이 수분을 공급하며 피부 톤을 개선합니다. 끈적임 없이 매끄럽고 빛나며 상쾌한 피부를 만들어줍니다.",
     "specification": "50mL 엑소좀, PDRN, 비타민, 펩타이드 함유 밝기 개선 크림"
   },
-  "223": {
+  "212": {
     "description": "CURENEX는 PDRN, 펩타이드, 히알루론산, 글루타치온을 독자적인 방식으로 결합한 프리미엄 피부 재생 스킨 부스터입니다. 눈가 피부 재생과 눈물고랑 개선에 특화된 제품입니다.",
     "specification": "2mL x 1syr PN 기반 Lidocaine 함유 눈가 주사 제품"
   },
-  "224": {
-    "description": "CURENEX는 PDRN, 펩타이드, 히알루론산, 글루타치온을 독자적인 방식으로 결합한 프리미엄 피부 재생 스킨 부스터입니다. 콜라겐 생성 및 피부 볼륨 회복에 특화된 제품입니다.",
-    "specification": "360mg/vial 폴리-L-락트산 콜라겐 바이오스티뮬레이터"
-  },
-  "225": {
+  "213": {
     "description": "CURENEX SNOW PEEL은 고압 스피큘 필링 시스템으로, 혁신적인 필링 기술을 사용하여 각질을 제거하고 피부를 재생합니다. C-TOX 파우더(정제 가수분해 스폰지)와 연어 DNA, 글루타치온, 글루코노락톤이 함유된 스노우 필 액티베이터로 구성됩니다.",
     "specification": "4vials x 1g 스노우필 C-TOX 파우더 + 30mL 스노우필 액티베이터 CURENEX 스노우 필 시스템"
   },
-  "226": {
+  "214": {
     "description": "CURENEX SHEER SUNSCREEN은 PDRN, 펩타이드, 글루타치온이 함유된 SPF50+ PA+++ 선스크린입니다. 자외선으로부터 피부를 보호하면서 피부를 밝히고 재생합니다."
   },
-  "227": {
+  "215": {
     "description": "DERMAGEN Egensia Cream은 병풀, EGF, 연어 알 추출물, 구리 트라이펩타이드-1, 세라마이드, 시어버터가 함유된 고급 피부 복구 크림입니다. 레이저 시술 후 피부를 진정하고 복구하며 높은 농도의 병풀과 EGF가 피부 장벽을 강화하고 깊은 수분을 장기간 유지합니다.",
     "specification": "50g 튜브 병풀, EGF, 연어 알 추출물, 구리 트라이펩타이드 함유"
   },
-  "228": {
+  "216": {
     "description": "Dr. PICOS EGENCICA CREAM은 민감하고 시술받은 피부를 진정시키기 위한 사후 피부 케어 크림입니다. 피부 수분 공급, 장벽 회복, 미용 시술 후 전반적인 피부 편안함을 지원합니다.",
     "specification": "60g 민감하고 시술받은 피부 진정 크림"
   },
-  "229": {
+  "217": {
     "description": "Dr. Picos RMV Repair Cream은 피부 장벽을 강화하고 재생을 지원하는 풍부한 복구 크림입니다. 수분 보유를 개선하고 자극받은 피부를 진정시키며 회복 중 건강한 피부를 촉진합니다.",
     "specification": "200g 피부 장벽 강화 및 재생 지원 복구 크림"
   },
-  "230": {
+  "218": {
     "description": "Dr. Picos Ureanol Cream은 매우 건조하고 거칠며 두꺼워진 피부 부위를 위한 집중 보습 크림입니다. 피부를 부드럽게 하고 매끄럽게 하며 수분과 장벽 보호를 지원합니다. 신체 및 문제 부위에 이상적입니다.",
     "specification": "200g 매우 건조하고 거칠며 두꺼워진 피부를 위한 집중 보습 크림"
   },
-  "231": {
+  "219": {
     "description": "Cindelria Tone-Up Sun Cream은 높은 자외선 차단과 함께 피부 톤을 밝혀주는 다기능 톤업 선크림입니다. SPF50+ PA++++로 자연스러운 핑크빛 광채를 더해 잔주름을 매끄럽게 하고 신선하고 빛나는 피부를 연출합니다.",
     "specification": "40mL 다기능 톤업 선크림 SPF50+ PA++++"
   },
-  "232": {
+  "220": {
     "description": "DERMAGEN Soothing Mask는 레이저 시술 후 즉각적인 안정감을 주는 진정 마스크입니다. 가수분해 콜라겐, 알란토인, 판테놀이 함유된 진정 마스크로 피부 회복을 가속하면서 피부를 수분 공급하고 상쾌하게 만들어줍니다.",
     "specification": "23g/팩 가수분해 콜라겐, 알란토인, 판테놀 함유 진정 마스크"
   },
-  "233": {
+  "221": {
     "description": "DERMAGEN Well-spot Hydrocolloid는 뾰루지, 결점, 시술 후 부위를 위한 하이드로콜로이드 패치입니다. 과잉 삼출물을 흡수하고 세균과 먼지로부터 보호하며 최적의 수분을 유지하여 더 빠른 치유를 돕습니다."
   },
-  "234": {
+  "222": {
     "description": "DERMAGEN White Sun Cream은 글루타치온, 병풀 추출물, 나이아신아마이드, 아데노신이 함유된 트리플 기능성 선크림입니다. 피부를 밝히고 주름을 개선하며 시술 후 민감한 피부를 자외선으로부터 보호합니다. SPF50+ PA++++.",
     "specification": "50g 글루타치온, 병풀 추출물, 나이아신아마이드 함유 선크림"
   },
-  "235": {
+  "223": {
     "description": "DERMAGEN Urea Cream은 건조한 피부를 위한 깊은 보습 크림입니다. 우레아(100,000ppm), D-판테놀, 토코페롤, 스쿠알렌이 함유되어 거칠고 건조한 부위에 깊은 수분을 공급합니다. 팔꿈치, 발뒤꿈치, 무릎, 과도하게 씻긴 손에 이상적입니다.",
     "specification": "100g 우레아(100,000ppm), D-판테놀, 토코페롤, 스쿠알렌 함유 깊은 보습 크림"
   },
-  "236": {
+  "224": {
     "description": "DERMAGEN RM Repair Cream은 레이저 시술 후 피부 회복을 지원하는 일상 보습 크림입니다. 영양을 보충하고 수분 장벽을 강화하여 피부를 건강하고 빛나게 유지합니다.",
     "specification": "200g 레이저 시술 후 피부 회복 지원 일상 보습 크림"
   },
-  "237": {
+  "225": {
     "description": "DERMAGEN Scargel은 흉터를 보호하고 솟아오른 흉터를 납작하게 하는 투명한 접착 젤 드레싱입니다. 수술 흉터나 외상 흉터의 외관을 개선합니다.",
     "specification": "15g 투명 접착 젤 드레싱 흉터 보호 및 납작하게 만들기"
   },
-  "238": {
+  "226": {
     "description": "DERMAGEN Centellase Ointment은 상처 및 피부 궤양 치료를 위한 의약품 등급 연고입니다.",
     "specification": "50g 상처 및 피부 궤양 치료 연고"
   },
-  "239": {
+  "227": {
     "description": "DERMAGEN Lunatox는 색소침착, 기미, 불균일한 피부 톤을 위한 밝기 개선 및 항노화 크림입니다. 트라넥삼산, 나이아신아마이드, 아데노신, 글루타치온, 히알루론산 나트륨, 티옥트산, 아스코르브산이 함유되어 있습니다.",
     "specification": "50g 색소침착 및 기미 개선 밝기 개선 항노화 크림"
   },
-  "240": {
+  "228": {
     "description": "DERMAGEN Cicarown Cream은 병풀 추출물과 알로에 베라 추출물이 함유된 즉각적인 냉각 및 수분 공급 진정 크림입니다. 시어버터, 세라마이드 복합체, EGF, FGF, 비타민 E, 히알루론산도 함유되어 있습니다.",
     "specification": "50g 병풀 추출물, 알로에 베라 추출물, 시어버터 함유 진정 크림"
   },
-  "241": {
+  "229": {
     "description": "DERMAGEN Cindelria Tone-Up Cream은 SPF50+, PA++++의 톤업 크림으로 칙칙하고 피로한 피부를 보호하고 밝히면서 부드러운 핑크빛 광채를 연출합니다. 병풀, 알로에 베라, 세라마이드, EGF, 비타민 E, 히알루론산이 함유되어 있습니다.",
     "specification": "40mL 병풀, 알로에 베라, 세라마이드 함유 SPF50+ PA++++"
   },
-  "242": {
+  "230": {
     "description": "DERMAGEN Bichaeahn Pore Toning Cream은 타닌 복합체로 민감한 피부의 확대된 모공을 눈에 띄게 수축시키는 크림입니다. 글루타치온과 나이아신아마이드가 항산화, 밝기 개선, 주름 방지 효과를 제공합니다.",
     "specification": "80g 구리 트라이펩타이드-1, 타닌 복합체, 글루타치온, 나이아신아마이드 함유"
   },
-  "243": {
+  "231": {
     "description": "DERMAGEN Cellsia는 레이저 또는 필링 시술 후 민감한 피부를 진정하고 재생하는 시술 후 재생 크림입니다. 제대혈 줄기세포 추출물과 고농도 병풀이 함유되어 피부 복구와 재생을 촉진합니다.",
     "specification": "60g 제대혈 줄기세포 추출물, 병풀, EGF, 연어 알 추출물 함유 재생 크림"
   },
-  "244": {
+  "232": {
     "description": "DERMAGEN Cellsia 500g는 레이저 또는 필링 시술 후 민감한 피부를 진정하고 재생하는 시술 후 재생 크림의 대용량 제품입니다. 위 설명 참조.",
     "specification": "500g 위 설명 참조 대용량 제품"
   },
-  "245": {
+  "233": {
     "description": "DERMAGEN EZ Cera Cream은 고농도 CICA 추출물, 연어 알 추출물, EGF가 함유된 일상 시술 후 회복 크림입니다. 피부 영양 공급과 재생을 지원하는 보습 및 장벽 복구 크림입니다.",
     "specification": "200g 보습 및 장벽 복구 크림 일상 시술 후 회복"
   },
-  "246": {
+  "234": {
     "description": "EXOSIA Skin Booster Part 1은 제대혈 줄기세포 배양액(SC1994-CM™)이 함유된 스킨 부스터입니다. EGF, VEGF, IGF, KGF, GDF11, TIMP2 등 6가지 기능성 피부 성장인자가 풍부하게 함유된 순수 줄기세포 유래 농축액으로 건강하고 활력 있는 피부를 지원합니다.",
     "specification": "10vial x 2mL SC1994-CM™ 제대혈 줄기세포 배양액 6가지 성장인자 함유"
   },
-  "247": {
+  "235": {
     "description": "EXOSIA Skin Booster Part 2는 히알루론산, 8가지 비타민, 20가지 아미노산, 7가지 펩타이드를 포함한 61가지 활성 성분의 강력한 복합체입니다. 엑소좀 전달을 강화하고 피부 흡수를 최적화하여 최대 효과를 발휘합니다."
   },
-  "248": {
+  "236": {
     "description": "GTM EXOMELA-EXO Signal 1000은 피부 재생과 밝기 개선을 동시에 해결하는 프리미엄 엑소좀 스킨 부스터입니다. 동결건조 EXO Signal 1000 파우더와 Mela Vital 솔루션을 결합하여 색소침착, 칙칙함, 탄력 저하를 타겟으로 합니다. PDRN, 트라넥삼산, 글루타치온, 펩타이드, 아미노산, HA가 함유되어 있습니다.",
     "specification": "180mg 파우더 - Mela Vital 솔루션 5mL (5세트/박스) 프리미엄 엑소좀 스킨 부스터"
   },
-  "249": {
+  "237": {
     "description": "GTM PDRN MASK는 얼굴 및 목을 위한 PDRN(DNA) 3.5% 함유 마스크입니다.",
     "specification": "35mL x 10ea PDRN(DNA) 3.5% 함유 마스크"
   },
-  "250": {
+  "238": {
     "description": "GTM GOLD CELL PLUS는 HA 5%와 PDRN 8%가 함유된 고급 주사형 스킨 부스터입니다. 8% PDRN(연어 DNA 추출물)의 강력한 포뮬라로 콜라겐 생성을 자극하고 흉터를 줄이며 탄력을 개선합니다. 히알루론산과 항산화 성분이 함유되어 강렬한 수분과 밝기 개선 효과를 제공합니다.",
     "specification": "3.3mL x 10vials 바이오 리바이탈라이징 HA 5% 및 PDRN 8% 함유 고급 스킨 부스터"
   },
-  "251": {
+  "239": {
     "description": "GTM GOLD CELL THE PREMIUM은 바이오 리바이탈라이제이션 및 피부 재생을 위한 주사형 스킨 부스터입니다. 연어 DNA에서 추출한 PDRN이 콜라겐 합성을 자극하고 조직 복구를 촉진하며 상처와 흉터 치유에 효과적이고 깊은 수분을 보장합니다. 글루타치온이 색소침착 관리, 피부 톤 균일화, 여드름 및 홍반 개선에 효과적입니다.",
     "specification": "5mL x 10vials 바이오 리바이탈라이제이션 및 피부 재생 주사형 스킨 부스터"
   },
-  "252": {
+  "240": {
     "description": "MELACELL THE PREMIUM은 기미, 다크스팟, 전반적인 칙칙함을 타겟으로 하는 전문적인 집중 색소침착 및 밝기 개선 솔루션입니다. 피부를 밝히면서 동시에 피부를 재생합니다.",
     "specification": "5mL x 10vials 집중 색소침착 및 밝기 개선 솔루션"
   },
-  "253": {
+  "241": {
     "description": "MELACELL+는 트라넥삼산 3%와 펩타이드 복합체가 함유된 고급 밝기 개선 스킨 부스터입니다. 나이아신아마이드, PDRN, 글루타치온, 아미노산, HA 성분이 함유되어 멜라닌 생성을 조절하고 피부 명도를 개선하며 탄력과 피부 활력을 향상시킵니다.",
     "specification": "3.5mL x 10vials 트라넥삼산 3% + 펩타이드 복합체 집중 색소침착 솔루션"
   },
-  "254": {
+  "242": {
     "description": "GTM Balance Cleansing Gel은 불순물과 과잉 피지를 제거하면서 피부 수분과 pH 균형을 유지하는 부드러운 폼 클렌저입니다. 식물 추출물로 진정 및 상쾌한 효과를 제공합니다.",
     "specification": "150ml 불순물 및 과잉 피지 제거 부드러운 폼 클렌저"
   },
-  "255": {
+  "243": {
     "description": "PDRENZA Serum은 수분, 밝기, 주름 케어를 위한 집중 재생 세럼입니다. PDRN, NMN, 펄 토마토, 5가지 세라마이드, 7가지 히알루론산, 25가지 펩타이드, 캐비어 추출물, 나이아신아마이드, 아데노신이 함유되어 있습니다.",
     "specification": "50mL 수분, 밝기 및 주름 케어 집중 재생 세럼"
   },
-  "256": {
+  "244": {
     "description": "PDRENZA Cream은 더 밝고 탄탄하고 매끄러운 피부를 위한 보습 항노화 크림입니다. PDRN, NMN, 펄 토마토, 나이아신아마이드, 아데노신이 함유되어 있습니다.",
     "specification": "50mL 보습 항노화 크림 더 밝고 탄탄한 피부"
   },
-  "257": {
+  "245": {
     "description": "GTM MELA DUAL Day & Night Cream은 PDRN, NMN, 펄 토마토, 레티놀이 함유된 듀얼 챔버 밝기 개선 및 재생 크림입니다. 낮 포뮬라는 칙칙함과 불균일한 톤을 개선하고 밤 포뮬라는 탄력, 매끄러운 결, 야간 영양을 지원합니다.",
     "specification": "75ml PDRN, NMN, 펄 토마토, 레티놀 함유 듀얼 챔버 밝기 개선 크림"
   },
-  "258": {
+  "246": {
     "description": "VITA K REPAIR CREAM은 레이저 등 시술 후 민감해진 피부와 외부 자극에 의해 손상된 피부를 케어하는 다기능 크림입니다. 양배추, 시금치, 브로콜리, 쑥잎에서 추출한 천연 비타민 K와 메나디온이 결합되어 피부를 부드럽게 진정하고 활력을 더합니다.",
     "specification": "30mL 메나디온 및 천연 비타민 K 함유 시술 후 케어 크림"
   },
-  "259": {
+  "247": {
     "description": "COLLAGEN SERUM은 가수분해 해양 콜라겐을 사용하여 피부 수분, 탄력, 탄탄함을 개선하는 세럼입니다. 끈적임 없는 보습 포뮬라로 민감하고 건조한 피부에 적합합니다. 잔주름 감소와 더 빛나고 젊은 피부를 만들어줍니다.",
     "specification": "50mL 가수분해 해양 콜라겐 함유 피부 수분 및 탄력 세럼"
   },
-  "260": {
+  "248": {
     "description": "T-TOX PEEL은 심해 바이오 실리카를 기반으로 한 전문 스피큘 필링 시스템입니다. 피부에 침투하여 각질을 제거하고 재생을 자극하며 전반적인 피부 결을 개선합니다. 칙칙하고 거친 피부, 불균일한 결과 확대된 모공, 여드름성 피부의 밝기 개선에 적합합니다.",
     "specification": "T-TOX 파우더 1g x 6vials + T-TOX 솔루션 10ml x 6vials 믹싱 캡 포함 전문가용"
   },
-  "261": {
+  "249": {
     "description": "T-TOX PEEL mini는 T-TOX PEEL의 소용량 버전입니다. T-TOX 파우더 1g x 2vials, T-TOX 솔루션 10ml x 2vials, 믹싱 캡 포함. 동일한 스피큘 필링 시스템입니다.",
     "specification": "T-TOX 파우더 1g x 2vials + T-TOX 솔루션 10ml x 2vials 믹싱 캡 포함 전문가용"
   },
-  "262": {
+  "250": {
     "description": "PEPTICULE ULTIMATE REJUVENATION CREAM은 펩타이드 복합체와 골드 캡슐이 함유된 프리미엄 스파 등급 영양 크림입니다. 피부 탄력을 강화하고 질감을 개선합니다. 탄력 및 촉촉함 저하, 칙칙한 피부, 가벼운 주름, 시술 후 피부(장벽이 건강할 때만)에 적합합니다.",
     "specification": "50mL/jar 피부 재생 및 질감 개선 프리미엄 영양 크림"
   },
-  "263": {
+  "251": {
     "description": "PEPTICULE ULTIMATE REJUVENATION SERUM은 레티놀 유도체, 하이드로젤 스피큘, Phyto PDRN을 결합한 고급 펩타이드 기반 앰플입니다. 피부 탄력을 개선하고 질감을 다듬으며 전반적인 피부 광채를 향상시킵니다.",
     "specification": "10mL x 3앰플/박스 레티놀 유도체, 하이드로젤 스피큘, Phyto PDRN 함유 고급 펩타이드 앰플"
   },
-  "264": {
+  "252": {
     "description": "GTM Active Protect Sun Serum은 SPF50+ PA++++의 광범위 자외선 차단 기능을 갖춘 가벼운 선 세럼입니다. UVA/UVB 손상으로부터 피부를 보호하면서 수분 공급, 진정 케어, 더 균일한 피부색을 지원합니다.",
     "specification": "50ml SPF50+ PA++++ 광범위 자외선 차단 선 세럼"
   },
-  "265": {
+  "253": {
     "description": "ALOE SOOTHING GEL은 알로에 베라 잎 추출물이 함유된 스킨케어 제품입니다. 건조하고 민감한 피부에 수분을 공급하고 진정시키며 피부 건강을 유지합니다. 세안 후 건조함을 방지하고 피부를 촉촉하게 유지합니다.",
     "specification": "500mL 알로에 베라 잎 추출물 함유 수분 및 진정 젤"
   },
-  "266": {
+  "254": {
     "description": "ROSE HERB TONER는 로사 센티폴리아 추출물(프로방스 장미 워터)이 함유된 스킨케어 제품입니다. 피부에 수분을 공급하고 보호막을 형성하며 매끄럽고 끈적임 없이 유지합니다. 거친 피부 결을 매끄럽게 하고 깊이 수분을 공급하며 모공을 조여줍니다.",
     "specification": "500mL 로사 센티폴리아 추출물 함유 수분 공급 및 보호막 형성 토너"
   },
-  "267": {
+  "255": {
     "description": "BEAUTY MONSTER BLACK은 다양한 피부 문제를 제어된 마이크로 에너지 기술로 치료하는 고급 플라즈마 뷰티 디바이스입니다. 피부 결 개선, 재생 지원, 정밀 타겟 치료에 도움을 줍니다. 쥐젖, 비립종, 사마귀, 여드름, 흉터, 색소침착, 눈꺼풀 리프팅 등에 사용합니다. 전문가 전용 제품."
   },
-  "268": {
+  "256": {
     "description": "O2TODERM LED PLUS는 산소 & 음이온 테라피와 광역학 치료(PDT) 기능을 결합한 LED 피부 케어 장비입니다. 적색, 황색, 청색, 녹색, IR LED 광원을 사용합니다."
   },
-  "269": {
+  "257": {
     "description": "ULDM Ultra+ Dynamic Massage는 고밀도 집속 초음파를 사용한 4채널 초음파 피부 케어 장비입니다. 리프팅, 탄력 강화, 콜라겐 재생, 피부 진정 효과를 제공합니다."
   },
-  "270": {
+  "258": {
     "description": "Derm LED Plus와 ULDM 세트 제품입니다."
   },
-  "271": {
+  "259": {
     "description": "OMEGA PDT LED는 얼굴 및 신체를 위한 광역학 치료 장비입니다. 4가지 컬러 파장과 IR 램프의 시너지 효과로 전반적인 피부 케어 효과를 향상시킵니다."
   },
-  "272": {
+  "260": {
     "description": "DIASONO.310은 아쿠아 필링, 전기천공(E/P), 3/10MHz 멀티 주파수 변조 초음파를 결합한 복합 피부 케어 장비입니다."
   },
-  "273": {
+  "261": {
     "description": "HIFFECT PLUS RMF는 분할 RF, 다중극 RF 및 냉각 기술을 결합한 피부 케어 장비입니다. 피부 탄력 증가, 잔주름 개선, 모공/흉터 케어, 피부 톤 개선 효과를 제공합니다."
   },
-  "274": {
+  "262": {
     "description": "WILLCAM PLUS는 스마트 디자인의 피부/두피 진단 시스템입니다. 편리한 사용과 다양한 피부 문제를 정확하게 분석합니다."
   },
-  "275": {
+  "263": {
     "description": "DN64 NEEDLE은 SKIN-MTS 디바이스용 64핀 롤러형 니들입니다(0.25mm 또는 0.5mm). 앰플 바이알에 직접 결합 가능하며 CE 인증을 받았습니다."
   },
-  "276": {
+  "264": {
     "description": "DN16 NEEDLE은 SCULP-MTS 디바이스용 16핀 스탬프형 니들입니다. 앰플 바이알에 직접 결합 가능하며 CE 인증을 받았습니다."
   },
-  "277": {
+  "265": {
     "description": "I COOL-PLUS 2ND는 6가지 치료를 제공하는 통합 피부 케어 장비입니다. 피부 스크러버, 이온토포레시스, 전기천공, 초음파, 냉각/가열 기능을 갖추고 있습니다."
   },
-  "278": {
+  "266": {
     "description": "ULTRA SKIN MASTER는 HIFU, 피부 스크러버, 전기천공, 자동 MTS, 냉각/가열 기능을 결합한 멀티케어 복합 뷰티 장비입니다."
   },
-  "279": {
+  "267": {
     "description": "HYSONIC THREE WAY는 BLT, SONO, HIFU, RF, 냉각 및 가열 기능을 갖춘 멀티케어 프리미엄 미용 장비입니다."
   },
-  "280": {
+  "268": {
     "description": "HERA POINT HIFU는 고강도 집속 초음파 장비로 피부 리프팅 효과와 피부 내 콜라겐 형성을 촉진하여 잔주름을 효과적으로 관리합니다."
   },
-  "281": {
+  "269": {
     "description": "ACCUTONING은 여드름 피부를 위한 1450nm 레이저 장비입니다. 피지선에 직접 열 에너지를 전달하여 다른 조직 손상 없이 여드름성 염증을 치료합니다."
   },
-  "282": {
+  "270": {
     "description": "HERA VACUUM RF는 RF 진공으로 피부 리프팅과 체형 관리를 위한 고주파 자극 장비입니다. 3가지 핸드피스로 얼굴 및 신체 부위를 집중 케어하며 셀룰라이트 연화, 지방 세포 분리, 근육 이완 효과를 제공합니다."
   },
-  "283": {
+  "271": {
     "description": "ULTRATONING은 1MHz/3MHz, 3MHz/10MHz, 4MHz(RF)를 사용한 초음파 및 RF 뷰티 장비입니다. 피부 밝기 개선, 콜라겐 생성 촉진, 셀룰라이트 분해 효과를 제공합니다."
   },
-  "284": {
+  "272": {
     "description": "AUTO-DN MTS PEN은 마이크로 니들로 피부를 천공하고 자극하는 자동 MTS 장비입니다. 니들 깊이 조절(0.1mm~2.0mm) 및 단계별 속도 조절이 가능합니다."
   },
-  "285": {
+  "273": {
     "description": "AUTO-DN SMART는 무선 자동 MTS 디바이스입니다. 니들 깊이(0.1mm~3.0mm) 및 6단계 속도 조절이 가능합니다."
   },
-  "286": {
+  "274": {
     "description": "12 PIN & 42 PIN NEEDLE은 AUTO MTS PEN용 니들입니다. 0~2.0mm/0.3G 사양입니다.",
     "specification": "20pcs/box AUTO MTS PEN용 12핀 및 42핀 니들 0~2.0mm/0.3G"
   },
-  "287": {
+  "275": {
     "description": "NANO NEEDLE은 AUTO MTS PEN용 나노 니들입니다. 5X5(100포인트), 8X8(188포인트) 옵션이 있습니다."
   },
-  "288": {
+  "276": {
     "description": "JOLLA CLEANSING LOTION은 세안 후 즉각적인 피부 진정 효과를 제공하는 클렌징 로션입니다. 우수한 보습력으로 피부 건조함을 방지하고 자연 보호막을 형성하여 손상된 피부를 보호합니다.",
     "specification": "1000mL 세안 후 즉각적인 진정 및 보습 클렌징 로션"
   },
-  "289": {
+  "277": {
     "description": "JOLLA GREEN TEA MODELING MASK는 피부 건조 문제를 해결하는 고보습 마스크입니다. 알긴이 피부에 풍부한 미네랄을 공급하여 신진대사를 활성화합니다.",
     "specification": "1000g 고보습 마스크 피부 건조 문제 해결"
   },
-  "290": {
+  "278": {
     "description": "JOLLA PEPPERMINT MODELING MASK는 페퍼민트 성분으로 민감한 피부에 냉각 및 열 감소 효과를 제공하는 마스크입니다. 알긴이 풍부한 미네랄을 공급하고 신진대사를 활성화합니다.",
     "specification": "1000g 페퍼민트 성분 함유 냉각 및 열 감소 마스크"
   },
-  "291": {
-    "description": "JOLLA HIGH FREQUENCY MASSAGE CREAM은 피부를 깊이 수분 공급하고 영양을 공급하는 마사지 크림입니다. 크림의 수분과 영양이 피부 깊은 곳까지 전달되며 콜라겐을 활성화하여 탄력과 건강을 개선합니다.",
-    "specification": "1000g 깊은 수분 공급 및 영양 공급 마사지 크림"
-  },
-  "292": {
-    "description": "JOLLA PREMIUM OLIVE MASSAGE CREAM은 올리브 오일 성분이 함유된 피부 전용 마사지 크림입니다. 미네랄 오일이 없어 지성 또는 여드름성 피부에도 사용 가능합니다. 피부 친화적인 6가지 펩타이드가 함유되어 피부 깊이 침투합니다."
-  },
-  "293": {
+  "279": {
     "description": "L-카르니틴 지방 분해 칵테일입니다. 통증 없이 지방을 연소하는 효과적인 지방 분해 솔루션입니다.",
     "specification": "8mL x 4vials L-카르니틴 지방 분해 지방 연소 무통 솔루션"
   },
-  "294": {
+  "280": {
     "description": "L-카르니틴 지방 분해 칵테일입니다. 통증 없이 지방을 연소하는 효과적인 지방 분해 솔루션입니다.",
     "specification": "8mL x 1vial L-카르니틴 지방 분해 지방 연소 무통 솔루션"
   },
-  "295": {
+  "281": {
     "description": "BARBIE SLIM은 얼굴 및 신체 지방 감소를 위해 설계된 신제품입니다. 성분에 함유된 데옥시콜산이 신체 선택 부위에 지방 분해 효과를 발휘하며 과잉 지방이 대사되어 체외로 배출됩니다.",
     "specification": "5vials x 10mL 식물 추출물 및 활성 성분 함유 비외과적 지방 분해 솔루션"
   },
-  "296": {
+  "282": {
     "description": "DR.LIPO+는 PPC 지방 분해 지방 연소 칵테일입니다.",
     "specification": "10mL x 10vials PPC 지방 분해 지방 연소 칵테일"
   },
-  "297": {
+  "283": {
     "description": "DR.LIPO+V는 PPC 지방 분해 지방 연소 칵테일입니다.",
     "specification": "5mL x 10vials PPC 지방 분해 지방 연소 칵테일"
   },
-  "298": {
+  "284": {
     "description": "LIPOLAB GMS는 PPC 지방 분해 지방 연소 칵테일입니다.",
     "specification": "10mL x 10vials PPC 지방 분해 지방 연소 칵테일"
   },
-  "299": {
+  "285": {
     "description": "LIPOLAB V LINE은 MEDIHUE PPC 지방 분해 지방 연소 칵테일입니다.",
     "specification": "10mL x 5vials MEDIHUE PPC 지방 분해 지방 연소 칵테일"
   },
-  "300": {
+  "286": {
     "description": "SUPER V-LINE SOL은 GMS PPC 지방 분해 지방 연소 칵테일입니다.",
     "specification": "10mL x 5vials GMS PPC 지방 분해 지방 연소 칵테일"
   },
-  "301": {
+  "287": {
     "description": "YELLOW BOTTLE은 얼굴 및 신체를 위한 지방 분해 지방 용해 주사 제품입니다.",
     "specification": "10mL x 5vials 얼굴 및 신체 지방 분해 지방 용해"
   },
-  "302": {
+  "288": {
     "description": "PINE BOTTLE은 레시틴, 브로멜라인, 리보플라빈이 함유된 고급 지방 분해 솔루션입니다. 지방을 분해하고 피부 탄력을 개선하며 신체 윤곽을 지원합니다. 국소 지방 감소, 이중턱 및 턱선 윤곽, 복부, 허벅지, 팔, 옆구리, 피부 탄력 강화 및 셀룰라이트 방지에 적합합니다.",
     "specification": "10mL/vial 5vials/box 레시틴, 브로멜라인, 리보플라빈 함유 고급 지방 분해 솔루션"
   },
-  "303": {
+  "289": {
     "description": "ULTRA LIGHT는 피하 지방 개선 및 지방 분해에 효과적인 PPC 지방 분해 칵테일입니다. 지방 세포에 빠르게 침투하여 V라인 턱을 만들고 턱과 볼의 지방을 효과적으로 개선합니다. LIGHTFIT 유사 제품입니다.",
     "specification": "2cc x 10ea 피하 지방 및 지방 분해 개선 PPC 지방 분해 칵테일 (LIGHTFIT 유사)"
   },
-  "304": {
+  "290": {
     "description": "F&B는 PPC 지방 분해 지방 연소 칵테일입니다. LIGHTFIT 유사 제품입니다.",
     "specification": "2cc x 10vials PPC 지방 분해 지방 연소 칵테일 (LIGHTFIT 유사)"
   },
-  "305": {
+  "291": {
     "description": "Dr. LIPO PRIME는 PPC 지방 분해 지방 연소 칵테일입니다.",
     "specification": "2mL x 10vials PPC 지방 분해 지방 연소 칵테일"
   },
-  "306": {
+  "292": {
     "description": "KABELLINE은 PPC 지방 분해 지방 연소 칵테일입니다.",
     "specification": "8mL x 5vials PPC 지방 분해 지방 연소 칵테일"
   },
-  "307": {
+  "293": {
     "description": "VNS Lipolytic Solution은 지방 분해를 위한 메조테라피 지방 분해 솔루션입니다.",
     "specification": "5vials x 10mL VNS 메조테라피 지방 분해 솔루션"
   },
-  "308": {
+  "294": {
     "description": "SLIM POINT FACE & BODY는 얼굴 및 신체 지방 분해를 위한 지방 용해 주사 제품입니다.",
     "specification": "3앰플 x 30mL/팩 지방 용해 지방 분해"
   },
-  "309": {
+  "295": {
     "description": "LIPO SHRINKER는 지방 침착 분해 및 장기 지속 효과를 보장하는 지방 분해 솔루션입니다."
   },
-  "310": {
+  "296": {
     "description": "Botulax는 A형 보툴리눔 독소를 함유하여 근육 내 주사 시 근육 기능을 개선합니다. 주름을 원산지에서 효과적으로 제거하여 피부를 놀라울 정도로 매끄럽게 만드는 효과적인 미용 제품입니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "311": {
+  "297": {
     "description": "Botulax 300units는 A형 보툴리눔 독소를 함유하여 근육 내 주사 시 근육 기능을 개선합니다. 주름을 원산지에서 효과적으로 제거하여 피부를 놀라울 정도로 매끄럽게 만드는 효과적인 미용 제품입니다.",
     "specification": "200units 보툴리눔 독소"
   },
-  "312": {
+  "298": {
     "description": "Botulax 300units는 A형 보툴리눔 독소를 함유하여 근육 내 주사 시 근육 기능을 개선합니다. 주름을 원산지에서 효과적으로 제거하여 피부를 놀라울 정도로 매끄럽게 만드는 효과적인 미용 제품입니다.",
     "specification": "300units 보툴리눔 독소"
   },
-  "313": {
+  "299": {
     "description": "주의: 독소 제품은 반품/환불/적립금 대상이 아닙니다. A형 보툴리눔 독소 주사로 근육 이완과 주름 개선 효과를 제공합니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "314": {
+  "300": {
     "description": "주의: 독소 제품은 반품/환불/적립금 대상이 아닙니다. A형 보툴리눔 독소 주사로 근육 이완과 주름 개선 효과를 제공합니다.",
     "specification": "200units 보툴리눔 독소"
   },
-  "315": {
+  "301": {
     "description": "주의: 독소 제품은 반품/환불/적립금 대상이 아닙니다. A형 보툴리눔 독소 주사로 근육 이완과 주름 개선 효과를 제공합니다.",
     "specification": "50units 보툴리눔 독소"
   },
-  "316": {
+  "302": {
     "description": "주의: 독소 제품은 반품/환불/적립금 대상이 아닙니다. A형 보툴리눔 독소 주사로 근육 이완과 주름 개선 효과를 제공합니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "317": {
+  "303": {
     "description": "NABOTA는 대웅제약이 특허 기술을 사용하여 개발한 A형 보툴리눔 독소 치료제입니다. 높은 순도로 제조되었으며 미간 주름 제거에 효과적입니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "318": {
+  "304": {
     "description": "NABOTA는 대웅제약이 특허 기술을 사용하여 개발한 A형 보툴리눔 독소 치료제입니다. 높은 순도로 제조되었으며 미간 주름 제거에 효과적입니다.",
     "specification": "200units 보툴리눔 독소"
   },
-  "319": {
+  "305": {
     "description": "LIZTOX 100 UNITS는 주름 및 잔주름 치료를 위한 보툴리눔 독소 제품입니다. 효과적인 미용 시술로 검증된 안전하고 신뢰할 수 있는 보툴리눔 독소 제품입니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "320": {
+  "306": {
     "description": "LIZTOX는 주름 및 잔주름 치료를 위한 보툴리눔 독소 제품입니다. 효과적인 미용 시술로 검증된 안전하고 신뢰할 수 있는 보툴리눔 독소 제품입니다.",
     "specification": "200units 보툴리눔 독소"
   },
-  "321": {
+  "307": {
     "description": "Hutox 100units는 보툴리눔 독소 치료제입니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "322": {
+  "308": {
     "description": "Hutox 200units는 보툴리눔 독소 치료제입니다.",
     "specification": "200units 보툴리눔 독소"
   },
-  "323": {
+  "309": {
     "specification": "100units 보툴리눔 독소"
   },
-  "324": {
+  "310": {
     "description": "Meditoxin(보툴리눔 A형)은 Medy Tox Korea Limited가 개발하고 2004년 KDA 승인을 받은 보툴리눔 독소 제품입니다. Botulax, Botulift, Sias, Neuronox, Cunox라고도 알려진 이 제품은 Botox보다 우수한 대안으로 인정받고 있습니다.",
     "specification": "200units 보툴리눔 독소"
   },
-  "325": {
+  "311": {
     "specification": "100units 보툴리눔 독소"
   },
-  "326": {
+  "312": {
     "description": "Re N Tox 200units는 보툴리눔 독소 치료제입니다.",
     "specification": "200units 보툴리눔 독소"
   },
-  "328": {
+  "314": {
     "description": "Kaimax 100units는 유럽 국립 연구소가 개발한 오리지널 고순도 보툴리눔 독소 제품입니다. 낮은 면역원성 위험으로 FDA 및 EMA의 cGMP 기준을 준수하여 피부 및 주름 개선과 큰 근육 치료에 안전하고 효과적입니다."
   },
-  "329": {
+  "315": {
     "description": "Kaimax 100units는 유럽 국립 연구소가 개발한 오리지널 고순도 보툴리눔 독소 제품입니다. 낮은 면역원성 위험으로 FDA 및 EMA의 cGMP 기준을 준수하여 피부 및 주름 개선에 안전하고 효과적입니다."
   },
-  "330": {
+  "316": {
     "description": "주요 성분: A형 클로스트리디움 보툴리눔 독소 200units(U), 안정제: 인간 혈청 알부민 0.5mg, 등장화제: 염화나트륨 0.9mg이 함유된 보툴리눔 독소 제품입니다."
   },
-  "331": {
+  "317": {
     "description": "주요 성분: A형 클로스트리디움 보툴리눔 독소 200units(U), 안정제: 인간 혈청 알부민 0.5mg, 등장화제: 염화나트륨 0.9mg이 함유된 보툴리눔 독소 제품입니다."
   },
-  "332": {
+  "318": {
     "description": "Linetox 100U는 주름 및 잔주름 치료를 위한 보툴리눔 독소 제품입니다. Botox라고도 알려진 이 주사 치료제는 근육을 이완시키고 피부 표면을 매끄럽게 만들어줍니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "333": {
+  "319": {
     "description": "Zerotox는 A형 클로스트리디움 보툴리눔 독소를 활성 성분으로 하는 보툴리눔 독소 제품입니다. 동결건조 백색 또는 담황색 분말 형태로 투명한 바이알에 보관됩니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "334": {
+  "320": {
     "description": "Coretox 100units는 고급 A형 보툴리눔 독소로 시간을 초월한 아름다움을 구현하는 치료제입니다. 혁신적인 포뮬라로 주름을 효과적으로 개선합니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "335": {
+  "321": {
     "specification": "100units 보툴리눔 독소"
   },
-  "336": {
+  "322": {
     "specification": "100units 보툴리눔 독소"
   },
-  "337": {
+  "323": {
     "description": "SALINE은 염화나트륨 0.9% 생리식염수입니다. 주사 제품의 희석액으로 사용됩니다.",
     "specification": "20mL/1A 생리식염수 0.9% 염화나트륨"
   },
-  "339": {
+  "325": {
     "description": "REVITALEX INJ.는 피부 손상 복구, 조직 치유 지원, 재생 개선에 효과적인 PDRN 주사 제품입니다. 폴리데옥시리보뉴클레오타이드 나트륨 5.625mg/3mL vial이 함유되어 있습니다.",
     "specification": "3ml x 10vial PDRN 주사 피부 손상 복구 및 조직 치유"
   },
-  "340": {
+  "326": {
     "description": "HiDr inj.는 폴리데옥시리보뉴클레오타이드 나트륨 함유 주사 제품으로 상처 치유 및 조직 복구를 돕습니다. 피부 이식으로 인한 상처 치유 및 조직 재생 촉진에 사용됩니다.",
     "specification": "3mL x 10vials 상처 치유 및 조직 복구"
   },
-  "341": {
+  "327": {
     "description": "PLACENTEX Inj.는 폴리데옥시리보뉴클레오타이드 나트륨 함유 상처 치유 및 조직 복구 주사 제품입니다. 이탈리아 제조 제품으로 피부 이식으로 인한 상처 치유 및 조직 재생에 효과적입니다.",
     "specification": "3mL x 5앰플 상처 치유 및 조직 복구 (이탈리아 제조)"
   },
-  "342": {
-    "description": "Ferex inj.는 철결핍증 교정 및 헤모글로빈 수치 개선을 위한 정맥 주사형 철분 주사제(수산화철 수크로즈 복합체)입니다. 철결핍성 빈혈, 경구 철분을 견디지 못하는 환자, 경구 철분에 불량한 반응, 낮은 헤모글로빈/페리틴 수치에 적응됩니다.",
-    "specification": "5mL 앰플 5앰플/박스 철분 결핍 교정 및 헤모글로빈 개선을 위한 정맥 주사"
-  },
-  "343": {
+  "328": {
     "description": "LIPORASE INJ.는 GMS 히알루로니다제 주사 제품입니다. 필러 용해제로 사용됩니다.",
     "specification": "10vials GMS 히알루로니다제 1박스에 10vials 필러 용해제"
   },
-  "344": {
+  "329": {
     "description": "BM Hylunidase Inj.는 히알루로니다제 1500 I.U./V 주사 제품입니다. 피하 또는 근육 내 주사 시 침투를 개선하고(피하 주입 및 국소 마취 투여) 조직 내 활성 유체의 재흡수를 촉진합니다.",
     "specification": "10vials 주사 지원 및 향상된 전달 침투 개선"
   },
-  "345": {
+  "330": {
     "description": "Belissima CE는 PLLA 기반 콜라겐 자극제로, FDA 및 MFDS 승인을 받은 Olidia CE와 동일한 제품입니다. 안면 볼륨을 회복하고 깊은 주름을 감소시키며 피부 탄력을 개선합니다. 자연스러운 콜라겐 생성을 촉진하여 오래 지속되는 젊은 결과를 제공합니다.",
     "specification": "365mg PLLA Olidia CE와 동일 FDA 및 MFDS 승인 PLLA 콜라겐 자극제"
   },
-  "346": {
+  "331": {
     "description": "ETREBELLE 200MG는 PLA 170mg와 HA 30mg이 복합된 콜라겐 자극제입니다. 폴리락트산(PLA)과 히알루론산 나트륨(HA)의 복합 성분으로 피부 볼륨과 탄력을 개선합니다.",
     "specification": "PLA 170mg + HA 30mg 폴리락트산(PLA) + HA(히알루론산 나트륨)"
   },
-  "347": {
+  "332": {
     "description": "MENUS는 폴리락트산(PLA)과 카르복시메틸셀룰로스(CMC)가 복합된 PLLA/CMC 필러입니다. PLA와 CMC의 시너지 작용으로 안면 재생과 볼륨 회복에 탁월한 효과를 제공합니다.",
     "specification": "200MG 200mg/vial 폴리에틸렌 마이크로입자 PLA 함유"
   },
-  "348": {
+  "333": {
     "description": "MENUS는 폴리락트산(PLA)과 카르복시메틸셀룰로스(CMC)가 복합된 PLLA/CMC 필러입니다. PLA와 CMC의 시너지 작용으로 안면 재생과 볼륨 회복에 탁월한 효과를 제공합니다.",
     "specification": "360MG PLLA(폴리-L-락트산) + CMC(카르복시메틸셀룰로스)"
   },
-  "349": {
+  "334": {
     "description": "Ravello PLLA는 저분자 HA 30mg/mL, 고분자 HA 30mg/mL를 함유한 콜라겐 및 엘라스틴 자극제입니다. 콜라겐 자극(PLLA)과 이중 작용 수분 공급(저분자 및 고분자 HA)으로 제조되었습니다. 즉각적이고 장기적인 피부 개선을 위해 심한 안면 주름 치료에 적합합니다.",
     "specification": "200mg/vial(5mL) 저분자 HA 30mg/mL, 고분자 HA 30mg/mL 콜라겐 자극제"
   },
-  "350": {
+  "335": {
     "description": "PCL POWER BOOSTER는 과학적 방법의 피부 재생 제품입니다. 생체 적합성 지속성 폴리머가 엘라스틴과 콜라겐을 자극하고 지속적인 피부 세포 재생을 촉진합니다."
   },
-  "351": {
+  "336": {
     "description": "POLYBOOST VOLA는 PLA 450mg와 HA 150mg이 복합된 콜라겐 자극제입니다. 폴리-L-락트산과 히알루론산의 이중 작용으로 안면 볼륨과 탄력을 개선합니다.",
     "specification": "PLA 450mg(폴리-L-락트산) + HA 150mg"
   },
-  "352": {
+  "337": {
     "description": "PDLLA RAVENNA는 PDLLA 1000mg와 HA 350mg이 함유된 콜라겐 자극 바디 스킨 부스터입니다. 자연적인 콜라겐 재생을 활성화하여 피부 탄력과 결을 개선하도록 설계되었습니다. 신체 전용 제품으로 안면 사용은 적합하지 않습니다.",
     "specification": "PDLLA 1000mg + HA 350mg 총 함량 1670mg/vial 콜라겐 자극 바디 스킨 부스터"
   },
-  "353": {
+  "338": {
     "description": "Juvelook i는 눈가에 특화된 스킨 부스터로, PLA(폴리-L-락트산)와 히알루론산을 초미세 입자 포뮬라로 결합한 제품입니다. 기존 Juvelook보다 작은 입자로 눈가, 팔자주름, 입 주변 등 섬세한 부위에 안전하게 적용할 수 있습니다.",
     "specification": "50mg/vial 1vial/box PLA/HA 하이브리드 스킨 부스터"
   },
-  "354": {
+  "339": {
     "description": "JUVELOOK Volume은 더 깊은 조직 지지를 위한 PLA/HA 하이브리드 볼륨 필러입니다. 장기 지속 콜라겐 자극과 볼륨 복원을 제공합니다. 볼륨 손실(볼, 관자놀이), 깊은 주름 및 접힘, 안면 윤곽, 피부 탄력 및 리프팅에 적합합니다.",
     "specification": "200mg/vial 1vial/box PLA/HA 하이브리드 볼륨 필러"
   },
-  "355": {
+  "340": {
     "description": "비타민 C 함유 미백 및 항산화 주사 제품입니다. 피부 밝기 개선과 항노화 효과를 제공합니다.",
     "specification": "25mg/5mL, 비타민 C 10g/20mL/10vials 디에이지 디톡스 미백 주사"
   },
-  "356": {
+  "341": {
     "description": "티옥트산 함유 항산화 및 피부 미백 주사 제품입니다. 신진대사를 지원하고 피부 톤을 개선합니다.",
     "specification": "5mL x 10vials 티옥트산 25mg"
   },
-  "357": {
+  "342": {
     "description": "Chioctocin inj.는 티옥트산 25mg/5mL가 함유된 항산화 및 피부 미백 주사 제품입니다. 당뇨성 다발성 신경병증 완화에도 사용됩니다.",
     "specification": "25mg/5mL x 10앰플 항산화 및 피부 미백 당뇨성 다발성 신경병증 완화"
   },
-  "358": {
+  "343": {
     "description": "이 주사 제품은 신진대사 증가, 건강한 신경계 및 신장 지원 등 다양한 효과를 제공합니다. 한국의 다른 브랜드보다 빠른 효과를 자랑하며 12배 높은 효능을 제공합니다.",
     "specification": "12mL x 10앰플 다양한 건강 효과 함유 주사 제품"
   },
-  "359": {
+  "344": {
     "description": "GLUTAONE INJ. 1200mg은 밝고 매끄러운 피부를 위한 스킨케어 트리트먼트입니다. 남녀 모두를 위한 피부 케어 주사 제품으로 가장 완전한 피부 케어 방법입니다.",
     "specification": "GLUTAONE INJ. 1200mg 밝고 매끄러운 피부를 위한 스킨케어 트리트먼트"
   },
-  "360": {
+  "345": {
     "description": "Glutatine Tab. 100mg은 글루타치온(환원형) 정제입니다. 항암 치료 부작용 감소, 간 기능 지원, 면역 반응 강화, 유해 물질 해독 보조, 피부 미백 촉진에 효과적입니다.",
     "specification": "글루타치온(환원형) 100mg 100정/병"
   },
-  "361": {
+  "346": {
     "description": "DERMAGEN Glutathione Film 6X는 글루타치온 전달을 위한 구강 점막 흡수 필름입니다. 위와 간을 우회하여 흡수를 향상시키기 위해 구강 점막에 부착하도록 설계되었습니다. 초박형 필름으로 일반 스트립에 비해 구강 점막을 통해 빠르게 흡수됩니다.",
     "specification": "15g 사쉐 글루타치온 전달을 위한 구강 점막 흡수 필름"
   },
-  "362": {
+  "347": {
     "description": "비타민 C는 10g/20mL/10vials/box의 디에이지 디톡스 미백 주사 제품입니다. 피부 밝기 개선과 항산화 효과를 제공합니다.",
     "specification": "10g/20mL/10vials/box 디에이지 디톡스 미백 주사"
   },
-  "363": {
+  "348": {
     "description": "Acogen Inj.는 아스코르브산 10g 함유 비타민 C 주사 제품입니다. 비타민 C 결핍의 예방 및 치료에 사용됩니다.",
     "specification": "20mL x 10vials 비타민 C 결핍의 예방 및 치료"
   },
-  "364": {
+  "349": {
     "description": "ASCORBIC INJ.는 아스코르브산 500mg/mL 함유 고용량 비타민 C 주사 제품입니다. 정맥 요법 및 고용량 적용에 권장됩니다. 강력한 항산화제로 심장 질환 위험 인자를 줄이고 철분 흡수를 개선하며 면역력을 강화하고 항노화 효과를 제공합니다.",
     "specification": "20mL x 10vial 정맥 요법 및 고용량 적용 강력한 항산화제"
   },
-  "365": {
+  "350": {
     "description": "아스코르브산 주사(Huons)는 500mg/2mL의 비타민 C 주사 제품입니다. 2mL x 50앰플의 전문 포맷으로 정밀한 사용, 위생적인 1회용 적용, 편리한 취급을 위해 설계되었습니다. 항산화 지원, 피부 미백, 피부 회복에 사용됩니다.",
     "specification": "500mg/2mL 2mL x 50앰플 정밀 사용을 위한 전문 포맷 비타민 C 주사"
   },
-  "366": {
+  "351": {
     "description": "ATP-S Inj.(아데노신 삼인산)는 10.98mg/mL 아데노신 트라이포스페이트 주사 제품입니다. 근무력증, 심부전, 만성 간염의 간 기능 보조, 두부 외상 후 피로 및 회복에 사용됩니다.",
     "specification": "2mL x 50앰플 심부전, 만성 간염 간 기능 보조 피로 및 회복"
   },
-  "367": {
-    "description": "ARGININE INJ.는 L-아르기닌 염산염 10g/100mL 아미노산 수액 제품입니다. 순환을 지원하고 혈류를 개선하며 신진대사 및 간 기능을 돕습니다. 피로 회복 및 혈관 지원에 사용됩니다.",
-    "specification": "10g/100mL 순환 지원 및 혈류 개선 아미노산 수액"
-  },
-  "368": {
+  "352": {
     "description": "Acepain Inj.는 아세트아미노펜 1g/100mL 정맥 주사형 진통제 및 해열제입니다. 경증에서 중등도의 통증, 발열, 두통, 수술 후 통증 완화에 사용됩니다.",
     "specification": "1g/100mL 정맥 주사형 진통제 및 해열제"
   },
-  "369": {
+  "353": {
     "description": "Multivita는 정맥 투여용 동결건조 종합비타민 주사 제품입니다. 에너지, 회복, 전반적인 건강을 지원하는 필수 비타민을 공급합니다. 비타민 결핍, 피로, 시술 후 회복, 모발/피부/손톱 지원, 전반적인 웰니스 정맥 요법에 적합합니다.",
     "specification": "10vials/box 정맥 투여용 동결건조 종합비타민 주사"
   },
-  "370": {
+  "354": {
     "description": "비타민 D는 많은 건강 상태에 중요한 지용성 비타민입니다. 식이 또는 자외선(햇빛) 노출을 통한 피부에서 얻을 수 있으며 간과 신장에 의해 활성 형태로 전환됩니다. 뼈 건강, 암, 심혈관 질환 등에 관련이 있습니다.",
     "specification": "0.5mL x 10vials 비타민 D 결핍 예방 및 치료"
   },
-  "371": {
+  "355": {
     "description": "비타민 D는 많은 건강 상태에 중요한 지용성 비타민입니다. 식이 또는 자외선(햇빛) 노출을 통한 피부에서 얻을 수 있으며 간과 신장에 의해 활성 형태로 전환됩니다. 뼈 건강, 암, 심혈관 질환 등에 관련이 있습니다.",
     "specification": "1mL(비타민 D3) 콜레칼시페롤 5mg/mL x 10앰플 치료"
   },
-  "372": {
+  "356": {
     "description": "비타민 D는 많은 건강 상태에 중요한 지용성 비타민입니다. 식이 또는 자외선(햇빛) 노출을 통한 피부에서 얻을 수 있으며 간과 신장에 의해 활성 형태로 전환됩니다. 뼈 건강, 암, 심혈관 질환 등에 관련이 있습니다.",
     "specification": "1.5mL x 10앰플/박스 고용량 비타민 D3(콜레칼시페롤) 주사"
   },
-  "373": {
+  "357": {
     "description": "BM Hid inj.는 200,000 IU/1mL 비타민 D3(콜레칼시페롤) 주사 제품입니다. 결핍을 빠르게 교정하고 뼈와 면역 건강을 지원합니다. 비타민 D 결핍, 골다공증, 골연화증, 면역 지원, 고위험 환자 예방에 적합합니다.",
     "specification": "1mL x 10vials/박스 비타민 D3(콜레칼시페롤) 주사 결핍 교정"
   },
-  "374": {
+  "358": {
     "description": "Doxy Tab. 독시사이클린 염산염 100mg 항생제 제품입니다. 여드름/요로 감염(UTI) 치료에 효과적입니다. 리케차, 마이코플라즈마 폐렴균, 클라미디아 시타시, 재귀열 스피로헤타, 박테로이데스 종에 효과적입니다.",
     "specification": "100mg 300정 여드름/요로 감염 치료 항생제"
   },
-  "375": {
+  "359": {
     "description": "Doxy Tab. 독시사이클린 염산염 100mg 항생제 제품의 소용량 버전입니다. 위 설명과 동일합니다.",
     "specification": "100mg 30정 위와 동일"
   },
-  "376": {
+  "360": {
     "description": "MESOCARTIN INJ.는 L-카르니틴 슬리밍 주사 제품입니다. 복부, 옆구리, 상완, 허벅지 등 유산소 운동이나 다이어트로 해결하기 어려운 부위의 완고한 지방을 직접 타겟으로 제거합니다.",
     "specification": "10vials L-카르니틴 슬리밍 주사 완고한 지방 타겟 제거"
   },
-  "377": {
+  "361": {
     "description": "이 주사 제품은 신진대사 증가, 건강한 신경계 및 신장 지원 등 다양한 효과를 제공합니다. 한국의 다른 브랜드보다 빠른 효과를 자랑하며 12배 높은 효능을 제공합니다.",
     "specification": "12mL x 10앰플 다양한 건강 효과 함유 주사 제품"
   },
-  "378": {
+  "362": {
     "description": "HYCOBAL INJ.는 히드록소코발라민 5mg/2mL(비타민 B12a) 함유 주사 제품입니다. 말초 및 신경병성 통증 완화에 사용됩니다. 급성 및 다발성 신경염, 좌골 신경통, 류마티스 신경통, 동결견, 암 및 외상 유발 신경통, 포진 후 신경통, 편두통 관련 신경통 치료에 사용됩니다.",
     "specification": "5mg/2mL(비타민 B12a) 2mL x 50앰플 말초 및 신경병성 통증 완화"
   },
-  "379": {
+  "363": {
     "description": "B-COLAMIN VIT B12는 자연 에너지 수준을 높이고 수면, 기분, 식욕을 조절하며 면역 체계를 강화하고 적혈구 생성을 증진합니다.",
     "specification": "2mL x 50앰플 자연 에너지 증가, 수면 및 기분 조절, 적혈구 생성 증진"
   },
-  "380": {
+  "364": {
     "description": "BeeCom Hexa는 B1, B2, B3, B5, B6, B7, B12를 포함한 강력한 비타민 B 복합 주사 제품입니다. 에너지, 기분, 적혈구 생성, 피부 건강, 스트레스 완화를 지원합니다. 치유, 간 기능, 전반적인 활력을 촉진합니다.",
     "specification": "2mL x 50앰플 B1, B2, B3, B5, B6, B7, B12 포함 비타민 B 복합 주사"
   },
-  "381": {
+  "365": {
     "description": "Zynga Juice는 황산아연수화물 함유 미량원소 보충 제품입니다.",
     "specification": "10mL x 10vials 황산아연수화물 함유"
   },
-  "382": {
+  "366": {
     "description": "Zinc S Inj.는 황산아연수화물 함유 아연 보충 주사 제품입니다. 완전 비경구 영양(TPN) 시 아연 보충에 사용됩니다.",
     "specification": "5mL x 10vials 완전 비경구 영양(TPN) 시 아연 보충"
   },
-  "383": {
+  "367": {
     "description": "MAXYBLUE INJ.는 구리, 아연을 포함한 미량 미네랄(아연, 구리, 망간, 셀레늄, 크롬) 정맥 영양 보충 제품입니다.",
     "specification": "10mL x 10vials 구리, 아연 미량 미네랄 정맥 영양 보충"
   },
-  "384": {
+  "368": {
     "description": "Hishiphagen-C Inj.는 해독 목적의 주사 제품입니다. 두드러기, 습진, 알레르기 피부 질환, 약물 중독의 보조 요법으로 사용됩니다. 만성 간 질환 환자의 간 기능을 개선합니다.",
     "specification": "20mL x 50앰플 두드러기, 습진, 알레르기 피부 질환 보조 요법"
   },
-  "385": {
+  "369": {
     "description": "CARTIN Inj.는 L-카르니틴 1000mg 함유 주사 제품입니다. 1차 또는 2차 카르니틴 결핍 치료에 사용됩니다. 협심증, 급성 심근경색 환자 및 말기 신장 질환으로 혈액 투석을 받는 환자 치료에 사용됩니다.",
     "specification": "10mL x 10앰플 1차 또는 2차 카르니틴 결핍 치료"
   },
-  "386": {
+  "370": {
     "description": "GITACO Inj.는 은행잎 추출물 뇌 기능 강화 주사 제품입니다. 인지 기능 및 인식력 저하, 현기증, 이명, 두통, 시각 장애, 기억력 저하, 불안, 우울 기분, 감각신경성 난청 치료에 사용됩니다."
   },
-  "387": {
+  "371": {
     "description": "EMLA 크림은 리도카인 25mg과 프릴로카인 25mg이 함유된 국소 마취 크림입니다. 시술 전 피부 마취에 사용됩니다.",
     "specification": "리도카인 25mg + 프릴로카인 25mg 500g 마취 크림"
   },
-  "388": {
+  "372": {
     "description": "LIDCAIN CREAM 10.56%는 피부 표면 마취를 위한 마취 크림입니다.",
     "specification": "500g 표면 마취 크림"
   },
-  "389": {
+  "373": {
     "description": "전문 마취 크림으로, 피부 시술, 주사, 레이저, 마이크로니들 등 미용 시술 시 통증을 최소화합니다. 안전하고 효과적인 국소 마취 효과를 제공합니다.",
     "specification": "500g 표면 마취 크림"
   },
-  "390": {
+  "374": {
     "description": "BERACAINE SPRAY는 리도카인 10% 함유 국소 마취 스프레이입니다. 치과, 이비인후과, 소규모 의료 시술 시 일시적인 마취에 사용됩니다. 주사, 봉합, 내시경, 인후/비강 시술 시 빠른 통증 완화를 제공합니다. 스킨케어 또는 미용 사용 불가.",
     "specification": "50mL 리도카인 10% 함유 국소 마취 스프레이"
   },
-  "391": {
+  "375": {
     "description": "NEO-CAIN CREAM 10.56% x 30g는 표면 마취 진통 크림입니다.",
     "specification": "30g 표면 마취 진통 크림"
   },
-  "392": {
+  "376": {
     "description": "NEO-CAIN CREAM 10.56% x 500g는 표면 마취 진통 크림의 대용량 제품입니다.",
     "specification": "500g 표면 마취 진통 크림"
   },
-  "393": {
+  "377": {
     "description": "NEO PRO CREAM은 리도카인 25mg과 프릴로카인 25mg이 함유된 표면 마취 진통 크림입니다.",
     "specification": "450g 리도카인 25mg + 프릴로카인 25mg 표면 마취 진통 크림"
   },
-  "394": {
+  "378": {
     "description": "J CAIN은 리도카인으로 제조된 마취 크림으로, 시술 및 미용 처치 시 환자의 통증을 최소화하는 데 사용됩니다. 의료 전문가가 권장하는 용량과 적용 시간에 따라 사용합니다.",
     "specification": "500g 표면 마취 크림"
   },
-  "395": {
+  "379": {
     "description": "MTS, 반영구 메이크업, 레이저 트리트먼트, 미용 시술에 탁월한 통증 완화 크림입니다.",
     "specification": "500g 표면 마취 크림"
   },
-  "396": {
+  "380": {
     "description": "MTS, 반영구 메이크업, 레이저 트리트먼트, 미용 시술에 탁월한 통증 완화 크림입니다.",
     "specification": "30g 표면 마취 크림"
   },
-  "397": {
+  "381": {
     "description": "Muchcaine 100g는 리도카인 2.5%와 프릴로카인 2.5%(리도카인 25mg + 프릴로카인 25mg)가 함유된 국소 마취 크림입니다. 미용 시술 전 빠르고 효과적인 피부 마취를 제공합니다.",
     "specification": "100g 리도카인 25mg + 프릴로카인 25mg 미용 시술 전 피부 마취 크림"
   },
-  "398": {
+  "382": {
     "description": "MUCHCAINE 10.56% x 500g는 대용량 표면 마취 크림입니다.",
     "specification": "500g 표면 마취 크림"
   },
-  "399": {
+  "383": {
     "description": "MUCHCAINE 10.56% x 30g는 소용량 표면 마취 크림입니다.",
     "specification": "30g 표면 마취 크림"
   },
-  "400": {
+  "384": {
     "description": "LIDOCAINE HCI Inj. 2%는 경막외, 침윤, 표면 마취 또는 신경 차단에 사용되는 마취제입니다. 내과적 용도로는 심실 부정맥 치료에 사용됩니다.",
     "specification": "20mL x 10vials 마취 및 심실 부정맥 치료"
   },
-  "401": {
+  "385": {
     "description": "태반 주사 제품으로, 갱년기 장애와 관련된 증상 개선에 도움을 줍니다.",
     "specification": "2mL x 50앰플 태반 주사"
   },
-  "402": {
+  "386": {
     "description": "태반 주사 제품으로, 갱년기 장애와 관련된 증상 개선에 도움을 줍니다.",
     "specification": "2mL x 10앰플 태반 주사"
   },
-  "403": {
+  "387": {
     "description": "태반 주사 제품으로 다양한 갱년기 증상(안면 홍조, 오한, 불면증, 과민성, 두통, 피로, 관절통 등)을 완화할 수 있습니다.",
     "specification": "2mL x 50앰플 태반 주사"
   },
-  "404": {
+  "388": {
     "description": "CURACEN JBP PLAMON INJ.는 태반 주사 제품입니다.",
     "specification": "2mL x 10앰플 태반 주사"
   },
-  "405": {
+  "389": {
     "description": "Melamin Inj.는 태반 추출물 함유 주사 제품으로 갱년기 장애와 관련된 증상 개선에 도움을 줍니다.",
     "specification": "2mL x 50앰플 갱년기 장애 증상 개선"
   },
-  "406": {
-    "description": "REJUVE Inj.는 인체 태반 추출물 주사 제품으로 갱년기 증상 완화를 지원합니다."
-  },
-  "407": {
+  "390": {
     "description": "ELASTY는 최첨단 가교 기술을 사용하여 제조된 프리미엄 히알루론산 진피 필러입니다. 독보적인 점탄성과 내구성을 자랑하며, 얼굴 및 신체 부위의 정밀한 윤곽 교정과 볼륨 보충에 최적화되어 있습니다.",
     "specification": "32G/4mm 100pcs 나노 니들"
   },
-  "408": {
+  "391": {
     "description": "REJUBEAU MESO NEEDLE 30G는 메조테라피용 나노 니들입니다.",
     "specification": "30G(4mm/6mm/13mm) 100pcs 나노 니들"
   },
-  "409": {
+  "392": {
     "description": "REJUBEAU MESO NEEDLE 32G는 메조테라피용 나노 니들입니다.",
     "specification": "32G(4mm/6mm/13mm) 100pcs 나노 니들"
   },
-  "410": {
+  "393": {
     "description": "REJUBEAU MESO NEEDLE 33G는 메조테라피용 나노 니들입니다.",
     "specification": "33G(4mm/6mm/13mm) 100pcs 나노 니들"
   },
-  "411": {
+  "394": {
     "description": "나노 니들은 주름 치료, 피부 수분 공급, 혈액 순환 개선, 피부 세포 재생을 위한 메조테라피용 초정밀 니들입니다.",
     "specification": "34G 4mm 100pcs 나노 니들"
   },
-  "412": {
-    "description": "V Lift PRO Silk Micro Filler 니들은 안전하고 정확한 필러 시술을 보장하는 프리미엄 필러 니들입니다."
-  },
-  "413": {
+  "395": {
     "specification": "22G 50mm/70mm 24pcs 나노 캐뉼라"
   },
-  "414": {
+  "396": {
     "specification": "25G 50mm/70mm 24pcs 나노 캐뉼라"
   },
-  "415": {
+  "397": {
     "specification": "27G 50mm 24pcs 나노 캐뉼라"
   },
-  "416": {
+  "398": {
     "specification": "30G 25mm 24pcs 나노 캐뉼라"
   },
-  "417": {
+  "399": {
     "description": "Sungshim meso needles는 메조테라피를 위한 멸균 니들 100pcs 제품입니다. 27G x 13mm, 27G x 25mm, 27G x 38mm, 29G x 13mm, 29G x 25mm, 29G x 38mm, 29G x 60mm, 30G x 4mm, 30G x 13mm, 30G x 25mm, 30G x 38mm 사이즈를 제공합니다.",
     "specification": "다양한 사이즈 27G-30G 메조테라피 멸균 니들"
   },
-  "418": {
+  "400": {
     "description": "Sungshim syringes (보툭스용)는 보툴리눔 독소 주사를 위한 인슐린 주사기입니다. 30G x 8mm 0.5cc, 30G x 8mm 1cc, 31G x 8mm 0.5cc, 31G x 8mm 1cc 사이즈가 있습니다.",
     "specification": "30G x 8mm 0.5cc, 30G x 8mm 1cc, 31G x 8mm 0.5cc, 31G x 8mm 1cc"
   },
-  "419": {
+  "401": {
     "description": "Sungshim PEN NEEDLES는 인슐린 펜 주사기용 니들입니다. 31G x 8mm, 32G x 4mm, 32G x 6mm 사이즈가 있습니다.",
     "specification": "31G x 8mm, 32G x 4mm, 32G x 6mm"
   },
-  "420": {
+  "402": {
     "description": "전문 캐뉼라 주사 제품입니다. 정밀하고 안전한 필러 시술을 위한 다양한 사이즈의 캐뉼라를 제공합니다.",
     "specification": "50pcs/box 21G50/70, 23G50/70, 25G50/70 캐뉼라"
   },
-  "421": {
+  "403": {
     "description": "전문 캐뉼라 주사 제품입니다. 정밀하고 안전한 필러 시술을 위한 대구경 캐뉼라를 제공합니다.",
     "specification": "50pcs/box 18G50/70 캐뉼라"
   },
-  "422": {
+  "404": {
     "description": "DK ULTRA Thin Meso needles는 초박형 메조테라피 니들입니다. 30G/4/6/13, 32G/4/6/8, 33G/4/6, 34G/4/6 사이즈를 제공합니다.",
     "specification": "30G/4/6/13, 32G/4/6/8, 33G/4/6, 34G/4/6 초박형 메조테라피 니들"
   },
-  "423": {
+  "405": {
     "description": "NEO CANNULA는 17G 캐뉼라 제품입니다. 100mm, 120mm, 150mm 사이즈를 제공합니다.",
     "specification": "20pcs/box 17G 100mm, 17G 120mm, 17G 150mm 캐뉼라"
   },
-  "424": {
+  "406": {
     "description": "NEO CANNULA는 14G 캐뉼라 제품입니다. 100mm, 150mm, 200mm 사이즈를 제공합니다.",
     "specification": "20pcs/box 14G 100mm, 14G 150mm, 14G 200mm 캐뉼라"
   },
-  "425": {
+  "407": {
     "description": "시린지 커넥터(믹싱 튜브)는 두 시린지의 제품을 혼합하거나 한 디바이스에서 다른 디바이스로 솔루션을 이동시키기 위해 설계되었습니다. 두 의료 기기 사이에 밀봉 시스템을 형성하여 미용 제품을 세균 침투로부터 보호합니다.",
     "specification": "시린지 믹싱 튜브(커넥터) 시린지 연결용 박스"
   },
-  "426": {
+  "408": {
     "description": "시린지 커넥터(믹싱 튜브)는 두 시린지의 제품을 혼합하거나 한 디바이스에서 다른 디바이스로 솔루션을 이동시키기 위해 설계되었습니다. 두 의료 기기 사이에 밀봉 시스템을 형성하여 미용 제품을 세균 침투로부터 보호합니다.",
     "specification": "시린지 믹싱 튜브(커넥터) 10pcs 시린지 연결용"
   },
-  "427": {
+  "409": {
     "description": "RESTYLANE LYFT with Lidocaine은 Lidocaine이 함유된 주사용 HA 젤로, 얼굴의 깊은 주름과 볼을 효과적으로 교정합니다. 21세 이상 환자에게 사용하며 볼 증대 및 깊은 주름 개선에 적합합니다.",
     "specification": "1mL x 1syr, HA 20mg/mL, Lidocaine 0.3%"
   },
-  "428": {
+  "410": {
     "description": "RESTYLANE VOLYME는 Lidocaine이 함유된 히알루론산 진피 필러입니다. HA 20mg/mL와 Lidocaine 0.3%로 안면 볼륨 보충에 탁월합니다.",
     "specification": "1mL x 1syr, HA 20mg/mL, Lidocaine 0.3%"
   },
-  "429": {
+  "411": {
     "description": "RESTYLANE LYFT with Lidocaine은 Lidocaine이 함유된 주사용 HA 젤로, 얼굴의 깊은 주름과 볼을 효과적으로 교정합니다. 자연스럽고 오래 지속되는 결과를 제공합니다.",
     "specification": "1mL x 1syr, HA 20mg/mL, Lidocaine 0.3%"
   },
-  "430": {
+  "412": {
     "description": "RESTYLANE LYFT with Lidocaine은 Lidocaine이 함유된 주사용 HA 젤로, 얼굴의 깊은 주름과 볼을 효과적으로 교정합니다. 볼 증대 및 깊은 주름 개선에 적합합니다.",
     "specification": "1mL x 1syr, HA 20mg/mL, Lidocaine 0.3%"
   },
-  "431": {
+  "413": {
     "description": "RESTYLANE + LIDOCAINE은 안면 윤곽 교정, 주름 개선, 입술/볼 강화를 위한 Lidocaine 함유 HA 진피 필러입니다. 매끄러운 피부, 수분 공급, 볼륨 복원 효과가 6-9개월 지속됩니다.",
     "specification": "1mL x 1syr, 29G(TW) 일회용 니들 2개 포함 Lidocaine 함유 HA 진피 필러"
   },
-  "432": {
+  "414": {
     "description": "RESTYLANE LYFT LIDOCAINE은 깊은 진피에서 피하까지 주사하는 Lidocaine 함유 HA 필러입니다. 중등도에서 심한 주름(팔자주름, 미간 주름)을 교정하고 볼륨을 복원하며 볼을 강화합니다.",
     "specification": "1mL x 1syr, 일회용 니들 2개 포함 깊은 진피-피하 Lidocaine 함유 HA 필러"
   },
-  "433": {
+  "415": {
     "description": "RESTYLANE SKINBOOSTERS VITAL LIDOCAINE은 자외선에 손상되거나 탈수된 피부의 수분, 탄력, 구조를 회복하도록 설계된 스킨부스터입니다. 전반적인 안면 재생을 위해 진피 깊은 층에 주사합니다. 최소 주문 수량 10개.",
     "specification": "1mL x 1syr 자외선 손상 피부 수분, 탄력, 구조 회복 스킨부스터"
   },
-  "434": {
+  "416": {
     "description": "RESTYLANE VITAL LIGHT LIDOCAINE은 12mg/ml HA와 3mg/ml Lidocaine이 함유된 부드러운 스킨부스터입니다. 피부를 수분 공급하고 탄력을 개선하며 젊고 빛나는 피부를 회복합니다. 최대 6개월의 피부 재생 효과를 제공합니다. 최소 주문 수량 10개.",
     "specification": "1mL x 1syr, HA 12mg/ml + Lidocaine 3mg/ml 부드러운 스킨부스터"
   },
-  "435": {
+  "417": {
     "description": "Dysport는 A형 보툴리눔 독소를 함유한 주름 치료 제품입니다. 사용 후 24시간 이내에 효과가 나타나기 시작하며 2-4일 내에 뚜렷한 효과를 경험할 수 있습니다. 주름 이완에 효과적입니다.",
     "specification": "500units 보툴리눔 독소"
   },
-  "436": {
+  "418": {
     "description": "Xeomin 100iu는 FDA 제3형 보툴리눔 독소 A형 제품입니다. 미간 주름 치료에 효과적이며 FDA 승인을 받은 안전하고 신뢰할 수 있는 보툴리눔 독소 치료제입니다.",
     "specification": "100units 보툴리눔 독소"
   },
-  "437": {
+  "419": {
     "description": "0.9% 염화나트륨 생리식염수는 무색 투명한 용액입니다. 5mL 시린지 포장으로 전해질(나트륨 및 염화물) 공급 및 주사 제품의 희석액으로 사용됩니다."
   },
-  "438": {
+  "420": {
     "description": "JUVEDERM은 히알루론산 기반 프리미엄 진피 필러 시리즈입니다. VOLUMA(HA 20mg/mL, Lidocaine 0.3%), VOLIFT(HA 17.5mg/mL, Lidocaine 0.3%), VOLITE(HA 25mg/mL, Lidocaine 0.3%), VOLBELLA(HA 25mg/mL, Lidocaine 0.3%) 등 다양한 제품을 포함합니다. 스레드에 대한 자세한 정보는 문의해주세요.",
     "specification": "HA 20mg/mL, Lidocaine 0.3% / VOLIFT HA 17.5mg/mL, Lidocaine 0.3% 히알루론산 필러"
   }

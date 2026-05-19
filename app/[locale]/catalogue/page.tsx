@@ -25,7 +25,7 @@ export default async function CataloguePage({ params }: { params: Promise<{ loca
           <h1 className="section-title">Product Catalogue</h1>
           <div className="gold-divider mt-3" />
           {/* keep in sync with data/products.json */}
-          <p className="text-sm text-mist mt-3">421 products across 20 categories</p>
+          <p className="text-sm text-mist mt-3">420 products across 20 categories</p>
         </div>
 
         <Suspense fallback={<div className="p-12 text-center text-mist">Loading catalogue...</div>}>
