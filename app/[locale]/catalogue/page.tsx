@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function CataloguePage({ params }: { params: Promise<{ locale: string }> }) {
   await params;
   return (
-    <div className="pt-20 min-h-screen">
+    <div className="pt-20 min-h-screen catalogue-luxe-bg">
       <PageHeaderBand title="Product Catalogue" subtitle="420 products across 20 categories" />
       <div className="max-w-7xl mx-auto px-0">
         <Suspense fallback={<div className="p-12 text-center text-mist">Loading catalogue...</div>}>
