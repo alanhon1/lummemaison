@@ -25,7 +25,7 @@
       "subtitle": "Our most popular products trusted by professionals"
     },
     "whyChooseUs": {
-      "title": "Why Choose Lumière",
+      "title": "Why Choose Lumée Maison",
       "subtitle": "Your trusted partner for premium Korean aesthetic products",
       "authentic": {
         "title": "100% Authentic",
@@ -159,7 +159,7 @@
     "subtitle": "Your trusted partner for premium Korean aesthetic products",
     "story": {
       "title": "Our Story",
-      "content": "Lumière is the global export brand of SH Core Stetics Global (Skin Global), a specialized B2B supplier of premium Korean medical-grade aesthetic products. We connect aesthetic clinics, dermatologists, and beauty professionals worldwide with the finest products from Korea's leading manufacturers."
+      "content": "Lumée Maison is the global export brand of SH Core Stetics Global (Skin Global), a specialized B2B supplier of premium Korean medical-grade aesthetic products. We connect aesthetic clinics, dermatologists, and beauty professionals worldwide with the finest products from Korea's leading manufacturers."
     },
     "mission": {
       "title": "Our Mission",
@@ -238,7 +238,7 @@
   "gates": {
     "professional": {
       "title": "Professional Access Only",
-      "subtitle": "Lumière serves licensed aesthetic and medical professionals exclusively.",
+      "subtitle": "Lumée Maison serves licensed aesthetic and medical professionals exclusively.",
       "question": "Are you a licensed aesthetic or medical professional?",
       "yes": "Yes, I am a professional",
       "no": "No, I am not"
@@ -246,7 +246,7 @@
     "korea": {
       "title": "Service Not Available",
       "subtitle": "We currently do not serve the Korean domestic market.",
-      "message": "Lumière is an export-only service. We do not ship to South Korea.",
+      "message": "Lumée Maison is an export-only service. We do not ship to South Korea.",
       "contact": "For inquiries, please contact us at"
     }
   }

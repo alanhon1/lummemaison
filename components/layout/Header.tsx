@@ -77,7 +77,7 @@ export default function Header() {
             className="font-display text-2xl font-light tracking-widest hover:text-gold transition-colors duration-300"
             style={{ color: 'var(--page-text)' }}
           >
-            Lumière
+            Lumée Maison
           </Link>
 
           {/* Desktop Nav */}
