@@ -24,11 +24,10 @@ export async function PATCH(
       const members = data.products.filter((p: any) => p.groupId === groupId);
       if (members.length >= 2) {
         const { outputPath } = await composeBundleCover(groupId, members);
-        // Update every group member's groupImage to the regenerated path.
+        const versioned = `${outputPath}?v=${Date.now()}`;
+        // Update every group member's groupImage so the browser refetches.
         for (const m of data.products) {
-          if (m.groupId === groupId && m.groupImage !== outputPath) {
-            m.groupImage = outputPath;
-          }
+          if (m.groupId === groupId) m.groupImage = versioned;
         }
         writeData(data);
       }

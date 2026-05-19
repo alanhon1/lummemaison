@@ -58,8 +58,9 @@ async function main(): Promise<void> {
     }
     try {
       const { outputPath, usedPlaceholders } = await composeBundleCover(groupId, members);
-      for (const m of members) m.groupImage = outputPath;
-      composed.push({ groupId, members: members.length, output: outputPath, usedPlaceholders });
+      const versioned = `${outputPath}?v=${Date.now()}`;
+      for (const m of members) m.groupImage = versioned;
+      composed.push({ groupId, members: members.length, output: versioned, usedPlaceholders });
     } catch (err) {
       errors.push({ groupId, error: (err as Error).message });
     }

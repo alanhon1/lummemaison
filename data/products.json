@@ -179,7 +179,7 @@
       "groupId": "barbie-slim",
       "variantLabel": "Variant 1",
       "groupName": "Barbie Slim",
-      "groupImage": "/images/bundles/bundle-barbie-slim.webp",
+      "groupImage": "/images/bundles/bundle-barbie-slim.webp?v=1779184567472",
       "indication": "Designed for use in defined areas presenting localized subcutaneous fat where contouring is desired. Intended for application in the face and body where focal sculpting is the practitioner's objective.",
       "packaging": "Supplied as a carton of 5 vials, each containing 10 mL of injectable solution.",
       "protocol": "Mark the treatment grid with 1–2 cm spacing; inject subcutaneously at 6–13 mm depth using a 27–30G needle, delivering 0.2–0.4 mL per point with aspiration before each bolus. Treat one zone per session; allow a minimum 4-week interval between sessions. Standard course: 2–4 sessions. Expect transient swelling, erythema, and tenderness for 3–7 days post-treatment."
@@ -221,7 +221,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE FINE (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp?v=1779184567594",
       "indication": "Suitable for the correction of fine lines and superficial skin depressions. Recommended for use in areas where light, superficial filler placement is the practitioner's objective.",
       "packaging": "Supplied as a single pre-filled syringe of 1.1 mL containing hyaluronic acid at 24 mg/mL.",
       "protocol": "Administer intradermally into the superficial dermis using a 30–32G needle via serial puncture or linear threading technique. Inject 0.02–0.05 mL per puncture point; total session volume typically 0.5–1.1 mL depending on treatment area. Massage gently post-injection to ensure even distribution. Recommend touch-up at 2 weeks if needed; repeat treatment at 6–9 months."
@@ -243,7 +243,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE DEEP (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp?v=1779184567594",
       "indication": "Suitable for moderate facial folds and mid-depth volume restoration. Intended for use in areas requiring filler support beyond the superficial dermis.",
       "packaging": "Supplied as a single pre-filled syringe of 1.1 mL containing hyaluronic acid at 24 mg/mL.",
       "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde linear threading or fanning technique; aspirate before each bolus to confirm extravascular placement. Deliver 0.1–0.3 mL per depot in nasolabial folds or cheek hollows. Typical session volume 1.0–2.0 mL. Massage to contour post-injection. Reassess at 2 weeks; longevity typically 9–12 months."
@@ -265,7 +265,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE SUB-Q (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp?v=1779184567594",
       "indication": "Suitable for deep volume restoration and facial contouring such as chin and jawline definition. Recommended for procedures requiring filler placement in the subcutaneous plane.",
       "packaging": "Supplied as a single pre-filled syringe of 1.1 mL containing hyaluronic acid at 24 mg/mL.",
       "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; always aspirate before depositing each bolus. Deliver 0.3–0.5 mL per depot; total volume 1–3 mL per session depending on indication. Mold and sculpt immediately after injection. Longevity 12–18 months; reassess at 4 weeks."
@@ -287,7 +287,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE FINE PLUS (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp?v=1779184567594",
       "indication": "Suitable for fine lines and superficial skin corrections where added injection comfort is desired. Recommended for refinement of subtle surface irregularities of the skin.",
       "packaging": "Supplied as a single 1.1 mL pre-filled syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Administer into the superficial dermis using a 30–32G needle via serial puncture technique; the integrated lidocaine reduces discomfort within 1–2 minutes of contact. Inject 0.02–0.05 mL per point; total session volume 0.5–1.1 mL. Gentle post-injection massage ensures even gel distribution. Repeat at 6–9 months or on patient request."
@@ -309,7 +309,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE DEEP PLUS (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp?v=1779184567594",
       "indication": "Suitable for moderate folds and mid-depth volume restoration where added injection comfort is desired. Intended for practitioners targeting the mid-dermal layer.",
       "packaging": "Supplied as a single 1.1 mL pre-filled syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde threading or depot injection; aspirate before each bolus. Lidocaine onset reduces discomfort approximately 1–2 minutes into treatment. Deliver 0.1–0.3 mL per depot; typical session volume 1.0–2.0 mL. Reassess at 2 weeks; longevity 9–12 months."
@@ -331,7 +331,7 @@
       "groupId": "regenovue-sub-q",
       "variantLabel": "REGENOVUE SUB-Q PLUS (CE)",
       "groupName": "Regenovue",
-      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp",
+      "groupImage": "/images/bundles/bundle-regenovue-sub-q.webp?v=1779184567594",
       "indication": "Suitable for deep volume restoration and facial contouring where added injection comfort is desired. Recommended for procedures targeting the subcutaneous plane.",
       "packaging": "Supplied as a single 1.1 mL pre-filled syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Lidocaine reduces procedural discomfort at deeper injection planes. Deliver 0.3–0.5 mL per bolus; typical total volume 1–3 mL. Mold immediately post-injection. Longevity 12–18 months."
@@ -353,7 +353,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM S (CE) NO Lidocaine",
       "groupName": "Sosum",
-      "groupImage": "/images/bundles/bundle-sosum.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp?v=1779184567696",
       "indication": "Suitable for superficial corrections such as fine lines. Recommended for practitioners requiring a lidocaine-free option for surface-level placement.",
       "packaging": "Supplied as 2 pre-filled syringes of 1.1 mL containing hyaluronic acid at 24 mg/mL, without lidocaine.",
       "protocol": "Apply topical anaesthetic to the treatment area 20–30 minutes prior to injection. Administer superficially using a 30–32G needle via serial puncture or linear threading; inject 0.02–0.05 mL per point. Each pack contains 2 x 1.1 mL syringes, suitable for bilateral treatment in a single session. Massage gently post-injection. Longevity 6–9 months."
@@ -375,7 +375,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM M (CE) NO Lidocaine",
       "groupName": "Sosum",
-      "groupImage": "/images/bundles/bundle-sosum.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp?v=1779184567696",
       "indication": "Suitable for moderate folds and mid-depth volume support. Recommended for practitioners requiring a lidocaine-free option targeting the mid-dermal layer.",
       "packaging": "Supplied as 2 pre-filled syringes of 1.1 mL containing hyaluronic acid at 24 mg/mL, without lidocaine.",
       "protocol": "Apply topical anaesthetic 20–30 minutes prior to injection. Administer into the mid-dermis using a 27–30G needle via retrograde linear threading or serial puncture; aspirate before each bolus. Inject 0.1–0.2 mL per linear cm of fold or per depot. Two syringes (1.1 mL each) provide adequate volume for standard bilateral nasolabial correction. Longevity 9–12 months."
@@ -397,7 +397,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM H (CE) NO Lidocaine",
       "groupName": "Sosum",
-      "groupImage": "/images/bundles/bundle-sosum.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp?v=1779184567696",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for practitioners requiring a lidocaine-free option for structural support.",
       "packaging": "Supplied as 2 pre-filled syringes of 1.1 mL containing hyaluronic acid at 24 mg/mL, without lidocaine.",
       "protocol": "Apply topical anaesthetic or administer regional block 20–30 minutes prior to procedure. Inject supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each bolus. Deposit 0.3–0.5 mL per bolus; typical total volume 1–2 mL per side. Mold and sculpt immediately post-injection. Longevity 12–18 months."
@@ -419,7 +419,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM SOFT (CE)",
       "groupName": "Sosum",
-      "groupImage": "/images/bundles/bundle-sosum.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp?v=1779184567696",
       "indication": "Suitable for superficial and mid-dermal corrections. Recommended for areas where a softer, more pliable filler texture is desired by the practitioner.",
       "packaging": "Supplied as a single pre-filled syringe of 3 mL hyaluronic acid filler.",
       "protocol": "Administer via linear threading, serial puncture, or cannula technique into the superficial-to-mid dermis using a 27–30G needle; aspirate before each bolus. The 3 mL volume allows treatment of extended areas such as cheeks and temples in a single session. Deliver 0.05–0.2 mL per point or per linear cm; massage gently post-injection. Longevity 6–9 months."
@@ -441,7 +441,7 @@
       "groupId": "sosum",
       "variantLabel": "SOSUM HARD",
       "groupName": "Sosum",
-      "groupImage": "/images/bundles/bundle-sosum.webp",
+      "groupImage": "/images/bundles/bundle-sosum.webp?v=1779184567696",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for procedures where a firmer, more cohesive filler is required for structural definition.",
       "packaging": "Supplied as 3 pre-filled syringes of 3 mL hyaluronic acid filler per pack.",
       "protocol": "Administer via bolus or retrograde threading technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus or 0.1–0.2 mL per linear cm for jawline contouring. Total volume per session may utilize one or more of the three syringes. Mold post-injection. Longevity 12–18 months."
@@ -463,7 +463,7 @@
       "groupId": "elasty",
       "variantLabel": "ELASTY FINE PLUS",
       "groupName": "Elasty",
-      "groupImage": "/images/bundles/bundle-elasty.webp",
+      "groupImage": "/images/bundles/bundle-elasty.webp?v=1779184567783",
       "indication": "Suitable for fine lines and superficial skin corrections. Recommended for subtle refinement of surface features where added injection comfort is desired.",
       "packaging": "Supplied as a single 1.0 mL pre-filled syringe of hyaluronic acid filler containing 0.3% lidocaine.",
       "protocol": "Administer via serial puncture or linear threading into the superficial dermis using a 30–32G needle. Inject 0.02–0.05 mL per point; the 0.3% lidocaine reduces procedural discomfort within 1–2 minutes. Total session volume typically 0.5–1.0 mL. Massage gently post-injection to ensure even distribution. Repeat treatment at 6–9 months."
@@ -485,7 +485,7 @@
       "groupId": "elasty",
       "variantLabel": "ELASTY DEEP PLUS",
       "groupName": "Elasty",
-      "groupImage": "/images/bundles/bundle-elasty.webp",
+      "groupImage": "/images/bundles/bundle-elasty.webp?v=1779184567783",
       "indication": "Suitable for moderate folds and mid-depth volume restoration. Intended for practitioners targeting the mid-dermal layer with added patient comfort.",
       "packaging": "Supplied as a single 1.0 mL pre-filled syringe of hyaluronic acid filler containing 0.3% lidocaine.",
       "protocol": "Inject into the mid-dermis using a 27G needle via retrograde linear threading or fanning; aspirate before each bolus. Integrated lidocaine reduces discomfort 1–2 minutes after contact. Deliver 0.1–0.3 mL per linear cm of fold or per depot; total session volume 0.5–1.0 mL. Reassess at 2 weeks; longevity 9–12 months."
@@ -507,7 +507,7 @@
       "groupId": "elasty",
       "variantLabel": "ELASTY GRAND PLUS",
       "groupName": "Elasty",
-      "groupImage": "/images/bundles/bundle-elasty.webp",
+      "groupImage": "/images/bundles/bundle-elasty.webp?v=1779184567783",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for procedures requiring more pronounced volumetric support with added injection comfort.",
       "packaging": "Supplied as a single 1.0 mL pre-filled syringe of hyaluronic acid filler containing 0.3% lidocaine.",
       "protocol": "Administer via bolus technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each bolus. Deliver 0.3–0.5 mL per depot; total volume 0.5–1.0 mL per session. Mold and sculpt immediately post-injection to optimize contour. Longevity 12–18 months; reassess at 4 weeks."
@@ -583,7 +583,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS LIGHT (MESO)",
       "groupName": "Neuramis",
-      "groupImage": "/images/bundles/bundle-neuramis.webp",
+      "groupImage": "/images/bundles/bundle-neuramis.webp?v=1779184567884",
       "indication": "Suitable for fine lines, superficial wrinkles, and skin hydration support. Recommended for refined surface-level applications where added injection comfort is desired.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Administer via serial puncture, nappage, or mesotherapy technique into the superficial dermis using a 30–32G needle; inject 0.01–0.05 mL per point at 1 cm intervals. Total session volume 1–3 mL depending on area. For facial biorevitalization, a course of 3–4 sessions at 2–4-week intervals is standard, followed by maintenance every 3–6 months."
@@ -605,7 +605,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS",
       "groupName": "Neuramis",
-      "groupImage": "/images/bundles/bundle-neuramis.webp",
+      "groupImage": "/images/bundles/bundle-neuramis.webp?v=1779184567884",
       "indication": "Suitable for moderate folds and soft tissue contouring. Recommended for general dermal augmentation procedures where added patient comfort is desired.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject into the mid-dermis using a 27–30G needle via retrograde linear threading or serial puncture; aspirate before each bolus. Deliver 0.1–0.3 mL per linear cm or per treatment point; typical session volume 1.0–2.0 mL for bilateral nasolabial correction. Massage gently post-injection. Longevity 9–12 months; reassess at 2 weeks."
@@ -627,7 +627,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS DEEP",
       "groupName": "Neuramis",
-      "groupImage": "/images/bundles/bundle-neuramis.webp",
+      "groupImage": "/images/bundles/bundle-neuramis.webp?v=1779184567884",
       "indication": "Suitable for deep folds and mid-to-deep volume support. Recommended for practitioners requiring a lidocaine-free option for deeper placement.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL, without lidocaine.",
       "protocol": "Apply topical anaesthetic or regional block prior to procedure. Inject into the deep dermis using a 27G needle via retrograde threading or bolus; aspirate before each bolus. Deliver 0.1–0.3 mL per depot; total session volume 0.5–1.0 mL. Massage post-injection. Longevity 9–12 months."
@@ -649,7 +649,7 @@
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS DEEP WITH LIDOCAINE",
       "groupName": "Neuramis",
-      "groupImage": "/images/bundles/bundle-neuramis.webp",
+      "groupImage": "/images/bundles/bundle-neuramis.webp?v=1779184567884",
       "indication": "Suitable for deep folds and mid-to-deep volume support. Intended for deeper placement where added injection comfort is desired by the practitioner.",
       "packaging": "Supplied as a single 1.0 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject into the deep dermis using a 27G needle via retrograde threading or depot injection; aspirate before each bolus. Integrated lidocaine reduces discomfort within 1–2 minutes. Deliver 0.1–0.3 mL per depot; typical session volume 0.5–1.0 mL. Massage post-injection to contour. Longevity 9–12 months; reassess at 2 weeks."
@@ -673,7 +673,7 @@
       "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; typical total volume 1–2 mL per session depending on areas treated. Mold and sculpt post-injection. Longevity 12–18 months; reassess at 4 weeks.",
       "groupId": "neuramis",
       "variantLabel": "NEURAMIS VOLUME LIDOCAINE",
-      "groupImage": "/images/bundles/bundle-neuramis.webp"
+      "groupImage": "/images/bundles/bundle-neuramis.webp?v=1779184567884"
     },
     {
       "id": 25,
@@ -692,7 +692,7 @@
       "groupId": "revolax",
       "variantLabel": "REVOLAX FINE PLUS",
       "groupName": "Revolax",
-      "groupImage": "/images/bundles/bundle-revolax.webp",
+      "groupImage": "/images/bundles/bundle-revolax.webp?v=1779184567965",
       "indication": "Suitable for fine lines and superficial skin corrections. Recommended for subtle surface refinement where added injection comfort is desired.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Administer into the superficial dermis using a 30–32G needle via serial puncture or linear threading; inject 0.02–0.05 mL per point. Integrated 0.3% lidocaine reduces discomfort progressively during injection. Total session volume 0.5–1.1 mL. Massage gently post-injection. Longevity 6–9 months; touch-up recommended at 2 weeks if needed."
@@ -714,7 +714,7 @@
       "groupId": "revolax",
       "variantLabel": "REVOLAX DEEP PLUS",
       "groupName": "Revolax",
-      "groupImage": "/images/bundles/bundle-revolax.webp",
+      "groupImage": "/images/bundles/bundle-revolax.webp?v=1779184567965",
       "indication": "Suitable for moderate folds and mid-depth volume restoration. Intended for practitioners targeting the mid-dermal layer where added injection comfort is desired.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde threading or fanning technique; aspirate before each bolus. Deliver 0.1–0.3 mL per linear cm of fold or per depot; typical session volume 0.5–1.1 mL. Massage post-injection to contour gel. Longevity 9–12 months; reassess at 2 weeks."
@@ -736,7 +736,7 @@
       "groupId": "revolax",
       "variantLabel": "REVOLAX SUB-Q PLUS",
       "groupName": "Revolax",
-      "groupImage": "/images/bundles/bundle-revolax.webp",
+      "groupImage": "/images/bundles/bundle-revolax.webp?v=1779184567965",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for procedures targeting the subcutaneous plane with added injection comfort.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Administer via bolus technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total session volume 1–3 mL depending on areas treated. Mold and sculpt immediately post-injection. Longevity 12–18 months; reassess at 4 weeks."
@@ -758,7 +758,7 @@
       "groupId": "dermalax",
       "variantLabel": "DERMALAX PLUS",
       "groupName": "Dermalax",
-      "groupImage": "/images/bundles/bundle-dermalax.webp",
+      "groupImage": "/images/bundles/bundle-dermalax.webp?v=1779184568057",
       "indication": "Suitable for fine to moderate skin corrections and soft contouring. Recommended for practitioners working across superficial and mid-dermal layers.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 20 mg/mL with 0.3% lidocaine.",
       "protocol": "Administer into the superficial-to-mid dermis using a 27–30G needle via linear threading or serial puncture; aspirate before each bolus. Deliver 0.05–0.2 mL per point; total session volume 0.5–1.1 mL. Integrate 0.3% lidocaine provides progressive anaesthesia. Massage gently post-injection. Longevity 6–9 months."
@@ -780,7 +780,7 @@
       "groupId": "dermalax",
       "variantLabel": "DERMALAX DEEP PLUS",
       "groupName": "Dermalax",
-      "groupImage": "/images/bundles/bundle-dermalax.webp",
+      "groupImage": "/images/bundles/bundle-dermalax.webp?v=1779184568057",
       "indication": "Suitable for moderate to deep folds and volume restoration. Intended for practitioners targeting the deeper dermal layer with added injection comfort.",
       "packaging": "Supplied as a single 1.1 mL syringe containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Inject into the deep dermis using a 27G needle via retrograde linear threading or depot injection; aspirate before each bolus. Deliver 0.1–0.3 mL per depot; total session volume 0.5–1.1 mL. Lidocaine reduces procedural discomfort within 1–2 minutes. Massage post-injection. Longevity 9–12 months; reassess at 2 weeks."
@@ -802,7 +802,7 @@
       "groupId": "dermalax",
       "variantLabel": "DERMALAX IMPLANT PLUS",
       "groupName": "Dermalax",
-      "groupImage": "/images/bundles/bundle-dermalax.webp",
+      "groupImage": "/images/bundles/bundle-dermalax.webp?v=1779184568057",
       "indication": "Suitable for deep volume restoration and facial contouring. Recommended for procedures requiring pronounced volumetric support with added injection comfort.",
       "packaging": "Supplied as 2 pre-filled syringes of 1.1 mL containing HA at 24 mg/mL with 0.3% lidocaine.",
       "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total available volume of 2.2 mL supports bilateral malar or combined chin and jawline treatment in one session. Mold post-injection. Longevity 12–18 months."
@@ -826,7 +826,7 @@
       "protocol": "Administer via serial puncture into the superficial dermis using a 30–32G needle; inject 0.02–0.05 mL per point. Integrated 0.3% lidocaine progressively reduces discomfort during the procedure. Total session volume 0.5–1.1 mL. Massage gently post-injection for even distribution. Longevity 6–9 months; touch-up at 2 weeks if needed.",
       "groupId": "youthfill",
       "variantLabel": "YOUTHFILL FINE",
-      "groupImage": "/images/bundles/bundle-youthfill.webp"
+      "groupImage": "/images/bundles/bundle-youthfill.webp?v=1779184568144"
     },
     {
       "id": 39,
@@ -847,7 +847,7 @@
       "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde linear threading or fanning technique; aspirate before each bolus. Deliver 0.1–0.3 mL per linear cm of fold; typical session volume 0.5–1.1 mL. Massage post-injection. Longevity 9–12 months; reassess at 2 weeks.",
       "groupId": "youthfill",
       "variantLabel": "YOUTHFILL DEEP",
-      "groupImage": "/images/bundles/bundle-youthfill.webp"
+      "groupImage": "/images/bundles/bundle-youthfill.webp?v=1779184568144"
     },
     {
       "id": 40,
@@ -866,7 +866,7 @@
       "groupId": "youthfill",
       "variantLabel": "YOUTHFILL SHAPE",
       "groupName": "Youthfill",
-      "groupImage": "/images/bundles/bundle-youthfill.webp",
+      "groupImage": "/images/bundles/bundle-youthfill.webp?v=1779184568144",
       "indication": "Designed for facial contouring and structural volume support. Suitable for treatment areas requiring firmer reinforcement and defined shaping.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Administer via bolus technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total session volume 0.5–1.1 mL. Mold and sculpt immediately post-injection. Longevity 12–18 months; reassess at 4 weeks."
@@ -888,7 +888,7 @@
       "groupId": "soonsu",
       "variantLabel": "SOONSU FILL (E.P.T.Q) 100",
       "groupName": "Soonsu Fill P T",
-      "groupImage": "/images/bundles/bundle-soonsu.webp",
+      "groupImage": "/images/bundles/bundle-soonsu.webp?v=1779184568226",
       "indication": "Designed for superficial to mid-dermal placement and fine line smoothing. Suitable for treatment areas requiring delicate, refined correction.",
       "packaging": "Supplied as one 1.0 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Administer into the superficial-to-mid dermis using a 27–30G needle via serial puncture or linear threading; inject 0.02–0.05 mL per point. Total session volume 0.5–1.0 mL. Topical anaesthetic recommended prior to procedure given absence of lidocaine. Massage gently post-injection. Longevity 6–9 months."
@@ -910,7 +910,7 @@
       "groupId": "soonsu",
       "variantLabel": "SOONSU FILL (E.P.T.Q) 300",
       "groupName": "Soonsu Fill P T",
-      "groupImage": "/images/bundles/bundle-soonsu.webp",
+      "groupImage": "/images/bundles/bundle-soonsu.webp?v=1779184568226",
       "indication": "Intended for mid-dermal placement and moderate volumizing. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as one 1.0 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject into the mid-dermis using a 27G needle via retrograde threading or depot injection; aspirate before each bolus. Deliver 0.1–0.3 mL per depot; total session volume 0.5–1.0 mL. Topical anaesthetic recommended. Massage post-injection to contour. Longevity 9–12 months; reassess at 2 weeks."
@@ -932,7 +932,7 @@
       "groupId": "soonsu",
       "variantLabel": "SOONSU FILL (E.P.T.Q) 500",
       "groupName": "Soonsu Fill P T",
-      "groupImage": "/images/bundles/bundle-soonsu.webp",
+      "groupImage": "/images/bundles/bundle-soonsu.webp?v=1779184568226",
       "indication": "Designed for deep dermal or subcutaneous placement and structural contouring. Suitable for treatment plans where firmer support is desired.",
       "packaging": "Supplied as one 1.0 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total session volume 0.5–1.0 mL. Topical anaesthetic or regional block recommended. Mold post-injection. Longevity 12–18 months."
@@ -956,7 +956,7 @@
       "protocol": "Administer via serial puncture into the superficial dermis using a 30–32G needle; inject 0.02–0.05 mL per point. Integrated 0.3% lidocaine progressively reduces discomfort. Total session volume 0.5–1.1 mL. Massage gently post-injection for even distribution. Longevity 6–9 months.",
       "groupId": "celosome",
       "variantLabel": "CELOSOME SOFT",
-      "groupImage": "/images/bundles/bundle-celosome.webp"
+      "groupImage": "/images/bundles/bundle-celosome.webp?v=1779184568356"
     },
     {
       "id": 45,
@@ -975,7 +975,7 @@
       "groupId": "celosome",
       "variantLabel": "CELOSOME MID",
       "groupName": "Celosome",
-      "groupImage": "/images/bundles/bundle-celosome.webp",
+      "groupImage": "/images/bundles/bundle-celosome.webp?v=1779184568356",
       "indication": "Intended for mid-dermal placement and moderate volume support. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject into the mid-dermis using a 27G needle via retrograde linear threading or fanning; aspirate before each bolus. Deliver 0.1–0.3 mL per depot; total session volume 0.5–1.1 mL. Integrated lidocaine reduces discomfort within 1–2 minutes. Massage post-injection. Longevity 9–12 months; reassess at 2 weeks."
@@ -997,7 +997,7 @@
       "groupId": "celosome",
       "variantLabel": "CELOSOME STRONG",
       "groupName": "Celosome",
-      "groupImage": "/images/bundles/bundle-celosome.webp",
+      "groupImage": "/images/bundles/bundle-celosome.webp?v=1779184568356",
       "indication": "Designed for deep dermal placement and structural contouring. Suitable for treatment plans where firmer reinforcement is preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Administer via bolus or retrograde threading in the deep dermis or subcutaneous plane using a 25–27G needle; aspirate before each depot. Deliver 0.2–0.4 mL per bolus; total session volume 0.5–1.1 mL. Mold post-injection. Longevity 12 months; reassess at 4 weeks."
@@ -1019,7 +1019,7 @@
       "groupId": "celosome",
       "variantLabel": "CELOSOME IMPLANT",
       "groupName": "Celosome",
-      "groupImage": "/images/bundles/bundle-celosome.webp",
+      "groupImage": "/images/bundles/bundle-celosome.webp?v=1779184568356",
       "indication": "Intended for deep placement where firmer volume restoration is desired. Suitable for treatment plans involving structural contouring of deeper facial regions.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total session volume 0.5–1.1 mL. Mold and sculpt immediately post-injection. Longevity 12–18 months; reassess at 4 weeks."
@@ -1041,7 +1041,7 @@
       "groupId": "bonetta",
       "variantLabel": "BONETTA FINE",
       "groupName": "Bonetta",
-      "groupImage": "/images/bundles/bundle-bonetta.webp",
+      "groupImage": "/images/bundles/bundle-bonetta.webp?v=1779184568459",
       "indication": "Designed for fine line smoothing and superficial dermal placement. Suitable for treatment areas where subtle, refined results are preferred.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes per unit, ready for single-patient use.",
       "protocol": "Administer via serial puncture into the superficial dermis using a 30–32G needle; inject 0.02–0.05 mL per point. The dual 1.1 mL syringes allow bilateral treatment without mid-session restocking. Total session volume up to 2.2 mL. Integrated lidocaine reduces procedural discomfort. Massage gently post-injection. Longevity 6–9 months."
@@ -1063,7 +1063,7 @@
       "groupId": "bonetta",
       "variantLabel": "BONETTA DEEP",
       "groupName": "Bonetta",
-      "groupImage": "/images/bundles/bundle-bonetta.webp",
+      "groupImage": "/images/bundles/bundle-bonetta.webp?v=1779184568459",
       "indication": "Intended for mid-to-deep dermal placement and moderate volumizing. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes per unit, ready for single-patient use.",
       "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde threading or fanning; aspirate before each bolus. Dual syringes (2.2 mL total) support bilateral nasolabial and cheek treatment in one visit. Deliver 0.1–0.3 mL per depot; massage post-injection to contour. Integrated lidocaine reduces discomfort. Longevity 9–12 months."
@@ -1085,7 +1085,7 @@
       "groupId": "bonetta",
       "variantLabel": "BONETTA VOLUME",
       "groupName": "Bonetta",
-      "groupImage": "/images/bundles/bundle-bonetta.webp",
+      "groupImage": "/images/bundles/bundle-bonetta.webp?v=1779184568459",
       "indication": "Designed for deep placement and facial volume support. Suitable for treatment plans where firmer reinforcement and structural contouring are desired.",
       "packaging": "Supplied as two 1.1 mL pre-filled syringes per unit, ready for single-patient use.",
       "protocol": "Administer via bolus technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each depot. The dual-syringe format (2.2 mL total) facilitates bilateral treatment of malar or chin regions in one visit. Deliver 0.3–0.5 mL per bolus. Mold post-injection. Longevity 12–18 months; reassess at 4 weeks."
@@ -1109,7 +1109,7 @@
       "protocol": "Inject intradermally using 30G needles at 1–2 mm depth via papule technique, depositing 0.01–0.02 mL per point across the treatment area. A grid or linear retrograde pattern suits full-face or neck revitalisation. Standard course: 3–4 sessions spaced 2–4 weeks apart, with maintenance every 4–6 months.",
       "groupId": "chaeum",
       "variantLabel": "THE CHAEUM PREMIUM #1 (MESO)",
-      "groupImage": "/images/bundles/bundle-chaeum.webp"
+      "groupImage": "/images/bundles/bundle-chaeum.webp?v=1779184568555"
     },
     {
       "id": 52,
@@ -1130,7 +1130,7 @@
       "protocol": "Inject into the superficial to mid-dermis using the supplied 27G needles via linear threading or serial puncture technique at 0.05–0.1 mL per linear centimetre. Suitable for perioral lines, tear trough fine lines, and lip border definition. Recommend 1–2 sessions initially, with touch-up at 6–9 months.",
       "groupId": "chaeum",
       "variantLabel": "THE CHAEUM PREMIUM #2",
-      "groupImage": "/images/bundles/bundle-chaeum.webp"
+      "groupImage": "/images/bundles/bundle-chaeum.webp?v=1779184568555"
     },
     {
       "id": 53,
@@ -1151,7 +1151,7 @@
       "protocol": "Administer into the mid-to-deep dermis using the supplied 25G needles via linear threading, cross-hatching, or bolus technique at 0.1–0.2 mL per site. Indicated for nasolabial folds, marionette lines, lip augmentation, and cheek contouring. Initial treatment 1–2 sessions; results typically persist 9–12 months.",
       "groupId": "chaeum",
       "variantLabel": "THE CHAEUM PREMIUM #3",
-      "groupImage": "/images/bundles/bundle-chaeum.webp"
+      "groupImage": "/images/bundles/bundle-chaeum.webp?v=1779184568555"
     },
     {
       "id": 54,
@@ -1172,7 +1172,7 @@
       "protocol": "Inject at the deep subcutaneous or supraperiosteal plane using 23G needles via bolus or depot technique, depositing 0.3–0.5 mL per anatomical unit. Aspirate before each bolus. Indicated for cheekbone projection, chin augmentation, and jawline definition. Results typically last 12–18 months; aspirate mandatory in high-risk zones.",
       "groupId": "chaeum",
       "variantLabel": "THE CHAEUM PREMIUM #4",
-      "groupImage": "/images/bundles/bundle-chaeum.webp"
+      "groupImage": "/images/bundles/bundle-chaeum.webp?v=1779184568555"
     },
     {
       "id": 55,
@@ -1191,7 +1191,7 @@
       "groupId": "voluderm",
       "variantLabel": "VOLUDERM FINE",
       "groupName": "Voluderm",
-      "groupImage": "/images/bundles/bundle-voluderm.webp",
+      "groupImage": "/images/bundles/bundle-voluderm.webp?v=1779184568638",
       "indication": "Designed for fine line smoothing and superficial dermal placement. Suitable for treatment areas where subtle, refined results are preferred.",
       "packaging": "Supplied as one pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject into the superficial dermis using a 30G needle at 1–2 mm depth via serial puncture or linear retrograde technique, depositing 0.01–0.05 mL per site. Suitable for crow's feet, fine perioral lines, and superficial forehead lines. Recommend 1–2 sessions initially; results last 6–9 months depending on treatment area."
@@ -1213,7 +1213,7 @@
       "groupId": "voluderm",
       "variantLabel": "VOLUDERM DEEP",
       "groupName": "Voluderm",
-      "groupImage": "/images/bundles/bundle-voluderm.webp",
+      "groupImage": "/images/bundles/bundle-voluderm.webp?v=1779184568638",
       "indication": "Intended for mid-to-deep dermal placement and moderate volumizing. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as one pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Place in the mid-to-deep dermis using a 27G needle via linear threading or cross-hatch technique at 0.1–0.2 mL per linear centimetre or bolus point. Aspirate before each bolus. Indicated for nasolabial folds, marionette lines, and mild cheek volume enhancement. Typical longevity 9–12 months."
@@ -1235,7 +1235,7 @@
       "groupId": "voluderm",
       "variantLabel": "VOLUDERM SUB-Q",
       "groupName": "Voluderm",
-      "groupImage": "/images/bundles/bundle-voluderm.webp",
+      "groupImage": "/images/bundles/bundle-voluderm.webp?v=1779184568638",
       "indication": "Designed for subcutaneous placement and deeper facial contouring. Suitable for treatment plans where firmer structural support is desired.",
       "packaging": "Supplied as one pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Administer at the subcutaneous or supraperiosteal plane using a 25–27G needle or blunt cannula via bolus or fanning technique, depositing 0.3–0.5 mL per anatomical point. Aspirate before each bolus; immediate digital moulding may be used. Indicated for cheek, chin, and jawline volumisation. Results last 12–18 months."
@@ -1257,7 +1257,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL KISS",
       "groupName": "Ultrafill",
-      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp?v=1779184568737",
       "indication": "Designed for soft tissue placement in the lip region and surrounding areas. Suitable for treatments where delicate, refined results are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject into the vermilion border and lip body using a 27–30G needle or fine cannula at the submucosal or intradermal plane, depositing 0.1–0.2 mL per lip segment via linear threading or serial puncture. Total volume typically 0.3–0.8 mL per session; aspirate in the oral commissure region. Results last 6–9 months in the lip."
@@ -1279,7 +1279,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL FINE",
       "groupName": "Ultrafill",
-      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp?v=1779184568737",
       "indication": "Designed for fine line smoothing and superficial dermal placement. Suitable for treatment areas where subtle, refined results are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Inject into the superficial dermis using a 30G needle at 1–2 mm depth via serial puncture or linear retrograde technique, depositing 0.01–0.05 mL per site. Ideal for crow's feet, forehead lines, and perioral fine wrinkles. Typically 1 session required; results last approximately 6–9 months depending on area and patient metabolism."
@@ -1301,7 +1301,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL DEEP",
       "groupName": "Ultrafill",
-      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp?v=1779184568737",
       "indication": "Intended for mid-to-deep dermal placement and moderate volumizing. Suitable for treatment areas where balanced lift and integration are preferred.",
       "packaging": "Supplied as one 1.1 mL pre-filled syringe per unit, ready for single-patient use.",
       "protocol": "Administer in the mid-to-deep dermis using a 25–27G needle via linear threading or bolus at 0.1–0.3 mL per treatment site. Aspirate before each bolus. Indicated for nasolabial folds, cheek hollowing, and mid-face volume loss. Initial treatment 1–2 sessions; typical duration 9–15 months."
@@ -1323,7 +1323,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL SHAPE",
       "groupName": "Ultrafill",
-      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp?v=1779184568737",
       "indication": "Designed for non-surgical facial contouring and shaping procedures intended for use by qualified aesthetic practitioners in a clinical setting.",
       "packaging": "Supplied as a 1.1 mL sterile pre-filled syringe, with one syringe per individually sealed pack.",
       "protocol": "Inject at the mid-dermis to supraperiosteal plane using a 25–27G needle via bolus technique, placing 0.2–0.5 mL per anatomical unit depending on the target area. Mandatory aspiration before each bolus in nasal dorsum and chin zones. Suitable for non-surgical rhinoplasty, chin projection, and malar contouring. Results typically last 12–18 months."
@@ -1345,7 +1345,7 @@
       "groupId": "ultrafill-nose",
       "variantLabel": "ULTRAFILL IMPLANT",
       "groupName": "Ultrafill",
-      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp",
+      "groupImage": "/images/bundles/bundle-ultrafill-nose.webp?v=1779184568737",
       "indication": "Designed for use in aesthetic implantation and volumization procedures intended for trained practitioners performing structured volume restoration.",
       "packaging": "Supplied as a 1.1 mL sterile pre-filled syringe, with one syringe per individually sealed pack.",
       "protocol": "Administer at the deep subcutaneous or supraperiosteal plane using a 25G needle or blunt cannula via bolus deposit, placing 0.3–0.6 mL per anatomical unit. Aspiration is mandatory before each bolus injection. Indicated for cheekbone projection, chin augmentation, and deep nasolabial fold correction. Results typically last 15–18 months."
@@ -1513,7 +1513,7 @@
       "groupId": "p198",
       "variantLabel": "P198 Filcore SB (ExoHealer™)",
       "groupName": "P198",
-      "groupImage": "/images/bundles/bundle-p198.webp",
+      "groupImage": "/images/bundles/bundle-p198.webp?v=1779184568824",
       "indication": "Designed for use as a professional skin booster intended to support overall skin firmness, hydration, and radiance in adult patients.",
       "packaging": "Supplied as 2 mL x 10 lyophilized vials per individually sealed pack.",
       "protocol": "Reconstitute each lyophilised 2 mL vial with 5 mL of the provided activating solution or normal saline immediately before administration. Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or serial puncture technique, or apply topically following microneedling or RF fractional treatment. Standard course: 4–6 sessions every 1–2 weeks, with maintenance every 1–3 months."
@@ -1535,7 +1535,7 @@
       "groupId": "p198",
       "variantLabel": "P198 Filcore Activating Solution (Solvent)",
       "groupName": "P198",
-      "groupImage": "/images/bundles/bundle-p198.webp",
+      "groupImage": "/images/bundles/bundle-p198.webp?v=1779184568824",
       "indication": "Intended for use as an activating solvent designed for pairing with compatible exosome skin boosters in professional skin-quality procedures.",
       "packaging": "Supplied as 5 mL x 10 sterile vials per individually sealed pack.",
       "protocol": "Add the full 5 mL of activating solution to one P198 Filcore SB lyophilised vial immediately before administration; gently invert or swirl to dissolve — do not shake. The reconstituted solution contains no preservatives and must be used within the same session. Administer intradermally at 1–3 mm depth via 30G needle or apply to the skin immediately after ablative microneedling or RF fractional treatment."
@@ -1557,7 +1557,7 @@
       "groupId": "p198",
       "variantLabel": "P198 Filcore SB Plus program",
       "groupName": "P198",
-      "groupImage": "/images/bundles/bundle-p198.webp",
+      "groupImage": "/images/bundles/bundle-p198.webp?v=1779184568824",
       "indication": "Designed for use as a professional skin booster program intended to support skin firmness, hydration, and overall radiance in adult patients.",
       "packaging": "Supplied as 2 mL + 5 mL paired vials, with 5 pairs per individually sealed pack.",
       "protocol": "Reconstitute one exosome vial with one solvent vial immediately before each session; administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or serial puncture technique. Alternatively, apply the reconstituted solution to the skin following microneedling or RF fractional treatment for enhanced transdermal delivery. Schedule sessions weekly or every 2 weeks for the 5-session programme; maintenance every 1–3 months thereafter."
@@ -1597,7 +1597,7 @@
       "groupId": "bellona",
       "variantLabel": "BELLONA AQUA",
       "groupName": "Bellona",
-      "groupImage": "/images/bundles/bundle-bellona.webp",
+      "groupImage": "/images/bundles/bundle-bellona.webp?v=1779184568905",
       "indication": "Intended for professional hydration and skin-quality treatments designed for use by trained aesthetic practitioners in clinical settings.",
       "packaging": "Supplied as 3 mL x 3 sterile pre-filled syringes per individually sealed pack.",
       "protocol": "Administer intradermally using a 30–32G needle at 2–4 mm depth via nappage or serial papule technique across the face, neck, or décolletage. Inject 0.01–0.02 mL per point in a grid pattern; total volume typically 3 mL per session per zone. Recommended course: 3 sessions at 3–4 week intervals; due to the sustained-release mechanism, longer inter-session intervals may be appropriate. Maintenance every 4–6 months."
@@ -1619,7 +1619,7 @@
       "groupId": "bellona",
       "variantLabel": "BELLONA OPACIOUS SERUM",
       "groupName": "Bellona",
-      "groupImage": "/images/bundles/bundle-bellona.webp",
+      "groupImage": "/images/bundles/bundle-bellona.webp?v=1779184568905",
       "indication": "Designed for professional skin-brightening and rejuvenation procedures suitable for trained practitioners performing skin-quality treatments.",
       "packaging": "Supplied as 3 mL x 5 sterile vials per individually sealed pack.",
       "protocol": "Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or mesotherapy technique, distributing the 3 mL volume evenly across the treatment area. Typical session spacing: weekly for 4–5 sessions to achieve the full brightening course. Combine with sun protection as part of post-treatment care to maintain results. Maintenance: one session every 4–6 weeks depending on skin condition."
@@ -1767,7 +1767,7 @@
       "groupId": "ultra",
       "variantLabel": "ULTRA GEN",
       "groupName": "Ultra",
-      "groupImage": "/images/bundles/bundle-ultra.webp",
+      "groupImage": "/images/bundles/bundle-ultra.webp?v=1779184569024",
       "indication": "Suitable for professional skin rejuvenation procedures intended for trained practitioners performing comprehensive skin-quality treatments.",
       "packaging": "Supplied as 100 mg distributed across 3 sterile vials per individually sealed pack.",
       "protocol": "Reconstitute each vial per manufacturer instructions immediately before use. Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or serial puncture technique, distributing one vial per session across the treatment zone. Recommended course: one vial per session over 3 sessions, spaced weekly or biweekly. Alternatively, apply topically following microneedling. Maintenance monthly or as clinically indicated."
@@ -1879,7 +1879,7 @@
       "groupId": "regenovue",
       "variantLabel": "REGENOVUE PN",
       "groupName": "Regenovue",
-      "groupImage": "/images/bundles/bundle-regenovue.webp",
+      "groupImage": "/images/bundles/bundle-regenovue.webp?v=1779184569112",
       "indication": "Designed for professional bio-revitalization procedures suitable for trained practitioners performing skin-quality and hydration treatments.",
       "packaging": "Supplied as 1 sterile pre-filled syringe of 3 mL, one syringe per individually sealed pack.",
       "protocol": "Administer intradermally using a 32G needle at 1–2 mm depth via papule or nappage technique, distributing the 3 mL volume across the face or target zone per session. Recommended course: 4 sessions spaced 2–3 weeks apart; results become visible 2–4 weeks after each session. Maintenance injections every 2–3 months. The lidocaine-free formulation may require topical anaesthesia prior to treatment for patient comfort."
@@ -1901,7 +1901,7 @@
       "groupId": "regenovue",
       "variantLabel": "REGENOVUE AQUASHINE PLUS GOLD",
       "groupName": "Regenovue",
-      "groupImage": "/images/bundles/bundle-regenovue.webp",
+      "groupImage": "/images/bundles/bundle-regenovue.webp?v=1779184569112",
       "indication": "Designed for professional bio-revitalization sessions and intended for general skin conditioning, surface hydration support, and adjunctive use within structured in-clinic skin-quality programs.",
       "packaging": "Supplied as 3 prefilled syringes of 3 mL each, providing a total volume of 9 mL per pack for in-clinic use.",
       "protocol": "Administer intradermally using a 30–32G needle at 2–4 mm depth via nappage or serial papule technique, distributing 3 mL per session across the face or neck zone. The crosslinked HA formulation allows wider spacing between sessions compared to non-crosslinked products; recommended interval is 3–4 weeks. Standard pack provides 3 sessions; maintenance sessions at 3–6 monthly intervals are appropriate."
@@ -1923,7 +1923,7 @@
       "groupId": "regenovue",
       "variantLabel": "REGENOVUE AQUASHINE SILVER",
       "groupName": "Regenovue",
-      "groupImage": "/images/bundles/bundle-regenovue.webp",
+      "groupImage": "/images/bundles/bundle-regenovue.webp?v=1779184569112",
       "indication": "Designed for professional bio-revitalization protocols and intended for general skin hydration, quality maintenance, and adjunctive in-clinic conditioning of the facial and adjacent treatment areas.",
       "packaging": "Supplied as 3 prefilled syringes of 3 mL each, providing a total volume of 9 mL per pack for professional use.",
       "protocol": "Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or serial puncture technique, distributing 3 mL per session across the face, neck, or décolletage. Recommended course: 3 sessions at 2–3 week intervals; due to the non-crosslinked formulation, shorter inter-session intervals are appropriate compared to crosslinked products. Maintenance sessions every 2–3 months."
@@ -2107,7 +2107,7 @@
       "groupId": "soonsu-mesotherapy",
       "variantLabel": "SOONSU ULTRA REJU",
       "groupName": "Soonsu",
-      "groupImage": "/images/bundles/bundle-soonsu-mesotherapy.webp",
+      "groupImage": "/images/bundles/bundle-soonsu-mesotherapy.webp?v=1779184569210",
       "indication": "Designed for professional mesotherapy protocols and intended to support general skin rejuvenation, surface tone, and adjunctive use within structured in-clinic conditioning programs.",
       "packaging": "Supplied as 5 vials of 3 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "Dissolve or draw from the 3 mL vial using a 30G or 31G needle; inject intradermally at 1–3 mm depth by nappage or serial papule technique, 0.02–0.05 mL per point. Treat once weekly for 4–5 sessions; maintenance injections monthly or as clinically indicated."
@@ -2129,7 +2129,7 @@
       "groupId": "soonsu-mesotherapy",
       "variantLabel": "SOONSU SHINING PEEL",
       "groupName": "Soonsu",
-      "groupImage": "/images/bundles/bundle-soonsu-mesotherapy.webp",
+      "groupImage": "/images/bundles/bundle-soonsu-mesotherapy.webp?v=1779184569210",
       "indication": "Designed for professional chemical peel protocols and intended for surface tone refinement, controlled exfoliation support, and adjunctive use within structured in-clinic renewal programs.",
       "packaging": "Supplied as 5 units of 6 mL each per pack, providing a multi-session in-clinic working set in a single carton.",
       "protocol": "Degrease skin thoroughly; apply the peel solution uniformly with a fan brush in 1–2 coats, observing frosting level (Grade I–II target). Neutralize or allow self-neutralization per formulation instructions; do not exceed the manufacturer-specified contact time. Perform one session every 4–6 weeks for 3–5 cycles; rigorous sun protection is mandatory between and after sessions."
@@ -2187,7 +2187,7 @@
       "groupId": "ultra",
       "variantLabel": "ULTRA EYE (PN 1%)",
       "groupName": "Ultra",
-      "groupImage": "/images/bundles/bundle-ultra.webp",
+      "groupImage": "/images/bundles/bundle-ultra.webp?v=1779184569024",
       "indication": "Designed for professional mesotherapy of the periorbital and tear-valley areas and intended for hydration support, surface conditioning, and adjunctive use within structured in-clinic programs.",
       "packaging": "Supplied as 1 prefilled syringe containing 20 mg polynucleotide per 1.1 mL for in-clinic use.",
       "protocol": "Administer the full 1.1 mL syringe per bilateral periorbital session using a 32G or 33G needle. Inject at 0.5–1 mm intradermal depth via micro-papule technique, 0.01–0.02 mL per injection point, staying superficial and inferior to the orbital rim. Complete 3–4 sessions at 2-week intervals; monthly maintenance is recommended."
@@ -2227,7 +2227,7 @@
       "groupId": "juvelook-i-30mg",
       "variantLabel": "JUVELOOK i (Juvelook Eye)",
       "groupName": "Juvelook",
-      "groupImage": "/images/bundles/bundle-juvelook-i-30mg.webp",
+      "groupImage": "/images/bundles/bundle-juvelook-i-30mg.webp?v=1779184569311",
       "indication": "-Under-eye area (dark circles, fine lines) -Crow’s feet -Perioral “barcode” lines -Thin skin (neck, delicate zones) -Skin texture & elasticity improvement",
       "packaging": "Supplied as a single vial containing 25.5 mg PDLLA and 4.5 mg hyaluronic acid (30 mg per vial in total).",
       "protocol": "Reconstitute the 30 mg vial with the supplied diluent and allow full dissolution before use; inject with a 30G or 31G needle. Administer at superficial dermis depth (0.5–2 mm) using a nappage or mesotherapy fanning technique, 0.02–0.05 mL per point. Recommend 2–3 sessions every 4–6 weeks; collagen remodeling continues for up to 6 months post-treatment."
@@ -2375,7 +2375,7 @@
       "groupId": "ultra",
       "variantLabel": "ULTRA WHITE",
       "groupName": "Ultra",
-      "groupImage": "/images/bundles/bundle-ultra.webp",
+      "groupImage": "/images/bundles/bundle-ultra.webp?v=1779184569024",
       "indication": "Designed for professional facial mesotherapy and intended to support surface tone, brightness, and adjunctive use within structured in-clinic facial conditioning programs.",
       "packaging": "Supplied as 5 vials of 3 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "Use 3 mL per session injected intradermally at 1–2 mm depth with a 30G or 31G needle using nappage or mesotherapy gun technique, 0.02–0.03 mL per injection point. Systematically cover the treatment area; combine sessions with topical brightening agents for synergistic results. Perform 4–6 weekly sessions; maintenance every 4–8 weeks under ongoing SPF50+ photoprotection."
@@ -2397,7 +2397,7 @@
       "groupId": "miracle-x",
       "variantLabel": "MIRACLE X",
       "groupName": "Miracle",
-      "groupImage": "/images/bundles/bundle-miracle-x.webp",
+      "groupImage": "/images/bundles/bundle-miracle-x.webp?v=1779184569406",
       "indication": "Designed for professional skin booster and meso-lifting protocols, intended to support facial hydration, surface quality, and adjunctive use within structured in-clinic conditioning programs.",
       "packaging": "Supplied as 5 vials of 2 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "Draw from the 2 mL vial and inject with a 27G or 30G needle at mid-to-deep dermis depth (2–4 mm) using linear retrograde threading or bolus technique for lifting zones; finer nappage can be used for superficial hydration. Use 1–2 mL per facial zone per session; perform 2–3 sessions at 4–6 week intervals and reassess at 3 months."
@@ -2419,7 +2419,7 @@
       "groupId": "miracle-x",
       "variantLabel": "MIRACLE H",
       "groupName": "Miracle",
-      "groupImage": "/images/bundles/bundle-miracle-x.webp",
+      "groupImage": "/images/bundles/bundle-miracle-x.webp?v=1779184569406",
       "indication": "Designed for professional meso-lifting and skin booster protocols and intended to support facial hydration, surface tone, and adjunctive use within structured in-clinic conditioning programs.",
       "packaging": "Supplied as 5 vials of 2 mL each per pack, providing a complete in-clinic working set per program.",
       "protocol": "Administer 1–2 mL per zone with a 27G–30G needle at 2–4 mm depth using retrograde linear threading for lifting corridors and nappage for surface hydration. Treat across forehead, mid-face, and jawline in separate passes; total session volume is typically 4–8 mL across the full face. Schedule 2–3 sessions at 4–6 week intervals; maintenance every 6–12 months."
@@ -2441,7 +2441,7 @@
       "groupId": "miracle-x",
       "variantLabel": "MIRACLE L",
       "groupName": "Miracle",
-      "groupImage": "/images/bundles/bundle-miracle-x.webp",
+      "groupImage": "/images/bundles/bundle-miracle-x.webp?v=1779184569406",
       "indication": "Designed for facial skin lifting routines and collagen-support objectives in professional aesthetic protocols, intended for practitioners working on overall firmness and skin quality refinement.",
       "packaging": "Box containing 5 vials of 2 mL each, supplied as a meso solution for face lifting and skin lift collagen care.",
       "protocol": "Use a 27G needle to inject PCL at 2–4 mm depth (mid-dermis to deep dermis) using retrograde linear threading along the nasolabial folds, jowls, and jawline lifting corridors. Apply 0.5–1.0 mL per vector; total session dose is typically 4–8 mL for a full facial treatment. Perform 2–3 sessions at 4–6 week intervals; collagen remodeling continues for up to 18 months."
@@ -2463,7 +2463,7 @@
       "groupId": "touch",
       "variantLabel": "TOUCH UP PCL",
       "groupName": "Touch",
-      "groupImage": "/images/bundles/bundle-touch.webp",
+      "groupImage": "/images/bundles/bundle-touch.webp?v=1779184569504",
       "indication": "Intended for use as a stem cell booster and skin rejuvenation aid within professional aesthetic protocols, designed for practitioners addressing overall skin quality and freshness.",
       "packaging": "Box containing 5 vials of 2 mL each, supplied as a stem cell booster and skin rejuvenation solution.",
       "protocol": "Inject 1–2 mL per zone at 2–4 mm depth using a 27G or 30G needle with retrograde linear threading or bolus injection for lifting corridors. Full-face treatment typically requires 4–8 mL distributed across cheeks, jawline, and forehead; avoid superficial injection to prevent nodule formation. Perform 2–3 sessions at 4–6 week intervals; maintenance every 9–12 months."
@@ -2485,7 +2485,7 @@
       "groupId": "touch",
       "variantLabel": "TOUCH BR",
       "groupName": "Touch",
-      "groupImage": "/images/bundles/bundle-touch.webp",
+      "groupImage": "/images/bundles/bundle-touch.webp?v=1779184569504",
       "indication": "Designed for use in brightening-focused professional skincare protocols targeting the appearance of uneven pigmentation, dullness, and lack of luminosity in facial skin.",
       "packaging": "Box containing 5 vials of 5 mL each, supplied as a meso solution focused on brightening and even-tone support.",
       "protocol": "Draw 5 mL per session with a 30G or 31G needle; inject intradermally at 1–2 mm depth via nappage technique, 0.02–0.05 mL per injection point, covering pigmented and dull zones evenly. Perform 4–6 weekly sessions; transition to biweekly and then monthly maintenance. Advise daily SPF50+ sunscreen throughout and after treatment."
@@ -2561,7 +2561,7 @@
       "groupId": "lapuroon-aurora-super",
       "variantLabel": "LAPUROON AURORA SUPER",
       "groupName": "Lapuroon Aurora",
-      "groupImage": "/images/bundles/bundle-lapuroon-aurora-super.webp",
+      "groupImage": "/images/bundles/bundle-lapuroon-aurora-super.webp?v=1779184569586",
       "indication": "Designed for professional use as a skin booster supporting overall skin quality, hydration routines, and the appearance of refreshed, well-conditioned facial skin.",
       "packaging": "Box containing 2 pre-filled syringes of 2.5 mL each, supplied as a 2% PDRN skin booster for professional use.",
       "protocol": "Use directly from the 2.5 mL prefilled syringe with a 30G or 31G needle; inject intradermally at 1–3 mm depth via nappage technique, 0.02–0.05 mL per injection point. Distribute evenly across the treatment area; use 1 syringe per facial zone (face and neck). Perform 3–5 sessions at 1–2 week intervals; monthly maintenance is recommended thereafter."
@@ -2583,7 +2583,7 @@
       "groupId": "lapuroon-aurora-super",
       "variantLabel": "LAPUROON AURORA VIVID",
       "groupName": "Lapuroon Aurora",
-      "groupImage": "/images/bundles/bundle-lapuroon-aurora-super.webp",
+      "groupImage": "/images/bundles/bundle-lapuroon-aurora-super.webp?v=1779184569586",
       "indication": "Suitable for professional skin booster protocols supporting general skin care, intended for practitioners addressing overall skin quality and the appearance of healthy, conditioned skin.",
       "packaging": "Box containing 5 vials of 5 mL each, supplied as a 0.2% PDRN skin booster for professional use.",
       "protocol": "Draw from the 5 mL vial using a 30G or 31G needle; inject intradermally at 1–2 mm depth via nappage or mesotherapy gun technique, 0.02–0.05 mL per injection point, covering large surface areas. Typically use 3–5 mL per session for the face, or up to 10 mL for face and neck combined. Perform every 2–4 weeks; long-term maintenance every 1–2 months."
@@ -2749,7 +2749,7 @@
       "groupId": "ultra",
       "variantLabel": "ULTRA CA Bio Stimulator",
       "groupName": "Ultra",
-      "groupImage": "/images/bundles/bundle-ultra.webp",
+      "groupImage": "/images/bundles/bundle-ultra.webp?v=1779184569024",
       "indication": "Intended for professional protocols supporting volume restoration routines and collagen-stimulation objectives, designed for practitioners performing structured injection-based aesthetic care.",
       "packaging": "Box containing 2 pre-filled syringes of 0.8 mL each, supplied as a CaHA bio-stimulator for professional use.",
       "protocol": "Do not reconstitute; use directly from the 0.8 mL prefilled syringe with a 25G or 27G needle. Inject into the deep dermis or subdermal plane using a retrograde linear threading or depot injection technique; for facial biostimulation, dilute with lidocaine (4:1 ratio) for a more spreadable consistency. Inject 0.5–1.6 mL per zone; perform 1–2 sessions, assess at 4–6 weeks, then maintenance at 12–18 months."
@@ -2897,7 +2897,7 @@
       "groupId": "aclean",
       "variantLabel": "ACLEAN GEL",
       "groupName": "Aclean",
-      "groupImage": "/images/bundles/bundle-aclean.webp",
+      "groupImage": "/images/bundles/bundle-aclean.webp?v=1779184569680",
       "indication": "Suitable for blemish-prone skin and the appearance of clogged pores or uneven texture; avoid application on broken, highly sensitive, or compromised skin areas.",
       "packaging": "20 g tube, supplied as a topical leave-on gel containing 2% salicylic acid for targeted skin care.",
       "protocol": "After cleansing and toning, apply a thin layer to the affected area once or twice daily; allow to absorb before layering moisturizer or SPF. Begin with once-daily application and increase to twice daily as tolerated. Discontinue if persistent irritation, peeling, or sensitivity develops and consult a clinician. Broad-spectrum SPF 30+ is mandatory during daytime use."
@@ -2919,7 +2919,7 @@
       "groupId": "aclean",
       "variantLabel": "ACLEAN BODY ACNE TREATMENT SPRAY",
       "groupName": "Aclean",
-      "groupImage": "/images/bundles/bundle-aclean.webp",
+      "groupImage": "/images/bundles/bundle-aclean.webp?v=1779184569680",
       "indication": "Designed for body skin care on the back, chest, and shoulders prone to the appearance of blemishes, congestion, and uneven texture, intended for daily structured use.",
       "packaging": "100 mL spray bottle with 360-degree applicator, supplied for body acne care with 2% salicylic acid.",
       "protocol": "After showering and drying the skin, spray directly onto affected body areas from approximately 10–15 cm distance; allow to absorb completely before dressing. Apply twice daily. Avoid use on broken or actively irritated skin, and apply broad-spectrum SPF 30+ to treated areas exposed to sunlight. Reduce to once daily if dryness or irritation occurs."
@@ -3141,7 +3141,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Many Shoot Plus+",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp?v=1779184569781",
       "indication": "Helps reduce hair loss, nourish hair follicles, and improve scalp condition",
       "packaging": "Supplied as a 50 mL bottle per unit, as stated in the product specification.",
       "protocol": "Apply 5–10 drops directly to a clean, dry scalp and massage gently with fingertips to ensure even distribution and absorption. Use daily as a leave-on scalp serum, preferably after cleansing with an anti-hair loss shampoo. Do not rinse; allow to absorb fully before styling. Consistent use over a 90-day cycle is recommended for optimal results."
@@ -3163,7 +3163,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Trimo90 Shampoo (Anti-hair Loss)",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp?v=1779184569781",
       "indication": "Suitable for use within daily routines designed to address scalp sensitivity concerns and to provide structured hair-care support for sensitive or stressed scalps.",
       "packaging": "Supplied as a 500 mL bottle per unit, as stated in the product specification.",
       "protocol": "Wet hair with warm water, apply 3–5 mL and massage evenly through the scalp, allow the lather to remain in contact for 3 minutes to allow active ingredient absorption, then rinse thoroughly. Use daily as part of the Trimo90 protocol; the '90' designation reflects the recommended continuous 90-day usage period for measurable anti-hair loss outcomes. Combine with Trimo90 Tonic for synergistic scalp support."
@@ -3185,7 +3185,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Trimo90 Tonic (Anti-hair Loss)",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp?v=1779184569781",
       "indication": "Designed for daily scalp care routines that are intended to support overall hair and scalp condition within structured, practitioner-led or home-based hair-care programs.",
       "packaging": "Supplied as a 120 mL bottle per unit, as stated in the product specification.",
       "protocol": "After shampooing and towel-drying, apply the tonic directly to the scalp using the applicator tip, distributing evenly across thinning or affected areas, and massage gently with fingertips; do not rinse. Use daily for a minimum of 90 consecutive days as part of the full Trimo90 protocol. Pair with Trimo90 Shampoo for comprehensive follicular coverage."
@@ -3207,7 +3207,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Mohealer Shampoo",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp?v=1779184569781",
       "indication": "Designed to support structured scalp-care routines and to provide a comfortable cleansing experience as part of practitioner-recommended hair-care programs.",
       "packaging": "Supplied as a 500 mL bottle per unit, as stated in the product specification.",
       "protocol": "Wet hair thoroughly, apply an adequate amount and massage evenly through the scalp, leave on for 2–3 minutes to allow active absorption, then rinse completely with water. Use 3–5 times per week or daily as directed; combine with Mohealer Tonic for a complete leave-on/rinse-off Mohealer scalp care program. Continue consistently for at least 8–12 weeks for measurable results."
@@ -3229,7 +3229,7 @@
       "groupId": "dermagen",
       "variantLabel": "DERMAGEN Mohealer Tonic",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen.webp?v=1779184569781",
       "indication": "Suitable for inclusion in routine scalp-care programs designed to support hair and scalp condition as part of structured, practitioner-recommended hair-care routines.",
       "packaging": "Supplied as a 120 mL bottle per unit, as stated in the product specification.",
       "protocol": "After cleansing with Mohealer Shampoo and towel-drying, apply the tonic directly to the scalp using the applicator or by dispensing onto fingertips, distribute evenly across affected areas, and massage gently; do not rinse. Use daily or as directed; consistent application over 8–12 weeks is recommended for measurable improvement in scalp condition and hair quality."
@@ -3305,7 +3305,7 @@
       "groupId": "scarderm",
       "variantLabel": "10g",
       "groupName": "Scarderm Gel",
-      "groupImage": "/images/bundles/bundle-scarderm.webp",
+      "groupImage": "/images/bundles/bundle-scarderm.webp?v=1779184569859",
       "indication": "Designed to support routines aimed at softening and smoothing the visible appearance of scars and helping to maintain pliable, comfortable scar tissue over time.",
       "packaging": "Supplied as a 10 g tube per unit, as stated in the product specification.",
       "protocol": "Apply a small amount of gel to the fully epithelialized scar area and massage gently with fingertips in a circular motion for 3–5 minutes, 2–3 times daily. Treatment should begin once wounds are fully closed; optimal results require consistent use for 3–6 months. Combine with silicone sheeting or compression therapy as clinically indicated for hypertrophic scars. Avoid application on open or infected wounds."
@@ -3327,7 +3327,7 @@
       "groupId": "scarderm",
       "variantLabel": "20g",
       "groupName": "Scarderm Gel",
-      "groupImage": "/images/bundles/bundle-scarderm.webp",
+      "groupImage": "/images/bundles/bundle-scarderm.webp?v=1779184569859",
       "indication": "Designed to support routines aimed at softening and smoothing the visible appearance of scars, suitable for extended use cases due to the larger pack size.",
       "packaging": "Supplied as a 20 g tube per unit (larger format), as stated in the product specification.",
       "protocol": "Apply and massage into the fully epithelialized scar area 2–3 times daily for 3–6 months; for larger body areas, apply a thin even layer and massage until absorbed. Begin after complete wound closure; do not apply to open, weeping, or infected wounds. Consistent daily use over the treatment course is essential; reassess scar pliability and height at 6–8 weeks. Silicone sheeting may be used adjunctively."
@@ -3385,7 +3385,7 @@
       "groupId": "madecassol",
       "variantLabel": "10g",
       "groupName": "Madecassol Gel",
-      "groupImage": "/images/bundles/bundle-madecassol.webp",
+      "groupImage": "/images/bundles/bundle-madecassol.webp?v=1779184569940",
       "indication": "Designed for post-procedure skin-care routines and for inclusion in programs addressing the appearance of scars, burns, and general skin irritation comfort.",
       "packaging": "Supplied as a 10 g tube per unit, as stated in the product specification.",
       "protocol": "Apply a thin layer to clean, intact, or healing skin as needed throughout the day, 2–4 times daily, gently dabbing without friction. This smaller 10 g format is ideal for targeted facial post-procedure care. Begin application after active weeping or bleeding has ceased; use consistently until the skin is fully recovered. Combine with SPF 30+ during daytime use on healing skin."
@@ -3407,7 +3407,7 @@
       "groupId": "madecassol",
       "variantLabel": "20g",
       "groupName": "Madecassol Gel",
-      "groupImage": "/images/bundles/bundle-madecassol.webp",
+      "groupImage": "/images/bundles/bundle-madecassol.webp?v=1779184569940",
       "indication": "• Sensitive / irritated skin • Post-procedure care (laser, peeling, MTS) • Minor wounds (non-infected) • Redness and skin recovery",
       "packaging": "Supplied as a 20 g tube per unit (larger format), as stated in the product specification.",
       "protocol": "Apply a thin layer 1–2 times daily to clean skin; gently dab onto treated areas without friction and allow to absorb before applying sunscreen or other topicals. Start once active oozing has resolved. The 20 g size is suited for full-face application or multi-session treatment courses requiring higher product volume. Pair with broad-spectrum SPF 30+ during daytime recovery."
@@ -3721,7 +3721,7 @@
       "groupId": "vanhalla",
       "variantLabel": "VANHALLA Ceramide Moisturizing Essence in Toner",
       "groupName": "Vanhalla",
-      "groupImage": "/images/bundles/bundle-vanhalla.webp",
+      "groupImage": "/images/bundles/bundle-vanhalla.webp?v=1779184570020",
       "indication": "Intended for dry or barrier-weakened complexions and designed for daily hydration, soothing care, and texture refinement on all skin types.",
       "packaging": "Single retail bottle containing 100 mL of essence toner with a flip-top dispensing cap.",
       "protocol": "Apply to freshly cleansed skin morning and evening using a cotton pad or by gently pressing with the palms before subsequent serum and cream steps. For enhanced hydration, layer 2-3 times in succession using the 7-skin method before heavier skincare steps."
@@ -3743,7 +3743,7 @@
       "groupId": "vanhalla",
       "variantLabel": "VANHALLA Ceramide Moisturizing Serum in Cream",
       "groupName": "Vanhalla",
-      "groupImage": "/images/bundles/bundle-vanhalla.webp",
+      "groupImage": "/images/bundles/bundle-vanhalla.webp?v=1779184570020",
       "indication": "Designed for dry complexions or a compromised barrier and intended for skin seeking softer, more supple appearance through consistent daily moisturizing care.",
       "packaging": "Single retail jar containing 50 mL of serum-cream with an inner sealing disc and screw lid.",
       "protocol": "Apply an even layer to cleansed skin morning and evening as the final moisturizing step in the routine. Massage gently in upward strokes across the face and neck until absorbed, and reapply a small amount to particularly dry zones as needed throughout the day."
@@ -3999,7 +3999,7 @@
       "groupId": "klargen",
       "variantLabel": "KLARGEN LactoBath",
       "groupName": "Klargen",
-      "groupImage": "/images/bundles/bundle-klargen.webp",
+      "groupImage": "/images/bundles/bundle-klargen.webp?v=1779184570103",
       "indication": "Helps cleanse the intimate area, maintain healthy pH balance, soothe sensitive skin, and reduce odor and irritation.",
       "packaging": "Single retail bottle containing 300 mL of feminine cleanser with a pump dispenser.",
       "protocol": "Dispense a small amount onto clean hands, lather gently across the external vulvar area only (do not apply internally), and rinse thoroughly with lukewarm water until completely clean. Use once or twice daily as a routine hygiene step. Avoid contact with eyes and rinse immediately if irritation occurs."
@@ -4021,7 +4021,7 @@
       "groupId": "klargen",
       "variantLabel": "KLARGEN soln.",
       "groupName": "Klargen",
-      "groupImage": "/images/bundles/bundle-klargen.webp",
+      "groupImage": "/images/bundles/bundle-klargen.webp?v=1779184570103",
       "indication": "Helps cleanse the intimate area, maintain healthy pH balance, reduce odor, and soothe sensitive skin.",
       "packaging": "Single portable retail bottle containing 50 mL of feminine cleanser with a travel-friendly cap.",
       "protocol": "Apply a small amount to the external intimate area, create a light lather between clean hands, and rinse thoroughly with water until completely clean. Use once or twice daily or as needed during travel. Do not apply internally, and discontinue use if persistent irritation or discomfort develops."
@@ -4169,7 +4169,7 @@
       "groupId": "selastin",
       "variantLabel": "SELASTIN TOX GF11",
       "groupName": "Selastin",
-      "groupImage": "/images/bundles/bundle-selastin.webp",
+      "groupImage": "/images/bundles/bundle-selastin.webp?v=1779184570185",
       "indication": "Helps reduce wrinkles, improve firmness, brighten skin, and support anti-aging care.",
       "packaging": "Supplied as a kit containing 5 mL x 5 vials for professional skin booster applications.",
       "protocol": "Administer the full 5 mL per session via 30G intradermal mesotherapy injections at 1-2 mm depth using a multi-puncture nappage technique across the face. Sessions are typically scheduled every 2-4 weeks for a course of 4-6 treatments. No reconstitution required; use the ready-to-inject vial immediately upon opening."
@@ -4191,7 +4191,7 @@
       "groupId": "selastin",
       "variantLabel": "SELASTIN EXO PLUS",
       "groupName": "Selastin",
-      "groupImage": "/images/bundles/bundle-selastin.webp",
+      "groupImage": "/images/bundles/bundle-selastin.webp?v=1779184570185",
       "indication": "Intended for professional skin booster protocols designed to support elasticity, soothing, and regenerative-focused aesthetic care routines in clinical settings.",
       "packaging": "Kit with 100 mg exosome powder x 5 vials plus PDRN, collagen, and peptide solution 5 mL x 5 vials.",
       "protocol": "Reconstitute the 100 mg exosome powder with the full 5 mL PDRN + collagen + peptide solvent and mix gently until dissolved. Administer via 30G mesotherapy injections at 1-2 mm intradermal depth or via microneedling (0.5-1.5 mm). Recommend 4-6 sessions every 2-4 weeks; best tolerated with topical anaesthetic cream applied 30-45 minutes prior."
@@ -4213,7 +4213,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX SCULP",
       "groupName": "Curenex",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Designed for professional collagen biostimulation procedures intended to support firmness and elasticity-focused aesthetic care in qualified clinical settings.",
       "packaging": "Supplied as 360 mg of poly-L-lactic acid biostimulator powder per vial for professional use.",
       "protocol": "Reconstitute the 360 mg PLLA powder in 5-8 mL of sterile water for injection or lidocaine solution, mixing vigorously for 2-3 minutes and allowing to hydrate for a minimum of 2 hours (or overnight) at room temperature before use. Inject intradermally to the deep dermis or subcutaneous plane using a 25-26G needle or cannula; avoid superficial injection. A series of 2-3 sessions at 4-6 week intervals is standard, with results developing progressively over 3-6 months."
@@ -4235,7 +4235,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX PDRN",
       "groupName": "Curenex",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Suitable for professional revitalizing skin booster protocols designed for use in clinical aesthetic settings by qualified practitioners.",
       "packaging": "Supplied as a kit containing 5 mL x 5 vials of salmon-derived PDRN booster solution.",
       "protocol": "Administer 1-5 mL per session via 30G intradermal mesotherapy injections at 1-2 mm depth across the face, neck, or targeted zones using a multi-puncture or linear threading technique. Standard courses consist of 4-6 sessions at 2-4 week intervals; maintenance injections every 2-3 months. No reconstitution required; use the ready-to-inject vial upon opening."
@@ -4257,7 +4257,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX DAILY CARE SKINBOOSTER (SERUM)",
       "groupName": "Curenex",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Designed for daily home care use, intended to support skin hydration, a smooth appearance, and balanced moisture across normal skin types.",
       "packaging": "Supplied in a 30 mL serum bottle for daily home care application.",
       "protocol": "Dispense 3-4 drops or one pump onto cleansed skin morning and evening, then press the serum gently across the face and neck with clean palms. Allow 30-60 seconds for full absorption before layering moisturizer or sunscreen. Best used as part of a complete Curenex home-care routine following in-clinic PDRN booster sessions for enhanced results."
@@ -4279,7 +4279,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX REJUVENATING CREAM",
       "groupName": "Curenex Rejuvenating",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Designed for daily home care and as part of a post-procedure routine, intended to support skin comfort and conditioning after aesthetic treatments.",
       "packaging": "Supplied as a single-unit cream tube for daily home care use.",
       "protocol": "Apply an appropriate amount to cleansed skin morning and evening, massaging gently in upward motions across the face and neck until fully absorbed. During the post-procedure recovery period, apply as directed by the treating practitioner to support barrier repair and minimize transepidermal water loss. Avoid applying to open or ablated wound areas."
@@ -4301,7 +4301,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX HYDRATING CLEANSER",
       "groupName": "Curenex",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Designed for daily cleansing across all skin types, including sensitive skin, and intended to support a comfortable, balanced after-cleanse feel.",
       "packaging": "Supplied in a 150 mL bottle for daily home use cleansing routines.",
       "protocol": "Dispense an appropriate amount onto damp skin, massage gently across the face in slow circular motions for 30-60 seconds to emulsify impurities, then rinse thoroughly with lukewarm water morning and evening. Avoid hot water, which can disrupt the skin barrier, and follow immediately with the Curenex toner or serum step."
@@ -4323,7 +4323,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX LIPO (FACE AND BODY)",
       "groupName": "Curenex",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Designed for professional facial and body contouring procedures, intended for use by qualified medical practitioners in clinical aesthetic settings.",
       "packaging": "Supplied as a kit containing 10 mL x 5 vials of PPC-based lipolytic solution for professional use.",
       "protocol": "Draw up the required volume from the 10 mL vial and administer via a 27-30G needle directly into the subcutaneous fat layer at 10-13 mm depth for body sites and 6-8 mm for facial applications, using a depot technique (0.1-0.2 mL per injection point) with points spaced 1 cm apart across the treatment zone. Typical sessions require 2-4 vials for body and 0.5-2 vials for facial use; schedule treatments 4-6 weeks apart for 2-4 sessions total."
@@ -4345,7 +4345,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX REJUVENATING MASK",
       "groupName": "Curenex Rejuvenating",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Designed for regular home care use and as part of a post-procedure recovery routine, intended to support skin comfort and refreshment.",
       "packaging": "Supplied as a single-unit mask per individual pack for daily home use.",
       "protocol": "Apply the mask to freshly cleansed skin, smoothing it firmly to ensure full contact, and leave in place for 20-30 minutes as directed on the packaging. Remove and gently pat remaining essence into the skin using the ring fingers until absorbed. Use 2-3 times per week or after each in-clinic session during the post-procedure recovery window."
@@ -4367,7 +4367,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX EXO BRIGHTENING CREAM",
       "groupName": "Curenex",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Designed for daily home care use, intended to support brightening and hydration across normal skin types as part of a regular skincare routine.",
       "packaging": "Supplied in a 50 mL tube or jar for daily home care application.",
       "protocol": "Apply a pea-to-pearl-sized amount to cleansed skin morning and evening, massaging gently in upward circular motions across the face and neck until fully absorbed. For optimal brightening efficacy, follow morning application with broad-spectrum SPF50+ sunscreen. Ideal for use as part of a comprehensive Curenex home-care regimen between clinic sessions."
@@ -4389,7 +4389,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX EYE",
       "groupName": "Curenex",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Designed for professional under-eye revitalization procedures, intended for use by qualified medical practitioners in clinical aesthetic settings.",
       "packaging": "Supplied as a 2 mL x 1 prefilled syringe of polynucleotide-based solution with lidocaine for professional use.",
       "protocol": "Administer the 2 mL syringe content via a 30G or 32G needle at 1-2 mm intradermal depth using a superficial multi-puncture technique in a grid pattern across the periorbital zone, taking particular care in the thin skin beneath the eye. Inject 0.01-0.02 mL per depot at points spaced 0.5-1 cm apart; lidocaine onset facilitates patient comfort. Recommend 3-4 sessions at 2-4 week intervals, with maintenance every 3-6 months."
@@ -4411,7 +4411,7 @@
       "groupId": "curenex-bundle",
       "variantLabel": "CURENEX SNOW PEEL",
       "groupName": "Curenex",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp",
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331",
       "indication": "Designed for professional peeling and skin renewal procedures, intended to support exfoliation-focused aesthetic care performed by trained practitioners.",
       "packaging": "Supplied as a kit containing 4 vials x 1 g of C-TOX powder together with 30 mL of Snowpeel Activator solution.",
       "protocol": "Mix one 1 g C-TOX powder vial with the Snowpeel Activator in the provided ratio and stir thoroughly until the powder is fully suspended. Apply to cleansed skin and massage gently in small circular motions for 2-5 minutes to activate micro-channelling, then leave the mask on for 10-15 minutes before rinsing with lukewarm water. A course of 4-6 sessions at 2-3 week intervals is recommended; follow each session with sunscreen and avoid active retinoids for 72 hours."
@@ -4435,7 +4435,7 @@
       "protocol": "Apply as the final morning skincare step, spreading a sufficient quantity (approximately 0.5 mL for face and neck) evenly across all exposed skin areas. Reapply every 2 hours during continuous outdoor exposure, after sweating, or after towelling. Particularly recommended as daily sun protection following PDRN injectable sessions and brightening treatments to prevent UV-triggered hyperpigmentation rebound.",
       "variantLabel": "CURENEX SHEER SUNSCREEN",
       "groupId": "curenex-bundle",
-      "groupImage": "/images/bundles/bundle-curenex-bundle.webp"
+      "groupImage": "/images/bundles/bundle-curenex-bundle.webp?v=1779184570331"
     },
     {
       "id": 227,
@@ -4454,7 +4454,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 1",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed to soothe and condition post-laser skin and to support the skin barrier following professional aesthetic procedures in daily care routines.",
       "packaging": "Supplied in a 50 g tube for daily home care use after aesthetic procedures.",
       "protocol": "For home and clinic use following laser or aesthetic procedures. Apply a thin layer to thoroughly cleansed skin twice daily, morning and evening, gently pressing in until fully absorbed. Begin application immediately after the procedure and continue throughout the recovery period. Use for a minimum of 2 weeks post-treatment, or as directed by the practitioner."
@@ -4478,7 +4478,7 @@
       "protocol": "For home and clinic use. Apply a thin layer to cleansed, dried skin twice daily after aesthetic procedures, gently patting in until absorbed. Continue throughout the full post-procedure recovery period. Adjust frequency based on skin sensitivity and practitioner guidance.",
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 2",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp"
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481"
     },
     {
       "id": 229,
@@ -4499,7 +4499,7 @@
       "protocol": "For daily home use. Apply liberally to cleansed skin morning and evening, focusing on dry or recovering areas, and massage gently in upward motions until fully absorbed. May be applied to both face and body. Continue throughout the recovery period as directed by the treating practitioner.",
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 3",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp"
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481"
     },
     {
       "id": 230,
@@ -4520,7 +4520,7 @@
       "protocol": "For daily home use on body and problem areas. Apply an appropriate amount to affected zones once or twice daily and massage thoroughly until fully absorbed. For very thickened or fissured areas, apply under occlusion overnight for enhanced penetration. Continue regularly for at least 4 weeks for optimal keratolytic benefit.",
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 4",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp"
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481"
     },
     {
       "id": 231,
@@ -4541,7 +4541,7 @@
       "protocol": "For daily home use. Dispense a small pearl-sized amount and apply evenly to the face and neck as the closing step of the morning skincare routine, after serums and moisturizer. Reapply approximately every two hours during prolonged outdoor or sun exposure, or after sweating and towelling.",
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 5",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp"
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481"
     },
     {
       "id": 232,
@@ -4560,7 +4560,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 6",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed to support skin hydration and refreshment after laser and aesthetic procedures, suitable for sensitive skin during recovery routines.",
       "packaging": "Supplied as 10 sheets per box, each sheet weighing 23 g (0.81 oz) for individual single-use application.",
       "protocol": "For home or clinic use following laser or aesthetic procedures. Apply one sheet to thoroughly cleansed skin and leave in place for 15 to 20 minutes, then remove and gently pat any remaining essence into the skin until absorbed. Follow with a suitable recovery cream. Use 2 to 3 times per week during the post-procedure recovery period."
@@ -4582,7 +4582,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 7",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Suitable for daily care of pimples, blemishes, and post-procedure spots, intended to support a clean, protected environment over targeted areas.",
       "packaging": "Supplied as 15 spots per sheet with 4 sheets per pack for daily home care use.",
       "protocol": "For daily home use. Apply one patch to clean, thoroughly dry skin directly over the target blemish or spot, pressing gently at the edges to ensure full adhesion. Leave in place until the patch turns opaque (indicating exudate absorption), then replace with a fresh patch. Repeat until the lesion has resolved. May be worn under makeup."
@@ -4604,7 +4604,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 8",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed for daily UV protection together with brightening and smoothing benefits, suitable for sensitive and post-procedure skin in morning routines.",
       "packaging": "Supplied in a 50 g tube for daily home use sun protection and brightening care routines.",
       "protocol": "For daily home use. Apply an even layer to thoroughly cleansed and moisturized skin as the closing step of the morning routine. Reapply approximately every two hours during prolonged sun exposure, after sweating, or after towelling. Use consistently as part of a daily brightening maintenance protocol."
@@ -4626,7 +4626,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 9",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed for deep hydration of elbows, heels, knees, and overwashed hands prone to cracking, intended to support softening and conditioning of rough skin.",
       "packaging": "Supplied in a 100 g tube for daily home care use across rough body and problem-area routines.",
       "protocol": "For daily home use on rough body areas. Apply an appropriate amount to affected zones once or twice daily, massaging thoroughly into the skin until fully absorbed. For heavily thickened or fissured skin on heels and elbows, apply under light occlusion overnight for enhanced keratolytic effect. Consistent daily use over 4 to 6 weeks is recommended for optimal results."
@@ -4648,7 +4648,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 10",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Intended for daily care after laser and aesthetic procedures, designed to help replenish moisture and condition stressed, recovering facial skin.",
       "packaging": "Supplied in a 200 g tube for daily home and clinic-recommended post-procedure care routines.",
       "protocol": "For home and clinic use. Apply a thin even layer to thoroughly cleansed skin morning and evening, massaging gently across the face and neck until fully absorbed. Begin use immediately following in-clinic procedures and continue throughout the recovery period, or as directed by the treating practitioner."
@@ -4670,7 +4670,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 11",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed to help support the appearance and flattening of raised post-surgical and post-trauma scars during long-term daily home care routines.",
       "packaging": "Supplied in a 15 g tube for daily home care use across targeted scar areas.",
       "protocol": "For daily home use. Clean and dry the scar area thoroughly, then apply a thin layer of gel directly over the target scar twice daily. Allow the gel to dry completely before covering with clothing or dressings. For optimal remodelling results, use consistently for a minimum of 3 months on post-surgical or post-trauma scars. May be used in conjunction with pressure garments."
@@ -4692,7 +4692,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 12",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed to support the healing care of wounds and skin ulcers, intended for use as directed on the packaging or by a qualified healthcare professional.",
       "packaging": "Supplied in a 50 g tube as a quasi-drug wound treatment ointment for daily home or clinic use.",
       "protocol": "For home and clinic use. Cleanse the wound or affected area gently and pat dry, then apply a thin layer of ointment directly to the wound surface once or twice daily, or as directed by the packaging instructions or a qualified healthcare professional. Cover with an appropriate non-adherent dressing if required. Continue use until the wound has fully re-epithelialized."
@@ -4714,7 +4714,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 13",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed for the care of pigmentation, melasma-prone, and uneven skin tone, intended to support brightening and conditioning daily routines.",
       "packaging": "Supplied in a 50 g tube for daily home care use across brightening-focused routines.",
       "protocol": "For daily home use. Apply a thin layer to thoroughly cleansed skin morning and evening, focusing on areas of uneven tone, hyperpigmentation, or dark spots, then gently pat in until fully absorbed before applying sunscreen or the next care step. Consistent daily use over 4 to 8 weeks is recommended for visible brightening results. Pair with SPF50+ sun protection every morning."
@@ -4736,7 +4736,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 14",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed for instant cooling and hydration on stressed or sensitive skin, suitable as a daily comfort step within regular home care routines.",
       "packaging": "Supplied in a 50 g tube for daily home care use across cooling and hydration-focused routines.",
       "protocol": "For daily home use. Apply an appropriate amount to thoroughly cleansed skin as needed for cooling and hydration support, gently massaging across the face and neck until fully absorbed. May be used morning and evening as the moisturizing step in the daily routine, or applied as a targeted soothing treatment on reactive or post-procedure areas."
@@ -4758,7 +4758,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 15",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed for dull, fatigued-looking skin requiring daily UV protection and an even, radiant finish. Intended for use as the closing step of a daily skincare routine.",
       "packaging": "Supplied in a 40 mL tube for individual or in-clinic dispensing use.",
       "protocol": "For daily use after cleansing, toning, and serum application. Dispense a small pearl-sized amount and apply evenly across the face and neck as the closing morning skincare step, ensuring thorough coverage of sun-exposed areas. Reapply approximately every two hours during prolonged outdoor exposure or after sweating to maintain continuous UV protection."
@@ -4780,7 +4780,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 16",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed for sensitive or combination skin presenting with visible pores and uneven surface tone. Intended for daily brightening and pore-care routines.",
       "packaging": "Supplied in an 80 g tube for daily or in-clinic professional dispensing use.",
       "protocol": "For professional or daily home use. Apply an even layer to thoroughly cleansed skin, focusing on regions with visibly enlarged pores. May be used morning and evening as the moisturizing step or incorporated into post-procedure regimens once the skin barrier has fully stabilized, per practitioner judgment. Consistent use over 4 to 8 weeks is recommended for pore-toning results."
@@ -4802,7 +4802,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 17",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed for sensitive, reactive skin following in-clinic laser or peeling procedures. Intended for use during post-procedure recovery as part of a barrier-support routine.",
       "packaging": "Supplied in a 60 g tube for individual post-procedure dispensing use.",
       "protocol": "For professional clinic dispensing and home use. Apply a thin even layer to gently cleansed skin immediately following the in-clinic procedure and throughout the recovery period. Reapply two to three times daily or as directed by the treating practitioner. Continue for a minimum of 7 to 14 days post-treatment until skin barrier has fully re-established."
@@ -4824,7 +4824,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 18",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "Designed for sensitive, post-procedure skin in clinic environments where larger working volumes are required. Intended for use within professional recovery protocols.",
       "packaging": "Supplied in a 500 g clinic-size tube for high-volume professional dispensing.",
       "protocol": "For professional clinic use. Decant individual-patient portions hygienically using sterile spatulas or dispensers to maintain product integrity. Apply a thin even layer to cleansed post-procedure skin and advise patients to reapply two to three times daily throughout the recovery period. Clinical replacement of dispensed portions should follow standard infection-control procedures."
@@ -4846,7 +4846,7 @@
       "groupId": "dermagen-dermagen",
       "variantLabel": "Variant 19",
       "groupName": "Dermagen",
-      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp",
+      "groupImage": "/images/bundles/bundle-dermagen-dermagen.webp?v=1779184570481",
       "indication": "• Melasma (chloasma) • Freckles • Post-inflammatory hyperpigmentation • Age spots / sun spots • Uneven skin tone due to excess melanin",
       "packaging": "Supplied in a 200 g tube for daily home or in-clinic dispensing use.",
       "protocol": "Apply a thin layer to affected areas 1 to 2 times daily (morning and evening). Use broad-spectrum SPF50+ sunscreen during daytime throughout the treatment course to prevent UV-triggered re-pigmentation and protect existing results. Hydroquinone therapy is typically conducted in supervised 8 to 12 week cycles; treatment should be interrupted if signs of ochronosis or exogenous irritation develop. Consult a practitioner before extended use."
@@ -4978,7 +4978,7 @@
       "groupId": "melacell",
       "variantLabel": "MELACELL THE PREMIUM",
       "groupName": "Melacell",
-      "groupImage": "/images/bundles/bundle-melacell.webp",
+      "groupImage": "/images/bundles/bundle-melacell.webp?v=1779184570557",
       "indication": "Designed for professional brightening protocols. Intended for skin presenting with uneven tone, dark spots, and overall dullness in clinic environments.",
       "packaging": "Supplied as 5 mL x 10 vials per box for in-clinic professional use.",
       "protocol": "For in-clinic use by qualified practitioners. Administer intradermally via mesotherapy using a 30–32G needle with serial puncture or nappage technique at 1–2 mm depth in the superficial to mid-dermis. Dose 0.02–0.05 mL per point across the treatment area. Initial course: 3 to 4 weekly or bi-weekly sessions; monthly maintenance thereafter. Apply broad-spectrum SPF50+ post-treatment to prevent photoreactivation of pigmentation."
@@ -5002,7 +5002,7 @@
       "groupId": "melacell",
       "variantLabel": "MELACELL +",
       "groupName": "Melacell",
-      "groupImage": "/images/bundles/bundle-melacell.webp",
+      "groupImage": "/images/bundles/bundle-melacell.webp?v=1779184570557",
       "indication": "- Melasma, freckles, and hyperpigmentation - Uneven or dull skin tone - Post-inflammatory pigmentation - Early signs of aging and loss of elasticity - Skin brightening and tone correction - Professional procedures (MTS / mesotherapy)",
       "packaging": "Supplied as 3.5 mL x 10 vials per box for in-clinic professional use.",
       "protocol": "For in-clinic use by qualified practitioners via MTS microneedling or mesotherapy. Administer intradermally using a 30–32G needle with serial puncture or nappage technique, or apply topically immediately following microneedling at 0.5–1.0 mm depth. Dose 0.02–0.05 mL per injection point. Recommended course: 4 to 6 sessions at 1 to 2-week intervals for melasma and hyperpigmentation protocols; monthly maintenance thereafter. Apply SPF50+ sunscreen post-treatment."
@@ -5044,7 +5044,7 @@
       "groupId": "pdrenza",
       "variantLabel": "PDRENZA Serum",
       "groupName": "Pdrenza",
-      "groupImage": "/images/bundles/bundle-pdrenza.webp",
+      "groupImage": "/images/bundles/bundle-pdrenza.webp?v=1779184570636",
       "indication": "Helps improve skin elasticity, moisture, radiance, and fine lines.",
       "packaging": "Supplied in a 50 mL bottle for daily personal use.",
       "protocol": "For daily home use. Apply 3 to 5 drops to thoroughly cleansed skin morning and evening, gently pressing and patting across the face and neck until fully absorbed. Follow immediately with a suitable moisturizer or occlusive to seal in active ingredients. Use consistently twice daily for a minimum of 4 to 8 weeks for measurable improvement in elasticity, hydration, and fine lines."
@@ -5066,7 +5066,7 @@
       "groupId": "pdrenza",
       "variantLabel": "PDRENZA Cream",
       "groupName": "Pdrenza",
-      "groupImage": "/images/bundles/bundle-pdrenza.webp",
+      "groupImage": "/images/bundles/bundle-pdrenza.webp?v=1779184570636",
       "indication": "Helps improve hydration, skin tone, firmness, and fine lines.",
       "packaging": "Supplied in a 50 mL jar for daily personal or in-clinic dispensing use.",
       "protocol": "For daily home use. Apply an even layer to thoroughly cleansed skin both morning and evening as the closing moisturizing step of the skincare routine, after serum application. Massage gently across the face and neck until fully absorbed. Use consistently as part of the PDRENZA system alongside the matching serum for enhanced synergistic results."
@@ -5184,7 +5184,7 @@
       "groupId": "pepticule",
       "variantLabel": "PEPTICULE ULTIMATE REJUVENATION CREAM",
       "groupName": "Pepticule Ultimate Rejuvenation",
-      "groupImage": "/images/bundles/bundle-pepticule.webp",
+      "groupImage": "/images/bundles/bundle-pepticule.webp?v=1779184570739",
       "indication": "Designed for skin presenting with reduced elasticity, dullness, or mild fine lines. Intended for post-procedure finishing care only when the skin barrier is fully intact.",
       "packaging": "Supplied in a 50 mL jar for daily personal or in-clinic professional use.",
       "protocol": "For professional or daily home use. Apply an even layer to thoroughly cleansed skin as the closing step of the routine, both morning and evening, after serum or ampoule application. Massage gently across the face and neck until fully absorbed. For best results, pair with the PEPTICULE Ultimate Rejuvenation Serum and use consistently over a minimum of 4 to 8 weeks."
@@ -5206,7 +5206,7 @@
       "groupId": "pepticule",
       "variantLabel": "PEPTICULE ULTIMATE REJUVENATION SERUM",
       "groupName": "Pepticule Ultimate Rejuvenation",
-      "groupImage": "/images/bundles/bundle-pepticule.webp",
+      "groupImage": "/images/bundles/bundle-pepticule.webp?v=1779184570739",
       "indication": "Designed for skin presenting with fine lines, reduced firmness, uneven tone, or rough surface texture. Intended for targeted rejuvenation routines within structured care.",
       "packaging": "Supplied as 10 mL x 3 ampoules per box for personal or in-clinic professional use.",
       "protocol": "For professional or home use. Open one ampoule and apply the contents to thoroughly cleansed skin, spreading evenly across the face and neck. Allow the serum to absorb fully before following with the PEPTICULE Ultimate Rejuvenation Cream as the sealing step. Treatment frequency should be determined per clinic protocol and individual skin tolerance, typically 2 to 3 times per week for an active phase. Avoid eye contact; use SPF protection when using retinol derivatives."
@@ -5302,7 +5302,7 @@
       "groupId": "o2toderm",
       "variantLabel": "O2TODERM LED PLUS + ULDM",
       "groupName": "O2toderm Led Plus",
-      "groupImage": "/images/bundles/bundle-o2toderm.webp",
+      "groupImage": "/images/bundles/bundle-o2toderm.webp?v=1779184570816",
       "indication": "Designed for professional in-clinic LED and oxygen therapy protocols. Intended for use across a range of structured skin-care procedures performed by trained operators.",
       "packaging": "Supplied as a professional device with a multi-color LED panel and integrated oxygen and anion therapy modules.",
       "protocol": "For trained operator in-clinic use. Select the appropriate LED wavelength and intensity setting per the target indication. Deliver treatment at a distance of 5 to 10 cm from the skin surface for 15 to 30 minutes per session. Apply oxygen therapy in conjunction with active serums or masks for enhanced product infusion. Typical course: 2 sessions per week for 4 to 6 weeks. Calibrate device settings according to the manufacturer's technical manual and configure per patient indication before each use."
@@ -5342,7 +5342,7 @@
       "groupId": "o2toderm",
       "variantLabel": "O2TODERM LED PLUS",
       "groupName": "O2toderm Led Plus",
-      "groupImage": "/images/bundles/bundle-o2toderm.webp",
+      "groupImage": "/images/bundles/bundle-o2toderm.webp?v=1779184570816",
       "indication": "Designed for professional clinics performing combined LED, oxygen, and ultrasound procedures. Intended for trained operators integrating multiple modalities in structured protocols.",
       "packaging": "Supplied as a set including the O2TODERM LED PLUS device and the ULDM ultrasound device.",
       "protocol": "Select the LED wavelength appropriate to the indication (e.g. 415 nm for acne, 630 nm for rejuvenation, 830 nm for recovery), set oxygen flow pressure per the device manual, and position the applicator 5–10 cm from the skin surface. Treat each zone for 10–20 minutes per session; for combined LED and ULDM protocols, perform the LED pass first, then the ultrasound step. Repeat 1–2 times per week for 4–6 sessions as a course."
@@ -5526,7 +5526,7 @@
       "groupId": "hera",
       "variantLabel": "HERA POINT",
       "groupName": "Hera",
-      "groupImage": "/images/bundles/bundle-hera.webp",
+      "groupImage": "/images/bundles/bundle-hera.webp?v=1779184570900",
       "indication": "Designed for professional lifting protocols and fine-line care that benefit from focused ultrasonic stimulation, delivered by trained operators within established procedures.",
       "packaging": "Supplied as a point-type HIFU equipment unit with professional cartridges.",
       "protocol": "Cleanse the face and apply ultrasound coupling gel. Perform a skin thickness assessment to select the appropriate cartridge depth (1.5 mm for superficial lines, 3.0 mm for dermis, 4.5 mm for SMAS and deep tissue lifting). Map the treatment grid, typically 200–800 shots for a full face and neck. Deliver shots at manufacturer-recommended fluence, maintaining 5 mm spacing between shot lines. A single full-face HIFU session is typically performed once every 6–12 months; final results are visible at 8–12 weeks post-treatment."
@@ -5566,7 +5566,7 @@
       "groupId": "hera",
       "variantLabel": "HERA VACUUM",
       "groupName": "Hera",
-      "groupImage": "/images/bundles/bundle-hera.webp",
+      "groupImage": "/images/bundles/bundle-hera.webp?v=1779184570900",
       "indication": "Designed for professional protocols intended for body shape support, cellulite softening, and muscle relief, delivered by trained operators within established procedures.",
       "packaging": "Supplied as a vacuum RF equipment unit with three interchangeable professional handpieces.",
       "protocol": "Apply a thin layer of RF coupling gel to the treatment area. Attach the appropriate handpiece and set vacuum suction level to patient comfort (typically 30–60 kPa), then set RF energy at the starting level recommended for the selected body zone. Move the handpiece in slow overlapping strokes, maintaining suction contact throughout, until skin surface temperature reaches 40–42 °C as confirmed by the integrated thermometer. Treat each zone for 15–20 minutes. Recommend 6–8 sessions at weekly intervals, with maintenance sessions every 4–6 weeks."
@@ -5606,7 +5606,7 @@
       "groupId": "auto",
       "variantLabel": "AUTO-DN MTS PEN",
       "groupName": "Auto Dn",
-      "groupImage": "/images/bundles/bundle-auto.webp",
+      "groupImage": "/images/bundles/bundle-auto.webp?v=1779184570978",
       "indication": "Designed for professional auto-MTS protocols intended for facial skin, performed by trained operators following established cabin procedures and hygiene standards.",
       "packaging": "Supplied as an auto MTS pen unit with adjustable depth and three-step speed control.",
       "protocol": "Cleanse and optionally anaesthetise the treatment area (topical cream 20–30 min for depths above 1.0 mm). Select the needle depth appropriate to the indication: 0.25–0.5 mm for mesotherapy serum delivery, 0.5–1.0 mm for collagen induction, 1.0–2.0 mm for scar or stretch mark protocols. Set speed to the lowest setting (5,000 RPM) for sensitive areas and the highest (7,000 RPM) for thicker skin. Move the pen in overlapping cross-hatch passes until mild pinpoint bleeding is achieved at collagen-induction depths. Apply recovery serum and discard the needle cartridge immediately after."
@@ -5628,7 +5628,7 @@
       "groupId": "auto",
       "variantLabel": "AUTO-DN SMART",
       "groupName": "Auto Dn",
-      "groupImage": "/images/bundles/bundle-auto.webp",
+      "groupImage": "/images/bundles/bundle-auto.webp?v=1779184570978",
       "indication": "Intended for professional wireless auto-MTS protocols intended for facial and body skin, performed by trained operators within established procedures.",
       "packaging": "Supplied as a wireless auto MTS pen unit with adjustable depth and six-level speed control.",
       "protocol": "Fully charge the device before each session. Apply topical anaesthetic for depths exceeding 1.0 mm (30–45 minutes contact time). Select the depth per the protocol: 0.25–0.5 mm for superficial active delivery (no anaesthesia required), 0.5–1.5 mm for facial collagen induction, 1.5–3.0 mm for body scars, stretch marks, or scalp. Set speed (levels 1–2 for sensitive areas, 4–6 for thick skin zones). Perform overlapping grid passes, applying serum to the surface throughout. Use a disposable cartridge per client and discard after the session."
@@ -5686,7 +5686,7 @@
       "groupId": "jolla",
       "variantLabel": "JOLLA CLEANSING LOTION",
       "groupName": "Jolla",
-      "groupImage": "/images/bundles/bundle-jolla.webp",
+      "groupImage": "/images/bundles/bundle-jolla.webp?v=1779184571067",
       "indication": "Designed for daily professional and salon cleansing routines intended for hydration-focused care delivered within established cabin workflows.",
       "packaging": "1000 mL bottle, salon-grade large format for professional cabin use.",
       "protocol": "Dispense 2–3 mL onto the fingertips or a soft facial sponge. Apply to damp skin using circular massage strokes for 30–60 seconds, working from the centre of the face outward. Emulsify with water and rinse thoroughly, or remove with damp cotton pads for a non-rinse cabin application. Follow immediately with toner and the planned active serum step. For post-procedure skin (post-laser, post-peel, post-needling), apply with minimal friction and pat dry rather than rubbing."
@@ -5708,7 +5708,7 @@
       "groupId": "jolla",
       "variantLabel": "JOLLA GREEN TEA MODELING MASK",
       "groupName": "Jolla",
-      "groupImage": "/images/bundles/bundle-jolla.webp",
+      "groupImage": "/images/bundles/bundle-jolla.webp?v=1779184571067",
       "indication": "Suitable for hydration-focused mask steps within salon facial protocols delivered by trained estheticians following established cabin workflows.",
       "packaging": "1000 g alginate mask powder, salon-grade large format for professional use.",
       "protocol": "Measure 40–50 g of powder and mix with 100–120 mL of cold water in a mask bowl, stirring vigorously for 30–60 seconds until a smooth, lump-free gel is achieved. Apply the gel evenly across the face and décolletage using a mask brush in a single even layer approximately 5 mm thick. Leave to set for 15–20 minutes until firm. Remove by lifting from the chin edge and peeling upward in one continuous movement. Rinse residue, then apply the final serum and moisturiser. Suitable for weekly in-salon use."
@@ -5730,7 +5730,7 @@
       "groupId": "jolla",
       "variantLabel": "JOLLA PEPPERMINT MODELING MASK",
       "groupName": "Jolla",
-      "groupImage": "/images/bundles/bundle-jolla.webp",
+      "groupImage": "/images/bundles/bundle-jolla.webp?v=1779184571067",
       "indication": "Designed for soothing, cooling mask steps within salon facial protocols delivered by trained estheticians following established cabin procedures.",
       "packaging": "1000 g alginate mask powder, salon-grade large format for professional use.",
       "protocol": "Measure 40–50 g of powder and mix with 100–120 mL of cold water in a mask bowl, stirring for 30–60 seconds until smooth. For a more intense cooling effect, use chilled water (4–8 °C). Apply an even 5 mm-thick layer across the face using a mask brush, avoiding the orbital rim and lips. Allow to set for 15–20 minutes. Remove by lifting from the chin and peeling upward. Rinse residue and apply a soothing serum and barrier repair cream. Use immediately post-procedure or as a weekly calming treatment."
@@ -5752,7 +5752,7 @@
       "groupId": "misadi-lipo",
       "variantLabel": "4 vial",
       "groupName": "Misadi Lipo",
-      "groupImage": "/images/bundles/bundle-misadi-lipo.webp",
+      "groupImage": "/images/bundles/bundle-misadi-lipo.webp?v=1779184571155",
       "indication": "Designed for professional body contour care protocols administered by licensed and trained practitioners within established cabin workflows.",
       "packaging": "8 mL x 4 vials per pack, sterile single-use format for licensed professional use.",
       "protocol": "Using a 27–30G needle, inject 0.2 mL per depot subcutaneously into the fat compartment at 6–13 mm depth, spacing injections 1 cm apart across the planned treatment grid. For the submental or jowl zone, administer 1–3 mL per session depending on the volume of fat present. For body areas (arms, abdomen, flanks), administer up to 6–8 mL per zone per session. Perform 3–6 sessions at 4-week intervals; expect peak effect at 4–6 weeks post-final session."
@@ -5774,7 +5774,7 @@
       "groupId": "misadi-lipo",
       "variantLabel": "1 vial",
       "groupName": "Misadi Lipo",
-      "groupImage": "/images/bundles/bundle-misadi-lipo.webp",
+      "groupImage": "/images/bundles/bundle-misadi-lipo.webp?v=1779184571155",
       "indication": "Intended for professional body contour care protocols administered by licensed and trained practitioners within established cabin workflows.",
       "packaging": "8 mL x 1 vial, sterile single-use format for licensed professional use.",
       "protocol": "Inject 0.2 mL per depot subcutaneously using a 27–30G needle at 6–13 mm depth, with injection points spaced 1 cm apart. For the submental zone, administer 1–2 mL per session; for the buccal fat area, 0.5–1.5 mL per session. Limit total volume per session to 8 mL across all treated facial zones. Perform up to 3 sessions at 4-week intervals for the face. Expect moderate swelling for 48–72 hours post-injection; clinical results are apparent at 4–8 weeks post-session."
@@ -5796,7 +5796,7 @@
       "groupId": "barbie-slim",
       "variantLabel": "Variant 2",
       "groupName": "Barbie Slim",
-      "groupImage": "/images/bundles/bundle-barbie-slim.webp",
+      "groupImage": "/images/bundles/bundle-barbie-slim.webp?v=1779184567472",
       "indication": "Designed for professional face and body contour protocols administered by licensed and trained practitioners within established cabin procedures.",
       "packaging": "5 vials x 10 mL each, sterile professional format for licensed cabin use.",
       "protocol": "Using a 27–30G needle, inject 0.2 mL per depot subcutaneously at 6–13 mm depth, with deposits 1 cm apart across the treatment zone. For facial contouring (jawline, double chin), administer 2–4 mL per session; for body areas, administer 4–10 mL per zone per session, up to 20 mL total per session. Perform 3–6 sessions at 3–4 week intervals. Monitor for post-injection swelling, which typically peaks at 48–72 hours; advise lymphatic massage 48 hours post-procedure to support drainage."
@@ -5854,7 +5854,7 @@
       "groupId": "lipolab",
       "variantLabel": "LIPOLAB GMS",
       "groupName": "Lipolab",
-      "groupImage": "/images/bundles/bundle-lipolab.webp",
+      "groupImage": "/images/bundles/bundle-lipolab.webp?v=1779184571230",
       "indication": "Intended for professional body contour protocols administered by licensed and trained practitioners within established cabin procedures and workflows.",
       "packaging": "10 mL x 10 vials, sterile professional format for licensed cabin use.",
       "protocol": "Using a 27–30G needle, inject 0.2 mL per depot subcutaneously at 6–13 mm depth, with deposits 1 cm apart across the planned grid. Administer 5–10 mL per zone per session for larger body areas; do not exceed 50 mL total per session across all zones. Perform 4–6 sessions at 3–4 week intervals. Advise patients to expect swelling and firmness in the treated area for 3–7 days post-injection; results typically become visible at 4–8 weeks after each session."
@@ -5876,7 +5876,7 @@
       "groupId": "lipolab",
       "variantLabel": "LIPOLAB V LINE MEDIHUE",
       "groupName": "Lipolab",
-      "groupImage": "/images/bundles/bundle-lipolab.webp",
+      "groupImage": "/images/bundles/bundle-lipolab.webp?v=1779184571230",
       "indication": "Designed for professional facial V-line contour protocols administered by licensed and trained practitioners within established cabin procedures.",
       "packaging": "10 mL x 5 vials, sterile professional format for licensed cabin use.",
       "protocol": "Using a 27–30G, 13 mm needle, inject 0.2 mL per depot subcutaneously at 6–10 mm depth along the jawline, jowl, and submental zone, spacing deposits 1 cm apart. Administer 2–5 mL per session for standard jawline contouring; up to 8 mL if submental fat is also included in the same session. Perform 3–5 sessions at 3–4 week intervals. Advise the patient that swelling typically peaks at 24–48 hours and resolves within 3–5 days; results become apparent progressively from week 4 post-final session."
@@ -6080,7 +6080,7 @@
       "groupId": "botulax-300unit",
       "variantLabel": "BOTULAX 100 units",
       "groupName": "Botulax",
-      "groupImage": "/images/bundles/bundle-botulax-300unit.webp",
+      "groupImage": "/images/bundles/bundle-botulax-300unit.webp?v=1779184571326",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 1.0–2.5 mL of preservative-free 0.9% sodium chloride to achieve a working concentration of 4–10 U per 0.1 mL. Using a 30–32G, 13 mm needle, inject 2–5 U per point intramuscularly at standard anatomical landmarks. For the glabellar complex, administer 20–30 U total across 5 injection points; for forehead lines, 10–20 U across 4–6 points; for crow's feet, 6–15 U per side across 3–4 points. Onset is 3–7 days; peak effect at 2 weeks; duration 3–6 months. Use reconstituted product within 24 hours, stored at 2–8 °C."
@@ -6102,7 +6102,7 @@
       "groupId": "botulax-300unit",
       "variantLabel": "BOTULAX 200 units",
       "groupName": "Botulax",
-      "groupImage": "/images/bundles/bundle-botulax-300unit.webp",
+      "groupImage": "/images/bundles/bundle-botulax-300unit.webp?v=1779184571326",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 2.0–5.0 mL of preservative-free 0.9% saline to achieve a working concentration of 4–10 U per 0.1 mL. For masseter reduction, inject 20–30 U per masseter into the bulk of the muscle using a 30G needle, with 3–5 injection points per side. For axillary hyperhidrosis, inject 50 U per axilla across 10–15 grid points (5 U/point), after minor starch-iodine test mapping. For facial aesthetics, apply standard dosing across glabella, forehead, and crow's feet as per 100U protocol. Duration 3–6 months; use within 24 hours of reconstitution."
@@ -6124,7 +6124,7 @@
       "groupId": "botulax-300unit",
       "variantLabel": "BOTULAX 300 units",
       "groupName": "Botulax",
-      "groupImage": "/images/bundles/bundle-botulax-300unit.webp",
+      "groupImage": "/images/bundles/bundle-botulax-300unit.webp?v=1779184571326",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 300 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 3.0–7.5 mL of preservative-free 0.9% saline to achieve the desired working concentration. For combined full-face aesthetic treatment plus masseter and trapezius or neck bands in a single session, total doses may reach 200–300 units; the 300U vial accommodates this without mid-session reconstitution. Apply standard anatomical dosing across all target muscle groups using a 30–32G needle at intramuscular depth. Discard any unused reconstituted product at the end of the session; do not store for reuse beyond 24 hours post-reconstitution."
@@ -6146,7 +6146,7 @@
       "groupId": "metox",
       "variantLabel": "METOX 100 units",
       "groupName": "Metox",
-      "groupImage": "/images/bundles/bundle-metox.webp",
+      "groupImage": "/images/bundles/bundle-metox.webp?v=1779184571429",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 2.5 mL of preservative-free 0.9% sodium chloride to achieve a concentration of 4 U per 0.1 mL. Using a 30–32G needle, inject intramuscularly at standard anatomical landmarks: glabella 20–30 U across 5 points, forehead 10–20 U across 4–6 points, periocular crow's feet 6–12 U per side across 3 points. Allow 14 days for full effect assessment before considering touch-up dosing. Duration of effect is 6–9 months; schedule repeat treatments accordingly. Store the lyophilised vial at 2–8 °C and use reconstituted product within 24 hours."
@@ -6168,7 +6168,7 @@
       "groupId": "metox",
       "variantLabel": "METOX 200 units",
       "groupName": "Metox",
-      "groupImage": "/images/bundles/bundle-metox.webp",
+      "groupImage": "/images/bundles/bundle-metox.webp?v=1779184571429",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute with 5.0 mL of preservative-free 0.9% sodium chloride to achieve a concentration of 4 U per 0.1 mL, or adjust diluent volume to match preferred working dilution. For combined facial treatment including glabella, forehead, crow's feet, and lip area in a single session, total dosing typically requires 80–150 U; the 200U vial accommodates full-session use. For masseter reduction in combination with facial aesthetics, add 25–50 U per masseter to the session total. Use within 24 hours of reconstitution; store the lyophilised vial at 2–8 °C before use."
@@ -6190,7 +6190,7 @@
       "groupId": "innotox-50",
       "variantLabel": "INNOTOX 50 units",
       "groupName": "Innotox",
-      "groupImage": "/images/bundles/bundle-innotox-50.webp",
+      "groupImage": "/images/bundles/bundle-innotox-50.webp?v=1779184571515",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 50 units of liquid botulinum toxin, supplied for professional use.",
       "protocol": "Supplied ready-to-use; no reconstitution required. Inject 0.1 mL per point intramuscularly using a 30–32G needle. Glabellar complex: 5 injection sites totalling 20–25 units; forehead: 10–15 units across 5 sites. Results last approximately 3–4 months; repeat treatment as needed."
@@ -6212,7 +6212,7 @@
       "groupId": "innotox-50",
       "variantLabel": "INNOTOX 100 units",
       "groupName": "Innotox",
-      "groupImage": "/images/bundles/bundle-innotox-50.webp",
+      "groupImage": "/images/bundles/bundle-innotox-50.webp?v=1779184571515",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of liquid botulinum toxin, supplied for professional use.",
       "protocol": "Supplied ready-to-use; no reconstitution required. Draw dose directly and inject intramuscularly using a 30–32G needle. Typical full-face session uses 30–80 units; glabellar: 20–25 units across 5 sites, frontalis: 10–20 units, lateral canthal lines: 6–15 units per side. Repeat every 3–4 months."
@@ -6234,7 +6234,7 @@
       "groupId": "nabota-200unit",
       "variantLabel": "NABOTA 100 units",
       "groupName": "Nabota",
-      "groupImage": "/images/bundles/bundle-nabota-200unit.webp",
+      "groupImage": "/images/bundles/bundle-nabota-200unit.webp?v=1779184571647",
       "indication": "Designed for professional use in protocols addressing the appearance of glabellar lines, intended for application by trained practitioners within established aesthetic treatment frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). For glabellar lines, inject 4 units (0.1 mL) IM into each of 5 sites (total 20 units) using a 30G needle. Allow 24–72 hours for onset; full effect at 7–14 days. Repeat treatment at 3–4 month intervals."
@@ -6256,7 +6256,7 @@
       "groupId": "nabota-200unit",
       "variantLabel": "NABOTA 200 units",
       "groupName": "Nabota",
-      "groupImage": "/images/bundles/bundle-nabota-200unit.webp",
+      "groupImage": "/images/bundles/bundle-nabota-200unit.webp?v=1779184571647",
       "indication": "Designed for professional use in protocols addressing the appearance of glabellar lines, intended for application by trained practitioners within established aesthetic treatment frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). For glabellar lines, inject 20 units (5 sites × 4 units); forehead: 10–20 units; lateral canthal lines: 6–15 units per side; masseter reduction: 20–30 units per side. Use a 30–32G needle for all injections. Repeat every 3–4 months."
@@ -6278,7 +6278,7 @@
       "groupId": "liztox-100u",
       "variantLabel": "LIZTOX 100 units",
       "groupName": "Liztox",
-      "groupImage": "/images/bundles/bundle-liztox-100u.webp",
+      "groupImage": "/images/bundles/bundle-liztox-100u.webp?v=1779184571727",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 100 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar complex: 20 units across 5 sites (4 units each); forehead: 10–20 units; crow's feet: 6–12 units per side. Onset in 2–4 days; full effect at 7–14 days. Repeat every 3–4 months."
@@ -6300,7 +6300,7 @@
       "groupId": "liztox-100u",
       "variantLabel": "LIZTOX 200 units",
       "groupName": "Liztox",
-      "groupImage": "/images/bundles/bundle-liztox-100u.webp",
+      "groupImage": "/images/bundles/bundle-liztox-100u.webp?v=1779184571727",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin, supplied for professional aesthetic use.",
       "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Use a 30–32G needle; glabellar: 20–25 units (5 sites); frontalis: 10–20 units; lateral canthal: 6–15 units per side; masseter: 20–30 units per side; axillary hyperhidrosis: 50 units per axilla intradermally. Repeat every 3–6 months depending on indication."
@@ -6360,7 +6360,7 @@
       "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units across 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side. Onset within 2–4 days; peak effect at 7–14 days. Retreat at 3–4 month intervals.",
       "groupId": "meditoxin",
       "variantLabel": "MEDITOXIN 100 units",
-      "groupImage": "/images/bundles/bundle-meditoxin.webp"
+      "groupImage": "/images/bundles/bundle-meditoxin.webp?v=1779184571781"
     },
     {
       "id": 324,
@@ -6381,7 +6381,7 @@
       "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Use a 30–32G needle for IM injections; glabellar: 20–25 units; frontalis: 10–20 units; periorbital: 6–15 units per side; masseter reduction: 20–30 units per side; axillary hyperhidrosis: 50 units per axilla intradermally. Repeat every 3–5 months.",
       "groupId": "meditoxin",
       "variantLabel": "Meditoxin 200 units",
-      "groupImage": "/images/bundles/bundle-meditoxin.webp"
+      "groupImage": "/images/bundles/bundle-meditoxin.webp?v=1779184571781"
     },
     {
       "id": 325,
@@ -6402,7 +6402,7 @@
       "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side; masseter reduction: 20–30 units per side. Full effect at 7–14 days. Repeat every 3–4 months.",
       "groupId": "re-n-tox",
       "variantLabel": "Re N Tox 200 units",
-      "groupImage": "/images/bundles/bundle-re-n-tox.webp"
+      "groupImage": "/images/bundles/bundle-re-n-tox.webp?v=1779184571861"
     },
     {
       "id": 326,
@@ -6423,7 +6423,7 @@
       "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Use a 30–32G needle; glabellar: 20–25 units (5 sites × 4–5 units); crow's feet: 6–12 units per side; forehead: 10–20 units. Onset 2–4 days; full effect by day 14. Repeat at 3–4 month intervals.",
       "groupId": "re-n-tox",
       "variantLabel": "RE N TOX 100 units",
-      "groupImage": "/images/bundles/bundle-re-n-tox.webp"
+      "groupImage": "/images/bundles/bundle-re-n-tox.webp?v=1779184571861"
     },
     {
       "id": 327,
@@ -6460,7 +6460,7 @@
       "groupId": "kaimax-100u",
       "variantLabel": "KAIMAX 100 units",
       "groupName": "Kaimax",
-      "groupImage": "/images/bundles/bundle-kaimax-100u.webp",
+      "groupImage": "/images/bundles/bundle-kaimax-100u.webp?v=1779184571946",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Supplied in vials of high-purity botulinum toxin for professional aesthetic use.",
       "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side. Allow 3–5 days for clinical onset; full effect by day 14. Repeat every 3–4 months."
@@ -6482,7 +6482,7 @@
       "groupId": "kaimax-100u",
       "variantLabel": "KAIMAX 200 units",
       "groupName": "Kaimax",
-      "groupImage": "/images/bundles/bundle-kaimax-100u.webp",
+      "groupImage": "/images/bundles/bundle-kaimax-100u.webp?v=1779184571946",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Supplied in vials of high-purity botulinum toxin for professional aesthetic use.",
       "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Use a 30–32G needle for IM injections; glabellar: 20–25 units; frontalis: 10–20 units; lateral canthal: 6–15 units per side; masseter: 20–30 units per side. Keep refrigerated and use within 24 hours of reconstitution. Repeat every 3–4 months."
@@ -6504,7 +6504,7 @@
       "groupId": "wondertox-200",
       "variantLabel": "WONDERTOX 100 units",
       "groupName": "Wondertox",
-      "groupImage": "/images/bundles/bundle-wondertox-200.webp",
+      "groupImage": "/images/bundles/bundle-wondertox-200.webp?v=1779184572035",
       "indication": "Designed for professional use in protocols addressing the appearance of facial expression lines, intended for application by trained practitioners within established aesthetic frameworks.",
       "packaging": "Each vial contains 200 units of botulinum toxin with stabilizer and isotonic agent.",
       "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side. Onset 2–5 days; peak effect at 7–14 days. Repeat every 3–4 months."
@@ -6526,7 +6526,7 @@
       "groupId": "wondertox-200",
       "variantLabel": "WONDERTOX 200 units",
       "groupName": "Wondertox",
-      "groupImage": "/images/bundles/bundle-wondertox-200.webp",
+      "groupImage": "/images/bundles/bundle-wondertox-200.webp?v=1779184572035",
       "indication": "Listed in the Botulinum Therapy product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: Refer to manufacturer documentation.",
       "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Administer IM using a 30–32G needle; glabellar: 20–25 units; frontalis: 10–20 units; lateral canthal: 6–15 units per side; masseter: 20–30 units per side; hyperhidrosis: 50 units per axilla intradermally. Repeat at 3–5 month intervals."
@@ -6800,7 +6800,7 @@
       "groupId": "mennus-pla-200mg",
       "variantLabel": "MENNUS PLA 200 MG",
       "groupName": "Mennus",
-      "groupImage": "/images/bundles/bundle-mennus-pla-200mg.webp",
+      "groupImage": "/images/bundles/bundle-mennus-pla-200mg.webp?v=1779184572125",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 200 MG 200 mg / vial, porosity PLA (microparticle of polyethylene.",
       "protocol": "Reconstitute the 200 mg vial with 5 mL sterile water for injection; allow 1–2 hours of hydration at room temperature, agitating periodically, then add 1 mL 2% lidocaine before injection. Use a 25–26G cannula or 25G needle for subdermal delivery via retrograde threading or fan technique. Typical protocol: 1 vial per area over 2–3 sessions at 4–6 week intervals. Results develop over 6–12 weeks; duration up to 18 months."
@@ -6822,7 +6822,7 @@
       "groupId": "mennus-pla-200mg",
       "variantLabel": "MENNUS PLLA 360 MG",
       "groupName": "Mennus",
-      "groupImage": "/images/bundles/bundle-mennus-pla-200mg.webp",
+      "groupImage": "/images/bundles/bundle-mennus-pla-200mg.webp?v=1779184572125",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 36 0 MG PL L A(Poly L - L actic Acid) + CMC(Carboxymethyl celulose).",
       "protocol": "Reconstitute 360 mg vial with 7–9 mL sterile water for injection and allow to hydrate for 2–4 hours or overnight; add 1–2 mL 1% lidocaine prior to injection. Administer using a 25G cannula subdermally or supraperiosteally with retrograde fanning technique. Schedule 2–3 treatment sessions at 4–6 week intervals; final collagen remodelling effect visible at 3–6 months. Duration approximately 18–24 months."
@@ -6916,7 +6916,7 @@
       "groupId": "juvelook-i-30mg",
       "variantLabel": "JUVELOOK (50 mg)",
       "groupName": "Juvelook",
-      "groupImage": "/images/bundles/bundle-juvelook-i-30mg.webp",
+      "groupImage": "/images/bundles/bundle-juvelook-i-30mg.webp?v=1779184569311",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 50 mg) 50 mg / vial 1 vial per box PLA/HA hybrid skin booster des.",
       "protocol": "Reconstitute with 1–2 mL sterile water for injection; allow to hydrate for 1 hour at room temperature, then add 0.5 mL 1% lidocaine. Inject intradermally using a 27–30G needle with a nappage or micro-bolus technique at 1–2 mm depth, 0.02–0.05 mL per point. Sessions at 2-week intervals for 3–4 sessions initially; maintenance every 3–6 months. Suitable for periorbital area, cheeks, nasolabial region, and hands."
@@ -6956,7 +6956,7 @@
       "groupId": "cindella-set",
       "variantLabel": "CINDELLA SET 1200 mg",
       "groupName": "Cindella",
-      "groupImage": "/images/bundles/bundle-cindella-set.webp",
+      "groupImage": "/images/bundles/bundle-cindella-set.webp?v=1779184572207",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 25 mg / 5 Ml, VITAMIN C 10g / 20 mL / 10 vials De - age De - TOX Whitening injec….",
       "protocol": "Administer IV infusion using a 21–23G butterfly or IV cannula; mix alpha-lipoic acid 25 mg with vitamin C 10 g in 250 mL normal saline (or per clinical protocol) and infuse over 30–60 minutes. Weekly sessions for 8–10 sessions initially, then biweekly maintenance. Screen for G6PD deficiency before high-dose vitamin C use. Avoid rapid IV bolus; monitor for paraesthesia during alpha-lipoic acid infusion."
@@ -6978,7 +6978,7 @@
       "groupId": "cindella-set",
       "variantLabel": "CINDELLA INJ",
       "groupName": "Cindella",
-      "groupImage": "/images/bundles/bundle-cindella-set.webp",
+      "groupImage": "/images/bundles/bundle-cindella-set.webp?v=1779184572207",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 5 mL x 10 vials Thioctic acid 25mg.",
       "protocol": "Administer IV via slow infusion; dilute one ampoule (25 mg/5 mL) in 100–250 mL normal saline and infuse over 30–45 minutes using a 21–23G cannula. For whitening protocols, combine with high-dose vitamin C and glutathione as a combined infusion. Typical course: once or twice weekly for 8 sessions. Avoid rapid injection due to risk of paraesthesia. Protect from light during infusion."
@@ -7018,7 +7018,7 @@
       "groupId": "lipotocin",
       "variantLabel": "LIPOTOCIN INJ Thioctic Acid",
       "groupName": "Lipotocin Inj",
-      "groupImage": "/images/bundles/bundle-lipotocin.webp",
+      "groupImage": "/images/bundles/bundle-lipotocin.webp?v=1779184572284",
       "indication": "Listed in the Injections product category for the Lumière B2B wholesale catalogue. Intended for distribution to licensed professionals operating in jurisdictions where this product class is approved.",
       "packaging": "Packaging: 12mL x 10 ampoules These injections deliver a number of different benefits for i….",
       "protocol": "Administer by slow IV infusion; dilute 300 mg (12 mL) in 250 mL normal saline and infuse over 30–60 minutes using a 21–23G IV cannula. For lipolytic or metabolic protocols, combine with phosphatidylcholine or L-carnitine infusions, administered 1–2 times per week for 6–10 sessions. Protect from light. Avoid co-administration with thiamine-depleting agents. Monitor for paraesthesia and hypoglycaemia, especially in diabetic patients."
@@ -7220,7 +7220,7 @@
       "groupId": "vita-d-200000iu",
       "variantLabel": "1mL",
       "groupName": "Vita D 200000iu",
-      "groupImage": "/images/bundles/bundle-vita-d-200000iu.webp",
+      "groupImage": "/images/bundles/bundle-vita-d-200000iu.webp?v=1779184572371",
       "indication": "Designed for clinician-supervised protocols intended to address reduced vitamin D status in adults within professional care settings and structured supportive regimens.",
       "packaging": "Vitamin D solution, supplied as 0.5 mL × 10 single-dose vials per box.",
       "protocol": "Administer 200,000 IU (1 mL) by deep intramuscular injection into the gluteus maximus or vastus lateralis using a 23G 38 mm needle; aspirate before injection. A single loading dose is given for confirmed deficiency; repeat at 12 weeks if serum 25(OH)D remains below 30 ng/mL. Monitor serum calcium and 25(OH)D at 12 and 24 weeks. Avoid concurrent high-dose oral vitamin D supplementation."
@@ -7242,7 +7242,7 @@
       "groupId": "vita-d-200000iu",
       "variantLabel": "1.5mL",
       "groupName": "Vita D 200000iu",
-      "groupImage": "/images/bundles/bundle-vita-d-200000iu.webp",
+      "groupImage": "/images/bundles/bundle-vita-d-200000iu.webp?v=1779184572371",
       "indication": "-Vitamin deficiency / malnutrition -Fatigue and low energy -Post-illness or post-procedure recovery -Hair, skin, and nail support -General wellness IV therapy",
       "packaging": "Cholecalciferol 5 mg/mL, supplied as 1 mL × 10 single-dose ampoules per box.",
       "protocol": "Administer 300,000 IU (1.5 mL) by deep intramuscular injection into the gluteus maximus using a 23G 38 mm needle with aspiration; a single loading dose is typical for severe deficiency. Reassess serum 25(OH)D at 12 weeks; if levels remain below 30 ng/mL, consider a second dose. Monitor serum calcium and renal function; use caution in patients with granulomatous conditions or primary hyperparathyroidism."
@@ -7264,7 +7264,7 @@
       "groupId": "vita-d-200000iu",
       "variantLabel": "0.5mL",
       "groupName": "Vita D 200000iu",
-      "groupImage": "/images/bundles/bundle-vita-d-200000iu.webp",
+      "groupImage": "/images/bundles/bundle-vita-d-200000iu.webp?v=1779184572371",
       "indication": "Designed for clinician-supervised, rapid correction protocols intended to address reduced vitamin D status within professional care settings.",
       "packaging": "High-dose Cholecalciferol solution, supplied as 1.5 mL × 10 single-dose ampoules per box.",
       "protocol": "Administer 200,000 IU by deep IM injection into the gluteus maximus or vastus lateralis using a 23G needle; aspirate before injection to confirm extravascular placement. For deficiency correction, administer a single dose and reassess serum 25(OH)D at 12 weeks. Maintenance doses may be repeated every 3–6 months based on serum levels. Co-administer calcium supplementation as clinically indicated."
@@ -7358,7 +7358,7 @@
       "groupId": "lipotocin",
       "variantLabel": "LIPOTOCIN INJ Thioctic Acid (Acid)",
       "groupName": "Lipotocin Inj",
-      "groupImage": "/images/bundles/bundle-lipotocin.webp",
+      "groupImage": "/images/bundles/bundle-lipotocin.webp?v=1779184572284",
       "indication": "Designed for clinician-supervised protocols intended to support metabolic balance, nervous system wellness, and antioxidant care within professional settings.",
       "packaging": "Thioctic acid solution, supplied as 12 mL × 10 ampoules per box.",
       "protocol": "Dilute one ampoule (300 mg/12 mL) in 100–250 mL of normal saline and infuse IV over at least 30 minutes via 22–25G cannula, at a maximum rate of 50 mg/minute to avoid adverse reactions. Administer once daily for severe neuropathy or 2–3 times weekly for aesthetic protocols. A standard course is 10–20 sessions; sensitive patients should be titrated starting from a lower dose. Protect diluted solution from light."
@@ -7686,7 +7686,7 @@
       "groupId": "sm-cream-2",
       "variantLabel": "500g",
       "groupName": "Sm Cream",
-      "groupImage": "/images/bundles/bundle-sm-cream-2.webp",
+      "groupImage": "/images/bundles/bundle-sm-cream-2.webp?v=1779184572455",
       "indication": "Designed for topical application by trained professionals prior to MTS, semi-permanent makeup, laser, and cosmetology procedures requiring superficial numbing.",
       "packaging": "Each unit contains one 500g jar of SM anesthetic surface cream.",
       "protocol": "Apply liberally (2–3 mm thick layer) to the clean treatment area, cover with occlusive film, and leave in place for 20–30 minutes prior to the procedure. Remove all excess cream with gauze before starting. Maximum dose: 1.74 g cream (187 mg lidocaine) per 24 hours on intact skin. Keep away from eyes and mucosal surfaces. Onset approximately 15–20 minutes; effect persists 60–90 minutes after removal."
@@ -7708,7 +7708,7 @@
       "groupId": "sm-cream-2",
       "variantLabel": "30g",
       "groupName": "Sm Cream",
-      "groupImage": "/images/bundles/bundle-sm-cream-2.webp",
+      "groupImage": "/images/bundles/bundle-sm-cream-2.webp?v=1779184572455",
       "indication": "Designed for topical application by trained professionals prior to MTS, semi-permanent makeup, laser, and cosmetology procedures requiring superficial numbing.",
       "packaging": "Each unit contains one 30g tube of SM anesthetic surface cream.",
       "protocol": "Squeeze a sufficient amount (2–3 mm layer) onto the treatment area, cover with occlusive wrap, and leave for 20–30 minutes; wipe clean before the procedure. Limit application to 1.74 g of cream (187 mg lidocaine) per 24 hours on intact skin. Do not apply to open wounds or mucous membranes. Anaesthetic effect lasts approximately 60–90 minutes; proceed promptly after removing the cream."
@@ -7750,7 +7750,7 @@
       "groupId": "muchcaine",
       "variantLabel": "500g",
       "groupName": "Muchcaine",
-      "groupImage": "/images/bundles/bundle-muchcaine.webp",
+      "groupImage": "/images/bundles/bundle-muchcaine.webp?v=1779184572540",
       "indication": "Designed for topical application by trained professionals prior to aesthetic and minor dermatological procedures requiring controlled superficial skin numbing.",
       "packaging": "Each unit contains one 500g jar of Muchcaine anesthetic surface cream.",
       "protocol": "Using a spatula (to maintain sterility), apply a 2–3 mm thick layer to the clean, dry treatment area; cover with occlusive film for 20–30 minutes, then wipe clean before the procedure. Maximum dose: 1.74 g cream (187 mg lidocaine) per 24 hours on intact skin. Avoid eyes and mucosal surfaces. Use a fresh spatula for each patient to prevent cross-contamination. Anaesthetic effect persists 60–90 minutes post-removal."
@@ -7772,7 +7772,7 @@
       "groupId": "muchcaine",
       "variantLabel": "30g",
       "groupName": "Muchcaine",
-      "groupImage": "/images/bundles/bundle-muchcaine.webp",
+      "groupImage": "/images/bundles/bundle-muchcaine.webp?v=1779184572540",
       "indication": "Designed for topical application by trained professionals prior to aesthetic and minor dermatological procedures requiring controlled superficial skin numbing.",
       "packaging": "Each unit contains one 30g tube of Muchcaine anesthetic surface cream.",
       "protocol": "Squeeze a generous layer (2–3 mm) onto the clean, dry treatment area and cover with occlusive film for 20–30 minutes; remove and wipe the area clean before the procedure. Maximum dose: 1.74 g cream (187 mg lidocaine) per 24 hours on intact skin. Do not apply to mucous membranes or broken skin. Onset within 15–20 minutes under occlusion; anaesthetic effect persists approximately 60–90 minutes after removal."
@@ -7812,7 +7812,7 @@
       "groupId": "laennec",
       "variantLabel": "Variant 1",
       "groupName": "Laennec",
-      "groupImage": "/images/bundles/bundle-laennec.webp",
+      "groupImage": "/images/bundles/bundle-laennec.webp?v=1779184572625",
       "indication": "Intended for use within placental therapy protocols administered by qualified medical professionals under appropriate clinical supervision and established treatment frameworks.",
       "packaging": "Each box contains 50 ampoules of 2mL LAENNEC placenta injection.",
       "protocol": "Standard adult dose: 2 mL subcutaneous or intramuscular injection once daily (gluteus maximus or abdomen using a 26–30G needle), with frequency increased to 2–3 times daily for severe hepatic indications. For aesthetic mesotherapy protocols, administer 1–2 mL intradermal or subdermal once or twice weekly; a standard rejuvenation course is 10–20 sessions. Clinical hepatic reassessment including ALT/AST at 4 and 12 weeks."
@@ -7834,7 +7834,7 @@
       "groupId": "laennec",
       "variantLabel": "Variant 2",
       "groupName": "Laennec",
-      "groupImage": "/images/bundles/bundle-laennec.webp",
+      "groupImage": "/images/bundles/bundle-laennec.webp?v=1779184572625",
       "indication": "Intended for use within placental therapy protocols administered by qualified medical professionals under appropriate clinical supervision and established treatment frameworks.",
       "packaging": "Each box contains 10 ampoules of 2mL LAENNEC placenta injection.",
       "protocol": "Administer 2 mL subcutaneously or intramuscularly once daily for hepatic and systemic protocols, or 1–2 mL by intradermal/subdermal injection once to twice weekly for aesthetic rejuvenation courses. Use a 26–30G needle with aspiration confirmation. A 10-ampoule box represents approximately 1–2 weeks of daily systemic therapy or 5–10 aesthetic sessions. Monitor liver enzymes at baseline and 4 weeks for hepatic indications."
@@ -7928,7 +7928,7 @@
       "groupId": "rejubeau",
       "variantLabel": "REJUBEAU MESO NEEDLE 30G",
       "groupName": "Rejubeau Meso Needle",
-      "groupImage": "/images/bundles/bundle-rejubeau.webp",
+      "groupImage": "/images/bundles/bundle-rejubeau.webp?v=1779184572727",
       "indication": "Designed for use in precise superficial injection procedures performed by trained aesthetic professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 100 pieces of sterile 30G REJUBEAU nano needles in 4mm, 6mm, or 13mm.",
       "protocol": "Use the 4 mm length for facial intradermal nappage (2–4 mm depth), 6 mm for intermediate-depth injections in thicker skin regions, and 13 mm for subcutaneous delivery in scalp or body applications. Deliver product slowly at 0.01–0.05 mL per point; apply mild pressure post-injection to distribute the bolus. Single-patient use only."
@@ -7950,7 +7950,7 @@
       "groupId": "rejubeau",
       "variantLabel": "REJUBEAU MESO NEEDLE 32G",
       "groupName": "Rejubeau Meso Needle",
-      "groupImage": "/images/bundles/bundle-rejubeau.webp",
+      "groupImage": "/images/bundles/bundle-rejubeau.webp?v=1779184572727",
       "indication": "Designed for use in precise superficial injection procedures performed by trained aesthetic professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 100 pieces of sterile 32G REJUBEAU nano needles in 4mm, 6mm, or 13mm.",
       "protocol": "Insert bevel-up at 30–45° to deliver product at 2–4 mm intradermal depth for facial mesotherapy. Use 4 mm for superficial facial nappage, 6 mm for mid-depth treatment in thicker zones, and 13 mm for scalp or body subcutaneous routes. Deliver 0.01–0.02 mL per point; space injection points 1–1.5 cm apart. Discard after single use."
@@ -7972,7 +7972,7 @@
       "groupId": "rejubeau",
       "variantLabel": "REJUBEAU MESO NEEDLE 33G",
       "groupName": "Rejubeau Meso Needle",
-      "groupImage": "/images/bundles/bundle-rejubeau.webp",
+      "groupImage": "/images/bundles/bundle-rejubeau.webp?v=1779184572727",
       "indication": "Designed for use in precise superficial injection procedures performed by trained aesthetic professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 100 pieces of sterile 33G REJUBEAU nano needles in 4mm, 6mm, or 13mm.",
       "protocol": "Insert bevel-up at a shallow 15–30° angle, targeting 1–3 mm intradermal depth for the most delicate facial zones. Use 4 mm for periorbital and perioral nappage; 6 mm for general facial mid-dermis work; 13 mm for scalp mesotherapy. Deliver no more than 0.01–0.02 mL per injection point to avoid visible papule formation. Single use only."
@@ -7994,7 +7994,7 @@
       "groupId": "rejubeau",
       "variantLabel": "REJUBEAU MESO NEEDLE 34G",
       "groupName": "Rejubeau Meso Needle",
-      "groupImage": "/images/bundles/bundle-rejubeau.webp",
+      "groupImage": "/images/bundles/bundle-rejubeau.webp?v=1779184572727",
       "indication": "Designed for use in precise superficial injection procedures performed by trained aesthetic professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 100 pieces of sterile 34G / 4mm REJUBEAU nano needles.",
       "protocol": "Insert at a near-flat 10–20° angle, bevel-up, to place product within the upper 1–2 mm of the dermis. Deliver 0.005–0.01 mL per point using an automated nano-injector or manual syringe with slow, controlled depression of the plunger. Recommended point spacing: 0.5–1 cm in periorbital zones; 1 cm elsewhere. Single patient use; discard immediately after procedure."
@@ -8142,7 +8142,7 @@
       "groupId": "dk-filler-cannula",
       "variantLabel": "21g",
       "groupName": "Dk Filler Cannula",
-      "groupImage": "/images/bundles/bundle-dk-filler-cannula.webp",
+      "groupImage": "/images/bundles/bundle-dk-filler-cannula.webp?v=1779184572809",
       "indication": "Designed for use in filler-based aesthetic injection procedures performed by trained professionals operating under appropriate clinical and sanitary standards.",
       "packaging": "Each box contains 50 sterile DK filler cannulas in 21G, 23G, or 25G with 50/70mm.",
       "protocol": "Pierce the skin with the included punching (introducer) needle at the chosen entry point, then exchange for the cannula and advance in the appropriate tissue plane (supraperiosteal for deep structure; subdermis for superficial correction). Use retrograde threading at 0.1–0.2 mL per pass. Aspirate at each new position before delivering product. The 21G/23G variants suit volumising fillers; 25G suits medium-viscosity HA products. Single use."
@@ -8164,7 +8164,7 @@
       "groupId": "dk-filler-cannula",
       "variantLabel": "18g",
       "groupName": "Dk Filler Cannula",
-      "groupImage": "/images/bundles/bundle-dk-filler-cannula.webp",
+      "groupImage": "/images/bundles/bundle-dk-filler-cannula.webp?v=1779184572809",
       "indication": "Designed for professional aesthetic procedures requiring precise placement of injectable solutions through a single entry point with reduced tissue trauma.",
       "packaging": "Supplied as 50 pieces per box. Available in 18G with 50mm and 70mm lengths.",
       "protocol": "Create access with the included sharp 16G or 17G punching needle; advance the 18G cannula in the deep subcutaneous or supraperiosteal plane with steady forward pressure. Deliver product in 0.2–0.5 mL retrograde boluses or slow continuous threading passes. Avoid injecting under excessive resistance. Optimal for high-viscosity products requiring a wide-bore delivery path. Single patient use; do not re-autoclave or re-use."
@@ -8204,7 +8204,7 @@
       "groupId": "dk-cannula-18g-50-7050pcs",
       "variantLabel": "17g",
       "groupName": "Neo Cannula",
-      "groupImage": "/images/bundles/bundle-dk-cannula-18g-50-7050pcs.webp",
+      "groupImage": "/images/bundles/bundle-dk-cannula-18g-50-7050pcs.webp?v=1779184572894",
       "indication": "Designed for professional aesthetic procedures requiring controlled delivery of injectable solutions through a single entry point across multiple treatment regions.",
       "packaging": "Supplied as 20 pieces per box. 17G in lengths 100mm (FC17100), 120mm (FC17120), 150mm (FC17150).",
       "protocol": "Create a small entry incision with a 15G or 16G sharp cannula intro needle, then advance the 17G NEO CANNULA through the subcutaneous adipose layer using a fanning technique. Deliver product in retrograde passes; the 100 mm variant suits targeted body zones, while 120–150 mm lengths enable broad area coverage from a single entry point. Inject at 0.2–1.0 mL per retrograde pass. Aspirate before each delivery. Single use."
@@ -8226,7 +8226,7 @@
       "groupId": "dk-cannula-18g-50-7050pcs",
       "variantLabel": "14g",
       "groupName": "Neo Cannula",
-      "groupImage": "/images/bundles/bundle-dk-cannula-18g-50-7050pcs.webp",
+      "groupImage": "/images/bundles/bundle-dk-cannula-18g-50-7050pcs.webp?v=1779184572894",
       "indication": "Designed for professional aesthetic procedures requiring controlled delivery of injectable solutions across extended treatment areas through a single entry point.",
       "packaging": "Supplied as 20 pieces per box. 14G in lengths 100mm (FC14100), 150mm (FC14150), 200mm (FC14200).",
       "protocol": "Create an entry port with a matched sharp introducer (13G or 14G needle); advance the cannula in the deep subcutaneous layer under gentle pressure with a fan or linear threading pattern. Deliver 1–3 mL per retrograde pass for large-volume procedures. Use the 200 mm length for full-gluteal or abdominal coverage from bilateral entry points. Never force through resistance. Single use only; do not re-sterilise."
@@ -8248,7 +8248,7 @@
       "groupId": "syringe-mixing-tube",
       "variantLabel": "100 pc",
       "groupName": "Syringe Mixing Tube",
-      "groupImage": "/images/bundles/bundle-syringe-mixing-tube.webp",
+      "groupImage": "/images/bundles/bundle-syringe-mixing-tube.webp?v=1779184572976",
       "indication": "Intended for connecting compatible syringes during product preparation and transfer steps within professional treatment settings and workflows.",
       "packaging": "Supplied per box for connecting compatible syringes during product preparation workflows.",
       "protocol": "Attach one syringe to each end of the connector with firm luer-lock engagement. Alternately push the plungers to blend contents back and forth until homogeneous — typically 10–15 strokes. Keep syringes horizontal during mixing to prevent air pockets. Once mixed, transfer the combined solution to the injection syringe via forward push. Do not apply excess force to avoid unseating the luer seal. Single use; discard after each product preparation cycle."
@@ -8270,7 +8270,7 @@
       "groupId": "syringe-mixing-tube",
       "variantLabel": "10 pc",
       "groupName": "Syringe Mixing Tube",
-      "groupImage": "/images/bundles/bundle-syringe-mixing-tube.webp",
+      "groupImage": "/images/bundles/bundle-syringe-mixing-tube.webp?v=1779184572976",
       "indication": "Intended for connecting compatible syringes during product preparation and transfer steps within professional treatment settings and workflows.",
       "packaging": "Supplied as 10 pieces per pack for connecting compatible syringes during product preparation workflows.",
       "protocol": "Engage both syringe tips firmly into each end of the connector via luer-lock twist. Mix by alternately pushing the plungers back and forth (10–15 passes) until the combined solution is uniform. Transfer the mixed product to the injection syringe after blending. Avoid trapping air during mixing by keeping the connector and both syringes horizontal. Discard connector and any single-use components after each use cycle."
@@ -8292,7 +8292,7 @@
       "groupId": "restylane",
       "variantLabel": "RESTYLANE DEFYNE",
       "groupName": "Restylane",
-      "groupImage": "/images/bundles/bundle-restylane.webp",
+      "groupImage": "/images/bundles/bundle-restylane.webp?v=1779184573105",
       "indication": "Designed for professional aesthetic use in addressing deeper facial lines, expression folds, and contour refinement during qualified clinical procedures.",
       "packaging": "Supplied as a 1 mL pre-filled syringe containing HA 20 mg/mL with lidocaine 0.3%.",
       "protocol": "Inject into the mid-to-deep dermis or subdermal plane using the included 27G needle. For nasolabial folds, use linear threading, serial puncture, or crosshatching at a depth of 3–5 mm; aspirate before each bolus. Typical NLF correction requires 0.5–1.5 mL per side. For chin augmentation, deposit product supraperiosteally in 0.1–0.2 mL aliquots. Massage gently post-injection to smooth. Touch-up at 4 weeks if needed."
@@ -8314,7 +8314,7 @@
       "groupId": "restylane",
       "variantLabel": "RESTYLANE VOLYME",
       "groupName": "Restylane",
-      "groupImage": "/images/bundles/bundle-restylane.webp",
+      "groupImage": "/images/bundles/bundle-restylane.webp?v=1779184573105",
       "indication": "Designed for professional aesthetic use focused on restoring facial volume and supporting contour refinement during qualified clinical procedures.",
       "packaging": "Supplied as a 1 mL pre-filled syringe containing HA 20 mg/mL with lidocaine 0.3%.",
       "protocol": "Inject supraperiosteally over the malar eminence or into the deep fat compartments of the mid-face using a 25G or 27G needle or 25G cannula. Deposit product in 0.1–0.3 mL deep boluses; avoid superficial placement which risks the Tyndall effect. Typical full-cheek volumising requires 1–2 mL per side. Aspirate before each bolus. Massage after injection to ensure symmetrical distribution. Touch-up at 4–6 weeks."
@@ -8336,7 +8336,7 @@
       "groupId": "restylane",
       "variantLabel": "RESTYLANE KYSSE",
       "groupName": "Restylane",
-      "groupImage": "/images/bundles/bundle-restylane.webp",
+      "groupImage": "/images/bundles/bundle-restylane.webp?v=1779184573105",
       "indication": "Designed for professional aesthetic use in lip enhancement, definition of the vermilion border, and refinement of lip contour within qualified clinical procedures.",
       "packaging": "Supplied as a 1 mL pre-filled syringe containing HA 20 mg/mL with lidocaine 0.3%.",
       "protocol": "Inject into the vermilion border using retrograde linear threading or serial puncture with a 27G needle for precise lip line definition; deliver volume into the lip body using a 25G cannula or needle in the submucosal plane. Typical full lip augmentation requires 0.5–1.5 mL. Apply topical or infiltration anaesthesia as adjunct where lidocaine content is insufficient. Massage to blend; avoid overcorrection in a single session. Results last approximately 6–9 months."
@@ -8358,7 +8358,7 @@
       "groupId": "restylane",
       "variantLabel": "RESTYLANE LYFT",
       "groupName": "Restylane",
-      "groupImage": "/images/bundles/bundle-restylane.webp",
+      "groupImage": "/images/bundles/bundle-restylane.webp?v=1779184573105",
       "indication": "Designed for professional aesthetic use targeting facial volume restoration and contour correction during qualified clinical procedures.",
       "packaging": "Supplied as a 1 mL pre-filled syringe containing HA 20 mg/mL with lidocaine 0.3%.",
       "protocol": "Inject supraperiosteally over the zygomatic arch and malar eminence, or into the deep medial cheek fat pad, using a 27G needle for targeted boluses or a 25G cannula for fanning technique. Deposit 0.1–0.4 mL per bolus point; aspirate before each injection. Typical cheek volumising session uses 1–3 mL per side. For dorsal hand rejuvenation, inject subcutaneously in 0.2–0.3 mL retrograde passes using a 25G cannula. Massage evenly post-procedure."
@@ -8380,7 +8380,7 @@
       "groupId": "restylane",
       "variantLabel": "RESTYLANE + LIDOCAINE",
       "groupName": "Restylane",
-      "groupImage": "/images/bundles/bundle-restylane.webp",
+      "groupImage": "/images/bundles/bundle-restylane.webp?v=1779184573105",
       "indication": "Designed for professional facial contouring, wrinkle correction, and lip and cheek enhancement within qualified clinical aesthetic procedures.",
       "packaging": "Supplied as a 1 mL pre-filled syringe with 2 x 29G (TW) disposable needles.",
       "protocol": "Inject into the mid-dermis using the supplied 29G needle via serial puncture or retrograde linear threading at 3–4 mm depth. Aspiration before each bolus is recommended. For nasolabial folds, inject 0.5–1.0 mL per fold; for lips, use 0.3–0.5 mL per session. Avoid superficial placement to prevent visible gel beading. Gentle massage post-injection ensures smooth integration. Re-treatment is typically required at 6–9 months."
@@ -8402,7 +8402,7 @@
       "groupId": "restylane",
       "variantLabel": "RESTYLANE LYFT LIDOCAINE",
       "groupName": "Restylane",
-      "groupImage": "/images/bundles/bundle-restylane.webp",
+      "groupImage": "/images/bundles/bundle-restylane.webp?v=1779184573105",
       "indication": "Designed for professional correction of moderate to severe facial wrinkles, nasolabial folds, and cheek volume enhancement within qualified clinical settings.",
       "packaging": "Supplied as a 1 mL pre-filled syringe with 2 disposable needles included.",
       "protocol": "Inject into the deep dermis or supraperiosteal plane using a 27G needle; for nasolabial folds, target the deep dermal plane at 4–6 mm depth using linear threading or bolus technique, aspirating before each injection. Typical NLF dose: 1–2 mL per fold. For cheek volumising, inject deep boluses of 0.2–0.5 mL supraperiosteally. Avoid superficial placement — the large-particle gel is not suited to mid-dermal or intradermal injection. Touch-up at 4 weeks."
@@ -8424,7 +8424,7 @@
       "groupId": "restylane",
       "variantLabel": "RESTYLANE SKINBOOSTERS VITAL LIDOCAINE",
       "groupName": "Restylane",
-      "groupImage": "/images/bundles/bundle-restylane.webp",
+      "groupImage": "/images/bundles/bundle-restylane.webp?v=1779184573105",
       "indication": "Designed for professional skin rejuvenation protocols addressing sun-damaged or dehydrated skin through hydration and structural support of the dermis.",
       "packaging": "Supplied as a 1 mL pre-filled syringe with lidocaine. Minimum order quantity 10 units.",
       "protocol": "Administer as a series of 3 sessions spaced 4 weeks apart, then maintenance every 6 months. Inject into the deep dermis (3–4 mm) using a 30G or 32G needle with a micro-papule or serial puncture technique; typical grid spacing 1–1.5 cm. Standard full-face dose: 1–2 mL per session. Common treatment areas include face, neck, décolletage, and dorsal hands. Topical anaesthesia applied 30 min before is recommended. MOQ 10 units."
@@ -8446,7 +8446,7 @@
       "groupId": "restylane",
       "variantLabel": "RESTYLANE VITAL LIGHT LIDOCAINE",
       "groupName": "Restylane",
-      "groupImage": "/images/bundles/bundle-restylane.webp",
+      "groupImage": "/images/bundles/bundle-restylane.webp?v=1779184573105",
       "indication": "Suitable for professional skin hydration and rejuvenation procedures targeting fine, thin, or sensitive skin areas within qualified clinical settings.",
       "packaging": "Supplied as a 1 mL pre-filled syringe containing HA 12 mg/ml with lidocaine 3 mg/ml. MOQ 10.",
       "protocol": "Administer as a 3-session course at 4-week intervals, followed by maintenance every 6 months. Inject into the superficial-to-mid dermis (2–3 mm) using a 32G or 30G needle via micro-papule nappage technique; grid spacing 0.8–1.2 cm. Typical dose per session: 0.5–1.5 mL depending on treatment area. Particularly suited for under-eye, neck, and décolletage boosting. Apply topical anaesthetic cream 30 minutes prior. MOQ 10 units."
