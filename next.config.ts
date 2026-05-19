@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       { pathname: '/images/bundles/**' },
     ],
   },
+  serverExternalPackages: ['sharp'],
   experimental: {
     serverActions: {
       bodySizeLimit: '10mb',
