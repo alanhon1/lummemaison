@@ -7,7 +7,7 @@ import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
 import ProductDetailContent from '@/components/catalogue/ProductDetailContent';
 import ProductPrice from '@/components/catalogue/ProductPrice';
-import ProductCard from '@/components/catalogue/ProductCard';
+import RelatedProducts from '@/components/catalogue/RelatedProducts';
 import ProductGallery, { type GalleryItem } from '@/components/catalogue/ProductGallery';
 import VariantSelector from '@/components/catalogue/VariantSelector';
 import BackToCatalogueButton from '@/components/catalogue/BackToCatalogueButton';
@@ -29,9 +29,30 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
 
   const t = await getTranslations({ locale, namespace: 'product' });
   const category = getCategoryById(product.categoryId);
+
+  // Related: score by shared brand prefix, price proximity, shared tags.
+  function brandPrefix(name: string): string {
+    const m = /^([A-Z][A-Z0-9-]{2,})\b/.exec(name);
+    return m ? m[1].toLowerCase() : '';
+  }
+  const selfBrand = brandPrefix(product.name);
+  const selfTags = new Set(product.tags ?? []);
   const related = getProductsByCategory(product.categoryId)
-    .filter(p => p.id !== product.id && !p.groupId)
-    .slice(0, 4);
+    .filter(p => p.id !== product.id && p.groupId !== product.groupId)
+    .map(p => {
+      let score = 0;
+      const b = brandPrefix(p.name);
+      if (selfBrand && b === selfBrand) score += 10;
+      if (product.price > 0 && p.price > 0) {
+        const ratio = p.price / product.price;
+        if (ratio >= 0.5 && ratio <= 2) score += 3;
+      }
+      for (const t of (p.tags ?? [])) if (selfTags.has(t)) score += 2;
+      return { p, score };
+    })
+    .sort((a, b) => b.score - a.score || a.p.id - b.p.id)
+    .slice(0, 12)
+    .map(x => x.p);
 
   const variants = product.groupId ? getProductVariants(product.groupId) : [];
 
@@ -185,14 +206,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
           }}
         />
 
-        {related.length > 0 && (
-          <div className="mt-20">
-            <h2 className="section-title mb-8">{t('relatedProducts')}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {related.map(p => <ProductCard key={p.id} product={p} />)}
-            </div>
-          </div>
-        )}
+        <RelatedProducts products={related} title={t('relatedProducts')} />
 
       </div>
     </div>
