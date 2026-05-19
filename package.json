@@ -40,7 +40,8 @@
     "repair-products": "tsx scripts/repair-products.ts",
     "auto-map-name-images": "tsx scripts/auto-map-name-images.ts",
     "regen-variant-labels": "tsx scripts/regen-variant-labels.ts",
-    "catalogue-fixes": "tsx scripts/catalogue-fixes.ts"
+    "catalogue-fixes": "tsx scripts/catalogue-fixes.ts",
+    "import-jotform-descriptions": "tsx scripts/import-jotform-descriptions.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
