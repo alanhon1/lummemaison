@@ -1,0 +1,217 @@
+[
+  {
+    "id": 51,
+    "description": "The Chaeum Premium #1 (MESO) is a monophasic cross-linked hyaluronic acid filler at 24 mg/mL containing 0.3% lidocaine, engineered with a low cross-linking density for soft, fluid integration in the superficial dermis. Its fine-particle gel is optimised for mesotherapy-style distribution, supporting skin hydration and luminosity without structural lift. The kit is paired with 30G needles, reflecting its indication for intradermal microinjection technique.",
+    "protocol": "Inject intradermally using 30G needles at 1–2 mm depth via papule technique, depositing 0.01–0.02 mL per point across the treatment area. A grid or linear retrograde pattern suits full-face or neck revitalisation. Standard course: 3–4 sessions spaced 2–4 weeks apart, with maintenance every 4–6 months."
+  },
+  {
+    "id": 52,
+    "description": "The Chaeum Premium #2 is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, formulated with a medium cross-linking rate for integration within the superficial to mid-dermis. Its balanced gel rheology suits fine line correction and lip contour refinement where moderate tissue support and natural pliability are required. The 27G needle configuration aligns with superficial-to-mid-dermal placement technique.",
+    "protocol": "Inject into the superficial to mid-dermis using the supplied 27G needles via linear threading or serial puncture technique at 0.05–0.1 mL per linear centimetre. Suitable for perioral lines, tear trough fine lines, and lip border definition. Recommend 1–2 sessions initially, with touch-up at 6–9 months."
+  },
+  {
+    "id": 53,
+    "description": "The Chaeum Premium #3 is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, produced with a high cross-linking rate for placement within the mid-to-deep dermis. Its cohesive gel structure is designed to correct moderate-to-deep wrinkles, support lip volume, and provide moderate facial volumisation at nasolabial folds and malar areas. The 25G needle configuration reflects its mid-to-deep dermal injection depth.",
+    "protocol": "Administer into the mid-to-deep dermis using the supplied 25G needles via linear threading, cross-hatching, or bolus technique at 0.1–0.2 mL per site. Indicated for nasolabial folds, marionette lines, lip augmentation, and cheek contouring. Initial treatment 1–2 sessions; results typically persist 9–12 months."
+  },
+  {
+    "id": 54,
+    "description": "The Chaeum Premium #4 is a highly cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, engineered with maximum cross-link density for deep structural placement in the subcutaneous layer. Its firm, cohesive gel supports facial contour correction, cheek projection, chin definition, and nose bridge augmentation where high G-prime lifting capacity is required. The 23G needle configuration accommodates its supraperiosteal or deep subcutaneous injection depth.",
+    "protocol": "Inject at the deep subcutaneous or supraperiosteal plane using 23G needles via bolus or depot technique, depositing 0.3–0.5 mL per anatomical unit. Aspirate before each bolus. Indicated for cheekbone projection, chin augmentation, and jawline definition. Results typically last 12–18 months; aspirate mandatory in high-risk zones."
+  },
+  {
+    "id": 55,
+    "description": "Voluderm Fine is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, formulated with a fine-particle gel structure calibrated for superficial dermal correction. Its low viscosity supports smooth integration within the upper dermis, making it suited for attenuation of superficial lines, crow's feet, and perioral wrinkles without creating visible product irregularities. It is supplied in a single 1.0 mL pre-filled syringe for single-patient use.",
+    "protocol": "Inject into the superficial dermis using a 30G needle at 1–2 mm depth via serial puncture or linear retrograde technique, depositing 0.01–0.05 mL per site. Suitable for crow's feet, fine perioral lines, and superficial forehead lines. Recommend 1–2 sessions initially; results last 6–9 months depending on treatment area."
+  },
+  {
+    "id": 56,
+    "description": "Voluderm Deep is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, formulated with a mid-cohesion gel structure for placement within the mid-to-deep dermis. Its balanced viscoelastic profile supports moderate volumisation and wrinkle filling in areas such as nasolabial folds, marionette lines, and cheek augmentation. The single 1.0 mL pre-filled syringe presentation allows precise volume control per session.",
+    "protocol": "Place in the mid-to-deep dermis using a 27G needle via linear threading or cross-hatch technique at 0.1–0.2 mL per linear centimetre or bolus point. Aspirate before each bolus. Indicated for nasolabial folds, marionette lines, and mild cheek volume enhancement. Typical longevity 9–12 months."
+  },
+  {
+    "id": 57,
+    "description": "Voluderm Sub-Q is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, formulated with a high-cohesion gel matrix designed for subcutaneous placement where structural support and facial projection are required. Its firm rheology sustains volumisation in areas such as cheeks, chin, and jawline, providing long-duration support in deep tissue planes. The single 1.0 mL pre-filled syringe allows controlled delivery during contouring procedures.",
+    "protocol": "Administer at the subcutaneous or supraperiosteal plane using a 25–27G needle or blunt cannula via bolus or fanning technique, depositing 0.3–0.5 mL per anatomical point. Aspirate before each bolus; immediate digital moulding may be used. Indicated for cheek, chin, and jawline volumisation. Results last 12–18 months."
+  },
+  {
+    "id": 58,
+    "description": "Ultrafill Kiss is a cross-linked hyaluronic acid filler at 24 mg/mL, manufactured using Hexagonal Block Cross-linking Technology (HBCT) for a homogeneous, soft-pliable gel structure calibrated for the lip region. Its low viscosity and high spreadability support natural-feeling lip augmentation, border definition, and philtrum column enhancement without excessive firmness or migration. The 1.1 mL syringe volume accommodates full lip treatment in a single session.",
+    "protocol": "Inject into the vermilion border and lip body using a 27–30G needle or fine cannula at the submucosal or intradermal plane, depositing 0.1–0.2 mL per lip segment via linear threading or serial puncture. Total volume typically 0.3–0.8 mL per session; aspirate in the oral commissure region. Results last 6–9 months in the lip."
+  },
+  {
+    "id": 59,
+    "description": "Ultrafill Fine is a cross-linked hyaluronic acid filler at 24 mg/mL produced with HBCT technology, yielding a smooth, fine-particle gel optimised for superficial dermal correction. Its formulation targets attenuation of fine lines, periorbital wrinkles, and superficial skin folds where a low-viscosity injectable is required for even distribution without surface irregularity. Supplied as a single 1.1 mL pre-filled syringe.",
+    "protocol": "Inject into the superficial dermis using a 30G needle at 1–2 mm depth via serial puncture or linear retrograde technique, depositing 0.01–0.05 mL per site. Ideal for crow's feet, forehead lines, and perioral fine wrinkles. Typically 1 session required; results last approximately 6–9 months depending on area and patient metabolism."
+  },
+  {
+    "id": 60,
+    "description": "Ultrafill Deep is a cross-linked hyaluronic acid filler at 24 mg/mL produced using HBCT technology, delivering a mid-cohesion gel structure for placement in the mid-to-deep dermis. Its viscoelastic profile supports correction of moderate-to-deep wrinkles including nasolabial folds, and provides moderate volumisation in areas such as cheeks and temples. The 1.1 mL syringe provides sufficient volume for a unilateral mid-face session.",
+    "protocol": "Administer in the mid-to-deep dermis using a 25–27G needle via linear threading or bolus at 0.1–0.3 mL per treatment site. Aspirate before each bolus. Indicated for nasolabial folds, cheek hollowing, and mid-face volume loss. Initial treatment 1–2 sessions; typical duration 9–15 months."
+  },
+  {
+    "id": 61,
+    "description": "Ultrafill Shape is a cross-linked hyaluronic acid filler at 24 mg/mL produced using HBCT technology, formulated with a cohesive, medium-to-high G-prime gel suited for facial contouring and shaping procedures. Its structured gel maintains defined projection in areas such as nose bridge, chin, and malar eminence, delivering precise, long-lasting contour results. Supplied as a single 1.1 mL sterile pre-filled syringe.",
+    "protocol": "Inject at the mid-dermis to supraperiosteal plane using a 25–27G needle via bolus technique, placing 0.2–0.5 mL per anatomical unit depending on the target area. Mandatory aspiration before each bolus in nasal dorsum and chin zones. Suitable for non-surgical rhinoplasty, chin projection, and malar contouring. Results typically last 12–18 months."
+  },
+  {
+    "id": 62,
+    "description": "Ultrafill Implant is a cross-linked hyaluronic acid filler at 24 mg/mL produced with HBCT technology, engineered with high G-prime and maximum cohesivity for deep structural aesthetic implantation. Its firm gel supports durable volumisation at the subcutaneous and supraperiosteal plane in areas requiring sustained structural projection, such as cheekbone augmentation and chin definition. Supplied as a single 1.1 mL sterile pre-filled syringe.",
+    "protocol": "Administer at the deep subcutaneous or supraperiosteal plane using a 25G needle or blunt cannula via bolus deposit, placing 0.3–0.6 mL per anatomical unit. Aspiration is mandatory before each bolus injection. Indicated for cheekbone projection, chin augmentation, and deep nasolabial fold correction. Results typically last 15–18 months."
+  },
+  {
+    "id": 63,
+    "description": "Line Body 10 Hard is a large-volume cross-linked hyaluronic acid body filler at 24 mg/mL with lidocaine, formulated in a firm, high-viscosity gel structure for deep subcutaneous placement in body contouring procedures. The 10 mL syringe volume supports targeted enhancement of smaller body areas such as calf shaping, hand dorsum, or focal gluteal correction. Its lidocaine content reduces procedural discomfort during high-volume injection.",
+    "protocol": "Inject at the deep subcutaneous plane using a 18–21G cannula via fanning or retrograde technique, depositing 2–5 mL per treatment zone. Aspiration before each placement is mandatory. Treatment volume per session is guided by the target anatomy; allow 4–6 weeks before reassessment. Results last approximately 12–18 months; reversible with hyaluronidase."
+  },
+  {
+    "id": 64,
+    "description": "Beads MAX S is a cross-linked hyaluronic acid body filler at 20 mg/mL with lidocaine, manufactured with 18% optimised HENM cross-linking technology for high-viscosity, migration-resistant gel placement in large-area body contouring. Its formulation is engineered for deep subcutaneous distribution in procedures targeting gluteal augmentation, hip contouring, and post-liposuction soft tissue correction. The 10 mL large-volume syringe supports meaningful volume delivery per session.",
+    "protocol": "Administer at the deep subcutaneous plane using an 18–21G cannula via retrograde fanning technique, depositing 5–10 mL per anatomical zone bilaterally. Aspiration is required before each deposit. Session volume guided by target area anatomy; staged treatments 4–6 weeks apart are recommended for larger augmentations. Reversible with hyaluronidase; results last 12–15 months."
+  },
+  {
+    "id": 65,
+    "description": "Line Body 50 is a large-volume cross-linked hyaluronic acid body filler at 20 mg/mL, supplied in a 50 mL single-use syringe for substantial body reshaping procedures. Its high-viscosity gel is designed for deep subcutaneous placement across broader body areas such as gluteal augmentation, hip shaping, and thigh volume restoration. The absence of lidocaine in this formulation means procedural anaesthesia should be planned as part of the treatment protocol.",
+    "protocol": "Administer at the deep subcutaneous plane using an 18–21G cannula via retrograde fanning, depositing volumes guided by target anatomy and patient goals (typically 20–50 mL per session distributed across bilateral zones). Pre-treatment tumescent or local anaesthesia is recommended. Staged sessions 4–8 weeks apart optimise outcomes. Results last 12–18 months; reversible with hyaluronidase."
+  },
+  {
+    "id": 66,
+    "description": "MisAdi Hard is a high-viscosity cross-linked hyaluronic acid body filler at 24 mg/mL, supplied in a 60 cc presentation for deep subcutaneous body contouring. Its firm gel structure maintains projection and resists migration after placement, supporting non-surgical augmentation of the buttocks, hips, and soft-tissue deficiency correction following liposuction. The elevated HA concentration relative to standard body fillers delivers denser structural support.",
+    "protocol": "Inject at the deep subcutaneous plane using an 18–21G blunt cannula via retrograde fanning or layered depot technique, distributing 20–30 mL per side per session in gluteal augmentation. Pre-treatment with local anaesthesia or tumescent solution is standard. Allow 6–8 weeks between staged sessions; total treatment volume guided by anatomical goals. Results last 12–18 months and are reversible with hyaluronidase."
+  },
+  {
+    "id": 67,
+    "description": "AdiMis is a high-volume cross-linked hyaluronic acid body filler at 24 mg/mL, supplied in an 80 cc presentation for large-area non-surgical body sculpting. Its dense, cohesive gel structure supports significant subcutaneous volume augmentation across areas such as the buttocks, hips, and thighs in a single treatment session, minimising the need for multiple staged visits. The 80 cc volume provides flexibility for bilateral procedures within one clinical appointment.",
+    "protocol": "Administer at the deep subcutaneous plane bilaterally using an 18–21G cannula via retrograde fanning, distributing up to 40 mL per side per session depending on aesthetic goals and tissue assessment. Pre-treatment local or tumescent anaesthesia is recommended. Staged sessions may be planned 6–8 weeks apart for additional correction. Results last approximately 12–18 months; reversible with hyaluronidase."
+  },
+  {
+    "id": 68,
+    "description": "Sedy Fill is a cross-linked hyaluronic acid body filler at 24 mg/mL produced using HENM cross-linking technology, supplied in a 60 cc presentation for deep subcutaneous body contouring. Its 18% cross-linking density yields a pH-balanced, migration-resistant gel that maintains natural contour and position after subcutaneous placement. Clinical data support a 12–15 month aesthetic duration with 92% patient satisfaction and full reversibility with hyaluronidase within 48 hours.",
+    "protocol": "Inject at the deep subcutaneous plane using an 18–21G blunt cannula via retrograde fanning technique, placing 20–30 mL per buttock or target zone per session. Pre-treatment local or tumescent anaesthesia is standard practice. For breast applications, a maximum of 10 mL per side is typically applied. Staged sessions are planned 6–8 weeks apart; results last 12–15 months."
+  },
+  {
+    "id": 69,
+    "description": "Maxy Fill is a cross-linked hyaluronic acid body filler at 24 mg/mL manufactured by Quivermedic using HENM cross-linking technology, supplied in a 70 cc presentation for non-surgical body augmentation. Its high-viscosity, migration-resistant gel supports volume addition and contour sculpting in areas including the buttocks, hips, and thighs, with aesthetic results lasting up to 12–15 months under normal metabolic conditions. The 70 cc volume accommodates bilateral gluteal augmentation of 30–40 mL per side within a single session.",
+    "protocol": "Administer at the deep subcutaneous plane using an 18–21G blunt cannula via retrograde fanning, targeting 30–40 mL per buttock for standard gluteal augmentation. Pre-treatment with tumescent or local anaesthesia is recommended. For hip or thigh contouring, volume is adjusted to anatomy. Results last 12–15 months and are fully reversible with hyaluronidase."
+  },
+  {
+    "id": 70,
+    "description": "Wanna Fill H is a cross-linked hyaluronic acid body filler at 24 mg/mL, supplied in a 50 cc large-volume presentation for non-surgical body contouring. Its cohesive, high-viscosity gel is engineered to support deep subcutaneous volumisation across areas including the buttocks, hips, and calves, providing structural lift and shape without surgical intervention. The formulation is designed for stable, durable projection in the subcutaneous plane.",
+    "protocol": "Inject at the deep subcutaneous plane using an 18–21G blunt cannula via retrograde fanning technique, distributing up to 25 mL per side per session depending on the target region. Pre-treatment local or tumescent anaesthesia is recommended. Allow 6–8 weeks between staged sessions for assessment. Results last approximately 12–18 months; hyaluronidase reversal available."
+  },
+  {
+    "id": 71,
+    "description": "P198 Filcore SB (ExoHealer) is a lyophilised exosome cell booster containing 245.7 billion exosome particles per vial, formulated to deliver six types of skin growth factors including EGF, VEGF, IGF, KGF, and anti-inflammatory mediators. Upon reconstitution with its activating solvent, it targets dermal regeneration, collagen stimulation, skin barrier reinforcement, and visible improvement in firmness, radiance, and fine line attenuation. The exosome technology enables precise molecular signalling at the cellular level, distinguishing it from conventional HA boosters.",
+    "protocol": "Reconstitute each lyophilised 2 mL vial with 5 mL of the provided activating solution or normal saline immediately before administration. Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or serial puncture technique, or apply topically following microneedling or RF fractional treatment. Standard course: 4–6 sessions every 1–2 weeks, with maintenance every 1–3 months."
+  },
+  {
+    "id": 72,
+    "description": "P198 Filcore Activating Solution is a sterile pharmaceutical-grade solvent supplied in 5 mL vials, formulated to reconstitute the P198 Filcore SB lyophilised exosome powder. The solvent contains scalp- and skin-specific growth factors (EGF, VEGF, IGF, KGF, and Noggin) that synergise with the exosome payload to enhance biological activity after reconstitution. It is presented as a 10-vial pack to pair with exosome powder across a full treatment course.",
+    "protocol": "Add the full 5 mL of activating solution to one P198 Filcore SB lyophilised vial immediately before administration; gently invert or swirl to dissolve — do not shake. The reconstituted solution contains no preservatives and must be used within the same session. Administer intradermally at 1–3 mm depth via 30G needle or apply to the skin immediately after ablative microneedling or RF fractional treatment."
+  },
+  {
+    "id": 73,
+    "description": "The P198 Filcore SB Plus Program is a paired-vial treatment kit combining lyophilised exosome powder (2 mL) with activating solvent (5 mL) in five matched pairs, providing a complete 5-session exosome skin booster course. Each session delivers 245.7 billion exosome particles enriched with six growth factors to support collagen stimulation, barrier reinforcement, and visible improvement in skin radiance and elasticity. The multi-pair programme format ensures consistent reconstitution quality across the full treatment course.",
+    "protocol": "Reconstitute one exosome vial with one solvent vial immediately before each session; administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or serial puncture technique. Alternatively, apply the reconstituted solution to the skin following microneedling or RF fractional treatment for enhanced transdermal delivery. Schedule sessions weekly or every 2 weeks for the 5-session programme; maintenance every 1–3 months thereafter."
+  },
+  {
+    "id": 74,
+    "description": "Lexyal Reju is a regenerative skin booster combining polydeoxyribonucleotide (PDRN) and polynucleotide (PN) fractions in a 3 mL injectable formulation, targeting dermal repair and rejuvenation at the cellular level. PDRN activates A2A purinergic receptors to stimulate fibroblast proliferation, collagen synthesis, and angiogenesis, while the PN fraction supports extracellular matrix regeneration and skin hydration. The combined PDRN+PN approach delivers anti-inflammatory, wound-healing, and anti-melanogenic effects for visible texture refinement and skin tone improvement.",
+    "protocol": "Administer intradermally using a 32G needle at 1–2 mm depth via papule injection technique (0.5 cm papule diameter per point), placing points across the target area in a grid pattern. Typical session dose: 3 mL per treatment zone. Recommended course: 4 sessions spaced 2–3 weeks apart; visible improvement develops over 2–4 weeks per session. Maintenance injections every 2–3 months thereafter."
+  },
+  {
+    "id": 75,
+    "description": "Bellona Aqua is an advanced hyaluronic acid skin booster utilising BDDE double-crosslinking technology with a sectional-release mechanism, enabling sustained hydration delivery over an extended interval compared to standard HA boosters. Its crosslinked HA matrix gradually releases free hyaluronate as the gel degrades, providing prolonged dermal moisture support, improved skin elasticity, and enhanced radiance across the treatment period. Each 3 mL syringe is designed for a single full-face or neck treatment session.",
+    "protocol": "Administer intradermally using a 30–32G needle at 2–4 mm depth via nappage or serial papule technique across the face, neck, or décolletage. Inject 0.01–0.02 mL per point in a grid pattern; total volume typically 3 mL per session per zone. Recommended course: 3 sessions at 3–4 week intervals; due to the sustained-release mechanism, longer inter-session intervals may be appropriate. Maintenance every 4–6 months."
+  },
+  {
+    "id": 76,
+    "description": "Bellona Opacious Serum is a premium skin brightening and regeneration booster formulated with cell-regeneration technology, designed to improve skin tone uniformity, reduce visible hyperpigmentation, and refine pore appearance across a structured clinical course. Its multi-component formulation targets melanogenesis regulation and surface radiance enhancement, delivering cumulative improvement in skin brightness with each session. Supplied as a 3 mL x 5 vial pack for a complete 5-session brightening programme.",
+    "protocol": "Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or mesotherapy technique, distributing the 3 mL volume evenly across the treatment area. Typical session spacing: weekly for 4–5 sessions to achieve the full brightening course. Combine with sun protection as part of post-treatment care to maintain results. Maintenance: one session every 4–6 weeks depending on skin condition."
+  },
+  {
+    "id": 77,
+    "description": "Dermagen Plus NAD+ Solution is a skin booster containing NAD+ (nicotinamide adenine dinucleotide) and NMN (nicotinamide mononucleotide) encapsulated in liposomal carriers to overcome the chemical instability and limited cellular uptake of unencapsulated NAD+. NAD+ replenishes cellular energy pathways via the sirtuin and PARP signalling routes, supporting DNA repair, mitochondrial function, and fibroblast vitality, which translates to visible reduction in signs of cellular ageing and improved skin tone. The 3 mL vial format allows targeted delivery in mesotherapy protocols.",
+    "protocol": "Administer intradermally using a 30–32G needle at 1–2 mm depth via nappage or mesotherapy technique, distributing the full 3 mL vial across the face or neck. Alternatively, apply topically immediately following microneedling for enhanced transdermal uptake. Recommended course: 4–6 sessions weekly or biweekly. As NAD+ injectables remain an emerging category, clinical endpoints should be monitored and patient expectations set accordingly."
+  },
+  {
+    "id": 78,
+    "description": "Tesoro Collagen is a bioidentical collagen-based injectable skin booster supplied in a 2 mL pre-filled syringe, formulated to replenish dermal collagen substrate and support intrinsic fibroblast activity. Exogenous collagen delivery stimulates fibroblast proliferation through substrate-mediated signalling, complementing the skin's own collagen synthesis to improve elasticity, hydration, and fine line attenuation over a treatment course. Its 2 mL presentation suits a targeted single-zone session on the face or neck.",
+    "protocol": "Administer intradermally using a 30–32G needle at 1–3 mm depth via serial puncture or nappage technique, distributing 2 mL evenly across the treatment zone. A standard course of 3–4 sessions every 2–4 weeks is typical, with cumulative collagen remodelling effects becoming apparent from the second session onward. Maintenance injections every 2–3 months are recommended to sustain results."
+  },
+  {
+    "id": 79,
+    "description": "Ultrahilo is a bio-revitalising injectable containing 32 mg of high-molecular-weight hyaluronic acid (H-HA) and 32 mg of low-molecular-weight hyaluronic acid (L-HA) per 2 mL, formulated as a Profhilo-analogue hybrid HA booster without chemical crosslinker (BDDE). The H-HA component acts as a slow-release hydration depot in the dermis, while the L-HA diffuses rapidly to stimulate adipocyte and fibroblast activity, triggering collagen and elastin production for genuine skin remodelling. Together they deliver deep hydration, improved laxity, and surface texture refinement across a short treatment course.",
+    "protocol": "Administer subcutaneously using a 25–27G needle via BAP (Bio Aesthetic Points) technique: 5 points per hemi-face or adapted 5-point protocol for neck and décolletage. Inject 0.2 mL per point as a bolus; aspirate at each site before depositing. Standard course: 2 sessions 4 weeks apart; a third session at 3 months optimises remodelling. Maintenance every 6 months."
+  },
+  {
+    "id": 80,
+    "description": "Evehilo is a hybrid hyaluronic acid bio-revitaliser containing 32 mg H-HA and 32 mg L-HA per 2 mL at 3.2% total HA concentration, formulated without BDDE cross-linker in the manner of leading stabilised hybrid HA platforms. The high-molecular-weight fraction sustains dermal hydration, while the low-molecular-weight fraction disperses to activate dermal fibroblasts and stimulate neocollagenesis and elastin synthesis, addressing both skin laxity and surface quality simultaneously. Supplied as a sterile pre-filled syringe for BAP or nappage administration.",
+    "protocol": "Inject subcutaneously via BAP technique using a 25–27G needle, placing 0.2 mL bolus deposits at five injection points per hemi-face or equivalent points on neck and décolletage. Aspirate before each bolus. Standard protocol: 2 sessions 4 weeks apart, followed by a maintenance session at 6 months. An alternative nappage approach at the intradermal level is appropriate for neck laxity."
+  },
+  {
+    "id": 81,
+    "description": "Hyalace is a hybrid hyaluronic acid bio-revitaliser formulated with 32 mg H-HA and 32 mg L-HA per 2 mL at 3.2% total HA concentration without BDDE cross-linker, delivering a combined dual-molecular-weight remodelling effect. The coexistence of high- and low-MW fractions within a single formulation provides simultaneous deep hydration depot and fibroblast stimulation, improving skin laxity, hydration, and overall surface quality over a structured course. Supplied as a sterile pre-filled syringe ready for clinical administration.",
+    "protocol": "Administer via BAP technique using a 25–27G needle: deposit 0.2 mL subcutaneously at five points per hemi-face or adapted neck/décolletage grid. Aspirate before each bolus. Recommended course: 2 injections 4 weeks apart; a follow-up session at 3–6 months maintains results. Nappage delivery at 2–4 mm intradermal depth is an alternative for diffuse hydration enhancement."
+  },
+  {
+    "id": 82,
+    "description": "Revs Pro 32 is a stabilised hybrid hyaluronic acid skin booster containing 32 mg H-HA and 32 mg L-HA per 2 mL (total 64 mg/mL) without BDDE cross-linker, formulated as a Profhilo-comparable bio-remodelling injectable for treatment of skin laxity. The H+L HA technology drives simultaneous deep tissue hydration and fibroblast-mediated neocollagenesis, targeting malar and submalar skin laxity, neck, and décolletage rejuvenation. Its high HA concentration at 64 mg per 2 mL positions it among the more concentrated hybrid HA bio-remodellers on the market.",
+    "protocol": "Administer subcutaneously via BAP technique using a 25–27G needle, depositing 0.2 mL at five bio-aesthetic points per hemi-face; adapt for neck (three points per side) or décolletage. Aspirate before each deposit; do not overcorrect. Standard course: 2 sessions 4 weeks apart; reassess at 3 months and consider maintenance at 6 months. Results last 6–9 months in most patients."
+  },
+  {
+    "id": 83,
+    "description": "AIOR50 is a high-concentration hyaluronic acid skin rejuvenation injectable delivering 50 mg of HA per 2 mL (25 mg/mL), formulated to support intense dermal hydration, skin tone improvement, and surface texture refinement. Its elevated HA load creates a sustained hydration reservoir within the dermis, stimulating fibroblast activity and extracellular matrix support while visibly plumping fine lines and improving skin luminosity over successive sessions. The 2 mL volume suits a bilateral half-face or single-zone treatment per session.",
+    "protocol": "Administer intradermally using a 30–32G needle at 2–4 mm depth via nappage or serial puncture, distributing 0.01–0.02 mL per point across the face, neck, or periorbital area. Total volume of 2 mL per session is typical. Recommended course: 3–4 sessions at 2–4 week intervals; improvement in skin hydration and luminosity is progressive. Maintenance every 3–4 months."
+  },
+  {
+    "id": 84,
+    "description": "Ultra Gen is a multi-component skin rejuvenation booster combining hydrolysed collagen and plant-derived exosomes, formulated to deliver simultaneous structural and regenerative effects in a single intradermal treatment. The collagen fraction enhances dermal water retention, skin plumpness, and elasticity, while the exosome payload carries growth factors and microRNAs that activate cellular repair, regulate inflammation, reduce pigmentation, and stimulate neocollagenesis. Supplied as 100 mg distributed across 3 vials for a structured clinical course.",
+    "protocol": "Reconstitute each vial per manufacturer instructions immediately before use. Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or serial puncture technique, distributing one vial per session across the treatment zone. Recommended course: one vial per session over 3 sessions, spaced weekly or biweekly. Alternatively, apply topically following microneedling. Maintenance monthly or as clinically indicated."
+  },
+  {
+    "id": 85,
+    "description": "Hyalmass 50 is a high-concentration non-cross-linked hyaluronic acid skin booster delivering 50 mg of HA per 2 mL, with a reported molecular weight of 2.5–3 million Daltons for maximum hydrophilicity and dermal water-binding capacity. Its formulation has been shown to increase skin hydration by up to 300% within 24 hours post-injection while improving elasticity scores measurably after a 3-session course. The elevated HA molecular weight differentiates it from standard low-concentration HA boosters, providing a more pronounced and sustained hydration effect.",
+    "protocol": "Administer intradermally using a 30–32G needle at 2–3 mm depth via serial puncture technique, depositing approximately 0.2 mL per 5 injection points per half-face (1 mL per side). A full 2 mL syringe covers the complete face. Recommended course: 2–3 sessions at 2–4 week intervals; improvement in skin hydration and elasticity is evident from session one. Maintenance injections every 2–3 months."
+  },
+  {
+    "id": 86,
+    "description": "Hyaron is a sodium hyaluronate bio-revitalising solution for intradermal injection, supplied in convenient 2.5 mL single-use pre-filled syringes across a 10-syringe pack for multi-session clinical use. Its non-cross-linked sodium hyaluronate rapidly integrates into the dermis to restore moisture balance, stimulate fibroblast activity, and improve skin texture, elasticity, and luminosity. The 10-syringe pack format supports a complete skin booster programme for a single patient or multiple single-session treatments.",
+    "protocol": "Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or serial puncture technique, distributing 2.5 mL evenly across the treatment area per session. Standard course: 3–4 sessions spaced 2–4 weeks apart; results begin to appear after the first session and accumulate with subsequent treatments. Maintenance sessions every 3–4 months; one syringe per session per face or neck zone."
+  },
+  {
+    "id": 87,
+    "description": "Powerhealer is a multi-component skin booster containing succinic acid and collagen, formulated for professional moisturising, brightening, and skin-quality enhancement. Succinic acid supports mitochondrial energy metabolism at the cellular level and acts as an antioxidant, while collagen peptides contribute to extracellular matrix replenishment and visible plumping of fine lines. The combination targets skin fatigue, dullness, and hydration loss, making it suited to post-treatment recovery protocols and skin maintenance programmes.",
+    "protocol": "Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or mesotherapy technique, distributing one 5 mL vial evenly across the face or neck per session. Recommended course: 4–5 sessions weekly for the full brightening and moisturising effect. May be combined with micro-needling for enhanced transdermal delivery of active components. Maintenance every 4–6 weeks as required."
+  },
+  {
+    "id": 88,
+    "description": "True Bella is a multi-function hyaluronic acid skin booster containing HA alongside complementary skin-active ingredients, formulated in a 2.2 mL pre-filled syringe for targeted facial skin quality treatment. Its HA base supports sustained dermal hydration and acts as a vehicle for accompanying ingredients that address collagen synthesis stimulation, skin brightness, and surface smoothness. The compact 2.2 mL volume is suited to localised treatment of the face, periorbital area, or neck.",
+    "protocol": "Administer intradermally using a 30–32G needle at 1–3 mm depth via serial puncture or nappage technique, distributing the 2.2 mL volume across the target zone. Recommended course: 3–4 sessions at 2–4 week intervals, with improvement accumulating progressively across the course. Combine with photoprotection post-treatment. Maintenance every 3–4 months depending on skin response and clinical goals."
+  },
+  {
+    "id": 89,
+    "description": "Youthfill PN is a viscous, non-cross-linked hyaluronic acid and polynucleotide (PN) bio-revitalising injectable containing 20 mg HA and 5 mg PN per 2.5 mL syringe, formulated with lidocaine for procedural comfort. The PN fraction activates A2A purinergic receptors on fibroblasts to stimulate collagen and extracellular matrix synthesis, while the non-cross-linked HA provides immediate hydration and a supportive tissue matrix. Together they address fine lines, skin laxity, texture irregularity, and dullness in a single bio-revitalisation session.",
+    "protocol": "Administer intradermally using a 30–32G needle at 1–2 mm depth via papule injection technique, creating 0.3–0.5 cm diameter papules across the target area in a grid pattern. Distribute the 2.5 mL volume over the full face, neck, or target zone per session. Recommended course: 4 sessions spaced 2–3 weeks apart; skin softening and hydration improvement develop progressively. Maintenance sessions every 2–3 months."
+  },
+  {
+    "id": 90,
+    "description": "Regenovue PN is a bio-revitalising injectable combining non-cross-linked hyaluronic acid (20 mg) and polynucleotide (5 mg) per 3 mL syringe, formulated for skin quality restoration and regenerative rejuvenation. The PN component stimulates fibroblast proliferation and collagen synthesis through purinergic receptor activation, while the HA base provides immediate hydration and acts as a scaffold for tissue regeneration. The combination delivers visible improvement in skin elasticity, hydration, and fine line attenuation over a structured course.",
+    "protocol": "Administer intradermally using a 32G needle at 1–2 mm depth via papule or nappage technique, distributing the 3 mL volume across the face or target zone per session. Recommended course: 4 sessions spaced 2–3 weeks apart; results become visible 2–4 weeks after each session. Maintenance injections every 2–3 months. The lidocaine-free formulation may require topical anaesthesia prior to treatment for patient comfort."
+  },
+  {
+    "id": 91,
+    "description": "Regenovue Aquashine Plus Gold is a bio-revitalising skin booster formulated with crosslinked hyaluronic acid at 15 mg/mL (15% concentration), providing a more cohesive gel structure than non-crosslinked counterparts for slower degradation and extended hydration delivery. Its crosslinked HA matrix acts as a sustained-release depot for dermal moisture, supporting skin surface smoothness, elasticity improvement, and hydration maintenance over a longer inter-session interval. Supplied as three 3 mL pre-filled syringes (9 mL total) for a complete multi-session treatment pack.",
+    "protocol": "Administer intradermally using a 30–32G needle at 2–4 mm depth via nappage or serial papule technique, distributing 3 mL per session across the face or neck zone. The crosslinked HA formulation allows wider spacing between sessions compared to non-crosslinked products; recommended interval is 3–4 weeks. Standard pack provides 3 sessions; maintenance sessions at 3–6 monthly intervals are appropriate."
+  },
+  {
+    "id": 92,
+    "description": "Regenovue Aquashine Silver is a bio-revitalising skin booster formulated with non-crosslinked hyaluronic acid at 15 mg/mL (15% concentration), delivering rapid dermal hydration and skin conditioning through free HA integration into the extracellular matrix. Its non-crosslinked format enables immediate diffusion through the dermis, providing fast-onset hydration improvement, surface smoothness, and skin tone conditioning suited to maintenance and seasonal skin quality programmes. Supplied as three 3 mL pre-filled syringes (9 mL total) for a complete multi-session treatment pack.",
+    "protocol": "Administer intradermally using a 30–32G needle at 1–3 mm depth via nappage or serial puncture technique, distributing 3 mL per session across the face, neck, or décolletage. Recommended course: 3 sessions at 2–3 week intervals; due to the non-crosslinked formulation, shorter inter-session intervals are appropriate compared to crosslinked products. Maintenance sessions every 2–3 months."
+  },
+  {
+    "id": 93,
+    "description": "Celosome Aqua is a sodium hyaluronate skin booster delivering a high concentration of 60 mg per 2.5 mL syringe (24 mg/mL), formulated for intensive facial hydration and bio-revitalisation. Its high-dose HA content creates a pronounced dermal hydration depot, supporting significant improvement in skin moisture levels, surface luminosity, and skin tone uniformity over a structured clinical course. Supplied as a 5-syringe pack (12.5 mL total) to support a complete five-session in-clinic programme.",
+    "protocol": "Administer intradermally using a 30–32G needle at 2–4 mm depth via nappage or serial papule technique, distributing the 2.5 mL volume evenly across the face or neck per session. Recommended course: 5 sessions (one pack) at 1–2 week intervals for intensive hydration induction. Maintenance sessions every 3–4 months. The 60 mg HA dose per syringe supports more substantial hydration response compared to standard 20–30 mg HA boosters."
+  }
+]

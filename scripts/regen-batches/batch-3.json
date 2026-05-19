@@ -1,0 +1,217 @@
+[
+  {
+    "id": 94,
+    "description": "Rejeunesse Sparkle is a monophasic cross-linked hyaluronic acid skin booster at 20 mg/mL with 0.3% lidocaine, formulated for superficial dermal hydration and luminosity improvement. The low-viscosity HA matrix integrates rapidly into the dermis, improving moisture retention and surface smoothness. It is indicated for face, neck, décolletage, and hand rejuvenation in patients with mild skin dehydration and early photoaging.",
+    "protocol": "Reconstitution is not required; product is supplied ready to inject. Administer intradermally at 1–2 mm depth using a 30G or 32G needle via nappage or papule technique, 0.02–0.05 mL per injection point. Treat face with 0.5–1.0 mL per session; recommend 3 sessions at 2–4 week intervals, with maintenance every 4–6 months."
+  },
+  {
+    "id": 95,
+    "description": "Oasis Repair PN 2% is a high-concentration polynucleotide injectable designed for intensive skin repair and bio-revitalization. At 2% PN concentration, it delivers nucleotide building blocks that stimulate fibroblast proliferation, upregulate collagen and elastin synthesis, and promote tissue regeneration in photodamaged or post-procedure skin. It is indicated for mature skin, post-laser recovery, scarring, and acne-damaged complexions.",
+    "protocol": "No reconstitution needed; use directly from the prefilled 2 mL syringe. Inject intradermally at 1–2 mm depth with a 30G or 31G needle using a nappage grid technique, 0.02–0.03 mL per point, covering the treatment zone systematically. Perform 3–4 sessions at 2-week intervals; maintenance every 2–3 months."
+  },
+  {
+    "id": 96,
+    "description": "Cindella Healer PN is a polynucleotide-based injectable bio-revitalizer derived from purified salmon DNA, supplying high-molecular-weight PDRN/PN fragments that bind adenosine A2A receptors to accelerate wound healing and collagen neosynthesis. The formulation targets skin matrix repair, improving elasticity, reducing fine lines, and restoring dermal hydration in fatigued or aging skin. It is suited for full-face rejuvenation and post-procedure skin recovery.",
+    "protocol": "Draw from the prefilled 2 mL syringe without reconstitution. Inject intradermally at 1–2 mm depth using a 30G needle via serial papule or nappage technique, 0.02–0.05 mL per injection point, evenly covering the face. Recommend 4 sessions at 1–2 week intervals; maintenance once monthly thereafter."
+  },
+  {
+    "id": 97,
+    "description": "Kiara Reju is a dual-component bio-revitalizer combining polynucleotides at 5 mg/mL with hyaluronic acid at 20 mg/mL in a 2.2 mL syringe, supplied with a JBP 33G 4 mm nano needle. The PN fraction stimulates fibroblast activity and collagen production, while the HA component provides immediate volumetric hydration and viscoelastic support to the superficial dermis. It is indicated for overall facial rejuvenation, fine lines, and skin laxity improvement.",
+    "protocol": "Use the supplied JBP 33G 4 mm nano needle; no reconstitution required. Inject intradermally at 2–4 mm depth using a serial-threading or nappage technique, 0.02–0.05 mL per point, 1 mL per treatment zone. Complete 3–4 sessions at 2-week intervals, then maintenance monthly."
+  },
+  {
+    "id": 98,
+    "description": "GemVous PN is a polynucleotide-enriched skin booster formulated for bio-revitalization of the face, neck, and hands. The purified PN chains stimulate dermal fibroblasts to increase collagen type I and III synthesis, restore extracellular matrix integrity, and enhance skin elasticity and hydration. It is particularly suited for thin, dehydrated, or early-aging skin requiring structural reinforcement.",
+    "protocol": "No reconstitution required; use directly from the prefilled 2.5 mL syringe with a 30G or 31G needle. Inject intradermally at 1–3 mm depth via nappage or linear retrograde threading, 0.02–0.05 mL per point. Perform 3–4 sessions at 2-week intervals; a maintenance schedule of every 2–3 months is recommended."
+  },
+  {
+    "id": 99,
+    "description": "MISFILL+ PDRN is a polydeoxyribonucleotide mesotherapy injectable combining PDRN with complementary skin-repair actives in a 2.2 mL syringe format. PDRN acts through A2A adenosine receptor activation to suppress inflammatory mediators, stimulate collagen and fibronectin synthesis, and accelerate epidermal turnover, making it effective for photoaged, acne-scarred, and post-treatment skin rehabilitation. It is indicated for overall facial rejuvenation and improvement of skin texture and tone.",
+    "protocol": "Use directly from the syringe without reconstitution with a 30G or 31G needle. Inject intradermally at 1–2 mm depth via nappage grid technique, 0.02–0.03 mL per point, across the full face. A protocol of 3–5 sessions at 1–2 week intervals is typical, followed by monthly maintenance."
+  },
+  {
+    "id": 102,
+    "description": "Elaxen PLLA Mask is a professional topical preparation enriched with Poly-L-Lactic Acid (PLLA) microspheres, minerals, and bioactive peptides to promote post-injection recovery and collagen stimulation at the skin surface. Applied after PLLA filler or biostimulator injections, it helps soothe the treated area, reduce erythema, and support neocollagenesis through transdermal delivery of peptide cofactors. It is used in conjunction with injectable PLLA treatments as part of a structured post-procedure protocol.",
+    "protocol": "Apply a uniform layer over the treated facial area after PLLA injection or microneedling, leave in contact for 20–30 minutes, then gently remove residue. Use once per session immediately post-procedure; repeat with each treatment visit. No rinsing with water is required if the product is formulated for leave-on post-care."
+  },
+  {
+    "id": 103,
+    "description": "Misadi CO2 Mask is a professional carboxytherapy kit comprising 30 mL carboxygel tubes and matched face and neck masks, designed to deliver transcutaneous CO2 to the skin via the Bohr effect. The CO2 absorbed through the skin triggers local vasodilation and oxygen release from hemoglobin, increasing microcirculation, improving skin tone and brightness, and stimulating collagen synthesis without needles. It is used for facial and neck skin brightening, firming, and pore refinement in an in-clinic setting.",
+    "protocol": "Apply the carboxygel (one tube per area) in a uniform layer over the cleansed face or neck, then place the corresponding mask over the gel to create a sealed CO2 environment. Leave the mask in contact for 20–30 minutes, then remove and massage the remaining gel gently into the skin. Perform weekly sessions for 4–8 weeks, then monthly maintenance."
+  },
+  {
+    "id": 104,
+    "description": "Soonsu Ultra Reju is a PDRN- and PN-enriched skin booster combining polydeoxyribonucleotides and polynucleotides derived from salmon DNA in 3 mL vials to synergistically stimulate fibroblast proliferation, collagen synthesis, and skin matrix repair. PDRN activates A2A receptors to accelerate tissue regeneration, while the PN fraction supplies structural nucleotide fragments for epidermal renewal and improved elasticity. It is indicated for overall facial rejuvenation including the sensitive periorbital zone.",
+    "protocol": "Dissolve or draw from the 3 mL vial using a 30G or 31G needle; inject intradermally at 1–3 mm depth by nappage or serial papule technique, 0.02–0.05 mL per point. Treat once weekly for 4–5 sessions; maintenance injections monthly or as clinically indicated."
+  },
+  {
+    "id": 105,
+    "description": "Soonsu Shining Peel is a biphasic professional chemical peel featuring TCA 35% combined with multi-acid exfoliants, vitamin B12, retinol, squalene oil, and bixa orellana (annatto) seed oil in a 6 mL format. The TCA at 35% induces controlled medium-depth coagulative necrosis of the epidermis and superficial papillary dermis, promoting collagen remodeling, hyperpigmentation reduction, and surface texture refinement. The added retinol, antioxidants, and lipid components moderate downtime and support epidermal barrier recovery post-peel.",
+    "protocol": "Degrease skin thoroughly; apply the peel solution uniformly with a fan brush in 1–2 coats, observing frosting level (Grade I–II target). Neutralize or allow self-neutralization per formulation instructions; do not exceed the manufacturer-specified contact time. Perform one session every 4–6 weeks for 3–5 cycles; rigorous sun protection is mandatory between and after sessions."
+  },
+  {
+    "id": 106,
+    "description": "Cindella I PN is a 1% polynucleotide skin booster delivering 10 mg of highly purified salmon-derived PN per mL, designed for intradermal bio-revitalization of the full face. The PN molecules stimulate fibroblast proliferation, enhance extracellular matrix production, and increase dermal hydration by promoting hyaluronan biosynthesis, resulting in improved skin tone, firmness, and reduced fine lines. It is indicated for mild to moderate skin aging, photoaging, and dehydration in adult patients.",
+    "protocol": "Use directly from the 2 mL prefilled syringe with a 30G or 31G needle. Inject intradermally at 1–2 mm depth via a nappage technique, 0.02–0.03 mL per injection point, covering the face systematically. A series of 4–6 sessions at 1-week intervals is recommended, followed by monthly maintenance injections."
+  },
+  {
+    "id": 107,
+    "description": "Clair Eyes PN 1% is a periorbital-specific polynucleotide injectable delivering 20 mg of PN in 1.1 mL, formulated for the thin, delicate skin of the tear trough and under-eye area. The PN content promotes fibroblast activation, increases collagen and elastin density in the fragile periorbital dermis, and reduces the appearance of dark circles by improving microvascular tone and skin opacity. It is indicated for under-eye hollows, fine periorbital wrinkles, and tear-trough dehydration.",
+    "protocol": "Use the full 1.1 mL syringe per session (both sides) with a 32G or 33G needle. Inject superficially at 0.5–1.5 mm depth in the periorbital zone using micro-papule or fanning technique, 0.01–0.02 mL per point; use extreme caution to avoid the orbital septum. Recommend 3–4 sessions at 2-week intervals; maintenance every 2–3 months."
+  },
+  {
+    "id": 108,
+    "description": "Ultra Eye PN 1% is a periorbital polynucleotide injectable supplying 20 mg PN per 1.1 mL, precision-formulated for the delicate under-eye and tear-trough zone. The salmon-derived PN molecules stimulate fibroblast activity, enhance dermal collagen and elastin in the thin periorbital skin, and improve microcirculation to reduce dark circle appearance and fine-line visibility. It is indicated for periorbital aging, tear-trough dehydration, and early wrinkles in the crow's-feet region.",
+    "protocol": "Administer the full 1.1 mL syringe per bilateral periorbital session using a 32G or 33G needle. Inject at 0.5–1 mm intradermal depth via micro-papule technique, 0.01–0.02 mL per injection point, staying superficial and inferior to the orbital rim. Complete 3–4 sessions at 2-week intervals; monthly maintenance is recommended."
+  },
+  {
+    "id": 109,
+    "description": "Ami Eyes PN 1% is a periorbital bio-revitalizer containing 20 mg polynucleotide in 2 mL, providing a higher volume per session for thorough treatment of the under-eye, tear-trough, and crow's-feet areas. The PN component activates A2A adenosine receptors to stimulate fibroblast proliferation, enhances collagen IV in the basement membrane, and improves microvascular tone to address dark circles and periorbital skin thinning. It is indicated for moderate periorbital aging and tear-trough volume loss.",
+    "protocol": "Use the full 2 mL syringe per bilateral periorbital session with a 32G or 33G needle, 0.01–0.02 mL per injection point at 0.5–2 mm depth. Apply micro-papule or serial threading technique below the orbital rim; avoid periosteal injection. Perform 3 sessions at 2–3 week intervals; maintenance every 3 months."
+  },
+  {
+    "id": 110,
+    "description": "Juvelook i (Juvelook Eye) is a hybrid PDLLA/HA biostimulator combining 25.5 mg poly-D,L-lactic acid with 4.5 mg hyaluronic acid per vial, formulated specifically for the periorbital zone and other delicate thin-skin areas. The PDLLA microspheres trigger neocollagenesis over a 3–6 month period by stimulating fibroblasts, while the HA fraction provides immediate hydration and volumetric support to the fragile papillary dermis. It is indicated for under-eye dark circles, fine periorbital wrinkles, crow's feet, thin neck skin, and perioral barcode lines.",
+    "protocol": "Reconstitute the 30 mg vial with the supplied diluent and allow full dissolution before use; inject with a 30G or 31G needle. Administer at superficial dermis depth (0.5–2 mm) using a nappage or mesotherapy fanning technique, 0.02–0.05 mL per point. Recommend 2–3 sessions every 4–6 weeks; collagen remodeling continues for up to 6 months post-treatment."
+  },
+  {
+    "id": 111,
+    "description": "Eve Eyes PN 1% is a polynucleotide injectable delivering 20 mg PN in 2 mL, developed specifically for the periorbital region including the under-eye trough, crow's feet, and upper eyelid skin. The purified PN chains enhance fibroblast metabolism, promote de novo synthesis of collagen and elastin in the thin periorbital dermis, and improve capillary tone to reduce the dark-circle appearance caused by vascular transparency. It is indicated for periorbital wrinkles, dark circles, and periorbital skin dehydration.",
+    "protocol": "Administer the entire 2 mL syringe per bilateral periorbital treatment using a 32G or 33G fine needle. Inject intradermally at 0.5–1.5 mm depth via serial micro-papule or fanning technique below the orbital rim, 0.01–0.02 mL per point. Perform 3–4 sessions at 2-week intervals; maintenance every 2–3 months."
+  },
+  {
+    "id": 112,
+    "description": "Spider Aqua Eye Booster is a periorbital aqueous skin booster formulated with cross-linked HA and hydrating actives in a 2 mL syringe for the under-eye and tear-trough area. The fine-particle HA matrix delivers immediate volumetric hydration to the hollow under-eye sulcus, improves skin reflectance to reduce optical dark-circle appearance, and restores the thin periorbital dermis's moisture reservoir. It is indicated for tear-trough dehydration, periorbital thinning, and early hollowing.",
+    "protocol": "Use directly from the 2 mL syringe with a 32G or 33G needle; inject intradermally or superficial subcutaneously at 1–3 mm depth below the orbital rim in the preseptal zone. Apply serial papule or fanning technique, 0.02–0.05 mL per point, distributing product evenly along the tear trough bilaterally. Complete 2–3 sessions at 3–4 week intervals; reassess for maintenance after 3–6 months."
+  },
+  {
+    "id": 113,
+    "description": "Eyebella PN 1% is a periorbital polynucleotide injectable supplying 20 mg PN per 2 mL, designed to bio-revitalize the under-eye and crow's-feet area with high-purity salmon-derived polynucleotides. The PN fraction binds growth factor receptors on dermal fibroblasts to stimulate collagen I and III synthesis, improve elastin network density, and modulate periorbital skin hydration and tone. It is indicated for under-eye wrinkles, skin thinning, dark circles, and periorbital dehydration.",
+    "protocol": "Administer the full 2 mL syringe per bilateral periorbital session using a 32G needle at 0.5–2 mm intradermal depth via micro-papule technique, 0.01–0.02 mL per injection point. Keep injections below the orbital septum rim; distribute evenly across the medial, central, and lateral tear-trough segments. Perform 3–4 sessions at 2-week intervals; repeat maintenance every 2–3 months."
+  },
+  {
+    "id": 114,
+    "description": "Juve Eyes PN 1% is a periorbital-dedicated polynucleotide injectable containing 20 mg PN per 2 mL, formulated for the delicate under-eye trough and periorbital wrinkle zones. The high-purity PN material activates fibroblasts via purinergic signaling to stimulate collagen and elastin neosynthesis, repair the extracellular matrix, and improve periorbital skin density and hydration. It is indicated for tear-trough dehydration, periorbital laxity, under-eye fine lines, and dark-circle associated skin thinning.",
+    "protocol": "Use the full 2 mL prefilled syringe per bilateral treatment session with a 32G or 33G needle. Inject at 0.5–1.5 mm intradermal depth using micro-papule or linear retrograde technique along the tear trough, 0.01–0.02 mL per point. Recommend 3–4 sessions at 2-week intervals; maintenance monthly or every 2–3 months depending on clinical response."
+  },
+  {
+    "id": 115,
+    "description": "Snow Flower Bloom is a CPNP-enhanced mesotherapy cocktail combining glutathione, PDRN, and hyaluronic acid in 2.5 mL vials to address hyperpigmentation, skin dullness, and oxidative damage simultaneously. Glutathione inhibits melanin biosynthesis by suppressing tyrosinase activity, PDRN stimulates fibroblast regeneration and matrix repair, and the HA component provides immediate dermal hydration and plumping. The CPNP (Controlled-release Polymeric NanoParticle) delivery system enhances bioavailability of all active ingredients within the dermis.",
+    "protocol": "Draw the 2.5 mL vial contents into a syringe with a 30G or 31G needle; inject intradermally at 1–3 mm depth via nappage or mesotherapy gun technique. Apply 0.02–0.05 mL per injection point evenly across the full face or targeted pigmentation zones. Perform 4–6 weekly sessions; maintenance every 4–6 weeks for sustained brightening."
+  },
+  {
+    "id": 116,
+    "description": "MisAdi White Skin Glazer is a whitening mesotherapy solution contained in a 5 mL vial, combining skin-brightening actives including glutathione, vitamin C derivatives, and pigmentation-modulating compounds to address melanin overproduction and uneven skin tone. The formulation is designed to inhibit tyrosinase, reduce oxidative stress in melanocytes, and improve overall skin luminosity and clarity through intradermal delivery. It is indicated for melasma, post-inflammatory hyperpigmentation, and generalized skin dullness.",
+    "protocol": "Draw from the 5 mL vial using a 30G or 31G needle; inject intradermally at 1–2 mm depth by nappage or mesotherapy technique, 0.02–0.03 mL per injection point across targeted pigmented areas. Perform 4–6 sessions at weekly intervals; follow with monthly maintenance and strict photoprotection."
+  },
+  {
+    "id": 117,
+    "description": "Eve White is a whitening mesotherapy solution supplied as five 5 mL vials, formulated with a blend of skin-brightening actives including tyrosinase inhibitors, antioxidants, and vitamin derivatives to reduce melanin synthesis and improve overall skin luminosity. The formulation targets the melanogenesis pathway at multiple steps, suppressing tyrosinase activity and scavenging reactive oxygen species to prevent pigment re-accumulation. It is indicated for diffuse hyperpigmentation, melasma, and post-inflammatory skin darkening requiring a multi-session brightening protocol.",
+    "protocol": "Draw 2–5 mL of solution per session using a 30G or 31G needle; inject intradermally at 1–2 mm depth by nappage technique, 0.02–0.05 mL per injection point, covering the pigmented treatment zones. Perform 1 session per week for 4–6 sessions; adjust maintenance frequency based on clinical response."
+  },
+  {
+    "id": 118,
+    "description": "Ultra White is an advanced brightening mesotherapy cocktail in 3 mL vials containing tranexamoyl dipeptide-23, tetrapeptide, oligopeptide-2 (IGF-1), polypeptide-1, glutathione, vitamin C, N-acetyl glucosamine, sodium DNA, arbutin, niacinamide, and vitamin B5. These actives collectively inhibit tyrosinase at multiple pathway steps, stimulate keratinocyte turnover, reduce melanin transfer, and counteract UV-induced oxidative damage for comprehensive skin brightening. It is indicated for hyperpigmentation, melasma, uneven skin tone, and dull complexion requiring a multi-target brightening approach.",
+    "protocol": "Use 3 mL per session injected intradermally at 1–2 mm depth with a 30G or 31G needle using nappage or mesotherapy gun technique, 0.02–0.03 mL per injection point. Systematically cover the treatment area; combine sessions with topical brightening agents for synergistic results. Perform 4–6 weekly sessions; maintenance every 4–8 weeks under ongoing SPF50+ photoprotection."
+  },
+  {
+    "id": 119,
+    "description": "Miracle X is a polycaprolactone (PCL)–hyaluronic acid composite skin booster supplied in 2 mL vials, combining the long-lasting biostimulatory properties of PCL microspheres with the immediate volumizing hydration of HA. The PCL microspheres act as a scaffold for neocollagenesis by stimulating fibroblast activity over a 12–18 month period, while the HA carrier provides immediate skin plumping and moisture retention. It is indicated for facial skin laxity, volume loss, and deep dermal hydration requiring both immediate effect and prolonged collagen induction.",
+    "protocol": "Draw from the 2 mL vial and inject with a 27G or 30G needle at mid-to-deep dermis depth (2–4 mm) using linear retrograde threading or bolus technique for lifting zones; finer nappage can be used for superficial hydration. Use 1–2 mL per facial zone per session; perform 2–3 sessions at 4–6 week intervals and reassess at 3 months."
+  },
+  {
+    "id": 120,
+    "description": "Miracle H is a PCL 20% and HA 1% meso-lifting solution in 2 mL vials that combines the biostimulatory scaffold properties of polycaprolactone with hyaluronic acid for simultaneous immediate hydration and long-term collagen neosynthesis. The PCL microspheres stimulate fibroblasts to produce new collagen over 12–18 months, while the HA component corrects immediate skin dehydration and superficial laxity. It is indicated for skin lifting, volume improvement, and rejuvenation in patients with moderate facial laxity and dermal thinning.",
+    "protocol": "Administer 1–2 mL per zone with a 27G–30G needle at 2–4 mm depth using retrograde linear threading for lifting corridors and nappage for surface hydration. Treat across forehead, mid-face, and jawline in separate passes; total session volume is typically 4–8 mL across the full face. Schedule 2–3 sessions at 4–6 week intervals; maintenance every 6–12 months."
+  },
+  {
+    "id": 121,
+    "description": "Miracle L is a polycaprolactone (PCL) 20% meso-lifting solution supplied as five 2 mL vials, delivering pure PCL microspheres in a biocompatible carrier without an HA component. The PCL microspheres provide a persistent mechanical scaffold that stimulates prolonged fibroblast activation and collagen type I neosynthesis lasting up to 18–24 months, effectively lifting and firming lax facial skin. It is indicated for patients requiring strong biostimulatory lifting without immediate HA-based hydration, particularly in mild-to-moderate facial ptosis.",
+    "protocol": "Use a 27G needle to inject PCL at 2–4 mm depth (mid-dermis to deep dermis) using retrograde linear threading along the nasolabial folds, jowls, and jawline lifting corridors. Apply 0.5–1.0 mL per vector; total session dose is typically 4–8 mL for a full facial treatment. Perform 2–3 sessions at 4–6 week intervals; collagen remodeling continues for up to 18 months."
+  },
+  {
+    "id": 122,
+    "description": "Touch Up PCL is a polycaprolactone-based skin rejuvenation booster supplied in five 2 mL vials, combining PCL microspheres with stem-cell-derived growth factors to induce sustained collagen neosynthesis and tissue regeneration. The PCL scaffold supports long-term fibroblast stimulation while the growth factor component accelerates cellular proliferation and skin matrix renewal for a synergistic biostimulatory effect. It is indicated for skin rejuvenation, laxity improvement, and post-treatment matrix restoration in patients seeking gradual, natural-looking lift.",
+    "protocol": "Inject 1–2 mL per zone at 2–4 mm depth using a 27G or 30G needle with retrograde linear threading or bolus injection for lifting corridors. Full-face treatment typically requires 4–8 mL distributed across cheeks, jawline, and forehead; avoid superficial injection to prevent nodule formation. Perform 2–3 sessions at 4–6 week intervals; maintenance every 9–12 months."
+  },
+  {
+    "id": 123,
+    "description": "Touch BR is a brightening mesotherapy cocktail supplied in five 5 mL vials, formulated with tyrosinase-inhibiting actives, antioxidants, and melanogenesis-suppressing agents to address uneven skin pigmentation and dullness. The multi-target whitening complex reduces melanin synthesis, prevents melanin transfer to keratinocytes, and quenches UV-induced free radical activity to restore an even, luminous skin tone. It is indicated for diffuse pigmentation, melasma, post-inflammatory hyperpigmentation, and facial dullness requiring systemic brightening.",
+    "protocol": "Draw 5 mL per session with a 30G or 31G needle; inject intradermally at 1–2 mm depth via nappage technique, 0.02–0.05 mL per injection point, covering pigmented and dull zones evenly. Perform 4–6 weekly sessions; transition to biweekly and then monthly maintenance. Advise daily SPF50+ sunscreen throughout and after treatment."
+  },
+  {
+    "id": 124,
+    "description": "PCL Power Booster is a polycaprolactone-based injectable containing PCL microspheres combined with stem cell growth factors, designed to provide a potent biostimulatory regenerative effect in a single 2 mL vial dose. The PCL microsphere scaffold induces sustained fibroblast activation and collagen I neosynthesis for up to 18 months, while the accompanying growth factors accelerate tissue repair, improve skin microcirculation, and enhance epidermal renewal. It is indicated for facial skin aging, laxity, deep dermal thinning, and post-procedure tissue recovery.",
+    "protocol": "Inject the full 2 mL vial per targeted zone with a 27G or 30G needle at 3–4 mm depth (mid to deep dermis) using retrograde linear threading. Distribute product along 2–3 lifting vectors per zone; limit total session volume to 4–6 mL for a standard facial treatment. Repeat after 4–6 weeks for 2–3 sessions; a maintenance session every 9–12 months is recommended."
+  },
+  {
+    "id": 125,
+    "description": "Rejuran Skin Booster is a two-component system combining a c-PDRN (coiled polydeoxyribonucleotide) liquid base with a lyophilized amino acid blend, designed for intradermal injection to activate skin self-repair mechanisms and restore the dermal matrix. The c-PDRN component binds A2A adenosine receptors to suppress inflammation, stimulate fibroblast proliferation, and increase collagen and elastin biosynthesis, while the four amino acids supply essential substrates for collagen precursor synthesis. It is indicated for sensitive skin, photoaging, post-acne scarring, and compromised skin barrier requiring matrix-level regeneration.",
+    "protocol": "Mix the lyophilized Vial 2 powder with the Vial 1 c-PDRN solution immediately before use; allow complete dissolution. Inject intradermally at 1–2 mm depth with a 30G or 32G needle by nappage or mesotherapy technique, 0.02–0.05 mL per injection point. Treat the full face with 2–4 mL per session; schedule 4 sessions at 2-week intervals and reassess."
+  },
+  {
+    "id": 126,
+    "description": "Sela Tox 10 is a professional biomedicalization mesotherapy solution in five 5 mL vials, combining a proprietary blend of peptides, antioxidants, and skin-conditioning actives to address visible signs of skin aging including wrinkles, enlarged pores, and periorbital dark circles. The formulation is designed to modulate sebum production, tighten pores, improve periorbital microcirculation, and deliver anti-wrinkle peptides that relax facial muscle tension at the skin level. It is indicated for aging skin with enlarged pores, fine lines, and periorbital discoloration.",
+    "protocol": "Draw 5 mL per session with a 30G or 31G needle; inject intradermally at 1–2 mm depth via nappage technique, 0.02–0.05 mL per point, targeting enlarged pore zones, fine lines, and periorbital areas. Perform 4–6 weekly sessions followed by monthly maintenance. Supplement with daily SPF and a pore-reducing topical regimen for best outcomes."
+  },
+  {
+    "id": 127,
+    "description": "Lapuroon Aurora Super is a 2% PDRN skin booster supplied as two 2.5 mL prefilled syringes, formulated using Lapuroon's proprietary polynucleotide extraction and purification technology for high-concentration PDRN delivery. At 2% PDRN concentration, the product robustly stimulates A2A adenosine receptor-mediated fibroblast activation, drives collagen and elastin synthesis, and promotes healing and regeneration of photodamaged or procedurally compromised skin. It is indicated for intensive skin rejuvenation, post-laser recovery, acne scarring, and advanced photoaging.",
+    "protocol": "Use directly from the 2.5 mL prefilled syringe with a 30G or 31G needle; inject intradermally at 1–3 mm depth via nappage technique, 0.02–0.05 mL per injection point. Distribute evenly across the treatment area; use 1 syringe per facial zone (face and neck). Perform 3–5 sessions at 1–2 week intervals; monthly maintenance is recommended thereafter."
+  },
+  {
+    "id": 128,
+    "description": "Lapuroon Aurora Vivid is a 0.2% PDRN skin booster supplied in five 5 mL vials, designed for high-volume, widespread intradermal treatment of the face, neck, and body areas where a lower PDRN concentration is appropriate. The polydeoxyribonucleotide content supports mild fibroblast stimulation, dermal hydration, and skin tone improvement over a course of regular sessions without the higher reactivity profile of concentrated PDRN formulations. It is indicated for maintenance bio-revitalization, mild skin dullness, and dehydration in patients who have completed an intensive PDRN induction protocol.",
+    "protocol": "Draw from the 5 mL vial using a 30G or 31G needle; inject intradermally at 1–2 mm depth via nappage or mesotherapy gun technique, 0.02–0.05 mL per injection point, covering large surface areas. Typically use 3–5 mL per session for the face, or up to 10 mL for face and neck combined. Perform every 2–4 weeks; long-term maintenance every 1–2 months."
+  },
+  {
+    "id": 129,
+    "description": "NMN Bottle NAD+ is a professional intravenous or intradermal skin booster combining nicotinamide mononucleotide (NMN) with PDRN in ten 5 mL vials to target cellular energy metabolism and skin aging at the NAD+ biosynthesis level. NMN serves as a direct precursor to NAD+, upregulating sirtuin activity, mitochondrial biogenesis, and cellular DNA repair pathways to reverse energetic deficits in aged skin cells, while the PDRN component drives fibroblast regeneration and matrix synthesis. It is indicated for chronologically aged skin, fatigued dull complexion, and patients seeking metabolic skin rejuvenation.",
+    "protocol": "For intradermal mesotherapy, draw 5 mL per session with a 30G needle; inject at 1–2 mm depth by nappage, 0.02–0.05 mL per point across the full face and neck. For IV drip administration, dilute 1–2 vials in 250 mL normal saline and infuse slowly over 60–90 minutes. Perform 6–10 weekly intradermal sessions or monthly IV infusions; tailor frequency to patient response."
+  },
+  {
+    "id": 130,
+    "description": "2XSOME is a lyophilized plant-derived or stem-cell-derived exosome system supplied as 100 mg exosome powder with a 6 mL activating diluent, formulated to deliver a concentrated payload of growth factors, microRNAs, and signaling proteins to the dermis for advanced skin rejuvenation. Upon reconstitution and injection, the exosome vesicles fuse with dermal fibroblasts to transfer bioactive cargo, stimulating collagen production, reducing inflammation, improving skin hydration, and supporting cellular renewal. It is indicated for skin aging, dullness, post-procedure recovery, and patients seeking regenerative anti-aging treatment.",
+    "protocol": "Reconstitute the 100 mg lyophilized powder with the provided 6 mL activating diluent and allow full dissolution; use within 30 minutes. Inject the reconstituted solution intradermally at 1–3 mm depth with a 30G or 32G needle via nappage or mesotherapy gun technique, 0.02–0.05 mL per injection point. Perform 2–4 sessions at 2–4 week intervals; post-procedure microneedling can enhance delivery."
+  },
+  {
+    "id": 131,
+    "description": "Exogen for Hair and Skin is a lyophilized exosome system providing 100 mg exosome powder with a 6 mL activating diluent, formulated with exosomes that deliver growth factors including VEGF, IGF-1, and FGF to both scalp hair follicles and facial skin. For scalp use, the exosome-mediated signaling extends the anagen phase, promotes dermal papilla cell activity, and reduces follicular inflammation to improve hair density and reduce shedding. For skin use, the same growth factor cargo stimulates fibroblast collagen synthesis and epidermal regeneration.",
+    "protocol": "Reconstitute the 100 mg lyophilized powder with the 6 mL activating diluent; use promptly after dissolution. For scalp injection, use a 30G or 32G needle at 3–4 mm depth via serial papule technique across the thinning area, 0.05 mL per point. For facial skin, inject intradermally at 1–2 mm via nappage. Schedule 3–6 sessions at 2–4 week intervals for both scalp and face indications."
+  },
+  {
+    "id": 132,
+    "description": "Exoxe is a lyophilized exosome preparation supplying 50 mg exosome powder with a 5 mL activating diluent, derived from plant or mesenchymal stem cell sources and rich in growth factors and signaling microRNAs. Upon reconstitution and intradermal injection, the exosome vesicles trigger fibroblast activation, upregulate collagen I and III synthesis, suppress inflammatory cytokines, and improve skin hydration and brightness. It is indicated for skin aging, post-inflammatory hyperpigmentation, acne scarring, and patients seeking cellular-level regenerative treatment.",
+    "protocol": "Reconstitute the 50 mg lyophilized powder in the 5 mL activating diluent and inject within 30 minutes. Use a 30G or 32G needle to inject intradermally at 1–2 mm depth via nappage technique, 0.02–0.05 mL per injection point across the targeted area. Perform 3–4 sessions at 2–3 week intervals; combine with microneedling for enhanced epidermal delivery and synergistic effect."
+  },
+  {
+    "id": 133,
+    "description": "ExoBoom Skin is a lyophilized exosome powder (50 mg) with 6 mL activating diluent, formulated for facial skin rejuvenation by delivering a concentrated cargo of growth factors, cytokines, and non-coding RNAs via extracellular vesicles. The exosome-mediated signaling activates fibroblast proliferation, suppresses MMPs that degrade dermal collagen, promotes angiogenesis, and restores the skin's regenerative capacity, with visible improvements in elasticity, hydration, and radiance. It is indicated for skin aging, solar damage, acne scarring, and patients requiring regenerative tissue repair beyond conventional mesotherapy.",
+    "protocol": "Reconstitute the 50 mg exosome powder in the 6 mL activating diluent immediately before treatment; do not store the reconstituted solution. Inject intradermally at 1–3 mm depth with a 30G or 32G needle using nappage or serial papule technique, 0.02–0.05 mL per point. Perform 3–5 sessions at 2–4 week intervals; can be layered with laser or RF energy sessions for augmented results."
+  },
+  {
+    "id": 134,
+    "description": "Botanic EXO is a plant-derived lyophilized exosome powder (50 mg) with a 5 mL activating diluent enriched with NAD+, amino acids, peptides, and glutathione to provide a comprehensive regenerative and brightening mesotherapy cocktail. The exosome fraction carries bioactive microRNAs and growth factors that stimulate fibroblast collagen synthesis, while NAD+ replenishes cellular energy via sirtuin activation, glutathione quenches oxidative stress, and peptides modulate melanin production. It is indicated for photoaging, hyperpigmentation, dull and fatigued skin, and patients requiring simultaneous regenerative and brightening treatment.",
+    "protocol": "Reconstitute the 50 mg exosome lyophilizate with the 5 mL NAD+/peptide/glutathione diluent and use within 30 minutes. Inject intradermally at 1–2 mm depth with a 30G or 31G needle via nappage, 0.02–0.05 mL per injection point, covering pigmented and aging zones. Perform 3–4 sessions at 2–3 week intervals; maintenance monthly under daily SPF50+ protection."
+  },
+  {
+    "id": 135,
+    "description": "ASCE is a premium human adipose-derived stem cell exosome preparation supplying 20 mg highly concentrated exosome powder with a 5 mL activating diluent, distinguished by its exceptionally high exosome purity and cargo potency from mesenchymal stem cell sources. The stem-cell-derived exosomes deliver a rich payload of growth factors (TGF-β, VEGF, HGF), anti-inflammatory microRNAs, and mitogenic proteins that powerfully stimulate dermal fibroblast proliferation, accelerate wound healing, suppress inflammatory cascades, and improve skin structure. It is indicated for advanced photoaging, post-acne scarring, post-laser or post-RF recovery, and high-demand skin regeneration.",
+    "protocol": "Reconstitute the 20 mg lyophilized ASCE powder in the 5 mL diluent and administer promptly after full dissolution. Inject intradermally at 1–2 mm depth with a 30G or 32G needle via nappage or mesotherapy gun, 0.01–0.02 mL per injection point. Session volume is typically 3–5 mL; perform 2–4 sessions at 3–4 week intervals; can be applied topically post-microneedling."
+  },
+  {
+    "id": 136,
+    "description": "AMMI Capture Time is a professional humectant mesotherapy cocktail in five 3 mL vials, formulated with a blend of advanced humectants, skin-plumping actives, and brightening compounds to restore skin elasticity, radiance, and hydration in a single multi-functional solution. The preparation targets multiple aging pathways by combining high-affinity water-binding molecules that expand the dermis's moisture reservoir, antioxidants that reduce oxidative damage, and brightening agents that suppress melanin overproduction. It is indicated for dehydrated, dull, or pigmented skin requiring simultaneous hydration, elasticity improvement, and tone correction.",
+    "protocol": "Draw 3 mL from the vial per session with a 30G or 31G needle; inject intradermally at 1–2 mm depth via nappage or mesotherapy gun technique, 0.02–0.05 mL per injection point. Cover full face and optionally neck; total session volume of 3–5 mL is typical. Perform 4–6 weekly sessions; transition to biweekly and then monthly maintenance for sustained humectant replenishment."
+  },
+  {
+    "id": 137,
+    "description": "Ultra CA Bio Stimulator is a calcium hydroxyapatite (CaHA) collagen-stimulating injectable supplied as two 0.8 mL prefilled syringes, analogous to Radiesse in composition with CaHA microspheres (25–45 μm) suspended in a carboxymethylcellulose gel carrier. The CaHA microspheres provide immediate volumetric correction at the injection site, and as they gradually resorb over 12–18 months, the calcium ions stimulate fibroblasts to produce new collagen type I and III, elastin, and proteoglycans for lasting structural improvement. It is indicated for mid-face volume restoration, jawline contouring, hand rejuvenation, and skin biostimulation in patients with moderate to severe volume loss.",
+    "protocol": "Do not reconstitute; use directly from the 0.8 mL prefilled syringe with a 25G or 27G needle. Inject into the deep dermis or subdermal plane using a retrograde linear threading or depot injection technique; for facial biostimulation, dilute with lidocaine (4:1 ratio) for a more spreadable consistency. Inject 0.5–1.6 mL per zone; perform 1–2 sessions, assess at 4–6 weeks, then maintenance at 12–18 months."
+  },
+  {
+    "id": 138,
+    "description": "Volassom Calcium Bio Stimulator (analogue of Facetem) is a calcium hydroxyapatite injectable containing CaHA microspheres in a gel carrier, supplied as two 0.8 mL syringes, formulated as a Korean-manufactured analogue of established CaHA bio-stimulators. The CaHA microspheres (average diameter 25–45 μm) act as a temporary scaffold providing immediate soft-tissue augmentation while simultaneously triggering neocollagenesis via fibroblast stimulation, with biological resorption of the calcium and phosphate particles over 12–18 months. It is indicated for facial volume restoration, skin biostimulation, jawline contouring, hand rejuvenation, and body skin tightening.",
+    "protocol": "Inject undiluted from the 0.8 mL prefilled syringe at subdermal or deep dermal depth with a 25G or 27G needle using retrograde threading or depot technique for contouring; for skin biostimulation, dilute with normal saline or lidocaine (3:1 to 4:1 ratio) and inject intradermally at 2–3 mm depth. Use 0.5–1.5 mL per zone; 1–2 initial sessions with 4–6 week review, then maintenance at 12–18 months."
+  }
+]

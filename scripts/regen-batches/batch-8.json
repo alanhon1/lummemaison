@@ -1,0 +1,217 @@
+[
+  {
+    "id": 315,
+    "description": "Innotox is a unique liquid-form botulinum toxin type A manufactured by Medytox (South Korea), supplied ready-to-use without reconstitution. It contains the 900 kDa botulinum toxin complex in a stabilised solution, making it the first commercially available liquid-type botulinum toxin. It is indicated for temporary improvement of moderate-to-severe glabellar lines, forehead lines, and crow's feet in adults.",
+    "protocol": "Supplied ready-to-use; no reconstitution required. Inject 0.1 mL per point intramuscularly using a 30–32G needle. Glabellar complex: 5 injection sites totalling 20–25 units; forehead: 10–15 units across 5 sites. Results last approximately 3–4 months; repeat treatment as needed."
+  },
+  {
+    "id": 316,
+    "description": "Innotox 100-unit vial is the larger-volume presentation of Medytox's liquid-form botulinum toxin type A, allowing treatment of multiple areas or a full-face neuromodulator session from a single vial. The stabilised, ready-to-use formulation eliminates dilution error and provides consistent dosing for glabellar lines, forehead rhytids, crow's feet, and brow lifting. It is favoured in high-volume clinical settings.",
+    "protocol": "Supplied ready-to-use; no reconstitution required. Draw dose directly and inject intramuscularly using a 30–32G needle. Typical full-face session uses 30–80 units; glabellar: 20–25 units across 5 sites, frontalis: 10–20 units, lateral canthal lines: 6–15 units per side. Repeat every 3–4 months."
+  },
+  {
+    "id": 317,
+    "description": "Nabota (prabotulinumtoxinA) is a highly purified botulinum toxin type A developed by Daewoong Pharmaceuticals, the first Korean botulinum toxin to receive US FDA approval (2019). Its manufacturing process uses a high-efficiency purification method that produces a toxin with minimal accessory proteins, yielding a 900 kDa complex. It is indicated for temporary improvement of moderate-to-severe glabellar frown lines in adults under 65.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). For glabellar lines, inject 4 units (0.1 mL) IM into each of 5 sites (total 20 units) using a 30G needle. Allow 24–72 hours for onset; full effect at 7–14 days. Repeat treatment at 3–4 month intervals."
+  },
+  {
+    "id": 318,
+    "description": "Nabota 200-unit vial (prabotulinumtoxinA) is the high-capacity presentation of Daewoong Pharmaceuticals' FDA-approved botulinum toxin type A, designed for multi-area or multi-patient aesthetic sessions. The highly purified 900 kDa complex maintains consistent potency and a low protein load, reducing the risk of antibody formation with repeated use. Indicated for glabellar lines, forehead rhytids, crow's feet, and off-label neck bands and masseter reduction.",
+    "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). For glabellar lines, inject 20 units (5 sites × 4 units); forehead: 10–20 units; lateral canthal lines: 6–15 units per side; masseter reduction: 20–30 units per side. Use a 30–32G needle for all injections. Repeat every 3–4 months."
+  },
+  {
+    "id": 319,
+    "description": "Liztox is a botulinum toxin type A product manufactured by Huons Global (South Korea), formulated with the 900 kDa complex alongside human serum albumin and sodium chloride as stabilisers. It is indicated for the temporary improvement of moderate-to-severe glabellar frown lines, forehead lines, and periorbital rhytids in adults, and is used off-label for masseter reduction, hyperhidrosis, and neck band treatment.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar complex: 20 units across 5 sites (4 units each); forehead: 10–20 units; crow's feet: 6–12 units per side. Onset in 2–4 days; full effect at 7–14 days. Repeat every 3–4 months."
+  },
+  {
+    "id": 320,
+    "description": "Liztox 200-unit vial is the large-format presentation of Huons Global's botulinum toxin type A, suited for high-volume clinical use or multi-area facial rejuvenation in a single session. Stabilised with human serum albumin and sodium chloride, it contains the 900 kDa botulinum toxin complex with consistent unit potency. Indications include glabellar lines, forehead lines, crow's feet, brow lifting, masseter reduction, and axillary hyperhidrosis.",
+    "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Use a 30–32G needle; glabellar: 20–25 units (5 sites); frontalis: 10–20 units; lateral canthal: 6–15 units per side; masseter: 20–30 units per side; axillary hyperhidrosis: 50 units per axilla intradermally. Repeat every 3–6 months depending on indication."
+  },
+  {
+    "id": 321,
+    "description": "Hutox (letibotulinumtoxinA) is a botulinum toxin type A product manufactured by Hugel Inc. (South Korea), purified to yield the 900 kDa complex with human serum albumin as stabiliser. It has received regulatory approval in South Korea and multiple export markets and is indicated for glabellar frown lines, forehead lines, and periorbital crow's feet. The manufacturing process uses a proprietary Hall strain fermentation for consistent potency.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units at 4–5 sites; crow's feet: 6–12 units per side. Allow 3–5 days for onset; full effect at 14 days. Repeat every 3–4 months."
+  },
+  {
+    "id": 322,
+    "description": "Hutox 200-unit vial (letibotulinumtoxinA) is the high-volume presentation of Hugel Inc.'s botulinum toxin type A, enabling multi-area or multi-patient sessions from a single lyophilised vial. Stabilised with human serum albumin, the 900 kDa complex maintains potency until reconstitution. Common applications include glabellar and forehead lines, crow's feet, platysmal bands, masseter hypertrophy reduction, and hyperhidrosis treatment.",
+    "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Administer intramuscularly using a 30–32G needle. Typical dosing: glabellar 20–25 units, frontalis 10–20 units, lateral canthal 6–15 units per side, masseter 20–30 units per side. Use within 4 hours of reconstitution or refrigerate up to 24 hours. Repeat every 3–4 months."
+  },
+  {
+    "id": 323,
+    "description": "Meditoxin (neuronox in export markets) is a botulinum toxin type A product manufactured by Medy-Tox Inc. (South Korea), produced from the Hall strain and formulated with the 900 kDa complex, human serum albumin, and sodium chloride. It is one of South Korea's longest-established botulinum toxin brands and is indicated for glabellar frown lines, forehead rhytids, and periorbital crow's feet.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units across 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side. Onset within 2–4 days; peak effect at 7–14 days. Retreat at 3–4 month intervals."
+  },
+  {
+    "id": 324,
+    "description": "Meditoxin 200-unit vial (neuronox) is the large-format presentation of Medy-Tox Inc.'s well-established botulinum toxin type A, allowing full-face neuromodulator protocols or combined aesthetic and therapeutic use from a single vial. The 900 kDa complex stabilised with human serum albumin delivers predictable diffusion characteristics and a dose-dependent duration of 3–5 months. Applications include facial rhytids, masseter reduction, platysmal bands, and hyperhidrosis.",
+    "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Use a 30–32G needle for IM injections; glabellar: 20–25 units; frontalis: 10–20 units; periorbital: 6–15 units per side; masseter reduction: 20–30 units per side; axillary hyperhidrosis: 50 units per axilla intradermally. Repeat every 3–5 months."
+  },
+  {
+    "id": 325,
+    "description": "Re N Tox (rentobotulinum toxinA) is a botulinum toxin type A product manufactured by Pharmaresearch (South Korea), formulated as a lyophilised powder containing the neurotoxin complex alongside human serum albumin and sodium chloride. It is indicated for the temporary correction of moderate-to-severe glabellar frown lines and forehead lines, and is widely used off-label for masseter reduction and crow's feet treatment.",
+    "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side; masseter reduction: 20–30 units per side. Full effect at 7–14 days. Repeat every 3–4 months."
+  },
+  {
+    "id": 326,
+    "description": "RE N TOX 100-unit vial (rentobotulinum toxinA) is the standard-volume presentation of Pharmaresearch's botulinum toxin type A, designed for single-area or targeted neuromodulator protocols. The lyophilised formulation contains the botulinum toxin complex with human serum albumin stabiliser, providing consistent potency upon reconstitution. Indicated for glabellar lines, crow's feet, forehead rhytids, and off-label masseter contouring.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Use a 30–32G needle; glabellar: 20–25 units (5 sites × 4–5 units); crow's feet: 6–12 units per side; forehead: 10–20 units. Onset 2–4 days; full effect by day 14. Repeat at 3–4 month intervals."
+  },
+  {
+    "id": 327,
+    "description": "Toxsta is a botulinum toxin type A formulation manufactured in South Korea, containing the neurotoxin complex stabilised with human serum albumin and sodium chloride in a lyophilised format. It is designed for aesthetic neuromodulation including glabellar frown lines, forehead rhytids, and periorbital crow's feet, with off-label use for neck bands, brow lifting, and facial contouring.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Administer intramuscularly using a 30–32G needle; glabellar: 20–25 units across 5 sites; forehead: 10–20 units; lateral canthal lines: 6–12 units per side. Onset 2–4 days; maximum effect at 7–14 days. Repeat every 3–4 months."
+  },
+  {
+    "id": 328,
+    "description": "Kaimax is a high-purity botulinum toxin type A product manufactured in South Korea, formulated as a lyophilised powder with the 900 kDa neurotoxin complex and human serum albumin stabiliser. Designed for aesthetic neuromodulation, it targets the neuromuscular junction to temporarily inhibit acetylcholine release, reducing muscle contraction in dynamic rhytid-forming muscles. Indicated for glabellar lines, forehead rhytids, and crow's feet.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side. Allow 3–5 days for clinical onset; full effect by day 14. Repeat every 3–4 months."
+  },
+  {
+    "id": 329,
+    "description": "Kaimax 200-unit vial is the high-volume presentation of the high-purity Korean botulinum toxin type A, allowing efficient multi-area or multi-patient sessions from a single vial. Formulated with the 900 kDa complex and human serum albumin, it delivers predictable neuromuscular blockade for dynamic wrinkle correction. Applications include full-face rejuvenation, masseter reduction, platysmal band treatment, and axillary hyperhidrosis.",
+    "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Use a 30–32G needle for IM injections; glabellar: 20–25 units; frontalis: 10–20 units; lateral canthal: 6–15 units per side; masseter: 20–30 units per side. Keep refrigerated and use within 24 hours of reconstitution. Repeat every 3–4 months."
+  },
+  {
+    "id": 330,
+    "description": "Wondertox is a botulinum toxin type A product containing Clostridium botulinum toxin complex formulated with human serum albumin and sodium chloride as stabilisers. Manufactured in South Korea, it acts by blocking acetylcholine release at the neuromuscular junction to achieve temporary muscle paralysis and dynamic wrinkle reduction. It is indicated for glabellar frown lines, forehead rhytids, and lateral canthal crow's feet.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side. Onset 2–5 days; peak effect at 7–14 days. Repeat every 3–4 months."
+  },
+  {
+    "id": 331,
+    "description": "Wondertox 200-unit vial is the large-format presentation of the Clostridium botulinum toxin type A product stabilised with human serum albumin and sodium chloride, suited for multi-area facial rejuvenation or high-volume clinical practice. The lyophilised formulation provides consistent reconstitution and potency for treating upper-face dynamic rhytids, masseter hypertrophy, platysmal bands, and hyperhidrosis.",
+    "protocol": "Reconstitute 200-unit vial with 5 mL preservative-free 0.9% saline (40 units/mL). Administer IM using a 30–32G needle; glabellar: 20–25 units; frontalis: 10–20 units; lateral canthal: 6–15 units per side; masseter: 20–30 units per side; hyperhidrosis: 50 units per axilla intradermally. Repeat at 3–5 month intervals."
+  },
+  {
+    "id": 332,
+    "description": "Linetox is a botulinum toxin type A formulation manufactured in South Korea, containing 100 units of the neurotoxin complex stabilised with human serum albumin and sodium chloride in a lyophilised presentation. It is designed for aesthetic neuromodulation, blocking acetylcholine at the neuromuscular junction to relax dynamic wrinkle-forming muscles. Indicated for glabellar frown lines, forehead rhytids, and periorbital crow's feet.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side. Clinical onset in 2–5 days; full effect at 7–14 days. Repeat every 3–4 months."
+  },
+  {
+    "id": 333,
+    "description": "Zerotox is a botulinum toxin type A product manufactured in South Korea, containing 100 units of the purified neurotoxin complex with human serum albumin and sodium chloride stabilisers. By inhibiting acetylcholine release at the neuromuscular junction, it produces temporary focal muscle relaxation suitable for dynamic rhytid correction. Indicated for glabellar frown lines, forehead lines, and lateral canthal crow's feet.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Administer intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites (4–5 units each); forehead: 10–20 units; crow's feet: 6–12 units per side. Onset in 2–4 days; peak at day 7–14. Repeat every 3–4 months."
+  },
+  {
+    "id": 334,
+    "description": "Coretox (letibotulinumtoxinA-wlbg) is a novel botulinum toxin type A manufactured by Hugel Inc. (South Korea) that is unique in being produced without human serum albumin — instead stabilised with recombinant human serum albumin (rHSA) and polysorbate 20, eliminating blood-derived excipients. The 150 kDa pure neurotoxin without accessory proteins may offer a reduced immunogenicity profile. It is indicated for glabellar frown lines and is used off-label for full-face rejuvenation.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20 units at 5 sites (4 units each); forehead: 10–20 units; crow's feet: 6–12 units per side. Onset in 2–4 days; peak effect at 7–14 days. Repeat every 3–4 months."
+  },
+  {
+    "id": 335,
+    "description": "Rosetox is a botulinum toxin type A product formulated as a lyophilised powder containing 100 units of the neurotoxin complex with human serum albumin and sodium chloride. Manufactured in South Korea, it inhibits acetylcholine vesicle exocytosis at the neuromuscular junction, producing temporary, localised muscle relaxation for upper-face dynamic rhytid correction. Indicated for glabellar lines, forehead lines, and crow's feet.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Inject intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units; lateral canthal: 6–12 units per side. Allow 3–5 days for onset; full effect at 14 days. Repeat treatment at 3–4 month intervals."
+  },
+  {
+    "id": 336,
+    "description": "Hitox is a botulinum toxin type A product manufactured in South Korea, supplied as a lyophilised powder containing 100 units of the Clostridium botulinum neurotoxin complex stabilised with human serum albumin and sodium chloride. It provides temporary neuromuscular blockade by inhibiting acetylcholine release, used clinically for dynamic facial rhytids including glabellar frown lines, forehead lines, and periorbital crow's feet.",
+    "protocol": "Reconstitute 100-unit vial with 2.5 mL preservative-free 0.9% saline (40 units/mL). Administer intramuscularly using a 30–32G needle; glabellar: 20–25 units at 5 sites; forehead: 10–20 units; crow's feet: 6–12 units per side. Clinical onset in 2–5 days; maximal effect by day 14. Repeat every 3–4 months."
+  },
+  {
+    "id": 337,
+    "description": "This 0.9% sodium chloride (normal saline) solution, supplied as 20 mL per ampoule, is a sterile, preservative-free diluent manufactured in South Korea for reconstitution of lyophilised botulinum toxin products. Isotonic saline is the recommended and validated solvent for all major botulinum toxin brands, ensuring product stability and dose accuracy. Each ampoule provides sufficient volume to reconstitute multiple vials to standard working concentrations.",
+    "protocol": "Use aseptically to reconstitute lyophilised botulinum toxin; standard dilution is 1 mL per 40-unit vial (40 units/mL) or 2.5 mL per 100-unit vial. Draw required volume using a 21G needle for reconstitution; allow to dissolve gently without agitation. Use reconstituted toxin within 4 hours at room temperature or within 24 hours if refrigerated at 2–8°C."
+  },
+  {
+    "id": 338,
+    "description": "MASI Injection 10% is a magnesium sulfate (MgSO₄) parenteral solution supplied as 5 mL ampoules, providing 500 mg of magnesium sulfate per ampoule. Magnesium acts as a physiological calcium antagonist and NMDA receptor modulator, used clinically for muscle relaxation, eclampsia prophylaxis, and adjunct therapy in neuropathic conditions. In aesthetic medicine it is used as a co-ingredient in lipolytic and relaxation cocktails.",
+    "protocol": "Administer IV or IM per clinical indication; for IV infusion, dilute to 1–2% solution in normal saline or dextrose and infuse at controlled rate with cardiac monitoring. For aesthetic cocktail use, draw required volume (typically 1–2 mL) and incorporate into a multi-ingredient preparation; inject intramuscularly or subcutaneously using a 25–27G needle. Monitor serum magnesium levels with repeated dosing."
+  },
+  {
+    "id": 339,
+    "description": "Revitalex is a polydeoxyribonucleotide (PDRN) injection containing polydeoxyribonucleotide sodium 5.625 mg per 3 mL vial, derived from purified salmon sperm DNA. PDRN acts as an adenosine A2A receptor agonist, stimulating tissue repair, collagen synthesis, and angiogenesis while suppressing TNF-α-mediated inflammation. It is indicated for skin rejuvenation, wound healing support, atrophic scar improvement, and post-procedure skin recovery.",
+    "protocol": "Supplied as 3 mL × 10 vials; use directly without reconstitution. Administer intradermally or subcutaneously using a 30–32G needle at a depth of 1–2 mm; typical injection volume 0.1 mL per site in a nappage pattern. Sessions at 1–2 week intervals for 4–6 sessions initially; maintenance every 4–8 weeks. Areas: face, neck, décolleté, and periorbital region."
+  },
+  {
+    "id": 340,
+    "description": "HiDr Inj. is a polydeoxyribonucleotide (PDRN) sodium injection supplied as 3 mL × 10 vials, manufactured in South Korea for aesthetic skin regeneration. PDRN stimulates adenosine A2A receptors to promote fibroblast proliferation, collagen and elastin synthesis, and microvascular repair, making it effective for photoaged skin, atrophic scars, and post-laser recovery. It is also indicated for wound healing acceleration and anti-inflammatory tissue repair.",
+    "protocol": "Use directly as supplied (3 mL vials, no reconstitution). Administer intradermally using a 30–32G needle with a nappage or micro-injection technique at 1–2 mm depth, 0.05–0.1 mL per point. Protocol: 1 session per week for 4 weeks, then monthly maintenance. Suitable for face, neck, hands, and scalp. May be combined with microneedling channels for enhanced delivery."
+  },
+  {
+    "id": 341,
+    "description": "Placentex Integro is an Italian-manufactured PDRN (polydeoxyribonucleotide sodium) injection, 3 mL × 5 ampoules, produced by Mastelli S.r.l. and one of the original European PDRN products. PDRN is extracted and purified from Oncorhynchus mykiss (salmon) sperm, and works through A2A adenosine receptor activation to stimulate cell growth, collagen remodelling, and angiogenesis. It is indicated for skin biostimulation, rosacea, melasma, periorbital rejuvenation, alopecia, and post-treatment recovery.",
+    "protocol": "Use the 3 mL ampoule directly without dilution. Inject intradermally using a 30–32G needle with a retrograde linear threading or nappage technique at 1–2 mm depth; administer 0.1 mL per injection point. Recommended protocol: 1 session per week for 3–4 weeks, then monthly. Combine with vitamin C supplementation for synergistic brightening effect. Refrigerate at 2–8°C; use immediately once opened."
+  },
+  {
+    "id": 343,
+    "description": "Liporase Inj. is a hyaluronidase enzyme preparation supplied as 10 vials per box, manufactured in South Korea (GMS-registered). Hyaluronidase catalyses the hydrolysis of hyaluronic acid glycosaminoglycan chains by cleaving β-1,4-glycosidic bonds, rapidly degrading cross-linked HA dermal fillers. It is the standard emergency and elective antidote for HA filler overcorrection, migration, vascular occlusion, or Tyndall effect.",
+    "protocol": "Reconstitute each vial with 1 mL sterile normal saline to prepare 150–1500 IU/mL depending on indication. For elective filler dissolution, inject 150–300 IU per 1 mL of filler at the estimated filler deposit site using a 25–30G needle. For vascular occlusion emergency, inject 500 IU immediately into affected area without delay; repeat every 60 minutes until perfusion restores. Assess and massage after each injection."
+  },
+  {
+    "id": 344,
+    "description": "BM Hyaluronidase Inj. contains hyaluronidase 1500 IU per vial, supplied as 10 vials per box. Hyaluronidase is a bovine-derived enzyme that depolymerises hyaluronic acid by cleaving the β-1,4 linkage between N-acetylglucosamine and glucuronic acid, effectively dissolving cross-linked HA fillers. At 1500 IU per vial, this is a high-potency presentation suited for significant filler reversal, vascular occlusion management, and correction of nodules or migration.",
+    "protocol": "Reconstitute vial with 1 mL sterile water or normal saline (1500 IU/mL); dilute further for specific concentrations as needed. For elective HA dissolution: inject 150–300 IU per area using a 27–30G needle, targeting the plane of filler deposit. For vascular occlusion: inject 500–1500 IU promptly into the occlusion zone and apply warm compress; repeat every 1 hour if needed. Review and re-assess at 24 hours."
+  },
+  {
+    "id": 345,
+    "description": "Belissima CE (identical to Olidia CE) is a poly-L-lactic acid (PLLA) collagen biostimulator containing 365 mg PLLA per vial, approved by both the FDA and Korea's MFDS. PLLA microparticles act as a scaffold that provokes a controlled fibroblastic response, inducing new collagen synthesis (mainly Type I) over 2–3 months to restore facial volume and improve skin elasticity. Indicated for deep dermal or subdermal injection to correct facial fat compartment atrophy, temple hollowing, and skin laxity.",
+    "protocol": "Reconstitute the 365 mg PLLA vial with 5–8 mL sterile water for injection; allow 2 hours or overnight at 2–8°C for full hydration, then add 1–2 mL 1–2% lidocaine before injection. Administer subdermally or supraperiosteally using a 25G cannula or 23–25G needle; inject in a retrograde fan or depot technique. Typical per-session dose: 1 vial per facial area. Repeat at 4–8 week intervals for 2–3 sessions; results build over 3–6 months."
+  },
+  {
+    "id": 346,
+    "description": "Etrebelle 200 MG is a hybrid collagen biostimulator combining 170 mg poly-L-lactic acid (PLA) with 30 mg sodium hyaluronate in a single 200 mg vial. The HA component provides immediate volumising effect and improves injectability while the PLA microparticles stimulate a progressive fibroblastic response for long-lasting collagen neogenesis. Indicated for facial volume restoration, skin texture improvement, and correction of deep atrophic folds.",
+    "protocol": "Reconstitute with 5–7 mL sterile water for injection; allow full hydration (minimum 2 hours or overnight) then add 1–2 mL of 1% lidocaine before use. Administer subdermally using a 25G cannula or 23–25G needle with retrograde linear or fanning technique. Inject 1 vial per treatment area per session; schedule 2–3 sessions at 4–6 week intervals. Final results visible at 3–4 months; duration up to 18–24 months."
+  },
+  {
+    "id": 347,
+    "description": "Mennus PLA 200 MG is a porous poly-L-lactic acid (PLA) collagen biostimulator containing 200 mg of microparticulate PLA per vial. The unique porous microparticle structure (microparticle of polyethylene-type porosity) increases surface area for tissue contact, enhancing the fibroblastic foreign body response and new collagen deposition compared to solid PLA microparticles. Indicated for subdermal facial volume restoration, mid-face atrophy, and skin elasticity improvement.",
+    "protocol": "Reconstitute the 200 mg vial with 5 mL sterile water for injection; allow 1–2 hours of hydration at room temperature, agitating periodically, then add 1 mL 2% lidocaine before injection. Use a 25–26G cannula or 25G needle for subdermal delivery via retrograde threading or fan technique. Typical protocol: 1 vial per area over 2–3 sessions at 4–6 week intervals. Results develop over 6–12 weeks; duration up to 18 months."
+  },
+  {
+    "id": 348,
+    "description": "Mennus PLLA 360 MG is a poly-L-lactic acid (PLLA) collagen biostimulator containing 360 mg PLLA combined with carboxymethylcellulose (CMC) as a carrier and suspension stabiliser. PLLA microparticles stimulate fibroblasts to produce Type I and III collagen via a controlled inflammatory response, while CMC improves homogeneous particle distribution during injection and tissue integration. Indicated for facial volume loss, deep folds, and global skin biostimulation.",
+    "protocol": "Reconstitute 360 mg vial with 7–9 mL sterile water for injection and allow to hydrate for 2–4 hours or overnight; add 1–2 mL 1% lidocaine prior to injection. Administer using a 25G cannula subdermally or supraperiosteally with retrograde fanning technique. Schedule 2–3 treatment sessions at 4–6 week intervals; final collagen remodelling effect visible at 3–6 months. Duration approximately 18–24 months."
+  },
+  {
+    "id": 349,
+    "description": "Ravello is a next-generation PLLA collagen booster combining 200 mg PLLA per vial with a dual-weight hyaluronic acid complex (low-molecular HA 30 mg/mL and high-molecular HA 3 mg/mL) in a 5 mL presentation. The HA fractions provide immediate skin hydration and facilitate smoother, more even PLLA particle distribution during injection, while the PLLA fraction induces progressive collagen neogenesis over 3–6 months. Indicated for mid-face volume restoration, skin laxity, and overall facial biostimulation.",
+    "protocol": "The product is supplied ready-to-use in a 5 mL vial; mix gently before drawing. Add 1 mL 1% lidocaine if desired for patient comfort before use. Administer subdermally using a 25G cannula or 25G needle via retrograde threading or depot technique; inject 1 vial per treatment area. Schedule 2–3 sessions at 4–6 week intervals. Collagen response develops over 8–12 weeks; results last 12–24 months."
+  },
+  {
+    "id": 350,
+    "description": "Power Coltra 365 MG PLLA is a poly-L-lactic acid collagen biostimulator containing 365 mg of PLLA microparticles per vial, designed to provide high-dose collagen induction for significant facial volume loss and skin laxity. PLLA acts as a biodegradable scaffold, triggering a fibroblastic foreign body response that results in sustained collagen Type I synthesis over a period of months. Indicated for deep dermal or subdermal correction of nasolabial folds, cheek atrophy, temple hollowing, and jawline definition.",
+    "protocol": "Reconstitute vial with 5–8 mL sterile water for injection and allow to hydrate for a minimum of 2 hours, with occasional gentle agitation; add 1–2 mL 1% lidocaine before injection. Administer subdermally or supraperiosteally using a 25G cannula with retrograde fan technique. Typical protocol: 1–2 vials per full-face session; repeat at 4–8 week intervals for 2–3 sessions. Massage treatment area after injection. Results build over 3–6 months."
+  },
+  {
+    "id": 351,
+    "description": "Polyboost Vola 600 MG is a high-dose hybrid collagen biostimulator combining 450 mg poly-L-lactic acid (PLA) with 150 mg hyaluronic acid per vial, designed for significant volume restoration and collagen induction in a single session. The HA component offers immediate volumising and acts as a carrier for even PLA particle distribution, while PLA drives sustained fibroblastic collagen neogenesis over 3–6 months. Indicated for marked facial volume atrophy, body skin laxity, and global rejuvenation protocols.",
+    "protocol": "Reconstitute with 8–10 mL sterile water for injection; allow 2–4 hours of hydration then add 2 mL 1% lidocaine. Administer subdermally using a 23–25G cannula with retrograde or depot technique; inject 1 vial across multiple treatment zones per session. Protocol: 2–3 sessions at 6–8 week intervals. Massage post-injection to ensure even particle distribution. Collagen development peaks at 3–6 months; results last 18–24 months."
+  },
+  {
+    "id": 352,
+    "description": "PDLLA Ravenna Collagen Booster is a high-concentration poly-D,L-lactic acid (PDLLA) biostimulator containing 1000 mg PDLLA combined with 350 mg hyaluronic acid, providing a total content of 1670 mg per vial. PDLLA differs from PLLA in its amorphous molecular structure, which allows faster and more predictable biodegradation and a more diffuse collagen stimulation pattern suited for broader skin quality improvement. The dual-component formula provides immediate HA-mediated hydration alongside progressive collagen neogenesis for comprehensive facial rejuvenation.",
+    "protocol": "Reconstitute with 8–10 mL sterile water for injection and allow to hydrate for 2 hours; supplement with 2 mL 1% lidocaine before use. Administer subdermally using a 23–25G cannula via retrograde linear or fan technique across treatment zones. Recommended dosing: 1 vial per full-face or large area session; repeat at 6–8 week intervals for 2–3 sessions. Post-injection massage for 5 minutes. Final results at 3–5 months; duration up to 18 months."
+  },
+  {
+    "id": 353,
+    "description": "Juvelook (50 mg) is a next-generation PLA/HA hybrid skin booster developed by Dexlevo (South Korea), containing PLA microparticles and hyaluronic acid in a single 50 mg vial. The spherical PLA microparticles (10–20 μm) are specifically engineered to be small enough for superficial intradermal injection, stimulating collagen synthesis at the dermal level while the HA carrier provides immediate skin hydration. Indicated for periorbital rejuvenation, skin texture improvement, fine lines, and superficial atrophic scars.",
+    "protocol": "Reconstitute with 1–2 mL sterile water for injection; allow to hydrate for 1 hour at room temperature, then add 0.5 mL 1% lidocaine. Inject intradermally using a 27–30G needle with a nappage or micro-bolus technique at 1–2 mm depth, 0.02–0.05 mL per point. Sessions at 2-week intervals for 3–4 sessions initially; maintenance every 3–6 months. Suitable for periorbital area, cheeks, nasolabial region, and hands."
+  },
+  {
+    "id": 354,
+    "description": "Juvelook Volume (200 mg) is the large-volume volumising variant of the Juvelook PLA/HA hybrid biostimulator platform, containing PLA microparticles and hyaluronic acid in a 200 mg vial formulated for subdermal volumising applications. The larger PLA particle fraction and higher HA concentration are designed for mid-face volume restoration, cheek augmentation, and deep-layer collagen stimulation with immediate structural support. Indicated for mid-face atrophy, sunken cheeks, and temporal hollowing.",
+    "protocol": "Reconstitute with 4–5 mL sterile water for injection; allow to hydrate for 1–2 hours, then add 1 mL 1% lidocaine. Administer subdermally using a 25G cannula or 25G needle via retrograde fan technique; inject 0.1–0.2 mL per depot in mid-face fat compartments. Typical session: 1 vial per treatment area; schedule 2–3 sessions at 4–6 week intervals. Results develop over 4–8 weeks; duration approximately 12–18 months."
+  },
+  {
+    "id": 355,
+    "description": "Cindella Set 1200 mg is a combination whitening injection kit comprising alpha-lipoic acid (thioctic acid) 25 mg/5 mL (10 vials) and high-dose vitamin C 10 g/20 mL (10 vials). Alpha-lipoic acid is a universal antioxidant that regenerates vitamins C and E, inhibits melanogenesis via tyrosinase suppression, and protects against oxidative glycation; combined with ascorbic acid, it enhances glutathione recycling, collagen synthesis, and systemic skin brightening. Indicated for melasma, hyperpigmentation, skin ageing, and detoxification protocols.",
+    "protocol": "Administer IV infusion using a 21–23G butterfly or IV cannula; mix alpha-lipoic acid 25 mg with vitamin C 10 g in 250 mL normal saline (or per clinical protocol) and infuse over 30–60 minutes. Weekly sessions for 8–10 sessions initially, then biweekly maintenance. Screen for G6PD deficiency before high-dose vitamin C use. Avoid rapid IV bolus; monitor for paraesthesia during alpha-lipoic acid infusion."
+  },
+  {
+    "id": 356,
+    "description": "Cindella Inj. contains thioctic acid (alpha-lipoic acid) 25 mg per 5 mL vial, supplied as 10 vials per box. Alpha-lipoic acid is a potent antioxidant that inhibits melanin synthesis by downregulating tyrosinase activity, regenerates endogenous glutathione and vitamins C and E, and reduces glycation end-products associated with skin ageing. It is administered parenterally for skin brightening, melasma treatment, antioxidant support, and adjunct management of diabetic peripheral neuropathy.",
+    "protocol": "Administer IV via slow infusion; dilute one ampoule (25 mg/5 mL) in 100–250 mL normal saline and infuse over 30–45 minutes using a 21–23G cannula. For whitening protocols, combine with high-dose vitamin C and glutathione as a combined infusion. Typical course: once or twice weekly for 8 sessions. Avoid rapid injection due to risk of paraesthesia. Protect from light during infusion."
+  },
+  {
+    "id": 357,
+    "description": "Misadi PDLLA 200 MG is a poly-D,L-lactic acid (PDLLA) collagen biostimulator analogous to Aesthefill, containing 200 mg PDLLA microparticles per vial. PDLLA's amorphous structure provides uniform, isotropic degradation and a broad, diffuse fibroblastic collagen stimulation response compared to crystalline PLLA, making it well-suited for fine-line improvement, skin quality enhancement, and gradual volume restoration. Indicated for facial laxity, atrophic skin, deep wrinkles, and aesthetic rejuvenation of the face and neck.",
+    "protocol": "Reconstitute the 200 mg PDLLA vial with 5 mL sterile water for injection; allow 1–2 hours of hydration with periodic gentle shaking, then add 1 mL 1% lidocaine. Administer subdermally using a 25–26G cannula via retrograde threading or fan technique; inject 0.05–0.1 mL per depot. Schedule 2–3 sessions at 4–6 week intervals. Massage the area for 5 minutes post-treatment. Collagen response develops over 6–12 weeks; results last approximately 12–18 months."
+  },
+  {
+    "id": 358,
+    "description": "Lipotocin Inj. contains thioctic acid (alpha-lipoic acid) 300 mg per 12 mL ampoule, supplied as 10 ampoules per box. Alpha-lipoic acid at this higher dose acts as a potent antioxidant and lipolytic co-factor, inhibiting fatty acid synthesis and enhancing mitochondrial energy metabolism, making it effective for body contouring, metabolic skin treatment, and localised fat reduction protocols when combined with lipolytic agents. It is also used as adjunct therapy in diabetic polyneuropathy and hepatic protection protocols.",
+    "protocol": "Administer by slow IV infusion; dilute 300 mg (12 mL) in 250 mL normal saline and infuse over 30–60 minutes using a 21–23G IV cannula. For lipolytic or metabolic protocols, combine with phosphatidylcholine or L-carnitine infusions, administered 1–2 times per week for 6–10 sessions. Protect from light. Avoid co-administration with thiamine-depleting agents. Monitor for paraesthesia and hypoglycaemia, especially in diabetic patients."
+  }
+]

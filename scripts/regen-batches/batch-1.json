@@ -1,0 +1,217 @@
+[
+  {
+    "id": 1,
+    "description": "Barbie Slim is a phosphatidylcholine (PPC)-based lipolytic mesotherapy solution formulated for targeted reduction of localized subcutaneous fat deposits in both facial and body contour areas. PPC acts by disrupting the phospholipid bilayer of adipocyte cell membranes, triggering lipolysis and subsequent fat emulsification. Each vial (10 mL) delivers a concentrated dose suitable for larger treatment grids such as submental, jowl, buccal, inner thigh, or abdomen zones.",
+    "protocol": "Mark the treatment grid with 1–2 cm spacing; inject subcutaneously at 6–13 mm depth using a 27–30G needle, delivering 0.2–0.4 mL per point with aspiration before each bolus. Treat one zone per session; allow a minimum 4-week interval between sessions. Standard course: 2–4 sessions. Expect transient swelling, erythema, and tenderness for 3–7 days post-treatment."
+  },
+  {
+    "id": 2,
+    "description": "MisAdi Beso is a pre-filled syringe containing 24 mg/mL cross-linked hyaluronic acid with lidocaine hydrochloride and Vitamin B12, buffered in phosphate-buffered saline at physiological pH 7. The formulation is designed for lip augmentation and perioral contouring, providing immediate volumizing effect while lidocaine reduces procedural discomfort and Vitamin B12 supports tissue vitality. The 1 mL volume is calibrated for single-session lip enhancement.",
+    "protocol": "Administer via linear threading or serial puncture technique into the mid-dermis or vermillion border using a 27–30G needle; aspirate before each bolus. For lip augmentation, inject 0.05–0.1 mL per point along the vermillion border and body of the lip. Total dose per session typically 0.5–1.0 mL. Repeat at 6–12 month intervals based on clinical assessment."
+  },
+  {
+    "id": 3,
+    "description": "Regenovue Fine (CE) is a monophasic cross-linked hyaluronic acid dermal filler at 24 mg/mL, manufactured using SHAPE technology for uniform particle size and smooth tissue integration. Its low gel hardness (G') is optimized for superficial intradermal placement, targeting fine periorbital lines, lip lines, and superficial forehead rhytids. The CE marking confirms conformity with European Medical Device Directive standards.",
+    "protocol": "Administer intradermally into the superficial dermis using a 30–32G needle via serial puncture or linear threading technique. Inject 0.02–0.05 mL per puncture point; total session volume typically 0.5–1.1 mL depending on treatment area. Massage gently post-injection to ensure even distribution. Recommend touch-up at 2 weeks if needed; repeat treatment at 6–9 months."
+  },
+  {
+    "id": 4,
+    "description": "Regenovue Deep (CE) is a monophasic cross-linked hyaluronic acid filler at 24 mg/mL engineered with higher gel cohesivity and elasticity than Regenovue Fine, designed for mid-to-deep dermal placement. It targets moderate nasolabial folds, marionette lines, and cheek volume restoration, providing durable lift with natural tissue integration. The CE marking confirms conformity with applicable European device standards.",
+    "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde linear threading or fanning technique; aspirate before each bolus to confirm extravascular placement. Deliver 0.1–0.3 mL per depot in nasolabial folds or cheek hollows. Typical session volume 1.0–2.0 mL. Massage to contour post-injection. Reassess at 2 weeks; longevity typically 9–12 months."
+  },
+  {
+    "id": 5,
+    "description": "Regenovue Sub-Q (CE) is a highly cross-linked, high-viscosity hyaluronic acid filler at 24 mg/mL formulated for supraperiosteal and subcutaneous placement in deep volumetric procedures. Its high G' and cohesivity make it suited for chin projection, jawline definition, malar augmentation, and non-surgical rhinoplasty. The CE marking confirms conformity with European Medical Device Directive standards.",
+    "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; always aspirate before depositing each bolus. Deliver 0.3–0.5 mL per depot; total volume 1–3 mL per session depending on indication. Mold and sculpt immediately after injection. Longevity 12–18 months; reassess at 4 weeks."
+  },
+  {
+    "id": 6,
+    "description": "Regenovue Fine Plus (CE) is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine for improved patient comfort during superficial intradermal placement. It targets fine periorbital and perioral lines, horizontal forehead rhytids, and delicate surface irregularities where a low-viscosity, smooth-flowing gel is required. The CE marking confirms European device regulatory compliance.",
+    "protocol": "Administer into the superficial dermis using a 30–32G needle via serial puncture technique; the integrated lidocaine reduces discomfort within 1–2 minutes of contact. Inject 0.02–0.05 mL per point; total session volume 0.5–1.1 mL. Gentle post-injection massage ensures even gel distribution. Repeat at 6–9 months or on patient request."
+  },
+  {
+    "id": 7,
+    "description": "Regenovue Deep Plus (CE) is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, providing mid-to-deep dermal correction with reduced procedural discomfort. It is calibrated for moderate nasolabial folds, marionette lines, and mid-face volume support, offering a balance of lift capacity and natural pliability. The CE marking confirms European Medical Device Directive compliance.",
+    "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde threading or depot injection; aspirate before each bolus. Lidocaine onset reduces discomfort approximately 1–2 minutes into treatment. Deliver 0.1–0.3 mL per depot; typical session volume 1.0–2.0 mL. Reassess at 2 weeks; longevity 9–12 months."
+  },
+  {
+    "id": 8,
+    "description": "Regenovue Sub-Q Plus (CE) is a highly cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, combining deep structural volumization with enhanced injection comfort. Designed for supraperiosteal bolus placement in chin, jawline, malar, and nose bridge augmentation, it delivers firm, durable lift while the lidocaine component minimizes pain during deeper tissue placement. CE marking confirms European regulatory compliance.",
+    "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Lidocaine reduces procedural discomfort at deeper injection planes. Deliver 0.3–0.5 mL per bolus; typical total volume 1–3 mL. Mold immediately post-injection. Longevity 12–18 months."
+  },
+  {
+    "id": 9,
+    "description": "Sosum S (CE) is a stabilized cross-linked hyaluronic acid filler at 24 mg/mL without lidocaine, formulated with a soft gel texture for superficial intradermal placement. The lidocaine-free formulation is suited for practitioners who prefer topical anaesthesia protocols or who require a lidocaine-free option for allergy management. It targets fine surface lines and shallow skin depressions.",
+    "protocol": "Apply topical anaesthetic to the treatment area 20–30 minutes prior to injection. Administer superficially using a 30–32G needle via serial puncture or linear threading; inject 0.02–0.05 mL per point. Each pack contains 2 x 1.1 mL syringes, suitable for bilateral treatment in a single session. Massage gently post-injection. Longevity 6–9 months."
+  },
+  {
+    "id": 10,
+    "description": "Sosum M (CE) is a stabilized cross-linked hyaluronic acid filler at 24 mg/mL without lidocaine, formulated with moderate gel cohesivity for mid-dermal placement. It targets moderate nasolabial folds, perioral lines, and mid-face hollowing requiring controlled volumizing without the lidocaine component. The dual-syringe pack supports bilateral facial treatment in a single visit.",
+    "protocol": "Apply topical anaesthetic 20–30 minutes prior to injection. Administer into the mid-dermis using a 27–30G needle via retrograde linear threading or serial puncture; aspirate before each bolus. Inject 0.1–0.2 mL per linear cm of fold or per depot. Two syringes (1.1 mL each) provide adequate volume for standard bilateral nasolabial correction. Longevity 9–12 months."
+  },
+  {
+    "id": 11,
+    "description": "Sosum H (CE) is a highly cross-linked, high-viscosity hyaluronic acid filler at 24 mg/mL without lidocaine, engineered for deep tissue placement and structural volumization. Its elevated gel hardness (G') supports pronounced lifting and contouring in areas such as cheeks, chin, and jawline. The lidocaine-free formulation requires pre-procedural topical or regional anaesthesia.",
+    "protocol": "Apply topical anaesthetic or administer regional block 20–30 minutes prior to procedure. Inject supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each bolus. Deposit 0.3–0.5 mL per bolus; typical total volume 1–2 mL per side. Mold and sculpt immediately post-injection. Longevity 12–18 months."
+  },
+  {
+    "id": 12,
+    "description": "Sosum Soft (CE) is a hyaluronic acid filler formulated with a soft, pliable gel consistency in a 3 mL syringe, suited for large-area or multi-point soft tissue augmentation. Its lower crosslink density supports gentle, even tissue integration across superficial and mid-dermal layers, making it appropriate for diffuse volume restoration and skin quality improvement in the face, neck, or décolletage.",
+    "protocol": "Administer via linear threading, serial puncture, or cannula technique into the superficial-to-mid dermis using a 27–30G needle; aspirate before each bolus. The 3 mL volume allows treatment of extended areas such as cheeks and temples in a single session. Deliver 0.05–0.2 mL per point or per linear cm; massage gently post-injection. Longevity 6–9 months."
+  },
+  {
+    "id": 13,
+    "description": "Sosum Hard is a firmer, high-cohesivity hyaluronic acid filler presented in 3 mL syringes (3 per pack, 9 mL total), designed for deep structural augmentation and pronounced volumization. Its high gel stiffness (G') provides robust lift capacity for jawline definition, chin projection, and malar augmentation, with the larger syringe volume supporting multi-area treatment or full-face volumization in a single session.",
+    "protocol": "Administer via bolus or retrograde threading technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus or 0.1–0.2 mL per linear cm for jawline contouring. Total volume per session may utilize one or more of the three syringes. Mold post-injection. Longevity 12–18 months."
+  },
+  {
+    "id": 14,
+    "description": "Elasty Fine Plus is a monophasic cross-linked hyaluronic acid filler at an unspecified concentration with 0.3% lidocaine, calibrated for superficial intradermal placement. It targets fine periorbital lines, lip lines, and glabellar rhytids, providing smooth, homogeneous gel distribution with integrated anaesthesia for comfortable treatment. The 1.0 mL syringe volume is appropriate for focused single-area refinement.",
+    "protocol": "Administer via serial puncture or linear threading into the superficial dermis using a 30–32G needle. Inject 0.02–0.05 mL per point; the 0.3% lidocaine reduces procedural discomfort within 1–2 minutes. Total session volume typically 0.5–1.0 mL. Massage gently post-injection to ensure even distribution. Repeat treatment at 6–9 months."
+  },
+  {
+    "id": 15,
+    "description": "Elasty Deep Plus is a monophasic cross-linked hyaluronic acid filler with 0.3% lidocaine, formulated with higher gel cohesivity for mid-dermal correction. It targets moderate nasolabial folds, marionette lines, and cheek volume support, delivering controlled lift with natural tissue integration and reduced injection discomfort due to the integrated lidocaine. The 1.0 mL syringe is suited for single-fold or focal area treatment.",
+    "protocol": "Inject into the mid-dermis using a 27G needle via retrograde linear threading or fanning; aspirate before each bolus. Integrated lidocaine reduces discomfort 1–2 minutes after contact. Deliver 0.1–0.3 mL per linear cm of fold or per depot; total session volume 0.5–1.0 mL. Reassess at 2 weeks; longevity 9–12 months."
+  },
+  {
+    "id": 16,
+    "description": "Elasty Grand Plus is a high-viscosity, cross-linked hyaluronic acid filler with 0.3% lidocaine, calibrated for deep structural contouring and volumetric augmentation. It is suited for malar projection, chin and jawline definition, and non-surgical nose augmentation, providing firm, durable lift at the supraperiosteal or deep subcutaneous plane. Lidocaine integration enhances patient comfort during deeper tissue placement.",
+    "protocol": "Administer via bolus technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each bolus. Deliver 0.3–0.5 mL per depot; total volume 0.5–1.0 mL per session. Mold and sculpt immediately post-injection to optimize contour. Longevity 12–18 months; reassess at 4 weeks."
+  },
+  {
+    "id": 17,
+    "description": "VOM Light (CE) is a cross-linked hyaluronic acid filler at 20 mg/mL without lidocaine, designed for superficial intradermal placement and fine skin corrections. The lower HA concentration relative to 24 mg/mL products provides a softer gel suited to delicate regions such as periorbital fine lines and perioral rhytids. CE marking confirms compliance with European device standards, and the dual-syringe presentation enables bilateral treatment.",
+    "protocol": "Apply topical anaesthetic 20–30 minutes prior to injection. Administer superficially using a 30–32G needle via serial puncture; inject 0.02–0.05 mL per point. Two syringes of 1.0 mL each allow simultaneous bilateral facial treatment. Massage gently post-injection. Longevity 6–9 months."
+  },
+  {
+    "id": 18,
+    "description": "VOM Intense is a cross-linked hyaluronic acid filler at 20 mg/mL, formulated with moderate gel cohesivity for mid-dermal corrections. It targets moderate nasolabial folds, perioral lines, and soft tissue volume support, offering a balance between injectability and lift capacity. The dual 1.0 mL syringe presentation facilitates bilateral facial treatment in a single appointment.",
+    "protocol": "Administer into the mid-dermis using a 27–30G needle via retrograde threading or serial puncture; aspirate before each bolus. Deliver 0.1–0.2 mL per linear cm of fold; total session volume 1.0–2.0 mL. Massage gently post-injection. Topical anaesthetic recommended prior to procedure. Longevity 9–12 months."
+  },
+  {
+    "id": 19,
+    "description": "VOM Volume (CE) is a cross-linked hyaluronic acid filler at 20 mg/mL, engineered with higher gel stiffness and cohesivity for deep volumetric facial augmentation. It is suited for malar volume restoration, deep nasolabial fold correction, and chin contouring, providing durable structural lift in the deep dermal and subcutaneous planes. CE marking confirms European device regulatory compliance.",
+    "protocol": "Inject supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each bolus. Deliver 0.3–0.5 mL per depot. Two syringes of 1.0 mL each provide sufficient volume for bilateral malar or chin treatment. Mold and sculpt post-injection. Longevity 12–18 months."
+  },
+  {
+    "id": 20,
+    "description": "Neuramis Light is a monophasic cross-linked hyaluronic acid filler at 20 mg/mL with 0.3% lidocaine, optimized for mesotherapy-style superficial placement and skin biorevitalization. Its low viscosity and small particle size support even microdroplet distribution across the face, neck, and décolletage, improving skin hydration, texture, and fine line reduction through hyaluronic acid's water-binding properties. The 1.0 mL syringe is compatible with mesotherapy gun or manual technique.",
+    "protocol": "Administer via serial puncture, nappage, or mesotherapy technique into the superficial dermis using a 30–32G needle; inject 0.01–0.05 mL per point at 1 cm intervals. Total session volume 1–3 mL depending on area. For facial biorevitalization, a course of 3–4 sessions at 2–4-week intervals is standard, followed by maintenance every 3–6 months."
+  },
+  {
+    "id": 21,
+    "description": "Neuramis is a monophasic cross-linked hyaluronic acid dermal filler at 20 mg/mL with 0.3% lidocaine, designed for general soft tissue augmentation in mid-dermal applications. Manufactured by Medytox (Korea), it uses proprietary SHAPE technology for uniform gel consistency, providing natural-feel lift for nasolabial folds, perioral lines, and marionette correction with integrated patient comfort.",
+    "protocol": "Inject into the mid-dermis using a 27–30G needle via retrograde linear threading or serial puncture; aspirate before each bolus. Deliver 0.1–0.3 mL per linear cm or per treatment point; typical session volume 1.0–2.0 mL for bilateral nasolabial correction. Massage gently post-injection. Longevity 9–12 months; reassess at 2 weeks."
+  },
+  {
+    "id": 22,
+    "description": "Neuramis Deep is a cross-linked hyaluronic acid dermal filler at 20 mg/mL without lidocaine, engineered for deeper dermal corrections and pronounced fold treatment. The lidocaine-free formulation is suitable for patients with lidocaine sensitivity or when regional anaesthesia is preferred. Higher gel cohesivity relative to Neuramis Light provides firmer lifting capacity for deep nasolabial and marionette folds.",
+    "protocol": "Apply topical anaesthetic or regional block prior to procedure. Inject into the deep dermis using a 27G needle via retrograde threading or bolus; aspirate before each bolus. Deliver 0.1–0.3 mL per depot; total session volume 0.5–1.0 mL. Massage post-injection. Longevity 9–12 months."
+  },
+  {
+    "id": 23,
+    "description": "Neuramis Deep with Lidocaine is a cross-linked hyaluronic acid filler at 20 mg/mL with 0.3% lidocaine, combining deep-dermal fold correction with enhanced procedural comfort. It is designed for moderate-to-deep nasolabial folds, marionette lines, and chin or cheek augmentation at mid-to-deep dermal depth, where both lifting capacity and patient tolerance are treatment considerations.",
+    "protocol": "Inject into the deep dermis using a 27G needle via retrograde threading or depot injection; aspirate before each bolus. Integrated lidocaine reduces discomfort within 1–2 minutes. Deliver 0.1–0.3 mL per depot; typical session volume 0.5–1.0 mL. Massage post-injection to contour. Longevity 9–12 months; reassess at 2 weeks."
+  },
+  {
+    "id": 24,
+    "description": "Neuramis Volume Lidocaine is a cross-linked hyaluronic acid filler at 20 mg/mL with 0.3% lidocaine, calibrated for deep volumetric augmentation and structural contouring. It delivers sustained lift in malar, temporal, and chin regions via supraperiosteal or deep subcutaneous placement, with lidocaine integration reducing discomfort during deeper tissue injection. This product is positioned as Medytox's primary volumizer in the Neuramis range.",
+    "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; typical total volume 1–2 mL per session depending on areas treated. Mold and sculpt post-injection. Longevity 12–18 months; reassess at 4 weeks."
+  },
+  {
+    "id": 25,
+    "description": "Revolax Fine Plus is a dense, monophasic cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, manufactured by BioPlus Co. (Korea) for superficial intradermal placement. Its fine particle size and smooth flow properties enable precise correction of periorbital fine lines, lip lines, and surface skin irregularities with integrated anaesthetic comfort. Revolax is widely noted for its high gel consistency providing immediate visible correction.",
+    "protocol": "Administer into the superficial dermis using a 30–32G needle via serial puncture or linear threading; inject 0.02–0.05 mL per point. Integrated 0.3% lidocaine reduces discomfort progressively during injection. Total session volume 0.5–1.1 mL. Massage gently post-injection. Longevity 6–9 months; touch-up recommended at 2 weeks if needed."
+  },
+  {
+    "id": 26,
+    "description": "Revolax Deep Plus is a dense monophasic cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, designed for mid-dermal corrections by BioPlus Co. (Korea). It provides firm, long-lasting augmentation of moderate nasolabial folds, perioral lines, and mid-face volume hollowing, with the elevated HA concentration delivering more pronounced lift than lower-concentration fillers at comparable depth.",
+    "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde threading or fanning technique; aspirate before each bolus. Deliver 0.1–0.3 mL per linear cm of fold or per depot; typical session volume 0.5–1.1 mL. Massage post-injection to contour gel. Longevity 9–12 months; reassess at 2 weeks."
+  },
+  {
+    "id": 27,
+    "description": "Revolax Sub-Q Plus is a high-cohesivity, monophasic cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, formulated by BioPlus Co. (Korea) for deep subcutaneous structural augmentation. Its high G' and elasticity support pronounced volumetric results in chin projection, jawline definition, and malar augmentation, where firm, durable lift at the subcutaneous or supraperiosteal plane is required.",
+    "protocol": "Administer via bolus technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total session volume 1–3 mL depending on areas treated. Mold and sculpt immediately post-injection. Longevity 12–18 months; reassess at 4 weeks."
+  },
+  {
+    "id": 28,
+    "description": "Dermalax Plus is a cross-linked hyaluronic acid filler at 20 mg/mL with 0.3% lidocaine, formulated for balanced soft tissue augmentation across superficial to mid-dermal depths. Its moderate gel cohesivity and smooth injectability make it suitable for fine-to-moderate wrinkle correction, perioral volume, and light lip enhancement, providing natural tissue integration and injection comfort across a range of facial zones.",
+    "protocol": "Administer into the superficial-to-mid dermis using a 27–30G needle via linear threading or serial puncture; aspirate before each bolus. Deliver 0.05–0.2 mL per point; total session volume 0.5–1.1 mL. Integrate 0.3% lidocaine provides progressive anaesthesia. Massage gently post-injection. Longevity 6–9 months."
+  },
+  {
+    "id": 29,
+    "description": "Dermalax Deep Plus is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, calibrated for deeper dermal correction and pronounced volume restoration. The higher HA concentration versus Dermalax Plus provides increased gel stiffness, making it suitable for deep nasolabial folds, chin augmentation, and mid-face volume deficits requiring firm, lasting support.",
+    "protocol": "Inject into the deep dermis using a 27G needle via retrograde linear threading or depot injection; aspirate before each bolus. Deliver 0.1–0.3 mL per depot; total session volume 0.5–1.1 mL. Lidocaine reduces procedural discomfort within 1–2 minutes. Massage post-injection. Longevity 9–12 months; reassess at 2 weeks."
+  },
+  {
+    "id": 30,
+    "description": "Dermalax Implant Plus is a high-viscosity, cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, presented in a dual-syringe pack (2 x 1.1 mL = 2.2 mL total) for extensive volumetric augmentation. Its elevated gel hardness supports deep structural implant-level placement for cheek augmentation, chin projection, and jawline contouring, with the dual-syringe format enabling comprehensive bilateral facial volumization in a single session.",
+    "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total available volume of 2.2 mL supports bilateral malar or combined chin and jawline treatment in one session. Mold post-injection. Longevity 12–18 months."
+  },
+  {
+    "id": 38,
+    "description": "Youthfill Fine is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, calibrated for superficial intradermal placement and fine rhytid correction. Its smooth, low-viscosity gel distributes evenly in the superficial dermis, targeting periorbital crow's feet, glabellar lines, and perioral fine wrinkles with minimal tissue trauma and added injection comfort from the integrated lidocaine.",
+    "protocol": "Administer via serial puncture into the superficial dermis using a 30–32G needle; inject 0.02–0.05 mL per point. Integrated 0.3% lidocaine progressively reduces discomfort during the procedure. Total session volume 0.5–1.1 mL. Massage gently post-injection for even distribution. Longevity 6–9 months; touch-up at 2 weeks if needed."
+  },
+  {
+    "id": 39,
+    "description": "Youthfill Deep is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, formulated for mid-to-deep dermal placement and moderate volume support. Its balanced gel viscosity enables effective correction of nasolabial folds, marionette lines, and cheek hollowing at mid-dermal depth, with lidocaine providing procedural comfort during injection into denser tissue planes.",
+    "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde linear threading or fanning technique; aspirate before each bolus. Deliver 0.1–0.3 mL per linear cm of fold; typical session volume 0.5–1.1 mL. Massage post-injection. Longevity 9–12 months; reassess at 2 weeks."
+  },
+  {
+    "id": 40,
+    "description": "Youthfill Shape is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, engineered with a firmer gel structure for facial contouring and structural definition. Its higher cohesivity relative to Youthfill Fine and Deep supports pronounced shaping of the chin, jawline, and malar eminences at deep subcutaneous depth, where resistance to deformation is required for durable contouring results.",
+    "protocol": "Administer via bolus technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total session volume 0.5–1.1 mL. Mold and sculpt immediately post-injection. Longevity 12–18 months; reassess at 4 weeks."
+  },
+  {
+    "id": 41,
+    "description": "Soonsu Fill (E.P.T.Q) S100 is a cross-linked hyaluronic acid filler at 24 mg/mL formulated using the E.P.T.Q. (Elasticity, Purity, Transparency, Quality) manufacturing technology, calibrated for superficial-to-mid dermal placement and fine line refinement. The S100 designation indicates a lower gel hardness within the E.P.T.Q. range, producing a smooth, fine-textured gel optimized for delicate corrections in thin-skin areas.",
+    "protocol": "Administer into the superficial-to-mid dermis using a 27–30G needle via serial puncture or linear threading; inject 0.02–0.05 mL per point. Total session volume 0.5–1.0 mL. Topical anaesthetic recommended prior to procedure given absence of lidocaine. Massage gently post-injection. Longevity 6–9 months."
+  },
+  {
+    "id": 42,
+    "description": "Soonsu Fill (E.P.T.Q) S300 is a cross-linked hyaluronic acid filler at 24 mg/mL produced with E.P.T.Q. technology, calibrated for mid-depth corrections with moderate gel stiffness. The S300 designation reflects an intermediate gel hardness, supporting nasolabial fold correction, cheek volume, and lip augmentation where balanced lift and tissue integration are required across the mid-dermis.",
+    "protocol": "Inject into the mid-dermis using a 27G needle via retrograde threading or depot injection; aspirate before each bolus. Deliver 0.1–0.3 mL per depot; total session volume 0.5–1.0 mL. Topical anaesthetic recommended. Massage post-injection to contour. Longevity 9–12 months; reassess at 2 weeks."
+  },
+  {
+    "id": 43,
+    "description": "Soonsu Fill (E.P.T.Q) S500 is a cross-linked hyaluronic acid filler at 24 mg/mL manufactured with E.P.T.Q. technology, featuring the highest gel hardness in the Soonsu range for deep structural volumization. The S500 designation indicates superior lifting capacity and resistance to deformation, making it suited for chin projection, malar augmentation, and jawline contouring at subcutaneous or supraperiosteal depth.",
+    "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total session volume 0.5–1.0 mL. Topical anaesthetic or regional block recommended. Mold post-injection. Longevity 12–18 months."
+  },
+  {
+    "id": 44,
+    "description": "Celosome Soft is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, formulated with a soft, low-viscosity gel for refined superficial dermal corrections. It targets fine periorbital lines, lip lines, and superficial skin depressions where a gentle, pliable gel with smooth tissue integration is preferred, and the integrated lidocaine reduces injection discomfort in sensitive facial areas.",
+    "protocol": "Administer via serial puncture into the superficial dermis using a 30–32G needle; inject 0.02–0.05 mL per point. Integrated 0.3% lidocaine progressively reduces discomfort. Total session volume 0.5–1.1 mL. Massage gently post-injection for even distribution. Longevity 6–9 months."
+  },
+  {
+    "id": 45,
+    "description": "Celosome Mid is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, calibrated with a moderate gel cohesivity for mid-dermal corrections and balanced volume support. It addresses moderate nasolabial folds, perioral lines, and cheek hollowing at mid-dermal depth, combining effective lifting capacity with natural pliability and integrated anaesthetic comfort.",
+    "protocol": "Inject into the mid-dermis using a 27G needle via retrograde linear threading or fanning; aspirate before each bolus. Deliver 0.1–0.3 mL per depot; total session volume 0.5–1.1 mL. Integrated lidocaine reduces discomfort within 1–2 minutes. Massage post-injection. Longevity 9–12 months; reassess at 2 weeks."
+  },
+  {
+    "id": 46,
+    "description": "Celosome Strong is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, formulated with a firmer, denser gel structure for deep-dermal structural contouring. Its elevated gel hardness provides robust lifting and projection capacity in areas such as the chin, jawline, and malar region, where pronounced definition and durable volume at deeper planes are the treatment goals.",
+    "protocol": "Administer via bolus or retrograde threading in the deep dermis or subcutaneous plane using a 25–27G needle; aspirate before each depot. Deliver 0.2–0.4 mL per bolus; total session volume 0.5–1.1 mL. Mold post-injection. Longevity 12 months; reassess at 4 weeks."
+  },
+  {
+    "id": 47,
+    "description": "Celosome Implant is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, formulated with the highest gel hardness in the Celosome range for deep implant-level structural augmentation. It is designed for supraperiosteal bolus placement in chin projection, malar augmentation, and non-surgical rhinoplasty, where maximum resistance to deformation and prolonged volumetric support are required.",
+    "protocol": "Administer via bolus technique supraperiosteally or in the deep subcutaneous plane using a 23–25G needle or blunt cannula; aspirate before each depot. Deliver 0.3–0.5 mL per bolus; total session volume 0.5–1.1 mL. Mold and sculpt immediately post-injection. Longevity 12–18 months; reassess at 4 weeks."
+  },
+  {
+    "id": 48,
+    "description": "Bonetta Fine is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, presented in a dual-syringe pack (2 x 1.1 mL = 2.2 mL) for superficial intradermal corrections with bilateral treatment coverage. Its smooth, fine-textured gel is designed for periorbital fine lines, lip lines, and superficial rhytids, with the dual pack supporting full bilateral facial treatment in a single session.",
+    "protocol": "Administer via serial puncture into the superficial dermis using a 30–32G needle; inject 0.02–0.05 mL per point. The dual 1.1 mL syringes allow bilateral treatment without mid-session restocking. Total session volume up to 2.2 mL. Integrated lidocaine reduces procedural discomfort. Massage gently post-injection. Longevity 6–9 months."
+  },
+  {
+    "id": 49,
+    "description": "Bonetta Deep is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, provided in a dual-syringe pack (2 x 1.1 mL = 2.2 mL) for comprehensive mid-to-deep dermal volume correction. Its moderate-to-firm gel consistency enables effective bilateral treatment of nasolabial folds, marionette lines, and cheek hollowing in a single session, supporting full-face mid-depth volume restoration.",
+    "protocol": "Inject into the mid-to-deep dermis using a 27G needle via retrograde threading or fanning; aspirate before each bolus. Dual syringes (2.2 mL total) support bilateral nasolabial and cheek treatment in one visit. Deliver 0.1–0.3 mL per depot; massage post-injection to contour. Integrated lidocaine reduces discomfort. Longevity 9–12 months."
+  },
+  {
+    "id": 50,
+    "description": "Bonetta Volume is a cross-linked hyaluronic acid filler at 24 mg/mL with 0.3% lidocaine, presented in a dual-syringe pack (2 x 1.1 mL = 2.2 mL) for deep volumetric augmentation and structural facial contouring. Its high gel cohesivity and firmer structure support bilateral malar augmentation, chin projection, or combined mid-face volume restoration in a single clinical session.",
+    "protocol": "Administer via bolus technique in the deep subcutaneous or supraperiosteal plane using a 23–25G needle or blunt cannula; aspirate before each depot. The dual-syringe format (2.2 mL total) facilitates bilateral treatment of malar or chin regions in one visit. Deliver 0.3–0.5 mL per bolus. Mold post-injection. Longevity 12–18 months; reassess at 4 weeks."
+  }
+]

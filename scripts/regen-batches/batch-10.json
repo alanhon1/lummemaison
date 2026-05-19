@@ -1,0 +1,172 @@
+[
+  {
+    "id": 403,
+    "description": "MELSMON is a Japanese-approved human placenta hydrolysate injectable (Melsmon Pharmaceutical Co., approved 1956) containing amino acids, peptides, growth factors, vitamins, enzymes, and benzyl alcohol as a preservative-analgesic. Subcutaneous or intramuscular administration stimulates cellular regeneration, improves skin elasticity, and is the only product in this range with official Ministry of Health, Labour and Welfare approval specifically for menopausal disorder management. The low-molecular-weight bioactive fraction supports hepatic function, fatigue reduction, and dermal rejuvenation concurrently.",
+    "protocol": "Administer 1–2 ampoules (2–4 mL) via subcutaneous or IM injection 2–3 times per week for the first 2–4 weeks, then taper to once or twice weekly for 2–3 months. For menopausal indications, begin with 1 ampoule every other day for 2–3 weeks. Intravenous administration is contraindicated. Aesthetic mesotherapy protocols may target intradermal papular injection at 1–2 cm grid spacing across the face or décolletage."
+  },
+  {
+    "id": 404,
+    "description": "CURACEN (JBP Co., Ltd.) is a human placenta hydrolysate injectable containing over 280 bioactive components including 18 amino acids (8 essential), hyaluronic acid precursors, low-molecular-weight growth factors (< 3000 Da), cytokines, and nucleic acids. It is specifically formulated for aesthetic mesotherapy — the low molecular weight cut-off maximises cellular absorption and bioavailability at the dermal level. Unlike Laennec (which also carries hepatic indications), CURACEN is optimised for skin rejuvenation, elasticity improvement, and collagen synthesis stimulation.",
+    "protocol": "Administer 1 ampoule (2 mL) via subcutaneous or intradermal mesotherapy injection twice weekly for the initial 4–8 weeks, reducing to once every 10–15 days for maintenance. Use a 30–32G needle at 2–4 mm depth for facial papular technique. No reconstitution required; use directly from ampoule."
+  },
+  {
+    "id": 405,
+    "description": "Melamin Injection is a human placenta extract preparation manufactured by JBP Co., Ltd. (Japan Bio Products), supplied as 2 mL ampoules in the same Plamon/Laennec product family. The hydrolysate delivers amino acids, growth factors, and low-molecular-weight peptides that exert regulatory effects on hypothalamic-pituitary-gonadal signalling, making it clinically relevant for menopausal disorder management. Secondary aesthetic applications include skin brightening, melanin regulation, and improvement of liver function markers.",
+    "protocol": "Administer 1 ampoule (2 mL) subcutaneously or intramuscularly 2–3 times per week for the initial treatment phase of 2–4 weeks, followed by a maintenance schedule of once or twice weekly for 2–3 months. For menopausal symptom relief, a minimum treatment course of 6 injections over 2 weeks is typically required before clinical response is assessed."
+  },
+  {
+    "id": 407,
+    "description": "ELASTY Meso Needle is a sterile, single-use nano needle designed specifically for mesotherapy and micro-injection aesthetic procedures. Supplied in 32G / 4 mm configuration, the ultra-fine gauge minimises injection trauma, bruising, and patient discomfort during intradermal product delivery. The short 4 mm length ensures placement within the papillary and upper reticular dermis, making it appropriate for skinbooster, biorevitaliser, and vitamin cocktail mesotherapy protocols.",
+    "protocol": "Insert at 30–45° bevel-up into the superficial to mid-dermis (2–4 mm depth); deliver 0.01–0.02 mL per injection point using the nappage or papule technique. Grid spacing of 1–2 cm is standard for facial mesotherapy. Discard after single patient use; do not re-cap and re-use."
+  },
+  {
+    "id": 408,
+    "description": "REJUBEAU Meso Needle 30G is a sterile, single-use hypodermic needle manufactured for professional mesotherapy and aesthetic injection procedures. Available in 4 mm, 6 mm, and 13 mm working lengths, the 30G calibre is suited to intradermal skinbooster delivery, superficial fat cocktail administration, and scalp mesotherapy where slightly larger flow diameter than 32G needles is preferable. The range of lengths allows practitioners to select appropriate depth for different anatomical zones.",
+    "protocol": "Use the 4 mm length for facial intradermal nappage (2–4 mm depth), 6 mm for intermediate-depth injections in thicker skin regions, and 13 mm for subcutaneous delivery in scalp or body applications. Deliver product slowly at 0.01–0.05 mL per point; apply mild pressure post-injection to distribute the bolus. Single-patient use only."
+  },
+  {
+    "id": 409,
+    "description": "REJUBEAU Meso Needle 32G is a sterile, single-use ultra-thin hypodermic needle designed for low-trauma intradermal mesotherapy. Available in 4 mm, 6 mm, and 13 mm lengths, the 32G gauge produces minimal injection pain and is particularly suited to sensitive facial zones such as the periorbital and perioral regions. The fine bore controls micro-dosing accuracy during nappage and papule techniques with skinboosters, polynucleotides, or vitamin cocktails.",
+    "protocol": "Insert bevel-up at 30–45° to deliver product at 2–4 mm intradermal depth for facial mesotherapy. Use 4 mm for superficial facial nappage, 6 mm for mid-depth treatment in thicker zones, and 13 mm for scalp or body subcutaneous routes. Deliver 0.01–0.02 mL per point; space injection points 1–1.5 cm apart. Discard after single use."
+  },
+  {
+    "id": 410,
+    "description": "REJUBEAU Meso Needle 33G is a sterile, single-use extra-fine calibre hypodermic needle engineered to minimise trauma in delicate intradermal mesotherapy applications. Available in 4 mm, 6 mm, and 13 mm lengths, the 33G bore is optimal for periorbital, lip-border, and thin-skin facial zones where minimising local tissue disruption is a priority. It is suited to low-viscosity products including dilute hyaluronic acid skinboosters, growth factor solutions, and peptide cocktails.",
+    "protocol": "Insert bevel-up at a shallow 15–30° angle, targeting 1–3 mm intradermal depth for the most delicate facial zones. Use 4 mm for periorbital and perioral nappage; 6 mm for general facial mid-dermis work; 13 mm for scalp mesotherapy. Deliver no more than 0.01–0.02 mL per injection point to avoid visible papule formation. Single use only."
+  },
+  {
+    "id": 411,
+    "description": "REJUBEAU Meso Needle 34G is a sterile, single-use nano-calibre hypodermic needle representing the finest gauge in the REJUBEAU range, supplied exclusively in the 4 mm length. The 34G bore is suited to ultra-low-trauma nano-injection techniques delivering highly dilute skinboosters, growth factors, or polynucleotides in the most sensitive facial zones — including the upper eyelid, under-eye, and fine perioral region — where conventional mesotherapy needles cause unacceptable bruising.",
+    "protocol": "Insert at a near-flat 10–20° angle, bevel-up, to place product within the upper 1–2 mm of the dermis. Deliver 0.005–0.01 mL per point using an automated nano-injector or manual syringe with slow, controlled depression of the plunger. Recommended point spacing: 0.5–1 cm in periorbital zones; 1 cm elsewhere. Single patient use; discard immediately after procedure."
+  },
+  {
+    "id": 413,
+    "description": "JBP Nano Cannula 22G is a sterile, single-use blunt-tip flexible microcannula manufactured by Japan Bio Products, available in 50 mm and 70 mm working lengths. The 22G lumen accommodates medium-to-high viscosity fillers and larger-volume product delivery across extended tissue planes with reduced risk of vascular injury compared to sharp needles. The blunt tip displaces rather than penetrates vessels, making it appropriate for mid-face volume restoration, jawline contouring, and body filler techniques.",
+    "protocol": "Introduce via a 21G sharp entry needle at the access point, then advance the cannula in the subdermal or supraperiosteal plane using gentle retrograde or anterograde threading. Aspiration is recommended at each new position. Use the 50 mm length for focused facial zones and 70 mm for linear body or jaw contouring passes. Deliver product in small retrograde aliquots of 0.1–0.2 mL per pass. Single use."
+  },
+  {
+    "id": 414,
+    "description": "JBP Nano Cannula 25G is a sterile, single-use blunt-tip flexible microcannula by Japan Bio Products, available in 50 mm and 70 mm lengths. The 25G calibre is versatile for medium-viscosity hyaluronic acid fillers in delicate facial regions — including the nasolabial fold, tear trough, lip augmentation, and temple — where the blunt tip significantly reduces bruising, swelling, and neurovascular trauma relative to a sharp needle of equivalent gauge.",
+    "protocol": "Create an entry point with a 23G sharp needle, then introduce the cannula into the appropriate tissue plane (subdermis or pre-periosteum depending on target). Advance with minimal force; retreat and re-angle if resistance is met. Deliver filler in retrograde threading passes at 0.05–0.1 mL per cm of track. The 70 mm variant suits linear cheek or mandibular passes. Aspiration before each bolus is recommended."
+  },
+  {
+    "id": 415,
+    "description": "JBP Nano Cannula 27G is a sterile, single-use blunt-tip microcannula by Japan Bio Products, supplied in the 50 mm length. The slender 27G bore is well suited for low-to-medium viscosity products — including skinboosters, thin hyaluronic acid fillers, and polynucleotides — in delicate anatomical areas such as the periorbital region, lips, and superficial dermal planes where precise, low-volume delivery is required.",
+    "protocol": "Puncture the skin with a 25G or 26G sharp needle to create the entry port, then introduce the 27G cannula at a shallow subdermal angle. Advance with the bevel-up orientation and deliver product slowly in 0.02–0.05 mL retrograde aliquots. The 50 mm working length is appropriate for single-entry periocular, lip, and cheek treatments. Replace after each patient or if the tip becomes contaminated."
+  },
+  {
+    "id": 416,
+    "description": "JBP Nano Cannula 30G is a sterile, single-use ultra-fine blunt-tip microcannula by Japan Bio Products, supplied in 25 mm working length. The 30G / 25 mm format is optimised for very superficial intradermal fanning or threading of low-viscosity products — such as dilute hyaluronic acid, amino acid cocktails, or botulinumtoxin micro-doses — in the superficial dermis of delicate facial areas including the periorbital, perioral, and forehead zones.",
+    "protocol": "Create entry with a 28G or 29G sharp needle; introduce the cannula bevel-up at a 10–20° angle into the superficial dermis. The 25 mm length allows controlled retrograde delivery from a single entry point across a small treatment zone. Deliver 0.01–0.03 mL per retrograde pass. Suitable for microdroplet toxin distribution or superficial skinbooster fanning. Single use only."
+  },
+  {
+    "id": 417,
+    "description": "Sungshim Meso Needles are sterile, single-use hypodermic needles manufactured in South Korea for professional mesotherapy and aesthetic injection procedures. Available in 27G, 29G, and 30G gauges across multiple lengths (4 mm to 60 mm), the range allows practitioners to select gauge and length according to anatomical site, product viscosity, and injection depth — from superficial facial nappage to deeper scalp or body subcutaneous delivery. The ultra-sharp bevel minimises injection trauma and facilitates smooth, controlled flow.",
+    "protocol": "For facial mesotherapy, use 30G or 29G x 4–6 mm for intradermal nappage at 2–4 mm depth; use 27G x 13 mm for mid-depth injections in the scalp or thicker skin areas. Deliver 0.01–0.05 mL per injection point; space points 1–1.5 cm apart. For body mesotherapy or lipolytic cocktails, use 30G x 13 mm or 27G x 13–60 mm into the subcutaneous plane. Discard after single patient use."
+  },
+  {
+    "id": 418,
+    "description": "Sungshim Botox Syringes are sterile, single-use low dead-space insulin-style syringes with fixed needles, specifically configured for precise small-volume neurotoxin delivery. Available in 30G or 31G x 8 mm needles mounted on 0.5 cc or 1 cc barrels, the low dead-space design maximises yield from expensive reconstituted toxin vials. The short 8 mm needle length targets the intramuscular plane in superficial facial muscles — corrugator, procerus, frontalis, orbicularis — without risk of periosteal contact.",
+    "protocol": "Load reconstituted botulinum toxin from the vial using standard aseptic technique. Insert the 30G or 31G needle perpendicular to the skin surface to a depth of 5–8 mm for intramuscular injection into target facial muscles. Deliver 0.025–0.1 mL per injection point per the planned unit dosing. Aspirate gently before each injection; discard unused residual in the syringe and do not re-use across sessions."
+  },
+  {
+    "id": 419,
+    "description": "Sungshim Pen Needles are sterile, single-use needles compatible with standard insulin and aesthetic injection pen devices, supplied in 31G x 8 mm, 32G x 4 mm, and 32G x 6 mm configurations. In aesthetic practice, they are used with pen-based micro-injection systems for precise delivery of botulinum toxin, skinboosters, or peptide solutions in small, controlled aliquots. The universal pen-thread connection fits most BD-compatible pen devices.",
+    "protocol": "Thread needle onto the pen device using a half-turn lock; perform an air prime of 1–2 units before the first injection to confirm flow. For facial micro-toxin protocols, set the pen to 0.5–2 unit increments; insert at 90° to a depth equal to the needle length (4 mm or 6 mm for intradermal, 8 mm for superficial intramuscular). Remove and discard immediately after use; never re-use across injection sites."
+  },
+  {
+    "id": 420,
+    "description": "DK Filler Cannula with Punching Needle (21G/23G/25G) is a sterile, single-use blunt-tip microcannula set that includes a matched sharp access needle (introducer). The flexible cannula tip reduces the risk of intravascular injection and minimises bruising in medium-to-large filler volume procedures. The 21G, 23G, and 25G gauges in 50 mm and 70 mm lengths cover deep volumising, mid-face structural work, and nasolabial fold correction respectively; the 70 mm option is suited to linear cheek, mandible, or body passes.",
+    "protocol": "Pierce the skin with the included punching (introducer) needle at the chosen entry point, then exchange for the cannula and advance in the appropriate tissue plane (supraperiosteal for deep structure; subdermis for superficial correction). Use retrograde threading at 0.1–0.2 mL per pass. Aspirate at each new position before delivering product. The 21G/23G variants suit volumising fillers; 25G suits medium-viscosity HA products. Single use."
+  },
+  {
+    "id": 421,
+    "description": "DK Filler Cannula with Punching Needle (18G x 50/70 mm) is a sterile, single-use large-bore blunt-tip microcannula designed for high-viscosity, large-volume filler or fat transfer-adjunct procedures. The 18G lumen accommodates even dense cross-linked HA products or PRF-enhanced preparations with minimal injection resistance. At 50 mm and 70 mm lengths, it supports deep subcutaneous volumising of the cheeks, temporal hollows, and body contouring sites through a single entry point.",
+    "protocol": "Create access with the included sharp 16G or 17G punching needle; advance the 18G cannula in the deep subcutaneous or supraperiosteal plane with steady forward pressure. Deliver product in 0.2–0.5 mL retrograde boluses or slow continuous threading passes. Avoid injecting under excessive resistance. Optimal for high-viscosity products requiring a wide-bore delivery path. Single patient use; do not re-autoclave or re-use."
+  },
+  {
+    "id": 422,
+    "description": "DK ULTRA Thin Meso Needles are sterile, single-use ultra-fine hypodermic needles for professional mesotherapy, supplied in 30G, 32G, 33G, and 34G gauges across 4 mm, 6 mm, 8 mm, and 13 mm working lengths. The comprehensive gauge-and-length matrix enables practitioners to precisely match needle size to product viscosity, anatomical depth, and treatment zone — from 34G x 4 mm periorbital nappage to 30G x 13 mm scalp mesotherapy. The ultra-thin wall construction maximises inner bore diameter within the fine outer gauge, reducing injection resistance.",
+    "protocol": "For facial intradermal mesotherapy (skinboosters, PRP, polynucleotides), use 32G–34G x 4–6 mm at 15–45° insertion angle, delivering 0.01–0.02 mL per point in a nappage or papule pattern. For scalp hair mesotherapy, use 30G–32G x 8–13 mm at perpendicular angle, spacing injections 1–1.5 cm across the target area. For body subcutaneous mesotherapy, select 30G x 13 mm. Single use only."
+  },
+  {
+    "id": 423,
+    "description": "NEO CANNULA 17G is a sterile, single-use large-bore flexible blunt-tip microcannula for professional aesthetic and body contouring injection procedures, supplied in 100 mm, 120 mm, and 150 mm working lengths. The 17G calibre and extended lengths are designed for body applications — including abdominal, gluteal, and thigh fat-dissolving cocktail delivery, PRF/PRP infusion across large surface areas, and extensive body filler volumising — where the reach of standard facial cannulas is insufficient.",
+    "protocol": "Create a small entry incision with a 15G or 16G sharp cannula intro needle, then advance the 17G NEO CANNULA through the subcutaneous adipose layer using a fanning technique. Deliver product in retrograde passes; the 100 mm variant suits targeted body zones, while 120–150 mm lengths enable broad area coverage from a single entry point. Inject at 0.2–1.0 mL per retrograde pass. Aspirate before each delivery. Single use."
+  },
+  {
+    "id": 424,
+    "description": "NEO CANNULA 14G is a sterile, single-use extra-large-bore flexible blunt-tip microcannula for advanced body aesthetic and reconstructive injection procedures, available in 100 mm, 150 mm, and 200 mm working lengths. The 14G lumen and lengths up to 200 mm support large-volume subcutaneous delivery — including fat transfer support, extensive lipolytic infusion, and gluteal or abdominal body filler placements — across the largest treatment planes achievable with a cannula system.",
+    "protocol": "Create an entry port with a matched sharp introducer (13G or 14G needle); advance the cannula in the deep subcutaneous layer under gentle pressure with a fan or linear threading pattern. Deliver 1–3 mL per retrograde pass for large-volume procedures. Use the 200 mm length for full-gluteal or abdominal coverage from bilateral entry points. Never force through resistance. Single use only; do not re-sterilise."
+  },
+  {
+    "id": 425,
+    "description": "Syringe Mixing Tube Connector (100 pcs) is a sterile luer-lock accessory that forms a sealed bidirectional conduit between two syringes, enabling closed-system mixing of two injectable products or transfer of a reconstituted solution without loss or contamination. It is particularly useful for preparing combination cocktails (e.g., HA + growth factors, toxin + saline top-up) and for precisely transferring reconstituted product between vials and injection syringes in aesthetic clinic settings.",
+    "protocol": "Attach one syringe to each end of the connector with firm luer-lock engagement. Alternately push the plungers to blend contents back and forth until homogeneous — typically 10–15 strokes. Keep syringes horizontal during mixing to prevent air pockets. Once mixed, transfer the combined solution to the injection syringe via forward push. Do not apply excess force to avoid unseating the luer seal. Single use; discard after each product preparation cycle."
+  },
+  {
+    "id": 426,
+    "description": "Syringe Mixing Tube Connector (10 pcs) is a sterile luer-lock connector that forms a sealed conduit between two syringes for closed-system mixing or product transfer. Identical in function to the 100-piece format, the 10-piece pack is suited to smaller clinics or practitioners who require occasional mixing of injectable cocktails without the need for a large inventory. It prevents product loss and contamination during preparation of combination injectables or reconstituted solutions.",
+    "protocol": "Engage both syringe tips firmly into each end of the connector via luer-lock twist. Mix by alternately pushing the plungers back and forth (10–15 passes) until the combined solution is uniform. Transfer the mixed product to the injection syringe after blending. Avoid trapping air during mixing by keeping the connector and both syringes horizontal. Discard connector and any single-use components after each use cycle."
+  },
+  {
+    "id": 427,
+    "description": "Restylane Defyne is a Galderma OBT (Optimal Balance Technology) cross-linked hyaluronic acid filler at 20 mg/mL with lidocaine 0.3%, engineered with a flexible gel network that moves naturally with facial expression while maintaining structural correction. It is FDA-cleared and CE-marked for mid-to-deep dermal injection to correct moderate-to-severe facial wrinkles and folds — principally nasolabial folds and chin retrusion — with reported 48-week durability in 69.8% of subjects.",
+    "protocol": "Inject into the mid-to-deep dermis or subdermal plane using the included 27G needle. For nasolabial folds, use linear threading, serial puncture, or crosshatching at a depth of 3–5 mm; aspirate before each bolus. Typical NLF correction requires 0.5–1.5 mL per side. For chin augmentation, deposit product supraperiosteally in 0.1–0.2 mL aliquots. Massage gently post-injection to smooth. Touch-up at 4 weeks if needed."
+  },
+  {
+    "id": 428,
+    "description": "Restylane Volyme is a Galderma OBT cross-linked hyaluronic acid filler at 20 mg/mL with lidocaine 0.3%, formulated specifically for volume restoration of the mid-face, cheeks, and malar region. The resilient, firm gel integrates with cheek tissue to restore youthful projection and correct volume deflation, with results reported to last 12–18 months in clinical studies. It is CE-marked for facial volumising in the supraperiosteal and deep subcutaneous planes.",
+    "protocol": "Inject supraperiosteally over the malar eminence or into the deep fat compartments of the mid-face using a 25G or 27G needle or 25G cannula. Deposit product in 0.1–0.3 mL deep boluses; avoid superficial placement which risks the Tyndall effect. Typical full-cheek volumising requires 1–2 mL per side. Aspirate before each bolus. Massage after injection to ensure symmetrical distribution. Touch-up at 4–6 weeks."
+  },
+  {
+    "id": 429,
+    "description": "Restylane Kysse is a Galderma OBT cross-linked hyaluronic acid filler at 20 mg/mL with lidocaine 0.3%, specifically engineered for lip augmentation and peri-oral line correction. The flexible gel integrates with lip tissue to provide natural-feeling volume and definition — including vermilion border sharpening, Cupid's bow accentuation, and philtrum column enhancement — with FDA approval for lip augmentation and correction of upper perioral lines.",
+    "protocol": "Inject into the vermilion border using retrograde linear threading or serial puncture with a 27G needle for precise lip line definition; deliver volume into the lip body using a 25G cannula or needle in the submucosal plane. Typical full lip augmentation requires 0.5–1.5 mL. Apply topical or infiltration anaesthesia as adjunct where lidocaine content is insufficient. Massage to blend; avoid overcorrection in a single session. Results last approximately 6–9 months."
+  },
+  {
+    "id": 430,
+    "description": "Restylane Lyft is a Galderma OBT cross-linked hyaluronic acid filler at 20 mg/mL with lidocaine 0.3%, formulated as a firm, high-G-prime gel for structural volumising of the cheeks, mid-face, and dorsal hands. FDA-approved for cheek augmentation and the correction of age-related mid-face volume deficit, it is placed supraperiosteally or in deep fat compartments to provide lift and structural support to overlying soft tissue with durability up to 12 months.",
+    "protocol": "Inject supraperiosteally over the zygomatic arch and malar eminence, or into the deep medial cheek fat pad, using a 27G needle for targeted boluses or a 25G cannula for fanning technique. Deposit 0.1–0.4 mL per bolus point; aspirate before each injection. Typical cheek volumising session uses 1–3 mL per side. For dorsal hand rejuvenation, inject subcutaneously in 0.2–0.3 mL retrograde passes using a 25G cannula. Massage evenly post-procedure."
+  },
+  {
+    "id": 431,
+    "description": "Restylane with Lidocaine is the original Galderma non-animal stabilised HA (NASHA) cross-linked filler at approximately 20 mg/mL, formulated with lidocaine for enhanced injection comfort. Supplied with two 29G disposable needles, it is designed for mid-dermal correction of moderate nasolabial folds, marionette lines, lip augmentation, and contour refinement, with a clinical track record exceeding 20 years and results reported to last 6–9 months.",
+    "protocol": "Inject into the mid-dermis using the supplied 29G needle via serial puncture or retrograde linear threading at 3–4 mm depth. Aspiration before each bolus is recommended. For nasolabial folds, inject 0.5–1.0 mL per fold; for lips, use 0.3–0.5 mL per session. Avoid superficial placement to prevent visible gel beading. Gentle massage post-injection ensures smooth integration. Re-treatment is typically required at 6–9 months."
+  },
+  {
+    "id": 432,
+    "description": "Restylane Lyft with Lidocaine is a Galderma NASHA cross-linked hyaluronic acid filler formulated with lidocaine, with a larger gel particle size suited to deep-plane injection. FDA-approved and CE-marked for mid-to-deep dermal and subdermal correction of moderate-to-severe nasolabial folds, frown lines, and cheek volume enhancement, the robust gel provides structural lift at the supraperiosteal level with results durable up to 12 months. Supplied with two disposable needles.",
+    "protocol": "Inject into the deep dermis or supraperiosteal plane using a 27G needle; for nasolabial folds, target the deep dermal plane at 4–6 mm depth using linear threading or bolus technique, aspirating before each injection. Typical NLF dose: 1–2 mL per fold. For cheek volumising, inject deep boluses of 0.2–0.5 mL supraperiosteally. Avoid superficial placement — the large-particle gel is not suited to mid-dermal or intradermal injection. Touch-up at 4 weeks."
+  },
+  {
+    "id": 433,
+    "description": "Restylane Skinboosters Vital with Lidocaine is a Galderma stabilised hyaluronic acid skinbooster designed for deep intradermal delivery to improve skin hydration, elasticity, and structural resilience in photodamaged or dehydrated skin. The lightly cross-linked HA integrates into the dermis to restore the water-binding matrix, with clinical evidence for improvement of skin elasticity, smoothness, and luminosity following 3 initial sessions. Results are reported to last up to 6 months with single maintenance top-up.",
+    "protocol": "Administer as a series of 3 sessions spaced 4 weeks apart, then maintenance every 6 months. Inject into the deep dermis (3–4 mm) using a 30G or 32G needle with a micro-papule or serial puncture technique; typical grid spacing 1–1.5 cm. Standard full-face dose: 1–2 mL per session. Common treatment areas include face, neck, décolletage, and dorsal hands. Topical anaesthesia applied 30 min before is recommended. MOQ 10 units."
+  },
+  {
+    "id": 434,
+    "description": "Restylane Vital Light with Lidocaine is a Galderma stabilised hyaluronic acid skinbooster containing HA 12 mg/mL and lidocaine 3 mg/mL, formulated as a lighter alternative to Restylane Vital for sensitive, thin, or delicate skin areas. The reduced HA concentration allows intradermal placement in fine-skin zones — periorbital, perioral, and neck — where the higher-concentration Vital formulation would risk surface irregularities. It restores superficial dermal hydration and improves skin texture and glow, with results lasting approximately 6 months.",
+    "protocol": "Administer as a 3-session course at 4-week intervals, followed by maintenance every 6 months. Inject into the superficial-to-mid dermis (2–3 mm) using a 32G or 30G needle via micro-papule nappage technique; grid spacing 0.8–1.2 cm. Typical dose per session: 0.5–1.5 mL depending on treatment area. Particularly suited for under-eye, neck, and décolletage boosting. Apply topical anaesthetic cream 30 minutes prior. MOQ 10 units."
+  },
+  {
+    "id": 435,
+    "description": "Dysport (abobotulinumtoxinA, Ipsen/Galderma) is a botulinum toxin type A complex (Clostridium botulinum-derived hemagglutinin complex) supplied as a lyophilised powder in 500-unit vials. It blocks presynaptic acetylcholine release at the neuromuscular junction, producing reversible muscle relaxation over 3–6 months. The 500-unit vial format is used for larger aesthetic workloads — full-face anti-wrinkle treatment, hyperhidrosis, masseter reduction, and trapezius slimming — and for combination medical/aesthetic treatment sessions.",
+    "protocol": "Reconstitute with 2.5 mL of preservative-free 0.9% NaCl to yield 200 U/mL; swirl gently, do not shake. For aesthetic glabellar lines: 50 U total in 5 injections of 10 U each into corrugator (×4) and procerus (×1), using a 30G or 32G × 13 mm needle. For masseter reduction: 25–50 U per side deep intramuscular injection. For hyperhidrosis: 50–100 U per axilla via intradermal grid. Use within 4 hours of reconstitution; store reconstituted vial at 2–8°C."
+  },
+  {
+    "id": 436,
+    "description": "Xeomin (incobotulinumtoxinA, Merz) is a highly purified botulinum toxin type A product from which accessory complexing proteins have been removed, leaving only the active 150 kDa neurotoxin molecule. This protein-free formulation may reduce the risk of antibody formation with repeat treatments. Supplied as 100-unit lyophilised vials, it is FDA-approved and CE-marked for glabellar line correction (20 U standard dose) and upper-limb spasticity; aesthetic applications extend to crow's feet, forehead lines, and brow lifting.",
+    "protocol": "Reconstitute the 100-unit vial with 2.5 mL of preservative-free 0.9% NaCl to yield 4 U/0.1 mL. For glabellar lines: inject 4 U per site (0.1 mL) into 5 sites — 2 in each corrugator muscle, 1 in procerus — using a 30–33G × 13 mm needle intramuscularly. Typical aesthetic full-face session uses 40–100 U. Onset within 3–7 days; duration up to 3–4 months. Refrigerate unused vials; use reconstituted product within 24 hours."
+  },
+  {
+    "id": 437,
+    "description": "Botox 50 (onabotulinumtoxinA, Allergan/AbbVie) is the 50-unit vial of the world's most clinically studied botulinum toxin type A, with regulatory approvals spanning glabellar lines, lateral canthal lines, and forehead lines in aesthetic applications. The 50-unit format is commonly used for single-area or combination small-area aesthetic sessions, reducing wastage in practices where treating one or two regions per patient is the norm. Each unit of Botox is not interchangeable in dose with other botulinum products.",
+    "protocol": "Reconstitute with 1.25 mL of preservative-free 0.9% NaCl to yield 4 U/0.1 mL, or 2.5 mL for 2 U/0.1 mL for more dilute techniques. For glabellar lines: 20 U total in 5 sites (4 U/0.1 mL each) using a 30G or 32G needle. For lateral canthal lines: 12 U per side in 3 injections. For forehead: 10–20 U in 4–6 sites. Inject intramuscularly with 30–33G needle; onset 3–5 days; duration 3–4 months. Use within 4 hours after reconstitution."
+  },
+  {
+    "id": 438,
+    "description": "Juvederm (Allergan/AbbVie) is a Vycross- or BDDE-cross-linked hyaluronic acid filler range with lidocaine 0.3%, offered in four distinct formulations: Voluma (HA 20 mg/mL) for deep volumising of the cheeks and mid-face; Volift (HA 17.5 mg/mL) for moderate folds and lip augmentation; Volite (HA 25 mg/mL) for intradermal skin quality improvement; and Volbella (HA 25 mg/mL) for lips and fine perioral lines. Each variant is engineered at a specific G-prime to match the target tissue plane and indication.",
+    "protocol": "Voluma: inject supraperiosteally using a 25G cannula or 27G needle for cheek volumising (0.5–2 mL per side). Volift: mid-dermal injection via 27G needle for nasolabial folds (0.5–1.5 mL per fold) or submucosal for lip body augmentation. Volbella: superficial dermal threading with 30G needle for vermilion border and fine perioral lines (0.3–0.8 mL total). Volite: intradermal micro-papule injection at 2–3 mm depth with 30G needle, 3-session course 4 weeks apart. Aspirate before each bolus across all variants."
+  }
+]
