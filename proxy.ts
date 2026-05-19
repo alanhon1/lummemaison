@@ -8,6 +8,7 @@ const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
   localePrefix: 'always',
+  localeDetection: false,
 });
 
 export async function proxy(req: NextRequest) {
