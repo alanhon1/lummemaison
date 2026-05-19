@@ -1,0 +1,94 @@
+# auto-map-name-images report
+generated: 2026-05-19T02:56:05.372Z
+
+## Auto-mapped (0)
+
+## Ambiguous — multiple candidates (4)
+  JBP nano cannula 22G.png  (token=jbp)
+     candidate #413 JBP nano cannula 22G
+     candidate #414 JBP nano cannula 25G
+     candidate #415 JBP nano cannula 27G
+     candidate #416 JBP nano cannula 30G
+  JBP nano cannula27g50mm.png  (token=jbp)
+     candidate #413 JBP nano cannula 22G
+     candidate #414 JBP nano cannula 25G
+     candidate #415 JBP nano cannula 27G
+     candidate #416 JBP nano cannula 30G
+  JBP-Nano-Cannula-30G-25mm-–-Box-of-24-2.webp  (token=jbp)
+     candidate #413 JBP nano cannula 22G
+     candidate #414 JBP nano cannula 25G
+     candidate #415 JBP nano cannula 27G
+     candidate #416 JBP nano cannula 30G
+  Muchcaine_30g.webp  (token=muchcaine)
+     candidate #398 MUCHCAINE
+     candidate #399 MUCHCAINE
+
+## No match (66)
+  12075-Beads-Max-Body-Classic-S.jpg  (token=12075)
+  Adimis-Body-Filler.jpg  (token=adimis)
+  autodn_mtsdevice_skinculture_hero.jpg  (token=autodn)
+  CHIOCTOCIN_INJ_2.jpg  (token=chioctocin)
+  CORETOX_100U___MEDYTOX__2.png  (token=coretox)
+  CURENEX REJUVENATING MASK.avif  (token=curenex)
+  curenex-rejuvenating-cream-for-day-and-night-with-pdrn-4.06-fl-oz-getglowing-skincare__88885.jpg  (token=curenex)
+  curenex-skin-boosterpdrn multi.jpg  (token=curenex)
+  DERMAGEN EZCera Cream.avif  (token=dermagen)
+  dermagen lunatox (not lunato).jpg  (token=dermagen)
+  dermagen urea cream deep.jpg  (token=dermagen)
+  dermagen-well.jpg  (token=dermagen)
+  Dermaheal-HL.jpg  (token=dermaheal)
+  DN16 NEEDLE.webp  (token=dn16)
+  dn64needle.webp  (token=dn64needle)
+  elaxenpllaaestheticsukforskin.jpg  (token=elaxenpllaaestheticsukforskin)
+  eng_pl_Regenovue-Deep-Plus-1-1-ml-CE-97_1_1.jpg  (token=eng)
+  eng_pl_Regenovue-Fine-Plus-1-1-ml-CE-94_1_1.jpg  (token=eng)
+  eng_pl_Regenovue-Sub-Q-Plus-1-1-ml-CE-96_1_1.jpg  (token=eng)
+  eng_pm_Regenovue-Fine-Plus-1-1-ml-CE-94_2_1.jpg  (token=eng)
+  ETREBELLE.jpg  (token=etrebelle)
+  EVEHILO_CENTRE_1800x1800.webp  (token=evehilo)
+  EXOXE_middle_1800x1800.webp  (token=exoxe)
+  hyalace-023.webp  (token=hyalace)
+  JBPNanoCannula25g_50mmSupplierAestheticsUKWholesale.jpg  (token=jbpnanocannula25g)
+  Lipo-Shrinker309peoduct.avif  (token=lipo)
+  lipolabgms.webp  (token=lipolabgms)
+  MASI Injection 10% (Magnesium.jpg  (token=masi)
+  maxy-fill-2.webp  (token=maxy)
+  maxyblueinj.png  (token=maxyblueinj)
+  meditoxin-200u-botox-injections.jpg  (token=meditoxin)
+  misadi co2.avif  (token=misadi)
+  misadi-h.webp  (token=misadi)
+  misfill pdrn.jpg  (token=misfill)
+  muchaine-500g.png  (token=muchaine)
+  multivita-lyophilized.jpg  (token=multivita)
+  neuramis deep lido.png  (token=neuramis)
+  neuramis light(meso).jpg  (token=neuramis)
+  Neuramis-Lidocain.jpg  (token=neuramis)
+  P198 filcore sb plus.jpg  (token=p198)
+  p198-exonature.png  (token=p198)
+  PEPTICULE ULTIMATE REJUVENATION CREAM.webp  (token=pepticule)
+  PEPTICULE ULTIMATE REJUVENATION SERUM.png  (token=pepticule)
+  PLATINUM-FnB-box fnb.webp  (token=platinum)
+  Power_Healer_Centre.webp  (token=power)
+  RAVELLO_plla1800x1800.webp  (token=ravello)
+  Re-N-Tox-200u-.jpg  (token=tox)
+  regenovue-aqua-shine-plus-getglowing-skincare__30485.jpg  (token=regenovue)
+  regenovue-aqua-shine-silver-9ml-getglowing-skincare__07632.jpg  (token=regenovue)
+  regenovue-pn-non.jpg  (token=regenovue)
+  REGENOVUE-SUB-Q-PLUS-LIDOCAINE-Cosmetics.avif  (token=regenovue)
+  REGENOVUE_SUB_Q.webp  (token=regenovue)
+  Rentox100u.webp  (token=rentox100u)
+  restylane-lyft-1.jpg  (token=restylane)
+  revolax-sub-q-with-lidocaine-12.webp  (token=revolax)
+  TOXSTA-100U-BOTULINUM-TOXIN.webp  (token=toxsta)
+  ULTRAGEN_X_Middle.webp  (token=ultragen)
+  ULTRATONING Ultrasonic & RF Beauty.png  (token=ultratoning)
+  vanhalla niacinamide skin tone balance.webp  (token=vanhalla)
+  Vita-D 200u.webp  (token=vita)
+  Vita_D_Bone_Injection_Made_in_Korea_Cholecalciferol_2.jpg  (token=vita)
+  vns lipolyticsolution vns fat.jpg  (token=vns)
+  VOM-Intensive-Glow-Up-Supply.png  (token=vom)
+  WILLCAM PLUS Skinscalp Diagnosis System.jpg  (token=willcam)
+  Zinc S Inj..jpg  (token=zinc)
+  _2_XSOME_2.png  (token=xsome)
+
+## No usable token (0)

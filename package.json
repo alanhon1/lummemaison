@@ -37,7 +37,9 @@
     "upgrade-low-quality": "tsx scripts/upgrade-low-quality-images.ts",
     "acquire-missing": "tsx scripts/acquire-missing-images.ts",
     "inventory-quality": "tsx scripts/inventory-image-quality.ts",
-    "repair-products": "tsx scripts/repair-products.ts"
+    "repair-products": "tsx scripts/repair-products.ts",
+    "auto-map-name-images": "tsx scripts/auto-map-name-images.ts",
+    "regen-variant-labels": "tsx scripts/regen-variant-labels.ts"
   },
   "dependencies": {
     "axios": "^1.16.1",
