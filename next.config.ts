@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
       { pathname: '/images/bundles/**' },
     ],
   },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb',
+    },
+  },
 };
 
 export default withNextIntl(nextConfig);

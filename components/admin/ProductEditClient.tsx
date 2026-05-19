@@ -32,7 +32,9 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const ALLOWED_UPLOAD_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/avif', 'image/gif'];
   const [isDragging, setIsDragging] = useState(false);
   const [activeTab, setActiveTab] = useState<'basic' | 'enriched' | 'languages'>('basic');
 
@@ -51,15 +53,28 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
 
   async function uploadFile(file: File) {
     if (!product) return;
-    setUploading(true);
     setUploadError(null);
+    setUploadSuccess(false);
+    if (!ALLOWED_UPLOAD_TYPES.includes(file.type)) {
+      setUploadError(`Unsupported file type: ${file.type || 'unknown'}. Use JPG, PNG, WebP, AVIF, or GIF.`);
+      return;
+    }
+    if (file.size > 10 * 1024 * 1024) {
+      setUploadError(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB > 10MB).`);
+      return;
+    }
+    setUploading(true);
     try {
       const fd = new FormData();
       fd.append('file', file);
       const res = await fetch(`/api/admin/upload-image?id=${product.id}`, { method: 'POST', body: fd });
-      if (!res.ok) throw new Error('Upload failed');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({} as { error?: string; detail?: string }));
+        throw new Error(data.detail || data.error || `Upload failed (HTTP ${res.status})`);
+      }
       const data: { ok: boolean; path: string } = await res.json();
       update('image', `${data.path}?v=${Date.now()}`);
+      setUploadSuccess(true);
       if (fileInputRef.current) fileInputRef.current.value = '';
     } catch (err) {
       setUploadError(err instanceof Error ? err.message : 'Upload failed');
@@ -111,6 +126,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
           });
           if (!res.ok) throw new Error('Save failed');
           setIsDirty(false);
+          setUploadSuccess(false);
           router.refresh();
         } catch (err) {
           alert(err instanceof Error ? err.message : 'Save failed');
@@ -208,6 +224,11 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
               />
             </div>
             {uploadError && <p className="text-red-600 text-xs mt-1">{uploadError}</p>}
+            {uploadSuccess && !uploadError && (
+              <p className="text-amber-600 text-xs mt-1 font-semibold">
+                Upload OK — click Save (top right) to apply to the catalogue.
+              </p>
+            )}
           </div>
         )}
 
