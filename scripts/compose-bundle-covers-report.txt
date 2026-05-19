@@ -1,10 +1,10 @@
 # compose-bundle-covers report
-generated: 2026-05-19T07:39:13.466Z
+generated: 2026-05-19T09:49:23.358Z
 composed: 62  skipped: 0  errors: 0
 
 ## Composed (62)
   barbie-slim  members=2  placeholders=0  -> /images/bundles/bundle-barbie-slim.webp
-  regenovue-sub-q  members=6  placeholders=0  -> /images/bundles/bundle-regenovue-sub-q.webp
+  regenovue-sub-q  members=6  placeholders=2  -> /images/bundles/bundle-regenovue-sub-q.webp
   sosum  members=5  placeholders=0  -> /images/bundles/bundle-sosum.webp
   elasty  members=3  placeholders=0  -> /images/bundles/bundle-elasty.webp
   neuramis  members=5  placeholders=1  -> /images/bundles/bundle-neuramis.webp
@@ -33,7 +33,7 @@ composed: 62  skipped: 0  errors: 0
   vanhalla  members=2  placeholders=0  -> /images/bundles/bundle-vanhalla.webp
   klargen  members=2  placeholders=0  -> /images/bundles/bundle-klargen.webp
   selastin  members=2  placeholders=0  -> /images/bundles/bundle-selastin.webp
-  curenex-bundle  members=11  placeholders=0  -> /images/bundles/bundle-curenex-bundle.webp
+  curenex-bundle  members=11  placeholders=1  -> /images/bundles/bundle-curenex-bundle.webp
   dermagen-dermagen  members=19  placeholders=0  -> /images/bundles/bundle-dermagen-dermagen.webp
   melacell  members=2  placeholders=0  -> /images/bundles/bundle-melacell.webp
   pdrenza  members=2  placeholders=0  -> /images/bundles/bundle-pdrenza.webp
@@ -53,14 +53,14 @@ composed: 62  skipped: 0  errors: 0
   re-n-tox  members=2  placeholders=0  -> /images/bundles/bundle-re-n-tox.webp
   kaimax-100u  members=2  placeholders=0  -> /images/bundles/bundle-kaimax-100u.webp
   wondertox-200  members=2  placeholders=0  -> /images/bundles/bundle-wondertox-200.webp
-  mennus-pla-200mg  members=2  placeholders=0  -> /images/bundles/bundle-mennus-pla-200mg.webp
+  mennus-pla-200mg  members=2  placeholders=1  -> /images/bundles/bundle-mennus-pla-200mg.webp
   cindella-set  members=2  placeholders=0  -> /images/bundles/bundle-cindella-set.webp
   lipotocin  members=2  placeholders=0  -> /images/bundles/bundle-lipotocin.webp
   vita-d-200000iu  members=3  placeholders=0  -> /images/bundles/bundle-vita-d-200000iu.webp
   sm-cream-2  members=2  placeholders=0  -> /images/bundles/bundle-sm-cream-2.webp
   muchcaine  members=2  placeholders=0  -> /images/bundles/bundle-muchcaine.webp
   laennec  members=2  placeholders=0  -> /images/bundles/bundle-laennec.webp
-  rejubeau  members=4  placeholders=0  -> /images/bundles/bundle-rejubeau.webp
+  rejubeau  members=4  placeholders=4  -> /images/bundles/bundle-rejubeau.webp
   dk-filler-cannula  members=2  placeholders=0  -> /images/bundles/bundle-dk-filler-cannula.webp
   dk-cannula-18g-50-7050pcs  members=2  placeholders=0  -> /images/bundles/bundle-dk-cannula-18g-50-7050pcs.webp
   syringe-mixing-tube  members=2  placeholders=0  -> /images/bundles/bundle-syringe-mixing-tube.webp
