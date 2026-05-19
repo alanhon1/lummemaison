@@ -22,7 +22,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const newProducts = getNewProducts(8);
 
   return (
-    <>
+    <div className="luxe-bg">
       <Hero />
       <CategoryGrid />
 
@@ -69,6 +69,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       )}
 
       <CTASection />
-    </>
+    </div>
   );
 }

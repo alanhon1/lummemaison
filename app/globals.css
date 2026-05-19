@@ -209,7 +209,8 @@ body {
     transform: translateY(-4px);
   }
 
-  /* Catalogue luxury backdrop — chess grid (matches home Hero pattern) */
+  /* Luxury chess-grid backdrop — used on catalogue, about, contact pages */
+  .luxe-bg,
   .catalogue-luxe-bg {
     position: relative;
     background-color: var(--page-bg);
@@ -220,6 +221,7 @@ body {
     background-attachment: fixed;
     overflow-x: hidden;
   }
+  .luxe-bg::before,
   .catalogue-luxe-bg::before {
     content: '';
     position: absolute;
@@ -230,6 +232,7 @@ body {
     pointer-events: none;
     z-index: 0;
   }
+  .luxe-bg > *,
   .catalogue-luxe-bg > * { position: relative; z-index: 1; }
 
   /* Badges */

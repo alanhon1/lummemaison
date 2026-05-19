@@ -22,7 +22,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   ];
 
   return (
-    <div className="pt-24 min-h-screen">
+    <div className="pt-24 min-h-screen luxe-bg">
       {/* Hero with subtle background motion */}
       <section className="relative bg-obsidian text-cream py-24 px-6 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gold/8 rounded-full blur-3xl pointer-events-none animate-pulse-slow" />

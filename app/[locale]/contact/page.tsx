@@ -15,7 +15,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const t = await getTranslations({ locale, namespace: 'contact' });
 
   return (
-    <div className="pt-24 min-h-screen bg-cream">
+    <div className="pt-24 min-h-screen luxe-bg">
       {/* Hero with ambient glow */}
       <section className="relative bg-obsidian text-cream py-20 px-6 overflow-hidden">
         <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-gold/8 rounded-full blur-3xl pointer-events-none animate-pulse-slow" />
