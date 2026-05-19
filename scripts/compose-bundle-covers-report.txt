@@ -1,8 +1,8 @@
 # compose-bundle-covers report
-generated: 2026-05-19T07:33:00.737Z
-composed: 61  skipped: 0  errors: 1
+generated: 2026-05-19T07:39:13.466Z
+composed: 62  skipped: 0  errors: 0
 
-## Composed (61)
+## Composed (62)
   barbie-slim  members=2  placeholders=0  -> /images/bundles/bundle-barbie-slim.webp
   regenovue-sub-q  members=6  placeholders=0  -> /images/bundles/bundle-regenovue-sub-q.webp
   sosum  members=5  placeholders=0  -> /images/bundles/bundle-sosum.webp
@@ -64,8 +64,8 @@ composed: 61  skipped: 0  errors: 1
   dk-filler-cannula  members=2  placeholders=0  -> /images/bundles/bundle-dk-filler-cannula.webp
   dk-cannula-18g-50-7050pcs  members=2  placeholders=0  -> /images/bundles/bundle-dk-cannula-18g-50-7050pcs.webp
   syringe-mixing-tube  members=2  placeholders=0  -> /images/bundles/bundle-syringe-mixing-tube.webp
+  restylane  members=8  placeholders=0  -> /images/bundles/bundle-restylane.webp
 
 ## Skipped (0)
 
-## Errors (1)
-  restylane  --  Cannot read properties of undefined (reading 'image')
+## Errors (0)

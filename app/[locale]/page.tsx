@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home.hero' });
   return {
-    title: `${t('title')} ${t('titleAccent')} | Lumière`,
+    title: `${t('title')} ${t('titleAccent')} | Lumée Maison`,
     description: t('subtitle'),
   };
 }

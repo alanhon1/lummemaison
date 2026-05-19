@@ -17,15 +17,15 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Lumière — Premium Korean Aesthetic Cosmetics",
-    template: "%s | Lumière",
+    default: "Lumée Maison — Premium Korean Aesthetic Cosmetics",
+    template: "%s | Lumée Maison",
   },
   description:
     "B2B wholesale supplier of premium Korean medical-grade aesthetic products. Fillers, mesotherapy, botulinum, and more. Serving professionals worldwide.",
   keywords: ["korean cosmetics", "aesthetic products", "B2B wholesale", "fillers", "mesotherapy", "botulinum"],
   openGraph: {
     type: "website",
-    siteName: "Lumière",
+    siteName: "Lumée Maison",
   },
 };
 

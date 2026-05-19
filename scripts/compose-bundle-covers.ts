@@ -39,7 +39,7 @@ function gridFor(n: number): { rows: number; cols: number; take: number } {
   if (n === 2) return { rows: 1, cols: 2, take: 2 };
   if (n <= 4) return { rows: 2, cols: 2, take: n };
   if (n <= 6) return { rows: 2, cols: 3, take: n };
-  return { rows: 3, cols: 3, take: 9 };
+  return { rows: 3, cols: 3, take: Math.min(9, n) };
 }
 
 async function ensurePlaceholder(): Promise<void> {
