@@ -59,7 +59,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       <Link
         href={`/${locale}/product/${product.id}`}
         onClick={rememberCatalogueUrl}
-        className="flex gap-4 p-4 bg-white border border-bone rounded-sm hover:border-gold transition-all duration-300 group"
+        className="flex gap-4 p-4 bg-white border border-bone rounded-md hover:border-gold transition-all duration-300 group"
       >
         <div className="w-20 h-20 flex-shrink-0 relative overflow-hidden">
           <ProductImage
@@ -84,12 +84,12 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
                 {displayId} {displayName}
               </h3>
               {variantCount > 1 && (
-                <p className="text-[9px] text-gold/80 font-medium tracking-wide mt-0.5">
+                <p className="text-[10px] text-gold/80 font-medium tracking-wide mt-0.5">
                   {variantCount} options
                 </p>
               )}
               {product.specification && (
-                <p className="text-xs text-mist mt-1 line-clamp-1">{getLocalizedSpecification(product, locale)}</p>
+                <p className="text-sm text-mist mt-1 line-clamp-1">{getLocalizedSpecification(product, locale)}</p>
               )}
             </div>
             <div className="flex-shrink-0 text-right">
@@ -104,7 +104,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         </div>
         <button
           onClick={handleAddToCart}
-          className="self-center flex-shrink-0 w-9 h-9 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors"
+          className="self-center flex-shrink-0 w-9 h-9 border border-bone rounded-md flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors"
           aria-label={t('addToCart')}
         >
           <ShoppingBag size={16} />
@@ -152,18 +152,18 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       </div>
 
       {/* Info */}
-      <div className="p-4">
+      <div className="p-5">
         <p className="text-xs text-mist mb-1">{displayId}</p>
-        <h3 className="text-xs font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-1">
+        <h3 className="text-sm font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-1">
           {displayName}
         </h3>
         {variantCount > 1 && (
-          <p className="text-[9px] text-gold/80 font-medium tracking-wide mb-1">
+          <p className="text-[10px] text-gold/80 font-medium tracking-wide mb-1">
             {variantCount} options available
           </p>
         )}
         {product.specification && (
-          <p className="text-xs text-mist line-clamp-1 mb-3">{getLocalizedSpecification(product, locale)}</p>
+          <p className="text-sm text-mist line-clamp-1 mb-3">{getLocalizedSpecification(product, locale)}</p>
         )}
         <div className="flex items-center justify-between">
           <div>

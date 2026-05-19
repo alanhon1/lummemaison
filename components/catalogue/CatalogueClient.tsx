@@ -215,7 +215,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
       `}>
         <div className="p-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xs font-semibold tracking-widest uppercase text-charcoal">
+            <h2 className="text-sm font-semibold tracking-widest uppercase text-charcoal">
               {t('filter')}
             </h2>
             <button
@@ -228,14 +228,14 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
 
           {/* Categories */}
           <div className="mb-8">
-            <h3 className="text-xs font-semibold tracking-wider uppercase text-mist mb-3">
+            <h3 className="text-sm font-semibold tracking-wider uppercase text-mist mb-3">
               {t('allCategories')}
             </h3>
             <ul className="space-y-1">
               <li>
                 <button
                   onClick={() => handleCategoryClick('')}
-                  className={`w-full text-left px-3 py-2 text-xs rounded-sm transition-colors ${
+                  className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
                     !activeCategory
                       ? 'bg-obsidian text-cream font-semibold'
                       : 'text-charcoal hover:text-gold hover:bg-cream'
@@ -248,7 +248,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <li>
                 <button
                   onClick={() => handleCategoryClick('__bundles__')}
-                  className={`w-full text-left px-3 py-2 text-xs rounded-sm transition-colors ${
+                  className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
                     activeCategory === '__bundles__'
                       ? 'bg-gold text-white font-semibold'
                       : 'text-charcoal hover:text-gold hover:bg-cream'
@@ -264,7 +264,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                   <li key={cat.id}>
                     <button
                       onClick={() => handleCategoryClick(cat.id)}
-                      className={`w-full text-left px-3 py-2 text-xs rounded-sm transition-colors ${
+                      className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
                         activeCategory === cat.id
                           ? 'bg-gold text-white font-semibold'
                           : 'text-charcoal hover:text-gold hover:bg-cream'
@@ -281,7 +281,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
 
           {/* Quick Filters */}
           <div className="space-y-3 mb-8">
-            <h3 className="text-xs font-semibold tracking-wider uppercase text-mist mb-3">
+            <h3 className="text-sm font-semibold tracking-wider uppercase text-mist mb-3">
               Quick Filters
             </h3>
             <label className="flex items-center gap-2 cursor-pointer">
@@ -291,7 +291,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                 onChange={e => { setSaleOnly(e.target.checked); setPage(1); updateUrl({ sale: e.target.checked, page: 1 }); }}
                 className="w-3 h-3 accent-gold"
               />
-              <span className="text-xs text-charcoal">{t('saleOnly')}</span>
+              <span className="text-sm text-charcoal">{t('saleOnly')}</span>
             </label>
             <label className="flex items-center gap-2 cursor-pointer">
               <input
@@ -300,7 +300,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                 onChange={e => { setNewOnly(e.target.checked); setPage(1); updateUrl({ new: e.target.checked, page: 1 }); }}
                 className="w-3 h-3 accent-gold"
               />
-              <span className="text-xs text-charcoal">{t('newOnly')}</span>
+              <span className="text-sm text-charcoal">{t('newOnly')}</span>
             </label>
             {activeCategory !== '__bundles__' && (
               <label className="flex items-center gap-2 cursor-pointer">
@@ -310,7 +310,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                   onChange={e => { setGroupedOnly(e.target.checked); setPage(1); updateUrl({ grouped: e.target.checked, page: 1 }); }}
                   className="w-3 h-3 accent-gold"
                 />
-                <span className="text-xs text-charcoal">Bundle products only</span>
+                <span className="text-sm text-charcoal">Bundle products only</span>
               </label>
             )}
           </div>
@@ -319,19 +319,19 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
           <div className="mt-10 pt-6 border-t border-bone grid grid-cols-2 gap-3 text-center">
             <div>
               <div className="font-display text-2xl font-light text-gold">{products.length}</div>
-              <div className="text-[10px] tracking-widest uppercase text-mist mt-0.5">Products</div>
+              <div className="text-xs tracking-widest uppercase text-mist mt-0.5">Products</div>
             </div>
             <div>
               <div className="font-display text-2xl font-light text-gold">{categories.length}</div>
-              <div className="text-[10px] tracking-widest uppercase text-mist mt-0.5">Categories</div>
+              <div className="text-xs tracking-widest uppercase text-mist mt-0.5">Categories</div>
             </div>
             <div>
               <div className="font-display text-2xl font-light text-gold">50+</div>
-              <div className="text-[10px] tracking-widest uppercase text-mist mt-0.5">Countries</div>
+              <div className="text-xs tracking-widest uppercase text-mist mt-0.5">Countries</div>
             </div>
             <div>
               <div className="font-display text-2xl font-light text-gold">B2B</div>
-              <div className="text-[10px] tracking-widest uppercase text-mist mt-0.5">Specialist</div>
+              <div className="text-xs tracking-widest uppercase text-mist mt-0.5">Specialist</div>
             </div>
           </div>
 
@@ -346,14 +346,14 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             {/* Mobile filter toggle */}
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase border border-bone rounded-sm px-3 py-2 hover:border-gold hover:text-gold transition-colors"
+              className="lg:hidden flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase border border-bone rounded-md px-3 py-2 hover:border-gold hover:text-gold transition-colors"
             >
               <Filter size={13} />
               {t('filter')}
             </button>
 
             {/* Search */}
-            <div className="flex-1 min-w-48 max-w-sm flex items-center gap-2 border border-bone rounded-sm px-3 py-2 focus-within:border-gold transition-colors">
+            <div className="flex-1 min-w-48 max-w-sm flex items-center gap-2 border border-bone rounded-md px-3 py-2 focus-within:border-gold transition-colors">
               <Search size={14} className="text-mist flex-shrink-0" />
               <input
                 type="text"
@@ -374,7 +374,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <select
                 value={sortBy}
                 onChange={e => { const v = e.target.value as SortOption; setSortBy(v); setPage(1); updateUrl({ sort: v, page: 1 }); }}
-                className="text-xs border border-bone rounded-sm px-3 py-2 pr-7 bg-white text-charcoal outline-none hover:border-gold transition-colors appearance-none cursor-pointer"
+                className="text-xs border border-bone rounded-md px-3 py-2 pr-7 bg-white text-charcoal outline-none hover:border-gold transition-colors appearance-none cursor-pointer"
               >
                 <option value="default">{t('sortDefault')}</option>
                 <option value="price-asc">{t('sortPriceAsc')}</option>
@@ -385,7 +385,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             </div>
 
             {/* Layout toggle */}
-            <div className="hidden sm:flex border border-bone rounded-sm overflow-hidden">
+            <div className="hidden sm:flex border border-bone rounded-md overflow-hidden">
               <button
                 onClick={() => setLayout('grid')}
                 className={`p-2 ${layout === 'grid' ? 'bg-obsidian text-cream' : 'text-mist hover:text-charcoal'} transition-colors`}
@@ -401,7 +401,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             </div>
 
             {/* Count */}
-            <span className="text-xs text-mist ml-auto">
+            <span className="text-sm text-mist ml-auto">
               {renders.length} cards / {totalProductsRepresented} products
             </span>
 
@@ -488,7 +488,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <button
                 onClick={() => { const p = Math.max(1, page - 1); setPage(p); updateUrl({ page: p }); window.scrollTo(0, 0); }}
                 disabled={page === 1}
-                className="px-4 py-2 text-xs border border-bone rounded-sm hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 text-xs border border-bone rounded-md hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 ←
               </button>
@@ -503,7 +503,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                   <button
                     key={pageNum}
                     onClick={() => { setPage(pageNum); updateUrl({ page: pageNum }); window.scrollTo(0, 0); }}
-                    className={`w-8 h-8 text-xs border rounded-sm transition-colors ${
+                    className={`w-8 h-8 text-xs border rounded-md transition-colors ${
                       page === pageNum
                         ? 'bg-obsidian text-cream border-obsidian'
                         : 'border-bone hover:border-gold hover:text-gold'
@@ -516,7 +516,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <button
                 onClick={() => { const p = Math.min(totalPages, page + 1); setPage(p); updateUrl({ page: p }); window.scrollTo(0, 0); }}
                 disabled={page === totalPages}
-                className="px-4 py-2 text-xs border border-bone rounded-sm hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                className="px-4 py-2 text-xs border border-bone rounded-md hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
                 →
               </button>
