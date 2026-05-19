@@ -31,14 +31,18 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
   const searchParams = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState(searchParams.get('q') || '');
-  const [activeCategory, setActiveCategory] = useState(initialCategory || '');
-  const [saleOnly, setSaleOnly] = useState(false);
-  const [newOnly, setNewOnly] = useState(false);
-  const [groupedOnly, setGroupedOnly] = useState(false);
-  const [sortBy, setSortBy] = useState<SortOption>('default');
+  const [activeCategory, setActiveCategory] = useState(
+    initialCategory || searchParams.get('cat') || '',
+  );
+  const [saleOnly, setSaleOnly] = useState(searchParams.get('sale') === '1');
+  const [newOnly, setNewOnly] = useState(searchParams.get('new') === '1');
+  const [groupedOnly, setGroupedOnly] = useState(searchParams.get('grouped') === '1');
+  const [sortBy, setSortBy] = useState<SortOption>(
+    (searchParams.get('sort') as SortOption) || 'default',
+  );
   const [layout, setLayout] = useState<'grid' | 'list'>('grid');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(parseInt(searchParams.get('page') || '1', 10) || 1);
   const PER_PAGE = 24;
 
   const fuse = useMemo(() => new Fuse(products, fuseOptions), []);
@@ -135,20 +139,38 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
   const totalPages = Math.ceil(filteredProducts.length / PER_PAGE);
   const paginatedProducts = filteredProducts.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
+  const updateUrl = useCallback(
+    (patch: Partial<{ q: string; cat: string; sale: boolean; new: boolean; grouped: boolean; sort: SortOption; page: number }>) => {
+      const params = new URLSearchParams(searchParams.toString());
+      const apply = (key: string, value: unknown, isDefault: (v: unknown) => boolean) => {
+        if (isDefault(value)) params.delete(key);
+        else params.set(key, String(value));
+      };
+      if ('q' in patch) apply('q', patch.q, v => !v);
+      if ('cat' in patch) apply('cat', patch.cat, v => !v);
+      if ('sale' in patch) apply('sale', patch.sale ? '1' : '', v => v !== '1');
+      if ('new' in patch) apply('new', patch.new ? '1' : '', v => v !== '1');
+      if ('grouped' in patch) apply('grouped', patch.grouped ? '1' : '', v => v !== '1');
+      if ('sort' in patch) apply('sort', patch.sort, v => !v || v === 'default');
+      if ('page' in patch) apply('page', patch.page, v => !v || v === 1);
+      const qs = params.toString();
+      router.replace(qs ? `/${locale}/catalogue?${qs}` : `/${locale}/catalogue`, { scroll: false });
+    },
+    [locale, router, searchParams],
+  );
+
   const handleSearch = useCallback((q: string) => {
     setSearchQuery(q);
     setPage(1);
-    if (q) {
-      router.replace(`/${locale}/catalogue?q=${encodeURIComponent(q)}`, { scroll: false });
-    } else {
-      router.replace(`/${locale}/catalogue`, { scroll: false });
-    }
-  }, [locale, router]);
+    updateUrl({ q, page: 1 });
+  }, [updateUrl]);
 
   const handleCategoryClick = (catId: string) => {
-    setActiveCategory(activeCategory === catId ? '' : catId);
+    const next = activeCategory === catId ? '' : catId;
+    setActiveCategory(next);
     setPage(1);
     setSidebarOpen(false);
+    updateUrl({ cat: next, page: 1 });
   };
 
   const clearFilters = () => {
@@ -159,6 +181,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
     setGroupedOnly(false);
     setSortBy('default');
     setPage(1);
+    router.replace(`/${locale}/catalogue`, { scroll: false });
   };
 
   const hasActiveFilters = searchQuery || activeCategory || saleOnly || newOnly || groupedOnly;
@@ -254,7 +277,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <input
                 type="checkbox"
                 checked={saleOnly}
-                onChange={e => { setSaleOnly(e.target.checked); setPage(1); }}
+                onChange={e => { setSaleOnly(e.target.checked); setPage(1); updateUrl({ sale: e.target.checked, page: 1 }); }}
                 className="w-3 h-3 accent-gold"
               />
               <span className="text-xs text-charcoal">{t('saleOnly')}</span>
@@ -263,7 +286,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               <input
                 type="checkbox"
                 checked={newOnly}
-                onChange={e => { setNewOnly(e.target.checked); setPage(1); }}
+                onChange={e => { setNewOnly(e.target.checked); setPage(1); updateUrl({ new: e.target.checked, page: 1 }); }}
                 className="w-3 h-3 accent-gold"
               />
               <span className="text-xs text-charcoal">{t('newOnly')}</span>
@@ -273,7 +296,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                 <input
                   type="checkbox"
                   checked={groupedOnly}
-                  onChange={e => { setGroupedOnly(e.target.checked); setPage(1); }}
+                  onChange={e => { setGroupedOnly(e.target.checked); setPage(1); updateUrl({ grouped: e.target.checked, page: 1 }); }}
                   className="w-3 h-3 accent-gold"
                 />
                 <span className="text-xs text-charcoal">Bundle products only</span>
@@ -339,7 +362,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             <div className="relative">
               <select
                 value={sortBy}
-                onChange={e => { setSortBy(e.target.value as SortOption); setPage(1); }}
+                onChange={e => { const v = e.target.value as SortOption; setSortBy(v); setPage(1); updateUrl({ sort: v, page: 1 }); }}
                 className="text-xs border border-bone rounded-sm px-3 py-2 pr-7 bg-white text-charcoal outline-none hover:border-gold transition-colors appearance-none cursor-pointer"
               >
                 <option value="default">{t('sortDefault')}</option>
@@ -393,7 +416,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                   : categories.find(c => c.id === activeCategory)?.name}
               </span>
               <button
-                onClick={() => setActiveCategory('')}
+                onClick={() => { setActiveCategory(''); updateUrl({ cat: '' }); }}
                 className="text-mist hover:text-charcoal"
               >
                 <X size={12} />
@@ -456,7 +479,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-2 mt-12">
               <button
-                onClick={() => { setPage(p => Math.max(1, p - 1)); window.scrollTo(0, 0); }}
+                onClick={() => { const p = Math.max(1, page - 1); setPage(p); updateUrl({ page: p }); window.scrollTo(0, 0); }}
                 disabled={page === 1}
                 className="px-4 py-2 text-xs border border-bone rounded-sm hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
@@ -472,7 +495,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                 return (
                   <button
                     key={pageNum}
-                    onClick={() => { setPage(pageNum); window.scrollTo(0, 0); }}
+                    onClick={() => { setPage(pageNum); updateUrl({ page: pageNum }); window.scrollTo(0, 0); }}
                     className={`w-8 h-8 text-xs border rounded-sm transition-colors ${
                       page === pageNum
                         ? 'bg-obsidian text-cream border-obsidian'
@@ -484,7 +507,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                 );
               })}
               <button
-                onClick={() => { setPage(p => Math.min(totalPages, p + 1)); window.scrollTo(0, 0); }}
+                onClick={() => { const p = Math.min(totalPages, page + 1); setPage(p); updateUrl({ page: p }); window.scrollTo(0, 0); }}
                 disabled={page === totalPages}
                 className="px-4 py-2 text-xs border border-bone rounded-sm hover:border-gold hover:text-gold disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
               >
