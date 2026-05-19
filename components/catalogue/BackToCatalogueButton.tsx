@@ -28,27 +28,20 @@ export default function BackToCatalogueButton({
     if (!referrer) return;
 
     let url: URL;
-    try {
-      url = new URL(referrer);
-    } catch {
-      return;
-    }
-
+    try { url = new URL(referrer); } catch { return; }
     if (url.origin !== window.location.origin) return;
 
-    // Match /{anyLocale}/catalogue/{categoryId}
-    const match = url.pathname.match(/^\/[^/]+\/catalogue\/([^/]+)\/?$/);
-    if (!match) return;
+    // /[locale]/catalogue or /[locale]/catalogue/[category]
+    const m = url.pathname.match(/^\/[^/]+\/catalogue(?:\/([^/]+))?\/?$/);
+    if (!m) return;
 
-    const categoryId = match[1];
-    const categoryName = categoriesById[categoryId];
-    if (!categoryName) return;
+    const categoryId = m[1];
+    const categoryName = categoryId ? categoriesById[categoryId] : undefined;
+    const href = url.pathname + url.search;
+    const label = categoryName ? `Back to ${categoryName}` : 'Back to Catalogue';
 
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setTarget({
-      href: `/${locale}/catalogue/${categoryId}`,
-      label: `Back to ${categoryName}`,
-    });
+    setTarget({ href, label });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
