@@ -1,7 +1,0 @@
-# merge-translations report
-generated: 2026-05-19T13:02:22.487Z
-ko updates: 60
-ru updates: 60
-
-  batch-1.json  ko=undefined  ru=undefined
-  batch-1.json  ko=undefined  ru=undefined
