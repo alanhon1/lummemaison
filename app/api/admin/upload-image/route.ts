@@ -40,54 +40,22 @@ export async function POST(req: NextRequest) {
   const outputDir = path.join(process.cwd(), 'public', 'images', 'products');
   fs.mkdirSync(outputDir, { recursive: true });
 
-  const outputPath = path.join(outputDir, `product-${id}.webp`);
-  const backupPath = path.join(outputDir, `product-${id}.bak.webp`);
-  const tmpPath = path.join(outputDir, `product-${id}.tmp-${Date.now()}.webp`);
-
-  // Best-effort backup. If the file is locked (Windows EBUSY because the
-  // browser still has it open), skip the rename and let sharp overwrite.
-  let backupCreated = false;
-  if (fs.existsSync(outputPath)) {
-    try {
-      fs.copyFileSync(outputPath, backupPath);
-      backupCreated = true;
-    } catch {
-      /* ignore — proceed without backup */
-    }
-  }
+  // Always write to a versioned filename so we never have to overwrite a
+  // file that the browser or Next.js image cache might still be holding
+  // open. Old files become orphans (cleaned up by a separate script later).
+  const versionTag = Date.now();
+  const outputName = `product-${id}-${versionTag}.webp`;
+  const outputPath = path.join(outputDir, outputName);
 
   try {
     const buf = Buffer.from(await file.arrayBuffer());
     await sharp(buf)
       .resize(1600, 1600, { fit: 'inside', withoutEnlargement: true })
       .webp({ quality: 90 })
-      .toFile(tmpPath);
-
-    // Replace the live file with the tmp output. On Windows this can fail
-    // with EBUSY if the OS still has a handle; retry a couple of times.
-    let renamed = false;
-    for (let attempt = 0; attempt < 3 && !renamed; attempt++) {
-      try {
-        if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
-        fs.renameSync(tmpPath, outputPath);
-        renamed = true;
-      } catch (err) {
-        if (attempt === 2) throw err;
-        await new Promise(r => setTimeout(r, 150));
-      }
-    }
+      .toFile(outputPath);
   } catch (err) {
-    // Restore backup if available.
-    if (backupCreated && fs.existsSync(backupPath)) {
-      try {
-        if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
-        fs.copyFileSync(backupPath, outputPath);
-      } catch {
-        /* ignore */
-      }
-    }
-    if (fs.existsSync(tmpPath)) {
-      try { fs.unlinkSync(tmpPath); } catch { /* ignore */ }
+    if (fs.existsSync(outputPath)) {
+      try { fs.unlinkSync(outputPath); } catch { /* ignore */ }
     }
     const detail = err instanceof Error ? err.message : String(err);
     return NextResponse.json(
@@ -96,5 +64,5 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  return NextResponse.json({ ok: true, path: `/images/products/product-${id}.webp` });
+  return NextResponse.json({ ok: true, path: `/images/products/${outputName}` });
 }
