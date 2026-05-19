@@ -16,6 +16,16 @@ interface ProductCardProps {
   isBundle?: boolean;
 }
 
+function rememberCatalogueUrl() {
+  if (typeof window === 'undefined') return;
+  if (!window.location.pathname.includes('/catalogue')) return;
+  try {
+    sessionStorage.setItem('catalogue:lastUrl', window.location.pathname + window.location.search);
+  } catch {
+    // sessionStorage can throw in private mode — ignore.
+  }
+}
+
 export default function ProductCard({ product, layout = 'grid', variantCount = 1, isBundle = false }: ProductCardProps) {
   const t = useTranslations('catalogue');
   const tProduct = useTranslations('product');
@@ -48,6 +58,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
     return (
       <Link
         href={`/${locale}/product/${product.id}`}
+        onClick={rememberCatalogueUrl}
         className="flex gap-4 p-4 bg-white border border-bone rounded-sm hover:border-gold transition-all duration-300 group"
       >
         <div className="w-20 h-20 flex-shrink-0 relative overflow-hidden">
@@ -105,6 +116,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   return (
     <Link
       href={`/${locale}/product/${product.id}`}
+      onClick={rememberCatalogueUrl}
       className="product-card group block"
     >
       {/* Image */}
