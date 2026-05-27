@@ -124,7 +124,9 @@
       "bestSeller": "Хит продаж"
     },
     "relatedProducts": "Похожие продукты",
-    "contactForOrder": "Связаться для заказа"
+    "contactForOrder": "Связаться для заказа",
+    "readMore": "Подробнее",
+    "readLess": "Свернуть"
   },
   "cart": {
     "title": "Корзина",

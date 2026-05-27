@@ -124,7 +124,9 @@
       "bestSeller": "Best Seller"
     },
     "relatedProducts": "Related Products",
-    "contactForOrder": "Contact to Order"
+    "contactForOrder": "Contact to Order",
+    "readMore": "Read more",
+    "readLess": "Show less"
   },
   "cart": {
     "title": "Cart",

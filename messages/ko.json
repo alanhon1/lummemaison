@@ -124,7 +124,9 @@
       "bestSeller": "베스트셀러"
     },
     "relatedProducts": "관련 제품",
-    "contactForOrder": "주문 문의"
+    "contactForOrder": "주문 문의",
+    "readMore": "더 보기",
+    "readLess": "접기"
   },
   "cart": {
     "title": "장바구니",
