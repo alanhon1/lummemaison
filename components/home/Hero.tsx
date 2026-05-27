@@ -12,7 +12,7 @@ export default function Hero() {
   const locale = useLocale();
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-obsidian">
+    <section className="relative min-h-[78vh] md:min-h-screen flex items-center overflow-hidden bg-obsidian">
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-obsidian via-charcoal to-obsidian" />
 
@@ -45,7 +45,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-32 pt-40">
+      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-12 md:pt-40 md:py-32">
         <div className="max-w-3xl">
           {/* Tag */}
           <motion.div
@@ -55,7 +55,7 @@ export default function Hero() {
             className="flex items-center gap-3 mb-8"
           >
             <div className="h-px w-12 bg-gold" />
-            <span className="text-xs font-semibold tracking-[0.3em] uppercase text-gold">
+            <span className="text-[10px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-gold">
               {t('tagline')}
             </span>
           </motion.div>
@@ -65,7 +65,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-5xl md:text-7xl font-light leading-[1.1] text-cream mb-6"
+            className="font-display text-4xl sm:text-5xl md:text-7xl font-light leading-[1.1] text-cream mb-6"
           >
             {t('title')}
             <br />
@@ -77,7 +77,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-cream/60 text-base md:text-lg leading-relaxed max-w-xl mb-10"
+            className="text-cream/60 text-base md:text-lg leading-relaxed max-w-none md:max-w-xl mb-10"
           >
             {t('subtitle')}
           </motion.p>
@@ -87,18 +87,18 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex flex-wrap gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <Link
               href={`/${locale}/catalogue`}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gold text-cream text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-dark transition-all duration-300 group"
+              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 bg-gold text-cream text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-dark transition-all duration-300 group"
             >
               {t('cta')}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-3 px-8 py-4 border border-cream/30 text-cream text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold hover:text-gold transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 border border-cream/30 text-cream text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold hover:text-gold transition-all duration-300"
             >
               {t('ctaSecondary')}
             </Link>
@@ -109,7 +109,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="flex gap-12 mt-16 pt-12 border-t border-cream/10"
+            className="grid grid-cols-3 gap-4 mt-10 pt-8 sm:flex sm:gap-12 sm:mt-16 sm:pt-12 border-t border-cream/10"
           >
             {[
               { value: '420', label: 'Products' }, /* keep in sync with data/products.json */
@@ -117,8 +117,8 @@ export default function Hero() {
               { value: '50+', label: 'Countries Served' },
             ].map(stat => (
               <div key={stat.label}>
-                <div className="font-display text-3xl font-light text-cream">{stat.value}</div>
-                <div className="text-xs text-cream/50 tracking-wider mt-1">{stat.label}</div>
+                <div className="font-display text-2xl sm:text-3xl font-light text-cream">{stat.value}</div>
+                <div className="text-[10px] sm:text-xs text-cream/50 tracking-wider mt-1">{stat.label}</div>
               </div>
             ))}
           </motion.div>
@@ -130,7 +130,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
