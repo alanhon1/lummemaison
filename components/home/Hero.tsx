@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 
 export default function Hero() {
@@ -21,38 +21,16 @@ export default function Hero() {
         <div className="w-full h-full bg-gradient-to-bl from-gold/30 to-transparent" />
       </div>
 
-      {/* Animated floating orbs — right side */}
-      <motion.div
-        className="absolute top-1/4 right-1/4 w-64 h-64 bg-gold/8 rounded-full blur-3xl pointer-events-none"
-        animate={{ y: [0, -30, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      {/* Static decorative glows (replaces 6 animated orbs) */}
+      <div
+        aria-hidden
+        className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(201,169,110,0.10) 0%, transparent 70%)' }}
       />
-      <motion.div
-        className="absolute bottom-1/3 right-1/6 w-96 h-96 bg-gold/5 rounded-full blur-3xl pointer-events-none"
-        animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute top-1/2 right-1/3 w-32 h-32 bg-gold/12 rounded-full blur-2xl pointer-events-none"
-        animate={{ y: [0, -15, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      {/* Animated floating orbs — left side (subtler) */}
-      <motion.div
-        className="absolute top-1/3 left-1/6 w-56 h-56 bg-gold/6 rounded-full blur-3xl pointer-events-none"
-        animate={{ y: [0, 25, 0], x: [0, 10, 0] }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 left-1/5 w-72 h-72 bg-gold/4 rounded-full blur-3xl pointer-events-none"
-        animate={{ y: [0, -18, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute top-2/3 left-1/3 w-28 h-28 bg-gold/10 rounded-full blur-2xl pointer-events-none"
-        animate={{ y: [0, 12, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+      <div
+        aria-hidden
+        className="absolute bottom-1/4 left-1/5 w-80 h-80 rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%)' }}
       />
 
       {/* Sparkle particles */}
@@ -166,21 +144,37 @@ export default function Hero() {
 }
 
 function Sparkles() {
-  // Spread across the full viewport (5% – 95%) so left and right both get particles.
-  const particles = useMemo(() => Array.from({ length: 16 }, (_, i) => ({
+  const shouldReduceMotion = useReducedMotion();
+  const particles = useMemo(() => Array.from({ length: 4 }, (_, i) => ({
     id: i,
-    size: 3 + ((i * 0.9) % 7),
-    top: `${10 + ((i * 13.7) % 80)}%`,
-    left: `${5 + ((i * 19.3) % 90)}%`,
-    delay: (i * 0.6) % 3.5,
-    duration: 3 + ((i * 0.4) % 3),
+    size: 3 + ((i * 1.5) % 5),
+    top: `${15 + ((i * 23) % 70)}%`,
+    left: `${10 + ((i * 31) % 80)}%`,
+    delay: (i * 0.8) % 3,
+    duration: 4 + ((i * 0.6) % 3),
   })), []);
+
+  if (shouldReduceMotion) {
+    return (
+      <>
+        {particles.map(p => (
+          <div
+            key={p.id}
+            aria-hidden
+            className="absolute rounded-full bg-gold/40 blur-sm pointer-events-none"
+            style={{ width: p.size, height: p.size, top: p.top, left: p.left, opacity: 0.5 }}
+          />
+        ))}
+      </>
+    );
+  }
 
   return (
     <>
       {particles.map(p => (
         <motion.div
           key={p.id}
+          aria-hidden
           className="absolute rounded-full bg-gold/40 blur-sm pointer-events-none"
           style={{ width: p.size, height: p.size, top: p.top, left: p.left }}
           animate={{ opacity: [0, 0.7, 0], scale: [0.8, 1.2, 0.8], y: [0, -20, 0] }}
