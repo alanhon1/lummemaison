@@ -11,14 +11,14 @@ export default function WhyChooseUs() {
   const t = useTranslations('home.whyChooseUs');
 
   return (
-    <section className="py-24 bg-obsidian text-cream overflow-hidden">
+    <section className="py-12 md:py-24 bg-obsidian text-cream overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-4">
             {t('subtitle')}
@@ -39,7 +39,7 @@ export default function WhyChooseUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group text-center p-8 border border-cream/10 hover:border-gold/40 transition-all duration-500 hover:bg-cream/5"
+                className="group text-center p-5 md:p-8 border border-cream/10 hover:border-gold/40 transition-all duration-500 hover:bg-cream/5"
               >
                 <div className="w-12 h-12 border border-gold/40 flex items-center justify-center mx-auto mb-5 group-hover:border-gold group-hover:bg-gold/10 transition-all duration-300">
                   <Icon size={20} className="text-gold" />

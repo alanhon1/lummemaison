@@ -28,16 +28,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       {/* Best Sellers */}
       {bestSellers.length > 0 && (
-        <section className="py-24 bg-transparent">
+        <section className="py-12 md:py-24 bg-transparent">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-12">
+            <div className="mb-8 md:mb-12">
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-3">
                 Trusted by Professionals
               </p>
               <h2 className="section-title">Best Sellers</h2>
               <div className="gold-divider mt-3" />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
               {bestSellers.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -50,16 +50,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       {/* New Arrivals */}
       {newProducts.length > 0 && (
-        <section className="py-24">
+        <section className="py-12 md:py-24">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-12">
+            <div className="mb-8 md:mb-12">
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-3">
                 Latest Additions
               </p>
               <h2 className="section-title">New Arrivals</h2>
               <div className="gold-divider mt-3" />
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
               {newProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}

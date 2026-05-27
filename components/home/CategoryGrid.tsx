@@ -36,14 +36,14 @@ export default function CategoryGrid() {
   const locale = useLocale();
 
   return (
-    <section className="py-24">
+    <section className="py-12 md:py-24">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-4">
             {t('subtitle')}
@@ -67,7 +67,7 @@ export default function CategoryGrid() {
                   href={`/${locale}/catalogue/${cat.id}`}
                   className="group flex flex-col items-center gap-3"
                 >
-                  <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-full border border-gold/30 bg-cream flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:shadow-[0_0_20px_rgba(201,169,110,0.35)]">
+                  <div className="relative w-14 h-14 md:w-20 md:h-20 rounded-full border border-gold/30 bg-cream flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:shadow-[0_0_20px_rgba(201,169,110,0.35)]">
                     <Icon
                       size={24}
                       strokeWidth={1.5}
