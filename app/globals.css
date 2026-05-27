@@ -393,12 +393,15 @@ body {
   .cart-panel { transition: none !important; }
 }
 
-/* Footer collapsible — desktop hides the summary (Footer.tsx forces open via `open` attr) */
+/* Footer collapsible — closed on mobile by default <details> semantics; force-open on desktop via CSS */
 details.footer-collapsible > summary { list-style: none; }
 details.footer-collapsible > summary::-webkit-details-marker { display: none; }
 @media (min-width: 768px) {
   details.footer-collapsible > summary {
     cursor: default;
     pointer-events: none;
+  }
+  details.footer-collapsible > :not(summary) {
+    display: block !important;
   }
 }

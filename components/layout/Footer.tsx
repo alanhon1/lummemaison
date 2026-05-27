@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { siteConfig } from '@/lib/site-config';
@@ -19,16 +18,6 @@ export default function Footer() {
   const t = useTranslations('footer');
   const tNav = useTranslations('nav');
   const locale = useLocale();
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 768px)');
-    const update = () => setIsDesktop(mq.matches);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-
   const navLinks = [
     { href: `/${locale}`, label: tNav('home') },
     { href: `/${locale}/catalogue`, label: tNav('catalogue') },
@@ -69,7 +58,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation */}
-          <details open={isDesktop} className="footer-collapsible group">
+          <details className="footer-collapsible group">
             <SectionHeader title={t('company')} />
             <ul className="space-y-3 pt-2 md:pt-0">
               {navLinks.map(item => (
@@ -83,7 +72,7 @@ export default function Footer() {
           </details>
 
           {/* Payment & Shipping */}
-          <details open={isDesktop} className="footer-collapsible group">
+          <details className="footer-collapsible group">
             <SectionHeader title={t('payment')} />
             <ul className="space-y-3 pt-2 md:pt-0">
               <li className="text-xs text-cream/60"><span className="text-gold">Wise</span> — Bank Transfer</li>
@@ -106,7 +95,7 @@ export default function Footer() {
           </details>
 
           {/* Contact */}
-          <details open={isDesktop} className="footer-collapsible group">
+          <details className="footer-collapsible group">
             <SectionHeader title="Contact" />
             <ul className="space-y-3 pt-2 md:pt-0">
               <li>
