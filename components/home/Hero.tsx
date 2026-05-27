@@ -45,7 +45,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-12 md:pt-40 md:py-32">
+      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-12 md:pt-40 md:pb-32">
         <div className="max-w-3xl">
           {/* Tag */}
           <motion.div
