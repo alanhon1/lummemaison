@@ -59,16 +59,16 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       <Link
         href={`/${locale}/product/${product.id}`}
         onClick={rememberCatalogueUrl}
-        className="flex gap-4 p-4 bg-white border border-bone rounded-md hover:border-gold transition-all duration-300 group"
+        className="flex gap-3 sm:gap-4 p-3 sm:p-4 bg-white border border-bone rounded-md hover:border-gold transition-all duration-300 group"
       >
-        <div className="w-20 h-20 flex-shrink-0 relative overflow-hidden">
+        <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 relative overflow-hidden">
           <ProductImage
             src={displayImage}
             alt={displayName}
             productId={product.id}
             categoryId={product.categoryId}
             fill
-            sizes="80px"
+            sizes="(max-width: 640px) 64px, 80px"
           />
         </div>
         <div className="flex-1 min-w-0">
@@ -131,16 +131,27 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 
-        {/* Badges */}
+        {/* Badges — mobile: first only (priority sale > new > best > bundle); desktop: all */}
         <div className="absolute top-3 left-3 flex flex-col gap-1">
-          {isBundle && <span className="badge-bundle">BUNDLE</span>}
-          {product.isNew && <span className="badge-new">{tProduct('tags.new')}</span>}
-          {product.isSale && <span className="badge-sale">{tProduct('tags.sale')}</span>}
-          {product.isBestSeller && <span className="badge-best">{tProduct('tags.bestSeller')}</span>}
+          {(() => {
+            const all = [
+              product.isSale && <span key="s" className="badge-sale">{tProduct('tags.sale')}</span>,
+              product.isNew && <span key="n" className="badge-new">{tProduct('tags.new')}</span>,
+              product.isBestSeller && <span key="b" className="badge-best">{tProduct('tags.bestSeller')}</span>,
+              isBundle && <span key="bd" className="badge-bundle">BUNDLE</span>,
+            ].filter(Boolean) as React.ReactElement[];
+            if (all.length === 0) return null;
+            return (
+              <>
+                <div className="md:hidden">{all[0]}</div>
+                <div className="hidden md:flex md:flex-col md:gap-1">{all}</div>
+              </>
+            );
+          })()}
         </div>
 
-        {/* Quick Add overlay */}
-        <div className="absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+        {/* Quick Add overlay — desktop only (hover-based) */}
+        <div className="hidden md:block absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
           <button
             onClick={handleAddToCart}
             className="w-full btn-gold text-[10px] py-2.5 flex items-center justify-center gap-2"
@@ -152,9 +163,9 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       </div>
 
       {/* Info */}
-      <div className="p-6">
-        <p className="text-sm text-mist mb-1">{displayId}</p>
-        <h3 className="text-base font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-2">
+      <div className="p-3 md:p-6">
+        <p className="text-xs text-mist mb-1">{displayId}</p>
+        <h3 className="text-sm md:text-base font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-2">
           {displayName}
         </h3>
         {variantCount > 1 && (
@@ -163,11 +174,11 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
           </p>
         )}
         {product.specification && (
-          <p className="text-sm text-mist line-clamp-1 mb-3">{getLocalizedSpecification(product, locale)}</p>
+          <p className="hidden md:block text-sm text-mist line-clamp-1 mb-3">{getLocalizedSpecification(product, locale)}</p>
         )}
         <div className="flex items-center justify-between">
           <div>
-            <span className="font-display text-lg font-light text-charcoal">
+            <span className="font-display text-base md:text-lg font-light text-charcoal">
               {formatPrice(product.price, currency)}
             </span>
             {product.moq > 1 && (

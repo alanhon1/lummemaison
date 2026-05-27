@@ -52,12 +52,11 @@ body {
     radial-gradient(at 100% 0%, rgba(201, 169, 110, 0.04) 0%, transparent 50%),
     radial-gradient(at 0% 100%, rgba(201, 169, 110, 0.04) 0%, transparent 50%),
     radial-gradient(at 100% 100%, rgba(201, 169, 110, 0.05) 0%, transparent 50%);
-  background-attachment: fixed;
 }
 
 /* ─── Base ─── */
 @layer base {
-  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; }
 
   body {
     background-color: var(--page-bg);
@@ -87,12 +86,16 @@ body {
 @layer components {
   .font-display { font-family: var(--font-display); }
 
-  /* Header glass */
+  /* Header glass — backdrop-blur only at md+ for mobile scroll perf */
   .glassmorphism {
     background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
+  }
+  @media (min-width: 768px) {
+    .glassmorphism {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
   }
 
   /* Buttons */
@@ -218,7 +221,6 @@ body {
       linear-gradient(rgba(201,169,110,0.18) 1px, transparent 1px),
       linear-gradient(90deg, rgba(201,169,110,0.18) 1px, transparent 1px);
     background-size: 60px 60px;
-    background-attachment: fixed;
     overflow-x: hidden;
   }
   .luxe-bg::before,
@@ -378,4 +380,28 @@ body {
   @keyframes float-4 { 0%, 100% { transform: translate(0, 0); opacity: 0.4; } 50% { transform: translate(-15px, -30px); opacity: 0.2; } }
   @keyframes float-5 { 0%, 100% { transform: translate(0, 0); opacity: 0.15; } 50% { transform: translate(30px, 15px); opacity: 0.3; } }
   @keyframes float-6 { 0%, 100% { transform: translate(0, 0); opacity: 0.3; } 50% { transform: translate(-25px, -20px); opacity: 0.45; } }
+}
+
+/* Reduced motion: disable infinite animations */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-slow,
+  .skeleton,
+  *[class*="animate-"] {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .cart-panel { transition: none !important; }
+}
+
+/* Footer collapsible — closed on mobile by default <details> semantics; force-open on desktop via CSS */
+details.footer-collapsible > summary { list-style: none; }
+details.footer-collapsible > summary::-webkit-details-marker { display: none; }
+@media (min-width: 768px) {
+  details.footer-collapsible > summary {
+    cursor: default;
+    pointer-events: none;
+  }
+  details.footer-collapsible > :not(summary) {
+    display: block !important;
+  }
 }

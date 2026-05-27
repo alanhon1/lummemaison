@@ -317,7 +317,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
           </div>
 
           {/* Catalogue stats */}
-          <div className="mt-10 pt-6 border-t border-bone grid grid-cols-2 gap-3 text-center">
+          <div className="mt-10 pt-6 border-t border-bone hidden lg:grid grid-cols-2 gap-3 text-center">
             <div>
               <div className="font-display text-2xl font-light text-gold">{products.length}</div>
               <div className="text-xs tracking-widest uppercase text-mist mt-0.5">Products</div>
@@ -401,8 +401,8 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               </button>
             </div>
 
-            {/* Count */}
-            <span className="text-sm text-mist ml-auto">
+            {/* Count — desktop only in top bar */}
+            <span className="hidden md:inline text-sm text-mist ml-auto">
               {renders.length} {t('cards')} / {totalProductsRepresented} {t('productsLong')}
             </span>
 
@@ -437,8 +437,13 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
           )}
         </div>
 
+        {/* Mobile count line */}
+        <div className="md:hidden px-6 pt-3 text-xs text-mist">
+          {renders.length} {t('cards')} / {totalProductsRepresented} {t('productsLong')}
+        </div>
+
         {/* Products */}
-        <div className="p-6">
+        <div className="p-6 pt-4 md:pt-6">
           {paginated.length === 0 ? (
             <div className="py-24 text-center">
               <p className="font-display text-2xl font-light mb-3">{t('noResults')}</p>
@@ -448,7 +453,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               </button>
             </div>
           ) : layout === 'grid' ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 md:gap-5">
               {paginated.map(r => {
                 const vc = r.asBundle && r.product.groupId
                   ? (variantCounts.get(r.product.groupId) ?? 1)
@@ -500,11 +505,13 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                   else if (page >= totalPages - 3) pageNum = totalPages - 6 + i;
                   else pageNum = page - 3 + i;
                 }
+                // On mobile, hide the first and last of the 7 buttons (visible window = 5)
+                const hideOnMobile = i === 0 || i === 6;
                 return (
                   <button
                     key={pageNum}
                     onClick={() => { setPage(pageNum); updateUrl({ page: pageNum }); window.scrollTo(0, 0); }}
-                    className={`w-8 h-8 text-xs border rounded-md transition-colors ${
+                    className={`${hideOnMobile ? 'hidden md:inline-flex' : 'inline-flex'} items-center justify-center w-8 h-8 text-xs border rounded-md transition-colors ${
                       page === pageNum
                         ? 'bg-obsidian text-cream border-obsidian'
                         : 'border-bone hover:border-gold hover:text-gold'

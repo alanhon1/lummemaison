@@ -1,7 +1,6 @@
 export const siteConfig = {
   name: "Lumière",
-  companyName: "SH Core Stetics Global",
-  companyNameAlt: "Skin Global",
+  companyName: "Lumée Maison",
   tagline: "Premium Korean Aesthetic Cosmetics",
   description: "B2B wholesale supplier of premium Korean medical-grade aesthetic products. Serving professionals worldwide.",
 
@@ -22,7 +21,7 @@ export const siteConfig = {
 
   payment: {
     wise: {
-      accountName: "SH Core Stetics Global",
+      accountName: "Lumée Maison",
       accountDetails: "Please contact us for Wise payment details",
     },
     usdt: {

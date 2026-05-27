@@ -1,108 +1,84 @@
+'use client';
+
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
-import { useLocale } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { siteConfig } from '@/lib/site-config';
-import { Share2, Link2, MessageCircle, Send } from 'lucide-react';
+import { Share2, Link2, MessageCircle, Send, ChevronDown } from 'lucide-react';
+
+function SectionHeader({ title }: { title: string }) {
+  return (
+    <summary className="flex items-center justify-between text-xs font-semibold tracking-widest uppercase text-cream mb-3 md:mb-5 cursor-pointer md:cursor-default list-none">
+      <span>{title}</span>
+      <ChevronDown size={14} className="md:hidden transition-transform group-open:rotate-180" />
+    </summary>
+  );
+}
 
 export default function Footer() {
   const t = useTranslations('footer');
   const tNav = useTranslations('nav');
   const locale = useLocale();
+  const navLinks = [
+    { href: `/${locale}`, label: tNav('home') },
+    { href: `/${locale}/catalogue`, label: tNav('catalogue') },
+    { href: `/${locale}/about`, label: tNav('about') },
+    { href: `/${locale}/contact`, label: tNav('contact') },
+  ];
 
   return (
     <footer className="bg-charcoal text-cream/80 mt-auto">
-      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
+      <div className="max-w-7xl mx-auto px-6 pt-10 pb-6 md:pt-16 md:pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
+          {/* Brand — always visible */}
           <div className="lg:col-span-1">
             <div className="font-display text-2xl font-light tracking-widest text-cream mb-3">
               Lumée Maison
             </div>
-            <p className="text-xs text-cream/60 leading-relaxed mb-4">
-              {siteConfig.companyName}<br />
-              ({siteConfig.companyNameAlt})
-            </p>
             <p className="text-xs text-cream/50 leading-relaxed">
               {siteConfig.description}
             </p>
             <div className="flex gap-3 mt-6">
-              <a
-                href={siteConfig.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors"
-                aria-label="Instagram"
-              >
+              <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer"
+                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="Instagram">
                 <Share2 size={15} />
               </a>
-              <a
-                href={siteConfig.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors"
-                aria-label="Facebook"
-              >
+              <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer"
+                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="Facebook">
                 <Link2 size={15} />
               </a>
-              <a
-                href={siteConfig.social.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors"
-                aria-label="WhatsApp"
-              >
+              <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer"
+                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="WhatsApp">
                 <MessageCircle size={15} />
               </a>
-              <a
-                href={siteConfig.social.telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors"
-                aria-label="Telegram"
-              >
+              <a href={siteConfig.social.telegram} target="_blank" rel="noopener noreferrer"
+                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="Telegram">
                 <Send size={15} />
               </a>
             </div>
           </div>
 
           {/* Navigation */}
-          <div>
-            <h3 className="text-xs font-semibold tracking-widest uppercase text-cream mb-5">
-              {t('company')}
-            </h3>
-            <ul className="space-y-3">
-              {[
-                { href: `/${locale}`, label: tNav('home') },
-                { href: `/${locale}/catalogue`, label: tNav('catalogue') },
-                { href: `/${locale}/about`, label: tNav('about') },
-                { href: `/${locale}/contact`, label: tNav('contact') },
-              ].map(item => (
+          <details className="footer-collapsible group">
+            <SectionHeader title={t('company')} />
+            <ul className="space-y-3 pt-2 md:pt-0">
+              {navLinks.map(item => (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-xs text-cream/60 hover:text-gold transition-colors tracking-wide"
-                  >
+                  <Link href={item.href} className="text-xs text-cream/60 hover:text-gold transition-colors tracking-wide">
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </details>
 
           {/* Payment & Shipping */}
-          <div>
-            <h3 className="text-xs font-semibold tracking-widest uppercase text-cream mb-5">
-              {t('payment')}
-            </h3>
-            <ul className="space-y-3">
-              <li className="text-xs text-cream/60">
-                <span className="text-gold">Wise</span> — Bank Transfer
-              </li>
-              <li className="text-xs text-cream/60">
-                <span className="text-gold">USDT</span> — TRC-20 Network
-              </li>
+          <details className="footer-collapsible group">
+            <SectionHeader title={t('payment')} />
+            <ul className="space-y-3 pt-2 md:pt-0">
+              <li className="text-xs text-cream/60"><span className="text-gold">Wise</span> — Bank Transfer</li>
+              <li className="text-xs text-cream/60"><span className="text-gold">USDT</span> — TRC-20 Network</li>
             </ul>
-            <h3 className="text-xs font-semibold tracking-widest uppercase text-cream mb-5 mt-8">
+            <h3 className="text-xs font-semibold tracking-widest uppercase text-cream mb-3 md:mb-5 mt-6 md:mt-8">
               {t('shipping')}
             </h3>
             <ul className="space-y-2">
@@ -116,48 +92,32 @@ export default function Footer() {
                 {siteConfig.shipping.fedexNote}
               </li>
             </ul>
-          </div>
+          </details>
 
           {/* Contact */}
-          <div>
-            <h3 className="text-xs font-semibold tracking-widest uppercase text-cream mb-5">
-              Contact
-            </h3>
-            <ul className="space-y-3">
+          <details className="footer-collapsible group">
+            <SectionHeader title="Contact" />
+            <ul className="space-y-3 pt-2 md:pt-0">
               <li>
-                <a
-                  href={`mailto:${siteConfig.contact.email}`}
-                  className="text-xs text-cream/60 hover:text-gold transition-colors"
-                >
+                <a href={`mailto:${siteConfig.contact.email}`} className="text-xs text-cream/60 hover:text-gold transition-colors">
                   {siteConfig.contact.email}
                 </a>
               </li>
               <li>
-                <a
-                  href={siteConfig.social.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-cream/60 hover:text-gold transition-colors"
-                >
+                <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer"
+                  className="text-xs text-cream/60 hover:text-gold transition-colors">
                   WhatsApp: {siteConfig.contact.whatsapp}
                 </a>
               </li>
               <li>
-                <a
-                  href={siteConfig.social.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-cream/60 hover:text-gold transition-colors"
-                >
+                <a href={siteConfig.social.telegram} target="_blank" rel="noopener noreferrer"
+                  className="text-xs text-cream/60 hover:text-gold transition-colors">
                   Telegram: {siteConfig.contact.telegram}
                 </a>
               </li>
-              <li className="text-xs text-cream/50">
-                {siteConfig.contact.address}
-              </li>
+              <li className="text-xs text-cream/50">{siteConfig.contact.address}</li>
             </ul>
-
-          </div>
+          </details>
         </div>
 
         {/* Bottom */}

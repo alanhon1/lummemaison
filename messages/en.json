@@ -13,7 +13,8 @@
       "titleAccent": "Aesthetic Cosmetics",
       "subtitle": "Professional-grade medical and aesthetic products sourced directly from Korea. Trusted by clinics and aesthetic professionals worldwide.",
       "cta": "View Catalogue",
-      "ctaSecondary": "Contact Us"
+      "ctaSecondary": "Contact Us",
+      "tagline": "Premium Korean Aesthetics"
     },
     "categories": {
       "title": "Our Categories",
@@ -123,7 +124,9 @@
       "bestSeller": "Best Seller"
     },
     "relatedProducts": "Related Products",
-    "contactForOrder": "Contact to Order"
+    "contactForOrder": "Contact to Order",
+    "readMore": "Read more",
+    "readLess": "Show less"
   },
   "cart": {
     "title": "Cart",
@@ -185,7 +188,7 @@
     "subtitle": "Your trusted partner for premium Korean aesthetic products",
     "story": {
       "title": "Our Story",
-      "content": "Lumée Maison is the global export brand of SH Core Stetics Global (Skin Global), a specialized B2B supplier of premium Korean medical-grade aesthetic products. We connect aesthetic clinics, dermatologists, and beauty professionals worldwide with the finest products from Korea's leading manufacturers."
+      "content": "Lumée Maison is a specialized B2B supplier of premium Korean medical-grade aesthetic products. We connect aesthetic clinics, dermatologists, and beauty professionals worldwide with the finest products from Korea's leading manufacturers."
     },
     "mission": {
       "title": "Our Mission",
@@ -244,7 +247,7 @@
     "payment": "Payment Methods",
     "shipping": "Shipping",
     "legal": "Legal",
-    "copyright": "© 2026 SH Core Stetics Global. All rights reserved.",
+    "copyright": "© 2026 Lumée Maison. All rights reserved.",
     "disclaimer": "For professional use only. B2B sales only. Not for resale to end consumers."
   },
   "common": {

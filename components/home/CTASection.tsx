@@ -12,7 +12,7 @@ export default function CTASection() {
   const locale = useLocale();
 
   return (
-    <section className="py-28 bg-transparent overflow-hidden relative">
+    <section className="py-12 md:py-28 bg-transparent overflow-hidden relative">
       <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent" />
       <div className="max-w-4xl mx-auto px-6 text-center relative">
         <motion.div
@@ -27,12 +27,12 @@ export default function CTASection() {
             {t('subtitle')}
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center gap-3 sm:gap-4">
             <a
               href={siteConfig.social.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white text-xs font-semibold tracking-wider uppercase hover:bg-[#20bd5a] transition-colors"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#25D366] text-white text-xs font-semibold tracking-wider uppercase hover:bg-[#20bd5a] transition-colors"
             >
               <MessageCircle size={16} />
               {t('whatsapp')}
@@ -41,14 +41,14 @@ export default function CTASection() {
               href={siteConfig.social.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#2AABEE] text-white text-xs font-semibold tracking-wider uppercase hover:bg-[#1c9ad6] transition-colors"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#2AABEE] text-white text-xs font-semibold tracking-wider uppercase hover:bg-[#1c9ad6] transition-colors"
             >
               <Send size={16} />
               {t('telegram')}
             </a>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-2 btn-primary text-xs px-6 py-3"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto btn-primary text-xs px-6 py-3"
             >
               <Mail size={16} />
               {t('email')}
