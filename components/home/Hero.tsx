@@ -78,7 +78,7 @@ export default function Hero() {
           >
             <div className="h-px w-12 bg-gold" />
             <span className="text-xs font-semibold tracking-[0.3em] uppercase text-gold">
-              SH Core Stetics Global
+              {t('tagline')}
             </span>
           </motion.div>
 

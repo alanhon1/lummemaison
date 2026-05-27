@@ -1,6 +1,6 @@
 # Lumière — B2B Korean Aesthetic Cosmetics Catalog
 
-**SH Core Stetics Global (Skin Global)** — wholesale export platform for premium Korean medical-grade aesthetic products.
+**Lumée Maison** — wholesale export platform for premium Korean medical-grade aesthetic products.
 
 ## Tech Stack
 

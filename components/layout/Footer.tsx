@@ -18,10 +18,6 @@ export default function Footer() {
             <div className="font-display text-2xl font-light tracking-widest text-cream mb-3">
               Lumée Maison
             </div>
-            <p className="text-xs text-cream/60 leading-relaxed mb-4">
-              {siteConfig.companyName}<br />
-              ({siteConfig.companyNameAlt})
-            </p>
             <p className="text-xs text-cream/50 leading-relaxed">
               {siteConfig.description}
             </p>
