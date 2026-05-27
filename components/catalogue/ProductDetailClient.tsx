@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ShoppingBag, MessageCircle, Check } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
-import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
+import { useCurrencyStore } from '@/lib/currency-store';
 import { siteConfig } from '@/lib/site-config';
 import type { Product } from '@/lib/products';
 

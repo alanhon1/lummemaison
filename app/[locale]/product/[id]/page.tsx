@@ -99,7 +99,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
   );
 
   return (
-    <div className="pt-24 min-h-screen bg-cream pb-20 md:pb-0">
+    <div className="pt-24 min-h-screen bg-cream pb-28 md:pb-0">
       <div className="max-w-7xl mx-auto px-6 py-6 md:py-12">
         <BackToCatalogueButton locale={locale} categoriesById={categoriesById} />
 
