@@ -74,7 +74,7 @@ export default function Header() {
           {/* Logo */}
           <Link
             href={`/${locale}`}
-            className="font-display text-2xl font-light tracking-widest hover:text-gold transition-colors duration-300"
+            className="font-display text-xl tracking-wide md:text-2xl md:tracking-widest font-light hover:text-gold transition-colors duration-300"
             style={{ color: 'var(--page-text)' }}
           >
             Lumée Maison
@@ -193,28 +193,42 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="flex gap-3 pt-3 border-t flex-wrap" style={{ borderColor: 'var(--border-color)' }}>
-              {locales.map(l => (
-                <Link
-                  key={l}
-                  href={getLocalePath(l)}
-                  className="text-xs font-bold tracking-wider px-3 py-1.5 border rounded-md transition-colors"
-                  style={{
-                    borderColor: l === locale ? 'var(--accent)' : 'var(--border-color)',
-                    color: l === locale ? 'var(--accent)' : 'var(--page-text-2)',
-                  }}
-                >
-                  {LOCALE_LABELS[l]}
-                </Link>
-              ))}
-              {/* Mobile currency */}
+            <div className="pt-3 border-t flex flex-col gap-3" style={{ borderColor: 'var(--border-color)' }}>
+              {/* Language pills row */}
+              <div className="flex gap-2">
+                {locales.map(l => (
+                  <Link
+                    key={l}
+                    href={getLocalePath(l)}
+                    className="flex-1 text-center text-xs font-bold tracking-wider px-3 py-2 border rounded-md transition-colors"
+                    style={{
+                      borderColor: l === locale ? 'var(--accent)' : 'var(--border-color)',
+                      color: l === locale ? 'var(--accent)' : 'var(--page-text-2)',
+                    }}
+                  >
+                    {LOCALE_LABELS[l]}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Currency row (full-width labeled button) */}
               <button
                 onClick={cycleCurrency}
-                className="text-xs font-bold tracking-wider px-3 py-1.5 border rounded-md transition-colors"
-                style={{ borderColor: 'var(--border-color)', color: 'var(--page-text-2)' }}
+                className="w-full text-left text-xs font-semibold tracking-wider px-3 py-2 border rounded-md transition-colors flex items-center justify-between"
+                style={{ borderColor: 'var(--border-color)', color: 'var(--page-text)' }}
               >
-                {CURRENCY_LABEL[displayCurrency]}
+                <span style={{ color: 'var(--page-text-2)' }}>Currency</span>
+                <span>{CURRENCY_LABEL[displayCurrency]}</span>
               </button>
+
+              {/* Contact CTA */}
+              <Link
+                href={`/${locale}/contact`}
+                className="w-full text-center text-xs font-semibold tracking-widest uppercase px-3 py-2.5 border rounded-md transition-colors"
+                style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}
+              >
+                {t('contact')}
+              </Link>
             </div>
           </div>
         )}
