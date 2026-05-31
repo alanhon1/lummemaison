@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
@@ -17,9 +18,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[82vh] md:min-h-[88vh] flex items-center overflow-hidden">
-      {/* House of Light backdrop — luminous cream + warm sun.
-          Designer note: swap this gradient block for a real editorial photo when ready
-          (recommend exporting as /public/images/hero/maison.webp and using next/image fill). */}
+      {/* CSS gradient fallback — visible if the photo fails or is missing */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -29,49 +28,30 @@ export default function Hero() {
         }}
       />
 
-      {/* Sun glow — warm halo from upper-right */}
-      <div
-        aria-hidden
-        className="absolute -top-32 -right-32 w-[36rem] h-[36rem] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(255,236,200,0.9) 0%, rgba(221,192,142,0.55) 30%, rgba(201,169,110,0.18) 55%, transparent 75%)',
-          filter: 'blur(8px)',
-        }}
+      {/* Hero photo — classical maison + garden + fountain. Sits on top of the
+          gradient fallback so a missing file gracefully reveals the cream/sun backdrop. */}
+      <Image
+        src="/hero-maison.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover pointer-events-none select-none"
+        style={{ objectPosition: 'center center' }}
       />
 
-      {/* Soft botanical glow — lower-left */}
-      <div
-        aria-hidden
-        className="absolute -bottom-24 -left-16 w-[28rem] h-[28rem] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(250,242,225,0.8) 0%, rgba(232,226,217,0.4) 40%, transparent 70%)',
-        }}
-      />
-
-      {/* Cream readability overlay over the text column (left side) */}
+      {/* Cream readability overlay (per spec) — bottom-weighted so text reads cleanly */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to right, rgba(250,248,245,0.78) 0%, rgba(250,248,245,0.35) 45%, transparent 70%)',
+            'linear-gradient(to bottom, rgba(255,248,235,0.40) 0%, rgba(255,248,235,0.55) 50%, rgba(255,248,235,0.70) 100%)',
         }}
       />
 
-      {/* Sparkle particles */}
+      {/* Sparkle particles — golden dust motes catching sunlight */}
       <Sparkles />
-
-      {/* Grid pattern */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.06] pointer-events-none"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(201,169,110,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(201,169,110,0.5) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-48 md:pt-32 md:pb-32">
         <div className="max-w-3xl">
@@ -100,12 +80,13 @@ export default function Hero() {
             <span className="text-gold-dark italic">{t('titleAccent')}</span>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtitle — italic Cormorant Garamond for editorial feel */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-mist text-base md:text-lg leading-relaxed max-w-none md:max-w-xl mb-7"
+            className="font-display italic font-medium text-lg md:text-xl leading-relaxed max-w-none md:max-w-xl mb-7"
+            style={{ color: 'rgba(26,26,26,0.78)' }}
           >
             {t('subtitle')}
           </motion.p>
@@ -182,14 +163,25 @@ export default function Hero() {
 
 function Sparkles() {
   const shouldReduceMotion = useReducedMotion();
-  const particles = useMemo(() => Array.from({ length: 4 }, (_, i) => ({
-    id: i,
-    size: 3 + ((i * 1.5) % 5),
-    top: `${15 + ((i * 23) % 70)}%`,
-    left: `${10 + ((i * 31) % 80)}%`,
-    delay: (i * 0.8) % 3,
-    duration: 4 + ((i * 0.6) % 3),
-  })), []);
+
+  // 20 golden dust motes scattered across the hero. Positions, sizes, timing all
+  // derived deterministically per-index so SSR + client agree and the layout
+  // feels organic rather than synchronized.
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 20 }, (_, i) => {
+        const hash = (i * 2654435761) >>> 0;
+        const top = ((hash & 0xff) % 86) + 6; // 6–92 %
+        const left = (((hash >> 8) & 0xff) % 92) + 3; // 3–95 %
+        const size = 1.5 + (((hash >> 16) & 0xff) % 28) / 10; // 1.5–4.3 px
+        const duration = 7 + (((hash >> 20) & 0x0f) * 0.7); // 7–17 s
+        const delay = ((hash >> 24) & 0x0f) * 0.5; // 0–7.5 s
+        const driftY = -(35 + (((hash >> 4) & 0x3f) % 45)); // -35 to -80 px
+        const driftX = ((hash >> 12) & 0x1f) - 16; // -16 to +15 px
+        return { id: i, size, top, left, duration, delay, driftX, driftY };
+      }),
+    [],
+  );
 
   if (shouldReduceMotion) {
     return (
@@ -198,8 +190,16 @@ function Sparkles() {
           <div
             key={p.id}
             aria-hidden
-            className="absolute rounded-full bg-gold/40 blur-sm pointer-events-none"
-            style={{ width: p.size, height: p.size, top: p.top, left: p.left, opacity: 0.5 }}
+            className="absolute rounded-full pointer-events-none"
+            style={{
+              width: p.size,
+              height: p.size,
+              top: `${p.top}%`,
+              left: `${p.left}%`,
+              background: '#c9a96e',
+              boxShadow: '0 0 6px rgba(201,169,110,0.6)',
+              opacity: 0.45,
+            }}
           />
         ))}
       </>
@@ -212,9 +212,21 @@ function Sparkles() {
         <motion.div
           key={p.id}
           aria-hidden
-          className="absolute rounded-full bg-gold/40 blur-sm pointer-events-none"
-          style={{ width: p.size, height: p.size, top: p.top, left: p.left }}
-          animate={{ opacity: [0, 0.7, 0], scale: [0.8, 1.2, 0.8], y: [0, -20, 0] }}
+          className="absolute rounded-full pointer-events-none will-change-transform"
+          style={{
+            width: p.size,
+            height: p.size,
+            top: `${p.top}%`,
+            left: `${p.left}%`,
+            background: '#c9a96e',
+            boxShadow: '0 0 6px rgba(201,169,110,0.65)',
+          }}
+          animate={{
+            opacity: [0, 0.75, 0.75, 0],
+            scale: [0.6, 1.1, 1.05, 0.7],
+            y: [0, p.driftY * 0.5, p.driftY],
+            x: [0, p.driftX, p.driftX * 0.4],
+          }}
           transition={{
             duration: p.duration,
             delay: p.delay,
