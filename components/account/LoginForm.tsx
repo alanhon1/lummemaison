@@ -3,6 +3,7 @@
 import { useActionState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { login, type FormState } from '@/app/[locale]/account/actions';
 
 const initialState: FormState = {};
@@ -10,11 +11,18 @@ const initialState: FormState = {};
 export default function LoginForm() {
   const t = useTranslations('account');
   const locale = useLocale();
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get('returnTo') ?? '';
   const [state, formAction, pending] = useActionState(login, initialState);
+
+  const signUpHref = returnTo
+    ? `/${locale}/account/signup?returnTo=${encodeURIComponent(returnTo)}`
+    : `/${locale}/account/signup`;
 
   return (
     <form action={formAction} className="space-y-5">
       <input type="hidden" name="locale" value={locale} />
+      {returnTo && <input type="hidden" name="returnTo" value={returnTo} />}
 
       <div>
         <label htmlFor="email" className="block text-xs font-semibold tracking-wider uppercase text-charcoal mb-1.5">
@@ -56,7 +64,7 @@ export default function LoginForm() {
 
       <p className="text-xs text-mist text-center">
         {t('login.noAccount')}{' '}
-        <Link href={`/${locale}/account/signup`} className="text-gold-dark hover:text-gold underline underline-offset-2">
+        <Link href={signUpHref} className="text-gold-dark hover:text-gold underline underline-offset-2">
           {t('login.signUp')}
         </Link>
       </p>

@@ -3,6 +3,7 @@
 import { useActionState, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { signup, type FormState } from '@/app/[locale]/account/actions';
 import CountrySelect from './CountrySelect';
 
@@ -11,14 +12,20 @@ const initialState: FormState = {};
 export default function SignupForm() {
   const t = useTranslations('account');
   const locale = useLocale();
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get('returnTo') ?? '';
   const [country, setCountry] = useState('');
   const [state, formAction, pending] = useActionState(signup, initialState);
 
   const showFedex = country === 'US';
+  const signInHref = returnTo
+    ? `/${locale}/account/login?returnTo=${encodeURIComponent(returnTo)}`
+    : `/${locale}/account/login`;
 
   return (
     <form action={formAction} className="space-y-5">
       <input type="hidden" name="locale" value={locale} />
+      {returnTo && <input type="hidden" name="returnTo" value={returnTo} />}
 
       <Field id="fullName" label={t('fields.fullName')} required>
         <input
@@ -137,7 +144,7 @@ export default function SignupForm() {
 
       <p className="text-xs text-mist text-center">
         {t('signup.haveAccount')}{' '}
-        <Link href={`/${locale}/account/login`} className="text-gold-dark hover:text-gold underline underline-offset-2">
+        <Link href={signInHref} className="text-gold-dark hover:text-gold underline underline-offset-2">
           {t('signup.signIn')}
         </Link>
       </p>

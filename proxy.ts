@@ -3,6 +3,7 @@ import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import createMiddleware from 'next-intl/middleware';
 import { locales, defaultLocale } from '@/lib/i18n';
+import { createServerClient } from '@supabase/ssr';
 
 const intlMiddleware = createMiddleware({
   locales,
@@ -10,6 +11,33 @@ const intlMiddleware = createMiddleware({
   localePrefix: 'always',
   localeDetection: false,
 });
+
+// Refresh the Supabase auth session cookies on every public request so server
+// components observe a stable, non-expired session. Returns the response with
+// any refreshed Set-Cookie headers attached.
+async function withSupabaseSession(req: NextRequest, baseResponse: NextResponse) {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !anon) return baseResponse;
+
+  let response = baseResponse;
+  const supabase = createServerClient(url, anon, {
+    cookies: {
+      getAll() {
+        return req.cookies.getAll();
+      },
+      setAll(cookiesToSet) {
+        cookiesToSet.forEach(({ name, value, options }) =>
+          response.cookies.set(name, value, options),
+        );
+      },
+    },
+  });
+
+  // Touching getUser() triggers a refresh if the access token is near expiry.
+  await supabase.auth.getUser();
+  return response;
+}
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -48,12 +76,15 @@ export async function proxy(req: NextRequest) {
 
   // Legacy /ko/* URLs → redirect to /en/* (Korean locale removed)
   if (pathname === '/ko' || pathname.startsWith('/ko/')) {
-    const rest = pathname.replace(/^\/ko/, '') || '/';
-    return NextResponse.redirect(new URL('/en' + rest, req.url), 308);
+    return withSupabaseSession(
+      req,
+      NextResponse.redirect(new URL('/en' + (pathname.replace(/^\/ko/, '') || '/'), req.url), 308),
+    );
   }
 
-  // i18n routing for all other pages
-  return intlMiddleware(req);
+  // i18n routing + Supabase session refresh for all other pages
+  const response = intlMiddleware(req);
+  return withSupabaseSession(req, response);
 }
 
 export const config = {

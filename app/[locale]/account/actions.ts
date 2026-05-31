@@ -85,13 +85,24 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
     return { error: profileError.message };
   }
 
-  redirect(`/${input.locale}/account`);
+  const returnTo = String(formData.get('returnTo') ?? '');
+  redirect(returnTo ? safeReturnTo(returnTo, input.locale) : `/${input.locale}/account`);
+}
+
+function safeReturnTo(value: string, locale: string): string {
+  // Only allow same-origin paths under the active locale to prevent open
+  // redirects. Falls back to /[locale]/account.
+  if (value.startsWith(`/${locale}/`) && !value.startsWith(`/${locale}//`)) {
+    return value;
+  }
+  return `/${locale}/account`;
 }
 
 export async function login(_prev: FormState, formData: FormData): Promise<FormState> {
   const email = String(formData.get('email') ?? '').trim().toLowerCase();
   const password = String(formData.get('password') ?? '');
   const locale = String(formData.get('locale') ?? 'en');
+  const returnTo = String(formData.get('returnTo') ?? '');
 
   if (!email || !password) {
     return { error: 'Email and password are required.' };
@@ -101,7 +112,7 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) return { error: error.message };
-  redirect(`/${locale}/account`);
+  redirect(returnTo ? safeReturnTo(returnTo, locale) : `/${locale}/account`);
 }
 
 export async function logout(locale: string) {

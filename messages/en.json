@@ -55,6 +55,98 @@
       "logout": "Sign out"
     }
   },
+  "checkout": {
+    "loading": "Loading…",
+    "back": "Back",
+    "steps": {
+      "shipping": "Shipping",
+      "disclaimers": "Policies",
+      "payment": "Payment",
+      "done": "Confirmation"
+    },
+    "fields": {
+      "fullName": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "country": "Country",
+      "street": "Street address",
+      "city": "City",
+      "stateProvince": "State / Province",
+      "postalCode": "ZIP / Postal code",
+      "fedexAccount": "FedEx account number (optional)",
+      "fedexHint": "USA customers: please provide your FedEx account number. Without one, shipping is $65 via FedEx Priority instead of $35."
+    },
+    "emptyCart": {
+      "title": "Your cart is empty",
+      "subtitle": "Add a product to continue.",
+      "cta": "Browse catalogue"
+    },
+    "shipping": {
+      "title": "Shipping information",
+      "subtitle": "We've prefilled the details from your account — edit anything before continuing.",
+      "continue": "Continue to policies"
+    },
+    "disclaimers": {
+      "title": "Disclaimers & policies",
+      "subtitle": "Please review and accept the following before payment.",
+      "acceptAll": "I have read and agree to all of the above.",
+      "continue": "Continue to payment",
+      "shipping": {
+        "heading": "Shipping",
+        "body": "We offer $35 flat shipping from South Korea worldwide via FedEx.\n\nUSA clients: a FedEx account number is required. Creating one is free and easy. Without a FedEx account, shipping is available via FedEx Priority at $65.\n\nShipping carriers vary by country (FedEx, DHL, EMS, UPS depending on destination). The most reliable carrier for your country will be used automatically."
+      },
+      "delivery": {
+        "heading": "Delivery time",
+        "body": "Once shipped, delivery usually takes 3–5 business days, depending on destination and customs clearance."
+      },
+      "stock": {
+        "heading": "Stock & made-to-order",
+        "body": "Some products are made-to-order and not kept in stock. These items require 1–4 business days for us to receive from our supplier before shipping.\n\nYou will be notified by email if your order contains any made-to-order items."
+      }
+    },
+    "payment": {
+      "title": "Payment",
+      "subtitle": "Choose either Wise or USDT and send payment using the details below.",
+      "summary": "Order summary",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "shippingFlat": "$35 flat — FedEx",
+      "shippingUsaNoFedex": "$65 — FedEx Priority (no FedEx account)",
+      "total": "Total",
+      "wise": {
+        "heading": "Wise — Bank transfer",
+        "accountName": "Account name",
+        "bank": "Bank",
+        "accountNumber": "Account number",
+        "swift": "SWIFT / Routing"
+      },
+      "usdt": {
+        "heading": "USDT — TRC-20 only",
+        "network": "Network",
+        "address": "Wallet address",
+        "note": "TRC-20 (Tron) only. Sending on a different network (e.g. ERC-20) will lose your funds."
+      },
+      "confirmNote": "After sending payment, please email a screenshot of your transaction to {email} along with your order number.",
+      "confirm": "I have sent payment — confirm order",
+      "submitting": "Confirming…"
+    },
+    "confirmation": {
+      "title": "Order received",
+      "subtitle": "Thank you for your order.",
+      "thanks": "Thank you",
+      "hello": "{name}",
+      "received": "Order {number} received. We'll confirm once payment is received and email you with shipping updates.",
+      "paymentReminder": "If you haven't already sent payment, the Wise and USDT details are saved on the Payment step.\n\nAfter sending, email the transaction screenshot to {email} with your order number so we can reconcile it.",
+      "items": "Items",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "total": "Total",
+      "shippingTo": "Ship to",
+      "fedexAccount": "FedEx account",
+      "continueShopping": "Continue shopping",
+      "viewOrders": "View my orders"
+    }
+  },
   "home": {
     "hero": {
       "title": "Where Korean Beauty",
@@ -190,48 +282,6 @@
     "items": "items",
     "checkout": "Proceed to Checkout",
     "clear": "Clear Cart"
-  },
-  "checkout": {
-    "title": "Checkout",
-    "shipping": "Shipping Information",
-    "firstName": "First Name",
-    "lastName": "Last Name",
-    "company": "Company Name",
-    "email": "Email Address",
-    "phone": "Phone Number",
-    "country": "Country",
-    "address": "Street Address",
-    "city": "City",
-    "state": "State / Province",
-    "zip": "ZIP / Postal Code",
-    "paymentMethod": "Payment Method",
-    "wise": "Wise (Bank Transfer)",
-    "usdt": "USDT (Crypto)",
-    "placeOrder": "Place Order",
-    "orderSummary": "Order Summary",
-    "shippingFee": "Shipping Fee",
-    "total": "Total",
-    "koreaRestriction": "We do not ship to South Korea. Please select a different destination.",
-    "required": "required"
-  },
-  "payment": {
-    "title": "Payment Instructions",
-    "orderNumber": "Order Number",
-    "orderPlaced": "Your order has been placed!",
-    "instructions": "Please complete your payment using one of the methods below",
-    "wise": {
-      "title": "Pay via Wise",
-      "instructions": "Send payment to our Wise account. Include your order number as reference."
-    },
-    "usdt": {
-      "title": "Pay via USDT (TRC-20)",
-      "instructions": "Send USDT on TRC-20 network to the address below. Include your order number as memo.",
-      "address": "Wallet Address",
-      "network": "Network"
-    },
-    "afterPayment": "After completing payment, please send us a payment confirmation via WhatsApp or Email with your order number.",
-    "contactUs": "Contact Us",
-    "orderDetails": "Order Details"
   },
   "about": {
     "title": "About Us",
