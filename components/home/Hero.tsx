@@ -40,13 +40,14 @@ export default function Hero() {
         style={{ objectPosition: 'center center' }}
       />
 
-      {/* Cream readability overlay (per spec) — bottom-weighted so text reads cleanly */}
+      {/* Cream readability overlay — light touch so the maison stays 70–80% sharp.
+          Text legibility comes from the per-element text-shadow glow below. */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(255,248,235,0.40) 0%, rgba(255,248,235,0.55) 50%, rgba(255,248,235,0.70) 100%)',
+            'linear-gradient(to bottom, rgba(255,248,235,0.15) 0%, rgba(255,248,235,0.25) 50%, rgba(255,248,235,0.35) 100%)',
         }}
       />
 
@@ -62,31 +63,44 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="flex items-center gap-3 mb-5"
           >
-            <div className="h-px w-12 bg-gold" />
-            <span className="text-[10px] sm:text-xs font-semibold tracking-[0.3em] uppercase text-gold-dark">
+            <div className="h-px w-12 bg-gold-dark" />
+            <span
+              className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-gold-dark"
+              style={{
+                textShadow:
+                  '0 0 12px rgba(255,248,235,0.7), 0 0 24px rgba(255,248,235,0.45), 0 1px 2px rgba(0,0,0,0.12)',
+              }}
+            >
               {t('tagline')}
             </span>
           </motion.div>
 
-          {/* Title */}
+          {/* Title — lit from behind by a soft cream halo so it pops on the maison */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-[2rem] sm:text-5xl md:text-7xl font-light leading-[1.1] text-charcoal mb-4"
+            className="font-display text-[2rem] sm:text-5xl md:text-7xl font-medium leading-[1.1] text-obsidian mb-4"
+            style={{
+              textShadow:
+                '0 0 20px rgba(255,248,235,0.85), 0 0 40px rgba(255,248,235,0.55), 0 2px 4px rgba(0,0,0,0.12)',
+            }}
           >
             {t('title')}
             <br />
             <span className="text-gold-dark italic">{t('titleAccent')}</span>
           </motion.h1>
 
-          {/* Subtitle — italic Cormorant Garamond for editorial feel */}
+          {/* Subtitle — italic Cormorant Garamond with a subtler glow */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-display italic font-medium text-lg md:text-xl leading-relaxed max-w-none md:max-w-xl mb-7"
-            style={{ color: 'rgba(26,26,26,0.78)' }}
+            className="font-display italic font-medium text-lg md:text-xl leading-relaxed max-w-none md:max-w-xl mb-7 text-charcoal"
+            style={{
+              textShadow:
+                '0 0 16px rgba(255,248,235,0.7), 0 0 32px rgba(255,248,235,0.4), 0 1px 3px rgba(0,0,0,0.1)',
+            }}
           >
             {t('subtitle')}
           </motion.p>
