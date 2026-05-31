@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents } from '@/lib/checkout/state';
+import { sendOrderEmails } from '@/lib/email/sendOrderEmails';
+import { findCountry } from '@/lib/countries';
 
 export interface CartLineInput {
   product_id: number;
@@ -125,20 +127,70 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
       return { ok: false, error: orderError.message };
     }
 
-    const { error: itemsError } = await admin.from('order_items').insert(
-      input.items.map(l => ({
-        order_id: order.id,
-        product_id: l.product_id,
-        product_name: l.product_name,
-        unit_cents: l.unit_cents,
-        quantity: l.quantity,
-        line_cents: l.unit_cents * l.quantity,
-      })),
-    );
+    const itemLines = input.items.map(l => ({
+      order_id: order.id,
+      product_id: l.product_id,
+      product_name: l.product_name,
+      unit_cents: l.unit_cents,
+      quantity: l.quantity,
+      line_cents: l.unit_cents * l.quantity,
+    }));
+    const { error: itemsError } = await admin.from('order_items').insert(itemLines);
     if (itemsError) {
       // Roll back the order so we don't leave a header without items.
       await admin.from('orders').delete().eq('id', order.id);
       return { ok: false, error: itemsError.message };
+    }
+
+    // Fire transactional emails. Wrapped so a send failure never breaks the
+    // order — the orders table is already populated and the customer will
+    // still see the confirmation page. Errors land in Vercel function logs.
+    try {
+      const adminEmail =
+        process.env.ADMIN_NOTIFICATION_EMAIL || 'manzura@example.com';
+      const countryName =
+        findCountry(input.shipping.country)?.name ?? input.shipping.country;
+      await sendOrderEmails({
+        orderNumber,
+        customerName: s.fullName,
+        customerEmail: s.email,
+        customerPhone: s.phone,
+        shippingAddress: {
+          street: s.street,
+          city: s.city,
+          state_province: s.stateProvince,
+          postal_code: s.postalCode,
+          country: s.country,
+          countryName,
+        },
+        fedexAccount: s.country === 'US' ? s.fedexAccount.trim() || null : null,
+        items: itemLines.map(l => ({
+          product_id: l.product_id,
+          product_name: l.product_name,
+          unit_cents: l.unit_cents,
+          quantity: l.quantity,
+          line_cents: l.line_cents,
+        })),
+        subtotalCents: subtotal,
+        shippingCents: shipping,
+        totalCents: total,
+        createdAt: new Date().toISOString(),
+        payment: {
+          wise: {
+            accountName: process.env.WISE_ACCOUNT_NAME || '[Account name pending]',
+            bankName: process.env.WISE_BANK_NAME || '[Bank name pending]',
+            accountNumber: process.env.WISE_ACCOUNT_NUMBER || '[Account number pending]',
+            swift: process.env.WISE_SWIFT || '[SWIFT/Routing pending]',
+          },
+          usdt: {
+            address: process.env.USDT_WALLET_ADDRESS || '[Wallet address pending]',
+            network: 'TRC-20 (Tron)',
+          },
+          adminEmail,
+        },
+      });
+    } catch (e) {
+      console.error('[checkout] sendOrderEmails threw', orderNumber, e);
     }
 
     return { ok: true, orderNumber };
