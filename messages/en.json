@@ -14,7 +14,9 @@
       "subtitle": "Professional-grade medical and aesthetic products sourced directly from Korea. Trusted by clinics and aesthetic professionals worldwide.",
       "cta": "View Catalogue",
       "ctaSecondary": "Contact Us",
-      "tagline": "Premium Korean Aesthetics"
+      "tagline": "Premium Korean Aesthetics",
+      "explore": "Explore",
+      "exploreAria": "Scroll to categories"
     },
     "categories": {
       "title": "Our Categories",

@@ -11,8 +11,12 @@ export default function Hero() {
   const t = useTranslations('home.hero');
   const locale = useLocale();
 
+  function handleExplore() {
+    document.getElementById('our-categories')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   return (
-    <section className="relative min-h-[78vh] md:min-h-screen flex items-center overflow-hidden bg-obsidian">
+    <section className="relative min-h-[82vh] md:min-h-[88vh] flex items-center overflow-hidden bg-obsidian">
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-obsidian via-charcoal to-obsidian" />
 
@@ -45,7 +49,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-12 md:pt-40 md:pb-32">
+      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-24 md:pt-40 md:pb-32">
         <div className="max-w-3xl">
           {/* Tag */}
           <motion.div
@@ -126,19 +130,27 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      <motion.button
+        type="button"
+        onClick={handleExplore}
+        aria-label={t('exploreAria')}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2"
+        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold hover:text-gold-light transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-gold rounded-md px-3 py-2"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+        <span className="text-[10px] font-semibold tracking-[0.3em] uppercase">
+          {t('explore')}
+        </span>
+        <motion.span
+          aria-hidden
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          className="leading-none"
         >
-          <ChevronDown size={20} className="text-cream/30" />
-        </motion.div>
-      </motion.div>
+          <ChevronDown size={18} strokeWidth={1.5} />
+        </motion.span>
+      </motion.button>
     </section>
   );
 }
