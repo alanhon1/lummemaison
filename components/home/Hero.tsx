@@ -49,7 +49,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-24 md:pt-40 md:pb-32">
+      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-40 md:pt-40 md:pb-32">
         <div className="max-w-3xl">
           {/* Tag */}
           <motion.div
@@ -129,7 +129,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — sits above mobile browser bottom UI */}
       <motion.button
         type="button"
         onClick={handleExplore}
@@ -137,18 +137,19 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold hover:text-gold-light transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-gold rounded-md px-3 py-2"
+        className="absolute bottom-20 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold-light hover:text-gold transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-gold rounded-md px-3 py-2"
+        style={{ filter: 'drop-shadow(0 0 8px rgba(201,169,110,0.55))' }}
       >
-        <span className="text-[10px] font-semibold tracking-[0.3em] uppercase">
+        <span className="text-[11px] font-semibold tracking-[0.3em] uppercase">
           {t('explore')}
         </span>
         <motion.span
           aria-hidden
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
           className="leading-none"
         >
-          <ChevronDown size={18} strokeWidth={1.5} />
+          <ChevronDown size={26} strokeWidth={2} />
         </motion.span>
       </motion.button>
     </section>
