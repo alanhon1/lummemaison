@@ -160,6 +160,10 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             <VariantSelector currentProduct={product} variants={variants} />
             <ProductPrice price={product.price} moq={product.moq} moqLabel={t('units')} />
 
+            <div className="md:mt-6 md:mb-8">
+              <ProductDetailClient product={product} />
+            </div>
+
             {product.specification && (
               <div className="mb-6 p-4 bg-white border border-bone rounded-sm">
                 <div className="flex items-center gap-2 mb-2">
@@ -178,8 +182,6 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
                 {product.inStock ? t('inStock') : t('outOfStock')}
               </span>
             </div>
-
-            <ProductDetailClient product={product} />
 
             {product.tags.length > 0 && (
               <div className="mt-6 flex items-center gap-2">

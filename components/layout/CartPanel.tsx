@@ -18,17 +18,18 @@ export default function CartPanel() {
   useEffect(() => { setMounted(true); }, []);
   const itemCount = mounted ? totalItems() : 0;
   const hasItems = mounted && items.length > 0;
+  const open = mounted && isOpen;
 
   return (
     <>
       {/* Overlay */}
       <div
-        className={`overlay ${isOpen ? 'visible' : ''}`}
+        className={`overlay ${open ? 'visible' : ''}`}
         onClick={closeCart}
       />
 
       {/* Panel */}
-      <aside className={`cart-panel ${isOpen ? 'open' : ''}`}>
+      <aside className={`cart-panel ${open ? 'open' : ''}`}>
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-bone">
           <div className="flex items-center gap-2">
