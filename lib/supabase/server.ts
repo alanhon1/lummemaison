@@ -1,11 +1,25 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 
+function readEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) {
+    // Fail loudly so Vercel function logs show the real cause instead of a
+    // generic downstream fetch error.
+    throw new Error(
+      `Missing required env var: ${name}. ` +
+        `Set it in Vercel → Project Settings → Environment Variables (Production scope) ` +
+        `and redeploy without the build cache so NEXT_PUBLIC_* values inline correctly.`,
+    );
+  }
+  return value;
+}
+
 export async function createClient() {
   const cookieStore = await cookies();
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    readEnv('NEXT_PUBLIC_SUPABASE_URL'),
+    readEnv('NEXT_PUBLIC_SUPABASE_ANON_KEY'),
     {
       cookies: {
         getAll() {
@@ -27,8 +41,8 @@ export async function createClient() {
 
 export function createServiceClient() {
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    readEnv('NEXT_PUBLIC_SUPABASE_URL'),
+    readEnv('SUPABASE_SERVICE_ROLE_KEY'),
     {
       cookies: { getAll: () => [], setAll: () => {} },
     },
