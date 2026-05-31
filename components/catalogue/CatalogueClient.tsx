@@ -34,7 +34,6 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
   );
   const [saleOnly, setSaleOnly] = useState(searchParams.get('sale') === '1');
   const [newOnly, setNewOnly] = useState(searchParams.get('new') === '1');
-  const [groupedOnly, setGroupedOnly] = useState(searchParams.get('grouped') === '1');
   const [sortBy, setSortBy] = useState<SortOption>(
     (searchParams.get('sort') as SortOption) || 'default',
   );
@@ -45,50 +44,25 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
 
   const fuse = useMemo(() => new Fuse(products, fuseOptions), []);
 
-  // Precompute variant counts once
-  const variantCounts = useMemo(() => {
-    const map = new Map<string, number>();
-    for (const p of products) {
-      if (p.groupId) {
-        map.set(p.groupId, (map.get(p.groupId) ?? 0) + 1);
-      }
-    }
-    return map;
-  }, []);
-
-  type Render = { product: Product; asBundle: boolean };
-
-  const filterResult = useMemo<{ renders: Render[]; isDualView: boolean }>(() => {
+  const filteredProducts = useMemo<Product[]>(() => {
     let result: Product[] = products;
 
-    // Search
     if (searchQuery.trim()) {
       result = fuse.search(searchQuery).map(r => r.item);
     }
 
-    // Category filter (Bundles sentinel narrows to grouped products only)
-    if (activeCategory === '__bundles__') {
-      result = result.filter(p => Boolean(p.groupId));
-    } else if (activeCategory) {
+    if (activeCategory) {
       result = result.filter(p => p.categoryId === activeCategory);
     }
 
-    // Sale filter
     if (saleOnly) {
       result = result.filter(p => p.isSale);
     }
 
-    // New filter
     if (newOnly) {
       result = result.filter(p => p.isNew);
     }
 
-    // Group-only filter (applies in addition to any active category)
-    if (groupedOnly) {
-      result = result.filter(p => Boolean(p.groupId));
-    }
-
-    // Sort
     switch (sortBy) {
       case 'price-asc':
         result = [...result].sort((a, b) => a.price - b.price);
@@ -101,58 +75,14 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
         break;
     }
 
-    if (searchQuery.trim()) {
-      const renders: Render[] = [];
-      const seenGroup = new Set<string>();
-      for (const p of result) {
-        if (p.groupId) {
-          if (!seenGroup.has(p.groupId)) {
-            renders.push({ product: p, asBundle: true });
-            seenGroup.add(p.groupId);
-          }
-          renders.push({ product: p, asBundle: false });
-        } else {
-          renders.push({ product: p, asBundle: false });
-        }
-      }
-      return { renders, isDualView: true };
-    }
+    return result;
+  }, [searchQuery, activeCategory, saleOnly, newOnly, sortBy, fuse]);
 
-    const seenGroups = new Set<string>();
-    const deduped = result.filter(p => {
-      if (!p.groupId) return true;
-      if (seenGroups.has(p.groupId)) return false;
-      seenGroups.add(p.groupId);
-      return true;
-    });
-    return {
-      renders: deduped.map(product => ({ product, asBundle: Boolean(product.groupId) })),
-      isDualView: false,
-    };
-  }, [searchQuery, activeCategory, saleOnly, newOnly, groupedOnly, sortBy, fuse]);
-
-  const totalProductsRepresented = useMemo(() => {
-    // Sum of bundle members displayed plus solo (non-grouped) products.
-    let total = 0;
-    for (const r of filterResult.renders) {
-      if (r.asBundle && r.product.groupId) {
-        total += variantCounts.get(r.product.groupId) ?? 1;
-      } else if (!r.product.groupId) {
-        total += 1;
-      }
-      // In dual-view, the individual solo cards for grouped products are
-      // already counted via the bundle card's variantCounts entry — don't double-count.
-    }
-    return total;
-  }, [filterResult, variantCounts]);
-
-  const renders = filterResult.renders;
-
-  const totalPages = Math.ceil(renders.length / PER_PAGE);
-  const paginated = renders.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+  const totalPages = Math.ceil(filteredProducts.length / PER_PAGE);
+  const paginated = filteredProducts.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
   const updateUrl = useCallback(
-    (patch: Partial<{ q: string; cat: string; sale: boolean; new: boolean; grouped: boolean; sort: SortOption; page: number }>) => {
+    (patch: Partial<{ q: string; cat: string; sale: boolean; new: boolean; sort: SortOption; page: number }>) => {
       const params = new URLSearchParams(searchParams.toString());
       const apply = (key: string, value: unknown, isDefault: (v: unknown) => boolean) => {
         if (isDefault(value)) params.delete(key);
@@ -162,7 +92,6 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
       if ('cat' in patch) apply('cat', patch.cat, v => !v);
       if ('sale' in patch) apply('sale', patch.sale ? '1' : '', v => v !== '1');
       if ('new' in patch) apply('new', patch.new ? '1' : '', v => v !== '1');
-      if ('grouped' in patch) apply('grouped', patch.grouped ? '1' : '', v => v !== '1');
       if ('sort' in patch) apply('sort', patch.sort, v => !v || v === 'default');
       if ('page' in patch) apply('page', patch.page, v => !v || v === 1);
       const qs = params.toString();
@@ -190,13 +119,12 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
     setActiveCategory('');
     setSaleOnly(false);
     setNewOnly(false);
-    setGroupedOnly(false);
     setSortBy('default');
     setPage(1);
     router.replace(`/${locale}/catalogue`, { scroll: false });
   };
 
-  const hasActiveFilters = searchQuery || activeCategory || saleOnly || newOnly || groupedOnly;
+  const hasActiveFilters = searchQuery || activeCategory || saleOnly || newOnly;
 
   return (
     <div className="flex gap-0">
@@ -246,19 +174,6 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
                   <span className="float-right text-xs opacity-50">{products.length}</span>
                 </button>
               </li>
-              <li>
-                <button
-                  onClick={() => handleCategoryClick('__bundles__')}
-                  className={`w-full text-left px-3 py-2.5 text-sm rounded-md transition-colors cat-item ${
-                    activeCategory === '__bundles__'
-                      ? 'bg-gold text-white font-semibold'
-                      : 'text-charcoal hover:text-gold hover:bg-cream'
-                  }`}
-                >
-                  {t('bundles')}
-                  <span className="float-right text-xs opacity-50">{variantCounts.size}</span>
-                </button>
-              </li>
               {categories.map(cat => {
                 const count = products.filter(p => p.categoryId === cat.id).length;
                 return (
@@ -303,17 +218,6 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
               />
               <span className="text-sm text-charcoal">{t('newOnly')}</span>
             </label>
-            {activeCategory !== '__bundles__' && (
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={groupedOnly}
-                  onChange={e => { setGroupedOnly(e.target.checked); setPage(1); updateUrl({ grouped: e.target.checked, page: 1 }); }}
-                  className="w-3 h-3 accent-gold"
-                />
-                <span className="text-sm text-charcoal">Bundle products only</span>
-              </label>
-            )}
           </div>
 
           {/* Catalogue stats */}
@@ -403,7 +307,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
 
             {/* Count — desktop only in top bar */}
             <span className="hidden md:inline text-sm text-mist ml-auto">
-              {renders.length} {t('cards')} / {totalProductsRepresented} {t('productsLong')}
+              {filteredProducts.length} {t('productsLong')}
             </span>
 
             {/* Clear */}
@@ -423,9 +327,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             <div className="flex items-center gap-2 mt-2 pt-2 border-t border-bone">
               <span className="text-xs text-mist">Viewing:</span>
               <span className="text-xs font-semibold text-gold">
-                {activeCategory === '__bundles__'
-                  ? 'Bundles'
-                  : categories.find(c => c.id === activeCategory)?.name}
+                {categories.find(c => c.id === activeCategory)?.name}
               </span>
               <button
                 onClick={() => { setActiveCategory(''); updateUrl({ cat: '' }); }}
@@ -439,7 +341,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
 
         {/* Mobile count line */}
         <div className="md:hidden px-6 pt-3 text-xs text-mist">
-          {renders.length} {t('cards')} / {totalProductsRepresented} {t('productsLong')}
+          {filteredProducts.length} {t('productsLong')}
         </div>
 
         {/* Products */}
@@ -454,37 +356,15 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
             </div>
           ) : layout === 'grid' ? (
             <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 md:gap-5">
-              {paginated.map(r => {
-                const vc = r.asBundle && r.product.groupId
-                  ? (variantCounts.get(r.product.groupId) ?? 1)
-                  : 1;
-                return (
-                  <ProductCard
-                    key={r.asBundle ? `bundle-${r.product.groupId}` : `solo-${r.product.id}`}
-                    product={r.product}
-                    layout="grid"
-                    variantCount={vc}
-                    isBundle={r.asBundle}
-                  />
-                );
-              })}
+              {paginated.map(p => (
+                <ProductCard key={p.id} product={p} layout="grid" />
+              ))}
             </div>
           ) : (
             <div className="flex flex-col gap-2">
-              {paginated.map(r => {
-                const vc = r.asBundle && r.product.groupId
-                  ? (variantCounts.get(r.product.groupId) ?? 1)
-                  : 1;
-                return (
-                  <ProductCard
-                    key={r.asBundle ? `bundle-${r.product.groupId}` : `solo-${r.product.id}`}
-                    product={r.product}
-                    layout="list"
-                    variantCount={vc}
-                    isBundle={r.asBundle}
-                  />
-                );
-              })}
+              {paginated.map(p => (
+                <ProductCard key={p.id} product={p} layout="list" />
+              ))}
             </div>
           )}
 
