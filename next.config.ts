@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     localPatterns: [
       { pathname: '/images/products/**' },
       { pathname: '/images/bundles/**' },
+      { pathname: '/hero-maison.jpg' },
     ],
   },
   serverExternalPackages: ['sharp'],

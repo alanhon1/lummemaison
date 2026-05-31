@@ -34,7 +34,7 @@ export default function Hero() {
         src="/hero-maison.jpg"
         alt=""
         fill
-        priority
+        preload
         sizes="100vw"
         className="object-cover pointer-events-none select-none"
         style={{ objectPosition: 'center center' }}
