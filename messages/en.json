@@ -5,7 +5,55 @@
     "about": "About",
     "contact": "Contact",
     "cart": "Cart",
-    "search": "Search"
+    "search": "Search",
+    "account": "Account"
+  },
+  "account": {
+    "fields": {
+      "fullName": "Full name",
+      "email": "Email",
+      "password": "Password",
+      "passwordHint": "At least 8 characters.",
+      "phone": "Phone",
+      "phoneHint": "Include country code, e.g. +1 555 123 4567.",
+      "country": "Country",
+      "street": "Street address",
+      "city": "City",
+      "stateProvince": "State / Province",
+      "postalCode": "ZIP / Postal code",
+      "fedexAccount": "FedEx account number (optional)",
+      "fedexHint": "USA only. Without a FedEx account, shipping is $65 via FedEx Priority instead of $35."
+    },
+    "signup": {
+      "pageTitle": "Create account",
+      "title": "Create your account",
+      "subtitle": "Save your shipping details for faster checkout.",
+      "submit": "Create account",
+      "submitting": "Creating account…",
+      "haveAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "login": {
+      "pageTitle": "Sign in",
+      "title": "Welcome back",
+      "subtitle": "Sign in to continue.",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "noAccount": "No account yet?",
+      "signUp": "Create one"
+    },
+    "dashboard": {
+      "pageTitle": "My account",
+      "title": "My account",
+      "subtitle": "Hello, {name}.",
+      "profile": "Profile & shipping",
+      "orderHistory": "Order history",
+      "noOrders": "No orders yet.",
+      "save": "Save changes",
+      "saving": "Saving…",
+      "saved": "Saved.",
+      "logout": "Sign out"
+    }
   },
   "home": {
     "hero": {
