@@ -30,7 +30,7 @@ export default function CartPageClient() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {/* Items */}
-      <div className="lg:col-span-2 space-y-3">
+      <div className="order-2 lg:order-1 lg:col-span-2 space-y-3">
         {items.map(item => (
           <div key={item.id} className="flex gap-4 p-4 bg-white border border-bone rounded-sm">
             <div className="w-20 h-20 bg-cream flex-shrink-0 flex items-center justify-center">
@@ -94,7 +94,7 @@ export default function CartPageClient() {
       </div>
 
       {/* Summary */}
-      <div className="bg-white border border-bone rounded-sm p-6 h-fit">
+      <div className="order-1 lg:order-2 bg-white border border-bone rounded-sm p-6 h-fit">
         <h2 className="font-display text-xl font-light mb-6">Order Summary</h2>
         <div className="space-y-3 mb-6 pb-6 border-b border-bone">
           {items.map(item => (

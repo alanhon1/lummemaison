@@ -99,7 +99,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
   );
 
   return (
-    <div className="pt-24 min-h-screen bg-cream pb-28 md:pb-0">
+    <div className="pt-24 min-h-screen bg-cream">
       <div className="max-w-7xl mx-auto px-6 py-6 md:py-12">
         <BackToCatalogueButton locale={locale} categoriesById={categoriesById} />
 
@@ -160,7 +160,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             <VariantSelector currentProduct={product} variants={variants} />
             <ProductPrice price={product.price} moq={product.moq} moqLabel={t('units')} />
 
-            <div className="md:mt-6 md:mb-8">
+            <div className="mt-6 mb-8">
               <ProductDetailClient product={product} />
             </div>
 
