@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import CartPanel from '@/components/layout/CartPanel';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 import GoldParticles from '@/components/effects/GoldParticles';
+import DisclaimerModal from '@/components/disclaimer/DisclaimerModal';
 import type { Metadata } from 'next';
 
 export function generateStaticParams() {
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     alternates: {
       canonical: `/${locale}`,
-      languages: { en: '/en', ru: '/ru', ko: '/ko' },
+      languages: { en: '/en', ru: '/ru' },
     },
   };
 }
@@ -47,6 +48,7 @@ export default async function LocaleLayout({
         <Footer />
         <CartPanel />
         <FloatingWhatsApp />
+        <DisclaimerModal />
       </div>
     </NextIntlClientProvider>
   );

@@ -278,5 +278,56 @@
       "message": "Lumée Maison is an export-only service. We do not ship to South Korea.",
       "contact": "For inquiries, please contact us at"
     }
+  },
+  "disclaimer": {
+    "step1": {
+      "title": "Welcome to Lumée Maison",
+      "intro": "Lumée Maison offers premium Korean cosmetics — from professional medical-aesthetic products to homecare skincare.",
+      "confirmHeading": "Please confirm before entering:",
+      "confirm": {
+        "age": "I am 18 years of age or older",
+        "injectables": "I understand that medical and aesthetic injectables (fillers, botulinum toxins, mesotherapy, etc.) are intended for licensed professionals only",
+        "homecare": "I understand that homecare skincare products are available for personal use"
+      },
+      "cta": {
+        "understand": "I Understand — Enter Site",
+        "exit": "Exit"
+      }
+    },
+    "step2": {
+      "title": "Disclaimers and Policies",
+      "section": {
+        "products": {
+          "icon": "🔬",
+          "heading": "Product Categories & Use",
+          "body": "Lumée Maison sells two categories of products:\n\n1. Professional Medical & Aesthetic Products — including dermal fillers, botulinum toxins, mesotherapy solutions, and injectables. These products are intended strictly for licensed medical and aesthetic professionals and must be administered by, or under the supervision of, a qualified healthcare provider.\n\n2. Homecare Skincare & Cosmetics — including creams, serums, masks, cleansers, and other topical products intended for personal or professional homecare use.\n\nThe buyer holds full responsibility for selecting products appropriate to their professional qualifications and for complying with all local laws and regulations."
+        },
+        "noMedicalAdvice": {
+          "icon": "⚕️",
+          "heading": "No Medical Advice",
+          "body": "Information on this website is for educational and informational purposes only. It is not intended as medical advice. Always consult a licensed healthcare professional before clinical use of any aesthetic or medical product.\n\nLumée Maison disclaims all liability for misuse, injury, adverse reaction, or damages resulting from improper handling, unauthorized use, or administration of products purchased through this website."
+        },
+        "reship": {
+          "icon": "📦",
+          "heading": "Reship Policy",
+          "body": "We offer one complimentary reship for the first shipment only, if a delivery issue occurs (such as loss in transit).\n\nReship is not available for repeat orders."
+        },
+        "refund": {
+          "icon": "💰",
+          "heading": "Refund Policy",
+          "body": "Refunds are issued only when a package fails to clear customs and is returned to us.\n\nIn such cases, the refund covers the product cost only — shipping fees are non-refundable.\n\nOnce an order has been placed, payment received, and the package handed to the carrier, all sales are final."
+        },
+        "shipping": {
+          "icon": "🚚",
+          "heading": "Shipping Responsibility",
+          "body": "Lumée Maison is NOT responsible for lost, delayed, detained, or stolen packages once they have been handed over to the shipping carrier.\n\nThe buyer is responsible for providing accurate shipping information. Lumée Maison is NOT responsible for non-delivery due to incorrect or incomplete address details."
+        }
+      },
+      "finalLine": "By clicking 'I Agree' below, you confirm you have read, understood, and accepted all terms above.",
+      "cta": {
+        "agree": "I Have Read and Agree",
+        "decline": "Decline"
+      }
+    }
   }
 }

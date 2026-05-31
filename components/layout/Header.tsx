@@ -9,7 +9,7 @@ import { useCartStore } from '@/lib/store';
 import { useCurrencyStore, type Currency } from '@/lib/currency-store';
 import { locales, type Locale } from '@/lib/i18n';
 
-const LOCALE_LABELS: Record<Locale, string> = { en: 'EN', ru: 'RU', ko: 'KO' };
+const LOCALE_LABELS: Record<Locale, string> = { en: 'EN', ru: 'RU' };
 
 export default function Header() {
   const t = useTranslations('nav');

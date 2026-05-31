@@ -46,6 +46,12 @@ export async function proxy(req: NextRequest) {
     return NextResponse.next();
   }
 
+  // Legacy /ko/* URLs → redirect to /en/* (Korean locale removed)
+  if (pathname === '/ko' || pathname.startsWith('/ko/')) {
+    const rest = pathname.replace(/^\/ko/, '') || '/';
+    return NextResponse.redirect(new URL('/en' + rest, req.url), 308);
+  }
+
   // i18n routing for all other pages
   return intlMiddleware(req);
 }
