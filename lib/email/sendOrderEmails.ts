@@ -5,14 +5,18 @@ import {
   shipmentEmail,
   cancellationEmail,
   deliveryEmail,
+  signupConfirmationEmail,
+  passwordResetCodeEmail,
   type OrderData,
   type ShipmentData,
   type CancellationData,
   type DeliveryData,
+  type SignupConfirmData,
+  type PasswordResetCodeData,
 } from './templates';
 import { createServiceClient } from '@/lib/supabase/server';
 
-export type { OrderData, ShipmentData, CancellationData, DeliveryData } from './templates';
+export type { OrderData, ShipmentData, CancellationData, DeliveryData, SignupConfirmData, PasswordResetCodeData } from './templates';
 
 export interface SendResult {
   customer: { ok: boolean; error?: string };
@@ -189,6 +193,52 @@ export async function sendDeliveryEmail(d: DeliveryData): Promise<{ ok: boolean;
     console.error('[email] delivery send failed', d.orderNumber, msg);
     return { ok: false, error: msg };
   }
+}
+
+// Generic single-recipient sender used by the auth-flow emails (signup
+// confirmation, password reset code). Same env-guard + transporter pattern
+// as the order emails; logs failures, never throws.
+async function sendOne(
+  to: string,
+  rendered: { subject: string; html: string; text: string },
+  context: string,
+): Promise<{ ok: boolean; error?: string }> {
+  const from = process.env.SMTP_FROM;
+  if (!from) {
+    const reason = 'SMTP_FROM missing';
+    console.warn(`[email] ${reason} — skipping ${context} for`, to);
+    return { ok: false, error: reason };
+  }
+  let transporter: ReturnType<typeof getTransporter>;
+  try {
+    transporter = getTransporter();
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[email] transporter init failed', context, to, msg);
+    return { ok: false, error: msg };
+  }
+  try {
+    await transporter.sendMail({
+      from, to,
+      subject: rendered.subject,
+      html: rendered.html,
+      text: rendered.text,
+      replyTo: process.env.ADMIN_NOTIFICATION_EMAIL,
+    });
+    return { ok: true };
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error(`[email] ${context} send failed`, to, msg);
+    return { ok: false, error: msg };
+  }
+}
+
+export async function sendSignupConfirmationEmail(s: SignupConfirmData): Promise<{ ok: boolean; error?: string }> {
+  return sendOne(s.customerEmail, signupConfirmationEmail(s), 'signup-confirm');
+}
+
+export async function sendPasswordResetCodeEmail(s: PasswordResetCodeData): Promise<{ ok: boolean; error?: string }> {
+  return sendOne(s.customerEmail, passwordResetCodeEmail(s), 'password-reset-code');
 }
 
 // Same shape as sendShipmentEmail — fires the customer-facing cancellation

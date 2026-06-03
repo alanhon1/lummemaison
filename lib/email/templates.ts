@@ -386,6 +386,102 @@ export function shipmentEmail(s: ShipmentData): { subject: string; html: string;
 }
 
 // ----------------------------------------------------------------------------
+// Signup confirmation — sent after a customer signs up; contains the magic
+// link to confirm their email. We send via our own Nodemailer rather than
+// Supabase's internal SMTP because the free-tier SMTP rate-limits at 3/hour
+// (encountered in production).
+// ----------------------------------------------------------------------------
+
+export interface SignupConfirmData {
+  customerName: string;
+  customerEmail: string;
+  confirmUrl: string;
+}
+
+export function signupConfirmationEmail(s: SignupConfirmData): { subject: string; html: string; text: string } {
+  const subject = `Lumée Maison — Confirm your email`;
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6f0;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #eadfd1;">
+        <tr><td style="padding:36px 40px 24px;text-align:center;border-bottom:1px solid #eadfd1;">
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;letter-spacing:1px;color:#3a342c;">Lumée Maison</div>
+          <div style="font-size:12px;letter-spacing:3px;color:#9a8e7e;margin-top:4px;text-transform:uppercase;">Confirm your email</div>
+        </td></tr>
+        <tr><td style="padding:32px 40px;">
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(s.customerName)},</p>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Thank you for joining Lumée Maison. To finish creating your account, please confirm your email by clicking the button below.</p>
+          <p style="margin:24px 0;"><a href="${s.confirmUrl}" style="display:inline-block;padding:12px 28px;background:#c9a875;color:#ffffff;text-decoration:none;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;">Confirm Email</a></p>
+          <p style="margin:0 0 16px;font-size:13px;line-height:1.6;color:#6b6157;">If the button doesn't work, copy and paste this link into your browser:<br/><span style="word-break:break-all;color:#7a5a3a;">${escapeHtml(s.confirmUrl)}</span></p>
+          <p style="margin:28px 0 4px;font-size:14px;line-height:1.6;">Warm regards,</p>
+          <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:16px;color:#3a342c;">The Lumée Maison Team</p>
+        </td></tr>
+        <tr><td style="padding:20px 40px 28px;border-top:1px solid #eadfd1;font-size:11px;color:#9a8e7e;text-align:center;">
+          If you didn't sign up, you can ignore this email.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+  const text = [
+    `Lumée Maison — Confirm your email`, '',
+    `Dear ${s.customerName},`, '',
+    `Please confirm your email by visiting:`,
+    s.confirmUrl, '',
+    `If you didn't sign up, you can ignore this email.`,
+    '', `The Lumée Maison Team`,
+  ].join('\n');
+  return { subject, html, text };
+}
+
+// ----------------------------------------------------------------------------
+// Password reset code — 4-digit OTP sent to the customer's inbox when they
+// click "Forgot password?". Custom flow (not Supabase's resetPasswordForEmail
+// magic-link flow) because the user wants a 4-digit code, not a link.
+// ----------------------------------------------------------------------------
+
+export interface PasswordResetCodeData {
+  customerEmail: string;
+  code: string;        // exactly 4 digits
+  ttlMinutes: number;  // e.g. 10
+}
+
+export function passwordResetCodeEmail(s: PasswordResetCodeData): { subject: string; html: string; text: string } {
+  const subject = `Lumée Maison — Password reset code`;
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6f0;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #eadfd1;">
+        <tr><td style="padding:36px 40px 24px;text-align:center;border-bottom:1px solid #eadfd1;">
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;letter-spacing:1px;color:#3a342c;">Lumée Maison</div>
+          <div style="font-size:12px;letter-spacing:3px;color:#9a8e7e;margin-top:4px;text-transform:uppercase;">Password reset</div>
+        </td></tr>
+        <tr><td style="padding:32px 40px;text-align:center;">
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;text-align:left;">Use the 4-digit code below to reset your password. It expires in ${s.ttlMinutes} minutes.</p>
+          <div style="font-family:Consolas,Menlo,monospace;font-size:42px;letter-spacing:0.6em;font-weight:600;color:#3a342c;background:#f7ede0;border:1px solid #eadfd1;padding:18px 0;margin:24px 0;">${escapeHtml(s.code)}</div>
+          <p style="margin:0 0 16px;font-size:13px;line-height:1.6;color:#6b6157;text-align:left;">If you didn't request a password reset, you can ignore this email — your password remains unchanged.</p>
+          <p style="margin:28px 0 4px;font-size:14px;line-height:1.6;text-align:left;">Warm regards,</p>
+          <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:16px;color:#3a342c;text-align:left;">The Lumée Maison Team</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+  const text = [
+    `Lumée Maison — Password reset code`, '',
+    `Your 4-digit code: ${s.code}`,
+    `Expires in ${s.ttlMinutes} minutes.`, '',
+    `If you didn't request a password reset, you can ignore this email.`,
+    '', `The Lumée Maison Team`,
+  ].join('\n');
+  return { subject, html, text };
+}
+
+// ----------------------------------------------------------------------------
 // Customer delivery confirmation — sent when admin marks an order `delivered`.
 // Closes the customer-email sequence (received → shipped → delivered).
 // ----------------------------------------------------------------------------
