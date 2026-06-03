@@ -88,9 +88,9 @@ export default function Hero() {
           >
             <span className="logo-shimmer">
               {t('title')}
-              <br />
-              <span className="text-gold-dark italic">{t('titleAccent')}</span>
             </span>
+            <br />
+            <span className="text-gold-dark italic">{t('titleAccent')}</span>
           </motion.h1>
 
           {/* Subtitle — italic Cormorant Garamond with a subtler glow */}
