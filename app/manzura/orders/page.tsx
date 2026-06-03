@@ -39,18 +39,45 @@ function statusBadge(status: string): { cls: string; label: string } {
   return map[status] ?? { cls: 'bg-gray-100 text-gray-700', label: status };
 }
 
-export default async function AdminOrdersPage() {
+// Filter chips. Order matches the order-flow stepper so the row reads as a
+// progression. `all` is the default; `cancelled` is appended as the escape
+// hatch. Keep in sync with statusBadge() vocab above.
+const FILTER_TABS: Array<{ value: string; label: string }> = [
+  { value: 'all', label: 'All' },
+  { value: 'order_received', label: 'Received' },
+  { value: 'payment_verified', label: 'Payment verified' },
+  { value: 'packaging', label: 'Packing' },
+  { value: 'shipped', label: 'Shipped' },
+  { value: 'delivered', label: 'Delivered' },
+  { value: 'cancelled', label: 'Cancelled' },
+];
+
+const VALID_STATUS_FILTERS = new Set(
+  FILTER_TABS.filter(t => t.value !== 'all').map(t => t.value),
+);
+
+interface PageProps {
+  searchParams: Promise<{ status?: string }>;
+}
+
+export default async function AdminOrdersPage({ searchParams }: PageProps) {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
   if (!session.loggedIn) redirect('/manzura/login');
 
+  const { status: rawStatus } = await searchParams;
+  const activeFilter =
+    rawStatus && VALID_STATUS_FILTERS.has(rawStatus) ? rawStatus : 'all';
+
   const supabase = createServiceClient();
-  const { data: orders, error } = await supabase
+  let query = supabase
     .from('orders')
     .select(
       'id, order_seq, order_number, status, customer_name, total_cents, currency, created_at, payment_proof_path, payment_transaction_link',
     )
     .order('created_at', { ascending: false })
     .limit(100);
+  if (activeFilter !== 'all') query = query.eq('status', activeFilter);
+  const { data: orders, error } = await query;
 
   if (error) {
     return (
@@ -64,14 +91,36 @@ export default async function AdminOrdersPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
-      <div className="flex items-center justify-between mb-10">
+      <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="font-display text-4xl font-light text-charcoal">Orders</h1>
-          <p className="text-xs text-mist mt-1 tracking-wider">Most recent 100</p>
+          <p className="text-xs text-mist mt-1 tracking-wider">
+            {activeFilter === 'all'
+              ? `Most recent ${rows.length} of ≤100`
+              : `${rows.length} in "${FILTER_TABS.find(t => t.value === activeFilter)?.label ?? activeFilter}"`}
+          </p>
         </div>
-        <Link href="/manzura" className="text-xs text-mist hover:text-charcoal border border-bone px-4 py-2 transition-colors">
-          ← Dashboard
-        </Link>
+      </div>
+
+      {/* Status filter chips */}
+      <div className="flex flex-wrap gap-1.5 mb-6">
+        {FILTER_TABS.map(t => {
+          const active = t.value === activeFilter;
+          const href = t.value === 'all' ? '/manzura/orders' : `/manzura/orders?status=${t.value}`;
+          return (
+            <Link
+              key={t.value}
+              href={href}
+              className={`text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full transition-colors border ${
+                active
+                  ? 'bg-charcoal text-cream border-charcoal'
+                  : 'text-mist border-bone hover:text-charcoal hover:border-charcoal'
+              }`}
+            >
+              {t.label}
+            </Link>
+          );
+        })}
       </div>
 
       {rows.length === 0 ? (
