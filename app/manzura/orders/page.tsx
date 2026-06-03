@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { Search, X } from 'lucide-react';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
@@ -8,12 +9,23 @@ import { formatOrderNumber } from '@/lib/orders/orderNumber';
 
 export const dynamic = 'force-dynamic';
 
+// Sanitise the search query before it goes into a PostgREST `.or()` string.
+// We allow letters/digits/space/@/./_/- — anything else is dropped. This is
+// not an injection defence (supabase-js parameterises anyway) but it keeps
+// the PostgREST filter syntax happy without quoting heroics, and clamps the
+// length to a reasonable upper bound.
+function sanitiseQuery(q: string | undefined): string {
+  if (!q) return '';
+  return q.replace(/[^a-zA-Z0-9 @._-]/g, '').trim().slice(0, 100);
+}
+
 interface OrderRow {
   id: number;
   order_seq: number | null;
   order_number: string;
   status: string;
   customer_name: string;
+  customer_email: string;
   total_cents: number;
   currency: string;
   created_at: string;
@@ -57,26 +69,43 @@ const VALID_STATUS_FILTERS = new Set(
 );
 
 interface PageProps {
-  searchParams: Promise<{ status?: string }>;
+  searchParams: Promise<{ status?: string; q?: string }>;
 }
 
 export default async function AdminOrdersPage({ searchParams }: PageProps) {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
   if (!session.loggedIn) redirect('/manzura/login');
 
-  const { status: rawStatus } = await searchParams;
+  const { status: rawStatus, q: rawQ } = await searchParams;
   const activeFilter =
     rawStatus && VALID_STATUS_FILTERS.has(rawStatus) ? rawStatus : 'all';
+  const q = sanitiseQuery(rawQ);
 
   const supabase = createServiceClient();
+  // Bumped limit when a search is active so a "Smith" search across years of
+  // history actually returns all the matching rows, not just the most recent
+  // 100 of them. The status-only browse remains capped at 100 for snappy
+  // first-paint.
   let query = supabase
     .from('orders')
     .select(
-      'id, order_seq, order_number, status, customer_name, total_cents, currency, created_at, payment_proof_path, payment_transaction_link',
+      'id, order_seq, order_number, status, customer_name, customer_email, total_cents, currency, created_at, payment_proof_path, payment_transaction_link',
     )
     .order('created_at', { ascending: false })
-    .limit(100);
+    .limit(q ? 200 : 100);
   if (activeFilter !== 'all') query = query.eq('status', activeFilter);
+  if (q) {
+    // Match across order_number / customer_name / customer_email by ILIKE,
+    // plus order_seq exact-match if the query is all digits. The latter
+    // lets mom paste "5000" or type the seq from a phone call and land it.
+    const orParts = [
+      `order_number.ilike.%${q}%`,
+      `customer_name.ilike.%${q}%`,
+      `customer_email.ilike.%${q}%`,
+    ];
+    if (/^\d+$/.test(q)) orParts.push(`order_seq.eq.${q}`);
+    query = query.or(orParts.join(','));
+  }
   const { data: orders, error } = await query;
 
   if (error) {
@@ -89,28 +118,67 @@ export default async function AdminOrdersPage({ searchParams }: PageProps) {
 
   const rows = (orders ?? []) as OrderRow[];
 
+  // Build status-chip hrefs that preserve any active search term, and the
+  // search-form action that preserves any active status filter.
+  function chipHref(value: string): string {
+    const params = new URLSearchParams();
+    if (value !== 'all') params.set('status', value);
+    if (q) params.set('q', q);
+    const qs = params.toString();
+    return qs ? `/manzura/orders?${qs}` : '/manzura/orders';
+  }
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="font-display text-4xl font-light text-charcoal">Orders</h1>
           <p className="text-xs text-mist mt-1 tracking-wider">
-            {activeFilter === 'all'
+            {q
+              ? `${rows.length} result${rows.length === 1 ? '' : 's'} for "${q}"${activeFilter === 'all' ? '' : ` in "${FILTER_TABS.find(t => t.value === activeFilter)?.label ?? activeFilter}"`}`
+              : activeFilter === 'all'
               ? `Most recent ${rows.length} of ≤100`
               : `${rows.length} in "${FILTER_TABS.find(t => t.value === activeFilter)?.label ?? activeFilter}"`}
           </p>
         </div>
       </div>
 
+      {/* Search */}
+      <form action="/manzura/orders" method="get" className="flex items-center gap-2 mb-4">
+        {/* Preserve the active status filter (if any) across search submits. */}
+        {activeFilter !== 'all' && (
+          <input type="hidden" name="status" value={activeFilter} />
+        )}
+        <div className="flex items-center gap-2 border border-bone bg-white px-3 py-2 flex-1 max-w-md">
+          <Search size={13} className="text-mist" />
+          <input
+            type="text"
+            name="q"
+            defaultValue={q}
+            placeholder="Search by order #, name, or email…"
+            className="flex-1 text-sm bg-transparent outline-none text-charcoal placeholder-mist"
+          />
+          {q && (
+            <Link
+              href={chipHref(activeFilter)}
+              aria-label="Clear search"
+              className="text-mist hover:text-charcoal"
+            >
+              <X size={12} />
+            </Link>
+          )}
+        </div>
+        <button type="submit" className="btn-gold text-xs">Search</button>
+      </form>
+
       {/* Status filter chips */}
       <div className="flex flex-wrap gap-1.5 mb-6">
         {FILTER_TABS.map(t => {
           const active = t.value === activeFilter;
-          const href = t.value === 'all' ? '/manzura/orders' : `/manzura/orders?status=${t.value}`;
           return (
             <Link
               key={t.value}
-              href={href}
+              href={chipHref(t.value)}
               className={`text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full transition-colors border ${
                 active
                   ? 'bg-charcoal text-cream border-charcoal'
@@ -150,7 +218,12 @@ export default async function AdminOrdersPage({ searchParams }: PageProps) {
                         {display}
                       </Link>
                     </td>
-                    <td className="px-4 py-3 text-charcoal">{o.customer_name}</td>
+                    <td className="px-4 py-3 text-charcoal">
+                      <div className="leading-tight">
+                        {o.customer_name}
+                        <div className="text-[11px] text-mist truncate max-w-[16rem]">{o.customer_email}</div>
+                      </div>
+                    </td>
                     <td className="px-4 py-3">
                       {(() => {
                         const b = statusBadge(o.status);
