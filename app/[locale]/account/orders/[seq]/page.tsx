@@ -7,6 +7,7 @@ import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { carrierLabel, carrierTrackUrl } from '@/lib/orders/carriers';
 import OrderStepper from '@/components/account/OrderStepper';
 import OrderStatusBadge from '@/components/account/OrderStatusBadge';
+import MessagesSeenMarker from '@/components/account/MessagesSeenMarker';
 
 interface PageProps {
   params: Promise<{ locale: string; seq: string }>;
@@ -86,6 +87,9 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
 
   return (
     <main className="bg-cream min-h-[70vh] py-12 md:py-16 px-6">
+      {/* Fire-and-forget: clears the unread-message badge on the dashboard
+          once the customer actually opens this page. Renders nothing. */}
+      <MessagesSeenMarker orderId={order.id} />
       <div className="max-w-3xl mx-auto">
         <Link
           href={`/${locale}/account`}

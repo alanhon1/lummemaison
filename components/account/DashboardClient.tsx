@@ -28,6 +28,7 @@ interface OrderRow {
   total_cents: number;
   currency: string;
   created_at: string;
+  unread_message_count: number;
 }
 
 const initialState: FormState = {};
@@ -125,12 +126,28 @@ export default function DashboardClient({
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <p className="font-display text-lg text-charcoal">{o.order_number}</p>
+                        <p className="font-display text-lg text-charcoal flex items-center gap-2">
+                          {o.order_number}
+                          {o.unread_message_count > 0 && (
+                            <span
+                              className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-rose-600 text-cream text-[10px] font-semibold tabular-nums shadow"
+                              aria-label={`${o.unread_message_count} new message${o.unread_message_count === 1 ? '' : 's'}`}
+                              title={`${o.unread_message_count} new message${o.unread_message_count === 1 ? '' : 's'}`}
+                            >
+                              {o.unread_message_count}
+                            </span>
+                          )}
+                        </p>
                         <p className="text-xs text-mist mt-0.5">
                           {new Date(o.created_at).toLocaleDateString()} · {countryName}
                         </p>
-                        <div className="mt-2">
+                        <div className="mt-2 flex items-center gap-2">
                           <OrderStatusBadge status={o.status} />
+                          {o.unread_message_count > 0 && (
+                            <span className="text-[10px] uppercase tracking-widest text-rose-700">
+                              {t('newMessages', { count: o.unread_message_count })}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <div className="flex items-center gap-2 text-right whitespace-nowrap">

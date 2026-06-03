@@ -50,6 +50,7 @@
       "orderHistory": "Order history",
       "noOrders": "No orders yet.",
       "details": "Details",
+      "newMessages": "{count, plural, one {# new message} other {# new messages}}",
       "save": "Save changes",
       "saving": "Saving…",
       "saved": "Saved.",
