@@ -55,21 +55,30 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
     return { error: 'Password must be at least 8 characters.' };
   }
 
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.signUp({
+  // Use the admin API for creation — it's synchronous (no eventual-consistency
+  // race between auth.users insert and the customer_profiles FK check that
+  // bit us with anon.auth.signUp) and bypasses Supabase's internal email
+  // rate limiter. `email_confirm: true` marks the user as confirmed so they
+  // can sign in immediately without a confirmation email round-trip (which
+  // was the source of the rate-limit failures). For a B2B wholesale catalogue
+  // with manual onboarding this is acceptable; revisit if open self-service
+  // signup becomes a vector for abuse.
+  const admin = createServiceClient();
+  const { data: created, error: createError } = await admin.auth.admin.createUser({
     email: input.email,
     password: input.password,
-    options: { data: { full_name: input.fullName } },
+    email_confirm: true,
+    user_metadata: { full_name: input.fullName },
   });
 
-  if (error) return { error: error.message };
-  if (!data.user) return { error: 'Unable to create account. Please try again.' };
+  if (createError) return { error: createError.message };
+  if (!created.user) return { error: 'Unable to create account. Please try again.' };
 
-  // Insert the profile via the service role so we don't need RLS write policies
-  // that depend on the just-created session.
-  const admin = createServiceClient();
+  // Insert the profile via the same service-role client; the auth.users row
+  // is fully committed by the time createUser returns, so the FK reference
+  // is guaranteed valid.
   const { error: profileError } = await admin.from('customer_profiles').insert({
-    user_id: data.user.id,
+    user_id: created.user.id,
     full_name: input.fullName,
     phone: input.phone,
     country: input.country,
@@ -81,8 +90,22 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
   });
   if (profileError) {
     // Roll back the auth user so the customer can retry with the same email.
-    await admin.auth.admin.deleteUser(data.user.id);
+    await admin.auth.admin.deleteUser(created.user.id);
     return { error: profileError.message };
+  }
+
+  // The customer didn't go through email-confirmation, so they don't have a
+  // session yet. Sign them in with their just-set password so they land on
+  // /account already authenticated.
+  const supabase = await createClient();
+  const { error: signInError } = await supabase.auth.signInWithPassword({
+    email: input.email,
+    password: input.password,
+  });
+  if (signInError) {
+    // Account + profile exist, but session creation failed. Send them to
+    // login to try again rather than dropping them into a half-state.
+    redirect(`/${input.locale}/account/login`);
   }
 
   const returnTo = String(formData.get('returnTo') ?? '');
