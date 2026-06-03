@@ -20,20 +20,17 @@ function maybeGeoBlock(req: NextRequest): NextResponse | null {
   const restricted = (siteConfig.restrictedCountries as readonly string[]).map(c => c.toUpperCase());
   if (!restricted.includes(country.toUpperCase())) return null;
 
-  // Intentionally indistinguishable from a generic "page not found". No
-  // brand, no "blocked", no contact link — the visitor just sees what
-  // looks like a misconfigured or non-existent URL. Browsers render their
-  // own default chrome around the bare body.
-  return new NextResponse(
-    '<!doctype html><html><head><meta charset="utf-8"><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL was not found on this server.</p></body></html>',
-    {
-      status: 404,
-      headers: {
-        'content-type': 'text/html; charset=utf-8',
-        'cache-control': 'no-store',
-      },
-    },
-  );
+  // Redirect to a guaranteed-unresolvable hostname. The `.invalid` TLD is
+  // reserved by RFC 2606 specifically for this — no DNS server will ever
+  // resolve it. The visitor's browser follows the 302, DNS lookup fails,
+  // and Chrome / Safari / Firefox render their own native "This site can't
+  // be reached" / ERR_NAME_NOT_RESOLVED chrome. We never ship any Lumée
+  // response body, so a school-firewall-style network error is the visible
+  // outcome — there is nothing in the response chain to suggest the block
+  // is intentional or originated from us.
+  const blocked = NextResponse.redirect('http://lumeemaison-not-here.invalid/', 302);
+  blocked.headers.set('cache-control', 'no-store, max-age=0');
+  return blocked;
 }
 
 const intlMiddleware = createMiddleware({
