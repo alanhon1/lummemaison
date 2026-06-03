@@ -459,6 +459,14 @@ body {
   .hover-glow       { transition: box-shadow 300ms ease; }
   .hover-glow:hover { box-shadow: 0 0 28px rgba(201, 169, 110, 0.30); }
 
+  /* Stack .hover-glow's bloom ON TOP of .btn-primary's lift instead of
+     replacing it. Without this, the later .hover-glow:hover rule wins on
+     source order and the directional lift shadow disappears. */
+  .btn-primary.hover-glow:hover {
+    box-shadow: 0 6px 20px rgba(201, 169, 110, 0.30),
+                0 0 28px rgba(201, 169, 110, 0.30);
+  }
+
   /* Logo shimmer — gold gradient sweep across the wordmark on the home hero.
      Background-clip:text means the gradient draws inside the glyphs, not the
      bounding box, so the text remains crisply legible at every keyframe.
