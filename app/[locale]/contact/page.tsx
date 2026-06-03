@@ -49,35 +49,55 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 </div>
               </a>
 
-              <a
-                href={siteConfig.social.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-4 p-5 bg-white border border-bone hover:border-[#25D366] transition-colors group"
-              >
-                <div className="w-10 h-10 bg-[#25D366] flex items-center justify-center flex-shrink-0">
-                  <MessageCircle size={18} className="text-white" />
+              <div className="bg-white border border-bone p-5">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-10 h-10 bg-[#25D366] flex items-center justify-center flex-shrink-0">
+                    <MessageCircle size={18} className="text-white" />
+                  </div>
+                  <p className="text-xs font-semibold tracking-wider uppercase text-mist">{t('info.whatsapp')}</p>
                 </div>
-                <div>
-                  <p className="text-xs font-semibold tracking-wider uppercase text-mist mb-1">{t('info.whatsapp')}</p>
-                  <p className="text-sm text-charcoal">{siteConfig.contact.whatsapp}</p>
-                </div>
-              </a>
+                <ul className="space-y-2 pl-14">
+                  {siteConfig.contact.whatsappNumbers.map(n => (
+                    <li key={n.url}>
+                      <a
+                        href={n.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-charcoal hover:text-[#25D366] transition-colors inline-flex items-baseline gap-2"
+                      >
+                        <span>{n.display}</span>
+                        {n.main && (
+                          <span className="text-[10px] tracking-[0.2em] uppercase text-mist">{t('info.primary')}</span>
+                        )}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-              <a
-                href={siteConfig.social.telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-4 p-5 bg-white border border-bone hover:border-[#2AABEE] transition-colors group"
-              >
-                <div className="w-10 h-10 bg-[#2AABEE] flex items-center justify-center flex-shrink-0">
-                  <Send size={18} className="text-white" />
+              <div className="bg-white border border-bone p-5">
+                <div className="flex items-center gap-4 mb-3">
+                  <div className="w-10 h-10 bg-[#2AABEE] flex items-center justify-center flex-shrink-0">
+                    <Send size={18} className="text-white" />
+                  </div>
+                  <p className="text-xs font-semibold tracking-wider uppercase text-mist">{t('info.telegram')}</p>
                 </div>
-                <div>
-                  <p className="text-xs font-semibold tracking-wider uppercase text-mist mb-1">{t('info.telegram')}</p>
-                  <p className="text-sm text-charcoal">{siteConfig.contact.telegram}</p>
-                </div>
-              </a>
+                <ul className="space-y-2 pl-14">
+                  <li>
+                    <a
+                      href={siteConfig.social.telegram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-charcoal hover:text-[#2AABEE] transition-colors"
+                    >
+                      {siteConfig.contact.telegram}
+                    </a>
+                  </li>
+                  {siteConfig.contact.telegramExtraNumbers.map(num => (
+                    <li key={num} className="text-sm text-charcoal">{num}</li>
+                  ))}
+                </ul>
+              </div>
 
               <div className="flex items-start gap-4 p-5 bg-white border border-bone">
                 <div className="w-10 h-10 border border-bone flex items-center justify-center flex-shrink-0">

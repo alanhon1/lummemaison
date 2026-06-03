@@ -398,7 +398,8 @@
       "email": "Email",
       "whatsapp": "WhatsApp",
       "telegram": "Telegram",
-      "address": "Адрес"
+      "address": "Адрес",
+      "primary": "Основной"
     }
   },
   "footer": {
