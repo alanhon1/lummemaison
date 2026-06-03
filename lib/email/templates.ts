@@ -386,6 +386,62 @@ export function shipmentEmail(s: ShipmentData): { subject: string; html: string;
 }
 
 // ----------------------------------------------------------------------------
+// Customer delivery confirmation — sent when admin marks an order `delivered`.
+// Closes the customer-email sequence (received → shipped → delivered).
+// ----------------------------------------------------------------------------
+
+export interface DeliveryData {
+  orderNumber: string;
+  customerName: string;
+  customerEmail: string;
+}
+
+export function deliveryEmail(d: DeliveryData): { subject: string; html: string; text: string } {
+  const subject = `Your Lumée Maison Order ${d.orderNumber} — Delivered`;
+  const adminEmailAddr = envValue('ADMIN_NOTIFICATION_EMAIL') || 'info@lumeemaison.com';
+
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6f0;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #eadfd1;">
+        <tr><td style="padding:36px 40px 24px;text-align:center;border-bottom:1px solid #eadfd1;">
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;letter-spacing:1px;color:#3a342c;">Lumée Maison</div>
+          <div style="font-size:12px;letter-spacing:3px;color:#9a8e7e;margin-top:4px;text-transform:uppercase;">Delivered</div>
+        </td></tr>
+        <tr><td style="padding:32px 40px;">
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(d.customerName)},</p>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">We've marked your order <strong>${escapeHtml(d.orderNumber)}</strong> as delivered. We hope everything arrived in beautiful condition.</p>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">If anything looks off — damaged, missing, or different from what you expected — please reply to this email or write to <a href="mailto:${escapeHtml(adminEmailAddr)}" style="color:#7a5a3a;">${escapeHtml(adminEmailAddr)}</a> and we'll make it right.</p>
+          <p style="margin:28px 0 4px;font-size:14px;line-height:1.6;">Thank you for choosing us,</p>
+          <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:16px;color:#3a342c;">The Lumée Maison Team</p>
+        </td></tr>
+        <tr><td style="padding:20px 40px 28px;border-top:1px solid #eadfd1;font-size:11px;color:#9a8e7e;text-align:center;">
+          This is a delivery confirmation for your order ${escapeHtml(d.orderNumber)}.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const text = [
+    `Lumée Maison — Order ${d.orderNumber} delivered`,
+    '',
+    `Dear ${d.customerName},`,
+    '',
+    `We've marked your order ${d.orderNumber} as delivered. We hope everything arrived in beautiful condition.`,
+    '',
+    `If anything looks off — damaged, missing, or different from what you expected — please reply to this email or write to ${adminEmailAddr} and we'll make it right.`,
+    '',
+    'Thank you for choosing us,',
+    'The Lumée Maison Team',
+  ].join('\n');
+
+  return { subject, html, text };
+}
+
+// ----------------------------------------------------------------------------
 // Customer cancellation notification — sent when admin transitions an order
 // to `cancelled`. Mirrors the shipment-notification tone.
 // ----------------------------------------------------------------------------

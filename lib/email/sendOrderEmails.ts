@@ -4,13 +4,15 @@ import {
   adminEmail,
   shipmentEmail,
   cancellationEmail,
+  deliveryEmail,
   type OrderData,
   type ShipmentData,
   type CancellationData,
+  type DeliveryData,
 } from './templates';
 import { createServiceClient } from '@/lib/supabase/server';
 
-export type { OrderData, ShipmentData, CancellationData } from './templates';
+export type { OrderData, ShipmentData, CancellationData, DeliveryData } from './templates';
 
 export interface SendResult {
   customer: { ok: boolean; error?: string };
@@ -148,6 +150,43 @@ export async function sendShipmentEmail(s: ShipmentData): Promise<{ ok: boolean;
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[email] shipment send failed', s.orderNumber, msg);
+    return { ok: false, error: msg };
+  }
+}
+
+// Same shape as sendShipmentEmail — fires the customer-facing delivery
+// confirmation when admin marks an order as `delivered`. Never throws.
+export async function sendDeliveryEmail(d: DeliveryData): Promise<{ ok: boolean; error?: string }> {
+  const from = process.env.SMTP_FROM;
+  if (!from) {
+    const reason = 'SMTP_FROM missing';
+    console.warn(`[email] ${reason} — skipping delivery email for`, d.orderNumber);
+    return { ok: false, error: reason };
+  }
+
+  let transporter: ReturnType<typeof getTransporter>;
+  try {
+    transporter = getTransporter();
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[email] transporter init failed', d.orderNumber, msg);
+    return { ok: false, error: msg };
+  }
+
+  const rendered = deliveryEmail(d);
+  try {
+    await transporter.sendMail({
+      from,
+      to: d.customerEmail,
+      subject: rendered.subject,
+      html: rendered.html,
+      text: rendered.text,
+      replyTo: process.env.ADMIN_NOTIFICATION_EMAIL,
+    });
+    return { ok: true };
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[email] delivery send failed', d.orderNumber, msg);
     return { ok: false, error: msg };
   }
 }

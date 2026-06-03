@@ -9,7 +9,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { ORDER_STAGES, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
-import { sendShipmentEmail, sendCancellationEmail } from '@/lib/email/sendOrderEmails';
+import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail } from '@/lib/email/sendOrderEmails';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
 
@@ -98,15 +98,21 @@ export async function updateOrderStatus(
     void supabase.storage.from('shipment-photos').remove([oldPhotoPath]);
   }
 
-  // Fire-and-forget customer cancellation notification. Never blocks the action.
-  if (nextStatus === 'cancelled') {
+  // Fire-and-forget customer notifications keyed to the new status. Never
+  // blocks the action; failures land in Vercel logs only. The send paths
+  // themselves are no-ops if the row was already at this status because we
+  // gate the send on the PREVIOUS status differing — that's why
+  // `current.status !== nextStatus` here.
+  if (current.status !== nextStatus) {
     const orderNumber =
       current.order_seq != null ? formatOrderNumber(current.order_seq as number) : (current.order_number as string);
-    void sendCancellationEmail({
+    const recipient = {
       orderNumber,
       customerName: current.customer_name as string,
       customerEmail: current.customer_email as string,
-    });
+    };
+    if (nextStatus === 'cancelled') void sendCancellationEmail(recipient);
+    if (nextStatus === 'delivered') void sendDeliveryEmail(recipient);
   }
 
   revalidatePath(`/manzura/orders/${orderId}`);
