@@ -1,18 +1,21 @@
 'use client';
 
-import { useState, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Search, X, Edit2, Trash2 } from 'lucide-react';
+import { Search, X, Edit2, Trash2, Check, Loader2 } from 'lucide-react';
 import Fuse from 'fuse.js';
 import type { Product, Category } from '@/lib/products';
+import { saveProductStockAction } from '@/app/manzura/products/actions';
 
 interface Props {
   products: Product[];
   categories: Category[];
+  stockMap: Record<number, number>;
   initialFilter?: string;
 }
 
 const PAGE_SIZE = 50;
+const LOW_STOCK_THRESHOLD = 2;
 
 function getPageNumbers(current: number, total: number): number[] {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
@@ -26,39 +29,179 @@ function getPageNumbers(current: number, total: number): number[] {
   return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
 
-export default function ProductsClient({ products, categories, initialFilter }: Props) {
+// Click-to-edit stock cell. Owns its own optimistic state — on save success
+// the row's stock updates locally without a full page reload, so filtering
+// by "low stock" reacts immediately after an edit.
+function InlineStockCell({
+  productId,
+  initial,
+  onChange,
+}: {
+  productId: number;
+  initial: number;
+  onChange: (next: number) => void;
+}) {
+  const [stock, setStock] = useState(initial);
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(String(initial));
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setStock(initial);
+    setDraft(String(initial));
+  }, [initial]);
+
+  useEffect(() => {
+    if (editing) inputRef.current?.focus();
+  }, [editing]);
+
+  async function save() {
+    const parsed = Math.max(0, Math.floor(Number.parseInt(draft, 10) || 0));
+    if (parsed === stock) {
+      setEditing(false);
+      return;
+    }
+    setSaving(true);
+    setError(null);
+    const res = await saveProductStockAction(productId, parsed);
+    setSaving(false);
+    if (!res.ok) {
+      setError(res.error ?? 'Save failed');
+      return;
+    }
+    setStock(parsed);
+    setEditing(false);
+    onChange(parsed);
+  }
+
+  function cancel() {
+    setDraft(String(stock));
+    setEditing(false);
+    setError(null);
+  }
+
+  if (editing) {
+    return (
+      <div className="inline-flex items-center gap-1">
+        <input
+          ref={inputRef}
+          type="number"
+          min={0}
+          step={1}
+          value={draft}
+          disabled={saving}
+          onChange={e => setDraft(e.target.value)}
+          onKeyDown={e => {
+            if (e.key === 'Enter') save();
+            if (e.key === 'Escape') cancel();
+          }}
+          onBlur={save}
+          className="w-16 border border-gold bg-white px-1.5 py-0.5 text-xs text-charcoal outline-none rounded"
+        />
+        {saving ? (
+          <Loader2 size={12} className="animate-spin text-gold" />
+        ) : (
+          <button
+            type="button"
+            onMouseDown={e => e.preventDefault() /* prevent onBlur firing first */}
+            onClick={save}
+            className="text-gold-dark hover:text-gold p-0.5"
+            aria-label="Save"
+          >
+            <Check size={12} />
+          </button>
+        )}
+        {error && <span className="text-[10px] text-rose-700 ml-1">{error}</span>}
+      </div>
+    );
+  }
+
+  const isOut = stock <= 0;
+  const isLow = stock > 0 && stock <= LOW_STOCK_THRESHOLD;
+
+  return (
+    <button
+      type="button"
+      onClick={() => setEditing(true)}
+      className="inline-flex items-center gap-2 group"
+      aria-label={`Edit stock for product ${productId}`}
+    >
+      {isOut ? (
+        <span className="text-[10px] uppercase tracking-widest text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded">
+          Sold out
+        </span>
+      ) : isLow ? (
+        <span className="text-sm font-semibold text-rose-700 group-hover:text-rose-900">
+          {stock}
+        </span>
+      ) : (
+        <span className="text-sm text-charcoal group-hover:text-gold-dark">{stock}</span>
+      )}
+      <Edit2 size={10} className="text-mist opacity-0 group-hover:opacity-100 transition-opacity" />
+    </button>
+  );
+}
+
+export default function ProductsClient({ products, categories, stockMap, initialFilter }: Props) {
   const [search, setSearch] = useState('');
   const [catFilter, setCatFilter] = useState('');
   const [imgFilter, setImgFilter] = useState(initialFilter === 'no-image' ? 'no-image' : '');
+  const [stockFilter, setStockFilter] = useState<'all' | 'low-stock' | 'sold-out'>(
+    initialFilter === 'low-stock' ? 'low-stock' : initialFilter === 'sold-out' ? 'sold-out' : 'all',
+  );
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<Set<number>>(new Set());
   const [deleting, setDeleting] = useState<number | null>(null);
+  // Local overlay on top of the server-rendered stockMap so edits are visible
+  // without a page refresh.
+  const [stockOverrides, setStockOverrides] = useState<Record<number, number>>({});
 
   // Bulk action state
   const [bulkPriceValue, setBulkPriceValue] = useState('');
   const [bulkPriceMode, setBulkPriceMode] = useState<'%' | 'fixed'>('%');
   const [bulkCategory, setBulkCategory] = useState('');
 
-  const fuse = useMemo(() => new Fuse(products, {
-    keys: ['name', 'id', 'categoryId'],
-    threshold: 0.4,
-  }), [products]);
+  function effectiveStock(id: number): number {
+    if (stockOverrides[id] !== undefined) return stockOverrides[id];
+    return stockMap[id] ?? 0;
+  }
+
+  const fuse = useMemo(
+    () =>
+      new Fuse(products, {
+        keys: ['name', 'id', 'categoryId'],
+        threshold: 0.4,
+      }),
+    [products],
+  );
 
   const filtered = useMemo(() => {
-    let list: Product[] = search
-      ? fuse.search(search).map(r => r.item)
-      : products;
+    let list: Product[] = search ? fuse.search(search).map(r => r.item) : products;
     if (catFilter) list = list.filter(p => p.categoryId === catFilter);
     if (imgFilter === 'no-image') list = list.filter(p => !p.image);
     if (imgFilter === 'has-image') list = list.filter(p => !!p.image);
+    if (stockFilter === 'low-stock') {
+      list = list.filter(p => effectiveStock(p.id) <= LOW_STOCK_THRESHOLD);
+    } else if (stockFilter === 'sold-out') {
+      list = list.filter(p => effectiveStock(p.id) <= 0);
+    }
     return list;
-  }, [products, search, catFilter, imgFilter, fuse]);
+    // effectiveStock is read inside; intentionally depend on stockOverrides + stockMap
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [products, search, catFilter, imgFilter, stockFilter, fuse, stockOverrides, stockMap]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   function toggleSelect(id: number) {
-    setSelected(s => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n; });
+    setSelected(s => {
+      const n = new Set(s);
+      if (n.has(id)) n.delete(id);
+      else n.add(id);
+      return n;
+    });
   }
 
   async function handleDelete(id: number) {
@@ -75,18 +218,18 @@ export default function ProductsClient({ products, categories, initialFilter }: 
   }
 
   function handleBulkPriceApply() {
-    // TODO: implement when /api/admin/products bulk API is available (Task 14)
+    // TODO: implement when /api/admin/products bulk API is available
     console.log('bulk price apply', [...selected], bulkPriceValue, bulkPriceMode);
   }
 
   function handleBulkCategoryApply() {
-    // TODO: implement when /api/admin/products bulk API is available (Task 14)
+    // TODO: implement when /api/admin/products bulk API is available
     console.log('bulk category change', { ids: [...selected], category: bulkCategory });
   }
 
   function handleBulkDelete() {
     if (!confirm(`Delete ${selected.size} selected product${selected.size > 1 ? 's' : ''}?`)) return;
-    // TODO: implement when /api/admin/products bulk API is available (Task 14)
+    // TODO: implement when /api/admin/products bulk API is available
     console.log('bulk delete', [...selected]);
   }
 
@@ -95,7 +238,6 @@ export default function ProductsClient({ products, categories, initialFilter }: 
       <div className="flex items-center justify-between mb-8">
         <h1 className="font-display text-3xl font-light text-charcoal">Products</h1>
         <div className="flex gap-3">
-          <Link href="/manzura" className="text-xs text-mist hover:text-charcoal border border-bone px-4 py-2">← Dashboard</Link>
           <Link href="/manzura/products/new" className="btn-gold text-xs">+ New Product</Link>
         </div>
       </div>
@@ -106,23 +248,52 @@ export default function ProductsClient({ products, categories, initialFilter }: 
           <Search size={13} className="text-mist" />
           <input
             value={search}
-            onChange={e => { setSearch(e.target.value); setPage(1); }}
-            placeholder="Search name, ID, category..."
+            onChange={e => {
+              setSearch(e.target.value);
+              setPage(1);
+            }}
+            placeholder="Search name, ID, category…"
             className="flex-1 text-sm bg-transparent outline-none text-charcoal placeholder-mist"
           />
-          {search && <button aria-label="Clear search" onClick={() => setSearch('')}><X size={12} className="text-mist" /></button>}
+          {search && (
+            <button aria-label="Clear search" onClick={() => setSearch('')}>
+              <X size={12} className="text-mist" />
+            </button>
+          )}
         </div>
         <select
           value={catFilter}
-          onChange={e => { setCatFilter(e.target.value); setPage(1); }}
+          onChange={e => {
+            setCatFilter(e.target.value);
+            setPage(1);
+          }}
           className="border border-bone bg-white px-3 py-2 text-xs text-charcoal outline-none"
         >
           <option value="">All Categories</option>
-          {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+          {categories.map(c => (
+            <option key={c.id} value={c.id}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+        <select
+          value={stockFilter}
+          onChange={e => {
+            setStockFilter(e.target.value as 'all' | 'low-stock' | 'sold-out');
+            setPage(1);
+          }}
+          className="border border-bone bg-white px-3 py-2 text-xs text-charcoal outline-none"
+        >
+          <option value="all">All Stock</option>
+          <option value="low-stock">Low / Out (≤ {LOW_STOCK_THRESHOLD})</option>
+          <option value="sold-out">Sold out only</option>
         </select>
         <select
           value={imgFilter}
-          onChange={e => { setImgFilter(e.target.value); setPage(1); }}
+          onChange={e => {
+            setImgFilter(e.target.value);
+            setPage(1);
+          }}
           className="border border-bone bg-white px-3 py-2 text-xs text-charcoal outline-none"
         >
           <option value="">All Images</option>
@@ -131,14 +302,16 @@ export default function ProductsClient({ products, categories, initialFilter }: 
         </select>
       </div>
 
-      <p className="text-xs text-mist mb-3">Showing {filtered.length} of {products.length} products</p>
+      <p className="text-xs text-mist mb-3">
+        Showing {filtered.length} of {products.length} products
+      </p>
 
       {/* Bulk actions bar */}
       {selected.size > 0 && (
         <div className="bg-cream border border-gold/20 rounded-sm p-3 flex flex-wrap gap-4 items-center mb-4">
-          <span className="text-sm font-medium">{selected.size} item{selected.size > 1 ? 's' : ''} selected</span>
-
-          {/* Price adjustment */}
+          <span className="text-sm font-medium">
+            {selected.size} item{selected.size > 1 ? 's' : ''} selected
+          </span>
           <div className="flex items-center gap-2">
             <input
               type="number"
@@ -148,7 +321,7 @@ export default function ProductsClient({ products, categories, initialFilter }: 
               className="border border-bone bg-white px-2 py-1 text-xs w-20 outline-none focus:border-gold"
             />
             <button
-              onClick={() => setBulkPriceMode(m => m === '%' ? 'fixed' : '%')}
+              onClick={() => setBulkPriceMode(m => (m === '%' ? 'fixed' : '%'))}
               className="border border-bone bg-white px-2 py-1 text-xs text-charcoal hover:border-gold transition-colors"
             >
               {bulkPriceMode}
@@ -160,8 +333,6 @@ export default function ProductsClient({ products, categories, initialFilter }: 
               Apply Price
             </button>
           </div>
-
-          {/* Category change */}
           <div className="flex items-center gap-2">
             <select
               value={bulkCategory}
@@ -169,7 +340,11 @@ export default function ProductsClient({ products, categories, initialFilter }: 
               className="border border-bone bg-white px-2 py-1 text-xs text-charcoal outline-none focus:border-gold"
             >
               <option value="">Select category…</option>
-              {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+              {categories.map(c => (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                </option>
+              ))}
             </select>
             <button
               onClick={handleBulkCategoryApply}
@@ -178,8 +353,6 @@ export default function ProductsClient({ products, categories, initialFilter }: 
               Apply Category
             </button>
           </div>
-
-          {/* Delete selected */}
           <button
             onClick={handleBulkDelete}
             className="text-xs border border-red-200 text-red-500 px-3 py-1 hover:border-red-400 hover:text-red-700 transition-colors ml-auto"
@@ -195,40 +368,74 @@ export default function ProductsClient({ products, categories, initialFilter }: 
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-bone bg-cream">
-                <th className="px-4 py-3 w-8"><input type="checkbox" checked={paged.length > 0 && paged.every(p => selected.has(p.id))} onChange={e => { setSelected(prev => { const next = new Set(prev); if (e.target.checked) paged.forEach(p => next.add(p.id)); else paged.forEach(p => next.delete(p.id)); return next; }); }} /></th>
+                <th className="px-4 py-3 w-8">
+                  <input
+                    type="checkbox"
+                    checked={paged.length > 0 && paged.every(p => selected.has(p.id))}
+                    onChange={e => {
+                      setSelected(prev => {
+                        const next = new Set(prev);
+                        if (e.target.checked) paged.forEach(p => next.add(p.id));
+                        else paged.forEach(p => next.delete(p.id));
+                        return next;
+                      });
+                    }}
+                  />
+                </th>
                 <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase w-12">#</th>
                 <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase w-10">Img</th>
                 <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase">Name</th>
                 <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase">Price</th>
-                <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase hidden md:table-cell">Category</th>
-                <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase">Status</th>
+                <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase hidden md:table-cell">
+                  Category
+                </th>
+                <th className="text-left px-4 py-3 font-semibold tracking-wider text-mist uppercase">Stock</th>
                 <th className="text-right px-4 py-3 font-semibold tracking-wider text-mist uppercase">Actions</th>
               </tr>
             </thead>
             <tbody>
               {paged.map(product => (
                 <tr key={product.id} className="border-b border-bone hover:bg-cream/50 transition-colors">
-                  <td className="px-4 py-3"><input type="checkbox" checked={selected.has(product.id)} onChange={() => toggleSelect(product.id)} /></td>
+                  <td className="px-4 py-3">
+                    <input
+                      type="checkbox"
+                      checked={selected.has(product.id)}
+                      onChange={() => toggleSelect(product.id)}
+                    />
+                  </td>
                   <td className="px-4 py-3 text-mist">{product.id}</td>
                   <td className="px-4 py-3">
-                    {product.image
-                      ? <img src={product.image} alt="" className="w-10 h-10 object-contain border border-bone" />
-                      : <div className="w-10 h-10 bg-cream border border-bone flex items-center justify-center text-[8px] text-mist">—</div>
-                    }
+                    {product.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={product.image} alt="" className="w-10 h-10 object-contain border border-bone" />
+                    ) : (
+                      <div className="w-10 h-10 bg-cream border border-bone flex items-center justify-center text-[8px] text-mist">
+                        —
+                      </div>
+                    )}
                   </td>
                   <td className="px-4 py-3 font-medium text-charcoal max-w-xs">
                     <span className="line-clamp-1">{product.name}</span>
                   </td>
-                  <td className="px-4 py-3 font-semibold text-charcoal">{product.price > 0 ? `$${product.price}` : 'POA'}</td>
+                  <td className="px-4 py-3 font-semibold text-charcoal">
+                    {product.price > 0 ? `$${product.price}` : 'POA'}
+                  </td>
                   <td className="px-4 py-3 text-mist hidden md:table-cell">{product.categoryId}</td>
                   <td className="px-4 py-3">
-                    <span className={`text-[10px] px-2 py-0.5 border ${product.inStock ? 'border-green-200 text-green-700' : 'border-red-200 text-red-700'}`}>
-                      {product.inStock ? 'In Stock' : 'Out'}
-                    </span>
+                    <InlineStockCell
+                      productId={product.id}
+                      initial={effectiveStock(product.id)}
+                      onChange={next =>
+                        setStockOverrides(prev => ({ ...prev, [product.id]: next }))
+                      }
+                    />
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center gap-1 justify-end">
-                      <Link href={`/manzura/products/${product.id}`} className="p-1.5 text-mist hover:text-gold border border-transparent hover:border-gold transition-colors">
+                      <Link
+                        href={`/manzura/products/${product.id}`}
+                        className="p-1.5 text-mist hover:text-gold border border-transparent hover:border-gold transition-colors"
+                      >
                         <Edit2 size={13} />
                       </Link>
                       <button
@@ -250,11 +457,31 @@ export default function ProductsClient({ products, categories, initialFilter }: 
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-center gap-2 mt-6">
-          <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-3 py-1.5 border border-bone text-xs disabled:opacity-40">←</button>
+          <button
+            onClick={() => setPage(p => Math.max(1, p - 1))}
+            disabled={page === 1}
+            className="px-3 py-1.5 border border-bone text-xs disabled:opacity-40"
+          >
+            ←
+          </button>
           {getPageNumbers(page, totalPages).map(n => (
-            <button key={n} onClick={() => setPage(n)} className={`px-3 py-1.5 border text-xs ${n === page ? 'border-gold text-gold' : 'border-bone text-mist'}`}>{n}</button>
+            <button
+              key={n}
+              onClick={() => setPage(n)}
+              className={`px-3 py-1.5 border text-xs ${
+                n === page ? 'border-gold text-gold' : 'border-bone text-mist'
+              }`}
+            >
+              {n}
+            </button>
           ))}
-          <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages} className="px-3 py-1.5 border border-bone text-xs disabled:opacity-40">→</button>
+          <button
+            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+            disabled={page === totalPages}
+            className="px-3 py-1.5 border border-bone text-xs disabled:opacity-40"
+          >
+            →
+          </button>
         </div>
       )}
     </div>
