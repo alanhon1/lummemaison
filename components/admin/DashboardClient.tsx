@@ -3,29 +3,68 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Package, Grid3X3, ImageOff, Clock, Plus, LogOut, ClipboardList } from 'lucide-react';
-import type { Product } from '@/lib/products';
+import {
+  ArrowRight,
+  ClipboardList,
+  Package,
+  Inbox,
+  Truck,
+  AlertTriangle,
+  ShieldCheck,
+} from 'lucide-react';
 
 interface BackupFile { name: string; size: number; created: string; }
 
+interface RecentOrder {
+  id: number;
+  display: string;
+  status: string;
+  customer: string;
+  total_cents: number;
+  currency: string;
+  created_at: string;
+}
+
 interface Props {
+  newOrdersToday: number;
+  awaitingVerification: number;
+  awaitingShipment: number;
+  lowStockCount: number;
   totalProducts: number;
   totalCategories: number;
-  noImageCount: number;
-  lastModified: string;
-  recentProducts: Pick<Product, 'id' | 'name' | 'categoryId'>[];
+  recentOrders: RecentOrder[];
   backups: BackupFile[];
 }
 
-export default function DashboardClient({ totalProducts, totalCategories, noImageCount, lastModified, recentProducts, backups }: Props) {
+// Admin-side status palette (kept in sync with app/manzura/orders/page.tsx).
+function statusPill(status: string): { cls: string; label: string } {
+  const map: Record<string, { cls: string; label: string }> = {
+    order_received:   { cls: 'bg-cream text-gold-dark border border-gold/30', label: 'Received' },
+    payment_verified: { cls: 'bg-blue-50 text-blue-700 border border-blue-200', label: 'Payment verified' },
+    packaging:        { cls: 'bg-amber-50 text-amber-800 border border-amber-200', label: 'Packing' },
+    shipped:          { cls: 'bg-emerald-50 text-emerald-800 border border-emerald-200', label: 'Shipped' },
+    delivered:        { cls: 'bg-charcoal text-cream border border-charcoal', label: 'Delivered' },
+    cancelled:        { cls: 'bg-stone-100 text-stone-500 border border-stone-300 line-through', label: 'Cancelled' },
+  };
+  return map[status] ?? { cls: 'bg-gray-100 text-gray-700', label: status };
+}
+
+function formatTotal(cents: number, currency: string) {
+  return (cents / 100).toLocaleString('en-US', { style: 'currency', currency });
+}
+
+export default function DashboardClient({
+  newOrdersToday,
+  awaitingVerification,
+  awaitingShipment,
+  lowStockCount,
+  totalProducts,
+  totalCategories,
+  recentOrders,
+  backups,
+}: Props) {
   const router = useRouter();
   const [restoring, setRestoring] = useState<string | null>(null);
-
-  async function handleLogout() {
-    await fetch('/api/admin/logout', { method: 'POST' });
-    router.push('/manzura/login');
-    router.refresh();
-  }
 
   async function handleRestore(filename: string) {
     if (!confirm(`Restore backup "${filename}"? Current data will be overwritten.`)) return;
@@ -42,81 +81,144 @@ export default function DashboardClient({ totalProducts, totalCategories, noImag
     }
   }
 
-  const stats = [
-    { label: 'Total Products', value: totalProducts, icon: Package },
-    { label: 'Categories', value: totalCategories, icon: Grid3X3 },
-    { label: 'No Image', value: noImageCount, icon: ImageOff },
-    { label: 'Last Edit', value: lastModified, icon: Clock, isText: true },
+  // Operational stats card definitions.
+  const stats: Array<{
+    label: string;
+    value: number;
+    icon: typeof Inbox;
+    href: string;
+    emphasis?: 'attention' | 'caution';
+  }> = [
+    { label: 'New today', value: newOrdersToday, icon: Inbox, href: '/manzura/orders' },
+    { label: 'Awaiting verification', value: awaitingVerification, icon: ShieldCheck, href: '/manzura/orders?status=order_received', emphasis: awaitingVerification > 0 ? 'attention' : undefined },
+    { label: 'Awaiting shipment', value: awaitingShipment, icon: Truck, href: '/manzura/orders?status=packaging', emphasis: awaitingShipment > 0 ? 'attention' : undefined },
+    { label: 'Low / out of stock', value: lowStockCount, icon: AlertTriangle, href: '/manzura/products?filter=low-stock', emphasis: lowStockCount > 0 ? 'caution' : undefined },
   ];
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
-      <div className="flex items-center justify-between mb-10">
-        <div>
-          <h1 className="font-display text-4xl font-light text-charcoal">Dashboard</h1>
-          <p className="text-xs text-mist mt-1 tracking-wider">Lumière Admin Panel</p>
-        </div>
-        <button onClick={handleLogout} className="flex items-center gap-2 text-xs text-mist hover:text-charcoal border border-bone px-4 py-2 transition-colors">
-          <LogOut size={13} />
-          Logout
-        </button>
+      <div className="mb-8">
+        <h1 className="font-display text-4xl font-light text-charcoal">Dashboard</h1>
+        <p className="text-xs text-mist mt-1 tracking-wider">
+          {totalProducts} products · {totalCategories} categories
+        </p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {stats.map(s => (
-          <div key={s.label} className="bg-white border border-bone p-5">
-            <s.icon size={18} className="text-gold mb-3" strokeWidth={1.5} />
-            <div className={`font-display font-light text-charcoal mb-1 ${s.isText ? 'text-lg' : 'text-3xl'}`}>
-              {s.value}
-            </div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-mist">{s.label}</div>
+      {/* Operational stat cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        {stats.map(s => {
+          const ringCls =
+            s.emphasis === 'attention'
+              ? 'ring-2 ring-gold/40'
+              : s.emphasis === 'caution'
+              ? 'ring-2 ring-rose-300/60'
+              : '';
+          const valueCls =
+            s.emphasis === 'attention'
+              ? 'text-charcoal'
+              : s.emphasis === 'caution'
+              ? 'text-rose-700'
+              : 'text-charcoal';
+          return (
+            <Link
+              key={s.label}
+              href={s.href}
+              className={`block bg-white border border-bone p-5 hover:border-gold transition-colors group ${ringCls}`}
+            >
+              <s.icon size={18} className="text-gold mb-3" strokeWidth={1.5} />
+              <div className={`font-display font-light text-3xl mb-1 ${valueCls}`}>
+                {s.value}
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-mist">{s.label}</span>
+                <ArrowRight size={12} className="text-mist group-hover:text-gold-dark transition-colors" />
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Recent orders + secondary panels */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+        {/* Recent orders — primary panel, spans 2 cols on desktop */}
+        <div className="bg-white border border-bone p-6 lg:col-span-2">
+          <div className="flex items-baseline justify-between mb-4">
+            <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-mist">Recent orders</h2>
+            <Link href="/manzura/orders" className="text-xs text-gold hover:underline">
+              View all →
+            </Link>
           </div>
-        ))}
-      </div>
+          {recentOrders.length === 0 ? (
+            <p className="text-sm text-mist italic py-6 text-center border border-dashed border-bone">
+              No orders yet.
+            </p>
+          ) : (
+            <ul className="divide-y divide-bone">
+              {recentOrders.map(o => {
+                const pill = statusPill(o.status);
+                return (
+                  <li key={o.id}>
+                    <Link
+                      href={`/manzura/orders/${o.id}`}
+                      className="flex items-center gap-3 py-3 hover:bg-cream/50 -mx-2 px-2 transition-colors"
+                    >
+                      <span className="font-mono text-sm text-charcoal w-24 truncate">{o.display}</span>
+                      <span className="flex-1 text-sm text-charcoal truncate">{o.customer}</span>
+                      <span className={`text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap ${pill.cls}`}>
+                        {pill.label}
+                      </span>
+                      <span className="text-sm text-charcoal w-20 text-right whitespace-nowrap">
+                        {formatTotal(o.total_cents, o.currency)}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
 
-      {/* Quick actions */}
-      <div className="flex flex-wrap gap-3 mb-10">
-        <Link href="/manzura/products/new" className="btn-gold text-xs flex items-center gap-2">
-          <Plus size={14} />
-          New Product
-        </Link>
-        <Link href="/manzura/orders" className="btn-secondary text-xs flex items-center gap-2">
-          <ClipboardList size={14} />
-          Orders
-        </Link>
-        <Link href="/manzura/products?filter=no-image" className="btn-secondary text-xs flex items-center gap-2">
-          <ImageOff size={14} />
-          Missing Images ({noImageCount})
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent */}
+        {/* Quick links */}
         <div className="bg-white border border-bone p-6">
-          <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-mist mb-4">Recent Products</h2>
-          <div className="space-y-2">
-            {recentProducts.map(p => (
-              <Link key={p.id} href={`/manzura/products/${p.id}`}
-                className="flex items-center justify-between py-2 border-b border-bone/50 hover:text-gold transition-colors text-sm">
-                <span className="text-mist text-xs">#{p.id}</span>
-                <span className="flex-1 px-3 truncate">{p.name}</span>
-                <span className="text-xs text-mist">{p.categoryId}</span>
+          <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-mist mb-4">Quick links</h2>
+          <ul className="space-y-2">
+            <li>
+              <Link href="/manzura/orders" className="flex items-center justify-between py-2 text-sm text-charcoal hover:text-gold-dark transition-colors">
+                <span className="inline-flex items-center gap-2"><ClipboardList size={14} /> All orders</span>
+                <ArrowRight size={12} />
               </Link>
-            ))}
-          </div>
-          <Link href="/manzura/products" className="text-xs text-gold hover:underline mt-4 block">
-            View all products →
-          </Link>
+            </li>
+            <li>
+              <Link href="/manzura/products" className="flex items-center justify-between py-2 text-sm text-charcoal hover:text-gold-dark transition-colors">
+                <span className="inline-flex items-center gap-2"><Package size={14} /> Products & stock</span>
+                <ArrowRight size={12} />
+              </Link>
+            </li>
+            <li>
+              <Link href="/manzura/products/new" className="flex items-center justify-between py-2 text-sm text-charcoal hover:text-gold-dark transition-colors">
+                <span className="inline-flex items-center gap-2"><Package size={14} /> Add a product</span>
+                <ArrowRight size={12} />
+              </Link>
+            </li>
+            <li>
+              <Link href="/manzura/settings" className="flex items-center justify-between py-2 text-sm text-charcoal hover:text-gold-dark transition-colors">
+                <span className="inline-flex items-center gap-2"><AlertTriangle size={14} /> Site settings</span>
+                <ArrowRight size={12} />
+              </Link>
+            </li>
+          </ul>
         </div>
+      </div>
 
-        {/* Backups */}
-        <div className="bg-white border border-bone p-6">
-          <h2 className="text-xs font-semibold tracking-[0.2em] uppercase text-mist mb-4">Backups</h2>
-          <div className="space-y-2 max-h-60 overflow-y-auto">
-            {backups.length === 0 && <p className="text-xs text-mist">No backups yet</p>}
+      {/* Backups — kept available but de-emphasised */}
+      {backups.length > 0 && (
+        <details className="bg-white border border-bone p-6">
+          <summary className="text-xs font-semibold tracking-[0.2em] uppercase text-mist cursor-pointer hover:text-charcoal">
+            Catalogue backups ({backups.length} most recent)
+          </summary>
+          <ul className="space-y-1 mt-4">
             {backups.map(b => (
-              <div key={b.name} className="flex items-center justify-between text-xs py-1.5 border-b border-bone/50">
+              <li key={b.name} className="flex items-center justify-between text-xs py-1.5 border-b border-bone/50">
                 <span className="text-mist truncate mr-2">{b.created}</span>
                 <span className="text-mist mr-auto">{(b.size / 1024).toFixed(0)}KB</span>
                 <button
@@ -126,11 +228,11 @@ export default function DashboardClient({ totalProducts, totalCategories, noImag
                 >
                   {restoring === b.name ? 'Restoring…' : 'Restore'}
                 </button>
-              </div>
+              </li>
             ))}
-          </div>
-        </div>
-      </div>
+          </ul>
+        </details>
+      )}
     </div>
   );
 }
