@@ -129,6 +129,8 @@ export const config = {
   matcher: [
     '/manzura/:path*',
     '/api/admin/:path*',
-    '/((?!_next|_vercel|api|.*\\..*).*)',
+    // Exclude /auth (signup confirmation callback) from the locale-prefix
+    // rewrite — the route handler at /auth/confirm needs the exact path.
+    '/((?!_next|_vercel|api|auth|.*\\..*).*)',
   ],
 };

@@ -13,16 +13,44 @@ export default function LoginForm() {
   const locale = useLocale();
   const searchParams = useSearchParams();
   const returnTo = searchParams.get('returnTo') ?? '';
+  const checkInbox = searchParams.get('checkInbox') === '1';
+  const confirmedOk = searchParams.get('confirmed') === '1';
+  const confirmError = searchParams.get('confirmError');
+  const passwordReset = searchParams.get('passwordReset') === '1';
   const [state, formAction, pending] = useActionState(login, initialState);
 
   const signUpHref = returnTo
     ? `/${locale}/account/signup?returnTo=${encodeURIComponent(returnTo)}`
     : `/${locale}/account/signup`;
+  const forgotHref = `/${locale}/account/forgot-password`;
 
   return (
     <form action={formAction} className="space-y-5">
       <input type="hidden" name="locale" value={locale} />
       {returnTo && <input type="hidden" name="returnTo" value={returnTo} />}
+
+      {checkInbox && (
+        <p className="text-sm text-charcoal bg-gold/10 border border-gold/30 px-3 py-2 rounded-md" role="status">
+          {t('login.checkInbox')}
+        </p>
+      )}
+      {confirmedOk && (
+        <p className="text-sm text-green-800 bg-green-50 border border-green-200 px-3 py-2 rounded-md" role="status">
+          {t('login.confirmed')}
+        </p>
+      )}
+      {passwordReset && (
+        <p className="text-sm text-green-800 bg-green-50 border border-green-200 px-3 py-2 rounded-md" role="status">
+          {t('login.passwordReset')}
+        </p>
+      )}
+      {confirmError && (
+        <p className="text-sm text-red-700 bg-red-50 border border-red-200 px-3 py-2 rounded-md" role="alert">
+          {confirmError === 'expired'
+            ? t('login.confirmExpired')
+            : t('login.confirmInvalid')}
+        </p>
+      )}
 
       <div>
         <label htmlFor="email" className="block text-xs font-semibold tracking-wider uppercase text-charcoal mb-1.5">
@@ -62,12 +90,19 @@ export default function LoginForm() {
         {pending ? t('login.submitting') : t('login.submit')}
       </button>
 
-      <p className="text-xs text-mist text-center">
-        {t('login.noAccount')}{' '}
-        <Link href={signUpHref} className="text-gold-dark hover:text-gold underline underline-offset-2">
-          {t('login.signUp')}
-        </Link>
-      </p>
+      <div className="space-y-2 text-center">
+        <p className="text-xs">
+          <Link href={forgotHref} className="text-gold-dark hover:text-gold underline underline-offset-2">
+            {t('login.forgotPassword')}
+          </Link>
+        </p>
+        <p className="text-xs text-mist">
+          {t('login.noAccount')}{' '}
+          <Link href={signUpHref} className="text-gold-dark hover:text-gold underline underline-offset-2">
+            {t('login.signUp')}
+          </Link>
+        </p>
+      </div>
     </form>
   );
 }

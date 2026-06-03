@@ -142,12 +142,19 @@ export default function SignupForm() {
         {pending ? t('signup.submitting') : t('signup.submit')}
       </button>
 
-      <p className="text-xs text-mist text-center">
-        {t('signup.haveAccount')}{' '}
-        <Link href={signInHref} className="text-gold-dark hover:text-gold underline underline-offset-2">
-          {t('signup.signIn')}
-        </Link>
-      </p>
+      <div className="space-y-2 text-center">
+        <p className="text-xs">
+          <Link href={`/${locale}/account/forgot-password`} className="text-gold-dark hover:text-gold underline underline-offset-2">
+            {t('signup.forgotPassword')}
+          </Link>
+        </p>
+        <p className="text-xs text-mist">
+          {t('signup.haveAccount')}{' '}
+          <Link href={signInHref} className="text-gold-dark hover:text-gold underline underline-offset-2">
+            {t('signup.signIn')}
+          </Link>
+        </p>
+      </div>
     </form>
   );
 }

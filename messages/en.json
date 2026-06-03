@@ -31,7 +31,8 @@
       "submit": "Create account",
       "submitting": "Creating account…",
       "haveAccount": "Already have an account?",
-      "signIn": "Sign in"
+      "signIn": "Sign in",
+      "forgotPassword": "Forgot your password?"
     },
     "login": {
       "pageTitle": "Sign in",
@@ -40,7 +41,40 @@
       "submit": "Sign in",
       "submitting": "Signing in…",
       "noAccount": "No account yet?",
-      "signUp": "Create one"
+      "signUp": "Create one",
+      "forgotPassword": "Forgot your password?",
+      "checkInbox": "A confirmation email was sent — please check your inbox before signing in.",
+      "confirmed": "Email confirmed. You can sign in now.",
+      "confirmExpired": "That confirmation link has expired. Please sign up again or contact support.",
+      "confirmInvalid": "That confirmation link is invalid or already used.",
+      "passwordReset": "Password updated. You can sign in with your new password."
+    },
+    "forgotPassword": {
+      "pageTitle": "Reset password",
+      "title": "Reset your password",
+      "subtitle": "Enter the email on your account. We'll send a 4-digit code to reset your password.",
+      "emailLabel": "Email",
+      "submit": "Send code",
+      "submitting": "Sending…",
+      "sent": "If that email is on file, a 4-digit code is on its way. Open the reset page to enter it.",
+      "openReset": "Enter your code",
+      "backToLogin": "Back to sign in"
+    },
+    "resetPassword": {
+      "pageTitle": "Enter code & set password",
+      "title": "Enter your code",
+      "subtitle": "Enter the 4-digit code we emailed you, then set a new password.",
+      "emailLabel": "Email",
+      "codeLabel": "4-digit code",
+      "checkCode": "Check the code",
+      "checking": "Checking…",
+      "codeOk": "Code verified. Set your new password below.",
+      "newPasswordLabel": "Enter the new password",
+      "confirmPasswordLabel": "Confirm the password",
+      "submit": "Save password",
+      "submitting": "Saving…",
+      "backToLogin": "Back to sign in",
+      "needCode": "Need a code?"
     },
     "dashboard": {
       "pageTitle": "My account",
