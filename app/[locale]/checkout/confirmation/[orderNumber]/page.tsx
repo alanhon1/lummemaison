@@ -1,10 +1,19 @@
 import { notFound } from 'next/navigation';
+import { timingSafeEqual } from 'node:crypto';
 import { getTranslations } from 'next-intl/server';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import CheckoutSteps from '@/components/checkout/CheckoutSteps';
 import ConfirmationClient, { type OrderView } from '@/components/checkout/ConfirmationClient';
 import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
+
+// Constant-time string equality. view_token is a UUID v4 (36 chars), so
+// length is fixed — but we double-check length up front to avoid leaking the
+// expected length via the length-mismatch return path.
+function tokenEq(provided: string, expected: string): boolean {
+  if (provided.length !== expected.length) return false;
+  return timingSafeEqual(Buffer.from(provided), Buffer.from(expected));
+}
 
 interface PageProps {
   params: Promise<{ locale: string; orderNumber: string }>;
@@ -46,9 +55,23 @@ export default async function CheckoutConfirmationPage({ params, searchParams }:
 
   if (error || !order) notFound();
 
-  const ownsOrder = !!user && order.user_id === user.id;
-  const tokenMatches = !!token && token === order.view_token;
-  if (!ownsOrder && !tokenMatches) notFound();
+  // Access gate. Tightened over the previous "owner OR token" rule:
+  //
+  //   - If there IS a session, ownership is the only thing that counts.
+  //     A signed-in user changing the seq in the URL to peek at someone
+  //     else's order — even with a valid ?t= token leaked from somewhere
+  //     — gets 404. The token is purely an anonymous fallback.
+  //
+  //   - If there is NO session, a valid view_token still grants access
+  //     (the post-checkout redirect + email links rely on this).
+  //
+  // Both branches end in notFound() with no body, so 404 cases are
+  // indistinguishable from "seq does not exist".
+  if (user) {
+    if (order.user_id !== user.id) notFound();
+  } else {
+    if (!token || !tokenEq(token, order.view_token)) notFound();
+  }
 
   const { data: items } = await admin
     .from('order_items')
