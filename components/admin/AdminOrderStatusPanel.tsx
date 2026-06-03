@@ -173,7 +173,20 @@ export default function AdminOrderStatusPanel({
             <button
               type="button"
               disabled={pending}
-              onClick={() => advanceTo(prevStage)}
+              onClick={() => {
+                // Rolling back past `shipped` destroys the ship metadata
+                // (carrier / tracking / photo) — warn so it's not a surprise.
+                const destructive = isShipped || status === 'delivered';
+                if (
+                  destructive &&
+                  !confirm(
+                    `Roll back to ${ADMIN_LABEL[prevStage]}? This will clear the carrier, tracking number, and shipment photo.`,
+                  )
+                ) {
+                  return;
+                }
+                advanceTo(prevStage);
+              }}
               className="text-xs text-mist hover:text-charcoal inline-flex items-center gap-1.5 border border-bone px-3 py-1.5"
             >
               <Undo2 size={13} />

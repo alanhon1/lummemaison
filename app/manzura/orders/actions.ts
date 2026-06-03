@@ -53,32 +53,59 @@ export async function updateOrderStatus(
   }
 
   const supabase = createServiceClient();
+
+  // Snapshot the row first. We need it for: (a) cancellation email, (b)
+  // detecting rollbacks past `shipped` so the patch can clear stale shipment
+  // metadata (carrier / tracking / photo / shipped_at). One read either way.
+  const { data: current } = await supabase
+    .from('orders')
+    .select('order_seq, order_number, customer_name, customer_email, status, shipped_at, delivered_at, shipment_photo_path')
+    .eq('id', orderId)
+    .single();
+  if (!current) return { ok: false, error: 'order not found' };
+
   const patch: Record<string, unknown> = { status: nextStatus };
   if (nextStatus === 'delivered') patch.delivered_at = new Date().toISOString();
 
-  // Fetch the order ahead of the update so the cancellation email has the
-  // customer name + display order number to use. Cheap — single row read.
-  let snapshot: { order_seq: number | null; order_number: string; customer_name: string; customer_email: string } | null = null;
-  if (nextStatus === 'cancelled') {
-    const { data } = await supabase
-      .from('orders')
-      .select('order_seq, order_number, customer_name, customer_email')
-      .eq('id', orderId)
-      .single();
-    snapshot = data ?? null;
+  // Rollback hygiene: if the row used to be at `shipped` / `delivered` and
+  // we're moving back to an earlier stage, scrub the shipment metadata so
+  // the customer-side detail page doesn't show stale tracking info next to
+  // a stepper that has un-stepped past shipped.
+  // `nextStatus` has already been narrowed by the early-return above to exclude
+  // 'shipped' (callers must use markOrderShipped). So the only "still shipped
+  // or later" target left is 'delivered'.
+  const wasShippedOrLater = current.status === 'shipped' || current.status === 'delivered';
+  const rollingBackPastShipped = wasShippedOrLater && nextStatus !== 'delivered';
+  const oldPhotoPath = rollingBackPastShipped ? (current.shipment_photo_path as string | null) : null;
+  if (rollingBackPastShipped) {
+    patch.carrier = null;
+    patch.tracking_number = null;
+    patch.shipment_photo_path = null;
+    patch.shipped_at = null;
+  }
+  // Same idea for delivered_at if we ever leave `delivered`.
+  if (current.status === 'delivered' && nextStatus !== 'delivered') {
+    patch.delivered_at = null;
   }
 
   const { error } = await supabase.from('orders').update(patch).eq('id', orderId);
   if (error) return { ok: false, error: error.message };
 
+  // Best-effort: remove the now-orphaned shipment photo from Storage. We
+  // don't care about the result — if it fails the row is already correct;
+  // the orphan can be reaped manually later if it matters.
+  if (oldPhotoPath) {
+    void supabase.storage.from('shipment-photos').remove([oldPhotoPath]);
+  }
+
   // Fire-and-forget customer cancellation notification. Never blocks the action.
-  if (nextStatus === 'cancelled' && snapshot) {
+  if (nextStatus === 'cancelled') {
     const orderNumber =
-      snapshot.order_seq != null ? formatOrderNumber(snapshot.order_seq) : snapshot.order_number;
+      current.order_seq != null ? formatOrderNumber(current.order_seq as number) : (current.order_number as string);
     void sendCancellationEmail({
       orderNumber,
-      customerName: snapshot.customer_name,
-      customerEmail: snapshot.customer_email,
+      customerName: current.customer_name as string,
+      customerEmail: current.customer_email as string,
     });
   }
 
