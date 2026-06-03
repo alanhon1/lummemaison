@@ -1,8 +1,8 @@
 import { getTransporter } from './mailer';
-import { customerEmail, adminEmail, type OrderData } from './templates';
+import { customerEmail, adminEmail, shipmentEmail, type OrderData, type ShipmentData } from './templates';
 import { createServiceClient } from '@/lib/supabase/server';
 
-export type { OrderData } from './templates';
+export type { OrderData, ShipmentData } from './templates';
 
 export interface SendResult {
   customer: { ok: boolean; error?: string };
@@ -104,4 +104,42 @@ export async function sendOrderEmails(order: OrderData): Promise<SendResult> {
   }
 
   return { customer: customerRes, admin: adminRes };
+}
+
+// Sends the customer-facing shipment-notification email. Used by the admin
+// "mark shipped" server action. Never throws — admin-side ship action proceeds
+// regardless. Returns ok/error per the same shape so the action can surface it.
+export async function sendShipmentEmail(s: ShipmentData): Promise<{ ok: boolean; error?: string }> {
+  const from = process.env.SMTP_FROM;
+  if (!from) {
+    const reason = 'SMTP_FROM missing';
+    console.warn(`[email] ${reason} — skipping shipment email for`, s.orderNumber);
+    return { ok: false, error: reason };
+  }
+
+  let transporter: ReturnType<typeof getTransporter>;
+  try {
+    transporter = getTransporter();
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[email] transporter init failed', s.orderNumber, msg);
+    return { ok: false, error: msg };
+  }
+
+  const rendered = shipmentEmail(s);
+  try {
+    await transporter.sendMail({
+      from,
+      to: s.customerEmail,
+      subject: rendered.subject,
+      html: rendered.html,
+      text: rendered.text,
+      replyTo: process.env.ADMIN_NOTIFICATION_EMAIL,
+    });
+    return { ok: true };
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[email] shipment send failed', s.orderNumber, msg);
+    return { ok: false, error: msg };
+  }
 }

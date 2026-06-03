@@ -310,6 +310,82 @@ export function customerEmail(order: OrderData): { subject: string; html: string
 }
 
 // ----------------------------------------------------------------------------
+// Customer shipment notification — sent when admin marks an order as `shipped`.
+// Lightweight: order number, carrier, tracking number, and tracking URL.
+// ----------------------------------------------------------------------------
+
+export interface ShipmentData {
+  orderNumber: string;
+  customerName: string;
+  customerEmail: string;
+  carrierLabel: string;
+  trackingNumber: string;
+  trackingUrl?: string;
+}
+
+export function shipmentEmail(s: ShipmentData): { subject: string; html: string; text: string } {
+  const subject = `Your Lumée Maison Order ${s.orderNumber} — Shipped`;
+  const trackingLine = s.trackingUrl
+    ? `<a href="${s.trackingUrl}" style="color:#7a5a3a;">${escapeHtml(s.trackingNumber)}</a>`
+    : escapeHtml(s.trackingNumber);
+
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6f0;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #eadfd1;">
+        <tr><td style="padding:36px 40px 24px;text-align:center;border-bottom:1px solid #eadfd1;">
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;letter-spacing:1px;color:#3a342c;">Lumée Maison</div>
+          <div style="font-size:12px;letter-spacing:3px;color:#9a8e7e;margin-top:4px;text-transform:uppercase;">Your Order Has Shipped</div>
+        </td></tr>
+        <tr><td style="padding:32px 40px;">
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(s.customerName)},</p>
+          <p style="margin:0 0 24px;font-size:15px;line-height:1.6;">Your order <strong>${escapeHtml(s.orderNumber)}</strong> is on its way. Tracking details below.</p>
+
+          <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 0 28px;font-size:14px;line-height:1.8;">
+            <tr><td style="color:#6b6157;padding-right:18px;vertical-align:top;">Carrier</td><td style="color:#3a342c;">${escapeHtml(s.carrierLabel)}</td></tr>
+            <tr><td style="color:#6b6157;padding-right:18px;vertical-align:top;">Tracking number</td><td style="color:#3a342c;font-family:Consolas,Menlo,monospace;">${trackingLine}</td></tr>
+          </table>
+
+          ${
+            s.trackingUrl
+              ? `<p style="margin:0 0 28px;"><a href="${s.trackingUrl}" style="display:inline-block;padding:10px 24px;background:#c9a875;color:#ffffff;text-decoration:none;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;">Track Your Package</a></p>`
+              : ''
+          }
+
+          <p style="margin:24px 0 4px;font-size:14px;line-height:1.6;">With gratitude,</p>
+          <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:16px;color:#3a342c;">The Lumée Maison Team</p>
+        </td></tr>
+        <tr><td style="padding:20px 40px 28px;border-top:1px solid #eadfd1;font-size:11px;color:#9a8e7e;text-align:center;">
+          This is a shipping notification for your order ${escapeHtml(s.orderNumber)}.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const text = [
+    `Lumée Maison — Order ${s.orderNumber} has shipped`,
+    '',
+    `Dear ${s.customerName},`,
+    '',
+    `Your order ${s.orderNumber} is on its way.`,
+    '',
+    `  Carrier:         ${s.carrierLabel}`,
+    `  Tracking number: ${s.trackingNumber}`,
+    s.trackingUrl ? `  Track:           ${s.trackingUrl}` : '',
+    '',
+    'With gratitude,',
+    'The Lumée Maison Team',
+  ]
+    .filter(line => line !== null && line !== undefined)
+    .join('\n');
+
+  return { subject, html, text };
+}
+
+// ----------------------------------------------------------------------------
 // Admin email — concise, fulfillment-focused, ship-to block prominent.
 // ----------------------------------------------------------------------------
 

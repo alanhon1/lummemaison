@@ -6,11 +6,15 @@ import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { findCountry } from '@/lib/countries';
+import AdminOrderStatusPanel from '@/components/admin/AdminOrderStatusPanel';
+import AdminOrderMessages from '@/components/admin/AdminOrderMessages';
 
 export const dynamic = 'force-dynamic';
 
 const PROOF_BUCKET = 'payment-proofs';
+const SHIPMENT_BUCKET = 'shipment-photos';
 const PROOF_SIGNED_URL_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
+const SHIPMENT_PHOTO_TTL_SECONDS = 60 * 60; // admin-side: short — page rerenders fetch a fresh URL
 
 function formatUSD(cents: number, currency: string) {
   return (cents / 100).toLocaleString('en-US', { style: 'currency', currency });
@@ -53,6 +57,19 @@ interface OrderDetail {
   payment_method: string | null;
   payment_proof_path: string | null;
   payment_transaction_link: string | null;
+  carrier: string | null;
+  tracking_number: string | null;
+  shipment_photo_path: string | null;
+  shipped_at: string | null;
+  delivered_at: string | null;
+  created_at: string;
+}
+
+interface MessageRow {
+  id: string;
+  sender_role: 'admin' | 'customer';
+  body: string;
+  is_internal: boolean;
   created_at: string;
 }
 
@@ -78,11 +95,18 @@ export default async function AdminOrderDetailPage({
 
   const detail = order as OrderDetail;
 
-  const { data: items } = await supabase
-    .from('order_items')
-    .select('id, product_id, product_name, unit_cents, quantity, line_cents')
-    .eq('order_id', detail.id)
-    .order('id');
+  const [{ data: items }, { data: messages }] = await Promise.all([
+    supabase
+      .from('order_items')
+      .select('id, product_id, product_name, unit_cents, quantity, line_cents')
+      .eq('order_id', detail.id)
+      .order('id'),
+    supabase
+      .from('order_messages')
+      .select('id, sender_role, body, is_internal, created_at')
+      .eq('order_id', detail.id)
+      .order('created_at', { ascending: true }),
+  ]);
 
   // Always mint a fresh signed URL on render so the admin can open the proof
   // even years after the email's 7-day link expires.
@@ -92,6 +116,14 @@ export default async function AdminOrderDetailPage({
       .from(PROOF_BUCKET)
       .createSignedUrl(detail.payment_proof_path, PROOF_SIGNED_URL_TTL_SECONDS);
     proofSignedUrl = signed?.signedUrl;
+  }
+
+  let shipmentPhotoUrl: string | undefined;
+  if (detail.shipment_photo_path) {
+    const { data: signed } = await supabase.storage
+      .from(SHIPMENT_BUCKET)
+      .createSignedUrl(detail.shipment_photo_path, SHIPMENT_PHOTO_TTL_SECONDS);
+    shipmentPhotoUrl = signed?.signedUrl;
   }
 
   const display =
@@ -114,11 +146,32 @@ export default async function AdminOrderDetailPage({
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
-        <Stat label="Status" value={detail.status.toUpperCase()} />
         <Stat label="Created" value={new Date(detail.created_at).toLocaleString()} />
         <Stat label="Payment method" value={detail.payment_method ?? '—'} />
+        <Stat label="Shipped at" value={detail.shipped_at ? new Date(detail.shipped_at).toLocaleString() : '—'} />
         <Stat label="Customer ID" value={detail.user_id.slice(0, 8) + '…'} />
       </div>
+
+      <AdminOrderStatusPanel
+        orderId={detail.id}
+        status={detail.status}
+        carrier={detail.carrier}
+        trackingNumber={detail.tracking_number}
+        shipmentPhotoPath={detail.shipment_photo_path}
+      />
+
+      {shipmentPhotoUrl && (
+        <section className="bg-white border border-bone rounded-lg p-5">
+          <h2 className="font-display text-lg text-charcoal mb-3">Shipment photo</h2>
+          <a href={shipmentPhotoUrl} target="_blank" rel="noopener noreferrer">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={shipmentPhotoUrl} alt="Shipment" className="max-h-96 border border-bone rounded-md bg-white" />
+          </a>
+          <p className="text-[11px] text-mist mt-2">
+            Signed link regenerates every time you open this page.
+          </p>
+        </section>
+      )}
 
       {(proofSignedUrl || detail.payment_transaction_link) && (
         <section className="bg-emerald-50 border border-emerald-200 rounded-lg p-5">
@@ -260,6 +313,8 @@ export default async function AdminOrderDetailPage({
           </tfoot>
         </table>
       </section>
+
+      <AdminOrderMessages orderId={detail.id} messages={(messages ?? []) as MessageRow[]} />
     </div>
   );
 }

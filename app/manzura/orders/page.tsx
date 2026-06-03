@@ -25,15 +25,18 @@ function formatTotal(cents: number, currency: string) {
   return (cents / 100).toLocaleString('en-US', { style: 'currency', currency });
 }
 
-function statusBadge(status: string) {
-  const map: Record<string, string> = {
-    pending: 'bg-gray-100 text-gray-700',
-    processing: 'bg-amber-100 text-amber-800',
-    paid: 'bg-emerald-100 text-emerald-800',
-    shipped: 'bg-sky-100 text-sky-800',
-    cancelled: 'bg-rose-100 text-rose-800',
+// Admin-side status badge palette. Mirrors the new Phase C vocab from
+// supabase/migrations/006_order_status_flow.sql.
+function statusBadge(status: string): { cls: string; label: string } {
+  const map: Record<string, { cls: string; label: string }> = {
+    order_received:   { cls: 'bg-cream text-gold-dark border border-gold/30', label: 'Received' },
+    payment_verified: { cls: 'bg-blue-50 text-blue-700 border border-blue-200', label: 'Payment verified' },
+    packaging:        { cls: 'bg-amber-50 text-amber-800 border border-amber-200', label: 'Packing' },
+    shipped:          { cls: 'bg-emerald-50 text-emerald-800 border border-emerald-200', label: 'Shipped' },
+    delivered:        { cls: 'bg-charcoal text-cream border border-charcoal', label: 'Delivered' },
+    cancelled:        { cls: 'bg-stone-100 text-stone-500 border border-stone-300 line-through', label: 'Cancelled' },
   };
-  return map[status] ?? 'bg-gray-100 text-gray-700';
+  return map[status] ?? { cls: 'bg-gray-100 text-gray-700', label: status };
 }
 
 export default async function AdminOrdersPage() {
@@ -100,9 +103,14 @@ export default async function AdminOrdersPage() {
                     </td>
                     <td className="px-4 py-3 text-charcoal">{o.customer_name}</td>
                     <td className="px-4 py-3">
-                      <span className={`text-[10px] uppercase tracking-widest px-2 py-1 rounded ${statusBadge(o.status)}`}>
-                        {o.status}
-                      </span>
+                      {(() => {
+                        const b = statusBadge(o.status);
+                        return (
+                          <span className={`text-[10px] uppercase tracking-widest px-2 py-1 rounded-full ${b.cls}`}>
+                            {b.label}
+                          </span>
+                        );
+                      })()}
                     </td>
                     <td className="px-4 py-3 text-xs text-mist">
                       {hasProof ? (

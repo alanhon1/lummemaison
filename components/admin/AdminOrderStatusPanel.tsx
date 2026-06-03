@@ -1,0 +1,279 @@
+'use client';
+
+import { useState, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
+import { Check, ArrowRight, Undo2, X } from 'lucide-react';
+import { ORDER_STAGES, stageIndex, type OrderStatus } from '@/lib/orders/status';
+import { CARRIERS, type CarrierKey } from '@/lib/orders/carriers';
+import { updateOrderStatus, markOrderShipped } from '@/app/manzura/orders/actions';
+
+// Visible labels (admin only, English) — order_received → Received, etc.
+const ADMIN_LABEL: Record<OrderStatus, string> = {
+  order_received: 'Received',
+  payment_verified: 'Payment verified',
+  packaging: 'Packing',
+  shipped: 'Shipped',
+  delivered: 'Delivered',
+  cancelled: 'Cancelled',
+};
+
+interface Props {
+  orderId: number;
+  status: string;
+  carrier: string | null;
+  trackingNumber: string | null;
+  shipmentPhotoPath: string | null;
+}
+
+export default function AdminOrderStatusPanel({
+  orderId,
+  status,
+  carrier,
+  trackingNumber,
+  shipmentPhotoPath,
+}: Props) {
+  const router = useRouter();
+  const [pending, startTransition] = useTransition();
+  const [shipFormOpen, setShipFormOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const idx = stageIndex(status);
+  const isCancelled = status === 'cancelled';
+  const isDelivered = status === 'delivered';
+  const isShipped = status === 'shipped';
+
+  const nextStage: OrderStatus | null = (() => {
+    if (isCancelled || isDelivered) return null;
+    const i = idx;
+    if (i + 1 >= ORDER_STAGES.length) return null;
+    return ORDER_STAGES[i + 1];
+  })();
+  const prevStage: OrderStatus | null = (() => {
+    if (isCancelled) return null;
+    if (idx <= 0) return null;
+    return ORDER_STAGES[idx - 1];
+  })();
+
+  function advanceTo(next: OrderStatus) {
+    setError(null);
+    startTransition(async () => {
+      const res = await updateOrderStatus(orderId, next);
+      if (!res.ok) setError(res.error);
+      else router.refresh();
+    });
+  }
+
+  async function handleShipSubmit(formData: FormData) {
+    setError(null);
+    startTransition(async () => {
+      const res = await markOrderShipped(formData);
+      if (!res.ok) setError(res.error);
+      else {
+        setShipFormOpen(false);
+        router.refresh();
+      }
+    });
+  }
+
+  return (
+    <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
+      <div className="flex items-baseline justify-between mb-4">
+        <h2 className="font-display text-lg text-charcoal">Status</h2>
+        {isCancelled && (
+          <span className="text-[10px] uppercase tracking-widest text-stone-500 bg-stone-100 border border-stone-300 px-2 py-0.5 rounded-full">
+            Cancelled
+          </span>
+        )}
+      </div>
+
+      {/* Stepper */}
+      {!isCancelled && (
+        <ol className="flex items-center gap-1 sm:gap-2 mb-5 overflow-x-auto pb-1" aria-label="Order progress">
+          {ORDER_STAGES.map((key, i) => {
+            const isDone = i < idx;
+            const isActive = i === idx;
+            return (
+              <li key={key} className="flex items-center gap-1.5 text-xs whitespace-nowrap">
+                <span
+                  className={`flex items-center justify-center rounded-full border transition-all duration-300 ${
+                    isDone
+                      ? 'w-7 h-7 bg-gold-dark border-gold-dark text-cream'
+                      : isActive
+                      ? 'w-8 h-8 bg-charcoal border-charcoal text-cream scale-105 shadow-md'
+                      : 'w-7 h-7 bg-cream border-bone text-mist'
+                  }`}
+                >
+                  <span className="text-[11px] font-semibold">{isDone ? <Check size={14} /> : i + 1}</span>
+                </span>
+                <span
+                  className={`hidden md:inline tracking-wider uppercase text-[10px] transition-colors ${
+                    isActive ? 'text-charcoal font-semibold' : isDone ? 'text-gold-dark' : 'text-mist'
+                  }`}
+                >
+                  {ADMIN_LABEL[key]}
+                </span>
+                {i < ORDER_STAGES.length - 1 && (
+                  <span
+                    className={`h-px w-3 sm:w-6 transition-colors ${i < idx ? 'bg-gold-dark' : 'bg-bone'}`}
+                    aria-hidden
+                  />
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      )}
+
+      {/* Existing shipping metadata (read-only summary if already shipped) */}
+      {isShipped && (
+        <div className="bg-emerald-50 border border-emerald-200 rounded-md p-3 mb-4 text-xs text-emerald-900">
+          <div><span className="text-emerald-700">Carrier:</span> {CARRIERS[carrier as CarrierKey]?.label ?? carrier}</div>
+          <div><span className="text-emerald-700">Tracking:</span> <span className="font-mono">{trackingNumber}</span></div>
+          {shipmentPhotoPath && <div><span className="text-emerald-700">Photo:</span> <span className="font-mono">{shipmentPhotoPath}</span></div>}
+        </div>
+      )}
+
+      {/* Action buttons */}
+      {!isCancelled && !isDelivered && (
+        <div className="flex flex-wrap items-center gap-2">
+          {nextStage && nextStage !== 'shipped' && (
+            <button
+              type="button"
+              disabled={pending}
+              onClick={() => advanceTo(nextStage)}
+              className="btn-gold text-xs inline-flex items-center gap-1.5 disabled:opacity-60"
+            >
+              <ArrowRight size={13} />
+              Mark {ADMIN_LABEL[nextStage]}
+            </button>
+          )}
+          {nextStage === 'shipped' && !shipFormOpen && (
+            <button
+              type="button"
+              disabled={pending}
+              onClick={() => setShipFormOpen(true)}
+              className="btn-gold text-xs inline-flex items-center gap-1.5 disabled:opacity-60"
+            >
+              <ArrowRight size={13} />
+              Mark Shipped…
+            </button>
+          )}
+          {isShipped && (
+            <button
+              type="button"
+              disabled={pending}
+              onClick={() => advanceTo('delivered')}
+              className="btn-gold text-xs inline-flex items-center gap-1.5 disabled:opacity-60"
+            >
+              <ArrowRight size={13} />
+              Mark Delivered
+            </button>
+          )}
+          {prevStage && (
+            <button
+              type="button"
+              disabled={pending}
+              onClick={() => advanceTo(prevStage)}
+              className="text-xs text-mist hover:text-charcoal inline-flex items-center gap-1.5 border border-bone px-3 py-1.5"
+            >
+              <Undo2 size={13} />
+              Roll back to {ADMIN_LABEL[prevStage]}
+            </button>
+          )}
+          <button
+            type="button"
+            disabled={pending}
+            onClick={() => {
+              if (confirm('Cancel this order?')) advanceTo('cancelled');
+            }}
+            className="text-xs text-rose-700 hover:text-rose-900 inline-flex items-center gap-1.5 border border-rose-200 px-3 py-1.5 ml-auto"
+          >
+            <X size={13} />
+            Cancel order
+          </button>
+        </div>
+      )}
+
+      {/* Cancelled or delivered → finalised, allow only reopen */}
+      {(isCancelled || isDelivered) && (
+        <div className="flex gap-2">
+          <button
+            type="button"
+            disabled={pending}
+            onClick={() => advanceTo('order_received')}
+            className="text-xs text-mist hover:text-charcoal border border-bone px-3 py-1.5"
+          >
+            Reopen → Received
+          </button>
+        </div>
+      )}
+
+      {/* Shipped form */}
+      {shipFormOpen && (
+        <form
+          action={handleShipSubmit}
+          className="mt-5 border-t border-bone pt-5 space-y-3"
+          encType="multipart/form-data"
+        >
+          <input type="hidden" name="orderId" value={orderId} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-[10px] uppercase tracking-widest text-mist mb-1.5">Carrier</label>
+              <select
+                name="carrier"
+                required
+                defaultValue=""
+                className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white"
+              >
+                <option value="" disabled>Choose carrier…</option>
+                {Object.entries(CARRIERS).map(([k, c]) => (
+                  <option key={k} value={k}>{c.label}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-[10px] uppercase tracking-widest text-mist mb-1.5">Tracking number</label>
+              <input
+                type="text"
+                name="trackingNumber"
+                required
+                className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold font-mono"
+                placeholder="e.g. 1234567890"
+              />
+            </div>
+          </div>
+          <div>
+            <label className="block text-[10px] uppercase tracking-widest text-mist mb-1.5">Shipment photo (required)</label>
+            <input
+              type="file"
+              name="photo"
+              required
+              accept="image/png,image/jpeg,image/webp,image/heic,image/heif"
+              className="w-full text-xs"
+            />
+            <p className="text-[10px] text-mist mt-1">Stored privately in the shipment-photos bucket. Customer sees it via a signed URL.</p>
+          </div>
+          <div className="flex items-center gap-2 pt-1">
+            <button type="submit" disabled={pending} className="btn-gold text-xs disabled:opacity-60">
+              {pending ? 'Shipping…' : 'Submit & notify customer'}
+            </button>
+            <button
+              type="button"
+              onClick={() => setShipFormOpen(false)}
+              disabled={pending}
+              className="text-xs text-mist hover:text-charcoal border border-bone px-3 py-1.5"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      )}
+
+      {error && (
+        <p className="text-xs text-rose-700 mt-3 bg-rose-50 border border-rose-200 px-3 py-2 rounded">
+          {error}
+        </p>
+      )}
+    </section>
+  );
+}
