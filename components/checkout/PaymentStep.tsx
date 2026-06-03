@@ -43,8 +43,8 @@ interface Props {
   serverError?: string;
 }
 
-function formatUSD(cents: number) {
-  return (cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+function formatUSD(cents: number, locale: string) {
+  return (cents / 100).toLocaleString(locale, { style: 'currency', currency: 'USD' });
 }
 
 export default function PaymentStep({ payment, serverError }: Props) {
@@ -168,19 +168,19 @@ export default function PaymentStep({ payment, serverError }: Props) {
                 {i.name} <span className="text-mist">× {i.quantity}</span>
               </span>
               <span className="text-charcoal whitespace-nowrap">
-                {formatUSD(Math.round(i.price * 100) * i.quantity)}
+                {formatUSD(Math.round(i.price * 100) * i.quantity, locale)}
               </span>
             </li>
           ))}
         </ul>
         <div className="border-t border-bone pt-3 space-y-1.5 text-sm">
-          <Row label={t('payment.subtotal')} value={formatUSD(subtotalCents)} />
+          <Row label={t('payment.subtotal')} value={formatUSD(subtotalCents, locale)} />
           <Row
             label={t('payment.shipping')}
-            value={formatUSD(shippingCents)}
+            value={formatUSD(shippingCents, locale)}
             hint={shippingCents === 6500 ? t('payment.shippingUsaNoFedex') : t('payment.shippingFlat')}
           />
-          <Row label={t('payment.total')} value={formatUSD(totalCents)} strong />
+          <Row label={t('payment.total')} value={formatUSD(totalCents, locale)} strong />
         </div>
       </div>
 

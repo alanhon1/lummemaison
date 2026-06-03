@@ -160,17 +160,17 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
                   {item.product_name} <span className="text-mist">× {item.quantity}</span>
                 </span>
                 <span className="text-charcoal whitespace-nowrap">
-                  {formatCurrency(item.line_cents, order.currency)}
+                  {formatCurrency(item.line_cents, order.currency, locale)}
                 </span>
               </li>
             ))}
           </ul>
           <div className="border-t border-bone mt-3 pt-3 space-y-1.5 text-sm">
-            <TotalRow label={t('subtotal')} value={formatCurrency(order.subtotal_cents, order.currency)} />
-            <TotalRow label={t('shipping')} value={formatCurrency(order.shipping_cents, order.currency)} />
+            <TotalRow label={t('subtotal')} value={formatCurrency(order.subtotal_cents, order.currency, locale)} />
+            <TotalRow label={t('shipping')} value={formatCurrency(order.shipping_cents, order.currency, locale)} />
             <TotalRow
               label={t('total')}
-              value={formatCurrency(order.total_cents, order.currency)}
+              value={formatCurrency(order.total_cents, order.currency, locale)}
               emphasis
             />
           </div>
@@ -215,8 +215,8 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
   );
 }
 
-function formatCurrency(cents: number, currency: string): string {
-  return (cents / 100).toLocaleString('en-US', { style: 'currency', currency });
+function formatCurrency(cents: number, currency: string, locale: string): string {
+  return (cents / 100).toLocaleString(locale, { style: 'currency', currency });
 }
 
 function TotalRow({

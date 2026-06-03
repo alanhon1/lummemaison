@@ -112,7 +112,7 @@ export default function DashboardClient({
           <ul className="space-y-3">
             {orders.map(o => {
               const countryName = findCountry(profile.country)?.name ?? profile.country;
-              const total = (o.total_cents / 100).toLocaleString('en-US', {
+              const total = (o.total_cents / 100).toLocaleString(locale, {
                 style: 'currency',
                 currency: o.currency,
               });

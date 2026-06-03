@@ -43,8 +43,8 @@ interface Props {
   countryName: string;
 }
 
-function formatUSD(cents: number) {
-  return (cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+function formatUSD(cents: number, locale: string) {
+  return (cents / 100).toLocaleString(locale, { style: 'currency', currency: 'USD' });
 }
 
 export default function ConfirmationClient({ order, countryName }: Props) {
@@ -78,14 +78,14 @@ export default function ConfirmationClient({ order, countryName }: Props) {
               <span className="text-charcoal pr-3 line-clamp-1">
                 {item.product_name} <span className="text-mist">× {item.quantity}</span>
               </span>
-              <span className="text-charcoal whitespace-nowrap">{formatUSD(item.line_cents)}</span>
+              <span className="text-charcoal whitespace-nowrap">{formatUSD(item.line_cents, locale)}</span>
             </li>
           ))}
         </ul>
         <div className="border-t border-bone mt-3 pt-3 space-y-1.5 text-sm">
-          <Row label={t('subtotal')} value={formatUSD(order.subtotal_cents)} />
-          <Row label={t('shipping')} value={formatUSD(order.shipping_cents)} />
-          <Row label={t('total')} value={formatUSD(order.total_cents)} strong />
+          <Row label={t('subtotal')} value={formatUSD(order.subtotal_cents, locale)} />
+          <Row label={t('shipping')} value={formatUSD(order.shipping_cents, locale)} />
+          <Row label={t('total')} value={formatUSD(order.total_cents, locale)} strong />
         </div>
       </article>
 
