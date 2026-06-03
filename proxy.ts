@@ -20,17 +20,21 @@ function maybeGeoBlock(req: NextRequest): NextResponse | null {
   const restricted = (siteConfig.restrictedCountries as readonly string[]).map(c => c.toUpperCase());
   if (!restricted.includes(country.toUpperCase())) return null;
 
-  // Redirect to a guaranteed-unresolvable hostname. The `.invalid` TLD is
-  // reserved by RFC 2606 specifically for this — no DNS server will ever
-  // resolve it. The visitor's browser follows the 302, DNS lookup fails,
-  // and Chrome / Safari / Firefox render their own native "This site can't
-  // be reached" / ERR_NAME_NOT_RESOLVED chrome. We never ship any Lumée
-  // response body, so a school-firewall-style network error is the visible
-  // outcome — there is nothing in the response chain to suggest the block
-  // is intentional or originated from us.
-  const blocked = NextResponse.redirect('http://lumeemaison-not-here.invalid/', 302);
-  blocked.headers.set('cache-control', 'no-store, max-age=0');
-  return blocked;
+  // Keep the visitor on the original lumeemaison.com URL but return an
+  // empty 502 Bad Gateway. Chrome / Safari / Firefox render their own
+  // native "This page isn't working — HTTP ERROR 502" chrome around an
+  // empty body, with the address bar preserved. From the visitor's side
+  // it is indistinguishable from a real upstream failure — which is
+  // exactly what a school-firewall-style network interception causes.
+  //
+  // (Earlier attempts: a redirect to a .invalid host leaked the trick in
+  // the address bar; a Content-Encoding: gzip mismatch was stripped by
+  // the Next.js / Vercel response pipeline. The bare-status route below
+  // is the one Next.js doesn't second-guess.)
+  return new NextResponse(null, {
+    status: 502,
+    headers: { 'cache-control': 'no-store, max-age=0' },
+  });
 }
 
 const intlMiddleware = createMiddleware({
