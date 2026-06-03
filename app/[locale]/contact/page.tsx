@@ -57,18 +57,15 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                   <p className="text-xs font-semibold tracking-wider uppercase text-mist">{t('info.whatsapp')}</p>
                 </div>
                 <ul className="space-y-2 pl-14">
-                  {siteConfig.contact.whatsappNumbers.map(n => (
-                    <li key={n.url}>
+                  {siteConfig.contact.whatsappNumbers.map(num => (
+                    <li key={num}>
                       <a
-                        href={n.url}
+                        href={`https://wa.me/${num.replace(/\D/g, '')}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-charcoal hover:text-[#25D366] transition-colors inline-flex items-baseline gap-2"
+                        className="text-sm text-charcoal hover:text-[#25D366] transition-colors"
                       >
-                        <span>{n.display}</span>
-                        {n.main && (
-                          <span className="text-[10px] tracking-[0.2em] uppercase text-mist">{t('info.primary')}</span>
-                        )}
+                        {num}
                       </a>
                     </li>
                   ))}
@@ -83,17 +80,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                   <p className="text-xs font-semibold tracking-wider uppercase text-mist">{t('info.telegram')}</p>
                 </div>
                 <ul className="space-y-2 pl-14">
-                  <li>
-                    <a
-                      href={siteConfig.social.telegram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-charcoal hover:text-[#2AABEE] transition-colors"
-                    >
-                      {siteConfig.contact.telegram}
-                    </a>
-                  </li>
-                  {siteConfig.contact.telegramExtraNumbers.map(num => (
+                  {siteConfig.contact.telegramNumbers.map(num => (
                     <li key={num} className="text-sm text-charcoal">{num}</li>
                   ))}
                 </ul>

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { siteConfig } from '@/lib/site-config';
-import { Share2, Link2, MessageCircle, Send, ChevronDown } from 'lucide-react';
+import { Share2, MessageCircle, Send, ChevronDown } from 'lucide-react';
 import DisclaimerReset from '@/components/disclaimer/DisclaimerReset';
 
 function SectionHeader({ title }: { title: string }) {
@@ -43,10 +43,6 @@ export default function Footer() {
                 className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="Instagram">
                 <Share2 size={15} />
               </a>
-              <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer"
-                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="Facebook">
-                <Link2 size={15} />
-              </a>
               <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer"
                 className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="WhatsApp">
                 <MessageCircle size={15} />
@@ -59,7 +55,7 @@ export default function Footer() {
           </div>
 
           {/* Navigation */}
-          <details className="footer-collapsible group">
+          <details open className="footer-collapsible group">
             <SectionHeader title={t('company')} />
             <ul className="space-y-3 pt-2 md:pt-0">
               {navLinks.map(item => (
@@ -73,7 +69,7 @@ export default function Footer() {
           </details>
 
           {/* Payment & Shipping */}
-          <details className="footer-collapsible group">
+          <details open className="footer-collapsible group">
             <SectionHeader title={t('payment')} />
             <ul className="space-y-3 pt-2 md:pt-0">
               <li className="text-xs text-cream/60"><span className="text-gold">Wise</span> — Bank Transfer</li>
@@ -96,7 +92,7 @@ export default function Footer() {
           </details>
 
           {/* Contact */}
-          <details className="footer-collapsible group">
+          <details open className="footer-collapsible group">
             <SectionHeader title="Contact" />
             <ul className="space-y-3 pt-2 md:pt-0">
               <li>
