@@ -329,6 +329,20 @@ body {
     border-radius: 6px;
   }
 
+  /* Sold-out badge — complements .badge-new / .badge-sale / .badge-best / .badge-bundle.
+     Uses --color-charcoal (#1a1a1a) — Tailwind v4 exposes @theme colors as --color-* custom properties. */
+  .badge-soldout {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background-color: var(--color-charcoal, #1a1a1a);
+    color: var(--color-cream, #faf8f5);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 6px;
+  }
+
   /* Slow ambient pulse — soft glow drift for hero backdrops */
   .animate-pulse-slow {
     animation: pulse-slow 8s ease-in-out infinite;
@@ -390,6 +404,11 @@ body {
     border-radius: 6px;
     transition: border-color 200ms ease, box-shadow 200ms ease;
   }
+
+  /* Input focus uses :focus (not :focus-visible) on purpose: visible focus
+     feedback on every input activation, including mouse click, is the
+     expected UX per WCAG 2.4.11. Buttons use :focus-visible because a
+     persistent ring after a mouse click would be visual noise. */
   input[type="text"]:focus,
   input[type="email"]:focus,
   input[type="tel"]:focus,
@@ -439,21 +458,6 @@ body {
   .glow-gold-strong { box-shadow: 0 0 36px rgba(201, 169, 110, 0.45); }
   .hover-glow       { transition: box-shadow 300ms ease; }
   .hover-glow:hover { box-shadow: 0 0 28px rgba(201, 169, 110, 0.30); }
-
-  /* Sold-out badge — complements existing .badge-new / .badge-sale family.
-     Uses --color-charcoal (#1a1a1a) per spec — Tailwind v4 exposes @theme
-     colors as --color-* custom properties. */
-  .badge-soldout {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    background-color: var(--color-charcoal, #1a1a1a);
-    color: var(--color-cream, #faf8f5);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border-radius: 6px;
-  }
 
   /* Logo shimmer — gold gradient sweep across the wordmark on the home hero.
      Background-clip:text means the gradient draws inside the glyphs, not the
