@@ -86,9 +86,11 @@ export default function Hero() {
                 '0 0 20px rgba(255,248,235,0.85), 0 0 40px rgba(255,248,235,0.55), 0 2px 4px rgba(0,0,0,0.12)',
             }}
           >
-            {t('title')}
-            <br />
-            <span className="text-gold-dark italic">{t('titleAccent')}</span>
+            <span className="logo-shimmer">
+              {t('title')}
+              <br />
+              <span className="text-gold-dark italic">{t('titleAccent')}</span>
+            </span>
           </motion.h1>
 
           {/* Subtitle — italic Cormorant Garamond with a subtler glow */}
