@@ -45,7 +45,8 @@
     "verify-jotform-matches": "tsx scripts/verify-jotform-matches.ts",
     "apply-protocol-templates": "tsx scripts/apply-protocol-templates.ts",
     "shorten-protocols": "tsx scripts/shorten-protocols.ts",
-    "compose-bundle-covers": "tsx scripts/compose-bundle-covers.ts"
+    "compose-bundle-covers": "tsx scripts/compose-bundle-covers.ts",
+    "seed:stock:csv": "tsx scripts/seed-stock-from-csv.ts"
   },
   "dependencies": {
     "@react-email/components": "^1.0.12",
@@ -78,6 +79,7 @@
     "pdfjs-dist": "^5.7.284",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "xlsx": "^0.18.5"
   }
 }
