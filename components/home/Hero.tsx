@@ -116,14 +116,14 @@ export default function Hero() {
           >
             <Link
               href={`/${locale}/catalogue`}
-              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 bg-gold text-cream text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-dark transition-all duration-300 group"
+              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-[10px] bg-gold text-cream text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-dark transition-all duration-300 group"
             >
               {t('cta')}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 border border-charcoal/30 text-charcoal text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold-dark hover:text-gold-dark hover:bg-cream/40 transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-[10px] border border-charcoal/30 text-charcoal text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold-dark hover:text-gold-dark hover:bg-cream/40 transition-all duration-300"
             >
               {t('ctaSecondary')}
             </Link>
