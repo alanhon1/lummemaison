@@ -2,9 +2,12 @@
 
 import { useActionState, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { ChevronRight } from 'lucide-react';
 import { updateProfile, logout, type FormState } from '@/app/[locale]/account/actions';
 import CountrySelect from './CountrySelect';
 import { findCountry } from '@/lib/countries';
+import OrderStatusBadge from './OrderStatusBadge';
 
 interface Profile {
   full_name: string;
@@ -20,6 +23,7 @@ interface Profile {
 interface OrderRow {
   id: number;
   order_number: string;
+  order_seq: number | null;
   status: string;
   total_cents: number;
   currency: string;
@@ -112,22 +116,34 @@ export default function DashboardClient({
                 style: 'currency',
                 currency: o.currency,
               });
+              const detailSlug = o.order_seq != null ? String(o.order_seq) : encodeURIComponent(o.order_number);
               return (
-                <li key={o.id} className="border border-bone rounded-md p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-display text-lg text-charcoal">{o.order_number}</p>
-                      <p className="text-xs text-mist">
-                        {new Date(o.created_at).toLocaleDateString()} · {countryName}
-                      </p>
+                <li key={o.id}>
+                  <Link
+                    href={`/${locale}/account/orders/${detailSlug}`}
+                    className="block border border-bone rounded-md p-4 bg-white hover:border-gold transition-colors group"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="font-display text-lg text-charcoal">{o.order_number}</p>
+                        <p className="text-xs text-mist mt-0.5">
+                          {new Date(o.created_at).toLocaleDateString()} · {countryName}
+                        </p>
+                        <div className="mt-2">
+                          <OrderStatusBadge status={o.status} />
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 text-right whitespace-nowrap">
+                        <div>
+                          <p className="font-display text-lg text-charcoal">{total}</p>
+                          <p className="text-[10px] tracking-widest uppercase text-mist group-hover:text-gold-dark transition-colors">
+                            {t('details')}
+                          </p>
+                        </div>
+                        <ChevronRight size={16} className="text-mist group-hover:text-gold-dark transition-colors" />
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <p className="font-display text-lg text-charcoal">{total}</p>
-                      <p className="text-[10px] font-semibold tracking-widest uppercase text-gold-dark">
-                        {o.status}
-                      </p>
-                    </div>
-                  </div>
+                  </Link>
                 </li>
               );
             })}

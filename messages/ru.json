@@ -49,10 +49,43 @@
       "profile": "Профиль и доставка",
       "orderHistory": "История заказов",
       "noOrders": "Заказов пока нет.",
+      "details": "Подробнее",
       "save": "Сохранить",
       "saving": "Сохраняем…",
       "saved": "Сохранено.",
       "logout": "Выйти"
+    },
+    "orders": {
+      "pageTitle": "Заказ {number}",
+      "back": "Назад в аккаунт",
+      "itemsTitle": "Товары",
+      "subtotal": "Сумма товаров",
+      "shipping": "Доставка",
+      "total": "Итого",
+      "shippingTitle": "Адрес доставки",
+      "tracking": "Отслеживание",
+      "carrier": "Перевозчик",
+      "trackingNumber": "Номер отправления",
+      "trackingLink": "Отследить посылку",
+      "shipmentPhoto": "Фото отправления",
+      "messages": "Сообщения от нас",
+      "noMessages": "Сообщений пока нет — мы будем оставлять обновления здесь по мере продвижения вашего заказа.",
+      "cancelled": "Этот заказ отменён.",
+      "status": {
+        "order_received": "Заказ принят",
+        "payment_verified": "Оплата подтверждена",
+        "packaging": "Упаковка",
+        "shipped": "Отправлен",
+        "delivered": "Доставлен",
+        "cancelled": "Отменён"
+      },
+      "stepper": {
+        "order_received": "Принят",
+        "payment_verified": "Оплачен",
+        "packaging": "Упаковка",
+        "shipped": "Отправлен",
+        "delivered": "Доставлен"
+      }
     }
   },
   "checkout": {

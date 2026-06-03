@@ -27,7 +27,7 @@ export default async function AccountPage({ params }: PageProps) {
     supabase.from('customer_profiles').select('*').eq('user_id', user.id).single(),
     supabase
       .from('orders')
-      .select('id, order_number, status, total_cents, currency, created_at')
+      .select('id, order_number, order_seq, status, total_cents, currency, created_at')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
       .limit(50),
