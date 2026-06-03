@@ -9,7 +9,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { ORDER_STAGES, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
-import { sendShipmentEmail } from '@/lib/email/sendOrderEmails';
+import { sendShipmentEmail, sendCancellationEmail } from '@/lib/email/sendOrderEmails';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
 
@@ -56,8 +56,31 @@ export async function updateOrderStatus(
   const patch: Record<string, unknown> = { status: nextStatus };
   if (nextStatus === 'delivered') patch.delivered_at = new Date().toISOString();
 
+  // Fetch the order ahead of the update so the cancellation email has the
+  // customer name + display order number to use. Cheap — single row read.
+  let snapshot: { order_seq: number | null; order_number: string; customer_name: string; customer_email: string } | null = null;
+  if (nextStatus === 'cancelled') {
+    const { data } = await supabase
+      .from('orders')
+      .select('order_seq, order_number, customer_name, customer_email')
+      .eq('id', orderId)
+      .single();
+    snapshot = data ?? null;
+  }
+
   const { error } = await supabase.from('orders').update(patch).eq('id', orderId);
   if (error) return { ok: false, error: error.message };
+
+  // Fire-and-forget customer cancellation notification. Never blocks the action.
+  if (nextStatus === 'cancelled' && snapshot) {
+    const orderNumber =
+      snapshot.order_seq != null ? formatOrderNumber(snapshot.order_seq) : snapshot.order_number;
+    void sendCancellationEmail({
+      orderNumber,
+      customerName: snapshot.customer_name,
+      customerEmail: snapshot.customer_email,
+    });
+  }
 
   revalidatePath(`/manzura/orders/${orderId}`);
   revalidatePath('/manzura/orders');

@@ -1,8 +1,16 @@
 import { getTransporter } from './mailer';
-import { customerEmail, adminEmail, shipmentEmail, type OrderData, type ShipmentData } from './templates';
+import {
+  customerEmail,
+  adminEmail,
+  shipmentEmail,
+  cancellationEmail,
+  type OrderData,
+  type ShipmentData,
+  type CancellationData,
+} from './templates';
 import { createServiceClient } from '@/lib/supabase/server';
 
-export type { OrderData, ShipmentData } from './templates';
+export type { OrderData, ShipmentData, CancellationData } from './templates';
 
 export interface SendResult {
   customer: { ok: boolean; error?: string };
@@ -140,6 +148,43 @@ export async function sendShipmentEmail(s: ShipmentData): Promise<{ ok: boolean;
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[email] shipment send failed', s.orderNumber, msg);
+    return { ok: false, error: msg };
+  }
+}
+
+// Same shape as sendShipmentEmail — fires the customer-facing cancellation
+// notice when admin transitions an order to `cancelled`. Never throws.
+export async function sendCancellationEmail(c: CancellationData): Promise<{ ok: boolean; error?: string }> {
+  const from = process.env.SMTP_FROM;
+  if (!from) {
+    const reason = 'SMTP_FROM missing';
+    console.warn(`[email] ${reason} — skipping cancellation email for`, c.orderNumber);
+    return { ok: false, error: reason };
+  }
+
+  let transporter: ReturnType<typeof getTransporter>;
+  try {
+    transporter = getTransporter();
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[email] transporter init failed', c.orderNumber, msg);
+    return { ok: false, error: msg };
+  }
+
+  const rendered = cancellationEmail(c);
+  try {
+    await transporter.sendMail({
+      from,
+      to: c.customerEmail,
+      subject: rendered.subject,
+      html: rendered.html,
+      text: rendered.text,
+      replyTo: process.env.ADMIN_NOTIFICATION_EMAIL,
+    });
+    return { ok: true };
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[email] cancellation send failed', c.orderNumber, msg);
     return { ok: false, error: msg };
   }
 }
