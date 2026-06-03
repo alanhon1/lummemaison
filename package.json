@@ -47,6 +47,7 @@
     "shorten-protocols": "tsx scripts/shorten-protocols.ts",
     "compose-bundle-covers": "tsx scripts/compose-bundle-covers.ts",
     "setup:storage": "tsx scripts/ensure-payment-proofs-bucket.ts",
+    "setup:shipment-storage": "tsx scripts/ensure-shipment-photos-bucket.ts",
     "seed:stock:csv": "tsx scripts/seed-stock-from-csv.ts"
   },
   "dependencies": {
