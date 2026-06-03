@@ -185,7 +185,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
       </div>
 
       {/* Wise */}
-      <article className="bg-white border border-bone rounded-lg p-5 md:p-6">
+      <article className="bg-white border border-bone rounded-lg p-5 md:p-6 hover-glow">
         <header className="flex items-center gap-2 mb-4">
           <span aria-hidden>💳</span>
           <h2 className="font-display italic text-xl text-charcoal">{t('payment.wise.heading')}</h2>
@@ -219,7 +219,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
       </article>
 
       {/* USDT */}
-      <article className="bg-white border border-bone rounded-lg p-5 md:p-6">
+      <article className="bg-white border border-bone rounded-lg p-5 md:p-6 hover-glow">
         <header className="flex items-center gap-2 mb-4">
           <span aria-hidden>💰</span>
           <h2 className="font-display italic text-xl text-charcoal tracking-wider">

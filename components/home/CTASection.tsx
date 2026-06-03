@@ -48,7 +48,7 @@ export default function CTASection() {
             </a>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto btn-primary text-xs px-6 py-3"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto btn-primary hover-glow text-xs px-6 py-3"
             >
               <Mail size={16} />
               {t('email')}
