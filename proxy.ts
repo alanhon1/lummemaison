@@ -20,38 +20,20 @@ function maybeGeoBlock(req: NextRequest): NextResponse | null {
   const restricted = (siteConfig.restrictedCountries as readonly string[]).map(c => c.toUpperCase());
   if (!restricted.includes(country.toUpperCase())) return null;
 
-  const html = `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Lumée Maison — Not available in your region</title>
-  <style>
-    body{margin:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;
-      display:flex;align-items:center;justify-content:center;min-height:100vh;padding:40px 24px;}
-    .card{max-width:560px;text-align:center;background:#fff;border:1px solid #eadfd1;padding:48px 32px;}
-    h1{font-style:italic;font-weight:300;font-size:32px;margin:0 0 8px;letter-spacing:1px;}
-    .eyebrow{font-size:11px;letter-spacing:3px;color:#9a8e7e;text-transform:uppercase;margin-bottom:18px;}
-    p{font-size:15px;line-height:1.6;color:#6b6157;margin:0 0 12px;}
-    a{color:#7a5a3a;text-decoration:none;}
-  </style>
-</head>
-<body>
-  <div class="card">
-    <div class="eyebrow">Lumée Maison</div>
-    <h1>Not available in your region</h1>
-    <p>Our wholesale service isn't open to your country yet.</p>
-    <p>For trade enquiries, please write to <a href="mailto:info@lumeemaison.com">info@lumeemaison.com</a>.</p>
-  </div>
-</body>
-</html>`;
-  return new NextResponse(html, {
-    status: 451,
-    headers: {
-      'content-type': 'text/html; charset=utf-8',
-      'cache-control': 'no-store',
+  // Intentionally indistinguishable from a generic "page not found". No
+  // brand, no "blocked", no contact link — the visitor just sees what
+  // looks like a misconfigured or non-existent URL. Browsers render their
+  // own default chrome around the bare body.
+  return new NextResponse(
+    '<!doctype html><html><head><meta charset="utf-8"><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL was not found on this server.</p></body></html>',
+    {
+      status: 404,
+      headers: {
+        'content-type': 'text/html; charset=utf-8',
+        'cache-control': 'no-store',
+      },
     },
-  });
+  );
 }
 
 const intlMiddleware = createMiddleware({
