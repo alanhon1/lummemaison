@@ -41,14 +41,13 @@ export interface OrderView {
 interface Props {
   order: OrderView;
   countryName: string;
-  adminEmail: string;
 }
 
 function formatUSD(cents: number) {
   return (cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 }
 
-export default function ConfirmationClient({ order, countryName, adminEmail }: Props) {
+export default function ConfirmationClient({ order, countryName }: Props) {
   const t = useTranslations('checkout.confirmation');
   const locale = useLocale();
   const clearCart = useCartStore(s => s.clearCart);
@@ -69,12 +68,6 @@ export default function ConfirmationClient({ order, countryName, adminEmail }: P
           {t('hello', { name: order.customer_name })}
         </h1>
         <p className="text-sm text-mist">{t('received', { number: order.order_number })}</p>
-      </div>
-
-      <div className="bg-cream border border-bone rounded-lg p-5 md:p-6">
-        <p className="text-sm text-charcoal whitespace-pre-line">
-          {t('paymentReminder', { email: adminEmail })}
-        </p>
       </div>
 
       <article className="bg-white border border-bone rounded-lg p-5 md:p-6">

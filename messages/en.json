@@ -198,7 +198,6 @@
       "thanks": "Thank you",
       "hello": "{name}",
       "received": "Order {number} received. We'll confirm once payment is received and email you with shipping updates.",
-      "paymentReminder": "If you haven't already sent payment, the Wise and USDT details are saved on the Payment step.\n\nAfter sending, email the transaction screenshot to {email} with your order number so we can reconcile it.",
       "items": "Items",
       "subtotal": "Subtotal",
       "shipping": "Shipping",

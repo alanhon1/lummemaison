@@ -78,7 +78,6 @@ export default async function CheckoutConfirmationPage({ params, searchParams }:
 
   const t = await getTranslations({ locale, namespace: 'checkout' });
   const countryName = findCountry(order.shipping_address.country)?.name ?? order.shipping_address.country;
-  const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || '[admin email pending]';
 
   return (
     <main className="bg-cream min-h-[70vh] py-12 md:py-16 px-6">
@@ -86,7 +85,7 @@ export default async function CheckoutConfirmationPage({ params, searchParams }:
         <h1 className="font-display italic text-3xl md:text-4xl text-charcoal mb-2">{t('confirmation.title')}</h1>
         <p className="text-sm text-mist mb-8">{t('confirmation.subtitle')}</p>
         <CheckoutSteps current="done" />
-        <ConfirmationClient order={view} countryName={countryName} adminEmail={adminEmail} />
+        <ConfirmationClient order={view} countryName={countryName} />
       </div>
     </main>
   );
