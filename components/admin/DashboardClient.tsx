@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Package, Grid3X3, ImageOff, Clock, Plus, LogOut } from 'lucide-react';
+import { Package, Grid3X3, ImageOff, Clock, Plus, LogOut, ClipboardList } from 'lucide-react';
 import type { Product } from '@/lib/products';
 
 interface BackupFile { name: string; size: number; created: string; }
@@ -80,6 +80,10 @@ export default function DashboardClient({ totalProducts, totalCategories, noImag
         <Link href="/manzura/products/new" className="btn-gold text-xs flex items-center gap-2">
           <Plus size={14} />
           New Product
+        </Link>
+        <Link href="/manzura/orders" className="btn-secondary text-xs flex items-center gap-2">
+          <ClipboardList size={14} />
+          Orders
         </Link>
         <Link href="/manzura/products?filter=no-image" className="btn-secondary text-xs flex items-center gap-2">
           <ImageOff size={14} />

@@ -14,13 +14,17 @@ export interface ShippingSnapshot {
   stateProvince: string;
   postalCode: string;
   fedexAccount: string;       // empty string if not provided
+  notes: string;              // free-form per-order request, empty if none
+  discountCode: string;       // empty string if none provided (manual review)
 }
 
 export interface DisclaimerAcceptance {
   shipping: boolean;
   delivery: boolean;
   stock: boolean;
-  acceptedAt: string;         // ISO datetime, set once all three are true
+  temperatureSensitive: boolean;
+  fragileItems: boolean;
+  acceptedAt: string;         // ISO datetime, set once all are true
 }
 
 export interface CheckoutDraft {

@@ -137,7 +137,18 @@
       "PowerShell(Stop-Process *)",
       "Bash(curl -sI http://localhost:3000/en)",
       "Bash(git show *)",
-      "Read(//c/Users/asus/Desktop/lumiere-app/lumiere-app/**)"
+      "Read(//c/Users/asus/Desktop/lumiere-app/lumiere-app/**)",
+      "Bash(curl -s \"http://localhost:3000/en/cart\" --max-time 5)",
+      "Bash(kill %1)",
+      "Bash(wait)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" --max-time 3 \"http://localhost:3000/en/cart\")",
+      "Bash(curl -s --max-time 30 \"http://localhost:3000/en/cart\" -o \"C:/Users/user/Downloads/lumiere-app/lumiere-app/temp/cart.html\")",
+      "Bash(curl -s --max-time 60 \"http://localhost:3000/en/cart\")",
+      "Read(//c/Users/user/AppData/Local/Temp/**)",
+      "Bash(curl -s --max-time 90 \"http://localhost:3000/en/cart\" -o \"C:/Users/user/AppData/Local/Temp/cart-page.html\")",
+      "Bash(curl -s --max-time 30 \"http://localhost:3000/en/cart\" -o \"C:/Users/user/AppData/Local/Temp/cart-page.html\")",
+      "Bash(jobs -l)",
+      "Bash(powershell -NoProfile -Command \"Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force; 'killed'\")"
     ]
   }
 }

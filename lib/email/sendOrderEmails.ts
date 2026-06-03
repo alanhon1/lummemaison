@@ -1,85 +1,107 @@
-import { Resend } from 'resend';
-import { render } from '@react-email/render';
-import CustomerOrderEmail from './templates/CustomerOrderEmail';
-import AdminOrderEmail from './templates/AdminOrderEmail';
-import type { OrderEmailPayload } from './types';
-import { formatUSD } from './types';
+import { getTransporter } from './mailer';
+import { customerEmail, adminEmail, type OrderData } from './templates';
+import { createServiceClient } from '@/lib/supabase/server';
+
+export type { OrderData } from './templates';
 
 export interface SendResult {
   customer: { ok: boolean; error?: string };
   admin: { ok: boolean; error?: string };
 }
 
-// Sends the two transactional emails after a successful order insert.
-// Each send is wrapped in its own try/catch so a failure on one side
-// never blocks the other or the order itself. Errors are logged to the
-// Vercel function log so Manzura can spot delivery issues.
-export async function sendOrderEmails(order: OrderEmailPayload): Promise<SendResult> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_ADDRESS;
-  const adminTo = order.payment.adminEmail;
+const PROOF_BUCKET = 'payment-proofs';
+const PROOF_SIGNED_URL_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
 
-  if (!apiKey) {
-    console.warn('[email] RESEND_API_KEY missing — skipping send for', order.orderNumber);
-    return {
-      customer: { ok: false, error: 'RESEND_API_KEY missing' },
-      admin: { ok: false, error: 'RESEND_API_KEY missing' },
-    };
-  }
-  if (!from) {
-    console.warn('[email] RESEND_FROM_ADDRESS missing — skipping send for', order.orderNumber);
-    return {
-      customer: { ok: false, error: 'RESEND_FROM_ADDRESS missing' },
-      admin: { ok: false, error: 'RESEND_FROM_ADDRESS missing' },
-    };
-  }
-
-  const resend = new Resend(apiKey);
-
-  const customerHtml = await render(CustomerOrderEmail({ order }));
-  const customerText = await render(CustomerOrderEmail({ order }), { plainText: true });
-  const adminHtml = await render(AdminOrderEmail({ order }));
-  const adminText = await render(AdminOrderEmail({ order }), { plainText: true });
-
-  // Customer email
-  let customerResult: SendResult['customer'] = { ok: true };
+// Mints a signed URL for the admin email. Failure is non-fatal — we still
+// send the email, just without the link, so the admin can open the order in
+// /manzura/orders to view the proof.
+async function mintProofSignedUrl(path: string): Promise<string | undefined> {
   try {
-    const { error } = await resend.emails.send({
+    const admin = createServiceClient();
+    const { data, error } = await admin.storage
+      .from(PROOF_BUCKET)
+      .createSignedUrl(path, PROOF_SIGNED_URL_TTL_SECONDS);
+    if (error || !data) {
+      console.error('[email] signed URL mint failed', path, error?.message);
+      return undefined;
+    }
+    return data.signedUrl;
+  } catch (e) {
+    console.error('[email] signed URL mint threw', path, e);
+    return undefined;
+  }
+}
+
+// Sends customer + admin transactional emails in parallel via Promise.allSettled.
+// Never throws. One side failing never blocks the other or the surrounding
+// order-creation flow. All failures are logged with the order number.
+export async function sendOrderEmails(order: OrderData): Promise<SendResult> {
+  const from = process.env.SMTP_FROM;
+  const adminTo = process.env.ADMIN_NOTIFICATION_EMAIL;
+
+  if (!from || !adminTo) {
+    const reason = !from ? 'SMTP_FROM missing' : 'ADMIN_NOTIFICATION_EMAIL missing';
+    console.warn(`[email] ${reason} — skipping send for`, order.orderNumber);
+    return {
+      customer: { ok: false, error: reason },
+      admin: { ok: false, error: reason },
+    };
+  }
+
+  let transporter: ReturnType<typeof getTransporter>;
+  try {
+    transporter = getTransporter();
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[email] transporter init failed', order.orderNumber, msg);
+    return {
+      customer: { ok: false, error: msg },
+      admin: { ok: false, error: msg },
+    };
+  }
+
+  const proofSignedUrl = order.proofPath
+    ? await mintProofSignedUrl(order.proofPath)
+    : undefined;
+  const enriched: OrderData = proofSignedUrl ? { ...order, proofSignedUrl } : order;
+
+  const cust = customerEmail(enriched);
+  const adm = adminEmail(enriched);
+
+  const [custOutcome, admOutcome] = await Promise.allSettled([
+    transporter.sendMail({
       from,
       to: order.customerEmail,
-      subject: `Your Lumée Maison Order ${order.orderNumber} — Payment Instructions`,
-      html: customerHtml,
-      text: customerText,
+      subject: cust.subject,
+      html: cust.html,
+      text: cust.text,
       replyTo: adminTo,
-    });
-    if (error) {
-      customerResult = { ok: false, error: error.message };
-      console.error('[email] customer send failed', order.orderNumber, error);
-    }
-  } catch (e) {
-    customerResult = { ok: false, error: e instanceof Error ? e.message : String(e) };
-    console.error('[email] customer send threw', order.orderNumber, e);
-  }
-
-  // Admin email
-  let adminResult: SendResult['admin'] = { ok: true };
-  try {
-    const { error } = await resend.emails.send({
+    }),
+    transporter.sendMail({
       from,
       to: adminTo,
-      subject: `New Order ${order.orderNumber} — ${order.customerName} — ${formatUSD(order.totalCents)}`,
-      html: adminHtml,
-      text: adminText,
+      subject: adm.subject,
+      html: adm.html,
+      text: adm.text,
       replyTo: order.customerEmail,
-    });
-    if (error) {
-      adminResult = { ok: false, error: error.message };
-      console.error('[email] admin send failed', order.orderNumber, error);
-    }
-  } catch (e) {
-    adminResult = { ok: false, error: e instanceof Error ? e.message : String(e) };
-    console.error('[email] admin send threw', order.orderNumber, e);
+    }),
+  ]);
+
+  const customerRes: SendResult['customer'] =
+    custOutcome.status === 'fulfilled'
+      ? { ok: true }
+      : { ok: false, error: custOutcome.reason instanceof Error ? custOutcome.reason.message : String(custOutcome.reason) };
+  if (!customerRes.ok) {
+    console.error('[email] customer send failed', order.orderNumber, customerRes.error);
   }
 
-  return { customer: customerResult, admin: adminResult };
+  const adminRes: SendResult['admin'] =
+    admOutcome.status === 'fulfilled'
+      ? { ok: true }
+      : { ok: false, error: admOutcome.reason instanceof Error ? admOutcome.reason.message : String(admOutcome.reason) };
+  if (!adminRes.ok) {
+    console.error('[email] admin send failed', order.orderNumber, adminRes.error);
+  }
+
+  return { customer: customerRes, admin: adminRes };
 }

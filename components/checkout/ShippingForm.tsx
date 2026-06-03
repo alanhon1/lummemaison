@@ -24,7 +24,8 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
   const router = useRouter();
 
   // Prefer any in-progress draft over the profile defaults (so a refresh
-  // doesn't lose edits the customer made mid-flow).
+  // doesn't lose edits the customer made mid-flow). notes/discountCode are
+  // per-order, not seeded from profile.
   const [form, setForm] = useState<ShippingSnapshot>({
     fullName: profile.fullName,
     email: profile.email,
@@ -35,6 +36,8 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
     stateProvince: profile.stateProvince,
     postalCode: profile.postalCode,
     fedexAccount: profile.fedexAccount,
+    notes: '',
+    discountCode: '',
   });
   const [hydrated, setHydrated] = useState(false);
 
@@ -154,6 +157,28 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
           />
         </Field>
       )}
+
+      <Field label={t('fields.notes')} hint={t('fields.notesHint')}>
+        <textarea
+          value={form.notes}
+          onChange={e => set('notes', e.target.value)}
+          maxLength={500}
+          rows={4}
+          placeholder={t('fields.notesPlaceholder')}
+          className={`${inputClass} resize-y min-h-[96px]`}
+        />
+      </Field>
+
+      <Field label={t('fields.discountCode')} hint={t('fields.discountCodeHint')}>
+        <input
+          type="text"
+          value={form.discountCode}
+          onChange={e => set('discountCode', e.target.value)}
+          maxLength={64}
+          autoComplete="off"
+          className={inputClass}
+        />
+      </Field>
 
       <button type="submit" className="btn-gold w-full">
         {t('shipping.continue')}

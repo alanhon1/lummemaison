@@ -7,6 +7,7 @@ import { ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 import { getLocalizedSpecification, getGroupRange, type Product } from '@/lib/products';
+import { useProductStock } from '@/lib/stock-store';
 import ProductImage from './ProductImage';
 
 interface ProductCardProps {
@@ -32,6 +33,8 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const locale = useLocale();
   const { addItem } = useCartStore();
   const { currency } = useCurrencyStore();
+  const stock = useProductStock(product.id);
+  const soldOut = stock === 0;
 
   const isGroup = variantCount > 1;
   const displayName = isGroup && product.groupName ? product.groupName : product.name;
@@ -45,6 +48,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   function handleAddToCart(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
+    if (soldOut) return;
     addItem({
       id: product.id,
       name: product.name,
@@ -104,8 +108,9 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         </div>
         <button
           onClick={handleAddToCart}
-          className="self-center flex-shrink-0 w-9 h-9 border border-bone rounded-md flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors"
-          aria-label={t('addToCart')}
+          disabled={soldOut}
+          className="self-center flex-shrink-0 w-9 h-9 border border-bone rounded-md flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-bone disabled:hover:text-charcoal"
+          aria-label={soldOut ? tProduct('soldOut') : t('addToCart')}
         >
           <ShoppingBag size={16} />
         </button>
@@ -131,10 +136,18 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 
-        {/* Badges — mobile: first only (priority sale > new > best > bundle); desktop: all */}
+        {/* Badges — mobile: first only (priority sold-out > sale > new > best > bundle); desktop: all */}
         <div className="absolute top-3 left-3 flex flex-col gap-1">
           {(() => {
             const all = [
+              soldOut && (
+                <span
+                  key="so"
+                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-charcoal text-cream"
+                >
+                  {tProduct('soldOut')}
+                </span>
+              ),
               product.isSale && <span key="s" className="badge-sale">{tProduct('tags.sale')}</span>,
               product.isNew && <span key="n" className="badge-new">{tProduct('tags.new')}</span>,
               product.isBestSeller && <span key="b" className="badge-best">{tProduct('tags.bestSeller')}</span>,
@@ -154,10 +167,11 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         <div className="hidden md:block absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
           <button
             onClick={handleAddToCart}
-            className="w-full btn-gold text-[10px] py-2.5 flex items-center justify-center gap-2"
+            disabled={soldOut}
+            className="w-full btn-gold text-[10px] py-2.5 flex items-center justify-center gap-2 disabled:bg-charcoal disabled:opacity-100"
           >
             <ShoppingBag size={13} />
-            {t('addToCart')}
+            {soldOut ? tProduct('soldOut') : t('addToCart')}
           </button>
         </div>
       </div>

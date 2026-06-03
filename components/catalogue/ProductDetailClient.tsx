@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { ShoppingBag, MessageCircle, Check } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore } from '@/lib/currency-store';
+import { useProductStock } from '@/lib/stock-store';
 import { siteConfig } from '@/lib/site-config';
 import type { Product } from '@/lib/products';
 
@@ -14,8 +15,11 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const { addItem } = useCartStore();
   useCurrencyStore();
   const [added, setAdded] = useState(false);
+  const stock = useProductStock(product.id);
+  const soldOut = stock === 0;
 
   function handleAddToCart() {
+    if (soldOut) return;
     addItem({
       id: product.id,
       name: product.name,
@@ -33,13 +37,18 @@ export default function ProductDetailClient({ product }: { product: Product }) {
     <div className="flex flex-col sm:flex-row gap-3">
       <button
         onClick={handleAddToCart}
+        disabled={soldOut}
         className={`flex-1 flex items-center justify-center gap-2 py-4 text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 ${
-          added
-            ? 'bg-green-600 text-white border border-green-600'
-            : 'btn-primary'
+          soldOut
+            ? 'bg-charcoal text-cream cursor-not-allowed'
+            : added
+              ? 'bg-green-600 text-white border border-green-600'
+              : 'btn-primary'
         }`}
       >
-        {added ? (
+        {soldOut ? (
+          <>{t('soldOut')}</>
+        ) : added ? (
           <>
             <Check size={16} />
             Added to Cart

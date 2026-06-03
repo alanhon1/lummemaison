@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
 import CheckoutSteps from '@/components/checkout/CheckoutSteps';
-import PaymentStep from '@/components/checkout/PaymentStep';
+import PaymentStep, { type PaymentInfo } from '@/components/checkout/PaymentStep';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -13,6 +13,20 @@ export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'checkout' });
   return { title: t('payment.title') };
+}
+
+// Read an env var, treat empty / placeholder text as "not configured" so the
+// UI hides the row instead of showing misleading information.
+function envValue(key: string): string {
+  const raw = process.env[key];
+  if (!raw) return '';
+  const trimmed = raw.trim();
+  if (!trimmed) return '';
+  // Old `.env.example` shipped with bracketed placeholders like
+  // "[Account name pending]" — treat these as empty so the page never renders
+  // pending text that a customer might mistake for real account info.
+  if (/^\[.*\]$/.test(trimmed)) return '';
+  return trimmed;
 }
 
 export default async function CheckoutPaymentPage({ params, searchParams }: PageProps) {
@@ -29,18 +43,29 @@ export default async function CheckoutPaymentPage({ params, searchParams }: Page
 
   const t = await getTranslations({ locale, namespace: 'checkout' });
 
-  const paymentInfo = {
+  const usdtNetworks: PaymentInfo['usdt']['networks'] = [];
+  const erc20 = envValue('USDT_ERC20_ADDRESS');
+  if (erc20) usdtNetworks.push({ id: 'erc20', label: 'ERC20 (Ethereum)', address: erc20 });
+  const trc20 = envValue('USDT_TRC20_ADDRESS');
+  if (trc20) usdtNetworks.push({ id: 'trc20', label: 'TRC20 (Tron)', address: trc20 });
+
+  const paymentInfo: PaymentInfo = {
     wise: {
-      accountName: process.env.WISE_ACCOUNT_NAME || '[Account name pending]',
-      bankName: process.env.WISE_BANK_NAME || '[Bank name pending]',
-      accountNumber: process.env.WISE_ACCOUNT_NUMBER || '[Account number pending]',
-      swift: process.env.WISE_SWIFT || '[SWIFT/Routing pending]',
+      accountName: envValue('WISE_ACCOUNT_NAME'),
+      bankName: envValue('WISE_BANK_NAME'),
+      accountNumber: envValue('WISE_ACCOUNT_NUMBER'),
+      swift: envValue('WISE_SWIFT'),
+      address: envValue('WISE_ADDRESS'),
+      city: envValue('WISE_CITY'),
+      country: envValue('WISE_COUNTRY'),
+      postcode: envValue('WISE_POSTCODE'),
+      currency: envValue('WISE_CURRENCY'),
     },
     usdt: {
-      address: process.env.USDT_WALLET_ADDRESS || '[Wallet address pending]',
-      network: 'TRC-20 (Tron)',
+      networks: usdtNetworks,
+      whatsapp: envValue('PAYMENT_WHATSAPP'),
     },
-    adminEmail: process.env.ADMIN_NOTIFICATION_EMAIL || '[admin email pending]',
+    adminEmail: envValue('ADMIN_NOTIFICATION_EMAIL'),
   };
 
   return (

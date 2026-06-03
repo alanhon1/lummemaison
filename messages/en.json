@@ -74,7 +74,12 @@
       "stateProvince": "State / Province",
       "postalCode": "ZIP / Postal code",
       "fedexAccount": "FedEx account number (optional)",
-      "fedexHint": "USA customers: please provide your FedEx account number. Without one, shipping is $65 via FedEx Priority instead of $35."
+      "fedexHint": "USA customers: please provide your FedEx account number. Without one, shipping is $65 via FedEx Priority instead of $35.",
+      "notes": "Order notes / Reference (optional)",
+      "notesHint": "Anything you'd like us to know — we'll see it before shipping.",
+      "notesPlaceholder": "e.g. pack fillers separately, customs HS code or declared value, exclude masks, etc.",
+      "discountCode": "Discount code (optional)",
+      "discountCodeHint": "If you have a code, enter it here. We will verify and apply any adjustment manually before shipping."
     },
     "emptyCart": {
       "title": "Your cart is empty",
@@ -102,6 +107,14 @@
       "stock": {
         "heading": "Stock & made-to-order",
         "body": "Some products are made-to-order and not kept in stock. These items require 1–4 business days for us to receive from our supplier before shipping.\n\nYou will be notified by email if your order contains any made-to-order items."
+      },
+      "temperatureSensitive": {
+        "heading": "Temperature-sensitive products",
+        "body": "Temperature-sensitive products (botulinum toxins, active exosomes, hyaluronidase, and active EGF products) are shipped in insulated packaging with ice packs to maintain temperature during transit. During international shipping, ice packs may melt and products can arrive warm. In-transit conditions are beyond our control. In our years of practice, these products remain stable under such conditions as long as they are not exposed to direct heat or sunlight; arriving warm does not mean a product has degraded."
+      },
+      "fragileItems": {
+        "heading": "Fragile items (ampoules & vials)",
+        "body": "Fragile items such as ampoules and vials are individually wrapped in bubble wrap, and over 99% of our shipments arrive intact. In rare cases a vial may break during transit. As this is beyond our control once shipped, we cannot take responsibility for breakage occurring in transit."
       }
     },
     "payment": {
@@ -118,17 +131,66 @@
         "accountName": "Account name",
         "bank": "Bank",
         "accountNumber": "Account number",
-        "swift": "SWIFT / Routing"
+        "swift": "SWIFT / Routing",
+        "address": "Address",
+        "city": "City",
+        "country": "Country",
+        "postcode": "Postcode",
+        "currency": "Currency",
+        "notConfigured": "Wise transfer details are being updated. Please contact us for current information.",
+        "warnings": {
+          "creditCard": "Do not pay via credit or debit card on Wise — card fees are typically 40–50 USD per transfer.",
+          "recommended": "Recommended: link Wise to your own bank account and send via bank transfer instead — fees usually drop to 5–9 USD.",
+          "businessGoods": "When asked, mark the transfer purpose as ‘business’ or ‘goods and services’.",
+          "directEntry": "For your first transfer, do not search for the recipient — enter the details below directly. Searching can match the wrong recipient.",
+          "feesAtSender": "All transfer and processing fees are paid by the sender. The net amount we receive must equal your order total."
+        },
+        "reference": {
+          "label": "Wise reference",
+          "body": "Enter your order number in the Wise ‘reference’ field so we can match the payment to your order."
+        }
       },
       "usdt": {
-        "heading": "USDT — TRC-20 only",
+        "heading": "USDT ONLY",
         "network": "Network",
-        "address": "Wallet address",
-        "note": "TRC-20 (Tron) only. Sending on a different network (e.g. ERC-20) will lose your funds."
+        "address": "Address",
+        "noNetworks": "USDT wallet addresses are being updated. Please contact us on WhatsApp below for current payment details.",
+        "warnings": {
+          "noBtc": "Do not send BTC or any other coin. USDT only.",
+          "networkOnly": "Use only the network(s) listed below. Sending on any other network (Base, BSC, Polygon, etc.) will result in lost funds."
+        },
+        "testFirst": {
+          "label": "First-time sender? Send a test first.",
+          "body": "Please send a small test transfer of 1–5 USD first, then contact us on WhatsApp to confirm receipt. We will confirm once it arrives, and you can then send the remaining amount."
+        },
+        "whatsapp": {
+          "label": "USDT inquiries & payment confirmation — WhatsApp"
+        }
       },
       "confirmNote": "After sending payment, please email a screenshot of your transaction to {email} along with your order number.",
       "confirm": "I have sent payment — confirm order",
-      "submitting": "Confirming…"
+      "submitting": "Confirming…",
+      "copy": "Copy",
+      "copied": "Copied",
+      "proof": {
+        "heading": "Payment proof",
+        "subheading": "Upload a screenshot of your transfer, or paste the transaction link from Wise/your wallet. We need at least one before you can confirm.",
+        "fileLabel": "Screenshot or PDF",
+        "fileHint": "PNG, JPG, WEBP, HEIC, or PDF. Up to 10 MB.",
+        "uploading": "Uploading…",
+        "uploaded": "Uploaded: {name}",
+        "replace": "Replace",
+        "or": "or",
+        "transactionLabel": "Transaction link",
+        "transactionPlaceholder": "https://wise.com/… or wallet explorer URL",
+        "transactionHint": "Wise transfer URL, USDT explorer link (Etherscan / Tronscan), etc.",
+        "requireEither": "Upload a screenshot or paste a transaction link to enable the confirm button.",
+        "errors": {
+          "tooLarge": "File is larger than 10 MB.",
+          "wrongType": "Please upload PNG, JPG, WEBP, HEIC, or PDF.",
+          "generic": "Upload failed. Please try again or use the transaction link field."
+        }
+      }
     },
     "confirmation": {
       "title": "Order received",
@@ -259,6 +321,7 @@
     "addToCart": "Add to Cart",
     "inStock": "In Stock",
     "outOfStock": "Out of Stock",
+    "soldOut": "Sold out",
     "category": "Category",
     "tags": {
       "new": "New",

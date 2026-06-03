@@ -5,20 +5,30 @@ import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { readDraft, writeDraft } from '@/lib/checkout/state';
 
-const KEYS = ['shipping', 'delivery', 'stock'] as const;
+const KEYS = ['shipping', 'delivery', 'stock', 'temperatureSensitive', 'fragileItems'] as const;
 type Key = (typeof KEYS)[number];
 
-const ICONS: Record<Key, string> = { shipping: '📦', delivery: '⏱', stock: '📋' };
+const ICONS: Record<Key, string> = {
+  shipping: '📦',
+  delivery: '⏱',
+  stock: '📋',
+  temperatureSensitive: '🌡',
+  fragileItems: '🫙',
+};
+
+const EMPTY_CHECKED: Record<Key, boolean> = {
+  shipping: false,
+  delivery: false,
+  stock: false,
+  temperatureSensitive: false,
+  fragileItems: false,
+};
 
 export default function DisclaimerStep() {
   const t = useTranslations('checkout');
   const locale = useLocale();
   const router = useRouter();
-  const [checked, setChecked] = useState<Record<Key, boolean>>({
-    shipping: false,
-    delivery: false,
-    stock: false,
-  });
+  const [checked, setChecked] = useState<Record<Key, boolean>>(EMPTY_CHECKED);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
@@ -32,12 +42,14 @@ export default function DisclaimerStep() {
         shipping: draft.disclaimers.shipping,
         delivery: draft.disclaimers.delivery,
         stock: draft.disclaimers.stock,
+        temperatureSensitive: draft.disclaimers.temperatureSensitive,
+        fragileItems: draft.disclaimers.fragileItems,
       });
     }
     setHydrated(true);
   }, [locale, router]);
 
-  const allChecked = checked.shipping && checked.delivery && checked.stock;
+  const allChecked = KEYS.every(k => checked[k]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -47,6 +59,8 @@ export default function DisclaimerStep() {
         shipping: true,
         delivery: true,
         stock: true,
+        temperatureSensitive: true,
+        fragileItems: true,
         acceptedAt: new Date().toISOString(),
       },
     });
@@ -89,7 +103,13 @@ export default function DisclaimerStep() {
           checked={allChecked}
           onChange={e => {
             const v = e.target.checked;
-            setChecked({ shipping: v, delivery: v, stock: v });
+            setChecked({
+              shipping: v,
+              delivery: v,
+              stock: v,
+              temperatureSensitive: v,
+              fragileItems: v,
+            });
           }}
           className="mt-0.5 w-4 h-4 accent-gold"
         />

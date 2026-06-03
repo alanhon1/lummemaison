@@ -1,11 +1,25 @@
 'use server';
 
+import { randomUUID } from 'node:crypto';
 import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents } from '@/lib/checkout/state';
-import { sendOrderEmails } from '@/lib/email/sendOrderEmails';
+import { sendOrderEmails, type OrderData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
+import { formatOrderNumber } from '@/lib/orders/orderNumber';
+import { heicToJpegBuffer } from '@/lib/uploads/heicToJpeg';
+
+const PROOF_BUCKET = 'payment-proofs';
+const PROOF_MAX_BYTES = 10 * 1024 * 1024;
+const PROOF_ACCEPT: Record<string, string> = {
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+  'image/webp': 'webp',
+  'image/heic': 'heic',
+  'image/heif': 'heif',
+  'application/pdf': 'pdf',
+};
 
 export interface CartLineInput {
   product_id: number;
@@ -20,37 +34,80 @@ export interface CreateOrderInput {
   disclaimers: DisclaimerAcceptance;
   items: CartLineInput[];
   paymentMethod?: 'wise' | 'usdt';
+  paymentProofPath?: string;
+  paymentTransactionLink?: string;
 }
 
 export interface CreateOrderResult {
   ok: boolean;
+  orderSeq?: number;
+  viewToken?: string;
   orderNumber?: string;
   error?: string;
 }
 
-function todayYYYYMMDD(): string {
-  const d = new Date();
-  const y = d.getUTCFullYear();
-  const m = String(d.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(d.getUTCDate()).padStart(2, '0');
-  return `${y}${m}${day}`;
+export interface UploadProofResult {
+  ok: boolean;
+  path?: string;
+  error?: string;
 }
 
-// Generates LM-YYYYMMDD-XXXX where XXXX is the next 4-digit sequence number
-// for today, using a count query as a starting point. If two requests race
-// and both pick the same number, the unique constraint on orders.order_number
-// rejects one and we retry with the next sequence.
-async function nextOrderNumber(
-  admin: Awaited<ReturnType<typeof createServiceClient>>,
-  prefix: string,
-): Promise<string> {
-  const { count, error } = await admin
-    .from('orders')
-    .select('id', { count: 'exact', head: true })
-    .ilike('order_number', `${prefix}%`);
-  if (error) throw new Error(`Failed to compute next order number: ${error.message}`);
-  const seq = (count ?? 0) + 1;
-  return `${prefix}${String(seq).padStart(4, '0')}`;
+// Validates and stores a payment-proof file in the private `payment-proofs`
+// bucket. Called by the payment step BEFORE the customer submits the order,
+// so we don't yet have an order id — the path is keyed by user id + a uuid,
+// then attached to the order on confirm.
+export async function uploadPaymentProof(formData: FormData): Promise<UploadProofResult> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { ok: false, error: 'You must be signed in to upload.' };
+
+  const file = formData.get('file');
+  if (!(file instanceof File) || file.size === 0) {
+    return { ok: false, error: 'No file received.' };
+  }
+  if (file.size > PROOF_MAX_BYTES) {
+    return { ok: false, error: `File is larger than 10 MB.` };
+  }
+  const ext = PROOF_ACCEPT[file.type];
+  if (!ext) {
+    return {
+      ok: false,
+      error: 'Unsupported file type. Please upload a PNG, JPG, WEBP, HEIC, or PDF.',
+    };
+  }
+
+  let buffer: Buffer = Buffer.from(await file.arrayBuffer());
+  let contentType = file.type;
+  let storedExt = ext;
+
+  // HEIC/HEIF → JPG so Windows/Chrome admin previews always work.
+  if (file.type === 'image/heic' || file.type === 'image/heif') {
+    try {
+      buffer = await heicToJpegBuffer(buffer);
+    } catch (e) {
+      console.error('[checkout] HEIC conversion failed', e);
+      return { ok: false, error: 'Could not convert HEIC image. Please upload PNG or JPG instead.' };
+    }
+    contentType = 'image/jpeg';
+    storedExt = 'jpg';
+  }
+
+  const admin = createServiceClient();
+  const objectKey = `${user.id}/${randomUUID()}.${storedExt}`;
+  const { error: uploadError } = await admin.storage
+    .from(PROOF_BUCKET)
+    .upload(objectKey, buffer, {
+      contentType,
+      upsert: false,
+    });
+  if (uploadError) {
+    console.error('[checkout] proof upload failed', uploadError);
+    return { ok: false, error: uploadError.message };
+  }
+
+  return { ok: true, path: objectKey };
 }
 
 export async function createOrder(input: CreateOrderInput): Promise<CreateOrderResult> {
@@ -69,136 +126,157 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   if (
     !input.disclaimers.shipping ||
     !input.disclaimers.delivery ||
-    !input.disclaimers.stock
+    !input.disclaimers.stock ||
+    !input.disclaimers.temperatureSensitive ||
+    !input.disclaimers.fragileItems
   ) {
-    return { ok: false, error: 'Please accept all three policy disclaimers before placing the order.' };
+    return { ok: false, error: 'Please accept all policy disclaimers before placing the order.' };
   }
   const s = input.shipping;
   if (!s.fullName || !s.email || !s.phone || !s.country || !s.street || !s.city || !s.postalCode) {
     return { ok: false, error: 'Shipping details are incomplete.' };
   }
 
+  // Server-side gating mirrors the client: we accept the order only when the
+  // customer has either uploaded a payment screenshot or supplied a
+  // transaction link. This protects against client-side checks being
+  // bypassed via direct form posts.
+  const proofPath = (input.paymentProofPath ?? '').trim();
+  const transactionLink = (input.paymentTransactionLink ?? '').trim().slice(0, 500);
+  if (!proofPath && !transactionLink) {
+    return {
+      ok: false,
+      error: 'Please upload a payment screenshot or paste a transaction link before confirming.',
+    };
+  }
+
   const subtotal = input.items.reduce((sum, l) => sum + l.unit_cents * l.quantity, 0);
   const shipping = computeShippingCents(input.shipping);
   const total = subtotal + shipping;
 
+  // Cap user-supplied text server-side regardless of what the form sent.
+  const notes = (s.notes ?? '').trim().slice(0, 500);
+  const discountCode = (s.discountCode ?? '').trim().slice(0, 64);
+
   const admin = createServiceClient();
-  const prefix = `LM-${todayYYYYMMDD()}-`;
 
-  // Try a few candidates to absorb race-condition collisions on the order
-  // number. Each iteration recomputes the sequence so a second collision
-  // moves us forward rather than retrying the same number.
-  let lastError: string | undefined;
-  for (let attempt = 0; attempt < 5; attempt++) {
-    const orderNumber = await nextOrderNumber(admin, prefix);
+  // order_seq, order_number, view_token are populated by DB column defaults
+  // and the BEFORE INSERT trigger (see supabase/migrations/002_order_seq.sql).
+  // The Postgres sequence guarantees uniqueness without app-level retries.
+  const { data: order, error: orderError } = await admin
+    .from('orders')
+    .insert({
+      user_id: user.id,
+      status: 'processing',
+      subtotal_cents: subtotal,
+      shipping_cents: shipping,
+      total_cents: total,
+      currency: 'USD',
+      shipping_address: {
+        street: s.street,
+        city: s.city,
+        state_province: s.stateProvince,
+        postal_code: s.postalCode,
+        country: s.country,
+      },
+      customer_name: s.fullName,
+      customer_email: s.email,
+      customer_phone: s.phone,
+      fedex_account: s.country === 'US' ? s.fedexAccount.trim() || null : null,
+      payment_method: input.paymentMethod ?? null,
+      notes: notes || null,
+      discount_code: discountCode || null,
+      payment_proof_path: proofPath || null,
+      payment_transaction_link: transactionLink || null,
+    })
+    .select('id, order_seq, view_token, order_number')
+    .single();
 
-    const { data: order, error: orderError } = await admin
-      .from('orders')
-      .insert({
-        order_number: orderNumber,
-        user_id: user.id,
-        status: 'pending',
-        subtotal_cents: subtotal,
-        shipping_cents: shipping,
-        total_cents: total,
-        currency: 'USD',
-        shipping_address: {
-          street: s.street,
-          city: s.city,
-          state_province: s.stateProvince,
-          postal_code: s.postalCode,
-          country: s.country,
-        },
-        customer_name: s.fullName,
-        customer_email: s.email,
-        customer_phone: s.phone,
-        fedex_account: s.country === 'US' ? s.fedexAccount.trim() || null : null,
-        payment_method: input.paymentMethod ?? null,
-      })
-      .select('id')
-      .single();
+  if (orderError) {
+    return { ok: false, error: orderError.message };
+  }
 
-    if (orderError) {
-      if (orderError.code === '23505') {
-        // Unique violation on order_number — race lost; recompute and retry.
-        lastError = orderError.message;
-        continue;
-      }
-      return { ok: false, error: orderError.message };
-    }
+  const itemLines = input.items.map(l => ({
+    order_id: order.id,
+    product_id: l.product_id,
+    product_name: l.product_name,
+    unit_cents: l.unit_cents,
+    quantity: l.quantity,
+    line_cents: l.unit_cents * l.quantity,
+  }));
+  const { error: itemsError } = await admin.from('order_items').insert(itemLines);
+  if (itemsError) {
+    // Roll back the order so we don't leave a header without items.
+    await admin.from('orders').delete().eq('id', order.id);
+    return { ok: false, error: itemsError.message };
+  }
 
-    const itemLines = input.items.map(l => ({
-      order_id: order.id,
-      product_id: l.product_id,
-      product_name: l.product_name,
-      unit_cents: l.unit_cents,
-      quantity: l.quantity,
-      line_cents: l.unit_cents * l.quantity,
-    }));
-    const { error: itemsError } = await admin.from('order_items').insert(itemLines);
-    if (itemsError) {
-      // Roll back the order so we don't leave a header without items.
-      await admin.from('orders').delete().eq('id', order.id);
-      return { ok: false, error: itemsError.message };
-    }
+  // Atomic stock decrement. The Postgres function raises (and rolls back its
+  // own updates) if any line would push stock below zero; we then unwind the
+  // order so a failed decrement doesn't leave a processing row in the DB.
+  const { error: stockError } = await admin.rpc('decrement_stock_for_order', {
+    items: input.items.map(l => ({ product_id: l.product_id, quantity: l.quantity })),
+  });
+  if (stockError) {
+    await admin.from('orders').delete().eq('id', order.id);
+    const insufficient = stockError.code === '23514' /* check_violation */;
+    return {
+      ok: false,
+      error: insufficient
+        ? 'One of the items in your cart is no longer in stock. Please review your cart and try again.'
+        : `Stock update failed: ${stockError.message}`,
+    };
+  }
 
-    // Fire transactional emails. Wrapped so a send failure never breaks the
-    // order — the orders table is already populated and the customer will
-    // still see the confirmation page. Errors land in Vercel function logs.
-    try {
-      const adminEmail =
-        process.env.ADMIN_NOTIFICATION_EMAIL || 'manzura@example.com';
-      const countryName =
-        findCountry(input.shipping.country)?.name ?? input.shipping.country;
-      await sendOrderEmails({
-        orderNumber,
-        customerName: s.fullName,
-        customerEmail: s.email,
-        customerPhone: s.phone,
-        shippingAddress: {
-          street: s.street,
-          city: s.city,
-          state_province: s.stateProvince,
-          postal_code: s.postalCode,
-          country: s.country,
-          countryName,
-        },
-        fedexAccount: s.country === 'US' ? s.fedexAccount.trim() || null : null,
-        items: itemLines.map(l => ({
-          product_id: l.product_id,
-          product_name: l.product_name,
-          unit_cents: l.unit_cents,
-          quantity: l.quantity,
-          line_cents: l.line_cents,
-        })),
-        subtotalCents: subtotal,
-        shippingCents: shipping,
-        totalCents: total,
-        createdAt: new Date().toISOString(),
-        payment: {
-          wise: {
-            accountName: process.env.WISE_ACCOUNT_NAME || '[Account name pending]',
-            bankName: process.env.WISE_BANK_NAME || '[Bank name pending]',
-            accountNumber: process.env.WISE_ACCOUNT_NUMBER || '[Account number pending]',
-            swift: process.env.WISE_SWIFT || '[SWIFT/Routing pending]',
-          },
-          usdt: {
-            address: process.env.USDT_WALLET_ADDRESS || '[Wallet address pending]',
-            network: 'TRC-20 (Tron)',
-          },
-          adminEmail,
-        },
-      });
-    } catch (e) {
-      console.error('[checkout] sendOrderEmails threw', orderNumber, e);
-    }
+  const orderSeq = order.order_seq as number;
+  const viewToken = order.view_token as string;
+  const orderNumberDisplay = formatOrderNumber(orderSeq);
 
-    return { ok: true, orderNumber };
+  // Fire transactional emails. Wrapped so a send failure never breaks the
+  // order — the orders table is already populated and the customer will
+  // still see the confirmation page. Errors land in Vercel function logs.
+  try {
+    const countryName =
+      findCountry(input.shipping.country)?.name ?? input.shipping.country;
+    const payload: OrderData = {
+      orderNumber: orderNumberDisplay,
+      customerName: s.fullName,
+      customerEmail: s.email,
+      customerPhone: s.phone,
+      shippingAddress: {
+        street: s.street,
+        city: s.city,
+        state_province: s.stateProvince,
+        postal_code: s.postalCode,
+        country: s.country,
+        countryName,
+      },
+      country: countryName,
+      items: itemLines.map(l => ({
+        name: l.product_name,
+        quantity: l.quantity,
+        price: l.unit_cents,
+      })),
+      subtotal,
+      shipping,
+      total,
+      currency: 'USD',
+      notes: notes || undefined,
+      discountCode: discountCode || undefined,
+      status: 'processing',
+      transactionLink: transactionLink || undefined,
+      proofPath: proofPath || undefined,
+    };
+    await sendOrderEmails(payload);
+  } catch (e) {
+    console.error('[checkout] sendOrderEmails threw', orderNumberDisplay, e);
   }
 
   return {
-    ok: false,
-    error: `Could not allocate an order number after retries (${lastError ?? 'unknown'}).`,
+    ok: true,
+    orderSeq,
+    viewToken,
+    orderNumber: orderNumberDisplay,
   };
 }
 
@@ -214,9 +292,11 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
     redirect(`/${locale}/checkout/payment?error=bad-payload`);
   }
   const result = await createOrder(input);
-  if (!result.ok || !result.orderNumber) {
+  if (!result.ok || result.orderSeq === undefined || !result.viewToken) {
     const message = encodeURIComponent(result.error ?? 'unknown');
     redirect(`/${locale}/checkout/payment?error=${message}`);
   }
-  redirect(`/${locale}/checkout/confirmation/${result.orderNumber}`);
+  redirect(
+    `/${locale}/checkout/confirmation/${result.orderSeq}?t=${result.viewToken}`,
+  );
 }
