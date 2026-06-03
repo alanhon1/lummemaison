@@ -5,7 +5,7 @@ export const siteConfig = {
   description: "B2B wholesale supplier of premium Korean medical-grade aesthetic products. Serving professionals worldwide.",
 
   contact: {
-    email: "info@lumiere-aesthetic.com",
+    email: "info@lumeemaison.com",
     phone: "+82-10-0000-0000",
     whatsapp: "+82-10-0000-0000",
     telegram: "@lumiere_aesthetic",

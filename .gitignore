@@ -88,6 +88,6 @@ scripts/websearch-batches/
 
 # Local-only secrets and scratch notes (never push to a public repo)
 secret.txt
-promt*
-PROMT*
+*promt*
+*PROMT*
 SG_STOCK_MAY.qty.xlsx
