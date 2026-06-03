@@ -167,7 +167,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     .from('orders')
     .insert({
       user_id: user.id,
-      status: 'processing',
+      status: 'order_received',
       subtotal_cents: subtotal,
       shipping_cents: shipping,
       total_cents: total,
@@ -263,7 +263,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
       currency: 'USD',
       notes: notes || undefined,
       discountCode: discountCode || undefined,
-      status: 'processing',
+      status: 'order_received',
       transactionLink: transactionLink || undefined,
       proofPath: proofPath || undefined,
     };

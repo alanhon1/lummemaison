@@ -91,8 +91,12 @@ function envValue(key: string): string {
 
 export function customerEmail(order: OrderData): { subject: string; html: string; text: string } {
   const currency = order.currency ?? 'USD';
+  // Phase C status vocab: 'order_received' is the post-checkout state (payment
+  // proof uploaded, awaiting admin verification). Keep the subject line that
+  // signals "we got your proof" for that state; anything earlier or unset
+  // still falls through to the payment-instructions wording.
   const subject =
-    order.status === 'processing'
+    order.status === 'order_received'
       ? `Your Lumée Maison Order ${order.orderNumber} — Payment received, verifying`
       : `Your Lumée Maison Order ${order.orderNumber} — Payment Instructions`;
 
@@ -161,7 +165,7 @@ export function customerEmail(order: OrderData): { subject: string; html: string
         <tr><td style="padding:32px 40px 8px;">
           <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(order.customerName)},</p>
           <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">${
-            order.status === 'processing'
+            order.status === 'order_received'
               ? `Thank you — we have received your payment confirmation for the order below and are verifying it now. We will email you again as soon as it ships. The payment details below are saved here in case you need to resend.`
               : `Thank you for your order with Lumée Maison. We have received your request and reserved your selection. Please complete payment using one of the methods below — once we confirm receipt, your order will be prepared for shipment.`
           }</p>
