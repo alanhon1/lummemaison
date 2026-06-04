@@ -43,7 +43,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             ? 'bg-charcoal text-cream cursor-not-allowed'
             : added
               ? 'bg-green-600 text-white border border-green-600'
-              : 'btn-primary'
+              : 'btn-gold'
         }`}
       >
         {soldOut ? (
@@ -64,7 +64,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         href={whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center gap-2 px-6 py-4 bg-[#25D366] text-white text-xs font-semibold tracking-[0.2em] uppercase hover:bg-[#20bd5a] transition-colors"
+        className="btn-whatsapp px-6 py-4"
       >
         <MessageCircle size={16} />
         {t('contactForOrder')}
