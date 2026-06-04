@@ -6,7 +6,6 @@ import { useParams, usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { ShoppingBag, Search, Menu, X, Globe } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
-import { useCurrencyStore, type Currency } from '@/lib/currency-store';
 import { locales, type Locale } from '@/lib/i18n';
 
 const LOCALE_LABELS: Record<Locale, string> = { en: 'EN', ru: 'RU' };
@@ -24,15 +23,9 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const { totalItems, toggleCart } = useCartStore();
-  const { currency, setCurrency } = useCurrencyStore();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const itemCount = mounted ? totalItems() : 0;
-  const displayCurrency = mounted ? currency : 'USD';
-
-  const CURRENCY_CYCLE: Record<string, Currency> = { USD: 'RUB', RUB: 'KRW', KRW: 'USD' };
-  const CURRENCY_LABEL: Record<string, string> = { USD: '$ USD', RUB: '₽ RUB', KRW: '₩ 원' };
-  function cycleCurrency() { setCurrency(CURRENCY_CYCLE[displayCurrency]); }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -105,16 +98,6 @@ export default function Header() {
               style={{ color: 'var(--page-text)' }}
             >
               <Search size={17} />
-            </button>
-
-            {/* Currency toggle */}
-            <button
-              onClick={cycleCurrency}
-              className="hidden lg:flex items-center text-xs font-semibold tracking-wider hover:text-gold transition-colors duration-300"
-              style={{ color: 'var(--page-text)' }}
-              title="Switch currency"
-            >
-              {CURRENCY_LABEL[displayCurrency]}
             </button>
 
             {/* Language */}
@@ -211,16 +194,6 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-
-              {/* Currency row (full-width labeled button) */}
-              <button
-                onClick={cycleCurrency}
-                className="w-full text-left text-xs font-semibold tracking-wider px-3 py-2 border rounded-md transition-colors flex items-center justify-between"
-                style={{ borderColor: 'var(--border-color)', color: 'var(--page-text)' }}
-              >
-                <span style={{ color: 'var(--page-text-2)' }}>Currency</span>
-                <span>{CURRENCY_LABEL[displayCurrency]}</span>
-              </button>
 
               {/* Contact CTA */}
               <Link

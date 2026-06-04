@@ -32,7 +32,7 @@ export default function CTASection() {
               href={siteConfig.social.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#25D366] text-white text-xs font-semibold tracking-wider uppercase hover:bg-[#20bd5a] transition-colors"
+              className="btn-whatsapp w-full sm:w-auto"
             >
               <MessageCircle size={16} />
               {t('whatsapp')}
@@ -41,14 +41,14 @@ export default function CTASection() {
               href={siteConfig.social.telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-[#2AABEE] text-white text-xs font-semibold tracking-wider uppercase hover:bg-[#1c9ad6] transition-colors"
+              className="btn-telegram w-full sm:w-auto"
             >
               <Send size={16} />
               {t('telegram')}
             </a>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto btn-primary hover-glow text-xs px-6 py-3"
+              className="btn-gold w-full sm:w-auto"
             >
               <Mail size={16} />
               {t('email')}

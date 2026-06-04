@@ -270,6 +270,21 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
                 <textarea rows={4} value={form.description ?? ''} onChange={e => update('description', e.target.value)}
                   className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
               </Field>
+              <Field label="Indication">
+                <textarea rows={3} value={form.indication ?? ''} onChange={e => update('indication', e.target.value)}
+                  placeholder="What this product is indicated for…"
+                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
+              </Field>
+              <Field label="Packaging">
+                <textarea rows={2} value={form.packaging ?? ''} onChange={e => update('packaging', e.target.value)}
+                  placeholder="e.g. 1 × 1.0 ml prefilled syringe, 2 × needles…"
+                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
+              </Field>
+              <Field label="Protocol (shown on product page)">
+                <textarea rows={4} value={form.protocol ?? ''} onChange={e => update('protocol', e.target.value)}
+                  placeholder="How to use / treatment protocol…"
+                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
+              </Field>
               <Field label="Tags (comma-separated)">
                 <input value={tagsStr} onChange={e => update('tags', e.target.value.split(',').map(t => t.trim()).filter(Boolean))}
                   className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />

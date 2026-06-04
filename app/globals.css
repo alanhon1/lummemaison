@@ -210,6 +210,78 @@ body {
     box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.35);
   }
 
+  /* === WhatsApp (green) — same shimmer/press/glow as gold, brand-tinted === */
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0.8rem 2rem;
+    background-color: #25d366;
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid #25d366;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                border-color     300ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow       300ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform        100ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-whatsapp::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 600ms ease;
+    pointer-events: none;
+  }
+  .btn-whatsapp:hover { background-color: #20bd5a; border-color: #20bd5a; box-shadow: 0 0 24px rgba(37, 211, 102, 0.45); }
+  .btn-whatsapp:hover::after { transform: translateX(120%); }
+  .btn-whatsapp:active { transform: translateY(1px); box-shadow: 0 0 14px rgba(37, 211, 102, 0.30); }
+  .btn-whatsapp:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.45); }
+
+  /* === Telegram (blue) — same shimmer/press/glow, brand-tinted === */
+  .btn-telegram {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0.8rem 2rem;
+    background-color: #2aabee;
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid #2aabee;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                border-color     300ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow       300ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform        100ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn-telegram::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 600ms ease;
+    pointer-events: none;
+  }
+  .btn-telegram:hover { background-color: #1c9ad6; border-color: #1c9ad6; box-shadow: 0 0 24px rgba(42, 171, 238, 0.45); }
+  .btn-telegram:hover::after { transform: translateX(120%); }
+  .btn-telegram:active { transform: translateY(1px); box-shadow: 0 0 14px rgba(42, 171, 238, 0.30); }
+  .btn-telegram:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(42, 171, 238, 0.45); }
+
   /* Section typography */
   .section-title {
     font-family: var(--font-display);
@@ -511,6 +583,30 @@ body {
     animation-iteration-count: 1 !important;
   }
   .cart-panel { transition: none !important; }
+  /* Stop the button shimmer sweep for reduced-motion users. */
+  .btn-gold::after,
+  .btn-whatsapp::after,
+  .btn-telegram::after { transition: none !important; }
+}
+
+/* Smooth scrolling for in-page anchors / Explore jump (disabled for reduced-motion). */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Animated gold divider — a soft light sweeps along the bar. Used in the hero. */
+@keyframes divider-sweep {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.animated-divider {
+  background: linear-gradient(90deg, transparent 0%, var(--accent-dark) 35%, var(--gold-light) 50%, var(--accent-dark) 65%, transparent 100%);
+  background-size: 200% 100%;
+  animation: divider-sweep 4.5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animated-divider { animation: none; background: var(--accent-dark); }
 }
 
 /* Footer collapsible — closed on mobile by default <details> semantics; force-open on desktop via CSS */

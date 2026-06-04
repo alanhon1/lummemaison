@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, ClipboardList, Package, LogOut } from 'lucide-react';
+import { LayoutDashboard, ClipboardList, Package, BarChart3, LogOut } from 'lucide-react';
 
 // Top-bar admin navigation. Mounted in app/manzura/layout.tsx; suppresses
 // itself on /manzura/login so the login page stays clean.
@@ -11,6 +11,7 @@ const TABS: Array<{ href: string; label: string; icon: typeof LayoutDashboard; m
   { href: '/manzura', label: 'Dashboard', icon: LayoutDashboard, matchPrefix: '/manzura' },
   { href: '/manzura/orders', label: 'Orders', icon: ClipboardList, matchPrefix: '/manzura/orders' },
   { href: '/manzura/products', label: 'Products', icon: Package, matchPrefix: '/manzura/products' },
+  { href: '/manzura/status', label: 'Status', icon: BarChart3, matchPrefix: '/manzura/status' },
 ];
 
 export default function AdminNav() {

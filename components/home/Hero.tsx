@@ -13,7 +13,29 @@ export default function Hero() {
   const locale = useLocale();
 
   function handleExplore() {
-    document.getElementById('our-categories')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const el = document.getElementById('our-categories');
+    if (!el) return;
+    const targetY = el.getBoundingClientRect().top + window.scrollY;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      window.scrollTo(0, targetY);
+      return;
+    }
+    // Custom eased scroll so the descent is clearly smooth on desktop even for
+    // the short distance to the next section (not an instant jump).
+    const startY = window.scrollY;
+    const diff = targetY - startY;
+    const duration = 900;
+    let start: number | undefined;
+    const easeInOutQuad = (t: number) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+    const step = (ts: number) => {
+      if (start === undefined) start = ts;
+      const elapsed = ts - start;
+      const t = Math.min(1, elapsed / duration);
+      window.scrollTo(0, startY + diff * easeInOutQuad(t));
+      if (elapsed < duration) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
   }
 
   return (
@@ -47,7 +69,7 @@ export default function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(255,248,235,0.15) 0%, rgba(255,248,235,0.25) 50%, rgba(255,248,235,0.35) 100%)',
+            'linear-gradient(to bottom, rgba(255,248,235,0.28) 0%, rgba(255,248,235,0.40) 55%, rgba(255,248,235,0.50) 100%)',
         }}
       />
 
@@ -63,12 +85,11 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="flex items-center gap-3 mb-5"
           >
-            <div className="h-px w-12 bg-gold-dark" />
+            <div className="h-[2px] w-16 rounded-full animated-divider" />
             <span
               className="text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase text-gold-dark"
               style={{
-                textShadow:
-                  '0 0 12px rgba(255,248,235,0.7), 0 0 24px rgba(255,248,235,0.45), 0 1px 2px rgba(0,0,0,0.12)',
+                textShadow: '0 1px 3px rgba(0,0,0,0.25)',
               }}
             >
               {t('tagline')}
@@ -80,10 +101,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-[2rem] sm:text-5xl md:text-7xl font-medium leading-[1.1] text-obsidian mb-4"
+            className="font-display text-[2rem] sm:text-5xl md:text-7xl font-semibold leading-[1.1] text-obsidian mb-4"
             style={{
-              textShadow:
-                '0 0 20px rgba(255,248,235,0.85), 0 0 40px rgba(255,248,235,0.55), 0 2px 4px rgba(0,0,0,0.12)',
+              textShadow: '0 1px 2px rgba(0,0,0,0.20), 0 2px 8px rgba(255,248,235,0.5)',
             }}
           >
             <span className="logo-shimmer">
@@ -98,10 +118,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-display italic font-medium text-lg md:text-xl leading-relaxed max-w-none md:max-w-xl mb-7 text-charcoal"
+            className="font-display italic font-semibold text-lg md:text-xl leading-relaxed max-w-none md:max-w-xl mb-7 text-charcoal"
             style={{
-              textShadow:
-                '0 0 16px rgba(255,248,235,0.7), 0 0 32px rgba(255,248,235,0.4), 0 1px 3px rgba(0,0,0,0.1)',
+              textShadow: '0 1px 3px rgba(0,0,0,0.22)',
             }}
           >
             {t('subtitle')}
@@ -116,14 +135,14 @@ export default function Hero() {
           >
             <Link
               href={`/${locale}/catalogue`}
-              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-[10px] bg-gold text-cream text-xs font-semibold tracking-[0.2em] uppercase hover:bg-gold-dark transition-all duration-300 group"
+              className="btn-gold w-full sm:w-auto gap-3 group"
             >
               {t('cta')}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center justify-center gap-3 w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-[10px] border border-charcoal/30 text-charcoal text-xs font-semibold tracking-[0.2em] uppercase hover:border-gold-dark hover:text-gold-dark hover:bg-cream/40 transition-all duration-300"
+              className="btn-secondary w-full sm:w-auto"
             >
               {t('ctaSecondary')}
             </Link>
@@ -158,8 +177,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-[120px] md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold-dark hover:text-gold transition-colors duration-300 focus:outline-none focus-visible:ring-1 focus-visible:ring-gold-dark rounded-md px-3 py-2"
-        style={{ filter: 'drop-shadow(0 2px 6px rgba(168,135,74,0.5))' }}
+        className="absolute bottom-[120px] md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 rounded-full border-2 border-charcoal/70 bg-cream/70 backdrop-blur-sm px-5 py-2.5 text-charcoal hover:text-gold-dark hover:border-gold-dark shadow-[0_4px_18px_rgba(0,0,0,0.18)] hover:shadow-[0_0_22px_rgba(201,169,110,0.55)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark"
       >
         <span className="text-[11px] font-semibold tracking-[0.3em] uppercase">
           {t('explore')}

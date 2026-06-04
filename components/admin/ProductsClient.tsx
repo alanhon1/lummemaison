@@ -158,6 +158,15 @@ export default function ProductsClient({ products, categories, stockMap, initial
   // without a page refresh.
   const [stockOverrides, setStockOverrides] = useState<Record<number, number>>({});
 
+  // Bulk "Edit" mode: lets the admin edit name / price / stock for many rows
+  // inline on this screen, then Save all / Cancel. Drafts are keyed by product
+  // id; productOverrides keeps saved name/price visible without a full reload.
+  const [editMode, setEditMode] = useState(false);
+  const [drafts, setDrafts] = useState<Record<number, { name: string; price: string; stock: string }>>({});
+  const [productOverrides, setProductOverrides] = useState<Record<number, { name?: string; price?: number }>>({});
+  const [savingAll, setSavingAll] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+
   // Bulk action state
   const [bulkPriceValue, setBulkPriceValue] = useState('');
   const [bulkPriceMode, setBulkPriceMode] = useState<'%' | 'fixed'>('%');
@@ -166,6 +175,86 @@ export default function ProductsClient({ products, categories, stockMap, initial
   function effectiveStock(id: number): number {
     if (stockOverrides[id] !== undefined) return stockOverrides[id];
     return stockMap[id] ?? 0;
+  }
+
+  // Name / price reflecting any locally-saved overrides (so the table updates
+  // after a bulk save without a page reload).
+  function nameOf(p: Product): string {
+    return productOverrides[p.id]?.name ?? p.name;
+  }
+  function priceOf(p: Product): number {
+    return productOverrides[p.id]?.price ?? p.price;
+  }
+
+  function updateDraft(p: Product, field: 'name' | 'price' | 'stock', value: string) {
+    setDrafts(prev => {
+      const cur = prev[p.id] ?? {
+        name: nameOf(p),
+        price: String(priceOf(p)),
+        stock: String(effectiveStock(p.id)),
+      };
+      return { ...prev, [p.id]: { ...cur, [field]: value } };
+    });
+  }
+
+  function draftVal(p: Product, field: 'name' | 'price' | 'stock'): string {
+    const d = drafts[p.id];
+    if (d) return d[field];
+    if (field === 'name') return nameOf(p);
+    if (field === 'price') return String(priceOf(p));
+    return String(effectiveStock(p.id));
+  }
+
+  function cancelEdit() {
+    setEditMode(false);
+    setDrafts({});
+    setSaveError(null);
+  }
+
+  async function handleSaveAll() {
+    setSavingAll(true);
+    setSaveError(null);
+    const ids = Object.keys(drafts).map(Number);
+    for (const id of ids) {
+      const d = drafts[id];
+      const p = products.find(x => x.id === id);
+      if (!p) continue;
+
+      // Name / price → PATCH the product JSON (only changed fields).
+      const patch: { name?: string; price?: number } = {};
+      const newName = d.name.trim();
+      if (newName && newName !== nameOf(p)) patch.name = newName;
+      const newPrice = parseFloat(d.price);
+      if (Number.isFinite(newPrice) && newPrice >= 0 && newPrice !== priceOf(p)) patch.price = newPrice;
+      if (Object.keys(patch).length > 0) {
+        const res = await fetch(`/api/admin/products/${id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(patch),
+        });
+        if (!res.ok) {
+          setSaveError(`Failed to save product #${id}.`);
+          setSavingAll(false);
+          return;
+        }
+        setProductOverrides(prev => ({ ...prev, [id]: { ...prev[id], ...patch } }));
+      }
+
+      // Stock → dedicated server action.
+      const newStock = Math.max(0, Math.floor(Number.parseInt(d.stock, 10) || 0));
+      if (newStock !== effectiveStock(id)) {
+        const res = await saveProductStockAction(id, newStock);
+        if (!res.ok) {
+          setSaveError(res.error ?? `Failed to save stock for #${id}.`);
+          setSavingAll(false);
+          return;
+        }
+        setStockOverrides(prev => ({ ...prev, [id]: newStock }));
+      }
+    }
+    setSavingAll(false);
+    setEditMode(false);
+    setDrafts({});
   }
 
   const fuse = useMemo(
@@ -237,7 +326,35 @@ export default function ProductsClient({ products, categories, stockMap, initial
     <div className="max-w-7xl mx-auto px-6 py-10">
       <div className="flex items-center justify-between mb-8">
         <h1 className="font-display text-3xl font-light text-charcoal">Products</h1>
-        <div className="flex gap-3">
+        <div className="flex gap-3 items-center">
+          {editMode ? (
+            <>
+              {saveError && <span className="text-xs text-rose-700">{saveError}</span>}
+              <button
+                onClick={handleSaveAll}
+                disabled={savingAll}
+                className="btn-gold text-xs inline-flex items-center gap-1.5 disabled:opacity-60"
+              >
+                {savingAll ? <Loader2 size={13} className="animate-spin" /> : <Check size={13} />}
+                {savingAll ? 'Saving…' : 'Save all'}
+              </button>
+              <button
+                onClick={cancelEdit}
+                disabled={savingAll}
+                className="text-xs text-mist hover:text-charcoal border border-bone px-3 py-1.5 disabled:opacity-60"
+              >
+                Cancel
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={() => setEditMode(true)}
+              className="text-xs text-charcoal border border-gold/50 hover:border-gold hover:text-gold-dark px-3 py-1.5 inline-flex items-center gap-1.5 transition-colors"
+            >
+              <Edit2 size={13} />
+              Edit
+            </button>
+          )}
           <Link href="/manzura/products/new" className="btn-gold text-xs">+ New Product</Link>
         </div>
       </div>
@@ -415,20 +532,55 @@ export default function ProductsClient({ products, categories, stockMap, initial
                     )}
                   </td>
                   <td className="px-4 py-3 font-medium text-charcoal max-w-xs">
-                    <span className="line-clamp-1">{product.name}</span>
+                    {editMode ? (
+                      <input
+                        value={draftVal(product, 'name')}
+                        onChange={e => updateDraft(product, 'name', e.target.value)}
+                        className="w-full border border-gold/60 bg-white px-2 py-1 text-xs text-charcoal outline-none focus:border-gold rounded"
+                      />
+                    ) : (
+                      <span className="line-clamp-1">{nameOf(product)}</span>
+                    )}
                   </td>
                   <td className="px-4 py-3 font-semibold text-charcoal">
-                    {product.price > 0 ? `$${product.price}` : 'POA'}
+                    {editMode ? (
+                      <div className="inline-flex items-center gap-1">
+                        <span className="text-mist">$</span>
+                        <input
+                          type="number"
+                          min={0}
+                          step="0.01"
+                          value={draftVal(product, 'price')}
+                          onChange={e => updateDraft(product, 'price', e.target.value)}
+                          className="w-20 border border-gold/60 bg-white px-1.5 py-1 text-xs text-charcoal outline-none focus:border-gold rounded"
+                        />
+                      </div>
+                    ) : priceOf(product) > 0 ? (
+                      `$${priceOf(product)}`
+                    ) : (
+                      'POA'
+                    )}
                   </td>
                   <td className="px-4 py-3 text-mist hidden md:table-cell">{product.categoryId}</td>
                   <td className="px-4 py-3">
-                    <InlineStockCell
-                      productId={product.id}
-                      initial={effectiveStock(product.id)}
-                      onChange={next =>
-                        setStockOverrides(prev => ({ ...prev, [product.id]: next }))
-                      }
-                    />
+                    {editMode ? (
+                      <input
+                        type="number"
+                        min={0}
+                        step={1}
+                        value={draftVal(product, 'stock')}
+                        onChange={e => updateDraft(product, 'stock', e.target.value)}
+                        className="w-16 border border-gold/60 bg-white px-1.5 py-1 text-xs text-charcoal outline-none focus:border-gold rounded"
+                      />
+                    ) : (
+                      <InlineStockCell
+                        productId={product.id}
+                        initial={effectiveStock(product.id)}
+                        onChange={next =>
+                          setStockOverrides(prev => ({ ...prev, [product.id]: next }))
+                        }
+                      />
+                    )}
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center gap-1 justify-end">

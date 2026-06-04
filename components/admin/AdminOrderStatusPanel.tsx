@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { Check, ArrowRight, Undo2, X } from 'lucide-react';
+import { Check, ArrowRight, Undo2, X, Camera } from 'lucide-react';
 import { ORDER_STAGES, stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { CARRIERS, type CarrierKey } from '@/lib/orders/carriers';
 import { updateOrderStatus, markOrderShipped } from '@/app/manzura/orders/actions';
@@ -36,6 +36,8 @@ export default function AdminOrderStatusPanel({
   const [pending, startTransition] = useTransition();
   const [shipFormOpen, setShipFormOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const photoInputRef = useRef<HTMLInputElement>(null);
+  const [photoName, setPhotoName] = useState<string | null>(null);
 
   const idx = stageIndex(status);
   const isCancelled = status === 'cancelled';
@@ -70,6 +72,7 @@ export default function AdminOrderStatusPanel({
       if (!res.ok) setError(res.error);
       else {
         setShipFormOpen(false);
+        setPhotoName(null);
         router.refresh();
       }
     });
@@ -207,9 +210,22 @@ export default function AdminOrderStatusPanel({
         </div>
       )}
 
-      {/* Cancelled or delivered → finalised, allow only reopen */}
+      {/* Cancelled or delivered → finalised. Delivered still allows a single
+          step back to Shipped (keeps carrier/tracking/photo); both allow a
+          full reopen to Received. */}
       {(isCancelled || isDelivered) && (
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          {isDelivered && (
+            <button
+              type="button"
+              disabled={pending}
+              onClick={() => advanceTo('shipped')}
+              className="text-xs text-mist hover:text-charcoal inline-flex items-center gap-1.5 border border-bone px-3 py-1.5"
+            >
+              <Undo2 size={13} />
+              Roll back to Shipped
+            </button>
+          )}
           <button
             type="button"
             disabled={pending}
@@ -258,21 +274,33 @@ export default function AdminOrderStatusPanel({
           <div>
             <label className="block text-[10px] uppercase tracking-widest text-mist mb-1.5">Shipment photo (required)</label>
             <input
+              ref={photoInputRef}
               type="file"
               name="photo"
-              required
               accept="image/png,image/jpeg,image/webp,image/heic,image/heif"
-              className="w-full text-xs"
+              className="hidden"
+              onChange={e => setPhotoName(e.target.files?.[0]?.name ?? null)}
             />
+            <div className="flex items-center gap-2 flex-wrap">
+              <button
+                type="button"
+                onClick={() => photoInputRef.current?.click()}
+                className="btn-secondary text-xs inline-flex items-center gap-1.5"
+              >
+                <Camera size={13} />
+                {photoName ? 'Change photo' : 'Choose photo…'}
+              </button>
+              {photoName && <span className="text-xs text-charcoal truncate max-w-[200px]">{photoName}</span>}
+            </div>
             <p className="text-[10px] text-mist mt-1">Stored privately in the shipment-photos bucket. Customer sees it via a signed URL.</p>
           </div>
           <div className="flex items-center gap-2 pt-1">
-            <button type="submit" disabled={pending} className="btn-gold text-xs disabled:opacity-60">
+            <button type="submit" disabled={pending || !photoName} className="btn-gold text-xs disabled:opacity-60">
               {pending ? 'Shipping…' : 'Submit & notify customer'}
             </button>
             <button
               type="button"
-              onClick={() => setShipFormOpen(false)}
+              onClick={() => { setShipFormOpen(false); setPhotoName(null); }}
               disabled={pending}
               className="text-xs text-mist hover:text-charcoal border border-bone px-3 py-1.5"
             >

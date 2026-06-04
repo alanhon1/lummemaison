@@ -46,36 +46,47 @@ export async function updateOrderStatus(
   if (!VALID_STATUSES.has(nextStatus)) {
     return { ok: false, error: `invalid status: ${nextStatus}` };
   }
-  if (nextStatus === 'shipped') {
-    // Shipped requires carrier + tracking + photo — caller must use
-    // markOrderShipped instead. Refuse here to keep that invariant explicit.
-    return { ok: false, error: 'use markOrderShipped() to transition to shipped' };
-  }
 
   const supabase = createServiceClient();
 
   // Snapshot the row first. We need it for: (a) cancellation email, (b)
   // detecting rollbacks past `shipped` so the patch can clear stale shipment
-  // metadata (carrier / tracking / photo / shipped_at). One read either way.
+  // metadata (carrier / tracking / photo / shipped_at), and (c) validating a
+  // delivered → shipped rollback (allowed only when the shipment metadata is
+  // still intact). One read either way.
   const { data: current } = await supabase
     .from('orders')
-    .select('order_seq, order_number, customer_name, customer_email, status, shipped_at, delivered_at, shipment_photo_path')
+    .select('order_seq, order_number, customer_name, customer_email, status, carrier, tracking_number, shipped_at, delivered_at, shipment_photo_path')
     .eq('id', orderId)
     .single();
   if (!current) return { ok: false, error: 'order not found' };
+
+  if (nextStatus === 'shipped') {
+    // A *fresh* ship (capturing carrier + tracking + photo) must go through
+    // markOrderShipped. The only valid path here is a single-step rollback
+    // from `delivered` back to `shipped`, where that metadata already exists
+    // and is preserved untouched.
+    const canRollbackToShipped =
+      current.status === 'delivered' &&
+      !!current.carrier &&
+      !!current.tracking_number &&
+      !!current.shipment_photo_path;
+    if (!canRollbackToShipped) {
+      return { ok: false, error: 'use markOrderShipped() to transition to shipped' };
+    }
+  }
 
   const patch: Record<string, unknown> = { status: nextStatus };
   if (nextStatus === 'delivered') patch.delivered_at = new Date().toISOString();
 
   // Rollback hygiene: if the row used to be at `shipped` / `delivered` and
-  // we're moving back to an earlier stage, scrub the shipment metadata so
-  // the customer-side detail page doesn't show stale tracking info next to
-  // a stepper that has un-stepped past shipped.
-  // `nextStatus` has already been narrowed by the early-return above to exclude
-  // 'shipped' (callers must use markOrderShipped). So the only "still shipped
-  // or later" target left is 'delivered'.
+  // we're moving back to a stage *before* shipped, scrub the shipment metadata
+  // so the customer-side detail page doesn't show stale tracking info next to
+  // a stepper that has un-stepped past shipped. A delivered → shipped rollback
+  // keeps the metadata (nextStatus === 'shipped' is excluded here).
   const wasShippedOrLater = current.status === 'shipped' || current.status === 'delivered';
-  const rollingBackPastShipped = wasShippedOrLater && nextStatus !== 'delivered';
+  const rollingBackPastShipped =
+    wasShippedOrLater && nextStatus !== 'delivered' && nextStatus !== 'shipped';
   const oldPhotoPath = rollingBackPastShipped ? (current.shipment_photo_path as string | null) : null;
   if (rollingBackPastShipped) {
     patch.carrier = null;

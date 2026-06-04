@@ -8,6 +8,7 @@ import {
   sendSignupConfirmationEmail,
   sendPasswordResetCodeEmail,
 } from '@/lib/email/sendOrderEmails';
+import { missingEmailEnv } from '@/lib/email/mailer';
 
 export type FormState = { error?: string; success?: boolean };
 
@@ -141,8 +142,20 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
     confirmUrl,
   });
   if (!sendResult.ok) {
+    // Log the precise cause server-side (including which env vars are missing,
+    // the usual culprit in production) but show the customer a friendly,
+    // non-technical message — "SMTP_FROM missing" means nothing to them.
+    const missing = missingEmailEnv();
+    console.error(
+      '[signup] confirmation email failed for',
+      input.email,
+      '— reason:',
+      sendResult.error ?? 'unknown',
+      missing.length ? `— missing env: ${missing.join(', ')}` : '',
+    );
     return {
-      error: `Account created but we couldn't send the confirmation email${sendResult.error ? ` (${sendResult.error})` : ''}. Please contact support.`,
+      error:
+        "Your account was created, but we couldn't send the confirmation email right now. Please contact support and we'll confirm your account.",
     };
   }
 
