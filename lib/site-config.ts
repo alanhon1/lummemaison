@@ -33,6 +33,18 @@ export const siteConfig = {
     telegram: "https://t.me/+821029427225",
   },
 
+  // Which contact channels are SHOWN to customers right now. The numbers above
+  // are kept on purpose — to bring a channel back later, just flip its flag to
+  // `true` and it reappears everywhere (footer, contact page, home CTAs,
+  // floating bubble, product page, payment page). Currently only email (info@)
+  // is exposed; WhatsApp / Telegram / phone are hidden.
+  contactChannels: {
+    email: true,
+    whatsapp: false,
+    telegram: false,
+    phone: false,
+  },
+
   payment: {
     wise: {
       accountName: "Lumée Maison",

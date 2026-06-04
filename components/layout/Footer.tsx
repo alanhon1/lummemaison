@@ -43,14 +43,18 @@ export default function Footer() {
                 className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="Instagram">
                 <Share2 size={15} />
               </a>
-              <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer"
-                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="WhatsApp">
-                <MessageCircle size={15} />
-              </a>
-              <a href={siteConfig.social.telegram} target="_blank" rel="noopener noreferrer"
-                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="Telegram">
-                <Send size={15} />
-              </a>
+              {siteConfig.contactChannels.whatsapp && (
+                <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer"
+                  className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="WhatsApp">
+                  <MessageCircle size={15} />
+                </a>
+              )}
+              {siteConfig.contactChannels.telegram && (
+                <a href={siteConfig.social.telegram} target="_blank" rel="noopener noreferrer"
+                  className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="Telegram">
+                  <Send size={15} />
+                </a>
+              )}
             </div>
           </div>
 
@@ -100,18 +104,30 @@ export default function Footer() {
                   {siteConfig.contact.email}
                 </a>
               </li>
-              <li>
-                <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer"
-                  className="text-xs text-cream/60 hover:text-gold transition-colors">
-                  WhatsApp: {siteConfig.contact.whatsapp}
-                </a>
-              </li>
-              <li>
-                <a href={siteConfig.social.telegram} target="_blank" rel="noopener noreferrer"
-                  className="text-xs text-cream/60 hover:text-gold transition-colors">
-                  Telegram: {siteConfig.contact.telegram}
-                </a>
-              </li>
+              {siteConfig.contactChannels.whatsapp && (
+                <li>
+                  <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer"
+                    className="text-xs text-cream/60 hover:text-gold transition-colors">
+                    WhatsApp: {siteConfig.contact.whatsapp}
+                  </a>
+                </li>
+              )}
+              {siteConfig.contactChannels.telegram && (
+                <li>
+                  <a href={siteConfig.social.telegram} target="_blank" rel="noopener noreferrer"
+                    className="text-xs text-cream/60 hover:text-gold transition-colors">
+                    Telegram: {siteConfig.contact.telegram}
+                  </a>
+                </li>
+              )}
+              {siteConfig.contactChannels.phone && (
+                <li>
+                  <a href={`tel:${siteConfig.contact.phone}`}
+                    className="text-xs text-cream/60 hover:text-gold transition-colors">
+                    {siteConfig.contact.phone}
+                  </a>
+                </li>
+              )}
               <li className="text-xs text-cream/50">{siteConfig.contact.address}</li>
             </ul>
           </details>

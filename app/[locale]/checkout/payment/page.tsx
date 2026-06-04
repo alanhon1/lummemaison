@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
 import CheckoutSteps from '@/components/checkout/CheckoutSteps';
 import PaymentStep, { type PaymentInfo } from '@/components/checkout/PaymentStep';
+import { siteConfig } from '@/lib/site-config';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -63,7 +64,8 @@ export default async function CheckoutPaymentPage({ params, searchParams }: Page
     },
     usdt: {
       networks: usdtNetworks,
-      whatsapp: envValue('PAYMENT_WHATSAPP'),
+      // Hidden while WhatsApp is disabled — USDT questions route to email.
+      whatsapp: siteConfig.contactChannels.whatsapp ? envValue('PAYMENT_WHATSAPP') : '',
     },
     adminEmail: envValue('ADMIN_NOTIFICATION_EMAIL'),
   };

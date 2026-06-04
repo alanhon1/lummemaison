@@ -6,6 +6,7 @@ import { siteConfig } from '@/lib/site-config';
 
 export default function FloatingWhatsApp() {
   const pathname = usePathname();
+  if (!siteConfig.contactChannels.whatsapp) return null;
   const isProductPage = /\/product\/\d+/.test(pathname);
   const visibilityClass = isProductPage ? 'hidden md:flex' : 'flex';
 

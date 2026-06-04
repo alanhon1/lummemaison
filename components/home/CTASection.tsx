@@ -28,24 +28,28 @@ export default function CTASection() {
           </p>
 
           <div className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center gap-3 sm:gap-4">
-            <a
-              href={siteConfig.social.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-whatsapp w-full sm:w-auto"
-            >
-              <MessageCircle size={16} />
-              {t('whatsapp')}
-            </a>
-            <a
-              href={siteConfig.social.telegram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-telegram w-full sm:w-auto"
-            >
-              <Send size={16} />
-              {t('telegram')}
-            </a>
+            {siteConfig.contactChannels.whatsapp && (
+              <a
+                href={siteConfig.social.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp w-full sm:w-auto"
+              >
+                <MessageCircle size={16} />
+                {t('whatsapp')}
+              </a>
+            )}
+            {siteConfig.contactChannels.telegram && (
+              <a
+                href={siteConfig.social.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-telegram w-full sm:w-auto"
+              >
+                <Send size={16} />
+                {t('telegram')}
+              </a>
+            )}
             <Link
               href={`/${locale}/contact`}
               className="btn-gold btn-loop w-full sm:w-auto gap-2"

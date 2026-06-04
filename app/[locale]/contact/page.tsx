@@ -49,42 +49,46 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 </div>
               </a>
 
-              <div className="bg-white border border-bone p-5">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-10 h-10 bg-[#25D366] flex items-center justify-center flex-shrink-0">
-                    <MessageCircle size={18} className="text-white" />
+              {siteConfig.contactChannels.whatsapp && (
+                <div className="bg-white border border-bone p-5">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-10 h-10 bg-[#25D366] flex items-center justify-center flex-shrink-0">
+                      <MessageCircle size={18} className="text-white" />
+                    </div>
+                    <p className="text-xs font-semibold tracking-wider uppercase text-mist">{t('info.whatsapp')}</p>
                   </div>
-                  <p className="text-xs font-semibold tracking-wider uppercase text-mist">{t('info.whatsapp')}</p>
+                  <ul className="space-y-2 pl-14">
+                    {siteConfig.contact.whatsappNumbers.map(num => (
+                      <li key={num}>
+                        <a
+                          href={`https://wa.me/${num.replace(/\D/g, '')}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-charcoal hover:text-[#25D366] transition-colors"
+                        >
+                          {num}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="space-y-2 pl-14">
-                  {siteConfig.contact.whatsappNumbers.map(num => (
-                    <li key={num}>
-                      <a
-                        href={`https://wa.me/${num.replace(/\D/g, '')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm text-charcoal hover:text-[#25D366] transition-colors"
-                      >
-                        {num}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              )}
 
-              <div className="bg-white border border-bone p-5">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-10 h-10 bg-[#2AABEE] flex items-center justify-center flex-shrink-0">
-                    <Send size={18} className="text-white" />
+              {siteConfig.contactChannels.telegram && (
+                <div className="bg-white border border-bone p-5">
+                  <div className="flex items-center gap-4 mb-3">
+                    <div className="w-10 h-10 bg-[#2AABEE] flex items-center justify-center flex-shrink-0">
+                      <Send size={18} className="text-white" />
+                    </div>
+                    <p className="text-xs font-semibold tracking-wider uppercase text-mist">{t('info.telegram')}</p>
                   </div>
-                  <p className="text-xs font-semibold tracking-wider uppercase text-mist">{t('info.telegram')}</p>
+                  <ul className="space-y-2 pl-14">
+                    {siteConfig.contact.telegramNumbers.map(num => (
+                      <li key={num} className="text-sm text-charcoal">{num}</li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className="space-y-2 pl-14">
-                  {siteConfig.contact.telegramNumbers.map(num => (
-                    <li key={num} className="text-sm text-charcoal">{num}</li>
-                  ))}
-                </ul>
-              </div>
+              )}
 
               <div className="flex items-start gap-4 p-5 bg-white border border-bone">
                 <div className="w-10 h-10 border border-bone flex items-center justify-center flex-shrink-0">
@@ -101,7 +105,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
           {/* Form */}
           <AnimatedSection direction="right">
             <h2 className="font-display text-2xl font-light mb-8">Send a Message</h2>
-            <form className="space-y-4" action={siteConfig.social.whatsapp}>
+            <form className="space-y-4" action={siteConfig.contactChannels.whatsapp ? siteConfig.social.whatsapp : `mailto:${siteConfig.contact.email}`}>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs font-semibold tracking-wider uppercase text-mist block mb-2">
@@ -145,16 +149,27 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 />
               </div>
               <p className="text-xs text-mist">
-                * For fastest response, contact us directly via WhatsApp or Telegram
+                {siteConfig.contactChannels.whatsapp || siteConfig.contactChannels.telegram
+                  ? '* For fastest response, contact us directly via WhatsApp or Telegram'
+                  : `* For inquiries, email us at ${siteConfig.contact.email}`}
               </p>
-              <a
-                href={siteConfig.social.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary w-full text-center block"
-              >
-                {t('form.send')} via WhatsApp
-              </a>
+              {siteConfig.contactChannels.whatsapp ? (
+                <a
+                  href={siteConfig.social.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full text-center block"
+                >
+                  {t('form.send')} via WhatsApp
+                </a>
+              ) : (
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="btn-primary w-full text-center block"
+                >
+                  {t('form.send')} via Email
+                </a>
+              )}
             </form>
           </AnimatedSection>
         </div>

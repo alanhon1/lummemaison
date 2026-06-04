@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { ShoppingBag, MessageCircle, Check } from 'lucide-react';
+import { ShoppingBag, MessageCircle, Mail, Check } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore } from '@/lib/currency-store';
 import { useProductStock } from '@/lib/stock-store';
@@ -32,6 +32,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   }
 
   const whatsappHref = `${siteConfig.social.whatsapp}?text=${encodeURIComponent(`Hi! I'm interested in: #${product.id} ${product.name}`)}`;
+  const emailHref = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(`Inquiry: #${product.id} ${product.name}`)}`;
 
   return (
     <div className="flex flex-col sm:flex-row gap-3">
@@ -60,15 +61,22 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           </>
         )}
       </button>
-      <a
-        href={whatsappHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="btn-whatsapp px-6 py-4"
-      >
-        <MessageCircle size={16} />
-        {t('contactForOrder')}
-      </a>
+      {siteConfig.contactChannels.whatsapp ? (
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-whatsapp px-6 py-4"
+        >
+          <MessageCircle size={16} />
+          {t('contactForOrder')}
+        </a>
+      ) : (
+        <a href={emailHref} className="btn-secondary px-6 py-4 gap-2">
+          <Mail size={16} />
+          {t('contactForOrder')}
+        </a>
+      )}
     </div>
   );
 }
