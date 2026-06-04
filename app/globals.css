@@ -190,7 +190,8 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--gold-shimmer);
+    /* White sheen — visible on the gold fill (a gold-on-gold shimmer is not). */
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
     transform: translateX(-120%);
     transition: transform 600ms ease;
     pointer-events: none;
@@ -281,6 +282,19 @@ body {
   .btn-telegram:hover::after { transform: translateX(120%); }
   .btn-telegram:active { transform: translateY(1px); box-shadow: 0 0 14px rgba(42, 171, 238, 0.30); }
   .btn-telegram:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(42, 171, 238, 0.45); }
+
+  /* === Always-on shimmer: the sweep loops so the motion is visible without
+        hovering (from button-gold.html). Pair with .btn-gold/.btn-whatsapp/etc. === */
+  @keyframes btn-sweep {
+    0%, 15% { transform: translateX(-120%); }
+    55%, 100% { transform: translateX(120%); }
+  }
+  .btn-loop { box-shadow: 0 0 22px rgba(201, 169, 110, 0.30); }
+  .btn-loop::after { animation: btn-sweep 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+  /* === Frozen mid-shimmer (gold-dark fill + glow + sheen parked mid-sweep). === */
+  .btn-frozen { background-color: var(--accent-dark); border-color: var(--accent-dark); box-shadow: 0 0 24px rgba(201, 169, 110, 0.45); }
+  .btn-frozen::after { transform: translateX(8%); }
 
   /* Section typography */
   .section-title {
@@ -587,6 +601,7 @@ body {
   .btn-gold::after,
   .btn-whatsapp::after,
   .btn-telegram::after { transition: none !important; }
+  .btn-loop::after { animation: none !important; }
 }
 
 /* Smooth scrolling for in-page anchors / Explore jump (disabled for reduced-motion). */

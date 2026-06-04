@@ -18,11 +18,12 @@ export default function Hero() {
     const targetY = el.getBoundingClientRect().top + window.scrollY;
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) {
-      window.scrollTo(0, targetY);
+      window.scrollTo({ top: targetY, behavior: 'auto' });
       return;
     }
-    // Custom eased scroll so the descent is clearly smooth on desktop even for
-    // the short distance to the next section (not an instant jump).
+    // Custom eased scroll. We drive each frame with behavior:'auto' so the
+    // global `scroll-behavior: smooth` CSS doesn't also try to animate every
+    // scrollTo call — that double-animation is what made it jump/teleport.
     const startY = window.scrollY;
     const diff = targetY - startY;
     const duration = 900;
@@ -32,7 +33,7 @@ export default function Hero() {
       if (start === undefined) start = ts;
       const elapsed = ts - start;
       const t = Math.min(1, elapsed / duration);
-      window.scrollTo(0, startY + diff * easeInOutQuad(t));
+      window.scrollTo({ top: startY + diff * easeInOutQuad(t), behavior: 'auto' });
       if (elapsed < duration) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
@@ -135,7 +136,7 @@ export default function Hero() {
           >
             <Link
               href={`/${locale}/catalogue`}
-              className="btn-gold w-full sm:w-auto gap-3 group"
+              className="btn-gold btn-loop w-full sm:w-auto gap-3 group"
             >
               {t('cta')}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -177,18 +178,18 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-[120px] md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 rounded-full border-2 border-charcoal/70 bg-cream/70 backdrop-blur-sm px-5 py-2.5 text-charcoal hover:text-gold-dark hover:border-gold-dark shadow-[0_4px_18px_rgba(0,0,0,0.18)] hover:shadow-[0_0_22px_rgba(201,169,110,0.55)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark"
+        className="absolute bottom-[120px] md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 rounded-full border border-charcoal/70 bg-cream/70 backdrop-blur-sm px-3.5 py-1.5 text-charcoal hover:text-gold-dark hover:border-gold-dark shadow-[0_3px_12px_rgba(0,0,0,0.16)] hover:shadow-[0_0_18px_rgba(201,169,110,0.5)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-dark"
       >
-        <span className="text-[11px] font-semibold tracking-[0.3em] uppercase">
+        <span className="text-[9px] font-semibold tracking-[0.25em] uppercase">
           {t('explore')}
         </span>
         <motion.span
           aria-hidden
-          animate={{ y: [0, 12, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
           className="leading-none"
         >
-          <ChevronDown size={30} strokeWidth={2.5} />
+          <ChevronDown size={20} strokeWidth={2.5} />
         </motion.span>
       </motion.button>
     </section>
