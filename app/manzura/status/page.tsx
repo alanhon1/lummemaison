@@ -43,7 +43,7 @@ export default async function StatusPage() {
       .from('orders')
       .select('created_at, total_cents')
       .gte('created_at', since30.toISOString()),
-    supabase.from('order_items').select('product_name, quantity'),
+    supabase.from('order_items').select('product_name, quantity').limit(10000),
     supabase
       .from('product_stock')
       .select('product_id, stock')

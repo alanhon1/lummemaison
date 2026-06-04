@@ -12,14 +12,8 @@ interface CurrencyStore {
   setCurrency: (c: Currency) => void;
 }
 
-export const EXCHANGE_RATES: Record<Currency, number> = {
-  USD: 1,
-};
-
-export const CURRENCY_SYMBOLS: Record<Currency, string> = {
-  USD: '$',
-};
-
+// Prices in data/products.json are already USD. POA for zero/unpriced items.
+// The optional currency arg is retained only for call-site compatibility.
 export function formatPrice(priceUSD: number, _currency: Currency = 'USD'): string {
   if (priceUSD <= 0) return 'POA';
   return `$${priceUSD.toFixed(2)}`;

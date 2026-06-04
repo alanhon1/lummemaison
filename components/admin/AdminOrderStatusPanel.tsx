@@ -215,7 +215,9 @@ export default function AdminOrderStatusPanel({
           full reopen to Received. */}
       {(isCancelled || isDelivered) && (
         <div className="flex flex-wrap gap-2">
-          {isDelivered && (
+          {/* Single-step rollback is only valid while the shipment metadata is
+              still intact (the server enforces this too). */}
+          {isDelivered && carrier && trackingNumber && shipmentPhotoPath && (
             <button
               type="button"
               disabled={pending}

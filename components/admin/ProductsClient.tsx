@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Search, X, Edit2, Trash2, Check, Loader2 } from 'lucide-react';
 import Fuse from 'fuse.js';
 import type { Product, Category } from '@/lib/products';
@@ -145,6 +146,7 @@ function InlineStockCell({
 }
 
 export default function ProductsClient({ products, categories, stockMap, initialFilter }: Props) {
+  const router = useRouter();
   const [search, setSearch] = useState('');
   const [catFilter, setCatFilter] = useState('');
   const [imgFilter, setImgFilter] = useState(initialFilter === 'no-image' ? 'no-image' : '');
@@ -255,6 +257,9 @@ export default function ProductsClient({ products, categories, stockMap, initial
     setSavingAll(false);
     setEditMode(false);
     setDrafts({});
+    // Re-pull server data so the search index + base props reflect the saved
+    // names/prices (the optimistic overrides keep the table correct meanwhile).
+    router.refresh();
   }
 
   const fuse = useMemo(

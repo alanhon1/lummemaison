@@ -48,7 +48,7 @@ export default function CTASection() {
             </a>
             <Link
               href={`/${locale}/contact`}
-              className="btn-gold w-full sm:w-auto"
+              className="btn-gold w-full sm:w-auto gap-2"
             >
               <Mail size={16} />
               {t('email')}
