@@ -1,9 +1,9 @@
 'use client';
 
-import { useActionState, useState } from 'react';
+import { useActionState, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Search, X } from 'lucide-react';
 import { updateProfile, logout, type FormState } from '@/app/[locale]/account/actions';
 import CountrySelect from './CountrySelect';
 import { findCountry } from '@/lib/countries';
@@ -47,6 +47,39 @@ export default function DashboardClient({
   const [country, setCountry] = useState(profile.country);
   const [state, formAction, pending] = useActionState(updateProfile, initialState);
   const showFedex = country === 'US';
+
+  // Order history: search (by order number digits and/or date) + pagination.
+  const PAGE_SIZE = 5;
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [dateFilter, setDateFilter] = useState('');
+  const [page, setPage] = useState(1);
+
+  const filteredOrders = useMemo(() => {
+    const digits = query.replace(/\D/g, '');
+    return orders.filter(o => {
+      if (digits) {
+        const seqStr = o.order_seq != null ? String(o.order_seq).padStart(6, '0') : '';
+        const numStr = o.order_number.replace(/\D/g, '');
+        if (!seqStr.includes(digits) && !numStr.includes(digits)) return false;
+      }
+      if (dateFilter) {
+        const d = new Date(o.created_at);
+        const local = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        if (local !== dateFilter) return false;
+      }
+      return true;
+    });
+  }, [orders, query, dateFilter]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredOrders.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const pagedOrders = filteredOrders.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const hasFilter = query.trim() !== '' || dateFilter !== '';
+
+  function resetToFirstPage() {
+    setPage(1);
+  }
 
   return (
     <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
@@ -104,14 +137,66 @@ export default function DashboardClient({
 
       {/* Order history */}
       <section>
-        <h2 className="font-display text-2xl text-charcoal mb-6">{t('dashboard.orderHistory')}</h2>
+        <div className="flex items-center justify-between mb-6 gap-3">
+          <h2 className="font-display text-2xl text-charcoal">{t('dashboard.orderHistory')}</h2>
+          {orders.length > 0 && (
+            <button
+              type="button"
+              onClick={() => { setSearchOpen(o => !o); if (searchOpen) { setQuery(''); setDateFilter(''); resetToFirstPage(); } }}
+              aria-label="Search orders"
+              className={`p-2 rounded-md border transition-colors ${searchOpen ? 'border-gold text-gold-dark' : 'border-bone text-mist hover:text-charcoal hover:border-gold/50'}`}
+            >
+              <Search size={16} />
+            </button>
+          )}
+        </div>
+
+        {searchOpen && orders.length > 0 && (
+          <div className="mb-4 flex flex-col sm:flex-row gap-2">
+            <div className="flex items-center gap-2 border border-bone rounded-md px-3 py-2 bg-white flex-1 focus-within:border-gold transition-colors">
+              <Search size={13} className="text-mist shrink-0" />
+              <input
+                inputMode="numeric"
+                value={query}
+                onChange={e => { setQuery(e.target.value); resetToFirstPage(); }}
+                placeholder="Order no. — e.g. 005001"
+                className="flex-1 text-sm bg-transparent outline-none text-charcoal placeholder-mist"
+              />
+              {query && (
+                <button type="button" aria-label="Clear" onClick={() => { setQuery(''); resetToFirstPage(); }}>
+                  <X size={13} className="text-mist hover:text-charcoal" />
+                </button>
+              )}
+            </div>
+            <input
+              type="date"
+              value={dateFilter}
+              onChange={e => { setDateFilter(e.target.value); resetToFirstPage(); }}
+              className="border border-bone rounded-md px-3 py-2 bg-white text-sm text-charcoal outline-none focus:border-gold transition-colors"
+            />
+            {hasFilter && (
+              <button
+                type="button"
+                onClick={() => { setQuery(''); setDateFilter(''); resetToFirstPage(); }}
+                className="text-xs text-mist hover:text-charcoal underline underline-offset-4 px-1 self-center"
+              >
+                Clear
+              </button>
+            )}
+          </div>
+        )}
+
         {orders.length === 0 ? (
           <p className="text-sm text-mist border border-dashed border-bone rounded-md p-6 text-center">
             {t('dashboard.noOrders')}
           </p>
+        ) : filteredOrders.length === 0 ? (
+          <p className="text-sm text-mist border border-dashed border-bone rounded-md p-6 text-center">
+            No orders match your search.
+          </p>
         ) : (
           <ul className="space-y-3">
-            {orders.map(o => {
+            {pagedOrders.map(o => {
               const countryName = findCountry(profile.country)?.name ?? profile.country;
               const total = (o.total_cents / 100).toLocaleString(locale, {
                 style: 'currency',
@@ -166,9 +251,54 @@ export default function DashboardClient({
             })}
           </ul>
         )}
+
+        {/* Pagination — shown when more than one page of results */}
+        {filteredOrders.length > PAGE_SIZE && (
+          <div className="flex items-center justify-center gap-1.5 mt-6">
+            <button
+              type="button"
+              onClick={() => setPage(p => Math.max(1, p - 1))}
+              disabled={safePage === 1}
+              aria-label="Previous page"
+              className="w-8 h-8 inline-flex items-center justify-center border border-bone rounded-md text-mist disabled:opacity-30 hover:border-gold hover:text-gold-dark transition-colors"
+            >
+              <ChevronLeft size={14} />
+            </button>
+            {pageWindow(safePage, totalPages).map(n => (
+              <button
+                key={n}
+                type="button"
+                onClick={() => setPage(n)}
+                className={`w-8 h-8 inline-flex items-center justify-center border rounded-md text-xs transition-colors ${
+                  n === safePage ? 'border-gold bg-gold text-white' : 'border-bone text-charcoal hover:border-gold hover:text-gold-dark'
+                }`}
+              >
+                {n}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+              disabled={safePage === totalPages}
+              aria-label="Next page"
+              className="w-8 h-8 inline-flex items-center justify-center border border-bone rounded-md text-mist disabled:opacity-30 hover:border-gold hover:text-gold-dark transition-colors"
+            >
+              <ChevronRight size={14} />
+            </button>
+          </div>
+        )}
       </section>
     </div>
   );
+}
+
+// Windowed page numbers: up to 5 around the current page (e.g. 1 2 [3] 4 5).
+function pageWindow(current: number, total: number): number[] {
+  const span = 5;
+  let start = Math.max(1, current - Math.floor(span / 2));
+  const end = Math.min(total, start + span - 1);
+  start = Math.max(1, end - span + 1);
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
 }
 
 const inputClass =

@@ -3,6 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
 import DashboardClient from '@/components/account/DashboardClient';
 
+export const dynamic = 'force-dynamic';
+
 interface PageProps {
   params: Promise<{ locale: string }>;
 }
@@ -30,7 +32,7 @@ export default async function AccountPage({ params }: PageProps) {
       .select('id, order_number, order_seq, status, total_cents, currency, created_at, last_message_seen_at')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false })
-      .limit(50),
+      .limit(200),
   ]);
 
   if (!profile) {
