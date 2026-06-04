@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Search, Filter, X, LayoutGrid, List, ChevronDown } from 'lucide-react';
 import Fuse from 'fuse.js';
 import ProductCard from './ProductCard';
-import { categories, products, type Product } from '@/lib/products';
+import { categories, type Product } from '@/lib/products';
 
 type SortOption = 'default' | 'price-asc' | 'price-desc' | 'name';
 
@@ -21,7 +21,7 @@ const fuseOptions = {
   ],
 };
 
-export default function CatalogueClient({ initialCategory }: { initialCategory?: string }) {
+export default function CatalogueClient({ products, initialCategory }: { products: Product[]; initialCategory?: string }) {
   const t = useTranslations('catalogue');
   const tCat = useTranslations('catalogue.categoryNames');
   const locale = useLocale();
@@ -42,7 +42,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
   const [page, setPage] = useState(parseInt(searchParams.get('page') || '1', 10) || 1);
   const PER_PAGE = 24;
 
-  const fuse = useMemo(() => new Fuse(products, fuseOptions), []);
+  const fuse = useMemo(() => new Fuse(products, fuseOptions), [products]);
 
   const filteredProducts = useMemo<Product[]>(() => {
     let result: Product[] = products;
@@ -76,7 +76,7 @@ export default function CatalogueClient({ initialCategory }: { initialCategory?:
     }
 
     return result;
-  }, [searchQuery, activeCategory, saleOnly, newOnly, sortBy, fuse]);
+  }, [products, searchQuery, activeCategory, saleOnly, newOnly, sortBy, fuse]);
 
   const totalPages = Math.ceil(filteredProducts.length / PER_PAGE);
   const paginated = filteredProducts.slice((page - 1) * PER_PAGE, page * PER_PAGE);

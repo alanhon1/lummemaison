@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
-import { getProductById } from '@/lib/products';
+import { getAllProducts } from '@/lib/catalogue';
 import StatusDashboard, {
   type DailyPoint,
   type StatusCount,
@@ -106,9 +106,11 @@ export default async function StatusPage() {
     .slice(0, 8);
 
   // --- Low stock (with names from the product catalogue) ---
+  const allProducts = await getAllProducts();
+  const nameById = new Map(allProducts.map(p => [p.id, p.name]));
   const lowStock: LowStockItem[] = lowStockRows.map(r => ({
     id: r.product_id,
-    name: getProductById(r.product_id)?.name ?? `Product ${r.product_id}`,
+    name: nameById.get(r.product_id) ?? `Product ${r.product_id}`,
     stock: r.stock,
   }));
 

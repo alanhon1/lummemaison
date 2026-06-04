@@ -2,7 +2,8 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
-import { products, categories } from '@/lib/products';
+import { categories } from '@/lib/products';
+import { getAllProducts } from '@/lib/catalogue';
 import { createServiceClient } from '@/lib/supabase/server';
 import ProductsClient from '@/components/admin/ProductsClient';
 
@@ -16,6 +17,7 @@ export default async function ProductsPage({
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
   if (!session.loggedIn) redirect('/manzura/login');
   const { filter } = await searchParams;
+  const products = await getAllProducts();
 
   // Live stock map — keyed by product id. Products without a row treat as 0.
   const supabase = createServiceClient();

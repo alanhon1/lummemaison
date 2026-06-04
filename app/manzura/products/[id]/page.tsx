@@ -2,7 +2,8 @@ import { cookies } from 'next/headers';
 import { redirect, notFound } from 'next/navigation';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
-import { getProductById, categories } from '@/lib/products';
+import { categories } from '@/lib/products';
+import { getProductById } from '@/lib/catalogue';
 import { getProductStock } from '@/lib/products/stock';
 import ProductEditClient from '@/components/admin/ProductEditClient';
 import StockInput from '@/components/admin/StockInput';
@@ -12,7 +13,7 @@ export default async function ProductEditPage({ params }: { params: Promise<{ id
   if (!session.loggedIn) redirect('/manzura/login');
   const { id } = await params;
   const numericId = parseInt(id);
-  const product = getProductById(numericId);
+  const product = await getProductById(numericId);
   if (!product) notFound();
   const initialStock = await getProductStock(numericId);
   return (

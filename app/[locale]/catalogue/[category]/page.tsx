@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getCategoryById } from '@/lib/products';
+import { getAllProducts } from '@/lib/catalogue';
 import CatalogueClient from '@/components/catalogue/CatalogueClient';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; category: string }> }): Promise<Metadata> {
@@ -18,6 +19,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ local
   const { category } = await params;
   const cat = getCategoryById(category);
   if (!cat) notFound();
+  const products = await getAllProducts();
 
   return (
     <div className="pt-20 min-h-screen">
@@ -30,7 +32,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ local
           <div className="gold-divider mt-3" />
         </div>
         <Suspense fallback={<div className="p-12 text-center text-mist">Loading...</div>}>
-          <CatalogueClient initialCategory={category} />
+          <CatalogueClient products={products} initialCategory={category} />
         </Suspense>
       </div>
     </div>

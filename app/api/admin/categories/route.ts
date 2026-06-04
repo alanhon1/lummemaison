@@ -10,7 +10,7 @@ export async function PATCH(req: NextRequest) {
 
   let data: { products: any[]; categories: any[] };
   try {
-    data = readData();
+    data = await readData();
   } catch (err) {
     return NextResponse.json({ error: 'Failed to read data' }, { status: 500 });
   }
@@ -19,6 +19,6 @@ export async function PATCH(req: NextRequest) {
   if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   createBackup();
   data.categories[idx].name = name;
-  writeData(data);
+  await writeData(data);
   return NextResponse.json({ ok: true });
 }

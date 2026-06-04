@@ -2,6 +2,14 @@ import productsData from '@/data/products.json';
 import translationsRu from '@/data/translations/ru.json';
 import translationsKo from '@/data/translations/ko.json';
 
+// Client-safe product module: types, the (bundled) category list, pure
+// localization helpers, and structural group-range lookup.
+//
+// IMPORTANT: the LIVE product list is NOT here. Editable product data is served
+// from the store in lib/catalogue-store.ts via the async accessors in
+// lib/catalogue.ts (server-only). Import those from server components. This
+// module stays synchronous and import-safe for client components.
+
 type ProductTranslation = {
   description?: string;
   specification?: string;
@@ -54,50 +62,20 @@ export interface Product {
   groupImage?: string;
 }
 
+// Categories stay bundled (rarely change; client components import this sync).
 export const categories: Category[] = productsData.categories as Category[];
-export const products: Product[] = productsData.products as Product[];
 
-export function getProductById(id: number): Product | undefined {
-  return products.find(p => p.id === id);
-}
-
-export function getProductsByCategory(categoryId: string): Product[] {
-  return products.filter(p => p.categoryId === categoryId);
-}
+// Bundled product list — used ONLY for structural group-range lookup below and
+// as the seed/fallback in catalogue-store.ts. Do not use for live reads.
+const bundledProducts: Product[] = productsData.products as Product[];
 
 export function getCategoryById(id: string): Category | undefined {
   return categories.find(c => c.id === id);
 }
 
-export function getBestSellers(limit = 8): Product[] {
-  return products.filter(p => p.isBestSeller).slice(0, limit);
-}
-
-export function getNewProducts(limit = 8): Product[] {
-  return products.filter(p => p.isNew).slice(0, limit);
-}
-
-export function getSaleProducts(limit = 8): Product[] {
-  return products.filter(p => p.isSale).slice(0, limit);
-}
-
-export function searchProducts(query: string): Product[] {
-  const q = query.toLowerCase();
-  return products.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    p.description.toLowerCase().includes(q) ||
-    p.specification.toLowerCase().includes(q) ||
-    p.categoryId.includes(q)
-  );
-}
-
-export function getProductVariants(groupId: string): Product[] {
-  return products.filter(p => p.groupId === groupId).sort((a, b) => a.id - b.id);
-}
-
 const _groupRangeCache: Map<string, { min: number; max: number }> = (() => {
   const m = new Map<string, { min: number; max: number }>();
-  for (const p of products) {
+  for (const p of bundledProducts) {
     if (!p.groupId) continue;
     const cur = m.get(p.groupId);
     if (!cur) m.set(p.groupId, { min: p.id, max: p.id });

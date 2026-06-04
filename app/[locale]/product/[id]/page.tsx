@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Tag, Layers } from 'lucide-react';
-import { getProductById, getCategoryById, getProductsByCategory, getProductVariants, getLocalizedSpecification, categories } from '@/lib/products';
+import { getCategoryById, getLocalizedSpecification, categories } from '@/lib/products';
+import { getProductById, getProductsByCategory, getProductVariants } from '@/lib/catalogue';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
 import ProductDetailContent from '@/components/catalogue/ProductDetailContent';
@@ -14,7 +15,7 @@ import BackToCatalogueButton from '@/components/catalogue/BackToCatalogueButton'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
   const { id } = await params;
-  const product = getProductById(parseInt(id));
+  const product = await getProductById(parseInt(id));
   if (!product) return { title: 'Product Not Found' };
   return {
     title: product.name,
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ProductPage({ params }: { params: Promise<{ locale: string; id: string }> }) {
   const { locale, id } = await params;
-  const product = getProductById(parseInt(id));
+  const product = await getProductById(parseInt(id));
   if (!product) notFound();
 
   const t = await getTranslations({ locale, namespace: 'product' });
@@ -37,7 +38,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
   }
   const selfBrand = brandPrefix(product.name);
   const selfTags = new Set(product.tags ?? []);
-  const related = getProductsByCategory(product.categoryId)
+  const related = (await getProductsByCategory(product.categoryId))
     .filter(p => p.id !== product.id && p.groupId !== product.groupId)
     .map(p => {
       let score = 0;
@@ -54,7 +55,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
     .slice(0, 12)
     .map(x => x.p);
 
-  const variants = product.groupId ? getProductVariants(product.groupId) : [];
+  const variants = product.groupId ? await getProductVariants(product.groupId) : [];
 
   const galleryItems: GalleryItem[] = product.groupId
     ? variants.flatMap(v => {

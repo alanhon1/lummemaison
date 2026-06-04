@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server';
 import { readData, writeData, createBackup } from '@/lib/backup';
 
 export async function GET() {
-  const data = readData();
+  const data = await readData();
   return NextResponse.json({ products: data.products, categories: data.categories });
 }
 
 export async function POST(req: Request) {
   const updates = await req.json();
-  const data = readData();
+  const data = await readData();
   const maxId = Math.max(0, ...data.products.map((p: any) => p.id));
   const newId = maxId + 1;
   const newProduct = {
@@ -30,6 +30,6 @@ export async function POST(req: Request) {
   newProduct.id = newId; // ensure auto-incremented id wins
   createBackup();
   data.products.push(newProduct);
-  writeData(data);
+  await writeData(data);
   return NextResponse.json({ ok: true, product: newProduct });
 }

@@ -5,7 +5,8 @@ import fs from 'fs';
 import path from 'path';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import DashboardClient from '@/components/admin/DashboardClient';
-import { products, categories } from '@/lib/products';
+import { categories } from '@/lib/products';
+import { getAllProducts } from '@/lib/catalogue';
 import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 
@@ -18,6 +19,7 @@ export default async function DashboardPage() {
   if (!session.loggedIn) redirect('/manzura/login');
 
   const supabase = createServiceClient();
+  const products = await getAllProducts();
 
   // Today (in the server's timezone — Vercel runs UTC, which is what the
   // mom-admin will read against the orders that were created in UTC too).
