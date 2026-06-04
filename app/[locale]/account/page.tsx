@@ -25,15 +25,11 @@ export default async function AccountPage({ params }: PageProps) {
 
   const t = await getTranslations({ locale, namespace: 'account' });
 
-  const [{ data: profile }, { data: orders }] = await Promise.all([
-    supabase.from('customer_profiles').select('*').eq('user_id', user.id).single(),
-    supabase
-      .from('orders')
-      .select('id, order_number, order_seq, status, total_cents, currency, created_at, last_message_seen_at')
-      .eq('user_id', user.id)
-      .order('created_at', { ascending: false })
-      .limit(200),
-  ]);
+  const { data: profile } = await supabase
+    .from('customer_profiles')
+    .select('*')
+    .eq('user_id', user.id)
+    .single();
 
   if (!profile) {
     // Edge case: auth user exists but profile row missing (e.g. signup interrupted).
@@ -41,20 +37,43 @@ export default async function AccountPage({ params }: PageProps) {
     redirect(`/${locale}/account/signup`);
   }
 
-  // Per-order unread message counts. RLS on order_messages already filters
-  // to (is_internal = false AND auth.uid() = orders.user_id), so the
-  // user-session client returns only the customer's own visible messages.
-  // One query, then count in JS — cheap for ≤50 orders × handful of messages.
-  const orderRows = orders ?? [];
-  const orderIds = orderRows.map(o => o.id);
-  let unreadByOrder: Record<number, number> = {};
-  if (orderIds.length > 0) {
+  // Order list. We try to include `last_message_seen_at` (powers the unread
+  // badge), but fall back gracefully if that column hasn't been added to this
+  // database yet (migration 006). Without this guard a missing column makes the
+  // whole query error and the customer sees an empty order history.
+  const ORDER_COLS = 'id, order_number, order_seq, status, total_cents, currency, created_at';
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let orderRows: any[] = [];
+  let hasSeenColumn = true;
+  const withSeen = await supabase
+    .from('orders')
+    .select(`${ORDER_COLS}, last_message_seen_at`)
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+    .limit(200);
+  if (withSeen.error) {
+    hasSeenColumn = false;
+    const fallback = await supabase
+      .from('orders')
+      .select(ORDER_COLS)
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(200);
+    orderRows = fallback.data ?? [];
+  } else {
+    orderRows = withSeen.data ?? [];
+  }
+
+  // Per-order unread message counts (only when the seen-tracking column exists).
+  const unreadByOrder: Record<number, number> = {};
+  if (hasSeenColumn && orderRows.length > 0) {
+    const orderIds = orderRows.map(o => o.id as number);
     const { data: msgs } = await supabase
       .from('order_messages')
       .select('order_id, created_at')
       .in('order_id', orderIds);
     const seenByOrder: Record<number, string | null> = {};
-    for (const o of orderRows) seenByOrder[o.id] = o.last_message_seen_at;
+    for (const o of orderRows) seenByOrder[o.id as number] = (o.last_message_seen_at as string | null) ?? null;
     for (const m of msgs ?? []) {
       const seen = seenByOrder[m.order_id];
       if (!seen || new Date(m.created_at) > new Date(seen)) {
