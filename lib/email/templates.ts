@@ -62,6 +62,63 @@ function escapeHtml(s: string): string {
     .replace(/'/g, '&#39;');
 }
 
+// ----------------------------------------------------------------------------
+// Contact-form message — same Lumée Maison branded shell as the order emails.
+// ----------------------------------------------------------------------------
+
+export interface ContactMessageData {
+  name: string;
+  email: string;
+  company?: string;
+  message: string;
+}
+
+export function contactMessageEmail(d: ContactMessageData): { subject: string; html: string; text: string } {
+  const subject = `New website message from ${d.name}${d.company ? ` (${d.company})` : ''}`;
+
+  const rows = [
+    { label: 'Name', value: d.name },
+    { label: 'Email', value: d.email },
+    { label: 'Company', value: d.company || '—' },
+  ]
+    .map(
+      r =>
+        `<tr><td style="color:#6b6157;padding:6px 18px 6px 0;vertical-align:top;white-space:nowrap;">${escapeHtml(r.label)}</td><td style="color:#3a342c;padding:6px 0;">${escapeHtml(r.value)}</td></tr>`,
+    )
+    .join('');
+
+  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6f0;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #eadfd1;max-width:600px;width:100%;">
+        <tr><td style="padding:36px 40px 24px;text-align:center;border-bottom:1px solid #eadfd1;">
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;letter-spacing:1px;color:#3a342c;">Lumée Maison</div>
+          <div style="font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:#9a8e7e;margin-top:6px;">New website message</div>
+        </td></tr>
+        <tr><td style="padding:32px 40px 8px;">
+          <h3 style="font-family:Georgia,serif;font-style:italic;color:#3a342c;margin:0 0 14px;">Contact details</h3>
+          <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:14px;line-height:1.6;">${rows}</table>
+          <h3 style="font-family:Georgia,serif;font-style:italic;color:#3a342c;margin:28px 0 8px;">Message</h3>
+          <div style="background:#f7ede0;border:1px solid #eadfd1;padding:16px 18px;font-size:14px;line-height:1.7;color:#3a342c;white-space:pre-wrap;">${escapeHtml(d.message)}</div>
+          <p style="margin:22px 0 0;font-size:13px;color:#6b6157;">Reply directly to this email to respond to ${escapeHtml(d.name)}.</p>
+        </td></tr>
+        <tr><td style="padding:8px 40px 28px;">
+          <p style="margin:18px 0 0;font-family:Georgia,serif;font-style:italic;font-size:16px;color:#3a342c;">— Lumée Maison website</p>
+        </td></tr>
+        <tr><td style="padding:20px 40px 28px;border-top:1px solid #eadfd1;font-size:11px;color:#9a8e7e;text-align:center;">
+          Sent from the contact form at lumeemaison.com
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const text = `New website message\n\nName: ${d.name}\nEmail: ${d.email}\nCompany: ${d.company || '—'}\n\nMessage:\n${d.message}\n\n(Reply to this email to respond.)`;
+
+  return { subject, html, text };
+}
+
 function formatAddressLines(addr: OrderShippingAddress): string[] {
   const lines: string[] = [];
   lines.push(addr.street);

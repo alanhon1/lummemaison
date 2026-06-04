@@ -1,19 +1,12 @@
 'use server';
 
 import { getTransporter, missingEmailEnv } from '@/lib/email/mailer';
+import { contactMessageEmail } from '@/lib/email/templates';
 import { siteConfig } from '@/lib/site-config';
 
 export interface ContactState {
   ok?: boolean;
   error?: string;
-}
-
-function esc(s: string): string {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 }
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
@@ -56,18 +49,14 @@ export async function sendContactMessage(
   }
 
   try {
+    const rendered = contactMessageEmail({ name, email, company, message });
     await transporter.sendMail({
       from,
       to,
       replyTo: `${name} <${email}>`,
-      subject: `New website message from ${name}${company ? ` (${company})` : ''}`,
-      text: `Name: ${name}\nEmail: ${email}\nCompany: ${company || '—'}\n\nMessage:\n${message}`,
-      html:
-        `<p><strong>Name:</strong> ${esc(name)}</p>` +
-        `<p><strong>Email:</strong> ${esc(email)}</p>` +
-        `<p><strong>Company:</strong> ${esc(company || '—')}</p>` +
-        `<hr/>` +
-        `<p style="white-space:pre-wrap">${esc(message)}</p>`,
+      subject: rendered.subject,
+      text: rendered.text,
+      html: rendered.html,
     });
     return { ok: true };
   } catch (e) {
