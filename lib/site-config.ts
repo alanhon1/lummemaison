@@ -50,5 +50,7 @@ export const siteConfig = {
     fedexNote: "FedEx rates apply to USA only. Contact us for other destinations.",
   },
 
-  restrictedCountries: ["KR"],
+  // Temporarily empty so the storefront is visible from Korea too.
+  // Restore to ["KR"] to re-enable the Korea geo-block.
+  restrictedCountries: [],
 };
