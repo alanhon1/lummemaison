@@ -16,14 +16,10 @@ export default function Hero() {
     const el = document.getElementById('our-categories');
     if (!el) return;
     const targetY = el.getBoundingClientRect().top + window.scrollY;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
-      window.scrollTo({ top: targetY, behavior: 'auto' });
-      return;
-    }
-    // Custom eased scroll. We drive each frame with behavior:'auto' so the
-    // global `scroll-behavior: smooth` CSS doesn't also try to animate every
-    // scrollTo call — that double-animation is what made it jump/teleport.
+    // Always animate (even with OS reduce-motion) — the owner wants the smooth
+    // descent. We drive each frame with behavior:'auto' so the global
+    // `scroll-behavior: smooth` CSS doesn't also try to animate every scrollTo
+    // call — that double-animation is what made it jump/teleport.
     const startY = window.scrollY;
     const diff = targetY - startY;
     const duration = 900;

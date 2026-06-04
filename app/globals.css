@@ -597,11 +597,9 @@ body {
     animation-iteration-count: 1 !important;
   }
   .cart-panel { transition: none !important; }
-  /* Stop the button shimmer sweep for reduced-motion users. */
-  .btn-gold::after,
-  .btn-whatsapp::after,
-  .btn-telegram::after { transition: none !important; }
-  .btn-loop::after { animation: none !important; }
+  /* Note: the gold button shimmer + .btn-loop sweep are intentionally kept on
+     even under reduce-motion — they're a core brand effect the owner wants
+     visible for all visitors. */
 }
 
 /* Smooth scrolling for in-page anchors / Explore jump (disabled for reduced-motion). */
