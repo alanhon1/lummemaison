@@ -69,9 +69,7 @@ export default function StatusDashboard({
   const maxTop = Math.max(1, ...topProducts.map(p => p.quantity));
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10 space-y-8">
-      <h1 className="font-display text-3xl font-light text-charcoal">Analytics</h1>
-
+    <div className="space-y-8">
       {/* Stat cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard label="Total orders" value={String(totalOrders)} sub="all time" />
