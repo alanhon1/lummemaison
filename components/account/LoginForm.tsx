@@ -4,7 +4,7 @@ import { useActionState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
-import { login, type FormState } from '@/app/[locale]/account/actions';
+import { login, resendConfirmation, type FormState } from '@/app/[locale]/account/actions';
 import { localePath } from '@/lib/i18n';
 
 const initialState: FormState = {};
@@ -19,6 +19,7 @@ export default function LoginForm() {
   const confirmError = searchParams.get('confirmError');
   const passwordReset = searchParams.get('passwordReset') === '1';
   const [state, formAction, pending] = useActionState(login, initialState);
+  const [resendState, resendAction, resendPending] = useActionState(resendConfirmation, initialState);
 
   const signUpHref = returnTo
     ? `${localePath(locale, '/account/signup')}?returnTo=${encodeURIComponent(returnTo)}`
@@ -26,6 +27,7 @@ export default function LoginForm() {
   const forgotHref = localePath(locale, '/account/forgot-password');
 
   return (
+    <>
     <form action={formAction} className="space-y-5">
       <input type="hidden" name="locale" value={locale} />
       {returnTo && <input type="hidden" name="returnTo" value={returnTo} />}
@@ -105,5 +107,37 @@ export default function LoginForm() {
         </p>
       </div>
     </form>
+
+    {/* Resend confirmation email — for customers who never got the link. */}
+    <div className="mt-5 pt-4 border-t border-bone text-center">
+      {resendState.success ? (
+        <p className="text-xs text-green-800 bg-green-50 border border-green-200 px-3 py-2 rounded-md" role="status">
+          {t('login.resendSent')}
+        </p>
+      ) : (
+        <form action={resendAction} className="flex flex-col items-center gap-2">
+          <input type="hidden" name="locale" value={locale} />
+          <p className="text-xs text-mist">{t('login.resendPrompt')}</p>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder={t('fields.email')}
+            className="w-full max-w-xs bg-white border border-bone rounded-md px-3 py-2 text-sm text-charcoal outline-none focus:border-gold transition-colors"
+          />
+          {resendState.error && (
+            <p className="text-xs text-red-600" role="alert">{resendState.error}</p>
+          )}
+          <button
+            type="submit"
+            disabled={resendPending}
+            className="text-xs text-gold-dark hover:text-gold underline underline-offset-2 disabled:opacity-60"
+          >
+            {resendPending ? t('login.resendSending') : t('login.resendCta')}
+          </button>
+        </form>
+      )}
+    </div>
+    </>
   );
 }

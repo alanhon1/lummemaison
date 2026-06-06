@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
 import { localePath } from '@/lib/i18n';
+import { ensureCustomerCode } from '@/lib/customer-code';
 import DashboardClient from '@/components/account/DashboardClient';
 
 export const dynamic = 'force-dynamic';
@@ -36,6 +37,13 @@ export default async function AccountPage({ params }: PageProps) {
     // Edge case: auth user exists but profile row missing (e.g. signup interrupted).
     // Send them back through signup to repair.
     redirect(localePath(locale, '/account/signup'));
+  }
+
+  // First confirmed login: assign the admin-facing Customer ID if not yet set.
+  // Reaching this page implies a confirmed session (unconfirmed users can't log
+  // in). Fire-and-forget — a failure just defers the code to the next visit.
+  if (!profile.customer_code) {
+    void ensureCustomerCode(user.id);
   }
 
   // Order list. We try to include `last_message_seen_at` (powers the unread

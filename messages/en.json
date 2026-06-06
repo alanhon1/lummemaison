@@ -58,7 +58,11 @@
       "confirmed": "Email confirmed. You can sign in now.",
       "confirmExpired": "That confirmation link has expired. Please sign up again or contact support.",
       "confirmInvalid": "That confirmation link is invalid or already used.",
-      "passwordReset": "Password updated. You can sign in with your new password."
+      "passwordReset": "Password updated. You can sign in with your new password.",
+      "resendPrompt": "Didn't get the confirmation email?",
+      "resendCta": "Resend confirmation email",
+      "resendSending": "Sending…",
+      "resendSent": "If your email is unconfirmed, a new confirmation link is on its way."
     },
     "forgotPassword": {
       "pageTitle": "Reset password",

@@ -209,6 +209,54 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
   redirect(returnTo ? safeReturnTo(returnTo, locale) : localePath(locale, '/account'));
 }
 
+// Resends the email-confirmation link for an UNCONFIRMED account, via our own
+// mailer (a magic link, which also confirms the email on first verification).
+// Never reveals whether the email exists or its state. No-op for already-
+// confirmed accounts so this can't be abused as a passwordless-login channel.
+export async function resendConfirmation(_prev: FormState, formData: FormData): Promise<FormState> {
+  const email = String(formData.get('email') ?? '').trim().toLowerCase();
+  const locale = String(formData.get('locale') ?? 'en');
+  if (!email) return { error: 'Please enter your email.' };
+
+  const found = await findUserByEmail(email);
+  if (!found) return { success: true };
+
+  const admin = createServiceClient();
+  const { data: got } = await admin.auth.admin.getUserById(found.id);
+  if (!got?.user || got.user.email_confirmed_at) return { success: true };
+
+  const { data: linkData, error } = await admin.auth.admin.generateLink({
+    type: 'magiclink',
+    email,
+  });
+  const hashedToken = linkData?.properties?.hashed_token;
+  if (error || !hashedToken) {
+    console.error('[resend-confirmation] generateLink failed:', error?.message);
+    return { error: "Couldn't resend the email right now. Please try again shortly." };
+  }
+
+  const origin = await getOrigin();
+  const nextPath = `${localePath(locale, '/account')}?welcome=1`;
+  const confirmUrl = `${origin}/auth/confirm?token_hash=${encodeURIComponent(hashedToken)}&type=magiclink&next=${encodeURIComponent(nextPath)}`;
+
+  const { data: profile } = await admin
+    .from('customer_profiles')
+    .select('full_name')
+    .eq('user_id', found.id)
+    .maybeSingle();
+
+  const sendResult = await sendSignupConfirmationEmail({
+    customerName: profile?.full_name ?? email,
+    customerEmail: email,
+    confirmUrl,
+  });
+  if (!sendResult.ok) {
+    console.error('[resend-confirmation] send failed:', sendResult.error);
+    return { error: "Couldn't resend the email right now. Please try again shortly." };
+  }
+  return { success: true };
+}
+
 // ---------------------------------------------------------------------------
 // Password reset — 4-digit OTP flow.
 //
