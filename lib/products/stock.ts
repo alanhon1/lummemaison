@@ -45,3 +45,13 @@ export async function setProductStock(productId: number, stock: number): Promise
   if (error) return { ok: false, error: error.message };
   return { ok: true };
 }
+
+// Restores stock after cancellation using the atomic RPC from migration 013.
+// Silently no-ops if items is empty.
+export async function restoreStockForItems(
+  items: Array<{ product_id: number; quantity: number }>,
+): Promise<void> {
+  if (items.length === 0) return;
+  const supabase = createServiceClient();
+  await supabase.rpc('restore_stock_for_cancel', { items: JSON.stringify(items) });
+}

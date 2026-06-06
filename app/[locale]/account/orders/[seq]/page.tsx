@@ -9,6 +9,7 @@ import { carrierLabel, carrierTrackUrl } from '@/lib/orders/carriers';
 import OrderStepper from '@/components/account/OrderStepper';
 import OrderStatusBadge from '@/components/account/OrderStatusBadge';
 import MessagesSeenMarker from '@/components/account/MessagesSeenMarker';
+import CancelOrderButton from '@/components/account/CancelOrderButton';
 
 interface PageProps {
   params: Promise<{ locale: string; seq: string }>;
@@ -108,6 +109,18 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
         </p>
 
         <OrderStepper status={order.status} />
+
+        {/* Cancel — only before shipped */}
+        {!['shipped', 'delivered', 'cancelled'].includes(order.status) && (
+          <div className="mb-6">
+            <CancelOrderButton
+              orderId={order.id}
+              label={t('cancelOrder')}
+              confirmText={t('cancelConfirm')}
+              cancelText={t('cancelNo')}
+            />
+          </div>
+        )}
 
         {/* Tracking + shipment photo */}
         {(order.tracking_number || order.shipment_photo_path) && (

@@ -10,6 +10,7 @@ import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { ORDER_STAGES, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
 import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail } from '@/lib/email/sendOrderEmails';
+import { restoreStockForItems } from '@/lib/products/stock';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
 
@@ -107,6 +108,32 @@ export async function updateOrderStatus(
   // the orphan can be reaped manually later if it matters.
   if (oldPhotoPath) {
     void supabase.storage.from('shipment-photos').remove([oldPhotoPath]);
+  }
+
+  // On cancel: restore stock for every line item, then log movements.
+  if (nextStatus === 'cancelled' && current.status !== 'cancelled') {
+    void (async () => {
+      try {
+        const { data: items } = await supabase
+          .from('order_items')
+          .select('product_id, quantity')
+          .eq('order_id', orderId);
+        if (items && items.length > 0) {
+          const typed = items as Array<{ product_id: number; quantity: number }>;
+          await restoreStockForItems(typed);
+          await supabase.from('stock_movements').insert(
+            typed.map(it => ({
+              product_id: it.product_id,
+              delta: it.quantity,
+              reason: 'cancel_restock',
+              order_id: orderId,
+            })),
+          );
+        }
+      } catch {
+        // Best-effort: don't fail the status update if stock_movements doesn't exist yet.
+      }
+    })();
   }
 
   // Fire-and-forget customer notifications keyed to the new status. Never

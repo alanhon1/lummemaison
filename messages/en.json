@@ -130,6 +130,9 @@
       "messages": "Messages from us",
       "noMessages": "No messages yet — we'll post updates here as your order moves along.",
       "cancelled": "This order was cancelled.",
+      "cancelOrder": "Cancel order",
+      "cancelConfirm": "Are you sure? This cannot be undone.",
+      "cancelNo": "Keep order",
       "status": {
         "order_received": "Order received",
         "payment_verified": "Payment verified",
