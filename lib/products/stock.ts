@@ -46,6 +46,25 @@ export async function setProductStock(productId: number, stock: number): Promise
   return { ok: true };
 }
 
+// Deducts stock when payment is verified. Decrements each product's stock by
+// the ordered quantity using read-then-write upserts. Returns an error string
+// on the first failure so the caller can surface it to the admin.
+export async function deductStockForItems(
+  items: Array<{ product_id: number; quantity: number }>,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (items.length === 0) return { ok: true };
+  const supabase = createServiceClient();
+  const existing = await getStockMap(items.map(i => i.product_id));
+  for (const item of items) {
+    const newStock = Math.max(0, (existing[item.product_id] ?? 0) - item.quantity);
+    const { error } = await supabase
+      .from('product_stock')
+      .upsert({ product_id: item.product_id, stock: newStock }, { onConflict: 'product_id' });
+    if (error) return { ok: false, error: error.message };
+  }
+  return { ok: true };
+}
+
 // Restores stock after cancellation. Increments each product's stock by the
 // cancelled quantity using read-then-write upserts (safe for boutique traffic).
 export async function restoreStockForItems(

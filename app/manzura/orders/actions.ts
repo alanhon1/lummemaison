@@ -10,7 +10,7 @@ import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { ORDER_STAGES, stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
 import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail } from '@/lib/email/sendOrderEmails';
-import { restoreStockForItems } from '@/lib/products/stock';
+import { deductStockForItems, restoreStockForItems } from '@/lib/products/stock';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
 
@@ -100,7 +100,7 @@ export async function updateOrderStatus(
     patch.delivered_at = null;
   }
 
-  // Deduct stock when admin confirms payment. Atomic RPC; fail fast so admin sees the error.
+  // Deduct stock when admin confirms payment.
   if (nextStatus === 'payment_verified' && current.status !== 'payment_verified') {
     const { data: items } = await supabase
       .from('order_items')
@@ -108,11 +108,9 @@ export async function updateOrderStatus(
       .eq('order_id', orderId);
     if (items && items.length > 0) {
       const typed = items as Array<{ product_id: number; quantity: number }>;
-      const { error: stockErr } = await supabase.rpc('decrement_stock_for_order', {
-        items: typed.map(i => ({ product_id: i.product_id, quantity: i.quantity })),
-      });
-      if (stockErr) {
-        return { ok: false, error: `재고 차감 실패 (재고 부족 가능): ${stockErr.message}` };
+      const deductResult = await deductStockForItems(typed);
+      if (!deductResult.ok) {
+        return { ok: false, error: `재고 차감 실패: ${deductResult.error}` };
       }
       await supabase.from('stock_movements').insert(
         typed.map(i => ({ product_id: i.product_id, delta: -i.quantity, reason: 'order', order_id: orderId })),
