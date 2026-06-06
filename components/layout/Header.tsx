@@ -27,6 +27,14 @@ export default function Header() {
   useEffect(() => setMounted(true), []);
   const itemCount = mounted ? totalItems() : 0;
 
+  const [unreadCount, setUnreadCount] = useState(0);
+  useEffect(() => {
+    fetch('/api/user/inbox-count')
+      .then(r => r.json())
+      .then((d: { count: number }) => setUnreadCount(d.count ?? 0))
+      .catch(() => {});
+  }, [pathname]);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -58,6 +66,7 @@ export default function Header() {
     { href: localePath(locale, '/about'), label: t('about') },
     { href: localePath(locale, '/contact'), label: t('contact') },
     { href: localePath(locale, '/account'), label: t('account') },
+    { href: localePath(locale, '/account/inbox'), label: t('inbox'), unread: unreadCount },
   ];
 
   return (
@@ -83,10 +92,15 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-xs font-semibold tracking-widest uppercase hover:text-gold transition-colors duration-300"
+                className="relative text-xs font-semibold tracking-widest uppercase hover:text-gold transition-colors duration-300"
                 style={{ color: 'var(--page-text)' }}
               >
                 {link.label}
+                {link.unread != null && link.unread > 0 && (
+                  <span className="absolute -top-2 -right-3 w-4 h-4 text-white text-[9px] font-bold rounded-full flex items-center justify-center" style={{ background: 'var(--accent)' }}>
+                    {link.unread > 9 ? '9+' : link.unread}
+                  </span>
+                )}
               </Link>
             ))}
           </nav>
@@ -154,12 +168,17 @@ export default function Header() {
 
             {/* Mobile menu button */}
             <button
-              className="lg:hidden p-2 hover:text-gold transition-colors"
+              className="lg:hidden relative p-2 hover:text-gold transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Menu"
               style={{ color: 'var(--page-text)' }}
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {!mobileOpen && unreadCount > 0 && (
+                <span className="absolute top-0.5 right-0.5 w-4 h-4 text-white text-[9px] font-bold rounded-full flex items-center justify-center" style={{ background: 'var(--accent)' }}>
+                  {unreadCount > 9 ? '9+' : unreadCount}
+                </span>
+              )}
             </button>
           </div>
         </div>
@@ -174,10 +193,15 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors"
+                className="flex items-center gap-2 text-sm font-semibold tracking-widest uppercase hover:text-gold transition-colors"
                 style={{ color: 'var(--page-text)' }}
               >
                 {link.label}
+                {link.unread != null && link.unread > 0 && (
+                  <span className="w-5 h-5 text-white text-[9px] font-bold rounded-full flex items-center justify-center shrink-0" style={{ background: 'var(--accent)' }}>
+                    {link.unread > 9 ? '9+' : link.unread}
+                  </span>
+                )}
               </Link>
             ))}
             <div className="pt-3 border-t flex flex-col gap-3" style={{ borderColor: 'var(--border-color)' }}>

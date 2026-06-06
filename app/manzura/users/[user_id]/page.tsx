@@ -6,6 +6,7 @@ import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { findCountry } from '@/lib/countries';
+import SendMessageForm from '@/components/admin/SendMessageForm';
 
 export const dynamic = 'force-dynamic';
 
@@ -201,7 +202,9 @@ export default async function UserDetailPage({ params }: PageProps) {
         )}
       </section>
 
-      {/* Phase J — Send Message (coming in Phase J) */}
+      {/* Send Message */}
+      <SendMessageForm userId={profile.user_id} />
+
       {/* Phase K — Analytics (coming in Phase K) */}
     </div>
   );

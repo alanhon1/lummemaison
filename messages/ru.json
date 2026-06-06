@@ -17,7 +17,16 @@
     "contact": "Контакты",
     "cart": "Корзина",
     "search": "Поиск",
-    "account": "Аккаунт"
+    "account": "Аккаунт",
+    "inbox": "Входящие"
+  },
+  "inbox": {
+    "title": "Входящие",
+    "subtitle": "Сообщения от Lumée Maison",
+    "noMessages": "Сообщений пока нет.",
+    "back": "Вернуться в аккаунт",
+    "from": "Lumée Maison",
+    "unread": "Новое"
   },
   "account": {
     "fields": {

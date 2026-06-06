@@ -17,7 +17,16 @@
     "contact": "Contact",
     "cart": "Cart",
     "search": "Search",
-    "account": "Account"
+    "account": "Account",
+    "inbox": "Inbox"
+  },
+  "inbox": {
+    "title": "Inbox",
+    "subtitle": "Messages from Lumée Maison",
+    "noMessages": "No messages yet.",
+    "back": "Back to my account",
+    "from": "Lumée Maison",
+    "unread": "New"
   },
   "account": {
     "fields": {
