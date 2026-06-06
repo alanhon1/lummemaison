@@ -24,7 +24,7 @@ export default function ComingSoonPage() {
     const id = setInterval(() => {
       const r = getRemaining();
       setTime(r);
-      if (r.done) clearInterval(id);
+      if (r.done) { clearInterval(id); window.location.href = '/'; }
     }, 1_000);
     return () => clearInterval(id);
   }, []);
