@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import CheckoutSteps from '@/components/checkout/CheckoutSteps';
 import ConfirmationClient, { type OrderView } from '@/components/checkout/ConfirmationClient';
+import FeedbackWidget from '@/components/feedback/FeedbackWidget';
 import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 
@@ -102,12 +103,35 @@ export default async function CheckoutConfirmationPage({ params, searchParams }:
   const t = await getTranslations({ locale, namespace: 'checkout' });
   const countryName = findCountry(order.shipping_address.country)?.name ?? order.shipping_address.country;
 
+  // Feedback is only offered to the signed-in owner of this order (RLS requires
+  // auth.uid() = user_id). Load any existing feedback so a returning visitor
+  // sees their submitted state rather than a fresh prompt. Tolerant of the
+  // feedback table not existing yet (before migration 009 is applied).
+  const canFeedback = Boolean(user && order.user_id === user.id);
+  type FeedbackInitial = { id: number; rating: 'up' | 'down'; comment: string | null };
+  let feedbackInitial: FeedbackInitial | null = null;
+  if (canFeedback) {
+    const { data: fb } = await supabase
+      .from('feedback')
+      .select('id, rating, comment')
+      .eq('order_id', order.id)
+      .maybeSingle();
+    if (fb) {
+      feedbackInitial = {
+        id: fb.id as number,
+        rating: fb.rating as 'up' | 'down',
+        comment: (fb.comment as string | null) ?? null,
+      };
+    }
+  }
+
   return (
     <main className="bg-cream min-h-[70vh] py-12 md:py-16 px-6">
       <div className="max-w-3xl mx-auto">
         <h1 className="font-display italic text-3xl md:text-4xl text-charcoal mb-2">{t('confirmation.title')}</h1>
         <p className="text-sm text-mist mb-8">{t('confirmation.subtitle')}</p>
         <CheckoutSteps current="done" />
+        {canFeedback && <FeedbackWidget orderId={order.id} initial={feedbackInitial} />}
         <ConfirmationClient order={view} countryName={countryName} />
       </div>
     </main>

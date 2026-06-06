@@ -1,4 +1,15 @@
 {
+  "feedback": {
+    "title": "How was your experience?",
+    "good": "Good",
+    "bad": "Bad",
+    "promptGood": "Anything we did well?",
+    "promptBad": "Tell us how to improve",
+    "optional": "optional",
+    "submit": "Submit",
+    "thanksGood": "Thank you for your feedback!",
+    "thanksBad": "Thank you — we'll use this to improve."
+  },
   "nav": {
     "home": "Home",
     "catalogue": "Catalogue",
