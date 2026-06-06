@@ -12,11 +12,11 @@ import { LayoutDashboard, ClipboardList, Package, BarChart3, MessageSquare, User
 // stay reachable without horizontal scroll on a phone.
 
 const TABS: Array<{ href: string; label: string; icon: typeof LayoutDashboard }> = [
-  { href: '/manzura', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/manzura', label: 'Home', icon: LayoutDashboard },
   { href: '/manzura/orders', label: 'Orders', icon: ClipboardList },
   { href: '/manzura/products', label: 'Products', icon: Package },
   { href: '/manzura/status', label: 'Status', icon: BarChart3 },
-  { href: '/manzura/feedbacks', label: 'Feedback', icon: MessageSquare },
+  { href: '/manzura/feedbacks', label: 'Reviews', icon: MessageSquare },
   { href: '/manzura/users', label: 'Users', icon: Users },
   { href: '/manzura/stock', label: 'Stock', icon: Warehouse },
 ];
