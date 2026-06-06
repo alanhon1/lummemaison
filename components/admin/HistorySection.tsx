@@ -97,8 +97,8 @@ export default function HistorySection({
     });
   }
 
-  // Selection helpers — apply to individual movements only (not batch summary rows)
-  const selectableIds = individualMovements.map(m => m.id);
+  // All selectable IDs: individual movements + movements inside batches
+  const selectableIds = movements.map(m => m.id);
   function toggleAll() {
     if (selectedIds.size === selectableIds.length) setSelectedIds(new Set());
     else setSelectedIds(new Set(selectableIds));
@@ -107,6 +107,16 @@ export default function HistorySection({
     setSelectedIds(prev => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  }
+  function toggleBatchSelection(batch: BatchGroup) {
+    const batchIds = batch.movements.map(m => m.id);
+    const allSelected = batchIds.every(id => selectedIds.has(id));
+    setSelectedIds(prev => {
+      const next = new Set(prev);
+      if (allSelected) batchIds.forEach(id => next.delete(id));
+      else batchIds.forEach(id => next.add(id));
       return next;
     });
   }
@@ -154,7 +164,7 @@ export default function HistorySection({
             <button type="button" onClick={toggleAll} className="text-xs text-mist hover:text-charcoal underline underline-offset-2">
               {selectedIds.size === selectableIds.length ? 'Deselect all' : 'Select all'}
             </button>
-            <span className="text-xs text-mist">{selectedIds.size} of {selectableIds.length} selected</span>
+            <span className="text-xs text-mist">{selectedIds.size} of {movements.length} selected</span>
             {selectedIds.size > 0 && (
               <ExcelPreviewModal
                 trigger={
@@ -195,10 +205,22 @@ export default function HistorySection({
                 return (
                   <Fragment key={`batch-${batch.batchId}`}>
                     <tr
-                      className="border-t border-bone bg-emerald-50/60 hover:bg-emerald-50 cursor-pointer"
-                      onClick={() => toggleBatch(batch.batchId)}
+                      className={`border-t border-bone bg-emerald-50/60 hover:bg-emerald-50 cursor-pointer ${selectMode && batch.movements.every(m => selectedIds.has(m.id)) ? 'ring-1 ring-inset ring-gold/40' : ''}`}
+                      onClick={() => selectMode ? toggleBatchSelection(batch) : toggleBatch(batch.batchId)}
                     >
-                      {selectMode && <td className="px-3 py-2" />}
+                      {selectMode && (
+                        <td className="px-3 py-2.5" onClick={e => e.stopPropagation()}>
+                          <input
+                            type="checkbox"
+                            checked={batch.movements.every(m => selectedIds.has(m.id))}
+                            ref={el => {
+                              if (el) el.indeterminate = batch.movements.some(m => selectedIds.has(m.id)) && !batch.movements.every(m => selectedIds.has(m.id));
+                            }}
+                            onChange={() => toggleBatchSelection(batch)}
+                            className="accent-charcoal"
+                          />
+                        </td>
+                      )}
                       <td className="px-3 py-2.5 text-xs font-mono text-mist whitespace-nowrap">
                         <span className="flex items-center gap-1">
                           {isExpanded ? <ChevronDown size={11} /> : <ChevronRight size={11} />}
