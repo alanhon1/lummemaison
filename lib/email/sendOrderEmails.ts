@@ -89,7 +89,7 @@ export async function sendOrderEmails(order: OrderData): Promise<SendResult> {
       subject: cust.subject,
       html: cust.html,
       text: cust.text,
-      replyTo: adminTo,
+      replyTo: order.status === 'order_received' ? from : adminTo,
     }),
     transporter.sendMail({
       from,
