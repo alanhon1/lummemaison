@@ -71,8 +71,24 @@ async function withSupabaseSession(req: NextRequest, baseResponse: NextResponse)
   return response;
 }
 
+// Site launch timestamp — once Date.now() passes this the gate opens automatically.
+export const LAUNCH_AT = new Date('2026-06-08T16:30:00.000Z').getTime();
+
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
+
+  // Coming-soon gate: redirect all public routes until launch time.
+  // Admin, API, the coming-soon page itself, and static assets bypass.
+  if (
+    Date.now() < LAUNCH_AT &&
+    !pathname.startsWith('/manzura') &&
+    !pathname.startsWith('/api') &&
+    !pathname.startsWith('/coming-soon') &&
+    !pathname.startsWith('/_next') &&
+    pathname !== '/favicon.ico'
+  ) {
+    return NextResponse.redirect(new URL('/coming-soon', req.url));
+  }
 
   // All /api/ routes bypass i18n entirely
   if (pathname.startsWith('/api/')) {

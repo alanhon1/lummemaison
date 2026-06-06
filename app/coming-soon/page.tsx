@@ -1,7 +1,7 @@
 'use client';
 
 import { Fragment, useEffect, useState } from 'react';
-import { LAUNCH_AT } from '@/middleware';
+import { LAUNCH_AT } from '@/proxy';
 
 function pad(n: number) {
   return String(n).padStart(2, '0');
