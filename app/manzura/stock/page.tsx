@@ -8,6 +8,12 @@ import { getAllProducts } from '@/lib/catalogue';
 import InboundForm from '@/components/admin/InboundForm';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { ClickableRow } from '@/components/admin/ClickableRow';
+import { type HistoryMovement } from '@/components/admin/BatchHistoryTable';
+import HistorySection from '@/components/admin/HistorySection';
+import ProductStockDetails from '@/components/admin/ProductStockDetails';
+import StockOverviewPanel from '@/components/admin/StockOverviewPanel';
+import StockExportButton from '@/components/admin/StockExportButton';
+import OrdersExportButton from '@/components/admin/OrdersExportButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -202,18 +208,20 @@ export default async function StockPage({ searchParams }: PageProps) {
     const outOfStock = allRows.filter(r => r.stock <= 0).length;
     const lowStock   = allRows.filter(r => r.stock > 0 && r.stock <= 3).length;
 
-    const exportHref = `/api/admin/stock/export?type=stock`;
+    const todayKst = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 
     return (
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-display text-3xl font-light text-charcoal">Stock</h1>
-          <a
-            href={exportHref}
-            className="text-xs border border-bone text-mist hover:text-charcoal hover:border-charcoal px-4 py-2 rounded transition-colors"
-          >
-            ↓ Export .xlsx
-          </a>
+          <div className="flex items-center gap-2">
+            <StockOverviewPanel
+              rows={allRows}
+              outOfStock={outOfStock}
+              lowStock={lowStock}
+            />
+            <StockExportButton rows={allRows} date={todayKst} />
+          </div>
         </div>
         {tabBar}
 
@@ -257,6 +265,7 @@ export default async function StockPage({ searchParams }: PageProps) {
                 <th className="text-left px-4 py-3 font-semibold">Product</th>
                 <th className="text-right px-4 py-3 font-semibold">Stock</th>
                 <th className="text-left px-4 py-3 font-semibold">Status</th>
+                <th className="px-4 py-3" />
               </tr>
             </thead>
             <tbody>
@@ -276,6 +285,9 @@ export default async function StockPage({ searchParams }: PageProps) {
                       ) : (
                         <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">OK</span>
                       )}
+                    </td>
+                    <td className="px-4 py-2.5">
+                      <ProductStockDetails productId={r.id} productName={r.name as string} />
                     </td>
                   </tr>
                 );
@@ -340,7 +352,7 @@ export default async function StockPage({ searchParams }: PageProps) {
     // Build base query
     let query = supabase
       .from('stock_movements')
-      .select('id, product_id, delta, reason, company_id, order_id, note, created_at, companies(name), orders(order_seq, order_number)')
+      .select('id, product_id, delta, reason, company_id, order_id, note, created_at, batch_id, companies(name), orders(order_seq, order_number), inbound_batches(inbound_date, memo)')
       .order('created_at', { ascending: false })
       .limit(500);
 
@@ -370,9 +382,10 @@ export default async function StockPage({ searchParams }: PageProps) {
     const movements = (movResult.data ?? []) as unknown as Array<{
       id: number; product_id: number; delta: number; reason: string;
       company_id: number | null; order_id: number | null; note: string | null;
-      created_at: string;
+      created_at: string; batch_id: number | null;
       companies: { name: string } | null;
       orders: { order_seq: number | null; order_number: string } | null;
+      inbound_batches: { inbound_date: string; memo: string | null } | null;
     }>;
     const companies = (companyResult.data ?? []) as Array<{ id: number; name: string }>;
 
@@ -396,16 +409,13 @@ export default async function StockPage({ searchParams }: PageProps) {
     if (reasonParam) calBaseParams.set('reason', reasonParam);
     if (cidParam)    calBaseParams.set('cid', cidParam);
 
+    const exportBaseUrl = `/api/admin/stock/export?${exportParams}`;
+    const historyDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+
     return (
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-display text-3xl font-light text-charcoal">Stock</h1>
-          <a
-            href={`/api/admin/stock/export?${exportParams}`}
-            className="text-xs border border-bone text-mist hover:text-charcoal hover:border-charcoal px-4 py-2 rounded transition-colors"
-          >
-            ↓ Export .xlsx
-          </a>
         </div>
         {tabBar}
 
@@ -497,46 +507,27 @@ export default async function StockPage({ searchParams }: PageProps) {
                 No movements match these filters.
               </p>
             ) : (
-              <div className="bg-white border border-bone rounded overflow-x-auto">
-                <table className="w-full text-sm min-w-[600px]">
-                  <thead className="bg-cream border-b border-bone">
-                    <tr className="text-[10px] uppercase tracking-widest text-mist">
-                      <th className="text-left px-3 py-3 font-semibold">Date (KST)</th>
-                      <th className="text-left px-3 py-3 font-semibold">Product</th>
-                      <th className="text-right px-3 py-3 font-semibold">Δ Qty</th>
-                      <th className="text-left px-3 py-3 font-semibold">Reason</th>
-                      <th className="text-left px-3 py-3 font-semibold">Ref</th>
-                      <th className="text-left px-3 py-3 font-semibold">Note</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {movements.map(m => {
-                      const productName = productById.get(m.product_id) ?? `#${m.product_id}`;
-                      const meta = REASON_META[m.reason] ?? { label: m.reason, cls: 'bg-stone-50 text-stone-600 border-stone-200' };
-                      let ref = '—';
-                      if (m.companies?.name) ref = m.companies.name;
-                      if (m.orders) {
-                        const seq = m.orders.order_seq;
-                        ref = seq != null ? formatOrderNumber(seq) : m.orders.order_number;
-                      }
-                      return (
-                        <tr key={m.id} className="border-t border-bone hover:bg-cream/50">
-                          <td className="px-3 py-2.5 text-xs font-mono text-mist whitespace-nowrap">{toKstDateTime(m.created_at)}</td>
-                          <td className="px-3 py-2.5 text-xs text-charcoal max-w-[150px] truncate">{productName}</td>
-                          <td className={`px-3 py-2.5 text-right font-semibold ${m.delta >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-                            {m.delta >= 0 ? `+${m.delta}` : m.delta}
-                          </td>
-                          <td className="px-3 py-2.5">
-                            <span className={`text-[10px] px-2 py-0.5 rounded-full border ${meta.cls}`}>{meta.label}</span>
-                          </td>
-                          <td className="px-3 py-2.5 text-xs text-mist">{ref}</td>
-                          <td className="px-3 py-2.5 text-xs text-mist max-w-[120px] truncate">{m.note ?? '—'}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+              <HistorySection
+                movements={movements.map<HistoryMovement>(m => {
+                  const seq = m.orders?.order_seq;
+                  return {
+                    id: m.id,
+                    product_id: m.product_id,
+                    product_name: productById.get(m.product_id) ?? `#${m.product_id}`,
+                    delta: m.delta,
+                    reason: m.reason,
+                    company_name: m.companies?.name ?? null,
+                    order_ref: m.orders ? (seq != null ? formatOrderNumber(seq) : m.orders.order_number) : null,
+                    note: m.note,
+                    created_at_kst: toKstDateTime(m.created_at),
+                    batch_id: m.batch_id,
+                    batch_date: m.inbound_batches?.inbound_date ?? null,
+                    batch_memo: m.inbound_batches?.memo ?? null,
+                  };
+                })}
+                exportBaseUrl={exportBaseUrl}
+                date={historyDate}
+              />
             )}
           </div>
         </div>
@@ -603,16 +594,30 @@ export default async function StockPage({ searchParams }: PageProps) {
     if (toParam)     exportParams.set('to', toParam);
     if (statusParam) exportParams.set('reason', statusParam);
 
+    const ordersKstDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+
+    const ordersPreviewRows = orders.map(o => {
+      const display = o.order_seq != null ? formatOrderNumber(o.order_seq) : o.order_number;
+      return {
+        order_ref: display,
+        date: new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(o.created_at)),
+        name: o.customer_name,
+        code: customerCodeMap.get(o.user_id) ?? '',
+        items: itemsByOrder.get(o.id) ?? '',
+        total: o.total_cents / 100,
+        status: STATUS_LABEL[o.status] ?? o.status,
+      };
+    });
+
     return (
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
         <div className="flex items-center justify-between mb-6">
           <h1 className="font-display text-3xl font-light text-charcoal">Stock</h1>
-          <a
-            href={`/api/admin/stock/export?${exportParams}`}
-            className="text-xs border border-bone text-mist hover:text-charcoal hover:border-charcoal px-4 py-2 rounded transition-colors"
-          >
-            ↓ Export .xlsx
-          </a>
+          <OrdersExportButton
+            rows={ordersPreviewRows}
+            downloadUrl={`/api/admin/stock/export?${exportParams}`}
+            date={ordersKstDate}
+          />
         </div>
         {tabBar}
 

@@ -1,11 +1,12 @@
-import { type NextRequest } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getIronSession } from 'iron-session';
+import ExcelJS from 'exceljs';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
-import * as XLSX from 'xlsx';
+import { applyHeaderStyle, applyDataStyle, applyStatusStyle, freezeAndFilter, COLORS, thinBorder } from '@/lib/excel/styles';
 
 function toKstDate(iso: string): string {
   return new Intl.DateTimeFormat('en-CA', {
@@ -13,19 +14,12 @@ function toKstDate(iso: string): string {
     year: 'numeric', month: '2-digit', day: '2-digit',
   }).format(new Date(iso));
 }
-
-function kstDateToUtcStart(d: string): string {
-  return new Date(`${d}T00:00:00+09:00`).toISOString();
-}
-function kstDateToUtcEnd(d: string): string {
-  return new Date(`${d}T23:59:59+09:00`).toISOString();
-}
+function kstDateToUtcStart(d: string): string { return new Date(`${d}T00:00:00+09:00`).toISOString(); }
+function kstDateToUtcEnd(d: string):   string { return new Date(`${d}T23:59:59+09:00`).toISOString(); }
 
 export async function GET(req: NextRequest) {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
-  if (!session.loggedIn) {
-    return new Response('Unauthorized', { status: 401 });
-  }
+  if (!session.loggedIn) return new Response('Unauthorized', { status: 401 });
 
   const { searchParams } = new URL(req.url);
   const type = searchParams.get('type') ?? 'stock';
@@ -34,47 +28,80 @@ export async function GET(req: NextRequest) {
   const allProducts = await getAllProducts();
   const productById = new Map(allProducts.map(p => [p.id, p.name as string]));
 
-  let filename = 'stock-export.xlsx';
-  let rows: Record<string, unknown>[] = [];
+  const wb = new ExcelJS.Workbook();
+  wb.creator = 'Lumée Maison';
+  wb.created = new Date();
 
-  // ── STOCK TYPE ────────────────────────────────────────────────
+  // ── STOCK ─────────────────────────────────────────────────────
   if (type === 'stock') {
-    filename = `stock-current-${toKstDate(new Date().toISOString())}.xlsx`;
     const { data: stockRows } = await supabase
-      .from('product_stock')
-      .select('product_id, stock')
-      .order('product_id');
-
+      .from('product_stock').select('product_id, stock').order('product_id');
     const stockMap = new Map((stockRows ?? []).map(r => [r.product_id as number, r.stock as number]));
 
-    rows = allProducts.map(p => {
+    const ws = wb.addWorksheet('Stock');
+    ws.columns = [
+      { header: 'Product ID',    key: 'id',     width: 12 },
+      { header: 'Product Name',  key: 'name',   width: 42 },
+      { header: 'Current Stock', key: 'stock',  width: 14 },
+      { header: 'Status',        key: 'status', width: 12 },
+    ];
+    // Style header
+    const hdr = ws.getRow(1);
+    hdr.height = 20;
+    hdr.eachCell(cell => applyHeaderStyle(cell));
+    freezeAndFilter(ws);
+
+    for (let i = 0; i < allProducts.length; i++) {
+      const p = allProducts[i];
       const stock = stockMap.get(p.id) ?? 0;
-      return {
-        'Product ID': p.id,
-        'Product Name': p.name,
-        'Current Stock': stock,
-        Status: stock <= 0 ? 'Sold out' : stock <= 3 ? 'Low' : 'OK',
-      };
+      const status = stock <= 0 ? 'Sold out' : stock <= 10 ? 'Low' : 'OK';
+      const row = ws.addRow({ id: p.id, name: p.name, stock, status });
+      row.height = 16;
+      const isEven = i % 2 === 1;
+      applyDataStyle(row.getCell('id'), isEven);
+      applyDataStyle(row.getCell('name'), isEven);
+      applyDataStyle(row.getCell('stock'), isEven);
+      row.getCell('stock').numFmt = '#,##0';
+      row.getCell('stock').alignment = { horizontal: 'right', vertical: 'middle' };
+      applyStatusStyle(row.getCell('status'), status);
+    }
+
+    // Sum row
+    const sumRow = ws.addRow({ id: '', name: 'TOTAL', stock: { formula: `SUM(C2:C${allProducts.length + 1})` }, status: '' });
+    sumRow.height = 18;
+    sumRow.eachCell(cell => {
+      cell.font = { name: 'Arial', size: 9, bold: true };
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLORS.CREAM } };
+      cell.border = { top: thinBorder(COLORS.DARK) };
+    });
+    sumRow.getCell('stock').numFmt = '#,##0';
+    sumRow.getCell('stock').alignment = { horizontal: 'right', vertical: 'middle' };
+
+    const filename = `stock-current-${toKstDate(new Date().toISOString())}.xlsx`;
+    const buffer = await wb.xlsx.writeBuffer();
+    return new NextResponse(buffer, {
+      headers: {
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+        'Cache-Control': 'no-store',
+      },
     });
   }
 
-  // ── HISTORY TYPE ──────────────────────────────────────────────
-  else if (type === 'history') {
-    const pid     = searchParams.get('pid')    ?? '';
-    const from    = searchParams.get('from')   ?? '';
-    const to      = searchParams.get('to')     ?? '';
-    const reason  = searchParams.get('reason') ?? '';
-    const cid     = searchParams.get('cid')    ?? '';
-    const date    = searchParams.get('date')   ?? '';
-
-    filename = `stock-history-${toKstDate(new Date().toISOString())}.xlsx`;
+  // ── HISTORY ───────────────────────────────────────────────────
+  if (type === 'history') {
+    const pid    = searchParams.get('pid')    ?? '';
+    const from   = searchParams.get('from')   ?? '';
+    const to     = searchParams.get('to')     ?? '';
+    const reason = searchParams.get('reason') ?? '';
+    const cid    = searchParams.get('cid')    ?? '';
+    const date   = searchParams.get('date')   ?? '';
 
     let query = supabase
       .from('stock_movements')
       .select('id, product_id, delta, reason, note, created_at, companies(name), orders(order_seq, order_number)')
       .order('created_at', { ascending: false })
       .limit(10000);
-
     if (pid)    query = query.eq('product_id', Number(pid));
     if (reason) query = query.eq('reason', reason);
     if (cid)    query = query.eq('company_id', Number(cid));
@@ -94,43 +121,74 @@ export async function GET(req: NextRequest) {
     }>;
 
     const REASON_LABEL: Record<string, string> = {
-      inbound: 'Inbound', order: 'Order',
-      cancel_restock: 'Cancel +stock', adjustment: 'Adjustment',
+      inbound: 'Inbound', order: 'Order', cancel_restock: 'Cancel +stock', adjustment: 'Adjustment',
     };
 
-    rows = typedMovements.map(m => {
+    const ws = wb.addWorksheet('History');
+    ws.columns = [
+      { header: 'Date (KST)', key: 'date',    width: 13 },
+      { header: 'Product ID', key: 'pid',     width: 12 },
+      { header: 'Product',    key: 'product', width: 38 },
+      { header: 'Δ Qty',      key: 'delta',   width: 10 },
+      { header: 'Reason',     key: 'reason',  width: 16 },
+      { header: 'Reference',  key: 'ref',     width: 18 },
+      { header: 'Note',       key: 'note',    width: 26 },
+    ];
+    const hdr = ws.getRow(1);
+    hdr.height = 20;
+    hdr.eachCell(cell => applyHeaderStyle(cell));
+    freezeAndFilter(ws);
+
+    for (let i = 0; i < typedMovements.length; i++) {
+      const m = typedMovements[i];
       let ref = '';
       if (m.companies?.name) ref = m.companies.name;
       if (m.orders) {
         const seq = m.orders.order_seq;
         ref = seq != null ? formatOrderNumber(seq) : m.orders.order_number;
       }
-      return {
-        Date:         toKstDate(m.created_at),
-        'Product ID': m.product_id,
-        Product:      productById.get(m.product_id) ?? `#${m.product_id}`,
-        'Δ Qty':      m.delta,
-        Reason:       REASON_LABEL[m.reason] ?? m.reason,
-        Reference:    ref,
-        Note:         m.note ?? '',
-      };
+      const row = ws.addRow({
+        date: toKstDate(m.created_at),
+        pid: m.product_id,
+        product: productById.get(m.product_id) ?? `#${m.product_id}`,
+        delta: m.delta,
+        reason: REASON_LABEL[m.reason] ?? m.reason,
+        ref,
+        note: m.note ?? '',
+      });
+      row.height = 15;
+      const isEven = i % 2 === 1;
+      row.eachCell(cell => applyDataStyle(cell, isEven));
+      // Colour delta cell
+      const deltaCell = row.getCell('delta');
+      deltaCell.numFmt = '+#,##0;-#,##0;0';
+      deltaCell.alignment = { horizontal: 'right', vertical: 'middle' };
+      if (m.delta > 0) deltaCell.font = { name: 'Arial', size: 9, color: { argb: COLORS.GREEN } };
+      else if (m.delta < 0) deltaCell.font = { name: 'Arial', size: 9, color: { argb: COLORS.RED } };
+    }
+
+    const filename = `stock-history-${toKstDate(new Date().toISOString())}.xlsx`;
+    const buffer = await wb.xlsx.writeBuffer();
+    return new NextResponse(buffer, {
+      headers: {
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+        'Cache-Control': 'no-store',
+      },
     });
   }
 
-  // ── ORDERS TYPE ───────────────────────────────────────────────
-  else if (type === 'orders') {
+  // ── ORDERS ────────────────────────────────────────────────────
+  if (type === 'orders') {
     const from   = searchParams.get('from')   ?? '';
     const to     = searchParams.get('to')     ?? '';
     const status = searchParams.get('reason') ?? '';
-
-    filename = `stock-orders-${toKstDate(new Date().toISOString())}.xlsx`;
 
     let ordersQuery = supabase
       .from('orders')
       .select('id, order_seq, order_number, status, customer_name, customer_email, customer_phone, total_cents, currency, created_at, shipping_address, user_id')
       .order('created_at', { ascending: false })
       .limit(10000);
-
     if (status) ordersQuery = ordersQuery.eq('status', status);
     if (from)   ordersQuery = ordersQuery.gte('created_at', kstDateToUtcStart(from));
     if (to)     ordersQuery = ordersQuery.lte('created_at', kstDateToUtcEnd(to));
@@ -143,31 +201,20 @@ export async function GET(req: NextRequest) {
       created_at: string; shipping_address: Record<string, string> | null; user_id: string;
     }>;
 
-    // Items
     const orderIds = orders.map(o => o.id);
     const itemsByOrder = new Map<number, string>();
     if (orderIds.length > 0) {
-      const { data: items } = await supabase
-        .from('order_items')
-        .select('order_id, product_name, quantity')
-        .in('order_id', orderIds);
+      const { data: items } = await supabase.from('order_items').select('order_id, product_name, quantity').in('order_id', orderIds);
       for (const it of items ?? []) {
         const prev = itemsByOrder.get(it.order_id as number) ?? '';
-        itemsByOrder.set(
-          it.order_id as number,
-          prev ? `${prev}; ${it.product_name} ×${it.quantity}` : `${it.product_name} ×${it.quantity}`,
-        );
+        itemsByOrder.set(it.order_id as number, prev ? `${prev}; ${it.product_name} ×${it.quantity}` : `${it.product_name} ×${it.quantity}`);
       }
     }
 
-    // Customer codes
     const userIds = [...new Set(orders.map(o => o.user_id).filter(Boolean))];
     const codeMap = new Map<string, string>();
     if (userIds.length > 0) {
-      const { data: profiles } = await supabase
-        .from('customer_profiles')
-        .select('user_id, customer_code')
-        .in('user_id', userIds);
+      const { data: profiles } = await supabase.from('customer_profiles').select('user_id, customer_code').in('user_id', userIds);
       for (const p of profiles ?? []) {
         if (p.customer_code) codeMap.set(p.user_id as string, p.customer_code as string);
       }
@@ -178,48 +225,60 @@ export async function GET(req: NextRequest) {
       packaging: 'Packing', shipped: 'Shipped', delivered: 'Delivered', cancelled: 'Cancelled',
     };
 
-    rows = orders.map(o => {
+    const ws = wb.addWorksheet('Orders');
+    ws.columns = [
+      { header: 'Order #',       key: 'order_ref',  width: 14 },
+      { header: 'Date',          key: 'date',       width: 13 },
+      { header: 'Customer Name', key: 'name',       width: 22 },
+      { header: 'Customer ID',   key: 'code',       width: 14 },
+      { header: 'Email',         key: 'email',      width: 28 },
+      { header: 'Phone',         key: 'phone',      width: 16 },
+      { header: 'Items',         key: 'items',      width: 40 },
+      { header: 'Total (USD)',   key: 'total',      width: 13 },
+      { header: 'Address',       key: 'address',    width: 36 },
+      { header: 'Status',        key: 'status',     width: 14 },
+    ];
+    const hdr = ws.getRow(1);
+    hdr.height = 20;
+    hdr.eachCell(cell => applyHeaderStyle(cell));
+    freezeAndFilter(ws);
+
+    for (let i = 0; i < orders.length; i++) {
+      const o = orders[i];
       const display = o.order_seq != null ? formatOrderNumber(o.order_seq) : o.order_number;
       const addr = o.shipping_address;
       const addrStr = addr ? [addr.street, addr.city, addr.state_province, addr.postal_code, addr.country].filter(Boolean).join(', ') : '';
-      return {
-        'Order #':      display,
-        Date:           toKstDate(o.created_at),
-        'Customer Name': o.customer_name,
-        'Customer ID':   codeMap.get(o.user_id) ?? '',
-        Email:           o.customer_email,
-        Phone:           o.customer_phone || '',
-        Items:           itemsByOrder.get(o.id) ?? '',
-        Total:           o.total_cents / 100,
-        Currency:        o.currency,
-        Address:         addrStr,
-        Status:          STATUS_LABEL[o.status] ?? o.status,
-      };
+      const statusLabel = STATUS_LABEL[o.status] ?? o.status;
+      const row = ws.addRow({
+        order_ref: display,
+        date: toKstDate(o.created_at),
+        name: o.customer_name,
+        code: codeMap.get(o.user_id) ?? '',
+        email: o.customer_email,
+        phone: o.customer_phone || '',
+        items: itemsByOrder.get(o.id) ?? '',
+        total: o.total_cents / 100,
+        address: addrStr,
+        status: statusLabel,
+      });
+      row.height = 15;
+      const isEven = i % 2 === 1;
+      row.eachCell(cell => applyDataStyle(cell, isEven));
+      const totalCell = row.getCell('total');
+      totalCell.numFmt = '"$"#,##0.00';
+      totalCell.alignment = { horizontal: 'right', vertical: 'middle' };
+    }
+
+    const filename = `stock-orders-${toKstDate(new Date().toISOString())}.xlsx`;
+    const buffer = await wb.xlsx.writeBuffer();
+    return new NextResponse(buffer, {
+      headers: {
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+        'Cache-Control': 'no-store',
+      },
     });
   }
 
-  // Build workbook
-  const ws = XLSX.utils.json_to_sheet(rows);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'Data');
-
-  // Auto-fit columns by max content length
-  const colWidths = rows.reduce<number[]>((acc, row) => {
-    Object.values(row).forEach((v, i) => {
-      acc[i] = Math.max(acc[i] ?? 0, String(v ?? '').length);
-    });
-    return acc;
-  }, []);
-  ws['!cols'] = colWidths.map(w => ({ wch: Math.min(Math.max(w, 8), 50) }));
-
-  const arr = XLSX.write(wb, { type: 'array', bookType: 'xlsx' }) as number[];
-  const buf = new Uint8Array(arr).buffer;
-
-  return new Response(buf, {
-    headers: {
-      'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'Content-Disposition': `attachment; filename="${filename}"`,
-      'Cache-Control': 'no-store',
-    },
-  });
+  return new Response('Unknown type', { status: 400 });
 }

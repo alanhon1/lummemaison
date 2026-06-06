@@ -8,6 +8,7 @@ import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { findCountry } from '@/lib/countries';
 import AdminOrderStatusPanel from '@/components/admin/AdminOrderStatusPanel';
 import AdminOrderMessages from '@/components/admin/AdminOrderMessages';
+import OrderReceiptModal from '@/components/admin/OrderReceiptModal';
 
 export const dynamic = 'force-dynamic';
 
@@ -146,9 +147,33 @@ export default async function AdminOrderDetailPage({
           <p className="text-[10px] uppercase tracking-[0.2em] text-mist mb-1">Order</p>
           <h1 className="font-display text-3xl font-light text-charcoal font-mono">{display}</h1>
         </div>
-        <Link href="/manzura/orders" className="text-xs text-mist hover:text-charcoal border border-bone px-4 py-2 transition-colors">
-          ← Orders
-        </Link>
+        <div className="flex items-center gap-2">
+          <OrderReceiptModal
+            orderId={detail.id}
+            orderNumber={display}
+            customerName={detail.customer_name}
+            customerEmail={detail.customer_email}
+            customerPhone={detail.customer_phone}
+            customerCode={customerCode}
+            shippingAddress={{
+              street: detail.shipping_address.street,
+              city: detail.shipping_address.city,
+              state_province: detail.shipping_address.state_province,
+              postal_code: detail.shipping_address.postal_code,
+              country: detail.shipping_address.country,
+              countryName,
+            }}
+            items={(items ?? []) as OrderItem[]}
+            subtotalCents={detail.subtotal_cents}
+            shippingCents={detail.shipping_cents}
+            totalCents={detail.total_cents}
+            currency={detail.currency}
+            createdAt={detail.created_at}
+          />
+          <Link href="/manzura/orders" className="text-xs text-mist hover:text-charcoal border border-bone px-4 py-2 transition-colors">
+            ← Orders
+          </Link>
+        </div>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">

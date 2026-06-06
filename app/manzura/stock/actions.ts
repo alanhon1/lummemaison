@@ -60,7 +60,6 @@ export async function addInbound(
     return { ok: false, error: (e as Error).message };
   }
 
-  // Increment stock: read current value, then upsert with new total.
   const { data: currentRow } = await supabase
     .from('product_stock')
     .select('stock')
@@ -72,7 +71,6 @@ export async function addInbound(
     .upsert({ product_id: productId, stock: newStock }, { onConflict: 'product_id' });
   if (stockErr) return { ok: false, error: stockErr.message };
 
-  // Log movement.
   const { error: movErr } = await supabase.from('stock_movements').insert({
     product_id: productId,
     delta: qty,
@@ -81,6 +79,89 @@ export async function addInbound(
     note,
   });
   if (movErr) return { ok: false, error: movErr.message };
+
+  revalidatePath('/manzura/stock');
+  return { ok: true };
+}
+
+export interface BatchItem {
+  product_id: number;
+  quantity: number;
+  note: string | null;
+}
+
+// Add multiple products as one inbound batch.
+// Creates an inbound_batches record and links all movements via batch_id.
+export async function addInboundBatch(
+  _prev: StockActionResult | null,
+  formData: FormData,
+): Promise<StockActionResult> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false, error: 'Not authorized.' };
+  }
+
+  const companyName = (formData.get('company_name') as string | null)?.trim();
+  const inboundDate = (formData.get('inbound_date') as string | null)?.trim() || new Date().toISOString().slice(0, 10);
+  const memo = (formData.get('memo') as string | null)?.trim() || null;
+  const itemsRaw = formData.get('items') as string | null;
+
+  if (!companyName) return { ok: false, error: 'Company name is required.' };
+  if (!itemsRaw) return { ok: false, error: 'Add at least one product.' };
+
+  let items: BatchItem[];
+  try {
+    items = JSON.parse(itemsRaw) as BatchItem[];
+  } catch {
+    return { ok: false, error: 'Invalid items data.' };
+  }
+  if (!Array.isArray(items) || items.length === 0) return { ok: false, error: 'Add at least one product.' };
+  for (const item of items) {
+    if (!item.product_id || item.quantity <= 0) return { ok: false, error: 'Each item needs a valid product and quantity > 0.' };
+  }
+
+  const supabase = createServiceClient();
+
+  let companyId: number;
+  try {
+    companyId = await upsertCompany(supabase, companyName);
+  } catch (e) {
+    return { ok: false, error: (e as Error).message };
+  }
+
+  // Create the batch record.
+  const { data: batch, error: batchErr } = await supabase
+    .from('inbound_batches')
+    .insert({ company_id: companyId, inbound_date: inboundDate, memo })
+    .select('id')
+    .single();
+  if (batchErr || !batch) return { ok: false, error: batchErr?.message ?? 'Failed to create batch.' };
+  const batchId = (batch as { id: number }).id;
+
+  // For each item: increment stock + log movement.
+  for (const item of items) {
+    const { data: currentRow } = await supabase
+      .from('product_stock')
+      .select('stock')
+      .eq('product_id', item.product_id)
+      .maybeSingle();
+    const newStock = ((currentRow?.stock as number | null) ?? 0) + item.quantity;
+    const { error: stockErr } = await supabase
+      .from('product_stock')
+      .upsert({ product_id: item.product_id, stock: newStock }, { onConflict: 'product_id' });
+    if (stockErr) return { ok: false, error: `Stock update failed for product ${item.product_id}: ${stockErr.message}` };
+
+    const { error: movErr } = await supabase.from('stock_movements').insert({
+      product_id: item.product_id,
+      delta: item.quantity,
+      reason: 'inbound',
+      company_id: companyId,
+      note: item.note,
+      batch_id: batchId,
+    });
+    if (movErr) return { ok: false, error: movErr.message };
+  }
 
   revalidatePath('/manzura/stock');
   return { ok: true };
