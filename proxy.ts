@@ -71,8 +71,7 @@ async function withSupabaseSession(req: NextRequest, baseResponse: NextResponse)
   return response;
 }
 
-// Site launch timestamp — once Date.now() passes this the gate opens automatically.
-export const LAUNCH_AT = new Date('2026-06-08T16:30:00.000Z').getTime();
+import { LAUNCH_AT } from '@/lib/launch';
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
