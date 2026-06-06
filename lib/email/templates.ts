@@ -146,16 +146,121 @@ function envValue(key: string): string {
   return trimmed;
 }
 
-export function customerEmail(order: OrderData): { subject: string; html: string; text: string } {
+// Receipt email — sent to the customer once they submit their order with proof.
+// Clean, no payment instructions: name, order number, address, items, thanks.
+function receiptEmail(order: OrderData): { subject: string; html: string; text: string } {
   const currency = order.currency ?? 'USD';
-  // Phase C status vocab: 'order_received' is the post-checkout state (payment
-  // proof uploaded, awaiting admin verification). Keep the subject line that
-  // signals "we got your proof" for that state; anything earlier or unset
-  // still falls through to the payment-instructions wording.
-  const subject =
-    order.status === 'order_received'
-      ? `Your Lumée Maison Order ${order.orderNumber} — Payment received, verifying`
-      : `Your Lumée Maison Order ${order.orderNumber} — Payment Instructions`;
+  const subject = `Your Lumée Maison Order ${order.orderNumber} — Received`;
+
+  const itemRows = order.items
+    .map(it => {
+      const line = it.price * it.quantity;
+      return `<tr>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;">${escapeHtml(it.name)}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:center;">${it.quantity}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(it.price, currency)}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(line, currency)}</td>
+      </tr>`;
+    })
+    .join('');
+
+  const totalsRows: string[] = [];
+  if (order.subtotal !== undefined) {
+    totalsRows.push(`<tr><td style="padding:4px 12px;text-align:right;color:#6b6157;">Subtotal</td><td style="padding:4px 12px;text-align:right;width:120px;">${formatUSD(order.subtotal, currency)}</td></tr>`);
+  }
+  if (order.shipping !== undefined) {
+    totalsRows.push(`<tr><td style="padding:4px 12px;text-align:right;color:#6b6157;">Shipping</td><td style="padding:4px 12px;text-align:right;">${formatUSD(order.shipping, currency)}</td></tr>`);
+  }
+  totalsRows.push(`<tr><td style="padding:8px 12px;text-align:right;font-weight:600;border-top:2px solid #c9b89a;">Total</td><td style="padding:8px 12px;text-align:right;font-weight:600;border-top:2px solid #c9b89a;">${formatUSD(order.total, currency)}</td></tr>`);
+
+  let shippingBlock = '';
+  if (order.shippingAddress) {
+    const lines = formatAddressLines(order.shippingAddress).map(escapeHtml).join('<br/>');
+    shippingBlock = `
+      <h3 style="font-family:Georgia,serif;font-style:italic;color:#3a342c;margin:28px 0 8px;">Shipping to</h3>
+      <p style="margin:0;color:#3a342c;line-height:1.55;">${escapeHtml(order.customerName)}<br/>${lines}</p>
+    `;
+  }
+
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6f0;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #eadfd1;">
+        <tr><td style="padding:36px 40px 24px;text-align:center;border-bottom:1px solid #eadfd1;">
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;letter-spacing:1px;color:#3a342c;">Lumée Maison</div>
+          <div style="font-size:12px;letter-spacing:3px;color:#9a8e7e;margin-top:4px;text-transform:uppercase;">Order Receipt</div>
+        </td></tr>
+        <tr><td style="padding:32px 40px 8px;">
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(order.customerName)},</p>
+          <p style="margin:0 0 20px;font-size:15px;line-height:1.6;">Thank you for your order with Lumée Maison. We have received your payment confirmation and will verify it shortly. Once confirmed, your order will be prepared for shipment.</p>
+
+          <p style="margin:0 0 4px;font-size:13px;color:#9a8e7e;text-transform:uppercase;letter-spacing:2px;">Order number</p>
+          <p style="margin:0 0 24px;font-size:20px;font-weight:600;letter-spacing:0.5px;color:#3a342c;">${escapeHtml(order.orderNumber)}</p>
+
+          <h3 style="font-family:Georgia,serif;font-style:italic;color:#3a342c;margin:0 0 8px;">Your order</h3>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #eadfd1;font-size:14px;">
+            <thead><tr style="background:#f7ede0;">
+              <th align="left" style="padding:8px 12px;color:#6b6157;font-weight:600;">Item</th>
+              <th align="center" style="padding:8px 12px;color:#6b6157;font-weight:600;">Qty</th>
+              <th align="right" style="padding:8px 12px;color:#6b6157;font-weight:600;">Unit</th>
+              <th align="right" style="padding:8px 12px;color:#6b6157;font-weight:600;">Total</th>
+            </tr></thead>
+            <tbody>${itemRows}</tbody>
+            <tfoot>${totalsRows.join('')}</tfoot>
+          </table>
+
+          ${shippingBlock}
+
+          <p style="margin:32px 0 8px;font-size:15px;line-height:1.6;">We appreciate your trust in Lumée Maison and look forward to delivering your order. If you have any questions, please reply to this email.</p>
+
+          <p style="margin:28px 0 4px;font-size:14px;line-height:1.6;">With gratitude,</p>
+          <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:16px;color:#3a342c;">The Lumée Maison Team</p>
+        </td></tr>
+        <tr><td style="padding:20px 40px 28px;border-top:1px solid #eadfd1;font-size:11px;color:#9a8e7e;text-align:center;">
+          This is your order receipt for ${escapeHtml(order.orderNumber)}.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const textLines: string[] = [
+    `Lumée Maison — Order Receipt`,
+    `Order number: ${order.orderNumber}`,
+    '',
+    `Dear ${order.customerName},`,
+    '',
+    `Thank you for your order with Lumée Maison. We have received your payment confirmation and will verify it shortly. Once confirmed, your order will be prepared for shipment.`,
+    '',
+    'Your order:',
+  ];
+  for (const it of order.items) {
+    textLines.push(`  ${it.name} × ${it.quantity}  ${formatUSD(it.price * it.quantity, currency)}`);
+  }
+  if (order.subtotal !== undefined) textLines.push(`  Subtotal: ${formatUSD(order.subtotal, currency)}`);
+  if (order.shipping !== undefined) textLines.push(`  Shipping: ${formatUSD(order.shipping, currency)}`);
+  textLines.push(`  Total:    ${formatUSD(order.total, currency)}`);
+  if (order.shippingAddress) {
+    textLines.push('', 'Shipping to:');
+    textLines.push(`  ${order.customerName}`);
+    for (const ln of formatAddressLines(order.shippingAddress)) textLines.push(`  ${ln}`);
+  }
+  textLines.push('', 'With gratitude,', 'The Lumée Maison Team');
+
+  return { subject, html, text: textLines.join('\n') };
+}
+
+export function customerEmail(order: OrderData): { subject: string; html: string; text: string } {
+  // When status is 'order_received' the customer has already uploaded proof and
+  // submitted — send a clean receipt instead of payment instructions.
+  if (order.status === 'order_received') {
+    return receiptEmail(order);
+  }
+
+  const currency = order.currency ?? 'USD';
+  const subject = `Your Lumée Maison Order ${order.orderNumber} — Payment Instructions`;
 
   const wiseFields: Array<{ label: string; value: string }> = [
     { label: 'Account name', value: envValue('WISE_ACCOUNT_NAME') },
@@ -221,11 +326,7 @@ export function customerEmail(order: OrderData): { subject: string; html: string
         </td></tr>
         <tr><td style="padding:32px 40px 8px;">
           <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(order.customerName)},</p>
-          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">${
-            order.status === 'order_received'
-              ? `Thank you — we have received your payment confirmation for the order below and are verifying it now. We will email you again as soon as it ships. The payment details below are saved here in case you need to resend.`
-              : `Thank you for your order with Lumée Maison. We have received your request and reserved your selection. Please complete payment using one of the methods below — once we confirm receipt, your order will be prepared for shipment.`
-          }</p>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Thank you for your order with Lumée Maison. We have received your request and reserved your selection. Please complete payment using one of the methods below — once we confirm receipt, your order will be prepared for shipment.</p>
           <p style="margin:0 0 4px;font-size:14px;color:#6b6157;">Order number</p>
           <p style="margin:0 0 16px;font-size:18px;font-weight:600;letter-spacing:0.5px;">${escapeHtml(order.orderNumber)}</p>
 
