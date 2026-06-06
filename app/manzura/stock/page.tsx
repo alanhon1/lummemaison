@@ -453,6 +453,7 @@ export default async function StockPage({ searchParams }: PageProps) {
                   <option value="">All</option>
                   <option value="inbound">Inbound</option>
                   <option value="order">Order</option>
+                  <option value="cancelled">Cancelled</option>
                   <option value="cancel_restock">Cancel +stock</option>
                   <option value="adjustment">Adjustment</option>
                 </select>
@@ -518,6 +519,7 @@ export default async function StockPage({ searchParams }: PageProps) {
                     reason: m.reason,
                     company_name: m.companies?.name ?? null,
                     order_ref: m.orders ? (seq != null ? formatOrderNumber(seq) : m.orders.order_number) : null,
+                    order_id: m.order_id,
                     note: m.note,
                     created_at_kst: toKstDateTime(m.created_at),
                     batch_id: m.batch_id,

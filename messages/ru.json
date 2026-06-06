@@ -280,6 +280,7 @@
         "transactionPlaceholder": "https://wise.com/… или ссылка на эксплорер кошелька",
         "transactionHint": "URL перевода в Wise, ссылка на USDT-эксплорер (Etherscan / Tronscan) и т. п.",
         "requireEither": "Загрузите скриншот или вставьте ссылку на транзакцию, чтобы активировать кнопку подтверждения.",
+        "requireScreenshot": "Для подтверждения заказа необходимо загрузить скриншот оплаты.",
         "errors": {
           "tooLarge": "Файл больше 10 МБ.",
           "wrongType": "Пожалуйста, загрузите PNG, JPG, WEBP, HEIC или PDF.",

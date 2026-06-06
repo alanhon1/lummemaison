@@ -166,3 +166,19 @@ export async function addInboundBatch(
   revalidatePath('/manzura/stock');
   return { ok: true };
 }
+
+export async function deleteStockMovements(ids: number[]): Promise<StockActionResult> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false, error: 'Not authorized.' };
+  }
+  if (ids.length === 0) return { ok: true };
+
+  const supabase = createServiceClient();
+  const { error } = await supabase.from('stock_movements').delete().in('id', ids);
+  if (error) return { ok: false, error: error.message };
+
+  revalidatePath('/manzura/stock');
+  return { ok: true };
+}

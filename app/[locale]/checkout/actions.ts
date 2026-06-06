@@ -138,16 +138,13 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     return { ok: false, error: 'Shipping details are incomplete.' };
   }
 
-  // Server-side gating mirrors the client: we accept the order only when the
-  // customer has either uploaded a payment screenshot or supplied a
-  // transaction link. This protects against client-side checks being
-  // bypassed via direct form posts.
+  // Payment screenshot is required; transaction link is optional.
   const proofPath = (input.paymentProofPath ?? '').trim();
   const transactionLink = (input.paymentTransactionLink ?? '').trim().slice(0, 500);
-  if (!proofPath && !transactionLink) {
+  if (!proofPath) {
     return {
       ok: false,
-      error: 'Please upload a payment screenshot or paste a transaction link before confirming.',
+      error: 'Please upload a payment screenshot before confirming.',
     };
   }
 

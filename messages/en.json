@@ -280,6 +280,7 @@
         "transactionPlaceholder": "https://wise.com/… or wallet explorer URL",
         "transactionHint": "Wise transfer URL, USDT explorer link (Etherscan / Tronscan), etc.",
         "requireEither": "Upload a screenshot or paste a transaction link to enable the confirm button.",
+        "requireScreenshot": "A payment screenshot is required to confirm your order.",
         "errors": {
           "tooLarge": "File is larger than 10 MB.",
           "wrongType": "Please upload PNG, JPG, WEBP, HEIC, or PDF.",

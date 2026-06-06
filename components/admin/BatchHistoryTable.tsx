@@ -11,6 +11,7 @@ export interface HistoryMovement {
   reason: string;
   company_name: string | null;
   order_ref: string | null;
+  order_id: number | null;
   note: string | null;
   created_at_kst: string;
   batch_id: number | null;
@@ -22,6 +23,7 @@ const REASON_META: Record<string, { label: string; cls: string }> = {
   inbound:        { label: 'Inbound',       cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
   order:          { label: 'Order',         cls: 'bg-sky-50 text-sky-700 border-sky-200'             },
   cancel_restock: { label: 'Cancel +stock', cls: 'bg-amber-50 text-amber-700 border-amber-200'       },
+  cancelled:      { label: 'Cancelled',     cls: 'bg-rose-50 text-rose-700 border-rose-200'          },
   adjustment:     { label: 'Adjustment',    cls: 'bg-stone-50 text-stone-600 border-stone-200'       },
 };
 

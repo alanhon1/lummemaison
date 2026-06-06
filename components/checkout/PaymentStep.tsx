@@ -107,7 +107,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
     paymentTransactionLink: transactionLink.trim() || undefined,
   });
 
-  const confirmEnabled = !submitting && (!!proofPath || transactionLink.trim().length > 0);
+  const confirmEnabled = !submitting && !!proofPath;
 
   async function handleFile(file: File) {
     setUploadError('');
@@ -280,10 +280,11 @@ export default function PaymentStep({ payment, serverError }: Props) {
         <p className="text-sm text-mist mb-5">{t('payment.proof.subheading')}</p>
 
         <div className="space-y-4">
-          {/* File upload */}
+          {/* File upload — required */}
           <div>
             <label className="block text-xs font-semibold tracking-wider uppercase text-charcoal mb-1.5">
               {t('payment.proof.fileLabel')}
+              <span className="ml-1 text-red-500">*</span>
             </label>
             <input
               ref={fileInputRef}
@@ -327,14 +328,11 @@ export default function PaymentStep({ payment, serverError }: Props) {
             )}
           </div>
 
-          <div className="text-xs tracking-wider uppercase text-mist text-center">
-            {t('payment.proof.or')}
-          </div>
-
-          {/* Transaction link */}
+          {/* Transaction link — optional */}
           <div>
             <label className="block text-xs font-semibold tracking-wider uppercase text-charcoal mb-1.5">
               {t('payment.proof.transactionLabel')}
+              <span className="ml-1.5 text-[10px] font-normal normal-case tracking-normal text-mist">(optional)</span>
             </label>
             <input
               type="url"
@@ -347,8 +345,8 @@ export default function PaymentStep({ payment, serverError }: Props) {
             <p className="text-xs text-mist mt-1.5">{t('payment.proof.transactionHint')}</p>
           </div>
 
-          {!confirmEnabled && !submitting && (
-            <p className="text-xs text-mist italic">{t('payment.proof.requireEither')}</p>
+          {!proofPath && !uploading && (
+            <p className="text-xs text-red-500">{t('payment.proof.requireScreenshot')}</p>
           )}
         </div>
       </article>

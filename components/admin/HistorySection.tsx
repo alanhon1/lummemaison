@@ -1,30 +1,44 @@
 'use client';
 
-import { Fragment, useState } from 'react';
-import { ChevronDown, ChevronRight, X, Download } from 'lucide-react';
+import { Fragment, useState, useTransition } from 'react';
+import { ChevronDown, ChevronRight, X, Download, Trash2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import ExcelPreviewModal, { type PreviewRow } from './ExcelPreviewModal';
 import type { HistoryMovement } from './BatchHistoryTable';
+import { deleteStockMovements } from '@/app/manzura/stock/actions';
 
 const REASON_META: Record<string, { label: string; cls: string }> = {
   inbound:        { label: 'Inbound',       cls: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
   order:          { label: 'Order',         cls: 'bg-sky-50 text-sky-700 border-sky-200'             },
   cancel_restock: { label: 'Cancel +stock', cls: 'bg-amber-50 text-amber-700 border-amber-200'       },
+  cancelled:      { label: 'Cancelled',     cls: 'bg-rose-50 text-rose-700 border-rose-200'          },
   adjustment:     { label: 'Adjustment',    cls: 'bg-stone-50 text-stone-600 border-stone-200'       },
 };
 
 const REASON_LABEL: Record<string, string> = {
-  inbound: 'Inbound', order: 'Order', cancel_restock: 'Cancel +stock', adjustment: 'Adjustment',
+  inbound: 'Inbound', order: 'Order', cancel_restock: 'Cancel +stock',
+  cancelled: 'Cancelled', adjustment: 'Adjustment',
 };
 
 const HISTORY_COLUMNS = ['Date (KST)', 'Product', 'Δ Qty', 'Reason', 'Ref / Company', 'Note'];
 
-interface BatchGroup {
+interface InboundBatchGroup {
   batchId: number;
   date: string;
   company: string;
   totalQty: number;
   productCount: number;
   memo: string | null;
+  movements: HistoryMovement[];
+}
+
+interface OrderBatchGroup {
+  orderId: number;
+  orderRef: string | null;
+  date: string;
+  totalQty: number;
+  productCount: number;
+  reason: string; // 'order' | 'cancelled'
   movements: HistoryMovement[];
 }
 
@@ -48,28 +62,37 @@ export default function HistorySection({
   exportBaseUrl: string;
   date: string;
 }) {
-  const [expandedBatches, setExpandedBatches] = useState<Set<number>>(new Set());
-  const [modalBatch, setModalBatch] = useState<BatchGroup | null>(null);
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const [expandedBatches, setExpandedBatches] = useState<Set<string>>(new Set());
+  const [modalBatch, setModalBatch] = useState<InboundBatchGroup | null>(null);
   const [selectMode, setSelectMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+  const [deleteError, setDeleteError] = useState('');
 
-  // Group inbound by batch_id, individual movements separate
-  const batchMap = new Map<number, HistoryMovement[]>();
+  // ── Grouping ──────────────────────────────────────────────────────────────
+  const inboundBatchMap = new Map<number, HistoryMovement[]>();
+  const orderMap = new Map<number, HistoryMovement[]>();
   const individualMovements: HistoryMovement[] = [];
+
   for (const m of movements) {
     if (m.batch_id !== null && m.reason === 'inbound') {
-      const list = batchMap.get(m.batch_id) ?? [];
+      const list = inboundBatchMap.get(m.batch_id) ?? [];
       list.push(m);
-      batchMap.set(m.batch_id, list);
+      inboundBatchMap.set(m.batch_id, list);
+    } else if (m.order_id !== null && (m.reason === 'order' || m.reason === 'cancelled')) {
+      const list = orderMap.get(m.order_id) ?? [];
+      list.push(m);
+      orderMap.set(m.order_id, list);
     } else {
       individualMovements.push(m);
     }
   }
 
-  const batchGroups: BatchGroup[] = [];
-  for (const [batchId, bMovements] of batchMap.entries()) {
+  const inboundBatchGroups: InboundBatchGroup[] = [];
+  for (const [batchId, bMovements] of inboundBatchMap.entries()) {
     const first = bMovements[0];
-    batchGroups.push({
+    inboundBatchGroups.push({
       batchId,
       date: first.batch_date ?? first.created_at_kst.slice(0, 10),
       company: first.company_name ?? '—',
@@ -80,25 +103,38 @@ export default function HistorySection({
     });
   }
 
+  const orderBatchGroups: OrderBatchGroup[] = [];
+  for (const [orderId, oMovements] of orderMap.entries()) {
+    if (oMovements.length >= 2) {
+      const first = oMovements[0];
+      orderBatchGroups.push({
+        orderId,
+        orderRef: first.order_ref,
+        date: first.created_at_kst.slice(0, 10),
+        totalQty: oMovements.reduce((s, m) => s + m.delta, 0),
+        productCount: oMovements.length,
+        reason: first.reason,
+        movements: oMovements,
+      });
+    } else {
+      individualMovements.push(...oMovements);
+    }
+  }
+
   type DisplayRow =
-    | { type: 'batch'; batch: BatchGroup; sortKey: string }
+    | { type: 'inbound_batch'; batch: InboundBatchGroup; sortKey: string }
+    | { type: 'order_batch'; batch: OrderBatchGroup; sortKey: string }
     | { type: 'movement'; movement: HistoryMovement; sortKey: string };
 
   const displayRows: DisplayRow[] = [
-    ...batchGroups.map(b => ({ type: 'batch' as const, batch: b, sortKey: b.date })),
+    ...inboundBatchGroups.map(b => ({ type: 'inbound_batch' as const, batch: b, sortKey: b.date })),
+    ...orderBatchGroups.map(b => ({ type: 'order_batch' as const, batch: b, sortKey: b.date })),
     ...individualMovements.map(m => ({ type: 'movement' as const, movement: m, sortKey: m.created_at_kst })),
   ].sort((a, b) => b.sortKey.localeCompare(a.sortKey));
 
-  function toggleBatch(id: number) {
-    setExpandedBatches(prev => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id); else next.add(id);
-      return next;
-    });
-  }
-
-  // All selectable IDs: individual movements + movements inside batches
+  // ── Selection helpers ─────────────────────────────────────────────────────
   const selectableIds = movements.map(m => m.id);
+
   function toggleAll() {
     if (selectedIds.size === selectableIds.length) setSelectedIds(new Set());
     else setSelectedIds(new Set(selectableIds));
@@ -110,13 +146,20 @@ export default function HistorySection({
       return next;
     });
   }
-  function toggleBatchSelection(batch: BatchGroup) {
-    const batchIds = batch.movements.map(m => m.id);
-    const allSelected = batchIds.every(id => selectedIds.has(id));
+  function toggleMovementSet(movementIds: number[]) {
+    const allSelected = movementIds.every(id => selectedIds.has(id));
     setSelectedIds(prev => {
       const next = new Set(prev);
-      if (allSelected) batchIds.forEach(id => next.delete(id));
-      else batchIds.forEach(id => next.add(id));
+      if (allSelected) movementIds.forEach(id => next.delete(id));
+      else movementIds.forEach(id => next.add(id));
+      return next;
+    });
+  }
+
+  function toggleExpand(key: string) {
+    setExpandedBatches(prev => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key); else next.add(key);
       return next;
     });
   }
@@ -127,8 +170,24 @@ export default function HistorySection({
 
   const allPreview: PreviewRow[] = movements.map(toPreviewRow);
   const selectedPreview: PreviewRow[] = selectedMovements.map(toPreviewRow);
-
   const filename = `stock-history-${date}.xlsx`;
+
+  // ── Delete handler ────────────────────────────────────────────────────────
+  function handleDelete() {
+    if (selectedIds.size === 0) return;
+    if (!window.confirm(`Delete ${selectedIds.size} movement record(s)? This cannot be undone.`)) return;
+    setDeleteError('');
+    startTransition(async () => {
+      const result = await deleteStockMovements(Array.from(selectedIds));
+      if (!result.ok) {
+        setDeleteError(result.error ?? 'Delete failed');
+        return;
+      }
+      setSelectedIds(new Set());
+      setSelectMode(false);
+      router.refresh();
+    });
+  }
 
   return (
     <>
@@ -149,7 +208,7 @@ export default function HistorySection({
 
         <button
           type="button"
-          onClick={() => { setSelectMode(s => !s); setSelectedIds(new Set()); }}
+          onClick={() => { setSelectMode(s => !s); setSelectedIds(new Set()); setDeleteError(''); }}
           className={`text-xs px-3 py-1.5 rounded border transition-colors ${
             selectMode
               ? 'bg-charcoal text-cream border-charcoal'
@@ -166,22 +225,36 @@ export default function HistorySection({
             </button>
             <span className="text-xs text-mist">{selectedIds.size} of {movements.length} selected</span>
             {selectedIds.size > 0 && (
-              <ExcelPreviewModal
-                trigger={
-                  <button type="button" className="text-xs bg-charcoal text-cream px-3 py-1.5 rounded hover:bg-charcoal/90 transition-colors flex items-center gap-1.5">
-                    <Download size={11} /> Export Selected ({selectedIds.size})
-                  </button>
-                }
-                title={`Selected History (${selectedIds.size} rows)`}
-                filename={`stock-history-selected-${date}.xlsx`}
-                downloadUrl={exportBaseUrl}
-                columns={HISTORY_COLUMNS}
-                rows={selectedPreview}
-              />
+              <>
+                <ExcelPreviewModal
+                  trigger={
+                    <button type="button" className="text-xs bg-charcoal text-cream px-3 py-1.5 rounded hover:bg-charcoal/90 transition-colors flex items-center gap-1.5">
+                      <Download size={11} /> Export ({selectedIds.size})
+                    </button>
+                  }
+                  title={`Selected History (${selectedIds.size} rows)`}
+                  filename={`stock-history-selected-${date}.xlsx`}
+                  downloadUrl={exportBaseUrl}
+                  columns={HISTORY_COLUMNS}
+                  rows={selectedPreview}
+                />
+                <button
+                  type="button"
+                  onClick={handleDelete}
+                  disabled={isPending}
+                  className="text-xs bg-red-600 text-white px-3 py-1.5 rounded hover:bg-red-700 transition-colors flex items-center gap-1.5 disabled:opacity-60"
+                >
+                  <Trash2 size={11} /> Delete ({selectedIds.size})
+                </button>
+              </>
             )}
           </>
         )}
       </div>
+
+      {deleteError && (
+        <p className="text-xs text-red-600 mb-3">{deleteError}</p>
+      )}
 
       {/* Table */}
       <div className="bg-white border border-bone rounded overflow-x-auto">
@@ -199,24 +272,27 @@ export default function HistorySection({
           </thead>
           <tbody>
             {displayRows.map(row => {
-              if (row.type === 'batch') {
+              // ── Inbound batch row ──────────────────────────────────────
+              if (row.type === 'inbound_batch') {
                 const { batch } = row;
-                const isExpanded = expandedBatches.has(batch.batchId);
+                const expandKey = `ib-${batch.batchId}`;
+                const isExpanded = expandedBatches.has(expandKey);
+                const batchIds = batch.movements.map(m => m.id);
+                const allSelected = batchIds.every(id => selectedIds.has(id));
+                const someSelected = batchIds.some(id => selectedIds.has(id));
                 return (
-                  <Fragment key={`batch-${batch.batchId}`}>
+                  <Fragment key={expandKey}>
                     <tr
-                      className={`border-t border-bone bg-emerald-50/60 hover:bg-emerald-50 cursor-pointer ${selectMode && batch.movements.every(m => selectedIds.has(m.id)) ? 'ring-1 ring-inset ring-gold/40' : ''}`}
-                      onClick={() => selectMode ? toggleBatchSelection(batch) : toggleBatch(batch.batchId)}
+                      className={`border-t border-bone bg-emerald-50/60 hover:bg-emerald-50 cursor-pointer ${allSelected ? 'ring-1 ring-inset ring-gold/40' : ''}`}
+                      onClick={() => selectMode ? toggleMovementSet(batchIds) : toggleExpand(expandKey)}
                     >
                       {selectMode && (
                         <td className="px-3 py-2.5" onClick={e => e.stopPropagation()}>
                           <input
                             type="checkbox"
-                            checked={batch.movements.every(m => selectedIds.has(m.id))}
-                            ref={el => {
-                              if (el) el.indeterminate = batch.movements.some(m => selectedIds.has(m.id)) && !batch.movements.every(m => selectedIds.has(m.id));
-                            }}
-                            onChange={() => toggleBatchSelection(batch)}
+                            checked={allSelected}
+                            ref={el => { if (el) el.indeterminate = someSelected && !allSelected; }}
+                            onChange={() => toggleMovementSet(batchIds)}
                             className="accent-charcoal"
                           />
                         </td>
@@ -263,6 +339,74 @@ export default function HistorySection({
                 );
               }
 
+              // ── Order batch row ────────────────────────────────────────
+              if (row.type === 'order_batch') {
+                const { batch } = row;
+                const expandKey = `ob-${batch.orderId}`;
+                const isExpanded = expandedBatches.has(expandKey);
+                const batchIds = batch.movements.map(m => m.id);
+                const allSelected = batchIds.every(id => selectedIds.has(id));
+                const someSelected = batchIds.some(id => selectedIds.has(id));
+                const isCancelled = batch.reason === 'cancelled';
+                const rowBg = isCancelled
+                  ? `bg-rose-50/60 hover:bg-rose-50`
+                  : `bg-sky-50/60 hover:bg-sky-50`;
+                const textCol = isCancelled ? 'text-rose-800' : 'text-sky-800';
+                const deltaCol = isCancelled ? 'text-rose-700' : 'text-rose-600';
+                const meta = REASON_META[batch.reason] ?? REASON_META.order;
+                return (
+                  <Fragment key={expandKey}>
+                    <tr
+                      className={`border-t border-bone ${rowBg} cursor-pointer ${allSelected ? 'ring-1 ring-inset ring-gold/40' : ''}`}
+                      onClick={() => selectMode ? toggleMovementSet(batchIds) : toggleExpand(expandKey)}
+                    >
+                      {selectMode && (
+                        <td className="px-3 py-2.5" onClick={e => e.stopPropagation()}>
+                          <input
+                            type="checkbox"
+                            checked={allSelected}
+                            ref={el => { if (el) el.indeterminate = someSelected && !allSelected; }}
+                            onChange={() => toggleMovementSet(batchIds)}
+                            className="accent-charcoal"
+                          />
+                        </td>
+                      )}
+                      <td className="px-3 py-2.5 text-xs font-mono text-mist whitespace-nowrap">
+                        <span className="flex items-center gap-1">
+                          {isExpanded ? <ChevronDown size={11} /> : <ChevronRight size={11} />}
+                          {batch.date}
+                        </span>
+                      </td>
+                      <td className={`px-3 py-2.5 text-xs font-semibold ${textCol}`}>
+                        {batch.productCount} products — {batch.orderRef ?? `Order #${batch.orderId}`}
+                      </td>
+                      <td className={`px-3 py-2.5 text-right font-semibold ${deltaCol}`}>
+                        {batch.totalQty}
+                      </td>
+                      <td className="px-3 py-2.5">
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full border ${meta.cls}`}>{meta.label}</span>
+                      </td>
+                      <td className={`px-3 py-2.5 text-xs ${textCol}`}>{batch.orderRef ?? '—'}</td>
+                      <td className="px-3 py-2.5 text-xs text-mist">—</td>
+                    </tr>
+                    {isExpanded && batch.movements.map(m => (
+                      <tr key={`om-${m.id}`} className={`border-t ${isCancelled ? 'border-rose-100 bg-rose-50/30' : 'border-sky-100 bg-sky-50/30'}`}>
+                        {selectMode && <td className="px-3 py-2" />}
+                        <td className="px-3 py-2 pl-8 text-xs font-mono text-mist whitespace-nowrap">{m.created_at_kst}</td>
+                        <td className="px-3 py-2 text-xs text-charcoal max-w-[150px] truncate">{m.product_name}</td>
+                        <td className={`px-3 py-2 text-right font-semibold ${m.delta >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
+                          {m.delta >= 0 ? `+${m.delta}` : m.delta}
+                        </td>
+                        <td className="px-3 py-2" />
+                        <td className="px-3 py-2 text-xs text-mist">{m.order_ref ?? '—'}</td>
+                        <td className="px-3 py-2 text-xs text-mist">{m.note ?? '—'}</td>
+                      </tr>
+                    ))}
+                  </Fragment>
+                );
+              }
+
+              // ── Individual movement row ────────────────────────────────
               const m = row.movement;
               const meta = REASON_META[m.reason] ?? { label: m.reason, cls: 'bg-stone-50 text-stone-600 border-stone-200' };
               const ref = m.order_ref ?? m.company_name ?? '—';
@@ -302,7 +446,7 @@ export default function HistorySection({
         </table>
       </div>
 
-      {/* Batch Detail Modal */}
+      {/* Inbound Batch Detail Modal */}
       {modalBatch && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-charcoal/40 backdrop-blur-sm" onClick={() => setModalBatch(null)} />

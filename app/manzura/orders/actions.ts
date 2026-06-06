@@ -130,33 +130,56 @@ export async function updateOrderStatus(
     void supabase.storage.from('shipment-photos').remove([oldPhotoPath]);
   }
 
-  // On cancel: restore stock ONLY if payment was already verified (stock was deducted).
+  // On cancel: restore stock and relabel history movements as 'cancelled'.
   if (nextStatus === 'cancelled' && current.status !== 'cancelled') {
     const wasStockDeducted = stageIndex(current.status) >= stageIndex('payment_verified');
-    void (async () => {
-      try {
-        const { data: items } = await supabase
-          .from('order_items')
-          .select('product_id, quantity')
-          .eq('order_id', orderId);
-        if (items && items.length > 0) {
-          const typed = items as Array<{ product_id: number; quantity: number }>;
-          if (wasStockDeducted) {
+    if (wasStockDeducted) {
+      void (async () => {
+        try {
+          const { data: items } = await supabase
+            .from('order_items')
+            .select('product_id, quantity')
+            .eq('order_id', orderId);
+          if (items && items.length > 0) {
+            const typed = items as Array<{ product_id: number; quantity: number }>;
             await restoreStockForItems(typed);
-            await supabase.from('stock_movements').insert(
-              typed.map(it => ({
-                product_id: it.product_id,
-                delta: it.quantity,
-                reason: 'cancel_restock',
-                order_id: orderId,
-              })),
-            );
+            await supabase
+              .from('stock_movements')
+              .update({ reason: 'cancelled' })
+              .eq('order_id', orderId)
+              .eq('reason', 'order');
           }
+        } catch {
+          // Best-effort: don't fail the status update if stock ops error.
         }
-      } catch {
-        // Best-effort: don't fail the status update if stock ops error.
-      }
-    })();
+      })();
+    }
+  }
+
+  // Rollback past payment_verified: restore stock and relabel history movements as 'cancelled'.
+  if (nextStatus !== 'cancelled' && current.status !== nextStatus) {
+    const currentIdx = stageIndex(current.status);
+    const nextIdx = stageIndex(nextStatus);
+    const pvIdx = stageIndex('payment_verified');
+    if (currentIdx >= pvIdx && nextIdx < pvIdx) {
+      void (async () => {
+        try {
+          const { data: items } = await supabase
+            .from('order_items')
+            .select('product_id, quantity')
+            .eq('order_id', orderId);
+          if (items && items.length > 0) {
+            const typed = items as Array<{ product_id: number; quantity: number }>;
+            await restoreStockForItems(typed);
+            await supabase
+              .from('stock_movements')
+              .update({ reason: 'cancelled' })
+              .eq('order_id', orderId)
+              .eq('reason', 'order');
+          }
+        } catch { /* best-effort */ }
+      })();
+    }
   }
 
   // Fire-and-forget customer notifications keyed to the new status. Never
