@@ -22,7 +22,7 @@ export interface AnalyticsOrder {
   items: AnalyticsOrderItem[];
 }
 
-type Period = '3M' | '1Y' | 'all';
+type Period = 'day' | 'week' | 'month' | 'all';
 
 // KST sortable key: "2025-01"
 function kstMonthKey(iso: string): string {
@@ -54,18 +54,24 @@ function StatCard({ label, value }: { label: string; value: string }) {
 }
 
 const PERIODS: Array<{ value: Period; label: string }> = [
-  { value: '3M', label: '3M' },
-  { value: '1Y', label: '1Y' },
+  { value: 'day', label: '일' },
+  { value: 'week', label: '주' },
+  { value: 'month', label: '월' },
   { value: 'all', label: 'All' },
 ];
 
 export default function UserAnalyticsSection({ orders }: { orders: AnalyticsOrder[] }) {
-  const [period, setPeriod] = useState<Period>('1Y');
+  const [period, setPeriod] = useState<Period>('month');
 
   const cutoff = useMemo<Date | null>(() => {
     const now = new Date();
-    if (period === '3M') return new Date(now.getFullYear(), now.getMonth() - 2, 1);
-    if (period === '1Y') return new Date(now.getFullYear() - 1, now.getMonth(), 1);
+    if (period === 'day') {
+      const d = new Date(now);
+      d.setHours(0, 0, 0, 0);
+      return d;
+    }
+    if (period === 'week') return new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    if (period === 'month') return new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
     return null;
   }, [period]);
 

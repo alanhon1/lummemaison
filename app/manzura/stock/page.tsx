@@ -7,10 +7,14 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
 import InboundForm from '@/components/admin/InboundForm';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
+import { ClickableRow } from '@/components/admin/ClickableRow';
 
 export const dynamic = 'force-dynamic';
 
 type Tab = 'stock' | 'history' | 'orders' | 'add';
+
+const STOCK_PAGE_SIZE = 50;
+type StockSort = 'qty-asc' | 'qty-desc' | 'name-asc' | 'id-asc';
 
 interface PageProps {
   searchParams: Promise<{
@@ -22,6 +26,8 @@ interface PageProps {
     cid?: string;
     date?: string;
     month?: string;
+    page?: string;
+    sort?: string;
   }>;
 }
 
@@ -168,34 +174,30 @@ export default async function StockPage({ searchParams }: PageProps) {
 
   // ── STOCK TAB ─────────────────────────────────────────────────
   if (tab === 'stock') {
+    const sort = (sp.sort ?? 'qty-asc') as StockSort;
+    const currentPage = Math.max(1, parseInt(sp.page ?? '1', 10));
+
     const { data: stockRows } = await supabase
       .from('product_stock')
-      .select('product_id, stock')
-      .order('stock', { ascending: true });
+      .select('product_id, stock');
 
     const rows = (stockRows ?? []) as Array<{ product_id: number; stock: number }>;
-
-    // Fetch last inbound company per product for reorder hints.
-    const { data: lastInbound } = await supabase
-      .from('stock_movements')
-      .select('product_id, companies(name), created_at')
-      .eq('reason', 'inbound')
-      .order('created_at', { ascending: false })
-      .limit(500);
-
-    const lastInboundCompany = new Map<number, string>();
-    for (const m of (lastInbound ?? []) as unknown as Array<{ product_id: number; companies: { name: string } | null; created_at: string }>) {
-      if (!lastInboundCompany.has(m.product_id) && m.companies?.name) {
-        lastInboundCompany.set(m.product_id, m.companies.name);
-      }
-    }
 
     const allRows = allProducts.map(p => ({
       id: p.id,
       name: p.name as string,
       stock: rows.find(r => r.product_id === p.id)?.stock ?? 0,
-      lastSupplier: lastInboundCompany.get(p.id) ?? null,
-    })).sort((a, b) => a.stock - b.stock);
+    })).sort((a, b) => {
+      if (sort === 'name-asc') return a.name.localeCompare(b.name);
+      if (sort === 'id-asc')   return a.id - b.id;
+      if (sort === 'qty-desc') return b.stock - a.stock;
+      return a.stock - b.stock; // qty-asc (default)
+    });
+
+    const totalPages = Math.ceil(allRows.length / STOCK_PAGE_SIZE);
+    const pagedRows = allRows.length > STOCK_PAGE_SIZE
+      ? allRows.slice((currentPage - 1) * STOCK_PAGE_SIZE, currentPage * STOCK_PAGE_SIZE)
+      : allRows;
 
     const outOfStock = allRows.filter(r => r.stock <= 0).length;
     const lowStock   = allRows.filter(r => r.stock > 0 && r.stock <= 3).length;
@@ -231,6 +233,22 @@ export default async function StockPage({ searchParams }: PageProps) {
           )}
         </div>
 
+        {/* Sort controls */}
+        <form method="GET" action="/manzura/stock" className="flex items-center gap-2 mb-3">
+          <input type="hidden" name="tab" value="stock" />
+          <label className="text-[10px] uppercase tracking-widest text-mist">Sort</label>
+          <select name="sort" defaultValue={sort}
+            className="border border-bone rounded px-2 py-1.5 text-xs text-charcoal bg-white focus:outline-none focus:border-gold">
+            <option value="qty-asc">Quantity: Low → High</option>
+            <option value="qty-desc">Quantity: High → Low</option>
+            <option value="name-asc">Name: A → Z</option>
+            <option value="id-asc">ID: Low → High</option>
+          </select>
+          <button type="submit" className="text-xs border border-bone px-3 py-1.5 rounded text-mist hover:text-charcoal transition-colors">
+            Apply
+          </button>
+        </form>
+
         <div className="bg-white border border-bone rounded overflow-hidden">
           <table className="w-full text-sm">
             <thead className="bg-cream border-b border-bone">
@@ -239,16 +257,14 @@ export default async function StockPage({ searchParams }: PageProps) {
                 <th className="text-left px-4 py-3 font-semibold">Product</th>
                 <th className="text-right px-4 py-3 font-semibold">Stock</th>
                 <th className="text-left px-4 py-3 font-semibold">Status</th>
-                <th className="text-left px-4 py-3 font-semibold hidden sm:table-cell">Reorder hint</th>
-                <th className="px-4 py-3" />
               </tr>
             </thead>
             <tbody>
-              {allRows.map(r => {
+              {pagedRows.map(r => {
                 const isOut = r.stock <= 0;
                 const isLow = !isOut && r.stock <= 3;
                 return (
-                  <tr key={r.id} className={`border-t border-bone hover:bg-cream/50 ${isOut ? 'bg-rose-50/30' : isLow ? 'bg-amber-50/30' : ''}`}>
+                  <tr key={r.id} className={`border-t border-bone ${isOut ? 'bg-rose-50/30' : isLow ? 'bg-amber-50/30' : ''}`}>
                     <td className="px-4 py-2.5 text-xs text-mist font-mono">#{r.id}</td>
                     <td className="px-4 py-2.5 text-charcoal text-sm">{r.name}</td>
                     <td className="px-4 py-2.5 text-right font-semibold text-charcoal">{r.stock}</td>
@@ -261,22 +277,46 @@ export default async function StockPage({ searchParams }: PageProps) {
                         <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">OK</span>
                       )}
                     </td>
-                    <td className="px-4 py-2.5 text-xs text-mist hidden sm:table-cell">
-                      {(isOut || isLow) && r.lastSupplier
-                        ? <span className="text-amber-700">Reorder from {r.lastSupplier}</span>
-                        : '—'}
-                    </td>
-                    <td className="px-4 py-2.5 text-right">
-                      <Link href={`/manzura/products/${r.id}`} className="text-xs text-gold-dark hover:text-gold underline underline-offset-2">
-                        Edit
-                      </Link>
-                    </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
         </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-1 mt-4">
+            {currentPage > 1 && (
+              <Link href={`/manzura/stock?sort=${sort}&page=${currentPage - 1}`}
+                className="text-xs px-2 py-1 border border-bone rounded text-mist hover:text-charcoal transition-colors">‹</Link>
+            )}
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => {
+              const show = p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1;
+              const ellipsisBefore = p === currentPage - 2 && currentPage > 3;
+              const ellipsisAfter  = p === currentPage + 2 && currentPage < totalPages - 2;
+              if (!show) return null;
+              return (
+                <span key={p}>
+                  {ellipsisBefore && <span className="text-xs px-1 text-mist">…</span>}
+                  <Link
+                    href={`/manzura/stock?sort=${sort}&page=${p}`}
+                    className={`text-xs px-2.5 py-1 border rounded transition-colors ${
+                      p === currentPage ? 'bg-charcoal text-cream border-charcoal' : 'border-bone text-mist hover:text-charcoal'
+                    }`}
+                  >
+                    {p}
+                  </Link>
+                  {ellipsisAfter && <span className="text-xs px-1 text-mist">…</span>}
+                </span>
+              );
+            })}
+            {currentPage < totalPages && (
+              <Link href={`/manzura/stock?sort=${sort}&page=${currentPage + 1}`}
+                className="text-xs px-2 py-1 border border-bone rounded text-mist hover:text-charcoal transition-colors">›</Link>
+            )}
+          </div>
+        )}
       </div>
     );
   }
@@ -636,11 +676,9 @@ export default async function StockPage({ searchParams }: PageProps) {
                   const addr = o.shipping_address as Record<string, string> | null;
                   const addrStr = addr ? [addr.city, addr.country].filter(Boolean).join(', ') : '';
                   return (
-                    <tr key={o.id} className={`border-t border-bone hover:bg-cream/50 ${isCancelled ? 'opacity-50' : ''}`}>
+                    <ClickableRow key={o.id} href={`/manzura/orders/${o.id}`} className={`border-t border-bone hover:bg-cream/50 ${isCancelled ? 'opacity-50' : ''}`}>
                       <td className={`px-3 py-2.5 font-mono text-xs text-charcoal ${isCancelled ? 'line-through' : ''}`}>
-                        <Link href={`/manzura/orders/${o.id}`} className="hover:text-gold">
-                          {display}
-                        </Link>
+                        {display}
                       </td>
                       <td className="px-3 py-2.5 text-xs text-mist whitespace-nowrap">{toKstDate(o.created_at)}</td>
                       <td className="px-3 py-2.5 text-xs text-charcoal">
@@ -662,7 +700,7 @@ export default async function StockPage({ searchParams }: PageProps) {
                           {STATUS_LABEL[o.status] ?? o.status}
                         </span>
                       </td>
-                    </tr>
+                    </ClickableRow>
                   );
                 })}
               </tbody>

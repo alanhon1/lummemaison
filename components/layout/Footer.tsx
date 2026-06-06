@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { siteConfig } from '@/lib/site-config';
 import { localePath } from '@/lib/i18n';
-import { Share2, MessageCircle, Send, ChevronDown } from 'lucide-react';
+import { MessageCircle, Send, ChevronDown } from 'lucide-react';
 import DisclaimerReset from '@/components/disclaimer/DisclaimerReset';
 
 function SectionHeader({ title }: { title: string }) {
@@ -40,10 +40,6 @@ export default function Footer() {
               {siteConfig.description}
             </p>
             <div className="flex gap-3 mt-6">
-              <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer"
-                className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="Instagram">
-                <Share2 size={15} />
-              </a>
               {siteConfig.contactChannels.whatsapp && (
                 <a href={siteConfig.social.whatsapp} target="_blank" rel="noopener noreferrer"
                   className="p-2 border border-cream/20 text-cream/60 hover:text-gold hover:border-gold transition-colors" aria-label="WhatsApp">

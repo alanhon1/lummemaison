@@ -6,6 +6,7 @@ import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
+import { ClickableRow } from '@/components/admin/ClickableRow';
 
 export const dynamic = 'force-dynamic';
 
@@ -250,12 +251,8 @@ export default async function AdminOrdersPage({ searchParams }: PageProps) {
                   o.order_seq !== null ? formatOrderNumber(o.order_seq) : o.order_number;
                 const hasProof = !!o.payment_proof_path || !!o.payment_transaction_link;
                 return (
-                  <tr key={o.id} className="border-t border-bone hover:bg-cream/50">
-                    <td className="px-4 py-3">
-                      <Link href={`/manzura/orders/${o.id}`} className="font-mono text-charcoal hover:text-gold-dark">
-                        {display}
-                      </Link>
-                    </td>
+                  <ClickableRow key={o.id} href={`/manzura/orders/${o.id}`} className="border-t border-bone hover:bg-cream/50">
+                    <td className="px-4 py-3 font-mono text-charcoal">{display}</td>
                     <td className="px-4 py-3 text-charcoal">
                       <div className="leading-tight">
                         {o.customer_name}
@@ -288,7 +285,7 @@ export default async function AdminOrdersPage({ searchParams }: PageProps) {
                     <td className="px-4 py-3 text-xs text-mist whitespace-nowrap">
                       {new Date(o.created_at).toLocaleString()}
                     </td>
-                  </tr>
+                  </ClickableRow>
                 );
               })}
             </tbody>

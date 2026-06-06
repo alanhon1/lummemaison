@@ -139,7 +139,7 @@ export default function AdminOrderStatusPanel({
       {/* Action buttons */}
       {!isCancelled && !isDelivered && (
         <div className="flex flex-wrap items-center gap-2">
-          {nextStage && nextStage !== 'shipped' && (
+          {nextStage && nextStage !== 'shipped' && !isShipped && (
             <button
               type="button"
               disabled={pending}

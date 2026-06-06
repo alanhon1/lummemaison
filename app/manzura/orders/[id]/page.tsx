@@ -95,7 +95,7 @@ export default async function AdminOrderDetailPage({
 
   const detail = order as OrderDetail;
 
-  const [{ data: items }, { data: messages }] = await Promise.all([
+  const [{ data: items }, { data: messages }, { data: customerProfile }] = await Promise.all([
     supabase
       .from('order_items')
       .select('id, product_id, product_name, unit_cents, quantity, line_cents')
@@ -106,7 +106,13 @@ export default async function AdminOrderDetailPage({
       .select('id, sender_role, body, is_internal, created_at')
       .eq('order_id', detail.id)
       .order('created_at', { ascending: true }),
+    supabase
+      .from('customer_profiles')
+      .select('customer_code')
+      .eq('user_id', detail.user_id)
+      .maybeSingle(),
   ]);
+  const customerCode = (customerProfile as { customer_code?: string } | null)?.customer_code ?? null;
 
   // Always mint a fresh signed URL on render so the admin can open the proof
   // even years after the email's 7-day link expires.
@@ -147,9 +153,18 @@ export default async function AdminOrderDetailPage({
 
       <div className="grid sm:grid-cols-2 gap-4">
         <Stat label="Created" value={new Date(detail.created_at).toLocaleString()} />
-        <Stat label="Payment method" value={detail.payment_method ?? '—'} />
-        <Stat label="Shipped at" value={detail.shipped_at ? new Date(detail.shipped_at).toLocaleString() : '—'} />
-        <Stat label="Customer ID" value={detail.user_id.slice(0, 8) + '…'} />
+        <Stat label="Customer ID" value={customerCode ?? '—'} />
+        <div className="bg-white border border-bone p-4">
+          <div className="text-[10px] uppercase tracking-[0.2em] text-mist mb-1">Shipped at</div>
+          <div className="text-sm text-charcoal flex items-center gap-2">
+            {detail.shipped_at
+              ? new Date(detail.shipped_at).toLocaleString()
+              : <span className="text-mist">Pending</span>}
+            {detail.shipped_at && detail.status === 'shipped' && (
+              <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-rose-600 text-white text-[9px] font-bold leading-none shrink-0" title="Newly shipped — not yet delivered">!</span>
+            )}
+          </div>
+        </div>
       </div>
 
       <AdminOrderStatusPanel
