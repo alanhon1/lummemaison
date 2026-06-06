@@ -349,10 +349,9 @@ export default function HistorySection({
                 const someSelected = batchIds.some(id => selectedIds.has(id));
                 const isCancelled = batch.reason === 'cancelled';
                 const rowBg = isCancelled
-                  ? `bg-rose-50/60 hover:bg-rose-50`
+                  ? `bg-stone-50/60 hover:bg-stone-50`
                   : `bg-sky-50/60 hover:bg-sky-50`;
-                const textCol = isCancelled ? 'text-rose-800' : 'text-sky-800';
-                const deltaCol = isCancelled ? 'text-rose-700' : 'text-rose-600';
+                const textCol = isCancelled ? 'text-stone-500' : 'text-sky-800';
                 const meta = REASON_META[batch.reason] ?? REASON_META.order;
                 return (
                   <Fragment key={expandKey}>
@@ -380,8 +379,8 @@ export default function HistorySection({
                       <td className={`px-3 py-2.5 text-xs font-semibold ${textCol}`}>
                         {batch.productCount} products — {batch.orderRef ?? `Order #${batch.orderId}`}
                       </td>
-                      <td className={`px-3 py-2.5 text-right font-semibold ${deltaCol}`}>
-                        {batch.totalQty}
+                      <td className={`px-3 py-2.5 text-right font-semibold ${isCancelled ? 'text-stone-400' : 'text-rose-600'}`}>
+                        {isCancelled ? '0' : batch.totalQty}
                       </td>
                       <td className="px-3 py-2.5">
                         <span className={`text-[10px] px-2 py-0.5 rounded-full border ${meta.cls}`}>{meta.label}</span>
@@ -394,8 +393,8 @@ export default function HistorySection({
                         {selectMode && <td className="px-3 py-2" />}
                         <td className="px-3 py-2 pl-8 text-xs font-mono text-mist whitespace-nowrap">{m.created_at_kst}</td>
                         <td className="px-3 py-2 text-xs text-charcoal max-w-[150px] truncate">{m.product_name}</td>
-                        <td className={`px-3 py-2 text-right font-semibold ${m.delta >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-                          {m.delta >= 0 ? `+${m.delta}` : m.delta}
+                        <td className={`px-3 py-2 text-right font-semibold ${isCancelled ? 'text-stone-400' : m.delta >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
+                          {isCancelled ? '0' : m.delta >= 0 ? `+${m.delta}` : m.delta}
                         </td>
                         <td className="px-3 py-2" />
                         <td className="px-3 py-2 text-xs text-mist">{m.order_ref ?? '—'}</td>
@@ -431,8 +430,8 @@ export default function HistorySection({
                   )}
                   <td className="px-3 py-2.5 text-xs font-mono text-mist whitespace-nowrap">{m.created_at_kst}</td>
                   <td className="px-3 py-2.5 text-xs text-charcoal max-w-[150px] truncate">{m.product_name}</td>
-                  <td className={`px-3 py-2.5 text-right font-semibold ${m.delta >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-                    {m.delta >= 0 ? `+${m.delta}` : m.delta}
+                  <td className={`px-3 py-2.5 text-right font-semibold ${m.reason === 'cancelled' ? 'text-stone-400' : m.delta >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
+                    {m.reason === 'cancelled' ? '0' : m.delta >= 0 ? `+${m.delta}` : m.delta}
                   </td>
                   <td className="px-3 py-2.5">
                     <span className={`text-[10px] px-2 py-0.5 rounded-full border ${meta.cls}`}>{meta.label}</span>
