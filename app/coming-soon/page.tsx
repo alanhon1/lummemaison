@@ -17,10 +17,14 @@ function getRemaining() {
   };
 }
 
+type Remaining = ReturnType<typeof getRemaining>;
+
 export default function ComingSoonPage() {
-  const [time, setTime] = useState(getRemaining);
+  // null on server to avoid SSR/client hydration mismatch
+  const [time, setTime] = useState<Remaining | null>(null);
 
   useEffect(() => {
+    setTime(getRemaining());
     const id = setInterval(() => {
       const r = getRemaining();
       setTime(r);
@@ -30,9 +34,9 @@ export default function ComingSoonPage() {
   }, []);
 
   const units = [
-    { value: pad(time.h), label: 'Hours' },
-    { value: pad(time.m), label: 'Minutes' },
-    { value: pad(time.s), label: 'Seconds' },
+    { value: time ? pad(time.h) : '--', label: 'Hours' },
+    { value: time ? pad(time.m) : '--', label: 'Minutes' },
+    { value: time ? pad(time.s) : '--', label: 'Seconds' },
   ];
 
   return (
@@ -49,8 +53,10 @@ export default function ComingSoonPage() {
       </p>
 
       {/* Headline */}
-      <h1 className="font-display font-light text-charcoal text-center leading-tight mb-3"
-          style={{ fontSize: 'clamp(1.8rem, 5vw, 3.5rem)' }}>
+      <h1
+        className="font-display font-light text-charcoal text-center leading-tight mb-3"
+        style={{ fontSize: 'clamp(1.8rem, 5vw, 3.5rem)' }}
+      >
         The House of Light
       </h1>
       <p
@@ -64,7 +70,7 @@ export default function ComingSoonPage() {
       <div style={{ width: 1, height: 40, backgroundColor: '#c9a96e', opacity: 0.35 }} className="mb-14" />
 
       {/* Countdown */}
-      {time.done ? (
+      {time?.done ? (
         <div className="text-center">
           <p
             className="font-display font-light"
@@ -87,11 +93,7 @@ export default function ComingSoonPage() {
               {i > 0 && (
                 <span
                   className="font-display font-light leading-none mt-2 sm:mt-4"
-                  style={{
-                    fontSize: 'clamp(2.5rem, 8vw, 6rem)',
-                    color: '#c9a96e',
-                    opacity: 0.45,
-                  }}
+                  style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)', color: '#c9a96e', opacity: 0.45 }}
                 >
                   :
                 </span>
@@ -120,7 +122,7 @@ export default function ComingSoonPage() {
       )}
 
       {/* Bottom divider */}
-      {!time.done && (
+      {!time?.done && (
         <div style={{ width: 1, height: 40, backgroundColor: '#c9a96e', opacity: 0.35 }} className="mt-14" />
       )}
 
