@@ -1,0 +1,34 @@
+[bugs,changes]... 1)그 lumeemaison 그 홈에서그 맨 밑 그 instagram 그거 없에줘 ... 2)user inbox에서 <--back to my accaunt( home로 바꿔) 버튼 작동 안하는 문제 고쳐 
+3)그 admin>orders>order 에서 payment methood 그 삭제해 4)그 admin>order status 에서 그 shipped 에서 그 ' mark delivered -> '이게 두번나오는 버그 있음 5)그 orders>order 에서 그 shipped at 를 그 pending 으로 바꿔(그리고 admin 이 shipping 으로 status 바꾸면 그 shipped at 옆에 작은 그 '!' 그 빨간 동그라미 표 (그 이거 delivered 되면 그 없어지게))
+6)그 admin>orders>order 에서 그 user id 가 그 뉴 4n4a (그 4개 숫자 4개 alphabet 인 뉴 id 를 사용해야함) 
+7)admin>users >user 에서 그 3m,1y,all 되 있음... 그거 일,주,월,all 로 바꿔
+8)그 admin>users>user 에서 그 analytics 가 너무 그 구리고 그 동작 하는게 모름...그 이거 조금 정확하게 조금만 그 디테일하게... 
+9)admin>stock>stock 에서그 50라인을 넘기면 그 < 1 2 [3] 4 ...> 식으로
+10)그 admin>orders에서 그 order 들이 그 'sgl# 00????'그 이걸 눌러야지 그 그 order 로 감... 이거 그 그 큰 박스를 클릭하도록(쉽게 그 그 sgl 를 클릭 하지 않아도...
+11)<중요!!!> 그 이거 그 products 들이 그 재고에서 -되지않는 문제... 그 원래 그 유저가 주문하면 그 admin 에서 payment confirm 스탭에서 그 admin 이 confirm 그 눌으면 빠져나가야 하는데 그 이거 -도 안되고 그 재고가 작동을 안함...
+12)이거 admin>stock>add inbound stock 에서 그 이거 product 가 1개만 선택임... 이게 그 일단 그 이거 product 를 multiple 로 선택 가능해야함... 그리고 이거 add inbund 를 그 리메이크 해 이거 너무 없음 ...그리고 이거 그 2개 이상을 그 add inbound 하면 그 이거 history에 그 그 묶음으로 되게. 그 무끔 그 이거 좀 그 예를들어:date:????4products,???company,144quantity,memo, see detailed 버튼) 이거 그 무끙 see ditailed 버튼 눌으면 그 체크아웃형식으로 그 recipt (그 가격 없고) 그 처럼 그 뭔가 디테일한 그 필요한것만 있는 창...... 이것도 그 탭 안에 그 expert to xlsx되게..... 그리고 그 history 에서 검색하면 그 묶음이 나오게...
+13)그 이거 stock 에서 그 history--- expert to excel 그거 그 이거 export 가 두개 존재해야함... 1-그 이거 export all data식... 그 2-이거 spesific 를 눌으면 그 그것만 select 한건만 expert 되게(그 이거 history 에 그 edit 버튼 눌러줘(그 이거 버튼에 눌으면 그 이거 select 하는거 할 수 있고 그거는 그 export to .xlsx selected ones 가 되게... 그 이거 edit는 그 그냥 export 용.. 그 삭제 는 없음 ..
+14)이거 stock>orders 에서 그 그 그 order 클릭 할 수 있게 해... 
+15)이거 ordrers>order 에서 recipt 라는 그 위에 버튼 만들어줘... 그럼 그 이거 customer,ship to,items,price 가 그 큰 recipt 가 되는 그 ... 그리고 그 recipt 버튼 밑에는 그 버튼 만들어줘... 1-그 excel 형식으로 그 (excel 에 디자인 된 그 라인,디테일들 가로세로로 해서 그 이거 recipt 에 맞게... 그리고 그 copy recipt to packaging(Make order list that confirmed payment Order number, recipient name, and order list with qty. note that it should not have address and price data. And should be available to copy paste for a packing workers:::::example----->No:  SGL #00????
+Name:   Edgar Barron 
+
+MISADI CO2 Mask
+Quantity: 1
+Mask sheets for face
+Quantity: 25
+CELLEXO Bio-Cellulose Exosome Mask 30 ml X 5 masks
+Quantity: 1
+CREBEAU Placenta Pearl Essence Mask 25 ml X 10 masks
+Quantity: 2
+CURENEX REJUVENATING MASK
+Quantity: 1
+DERMAGEN Soothing MASK
+Quantity: 1
+GTM PDRN MASK
+Quantity: 1) 라는것도 만들어 그 텍스트로 그 복붙되게 그 copy 도 만들어
+16)stock>stock 에 그 일단 그 sort 하는것도 만들어(stock,sort from id,sortfrom name a~z,sort quantitu high to low,low to high)
+17)그 stock,stock 에서reorder hint 삭제
+18)그 stock>stock 에서 그 'edit'을 삭제
+19)그 stock>stock 에서 그 제품마다 그 details 라는 큰 버튼 (그 gold glow 이펙트가 있는)거 만들어줘... 이건 그 details 버튼을 눌으면 그일단 그 stock 에 관련하여 그 나올거임 그 재품의 info... 그 예를들어 그 초ㅔ근에 그 어디갔는지(-,+)그리고 그 그래프도(demand of people buying, who(4n4a id) buys most,그 평균 사람들이 얼마나 구매,그리고 그 평균 일일 재고 에 있는 그 수(예를들어 그 월별,주별,일일,all 그 재고 이 재품으ㅏ 변화ㅏ 그 그래프가 줄어들고 늘어나고 그 평균 이 재품이 재고에 얼마나 남아있는지 그 일일로 그 막대+곡그 평균 사람들이 얼마나 구매,그리고 그 평균 일일 재고 에 있는  선그래프로 디ㅔ일하게 구현)... 그 이거 recent 이 제품을 구매한 orders(그 이거 재품이 들어있는 orders 나열)... 그리고 이거 버튼,캘린더별로 검색(그 날짜멸로 그 어디가고 history랑 비슷하지만 그 product 만...그리고 그 언제 구매하는지도(그 예를들어 그 그래프로 주별 그 월~수 중 구매수가 많은 날자나 그래프로 디테일하게 구현)..그리고 그 제품의 export to excel 도 만들어 재품 안에 그 info 들
+20)그 stock>stock 에서 그 stock over view 라는 버튼도 그 export to .xlsx 옆에 (glow effect) 인 버튼 구현... 그건 그 이거 stock>stock 의 모든 제품의 info 가 하나의 탭에 드러 있는... 예를들어 그 most demanded product,who buys(4n4a),그 평균 사람들이 얼마나 구매,그리고 그 평균 일일 재고 에 있는 그 수(예를들어 그 월별,주별,일일,all 그 재고 이 재품으ㅏ 변화ㅏ 그 그래프가 줄어들고 늘어나고 그 평균 이 재품이 재고에 얼마나 남아있는지 그 일일로 그 막대+곡선그래프로 디테일하게...이거 그 니가 알아ㅓ products overview 만들어줘... 그 professional 되게...
+21)그 이건 모든 excel 에 반영되는것들.... 그 일단 선이 들어나는,그 이거 내모가 그냥 텍스트 크기가아니라 스카트하게,그 이거 진짜로 스카트한 그래프들(있으면 그 status 들...)
