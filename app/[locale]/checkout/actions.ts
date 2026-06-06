@@ -212,36 +212,8 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     return { ok: false, error: itemsError.message };
   }
 
-  // Stock decrement. The atomic RPC raises (and rolls back its own updates) if
-  // any line would push stock below zero. A *placed order must never vanish*,
-  // so on failure we DO NOT delete the order — we keep it (the admin sees it
-  // and reconciles) and fall back to a best-effort per-item clamp that never
-  // goes below zero. This trades strict oversell-prevention for not losing real
-  // customer orders, which is the right call for this wholesale flow.
-  const { error: stockError } = await admin.rpc('decrement_stock_for_order', {
-    items: input.items.map(l => ({ product_id: l.product_id, quantity: l.quantity })),
-  });
-  if (stockError) {
-    console.error(
-      '[checkout] stock decrement failed; keeping order',
-      order.order_seq,
-      stockError.message,
-    );
-    for (const l of input.items) {
-      const { data: row } = await admin
-        .from('product_stock')
-        .select('stock')
-        .eq('product_id', l.product_id)
-        .maybeSingle();
-      const current = row?.stock ?? 0;
-      await admin
-        .from('product_stock')
-        .upsert(
-          { product_id: l.product_id, stock: Math.max(0, current - l.quantity) },
-          { onConflict: 'product_id' },
-        );
-    }
-  }
+  // Stock is deducted when admin confirms payment (payment_verified step),
+  // not at order creation — see app/manzura/orders/actions.ts.
 
   const orderSeq = order.order_seq as number;
   const viewToken = order.view_token as string;
