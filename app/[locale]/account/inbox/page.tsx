@@ -41,8 +41,8 @@ export default async function InboxPage({ params }: PageProps) {
 
   if (error) {
     return (
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12">
-        <Link href={`/${locale}`} className="inline-block text-xs text-mist hover:text-charcoal underline underline-offset-2 py-2 pr-4">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-28 pb-12">
+        <Link href={`/${locale}`} className="inline-flex items-center gap-1 text-sm text-mist hover:text-charcoal py-2 pr-6">
           ← Back to Home
         </Link>
         <h1 className="font-display text-3xl font-light text-charcoal mt-6 mb-2">{t('title')}</h1>
@@ -60,8 +60,8 @@ export default async function InboxPage({ params }: PageProps) {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 space-y-6">
-      <Link href={`/${locale}`} className="inline-block text-xs text-mist hover:text-charcoal underline underline-offset-2 py-2 pr-4">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-28 pb-12 space-y-6">
+      <Link href={`/${locale}`} className="inline-flex items-center gap-1 text-sm text-mist hover:text-charcoal py-2 pr-6">
         ← Back to Home
       </Link>
 
