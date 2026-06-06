@@ -60,11 +60,17 @@ export async function addInbound(
     return { ok: false, error: (e as Error).message };
   }
 
-  // Increment stock atomically.
-  const { error: rpcErr } = await supabase.rpc('restore_stock_for_cancel', {
-    items: [{ product_id: productId, quantity: qty }],
-  });
-  if (rpcErr) return { ok: false, error: rpcErr.message };
+  // Increment stock: read current value, then upsert with new total.
+  const { data: currentRow } = await supabase
+    .from('product_stock')
+    .select('stock')
+    .eq('product_id', productId)
+    .maybeSingle();
+  const newStock = ((currentRow?.stock as number | null) ?? 0) + qty;
+  const { error: stockErr } = await supabase
+    .from('product_stock')
+    .upsert({ product_id: productId, stock: newStock }, { onConflict: 'product_id' });
+  if (stockErr) return { ok: false, error: stockErr.message };
 
   // Log movement.
   const { error: movErr } = await supabase.from('stock_movements').insert({

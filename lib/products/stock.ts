@@ -46,12 +46,19 @@ export async function setProductStock(productId: number, stock: number): Promise
   return { ok: true };
 }
 
-// Restores stock after cancellation using the atomic RPC from migration 013.
-// Silently no-ops if items is empty.
+// Restores stock after cancellation. Increments each product's stock by the
+// cancelled quantity using read-then-write upserts (safe for boutique traffic).
 export async function restoreStockForItems(
   items: Array<{ product_id: number; quantity: number }>,
 ): Promise<void> {
   if (items.length === 0) return;
   const supabase = createServiceClient();
-  await supabase.rpc('restore_stock_for_cancel', { items });
+  const ids = items.map(i => i.product_id);
+  const existing = await getStockMap(ids);
+  for (const item of items) {
+    const newStock = (existing[item.product_id] ?? 0) + item.quantity;
+    await supabase
+      .from('product_stock')
+      .upsert({ product_id: item.product_id, stock: newStock }, { onConflict: 'product_id' });
+  }
 }
