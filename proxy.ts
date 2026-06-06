@@ -90,6 +90,11 @@ export async function proxy(req: NextRequest) {
     return NextResponse.redirect(new URL('/coming-soon', req.url));
   }
 
+  // Coming-soon page bypasses i18n routing entirely (no locale prefix needed)
+  if (pathname.startsWith('/coming-soon')) {
+    return NextResponse.next();
+  }
+
   // All /api/ routes bypass i18n entirely
   if (pathname.startsWith('/api/')) {
     // Protect admin API (except auth and logout)
