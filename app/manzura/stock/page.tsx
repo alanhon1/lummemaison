@@ -19,7 +19,6 @@ export const dynamic = 'force-dynamic';
 
 type Tab = 'stock' | 'history' | 'orders' | 'add';
 
-const STOCK_PAGE_SIZE = 50;
 type StockSort = 'qty-asc' | 'qty-desc' | 'name-asc' | 'id-asc';
 
 interface PageProps {
@@ -181,7 +180,6 @@ export default async function StockPage({ searchParams }: PageProps) {
   // ── STOCK TAB ─────────────────────────────────────────────────
   if (tab === 'stock') {
     const sort = (sp.sort ?? 'qty-asc') as StockSort;
-    const currentPage = Math.max(1, parseInt(sp.page ?? '1', 10));
 
     const { data: stockRows } = await supabase
       .from('product_stock')
@@ -199,11 +197,6 @@ export default async function StockPage({ searchParams }: PageProps) {
       if (sort === 'qty-desc') return b.stock - a.stock;
       return a.stock - b.stock; // qty-asc (default)
     });
-
-    const totalPages = Math.ceil(allRows.length / STOCK_PAGE_SIZE);
-    const pagedRows = allRows.length > STOCK_PAGE_SIZE
-      ? allRows.slice((currentPage - 1) * STOCK_PAGE_SIZE, currentPage * STOCK_PAGE_SIZE)
-      : allRows;
 
     const outOfStock = allRows.filter(r => r.stock <= 0).length;
     const lowStock   = allRows.filter(r => r.stock > 0 && r.stock <= 3).length;
@@ -269,7 +262,7 @@ export default async function StockPage({ searchParams }: PageProps) {
               </tr>
             </thead>
             <tbody>
-              {pagedRows.map(r => {
+              {allRows.map(r => {
                 const isOut = r.stock <= 0;
                 const isLow = !isOut && r.stock <= 3;
                 return (
@@ -296,39 +289,6 @@ export default async function StockPage({ searchParams }: PageProps) {
           </table>
         </div>
 
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-1 mt-4">
-            {currentPage > 1 && (
-              <Link href={`/manzura/stock?sort=${sort}&page=${currentPage - 1}`}
-                className="text-xs px-2 py-1 border border-bone rounded text-mist hover:text-charcoal transition-colors">‹</Link>
-            )}
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => {
-              const show = p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1;
-              const ellipsisBefore = p === currentPage - 2 && currentPage > 3;
-              const ellipsisAfter  = p === currentPage + 2 && currentPage < totalPages - 2;
-              if (!show) return null;
-              return (
-                <span key={p}>
-                  {ellipsisBefore && <span className="text-xs px-1 text-mist">…</span>}
-                  <Link
-                    href={`/manzura/stock?sort=${sort}&page=${p}`}
-                    className={`text-xs px-2.5 py-1 border rounded transition-colors ${
-                      p === currentPage ? 'bg-charcoal text-cream border-charcoal' : 'border-bone text-mist hover:text-charcoal'
-                    }`}
-                  >
-                    {p}
-                  </Link>
-                  {ellipsisAfter && <span className="text-xs px-1 text-mist">…</span>}
-                </span>
-              );
-            })}
-            {currentPage < totalPages && (
-              <Link href={`/manzura/stock?sort=${sort}&page=${currentPage + 1}`}
-                className="text-xs px-2 py-1 border border-bone rounded text-mist hover:text-charcoal transition-colors">›</Link>
-            )}
-          </div>
-        )}
       </div>
     );
   }
@@ -354,7 +314,7 @@ export default async function StockPage({ searchParams }: PageProps) {
       .from('stock_movements')
       .select('id, product_id, delta, reason, company_id, order_id, note, created_at, batch_id, companies(name), orders(order_seq, order_number), inbound_batches(inbound_date, memo)')
       .order('created_at', { ascending: false })
-      .limit(500);
+      .limit(5000);
 
     if (pidParam) query = query.eq('product_id', Number(pidParam));
     if (reasonParam) query = query.eq('reason', reasonParam);
@@ -376,7 +336,7 @@ export default async function StockPage({ searchParams }: PageProps) {
         .select('created_at')
         .gte('created_at', kstDateToUtcStart(`${monthYear}-${String(monthMo).padStart(2, '0')}-01`))
         .lte('created_at', kstDateToUtcEnd(`${monthYear}-${String(monthMo).padStart(2, '0')}-${new Date(monthYear, monthMo, 0).getDate()}`))
-        .limit(1000),
+        .limit(5000),
     ]);
 
     const movements = (movResult.data ?? []) as unknown as Array<{
@@ -547,7 +507,7 @@ export default async function StockPage({ searchParams }: PageProps) {
       .from('orders')
       .select('id, order_seq, order_number, status, customer_name, customer_email, customer_phone, total_cents, currency, created_at, shipping_address, user_id')
       .order('created_at', { ascending: false })
-      .limit(500);
+      .limit(5000);
 
     if (statusParam) ordersQuery = ordersQuery.eq('status', statusParam);
     if (fromParam)   ordersQuery = ordersQuery.gte('created_at', kstDateToUtcStart(fromParam));

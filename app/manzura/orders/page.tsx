@@ -93,7 +93,7 @@ export default async function AdminOrdersPage({ searchParams }: PageProps) {
       'id, order_seq, order_number, status, customer_name, customer_email, total_cents, currency, created_at, payment_proof_path, payment_transaction_link',
     )
     .order('created_at', { ascending: false })
-    .limit(q ? 200 : 100);
+    .limit(5000);
   if (activeFilter !== 'all') query = query.eq('status', activeFilter);
   if (q) {
     // Match across order_number / customer_name / customer_email by ILIKE,
