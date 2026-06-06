@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import CountrySelect from '@/components/account/CountrySelect';
 import { readDraft, writeDraft, type ShippingSnapshot } from '@/lib/checkout/state';
+import { localePath } from '@/lib/i18n';
 
 export interface ProfileSeed {
   fullName: string;
@@ -56,7 +57,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     writeDraft({ shipping: form });
-    router.push(`/${locale}/checkout/disclaimers`);
+    router.push(localePath(locale, '/checkout/disclaimers'));
   }
 
   if (!hydrated) {

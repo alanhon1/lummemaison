@@ -4,6 +4,7 @@ import { useActionState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { requestPasswordReset, type FormState } from '@/app/[locale]/account/actions';
+import { localePath } from '@/lib/i18n';
 
 const initialState: FormState = {};
 
@@ -22,11 +23,11 @@ export default function ForgotPasswordForm() {
         <p className="text-sm text-green-800 bg-green-50 border border-green-200 px-3 py-2 rounded-md" role="status">
           {t('forgotPassword.sent')}
         </p>
-        <Link href={`/${locale}/account/reset-password`} className="btn-gold w-full inline-flex items-center justify-center">
+        <Link href={localePath(locale, '/account/reset-password')} className="btn-gold w-full inline-flex items-center justify-center">
           {t('forgotPassword.openReset')}
         </Link>
         <p className="text-xs text-mist text-center">
-          <Link href={`/${locale}/account/login`} className="text-gold-dark hover:text-gold underline underline-offset-2">
+          <Link href={localePath(locale, '/account/login')} className="text-gold-dark hover:text-gold underline underline-offset-2">
             {t('forgotPassword.backToLogin')}
           </Link>
         </p>
@@ -61,7 +62,7 @@ export default function ForgotPasswordForm() {
       </button>
 
       <p className="text-xs text-mist text-center">
-        <Link href={`/${locale}/account/login`} className="text-gold-dark hover:text-gold underline underline-offset-2">
+        <Link href={localePath(locale, '/account/login')} className="text-gold-dark hover:text-gold underline underline-offset-2">
           {t('forgotPassword.backToLogin')}
         </Link>
       </p>

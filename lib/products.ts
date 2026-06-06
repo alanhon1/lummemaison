@@ -46,6 +46,13 @@ export interface Product {
   indication?: string;
   packaging?: string;
   protocol?: string;
+  // Russian translations, entered by admin and stored on the product itself
+  // (so they persist via the catalogue store). Empty/absent → English fallback.
+  specification_ru?: string;
+  description_ru?: string;
+  indication_ru?: string;
+  packaging_ru?: string;
+  protocol_ru?: string;
   price: number;
   tags: string[];
   isNew: boolean;
@@ -88,27 +95,37 @@ export function getGroupRange(groupId: string): { min: number; max: number } | n
   return _groupRangeCache.get(groupId) ?? null;
 }
 
+// Resolution order for a localized field:
+//   1. the product's own RU field (new home, e.g. `description_ru`)
+//   2. the legacy bundled translations file (fallback for not-yet-migrated rows)
+//   3. the English value
+function localized(
+  product: Product,
+  locale: string,
+  field: keyof ProductTranslation,
+  ruValue: string | undefined,
+): string {
+  if (locale === 'ru' && ruValue) return ruValue;
+  const legacy = TRANSLATIONS[locale]?.[String(product.id)]?.[field];
+  return legacy || (product[field] as string | undefined) || '';
+}
+
 export function getLocalizedDescription(product: Product, locale: string): string {
-  const t = TRANSLATIONS[locale]?.[String(product.id)]?.description;
-  return t || product.description;
+  return localized(product, locale, 'description', product.description_ru) || product.description;
 }
 
 export function getLocalizedSpecification(product: Product, locale: string): string {
-  const t = TRANSLATIONS[locale]?.[String(product.id)]?.specification;
-  return t || product.specification;
+  return localized(product, locale, 'specification', product.specification_ru) || product.specification;
 }
 
 export function getLocalizedIndication(product: Product, locale: string): string {
-  const t = TRANSLATIONS[locale]?.[String(product.id)]?.indication;
-  return t || product.indication || '';
+  return localized(product, locale, 'indication', product.indication_ru);
 }
 
 export function getLocalizedPackaging(product: Product, locale: string): string {
-  const t = TRANSLATIONS[locale]?.[String(product.id)]?.packaging;
-  return t || product.packaging || '';
+  return localized(product, locale, 'packaging', product.packaging_ru);
 }
 
 export function getLocalizedProtocol(product: Product, locale: string): string {
-  const t = TRANSLATIONS[locale]?.[String(product.id)]?.protocol;
-  return t || product.protocol || '';
+  return localized(product, locale, 'protocol', product.protocol_ru);
 }

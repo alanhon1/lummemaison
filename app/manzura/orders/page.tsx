@@ -194,7 +194,45 @@ export default async function AdminOrdersPage({ searchParams }: PageProps) {
       {rows.length === 0 ? (
         <p className="text-sm text-mist border border-dashed border-bone p-8 text-center">No orders yet.</p>
       ) : (
-        <div className="bg-white border border-bone overflow-hidden">
+        <>
+        {/* Mobile: stacked cards (avoids horizontal scroll on a phone) */}
+        <div className="md:hidden space-y-3">
+          {rows.map(o => {
+            const display = o.order_seq !== null ? formatOrderNumber(o.order_seq) : o.order_number;
+            const hasProof = !!o.payment_proof_path || !!o.payment_transaction_link;
+            const b = statusBadge(o.status);
+            return (
+              <Link
+                key={o.id}
+                href={`/manzura/orders/${o.id}`}
+                className="block bg-white border border-bone rounded-sm p-4 hover:border-gold transition-colors"
+              >
+                <div className="flex items-center justify-between gap-2 mb-1.5">
+                  <span className="font-mono text-charcoal">{display}</span>
+                  <span className={`text-[10px] uppercase tracking-widest px-2 py-1 rounded-full ${b.cls}`}>{b.label}</span>
+                </div>
+                <p className="text-sm text-charcoal leading-tight">{o.customer_name}</p>
+                <p className="text-[11px] text-mist truncate">{o.customer_email}</p>
+                <div className="flex items-center justify-between mt-2 text-xs">
+                  <span className="text-mist">
+                    {new Date(o.created_at).toLocaleDateString()}
+                    {hasProof && (
+                      <span className="text-emerald-700 ml-1">
+                        {o.payment_proof_path ? '🖼' : ''}
+                        {o.payment_transaction_link ? '🔗' : ''}
+                      </span>
+                    )}
+                  </span>
+                  <span className="text-charcoal font-semibold">{formatTotal(o.total_cents, o.currency)}</span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Desktop: table */}
+        <div className="hidden md:block bg-white border border-bone overflow-hidden">
+          <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead className="bg-cream border-b border-bone">
               <tr className="text-[10px] uppercase tracking-widest text-mist">
@@ -255,7 +293,9 @@ export default async function AdminOrdersPage({ searchParams }: PageProps) {
               })}
             </tbody>
           </table>
+          </div>
         </div>
+        </>
       )}
     </div>
   );

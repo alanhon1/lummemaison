@@ -6,6 +6,7 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
+import { localePath } from '@/lib/i18n';
 
 export default function CartPageClient() {
   const t = useTranslations('cart');
@@ -20,7 +21,7 @@ export default function CartPageClient() {
         <ShoppingBag size={48} className="text-bone mx-auto mb-4" />
         <p className="font-display text-2xl font-light mb-3">{t('empty')}</p>
         <p className="text-sm text-mist mb-8">{t('emptyHint')}</p>
-        <Link href={`/${locale}/catalogue`} className="btn-primary">
+        <Link href={localePath(locale, '/catalogue')} className="btn-primary">
           {t('continueShopping')}
         </Link>
       </div>
@@ -78,7 +79,7 @@ export default function CartPageClient() {
 
         <div className="flex justify-between pt-2">
           <Link
-            href={`/${locale}/catalogue`}
+            href={localePath(locale, '/catalogue')}
             className="text-xs text-mist hover:text-gold transition-colors flex items-center gap-1"
           >
             ← {t('continueShopping')}
@@ -113,7 +114,7 @@ export default function CartPageClient() {
           <span className="font-display text-2xl font-light">${totalPrice().toFixed(2)}</span>
         </div>
         <Link
-          href={`/${locale}/checkout`}
+          href={localePath(locale, '/checkout')}
           className="btn-primary w-full text-center flex items-center justify-center gap-2"
         >
           {t('checkout')}

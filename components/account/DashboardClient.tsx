@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Search, X } from 'lucide-react';
 import { updateProfile, logout, type FormState } from '@/app/[locale]/account/actions';
+import { localePath } from '@/lib/i18n';
 import CountrySelect from './CountrySelect';
 import { findCountry } from '@/lib/countries';
 import OrderStatusBadge from './OrderStatusBadge';
@@ -206,7 +207,7 @@ export default function DashboardClient({
               return (
                 <li key={o.id}>
                   <Link
-                    href={`/${locale}/account/orders/${detailSlug}`}
+                    href={localePath(locale, `/account/orders/${detailSlug}`)}
                     className="block border border-bone rounded-md p-4 bg-white hover:border-gold transition-colors group"
                   >
                     <div className="flex items-start justify-between gap-3">

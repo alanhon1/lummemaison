@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
+import { localePath } from '@/lib/i18n';
 import LoginForm from '@/components/account/LoginForm';
 
 interface PageProps {
@@ -19,7 +20,7 @@ export default async function LoginPage({ params }: PageProps) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (user) redirect(`/${locale}/account`);
+  if (user) redirect(localePath(locale, '/account'));
 
   const t = await getTranslations({ locale, namespace: 'account' });
 

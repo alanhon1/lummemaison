@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { login, type FormState } from '@/app/[locale]/account/actions';
+import { localePath } from '@/lib/i18n';
 
 const initialState: FormState = {};
 
@@ -20,9 +21,9 @@ export default function LoginForm() {
   const [state, formAction, pending] = useActionState(login, initialState);
 
   const signUpHref = returnTo
-    ? `/${locale}/account/signup?returnTo=${encodeURIComponent(returnTo)}`
-    : `/${locale}/account/signup`;
-  const forgotHref = `/${locale}/account/forgot-password`;
+    ? `${localePath(locale, '/account/signup')}?returnTo=${encodeURIComponent(returnTo)}`
+    : localePath(locale, '/account/signup');
+  const forgotHref = localePath(locale, '/account/forgot-password');
 
   return (
     <form action={formAction} className="space-y-5">

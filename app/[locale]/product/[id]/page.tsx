@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Tag, Layers } from 'lucide-react';
 import { getCategoryById, getLocalizedSpecification, categories } from '@/lib/products';
+import { localePath } from '@/lib/i18n';
 import { getProductById, getProductsByCategory, getProductVariants } from '@/lib/catalogue';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
@@ -61,14 +62,14 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
     ? variants.flatMap(v => {
         const main: GalleryItem = {
           productId: v.id,
-          href: `/${locale}/product/${v.id}`,
+          href: localePath(locale, `/product/${v.id}`),
           src: v.image,
           alt: v.name,
           variantLabel: v.variantLabel,
         };
         const extras: GalleryItem[] = (v.images ?? []).map(img => ({
           productId: v.id,
-          href: `/${locale}/product/${v.id}`,
+          href: localePath(locale, `/product/${v.id}`),
           src: img,
           alt: v.name,
           variantLabel: v.variantLabel,
@@ -78,13 +79,13 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
     : [
         {
           productId: product.id,
-          href: `/${locale}/product/${product.id}`,
+          href: localePath(locale, `/product/${product.id}`),
           src: product.image,
           alt: product.name,
         },
         ...(product.images ?? []).map(img => ({
           productId: product.id,
-          href: `/${locale}/product/${product.id}`,
+          href: localePath(locale, `/product/${product.id}`),
           src: img,
           alt: product.name,
         } as GalleryItem)),
@@ -106,13 +107,13 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs text-mist mb-8">
-          <Link href={`/${locale}`} className="hidden sm:inline hover:text-gold transition-colors">Home</Link>
+          <Link href={localePath(locale)} className="hidden sm:inline hover:text-gold transition-colors">Home</Link>
           <span className="hidden sm:inline">/</span>
-          <Link href={`/${locale}/catalogue`} className="hidden sm:inline hover:text-gold transition-colors">Catalogue</Link>
+          <Link href={localePath(locale, '/catalogue')} className="hidden sm:inline hover:text-gold transition-colors">Catalogue</Link>
           {category && (
             <>
               <span className="hidden sm:inline">/</span>
-              <Link href={`/${locale}/catalogue/${category.id}`} className="hover:text-gold transition-colors">
+              <Link href={localePath(locale, `/catalogue/${category.id}`)} className="hover:text-gold transition-colors">
                 {category.name}
               </Link>
             </>
@@ -146,7 +147,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
               {category && (
                 <>
                   <span>·</span>
-                  <Link href={`/${locale}/catalogue/${product.categoryId}`} className="text-gold hover:underline">
+                  <Link href={localePath(locale, `/catalogue/${product.categoryId}`)} className="text-gold hover:underline">
                     {category.name}
                   </Link>
                 </>

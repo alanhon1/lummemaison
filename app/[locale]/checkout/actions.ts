@@ -3,6 +3,7 @@
 import { randomUUID } from 'node:crypto';
 import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents } from '@/lib/checkout/state';
 import { sendOrderEmails, type OrderData } from '@/lib/email/sendOrderEmails';
@@ -303,14 +304,14 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
   try {
     input = JSON.parse(payload) as CreateOrderInput;
   } catch {
-    redirect(`/${locale}/checkout/payment?error=bad-payload`);
+    redirect(`${localePath(locale, '/checkout/payment')}?error=bad-payload`);
   }
   const result = await createOrder(input);
   if (!result.ok || result.orderSeq === undefined || !result.viewToken) {
     const message = encodeURIComponent(result.error ?? 'unknown');
-    redirect(`/${locale}/checkout/payment?error=${message}`);
+    redirect(`${localePath(locale, '/checkout/payment')}?error=${message}`);
   }
   redirect(
-    `/${locale}/checkout/confirmation/${result.orderSeq}?t=${result.viewToken}`,
+    `${localePath(locale, `/checkout/confirmation/${result.orderSeq}`)}?t=${result.viewToken}`,
   );
 }

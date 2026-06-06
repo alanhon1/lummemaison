@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import ProductCard from '@/components/catalogue/ProductCard';
 import type { Product } from '@/lib/products';
+import { localePath } from '@/lib/i18n';
 
 interface ProductSectionProps {
   titleKey: string;
@@ -45,7 +46,7 @@ export default function ProductSection({
             <div className="gold-divider mt-3" />
           </div>
           <Link
-            href={`/${locale}/catalogue`}
+            href={localePath(locale, '/catalogue')}
             className="hidden md:flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-charcoal hover:text-gold transition-colors"
           >
             View All
@@ -69,7 +70,7 @@ export default function ProductSection({
 
         <div className="text-center mt-10 md:hidden">
           <Link
-            href={`/${locale}/catalogue`}
+            href={localePath(locale, '/catalogue')}
             className="btn-secondary inline-flex items-center gap-2 text-xs"
           >
             View All

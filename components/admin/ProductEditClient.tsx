@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Upload, Save, Trash2, ArrowLeft } from 'lucide-react';
-import type { Product, EnrichedInfo, Category } from '@/lib/products';
+import { Save, Trash2, ArrowLeft } from 'lucide-react';
+import type { Product, Category } from '@/lib/products';
 
 interface Props {
   product?: Product;
@@ -12,11 +12,7 @@ interface Props {
   isNew?: boolean;
 }
 
-interface LanguageNames {
-  nameEn: string;
-  nameRu: string;
-  nameKo: string;
-}
+const ALLOWED_UPLOAD_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/avif', 'image/gif'];
 
 export default function ProductEditClient({ product, categories, isNew }: Props) {
   const router = useRouter();
@@ -26,17 +22,17 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
     categoryId: categories[0]?.id ?? '', tags: [], isNew: false,
     isSale: false, isBestSeller: false, inStock: true, image: '',
   });
-  const [enriched, setEnriched] = useState<EnrichedInfo>(product?.enrichedInfo ?? {});
-  const [langNames, setLangNames] = useState<LanguageNames>({ nameEn: '', nameRu: '', nameKo: '' });
   const [isDirty, setIsDirty] = useState(false);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [uploadSuccess, setUploadSuccess] = useState(false);
   const [deleting, setDeleting] = useState(false);
-  const ALLOWED_UPLOAD_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/avif', 'image/gif'];
   const [isDragging, setIsDragging] = useState(false);
-  const [activeTab, setActiveTab] = useState<'basic' | 'enriched' | 'languages'>('basic');
+  // For NEW products there's no id yet, so we hold the chosen file and upload it
+  // after the product is created (which assigns the id used in the storage path).
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
+  const [pendingPreview, setPendingPreview] = useState<string | null>(null);
 
   function update<K extends keyof Product>(key: K, value: Product[K]) {
     setForm(f => ({ ...f, [key]: value }));
@@ -51,18 +47,36 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [isDirty]);
 
-  async function uploadFile(file: File) {
-    if (!product) return;
-    setUploadError(null);
-    setUploadSuccess(false);
+  // Clean up the object URL used for the new-product local preview.
+  useEffect(() => {
+    return () => { if (pendingPreview) URL.revokeObjectURL(pendingPreview); };
+  }, [pendingPreview]);
+
+  function validateImage(file: File): string | null {
     if (!ALLOWED_UPLOAD_TYPES.includes(file.type)) {
-      setUploadError(`Unsupported file type: ${file.type || 'unknown'}. Use JPG, PNG, WebP, AVIF, or GIF.`);
-      return;
+      return `Unsupported file type: ${file.type || 'unknown'}. Use JPG, PNG, WebP, AVIF, or GIF.`;
     }
     if (file.size > 10 * 1024 * 1024) {
-      setUploadError(`File too large (${(file.size / 1024 / 1024).toFixed(1)}MB > 10MB).`);
+      return `File too large (${(file.size / 1024 / 1024).toFixed(1)}MB > 10MB).`;
+    }
+    return null;
+  }
+
+  async function uploadFile(file: File) {
+    setUploadError(null);
+    setUploadSuccess(false);
+    const err = validateImage(file);
+    if (err) { setUploadError(err); return; }
+
+    // New product: no id yet — hold the file and upload after create (on Save).
+    if (isNew || !product) {
+      if (pendingPreview) URL.revokeObjectURL(pendingPreview);
+      setPendingFile(file);
+      setPendingPreview(URL.createObjectURL(file));
+      setIsDirty(true);
       return;
     }
+
     setUploading(true);
     try {
       const fd = new FormData();
@@ -72,8 +86,8 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
         const data = await res.json().catch(() => ({} as { error?: string; detail?: string }));
         throw new Error(data.detail || data.error || `Upload failed (HTTP ${res.status})`);
       }
-      const data: { ok: boolean; path: string } = await res.json();
-      update('image', `${data.path}?v=${Date.now()}`);
+      const data: { ok: boolean; url: string } = await res.json();
+      update('image', data.url);
       setUploadSuccess(true);
       if (fileInputRef.current) fileInputRef.current.value = '';
     } catch (err) {
@@ -101,37 +115,49 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   async function handleSave() {
     setSaving(true);
     try {
-      const body = {
-        ...form,
-        enrichedInfo: Object.keys(enriched).length ? enriched : undefined,
-        nameEn: langNames.nameEn || undefined,
-        nameRu: langNames.nameRu || undefined,
-        nameKo: langNames.nameKo || undefined,
-      };
       if (isNew) {
         const res = await fetch('/api/admin/products', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
+          body: JSON.stringify(form),
         });
+        if (!res.ok) throw new Error('Create failed');
         const data = await res.json();
-        setIsDirty(false);
-        router.push(`/manzura/products/${data.product.id}`);
-      } else {
-        try {
-          const res = await fetch(`/api/admin/products/${product!.id}`, {
-            method: 'PATCH',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body),
-          });
-          if (!res.ok) throw new Error('Save failed');
-          setIsDirty(false);
-          setUploadSuccess(false);
-          router.refresh();
-        } catch (err) {
-          alert(err instanceof Error ? err.message : 'Save failed');
+        const newId = data.product.id as number;
+
+        // Now that we have an id, upload the held image and attach its URL.
+        if (pendingFile) {
+          try {
+            const fd = new FormData();
+            fd.append('file', pendingFile);
+            const up = await fetch(`/api/admin/upload-image?id=${newId}`, { method: 'POST', body: fd });
+            if (up.ok) {
+              const { url } = await up.json();
+              await fetch(`/api/admin/products/${newId}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: url }),
+              });
+            }
+          } catch {
+            // Product is created; image can be added from the edit screen.
+          }
         }
+        setIsDirty(false);
+        router.push(`/manzura/products/${newId}`);
+      } else {
+        const res = await fetch(`/api/admin/products/${product!.id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(form),
+        });
+        if (!res.ok) throw new Error('Save failed');
+        setIsDirty(false);
+        setUploadSuccess(false);
+        router.refresh();
       }
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Save failed');
     } finally {
       setSaving(false);
     }
@@ -152,21 +178,16 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   }
 
   const tagsStr = (form.tags ?? []).join(', ');
-
-  function tabClass(tab: 'basic' | 'enriched' | 'languages') {
-    return `px-5 py-3 text-xs font-semibold tracking-wider uppercase capitalize border-b-2 -mb-px transition-colors ${
-      activeTab === tab ? 'border-gold text-gold' : 'border-transparent text-mist hover:text-charcoal'
-    }`;
-  }
+  const previewSrc = pendingPreview || form.image || '';
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
-      <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-4">
-          <Link href="/manzura/products" className="text-mist hover:text-gold transition-colors">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-8">
+        <div className="flex items-center gap-4 min-w-0">
+          <Link href="/manzura/products" className="text-mist hover:text-gold transition-colors shrink-0">
             <ArrowLeft size={18} />
           </Link>
-          <h1 className="font-display text-3xl font-light text-charcoal">
+          <h1 className="font-display text-2xl sm:text-3xl font-light text-charcoal truncate">
             {isNew ? 'New Product' : `#${product?.id} ${product?.name}`}
           </h1>
         </div>
@@ -196,167 +217,111 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Image — only shown for existing products */}
-        {!isNew && (
-          <div>
-            <div className="border border-bone bg-white aspect-square flex items-center justify-center mb-3 overflow-hidden">
-              {form.image
-                ? <img src={form.image} alt={form.name} className="w-full h-full object-contain" />
-                : <div className="text-mist text-xs">No image</div>
-              }
-            </div>
-            <div
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-sm p-4 text-center cursor-pointer transition-colors ${isDragging ? 'border-gold bg-gold/5' : 'border-bone hover:border-gold/50'}`}
-            >
-              <p className="text-sm text-stone-500">
-                {uploading ? 'Uploading…' : 'Drag & drop or click to upload'}
-              </p>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleFileChange}
-              />
-            </div>
-            {uploadError && <p className="text-red-600 text-xs mt-1">{uploadError}</p>}
-            {uploadSuccess && !uploadError && (
-              <p className="text-amber-600 text-xs mt-1 font-semibold">
-                Upload OK — click Save (top right) to apply to the catalogue.
-              </p>
-            )}
+        {/* Image — shown for both new and existing products */}
+        <div>
+          <div className="border border-bone bg-white aspect-square flex items-center justify-center mb-3 overflow-hidden">
+            {previewSrc
+              ? <img src={previewSrc} alt={form.name} className="w-full h-full object-contain" />
+              : <div className="text-mist text-xs">No image</div>
+            }
           </div>
-        )}
+          <div
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onClick={() => fileInputRef.current?.click()}
+            className={`border-2 border-dashed rounded-sm p-4 text-center cursor-pointer transition-colors ${isDragging ? 'border-gold bg-gold/5' : 'border-bone hover:border-gold/50'}`}
+          >
+            <p className="text-sm text-stone-500">
+              {uploading ? 'Uploading…' : 'Drag & drop or click to upload'}
+            </p>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleFileChange}
+            />
+          </div>
+          {uploadError && <p className="text-red-600 text-xs mt-1">{uploadError}</p>}
+          {isNew && pendingFile && !uploadError && (
+            <p className="text-amber-600 text-xs mt-1 font-semibold">
+              Image ready — it uploads when you click Save.
+            </p>
+          )}
+          {!isNew && uploadSuccess && !uploadError && (
+            <p className="text-amber-600 text-xs mt-1 font-semibold">
+              Upload OK — click Save (top right) to apply to the catalogue.
+            </p>
+          )}
+        </div>
 
         {/* Form */}
-        <div className={isNew ? 'lg:col-span-3' : 'lg:col-span-2'}>
-          <div className="flex gap-0 border-b border-bone mb-6">
-            <button onClick={() => setActiveTab('basic')} className={tabClass('basic')}>Basic Info</button>
-            <button onClick={() => setActiveTab('enriched')} className={tabClass('enriched')}>Enriched Info</button>
-            <button onClick={() => setActiveTab('languages')} className={tabClass('languages')}>Languages</button>
+        <div className="lg:col-span-2">
+          <div className="space-y-4">
+            <Field label="Name">
+              <input value={form.name ?? ''} onChange={e => update('name', e.target.value)}
+                className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
+            </Field>
+            <div className="grid grid-cols-2 gap-4">
+              <Field label="Price ($)">
+                <input type="number" step="0.01" value={form.price ?? 0} onChange={e => update('price', parseFloat(e.target.value))}
+                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
+              </Field>
+              <Field label="MOQ (units)">
+                <input type="number" value={form.moq ?? 1} onChange={e => update('moq', parseInt(e.target.value))}
+                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
+              </Field>
+            </div>
+            <Field label="Category">
+              <select value={form.categoryId ?? ''} onChange={e => update('categoryId', e.target.value)}
+                className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white">
+                {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+              </select>
+            </Field>
+
+            {/* Translatable fields: English + Russian side by side. RU is optional
+                and falls back to English on the storefront when empty. */}
+            <TranslatableField
+              label="Specification" rows={1}
+              en={form.specification ?? ''} onEn={v => update('specification', v)}
+              ru={form.specification_ru ?? ''} onRu={v => update('specification_ru', v)}
+            />
+            <TranslatableField
+              label="Description" rows={4}
+              en={form.description ?? ''} onEn={v => update('description', v)}
+              ru={form.description_ru ?? ''} onRu={v => update('description_ru', v)}
+            />
+            <TranslatableField
+              label="Indication" rows={3} placeholder="What this product is indicated for…"
+              en={form.indication ?? ''} onEn={v => update('indication', v)}
+              ru={form.indication_ru ?? ''} onRu={v => update('indication_ru', v)}
+            />
+            <TranslatableField
+              label="Packaging" rows={2} placeholder="e.g. 1 × 1.0 ml prefilled syringe, 2 × needles…"
+              en={form.packaging ?? ''} onEn={v => update('packaging', v)}
+              ru={form.packaging_ru ?? ''} onRu={v => update('packaging_ru', v)}
+            />
+            <TranslatableField
+              label="Protocol (shown on product page)" rows={4} placeholder="How to use / treatment protocol…"
+              en={form.protocol ?? ''} onEn={v => update('protocol', v)}
+              ru={form.protocol_ru ?? ''} onRu={v => update('protocol_ru', v)}
+            />
+
+            <Field label="Tags (comma-separated)">
+              <input value={tagsStr} onChange={e => update('tags', e.target.value.split(',').map(t => t.trim()).filter(Boolean))}
+                className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
+            </Field>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+              {(['isNew', 'isSale', 'isBestSeller', 'inStock'] as const).map(key => (
+                <label key={key} className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={!!form[key]} onChange={e => update(key, e.target.checked as Product[typeof key])}
+                    className="accent-gold" />
+                  <span className="text-xs capitalize">{key.replace('is', '').replace('Best', ' Best ')}</span>
+                </label>
+              ))}
+            </div>
           </div>
-
-          {activeTab === 'basic' && (
-            <div className="space-y-4">
-              <Field label="Name">
-                <input value={form.name ?? ''} onChange={e => update('name', e.target.value)}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
-              </Field>
-              <div className="grid grid-cols-2 gap-4">
-                <Field label="Price ($)">
-                  <input type="number" step="0.01" value={form.price ?? 0} onChange={e => update('price', parseFloat(e.target.value))}
-                    className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
-                </Field>
-                <Field label="MOQ (units)">
-                  <input type="number" value={form.moq ?? 1} onChange={e => update('moq', parseInt(e.target.value))}
-                    className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
-                </Field>
-              </div>
-              <Field label="Category">
-                <select value={form.categoryId ?? ''} onChange={e => update('categoryId', e.target.value)}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white">
-                  {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
-                </select>
-              </Field>
-              <Field label="Specification">
-                <input value={form.specification ?? ''} onChange={e => update('specification', e.target.value)}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
-              </Field>
-              <Field label="Description">
-                <textarea rows={4} value={form.description ?? ''} onChange={e => update('description', e.target.value)}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
-              </Field>
-              <Field label="Indication">
-                <textarea rows={3} value={form.indication ?? ''} onChange={e => update('indication', e.target.value)}
-                  placeholder="What this product is indicated for…"
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
-              </Field>
-              <Field label="Packaging">
-                <textarea rows={2} value={form.packaging ?? ''} onChange={e => update('packaging', e.target.value)}
-                  placeholder="e.g. 1 × 1.0 ml prefilled syringe, 2 × needles…"
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
-              </Field>
-              <Field label="Protocol (shown on product page)">
-                <textarea rows={4} value={form.protocol ?? ''} onChange={e => update('protocol', e.target.value)}
-                  placeholder="How to use / treatment protocol…"
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
-              </Field>
-              <Field label="Tags (comma-separated)">
-                <input value={tagsStr} onChange={e => update('tags', e.target.value.split(',').map(t => t.trim()).filter(Boolean))}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
-              </Field>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                {(['isNew', 'isSale', 'isBestSeller', 'inStock'] as const).map(key => (
-                  <label key={key} className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={!!form[key]} onChange={e => update(key, e.target.checked as Product[typeof key])}
-                      className="accent-gold" />
-                    <span className="text-xs capitalize">{key.replace('is', '').replace('Best', ' Best ')}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'enriched' && (
-            <div className="space-y-4">
-              <Field label="Benefits (one per line)">
-                <textarea rows={5} value={(enriched.benefits ?? []).join('\n')}
-                  onChange={e => { setEnriched(r => ({ ...r, benefits: e.target.value.split('\n').filter(Boolean) })); setIsDirty(true); }}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
-              </Field>
-              <Field label="Treatment Areas (comma-separated)">
-                <input value={(enriched.treatmentAreas ?? []).join(', ')}
-                  onChange={e => { setEnriched(r => ({ ...r, treatmentAreas: e.target.value.split(',').map(t => t.trim()).filter(Boolean) })); setIsDirty(true); }}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
-              </Field>
-              <Field label="Ingredients">
-                <input value={enriched.ingredients ?? ''}
-                  onChange={e => { setEnriched(r => ({ ...r, ingredients: e.target.value })); setIsDirty(true); }}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
-              </Field>
-              <Field label="Duration">
-                <input value={enriched.duration ?? ''}
-                  onChange={e => { setEnriched(r => ({ ...r, duration: e.target.value })); setIsDirty(true); }}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
-              </Field>
-              <Field label="Protocol / How to Use">
-                <textarea rows={4} value={enriched.protocol ?? ''}
-                  onChange={e => { setEnriched(r => ({ ...r, protocol: e.target.value })); setIsDirty(true); }}
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none" />
-              </Field>
-            </div>
-          )}
-
-          {activeTab === 'languages' && (
-            <div className="space-y-4">
-              <p className="text-sm text-stone-500">Category language names (for display in storefront)</p>
-              <Field label="English">
-                <input
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white"
-                  value={langNames.nameEn}
-                  onChange={e => { setLangNames(l => ({ ...l, nameEn: e.target.value })); setIsDirty(true); }}
-                />
-              </Field>
-              <Field label="Russian (RU)">
-                <input
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white"
-                  value={langNames.nameRu}
-                  onChange={e => { setLangNames(l => ({ ...l, nameRu: e.target.value })); setIsDirty(true); }}
-                />
-              </Field>
-              <Field label="Korean (KO)">
-                <input
-                  className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white"
-                  value={langNames.nameKo}
-                  onChange={e => { setLangNames(l => ({ ...l, nameKo: e.target.value })); setIsDirty(true); }}
-                />
-              </Field>
-            </div>
-          )}
         </div>
       </div>
     </div>
@@ -368,6 +333,36 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
     <div>
       <label className="block text-[10px] uppercase tracking-[0.2em] text-mist mb-1.5">{label}</label>
       {children}
+    </div>
+  );
+}
+
+function TranslatableField({
+  label, en, onEn, ru, onRu, rows = 1, placeholder,
+}: {
+  label: string;
+  en: string; onEn: (v: string) => void;
+  ru: string; onRu: (v: string) => void;
+  rows?: number; placeholder?: string;
+}) {
+  const cls = 'w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none';
+  return (
+    <div>
+      <label className="block text-[10px] uppercase tracking-[0.2em] text-mist mb-1.5">{label}</label>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <span className="block text-[9px] uppercase tracking-[0.15em] text-mist/70 mb-1">English</span>
+          {rows > 1
+            ? <textarea rows={rows} value={en} onChange={e => onEn(e.target.value)} placeholder={placeholder} className={cls} />
+            : <input value={en} onChange={e => onEn(e.target.value)} placeholder={placeholder} className={cls} />}
+        </div>
+        <div>
+          <span className="block text-[9px] uppercase tracking-[0.15em] text-mist/70 mb-1">Русский (optional)</span>
+          {rows > 1
+            ? <textarea rows={rows} value={ru} onChange={e => onRu(e.target.value)} className={cls} />
+            : <input value={ru} onChange={e => onRu(e.target.value)} className={cls} />}
+        </div>
+      </div>
     </div>
   );
 }

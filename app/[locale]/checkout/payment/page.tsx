@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
+import { localePath } from '@/lib/i18n';
 import CheckoutSteps from '@/components/checkout/CheckoutSteps';
 import PaymentStep, { type PaymentInfo } from '@/components/checkout/PaymentStep';
 import { siteConfig } from '@/lib/site-config';
@@ -38,8 +39,8 @@ export default async function CheckoutPaymentPage({ params, searchParams }: Page
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) {
-    const returnTo = `/${locale}/checkout/payment`;
-    redirect(`/${locale}/account/login?returnTo=${encodeURIComponent(returnTo)}`);
+    const returnTo = localePath(locale, '/checkout/payment');
+    redirect(`${localePath(locale, '/account/login')}?returnTo=${encodeURIComponent(returnTo)}`);
   }
 
   const t = await getTranslations({ locale, namespace: 'checkout' });

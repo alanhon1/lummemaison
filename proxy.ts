@@ -40,7 +40,7 @@ function maybeGeoBlock(req: NextRequest): NextResponse | null {
 const intlMiddleware = createMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'always',
+  localePrefix: 'as-needed',
   localeDetection: false,
 });
 
@@ -112,11 +112,23 @@ export async function proxy(req: NextRequest) {
   const blocked = maybeGeoBlock(req);
   if (blocked) return blocked;
 
-  // Legacy /ko/* URLs → redirect to /en/* (Korean locale removed)
-  if (pathname === '/ko' || pathname.startsWith('/ko/')) {
+  // English now lives at the root (localePrefix: 'as-needed'). Permanently
+  // redirect legacy /en/* URLs (old bookmarks, external links, search index)
+  // to the unprefixed path.
+  if (pathname === '/en' || pathname.startsWith('/en/')) {
+    const rest = pathname.replace(/^\/en/, '') || '/';
     return withSupabaseSession(
       req,
-      NextResponse.redirect(new URL('/en' + (pathname.replace(/^\/ko/, '') || '/'), req.url), 308),
+      NextResponse.redirect(new URL(rest + req.nextUrl.search, req.url), 301),
+    );
+  }
+
+  // Legacy /ko/* URLs → redirect to the (English) root (Korean locale removed)
+  if (pathname === '/ko' || pathname.startsWith('/ko/')) {
+    const rest = pathname.replace(/^\/ko/, '') || '/';
+    return withSupabaseSession(
+      req,
+      NextResponse.redirect(new URL(rest + req.nextUrl.search, req.url), 308),
     );
   }
 

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { ChevronDown } from 'lucide-react';
 import type { Product } from '@/lib/products';
+import { localePath } from '@/lib/i18n';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 
 interface VariantSelectorProps {
@@ -21,7 +22,7 @@ export default function VariantSelector({ currentProduct, variants }: VariantSel
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const id = parseInt(e.target.value);
     if (!isNaN(id) && id !== currentProduct.id) {
-      router.push(`/${locale}/product/${id}`);
+      router.push(localePath(locale, `/product/${id}`));
     }
   }
 

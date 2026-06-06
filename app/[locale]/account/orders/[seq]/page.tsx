@@ -2,6 +2,7 @@ import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { localePath } from '@/lib/i18n';
 import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { carrierLabel, carrierTrackUrl } from '@/lib/orders/carriers';
@@ -32,7 +33,7 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) redirect(`/${locale}/account/login`);
+  if (!user) redirect(localePath(locale, '/account/login'));
 
   // Param is either the numeric order_seq (new SGL-style) or a legacy
   // order_number (LM-YYYYMMDD-XXXX). Same dual lookup as the public
@@ -92,7 +93,7 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
       <MessagesSeenMarker orderId={order.id} />
       <div className="max-w-3xl mx-auto">
         <Link
-          href={`/${locale}/account`}
+          href={localePath(locale, '/account')}
           className="text-xs tracking-widest uppercase text-mist hover:text-charcoal underline underline-offset-4"
         >
           ← {t('back')}

@@ -4,6 +4,7 @@ import { useActionState, useState } from 'react';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { verifyResetCode, resetPassword, type FormState } from '@/app/[locale]/account/actions';
+import { localePath } from '@/lib/i18n';
 
 const initialState: FormState = {};
 const inputClass =
@@ -163,12 +164,12 @@ export default function ResetPasswordForm() {
 
       <div className="text-center space-y-2">
         <p className="text-xs">
-          <Link href={`/${locale}/account/forgot-password`} className="text-gold-dark hover:text-gold underline underline-offset-2">
+          <Link href={localePath(locale, '/account/forgot-password')} className="text-gold-dark hover:text-gold underline underline-offset-2">
             {t('resetPassword.needCode')}
           </Link>
         </p>
         <p className="text-xs text-mist">
-          <Link href={`/${locale}/account/login`} className="text-gold-dark hover:text-gold underline underline-offset-2">
+          <Link href={localePath(locale, '/account/login')} className="text-gold-dark hover:text-gold underline underline-offset-2">
             {t('resetPassword.backToLogin')}
           </Link>
         </p>

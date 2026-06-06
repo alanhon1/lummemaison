@@ -7,6 +7,7 @@ import { AlertTriangle, MessageCircle, FileCheck2, Loader2 } from 'lucide-react'
 import { readDraft, computeShippingCents, type CheckoutDraft } from '@/lib/checkout/state';
 import { useCartStore } from '@/lib/store';
 import { placeOrderAction, uploadPaymentProof } from '@/app/[locale]/checkout/actions';
+import { localePath } from '@/lib/i18n';
 import CopyButton from './CopyButton';
 
 const ACCEPTED_MIME = [
@@ -64,7 +65,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
   useEffect(() => {
     const d = readDraft();
     if (!d.shipping || !d.disclaimers) {
-      router.replace(`/${locale}/checkout/shipping`);
+      router.replace(localePath(locale, '/checkout/shipping'));
       return;
     }
     setDraft(d);
@@ -78,7 +79,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
       <div className="bg-white border border-bone rounded-lg p-8 text-center">
         <p className="font-display text-xl text-charcoal mb-3">{t('emptyCart.title')}</p>
         <p className="text-sm text-mist mb-6">{t('emptyCart.subtitle')}</p>
-        <button onClick={() => router.push(`/${locale}/catalogue`)} className="btn-gold">
+        <button onClick={() => router.push(localePath(locale, '/catalogue'))} className="btn-gold">
           {t('emptyCart.cta')}
         </button>
       </div>
@@ -369,7 +370,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
         <input type="hidden" name="payload" value={payload} />
         <button
           type="button"
-          onClick={() => router.push(`/${locale}/checkout/disclaimers`)}
+          onClick={() => router.push(localePath(locale, '/checkout/disclaimers'))}
           className="text-xs font-semibold tracking-widest uppercase px-6 py-3 rounded-md border border-charcoal/30 text-charcoal hover:border-gold-dark hover:text-gold-dark transition-colors"
         >
           {t('back')}

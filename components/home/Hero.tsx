@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { localePath } from '@/lib/i18n';
 
 export default function Hero() {
   const t = useTranslations('home.hero');
@@ -131,14 +132,14 @@ export default function Hero() {
             className="flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <Link
-              href={`/${locale}/catalogue`}
+              href={localePath(locale, '/catalogue')}
               className="btn-gold btn-loop w-full sm:w-auto gap-3 group"
             >
               {t('cta')}
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              href={`/${locale}/contact`}
+              href={localePath(locale, '/contact')}
               className="btn-secondary w-full sm:w-auto"
             >
               {t('ctaSecondary')}

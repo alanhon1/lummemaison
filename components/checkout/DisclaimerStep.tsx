@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { readDraft, writeDraft } from '@/lib/checkout/state';
+import { localePath } from '@/lib/i18n';
 
 const KEYS = ['shipping', 'delivery', 'stock', 'temperatureSensitive', 'fragileItems'] as const;
 type Key = (typeof KEYS)[number];
@@ -34,7 +35,7 @@ export default function DisclaimerStep() {
   useEffect(() => {
     const draft = readDraft();
     if (!draft.shipping) {
-      router.replace(`/${locale}/checkout/shipping`);
+      router.replace(localePath(locale, '/checkout/shipping'));
       return;
     }
     if (draft.disclaimers) {
@@ -64,7 +65,7 @@ export default function DisclaimerStep() {
         acceptedAt: new Date().toISOString(),
       },
     });
-    router.push(`/${locale}/checkout/payment`);
+    router.push(localePath(locale, '/checkout/payment'));
   }
 
   if (!hydrated) {
@@ -119,7 +120,7 @@ export default function DisclaimerStep() {
       <div className="flex flex-col-reverse sm:flex-row gap-3 sm:justify-end">
         <button
           type="button"
-          onClick={() => router.push(`/${locale}/checkout/shipping`)}
+          onClick={() => router.push(localePath(locale, '/checkout/shipping'))}
           className="text-xs font-semibold tracking-widest uppercase px-6 py-3 rounded-md border border-charcoal/30 text-charcoal hover:border-gold-dark hover:text-gold-dark transition-colors"
         >
           {t('back')}

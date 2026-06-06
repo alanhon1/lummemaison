@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { localePath } from '@/lib/i18n';
 import {
   sendSignupConfirmationEmail,
   sendPasswordResetCodeEmail,
@@ -111,7 +112,7 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
   // domain. Instead build a URL to our own /auth/confirm route handler, which
   // calls supabase.auth.verifyOtp on the SSR client so cookies land on
   // lumeemaison.com. After verification we redirect into /[locale]/account.
-  const nextPath = `/${input.locale}/account?welcome=1`;
+  const nextPath = `${localePath(input.locale, '/account')}?welcome=1`;
   const confirmUrl = `${origin}/auth/confirm?token_hash=${encodeURIComponent(hashedToken)}&type=email&next=${encodeURIComponent(nextPath)}`;
 
   const { error: profileError } = await admin.from('customer_profiles').insert({
@@ -165,16 +166,17 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
   const returnTo = String(formData.get('returnTo') ?? '');
   const params = new URLSearchParams({ checkInbox: '1' });
   if (returnTo) params.set('returnTo', returnTo);
-  redirect(`/${input.locale}/account/login?${params.toString()}`);
+  redirect(`${localePath(input.locale, '/account/login')}?${params.toString()}`);
 }
 
 function safeReturnTo(value: string, locale: string): string {
-  // Only allow same-origin paths under the active locale to prevent open
-  // redirects. Falls back to /[locale]/account.
-  if (value.startsWith(`/${locale}/`) && !value.startsWith(`/${locale}//`)) {
+  // Same-origin relative paths only (single leading slash) to prevent open
+  // redirects. English has no locale prefix now, so we can't key on
+  // `/${locale}/`. Falls back to the account page.
+  if (value.startsWith('/') && !value.startsWith('//')) {
     return value;
   }
-  return `/${locale}/account`;
+  return localePath(locale, '/account');
 }
 
 export async function login(_prev: FormState, formData: FormData): Promise<FormState> {
@@ -204,7 +206,7 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
     }
     return { error: error.message };
   }
-  redirect(returnTo ? safeReturnTo(returnTo, locale) : `/${locale}/account`);
+  redirect(returnTo ? safeReturnTo(returnTo, locale) : localePath(locale, '/account'));
 }
 
 // ---------------------------------------------------------------------------
@@ -363,14 +365,14 @@ export async function resetPassword(_prev: FormState, formData: FormData): Promi
   if (updateError) return { error: updateError.message };
 
   // Send them back to login. Banner shows "Password updated, please sign in".
-  redirect(`/${locale}/account/login?passwordReset=1`);
+  redirect(`${localePath(locale, '/account/login')}?passwordReset=1`);
 }
 
 export async function logout(locale: string) {
   const supabase = await createClient();
   await supabase.auth.signOut();
   revalidatePath('/', 'layout');
-  redirect(`/${locale}`);
+  redirect(localePath(locale));
 }
 
 export interface ProfileUpdateInput {

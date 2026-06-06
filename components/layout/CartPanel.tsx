@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
+import { localePath } from '@/lib/i18n';
 
 export default function CartPanel() {
   const t = useTranslations('cart');
@@ -126,7 +127,7 @@ export default function CartPanel() {
                 </span>
               </div>
               <Link
-                href={`/${locale}/checkout`}
+                href={localePath(locale, '/checkout')}
                 onClick={closeCart}
                 className="btn-primary w-full text-center block"
               >

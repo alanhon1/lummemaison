@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, Droplets, Sparkles, FlaskConical, Scissors, Pill, Layers, Heart, Dna, Zap, Shield, Gem, Microscope, Brush, Target, Syringe, Activity, Leaf, PenLine, Globe, Package, type LucideIcon } from 'lucide-react';
 import { categories } from '@/lib/products';
+import { localePath } from '@/lib/i18n';
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
   fillers: Droplets,
@@ -64,7 +65,7 @@ export default function CategoryGrid() {
                 transition={{ duration: 0.4, delay: i * 0.04 }}
               >
                 <Link
-                  href={`/${locale}/catalogue/${cat.id}`}
+                  href={localePath(locale, `/catalogue/${cat.id}`)}
                   className="group flex flex-col items-center gap-3"
                 >
                   <div className="relative w-14 h-14 md:w-20 md:h-20 rounded-full border border-gold/30 bg-cream flex items-center justify-center transition-all duration-300 group-hover:scale-105 group-hover:border-gold group-hover:shadow-[0_0_20px_rgba(201,169,110,0.35)]">
@@ -95,7 +96,7 @@ export default function CategoryGrid() {
           className="text-center mt-10"
         >
           <Link
-            href={`/${locale}/catalogue`}
+            href={localePath(locale, '/catalogue')}
             className="btn-secondary inline-flex items-center gap-2 text-xs"
           >
             {t('viewAll')}

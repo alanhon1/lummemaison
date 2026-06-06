@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
+import { localePath } from '@/lib/i18n';
 import CheckoutSteps from '@/components/checkout/CheckoutSteps';
 import ShippingForm, { type ProfileSeed } from '@/components/checkout/ShippingForm';
 
@@ -21,8 +22,8 @@ export default async function CheckoutShippingPage({ params }: PageProps) {
     data: { user },
   } = await supabase.auth.getUser();
   if (!user) {
-    const returnTo = `/${locale}/checkout/shipping`;
-    redirect(`/${locale}/account/login?returnTo=${encodeURIComponent(returnTo)}`);
+    const returnTo = localePath(locale, '/checkout/shipping');
+    redirect(`${localePath(locale, '/account/login')}?returnTo=${encodeURIComponent(returnTo)}`);
   }
 
   const { data: profile } = await supabase
@@ -33,7 +34,7 @@ export default async function CheckoutShippingPage({ params }: PageProps) {
 
   if (!profile) {
     // Customer signed up but profile row missing — finish signup first.
-    redirect(`/${locale}/account/signup`);
+    redirect(localePath(locale, '/account/signup'));
   }
 
   const seed: ProfileSeed = {

@@ -7,6 +7,7 @@ import { ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 import { getLocalizedSpecification, getGroupRange, type Product } from '@/lib/products';
+import { localePath } from '@/lib/i18n';
 import { useProductStock } from '@/lib/stock-store';
 import ProductImage from './ProductImage';
 
@@ -61,7 +62,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   if (layout === 'list') {
     return (
       <Link
-        href={`/${locale}/product/${product.id}`}
+        href={localePath(locale, `/product/${product.id}`)}
         onClick={rememberCatalogueUrl}
         className="flex gap-3 sm:gap-4 p-3 sm:p-4 bg-white border border-bone rounded-md hover:border-gold transition-all duration-300 group"
       >
@@ -120,7 +121,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
 
   return (
     <Link
-      href={`/${locale}/product/${product.id}`}
+      href={localePath(locale, `/product/${product.id}`)}
       onClick={rememberCatalogueUrl}
       className="product-card group block"
     >

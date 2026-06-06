@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { localePath } from '@/lib/i18n';
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -6,5 +7,5 @@ interface PageProps {
 
 export default async function CheckoutEntryPage({ params }: PageProps) {
   const { locale } = await params;
-  redirect(`/${locale}/checkout/shipping`);
+  redirect(localePath(locale, '/checkout/shipping'));
 }

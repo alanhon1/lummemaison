@@ -9,6 +9,7 @@ import { Search, Filter, X, LayoutGrid, List, ChevronDown } from 'lucide-react';
 import Fuse from 'fuse.js';
 import ProductCard from './ProductCard';
 import { categories, type Product } from '@/lib/products';
+import { localePath } from '@/lib/i18n';
 
 type SortOption = 'default' | 'price-asc' | 'price-desc' | 'name';
 
@@ -95,7 +96,8 @@ export default function CatalogueClient({ products, initialCategory }: { product
       if ('sort' in patch) apply('sort', patch.sort, v => !v || v === 'default');
       if ('page' in patch) apply('page', patch.page, v => !v || v === 1);
       const qs = params.toString();
-      router.replace(qs ? `/${locale}/catalogue?${qs}` : `/${locale}/catalogue`, { scroll: false });
+      const cataloguePath = localePath(locale, '/catalogue');
+      router.replace(qs ? `${cataloguePath}?${qs}` : cataloguePath, { scroll: false });
     },
     [locale, router, searchParams],
   );
@@ -121,7 +123,7 @@ export default function CatalogueClient({ products, initialCategory }: { product
     setNewOnly(false);
     setSortBy('default');
     setPage(1);
-    router.replace(`/${locale}/catalogue`, { scroll: false });
+    router.replace(localePath(locale, '/catalogue'), { scroll: false });
   };
 
   const hasActiveFilters = searchQuery || activeCategory || saleOnly || newOnly;

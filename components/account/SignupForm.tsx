@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { signup, type FormState } from '@/app/[locale]/account/actions';
+import { localePath } from '@/lib/i18n';
 import CountrySelect from './CountrySelect';
 
 const initialState: FormState = {};
@@ -19,8 +20,8 @@ export default function SignupForm() {
 
   const showFedex = country === 'US';
   const signInHref = returnTo
-    ? `/${locale}/account/login?returnTo=${encodeURIComponent(returnTo)}`
-    : `/${locale}/account/login`;
+    ? `${localePath(locale, '/account/login')}?returnTo=${encodeURIComponent(returnTo)}`
+    : localePath(locale, '/account/login');
 
   return (
     <form action={formAction} className="space-y-5">
@@ -144,7 +145,7 @@ export default function SignupForm() {
 
       <div className="space-y-2 text-center">
         <p className="text-xs">
-          <Link href={`/${locale}/account/forgot-password`} className="text-gold-dark hover:text-gold underline underline-offset-2">
+          <Link href={localePath(locale, '/account/forgot-password')} className="text-gold-dark hover:text-gold underline underline-offset-2">
             {t('signup.forgotPassword')}
           </Link>
         </p>

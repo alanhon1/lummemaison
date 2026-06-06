@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { siteConfig } from '@/lib/site-config';
+import { localePath } from '@/lib/i18n';
 import { Share2, MessageCircle, Send, ChevronDown } from 'lucide-react';
 import DisclaimerReset from '@/components/disclaimer/DisclaimerReset';
 
@@ -20,10 +21,10 @@ export default function Footer() {
   const tNav = useTranslations('nav');
   const locale = useLocale();
   const navLinks = [
-    { href: `/${locale}`, label: tNav('home') },
-    { href: `/${locale}/catalogue`, label: tNav('catalogue') },
-    { href: `/${locale}/about`, label: tNav('about') },
-    { href: `/${locale}/contact`, label: tNav('contact') },
+    { href: localePath(locale), label: tNav('home') },
+    { href: localePath(locale, '/catalogue'), label: tNav('catalogue') },
+    { href: localePath(locale, '/about'), label: tNav('about') },
+    { href: localePath(locale, '/contact'), label: tNav('contact') },
   ];
 
   return (

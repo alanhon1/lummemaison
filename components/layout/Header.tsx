@@ -6,7 +6,7 @@ import { useParams, usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { ShoppingBag, Search, Menu, X, Globe } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
-import { locales, type Locale } from '@/lib/i18n';
+import { locales, defaultLocale, localePath, type Locale } from '@/lib/i18n';
 
 const LOCALE_LABELS: Record<Locale, string> = { en: 'EN', ru: 'RU' };
 
@@ -35,26 +35,29 @@ export default function Header() {
 
   useEffect(() => { setMobileOpen(false); setLangOpen(false); }, [pathname]);
 
+  // Strip the current locale prefix to get the bare path, then re-apply the
+  // target locale's prefix (English has none).
   function getLocalePath(newLocale: Locale) {
-    const segments = pathname.split('/');
-    segments[1] = newLocale;
-    return segments.join('/');
+    const base = locale === defaultLocale
+      ? (pathname || '/')
+      : (pathname.replace(new RegExp(`^/${locale}`), '') || '/');
+    return localePath(newLocale, base);
   }
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/${locale}/catalogue?q=${encodeURIComponent(searchQuery)}`;
+      window.location.href = `${localePath(locale, '/catalogue')}?q=${encodeURIComponent(searchQuery)}`;
     }
     setSearchOpen(false);
   }
 
   const navLinks = [
-    { href: `/${locale}`, label: t('home') },
-    { href: `/${locale}/catalogue`, label: t('catalogue') },
-    { href: `/${locale}/about`, label: t('about') },
-    { href: `/${locale}/contact`, label: t('contact') },
-    { href: `/${locale}/account`, label: t('account') },
+    { href: localePath(locale), label: t('home') },
+    { href: localePath(locale, '/catalogue'), label: t('catalogue') },
+    { href: localePath(locale, '/about'), label: t('about') },
+    { href: localePath(locale, '/contact'), label: t('contact') },
+    { href: localePath(locale, '/account'), label: t('account') },
   ];
 
   return (
@@ -67,7 +70,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link
-            href={`/${locale}`}
+            href={localePath(locale)}
             className="font-display text-xl tracking-wide md:text-2xl md:tracking-widest font-light hover:text-gold transition-colors duration-300"
             style={{ color: 'var(--page-text)' }}
           >
@@ -197,7 +200,7 @@ export default function Header() {
 
               {/* Contact CTA */}
               <Link
-                href={`/${locale}/contact`}
+                href={localePath(locale, '/contact')}
                 className="w-full text-center text-xs font-semibold tracking-widest uppercase px-3 py-2.5 border rounded-md transition-colors"
                 style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}
               >

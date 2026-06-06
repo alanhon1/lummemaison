@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, X, Edit2, Trash2, Check, Loader2 } from 'lucide-react';
+import { Search, X, Edit2, Trash2, Check, Loader2, LayoutGrid, List } from 'lucide-react';
 import Fuse from 'fuse.js';
 import type { Product, Category } from '@/lib/products';
 import { saveProductStockAction } from '@/app/manzura/products/actions';
@@ -156,6 +156,19 @@ export default function ProductsClient({ products, categories, stockMap, initial
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<Set<number>>(new Set());
   const [deleting, setDeleting] = useState<number | null>(null);
+  // Card (grid) vs list (table) view, remembered across reloads. Defaults to
+  // list; read from localStorage after mount to avoid an SSR hydration mismatch.
+  const [view, setView] = useState<'list' | 'card'>('list');
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('manzura:products:view');
+      if (saved === 'card' || saved === 'list') setView(saved);
+    } catch { /* private mode — ignore */ }
+  }, []);
+  function changeView(next: 'list' | 'card') {
+    setView(next);
+    try { localStorage.setItem('manzura:products:view', next); } catch { /* ignore */ }
+  }
   // Local overlay on top of the server-rendered stockMap so edits are visible
   // without a page refresh.
   const [stockOverrides, setStockOverrides] = useState<Record<number, number>>({});
@@ -332,6 +345,26 @@ export default function ProductsClient({ products, categories, stockMap, initial
       <div className="flex items-center justify-between mb-8">
         <h1 className="font-display text-3xl font-light text-charcoal">Products</h1>
         <div className="flex gap-3 items-center">
+          {/* View toggle: list (table) ↔ card (grid). Hidden during bulk edit,
+              which is inherently table-shaped. */}
+          {!editMode && (
+            <div className="flex border border-bone rounded-sm overflow-hidden">
+              <button
+                onClick={() => changeView('list')}
+                aria-label="List view"
+                className={`p-1.5 transition-colors ${view === 'list' ? 'bg-obsidian text-cream' : 'text-mist hover:text-charcoal'}`}
+              >
+                <List size={14} />
+              </button>
+              <button
+                onClick={() => changeView('card')}
+                aria-label="Card view"
+                className={`p-1.5 transition-colors ${view === 'card' ? 'bg-obsidian text-cream' : 'text-mist hover:text-charcoal'}`}
+              >
+                <LayoutGrid size={14} />
+              </button>
+            </div>
+          )}
           {editMode ? (
             <>
               {saveError && <span className="text-xs text-rose-700">{saveError}</span>}
@@ -485,6 +518,62 @@ export default function ProductsClient({ products, categories, stockMap, initial
         </div>
       )}
 
+      {view === 'card' && !editMode ? (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+          {paged.map(product => (
+            <div key={product.id} className="bg-white border border-bone rounded-sm p-3 relative flex flex-col">
+              <input
+                type="checkbox"
+                checked={selected.has(product.id)}
+                onChange={() => toggleSelect(product.id)}
+                className="absolute top-2 left-2 z-10 accent-gold"
+              />
+              <Link href={`/manzura/products/${product.id}`} className="block">
+                <div className="aspect-square bg-cream border border-bone mb-2 flex items-center justify-center overflow-hidden rounded-sm">
+                  {product.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={product.image} alt="" className="w-full h-full object-contain" />
+                  ) : (
+                    <span className="text-[10px] text-mist">No image</span>
+                  )}
+                </div>
+              </Link>
+              <p className="text-[10px] text-mist">#{product.id}</p>
+              <Link
+                href={`/manzura/products/${product.id}`}
+                className="text-xs font-medium text-charcoal line-clamp-2 mb-2 hover:text-gold-dark transition-colors"
+              >
+                {nameOf(product)}
+              </Link>
+              <div className="flex items-center justify-between mt-auto pt-1">
+                <span className="text-xs font-semibold text-charcoal">
+                  {priceOf(product) > 0 ? `$${priceOf(product)}` : 'POA'}
+                </span>
+                <InlineStockCell
+                  productId={product.id}
+                  initial={effectiveStock(product.id)}
+                  onChange={next => setStockOverrides(prev => ({ ...prev, [product.id]: next }))}
+                />
+              </div>
+              <div className="flex justify-end gap-1 mt-2 pt-2 border-t border-bone">
+                <Link
+                  href={`/manzura/products/${product.id}`}
+                  className="p-1.5 text-mist hover:text-gold border border-transparent hover:border-gold transition-colors"
+                >
+                  <Edit2 size={13} />
+                </Link>
+                <button
+                  onClick={() => handleDelete(product.id)}
+                  disabled={deleting === product.id}
+                  className="p-1.5 text-mist hover:text-red-500 border border-transparent hover:border-red-200 transition-colors disabled:opacity-50"
+                >
+                  <Trash2 size={13} />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
       <div className="bg-white border border-bone overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -610,6 +699,7 @@ export default function ProductsClient({ products, categories, stockMap, initial
           </table>
         </div>
       </div>
+      )}
 
       {/* Pagination */}
       {totalPages > 1 && (

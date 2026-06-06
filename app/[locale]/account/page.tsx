@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
+import { localePath } from '@/lib/i18n';
 import DashboardClient from '@/components/account/DashboardClient';
 
 export const dynamic = 'force-dynamic';
@@ -21,7 +22,7 @@ export default async function AccountPage({ params }: PageProps) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) redirect(`/${locale}/account/login`);
+  if (!user) redirect(localePath(locale, '/account/login'));
 
   const t = await getTranslations({ locale, namespace: 'account' });
 
@@ -34,7 +35,7 @@ export default async function AccountPage({ params }: PageProps) {
   if (!profile) {
     // Edge case: auth user exists but profile row missing (e.g. signup interrupted).
     // Send them back through signup to repair.
-    redirect(`/${locale}/account/signup`);
+    redirect(localePath(locale, '/account/signup'));
   }
 
   // Order list. We try to include `last_message_seen_at` (powers the unread

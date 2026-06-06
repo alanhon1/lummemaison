@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
-import fs from 'fs';
-import path from 'path';
+import { createServiceClient } from '@/lib/supabase/server';
 
 const ALLOWED_TYPES = new Set([
   'image/jpeg',
@@ -12,7 +11,11 @@ const ALLOWED_TYPES = new Set([
   'image/gif',
 ]);
 const MAX_SIZE = 10 * 1024 * 1024;
+const BUCKET = 'product-images';
 
+// Uploads a product image to the public `product-images` Supabase Storage
+// bucket and returns its public URL. Storage (not the local filesystem) is the
+// durable home — Vercel's runtime FS is read-only, so disk writes don't persist.
 export async function POST(req: NextRequest) {
   const id = req.nextUrl.searchParams.get('id');
   if (!id || !/^[a-zA-Z0-9_-]+$/.test(id)) {
@@ -37,32 +40,32 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const outputDir = path.join(process.cwd(), 'public', 'images', 'products');
-  fs.mkdirSync(outputDir, { recursive: true });
+  // Versioned object name so a re-upload never collides with a cached URL.
+  const objectPath = `product-${id}/${Date.now()}.webp`;
 
-  // Always write to a versioned filename so we never have to overwrite a
-  // file that the browser or Next.js image cache might still be holding
-  // open. Old files become orphans (cleaned up by a separate script later).
-  const versionTag = Date.now();
-  const outputName = `product-${id}-${versionTag}.webp`;
-  const outputPath = path.join(outputDir, outputName);
-
+  let webp: Buffer;
   try {
     const buf = Buffer.from(await file.arrayBuffer());
-    await sharp(buf)
+    webp = await sharp(buf)
       .resize(1600, 1600, { fit: 'inside', withoutEnlargement: true })
       .webp({ quality: 90 })
-      .toFile(outputPath);
+      .toBuffer();
   } catch (err) {
-    if (fs.existsSync(outputPath)) {
-      try { fs.unlinkSync(outputPath); } catch { /* ignore */ }
-    }
     const detail = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: 'Image processing failed', detail }, { status: 400 });
+  }
+
+  const supabase = createServiceClient();
+  const { error: uploadError } = await supabase.storage
+    .from(BUCKET)
+    .upload(objectPath, webp, { upsert: true, contentType: 'image/webp' });
+  if (uploadError) {
     return NextResponse.json(
-      { error: 'Image processing failed', detail },
-      { status: 400 },
+      { error: 'Storage upload failed', detail: uploadError.message },
+      { status: 500 },
     );
   }
 
-  return NextResponse.json({ ok: true, path: `/images/products/${outputName}` });
+  const { data } = supabase.storage.from(BUCKET).getPublicUrl(objectPath);
+  return NextResponse.json({ ok: true, url: data.publicUrl });
 }

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MessageCircle, Send, Mail } from 'lucide-react';
 import { siteConfig } from '@/lib/site-config';
+import { localePath } from '@/lib/i18n';
 
 export default function CTASection() {
   const t = useTranslations('home.cta');
@@ -51,7 +52,7 @@ export default function CTASection() {
               </a>
             )}
             <Link
-              href={`/${locale}/contact`}
+              href={localePath(locale, '/contact')}
               className="btn-gold btn-loop w-full sm:w-auto gap-2"
             >
               <Mail size={16} />

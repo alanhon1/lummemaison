@@ -1,7 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales } from '@/lib/i18n';
+import { locales, localePath } from '@/lib/i18n';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CartPanel from '@/components/layout/CartPanel';
@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return {
     alternates: {
-      canonical: `/${locale}`,
-      languages: { en: '/en', ru: '/ru' },
+      canonical: localePath(locale),
+      languages: { en: '/', ru: '/ru' },
     },
   };
 }

@@ -3,6 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { localePath } from '@/lib/i18n';
+
+// Catalogue URL, with the locale prefix now optional (English has none):
+//   /catalogue          /catalogue/fillers
+//   /ru/catalogue       /ru/catalogue/fillers
+const CATALOGUE_RE = /^\/(?:ru\/)?catalogue(?:\/([^/?]+))?/;
 
 interface BackToCatalogueButtonProps {
   locale: string;
@@ -19,7 +25,7 @@ export default function BackToCatalogueButton({
   categoriesById,
 }: BackToCatalogueButtonProps) {
   const [target, setTarget] = useState<BackTarget>({
-    href: `/${locale}/catalogue`,
+    href: localePath(locale, '/catalogue'),
     label: 'Back to Catalogue',
   });
 
@@ -30,7 +36,7 @@ export default function BackToCatalogueButton({
       : null;
 
     if (saved) {
-      const m1 = saved.match(/^\/[^/]+\/catalogue(?:\/([^/]+))?/);
+      const m1 = saved.match(CATALOGUE_RE);
       const categoryId = m1 && m1[1];
       const categoryName = categoryId ? categoriesById[categoryId] : undefined;
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -47,7 +53,7 @@ export default function BackToCatalogueButton({
     let url: URL;
     try { url = new URL(referrer); } catch { return; }
     if (url.origin !== window.location.origin) return;
-    const m2 = url.pathname.match(/^\/[^/]+\/catalogue(?:\/([^/]+))?\/?$/);
+    const m2 = url.pathname.match(CATALOGUE_RE);
     if (!m2) return;
     const categoryId = m2[1];
     const categoryName = categoryId ? categoriesById[categoryId] : undefined;

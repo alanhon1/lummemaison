@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { clearDraft } from '@/lib/checkout/state';
 import { useCartStore } from '@/lib/store';
+import { localePath } from '@/lib/i18n';
 
 interface OrderItem {
   product_id: number;
@@ -115,12 +116,12 @@ export default function ConfirmationClient({ order, countryName }: Props) {
 
       <div className="flex flex-col-reverse sm:flex-row gap-3 sm:justify-end">
         <Link
-          href={`/${locale}/catalogue`}
+          href={localePath(locale, '/catalogue')}
           className="text-xs font-semibold tracking-widest uppercase px-6 py-3 rounded-md border border-charcoal/30 text-charcoal hover:border-gold-dark hover:text-gold-dark transition-colors text-center"
         >
           {t('continueShopping')}
         </Link>
-        <Link href={`/${locale}/account`} className="btn-gold text-center">
+        <Link href={localePath(locale, '/account')} className="btn-gold text-center">
           {t('viewOrders')}
         </Link>
       </div>
