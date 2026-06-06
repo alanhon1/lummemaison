@@ -62,7 +62,7 @@ export async function addInbound(
 
   // Increment stock atomically.
   const { error: rpcErr } = await supabase.rpc('restore_stock_for_cancel', {
-    items: JSON.stringify([{ product_id: productId, quantity: qty }]),
+    items: [{ product_id: productId, quantity: qty }],
   });
   if (rpcErr) return { ok: false, error: rpcErr.message };
 

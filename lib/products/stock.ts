@@ -53,5 +53,5 @@ export async function restoreStockForItems(
 ): Promise<void> {
   if (items.length === 0) return;
   const supabase = createServiceClient();
-  await supabase.rpc('restore_stock_for_cancel', { items: JSON.stringify(items) });
+  await supabase.rpc('restore_stock_for_cancel', { items });
 }
