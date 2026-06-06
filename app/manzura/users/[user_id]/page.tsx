@@ -7,6 +7,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { findCountry } from '@/lib/countries';
 import SendMessageForm from '@/components/admin/SendMessageForm';
+import UserAnalyticsSection, { type AnalyticsOrder } from '@/components/admin/UserAnalyticsSection';
 
 export const dynamic = 'force-dynamic';
 
@@ -78,6 +79,28 @@ export default async function UserDetailPage({ params }: PageProps) {
   const orders = (ordersResult.data ?? []) as OrderRow[];
   const countryLabel = findCountry(profile.country)?.name ?? profile.country;
 
+  // Fetch order items for analytics
+  const orderIds = orders.map(o => o.id);
+  let analyticsOrders: AnalyticsOrder[] = orders.map(o => ({ ...o, items: [] }));
+  if (orderIds.length > 0) {
+    const { data: itemRows } = await admin
+      .from('order_items')
+      .select('order_id, product_name, quantity, line_cents')
+      .in('order_id', orderIds);
+
+    const itemsByOrder = new Map<number, AnalyticsOrder['items']>();
+    for (const row of itemRows ?? []) {
+      const arr = itemsByOrder.get(row.order_id as number) ?? [];
+      arr.push({
+        product_name: row.product_name as string,
+        quantity: row.quantity as number,
+        line_cents: row.line_cents as number,
+      });
+      itemsByOrder.set(row.order_id as number, arr);
+    }
+    analyticsOrders = orders.map(o => ({ ...o, items: itemsByOrder.get(o.id) ?? [] }));
+  }
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 space-y-8">
       {/* Back */}
@@ -124,6 +147,9 @@ export default async function UserDetailPage({ params }: PageProps) {
           <p className="text-sm text-charcoal">{new Date(profile.created_at).toLocaleDateString()}</p>
         </div>
       </section>
+
+      {/* Analytics */}
+      <UserAnalyticsSection orders={analyticsOrders} />
 
       {/* Orders */}
       <section>
@@ -204,8 +230,6 @@ export default async function UserDetailPage({ params }: PageProps) {
 
       {/* Send Message */}
       <SendMessageForm userId={profile.user_id} />
-
-      {/* Phase K — Analytics (coming in Phase K) */}
     </div>
   );
 }
