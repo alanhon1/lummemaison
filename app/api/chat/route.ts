@@ -162,12 +162,12 @@ export async function POST(req: Request) {
       is_fallback: boolean;
     };
 
-    if (is_fallback && latestUserMsg) {
+    if (latestUserMsg) {
       void supabase.from('unanswered_questions').insert({
         question_text: latestUserMsg.slice(0, 1000),
         category,
         summary: summary?.slice(0, 200) ?? null,
-        status: 'pending',
+        status: is_fallback ? 'pending' : 'handled',
       });
     }
 
