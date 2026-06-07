@@ -89,7 +89,11 @@ export async function proxy(req: NextRequest) {
   }
 
   // Coming-soon page bypasses i18n routing entirely (no locale prefix needed)
+  // After launch, redirect anyone who hits /coming-soon directly to home
   if (pathname.startsWith('/coming-soon')) {
+    if (Date.now() >= LAUNCH_AT) {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
     return NextResponse.next();
   }
 
