@@ -94,17 +94,6 @@ export const FAQ_ITEMS: FaqItem[] = [
     },
   },
   {
-    id: 9,
-    q: {
-      en: 'Who is "Korestetics Global" on my Wise transfer?',
-      ru: 'Кто такой «Korestetics Global» в моём переводе Wise?',
-    },
-    a: {
-      en: 'That is us — **Korestetics Global** is the registered company name behind Lumée Maison. If you see this name as the recipient in your Wise transfer, you are sending to the right place. ✓',
-      ru: 'Это мы — **Korestetics Global** является официальным зарегистрированным названием компании Lumée Maison. Если вы видите это имя в качестве получателя в переводе Wise, значит вы отправляете деньги по нужному адресу. ✓',
-    },
-  },
-  {
     id: 10,
     q: {
       en: 'Can I modify my order after placing it?',
