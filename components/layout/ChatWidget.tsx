@@ -10,9 +10,18 @@ import { localePath } from '@/lib/i18n';
 type Message = { role: 'user' | 'assistant'; content: string };
 
 const LIMIT_MESSAGES: Record<string, string> = {
-  en: "You've reached today's limit of 15 questions. For further help, please email us at info@lumeemaison.com 💛",
-  ru: 'Вы достигли дневного лимита (15 вопросов). По дальнейшим вопросам пишите на info@lumeemaison.com 💛',
+  en: "You've reached today's limit of 15 questions. Please try again tomorrow! For urgent help, contact us at info@lumeemaison.com 💛",
+  ru: 'Вы достигли дневного лимита (15 вопросов). Попробуйте снова завтра! По срочным вопросам: info@lumeemaison.com 💛',
 };
+
+const LIMIT_BANNER: Record<string, string> = {
+  en: "Daily limit reached — try again tomorrow",
+  ru: 'Дневной лимит исчерпан — попробуйте завтра',
+};
+
+function todayUtc() {
+  return new Date().toISOString().split('T')[0];
+}
 
 export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
   const locale = useLocale();
@@ -34,8 +43,30 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
         localStorage.setItem('lm_chat_sid', id);
         setSessionId(id);
       }
+
+      // Restore limit state for today (resets automatically on new UTC day)
+      try {
+        const raw = localStorage.getItem('lm_chat_limit');
+        if (raw) {
+          const { date } = JSON.parse(raw) as { date: string };
+          if (date === todayUtc()) {
+            setLimitReached(true);
+          } else {
+            localStorage.removeItem('lm_chat_limit');
+          }
+        }
+      } catch {
+        localStorage.removeItem('lm_chat_limit');
+      }
     }
   }, [isLoggedIn]);
+
+  // When chat opens with limit already reached and no messages, inject the notice
+  useEffect(() => {
+    if (open && limitReached && messages.length === 0) {
+      setMessages([{ role: 'assistant', content: LIMIT_MESSAGES[locale] ?? LIMIT_MESSAGES.en }]);
+    }
+  }, [open, limitReached]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (open) bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -62,6 +93,7 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
         const msg = LIMIT_MESSAGES[locale] ?? LIMIT_MESSAGES.en;
         setMessages(prev => [...prev, { role: 'assistant', content: msg }]);
         setLimitReached(true);
+        localStorage.setItem('lm_chat_limit', JSON.stringify({ date: todayUtc() }));
       } else if (data.reply) {
         setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
       }
@@ -161,25 +193,33 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
 
             {/* Input — only when logged in */}
             {isLoggedIn !== false && (
-              <div className="flex items-center gap-2 px-3 py-2 border-t border-bone bg-surface">
-                <input
-                  type="text"
-                  value={input}
-                  onChange={e => setInput(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && !e.shiftKey && send()}
-                  disabled={loading || limitReached}
-                  placeholder={limitReached ? 'Daily limit reached' : 'Type a message…'}
-                  className="flex-1 text-xs bg-transparent outline-none text-charcoal placeholder:text-mist disabled:opacity-50"
-                />
-                <button
-                  onClick={send}
-                  disabled={loading || limitReached || !input.trim()}
-                  className="w-7 h-7 rounded-full bg-gold flex items-center justify-center text-white disabled:opacity-40 hover:bg-gold-dark transition-colors"
-                  aria-label="Send"
-                >
-                  <Send size={13} />
-                </button>
-              </div>
+              limitReached ? (
+                <div className="flex items-center gap-2 px-3 py-2.5 border-t border-bone bg-bone/60">
+                  <span className="flex-1 text-[11px] text-mist text-center leading-tight">
+                    {LIMIT_BANNER[locale] ?? LIMIT_BANNER.en}
+                  </span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 px-3 py-2 border-t border-bone bg-surface">
+                  <input
+                    type="text"
+                    value={input}
+                    onChange={e => setInput(e.target.value)}
+                    onKeyDown={e => e.key === 'Enter' && !e.shiftKey && send()}
+                    disabled={loading}
+                    placeholder="Type a message…"
+                    className="flex-1 text-xs bg-transparent outline-none text-charcoal placeholder:text-mist"
+                  />
+                  <button
+                    onClick={send}
+                    disabled={loading || !input.trim()}
+                    className="w-7 h-7 rounded-full bg-gold flex items-center justify-center text-white disabled:opacity-40 hover:bg-gold-dark transition-colors"
+                    aria-label="Send"
+                  >
+                    <Send size={13} />
+                  </button>
+                </div>
+              )
             )}
           </motion.div>
         )}
