@@ -29,7 +29,7 @@ const REPLY_TOOL: Anthropic.Tool = {
       is_fallback: {
         type: 'boolean',
         description:
-          'true ONLY when the question IS about Lumée Maison (products, orders, shipping, payment, policies) but you do not have enough information to answer it and must direct to info@lumeemaison.com. NEVER set to true for off-topic questions (coding, recipes, general knowledge, etc.) — those are handled by the scope rule, not a fallback.',
+          'Set to true whenever your answer tells the customer to email info@lumeemaison.com because you cannot fully answer their Lumée Maison question (missing info, policy not specified, refund/return details, etc.). If your response contains "email" or "info@lumeemaison.com" as a substitute for a real answer, this MUST be true. Set to false only when you give a complete, direct answer without deferring to email. Never set to true for off-topic refusals (coding, recipes, etc.).',
       },
     },
     required: ['answer', 'category', 'summary', 'is_fallback'],
@@ -162,12 +162,12 @@ export async function POST(req: Request) {
       is_fallback: boolean;
     };
 
-    if (latestUserMsg) {
+    if (is_fallback && latestUserMsg) {
       void supabase.from('unanswered_questions').insert({
         question_text: latestUserMsg.slice(0, 1000),
         category,
         summary: summary?.slice(0, 200) ?? null,
-        status: is_fallback ? 'pending' : 'handled',
+        status: 'pending',
       });
     }
 
