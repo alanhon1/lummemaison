@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+
+export const dynamic = 'force-dynamic';
 import { Tag, Layers } from 'lucide-react';
 import { getCategoryById, getLocalizedSpecification, categories } from '@/lib/products';
 import { localePath } from '@/lib/i18n';

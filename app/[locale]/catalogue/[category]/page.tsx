@@ -5,6 +5,8 @@ import { getCategoryById } from '@/lib/products';
 import { getAllProducts } from '@/lib/catalogue';
 import CatalogueClient from '@/components/catalogue/CatalogueClient';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; category: string }> }): Promise<Metadata> {
   const { category } = await params;
   const cat = getCategoryById(category);

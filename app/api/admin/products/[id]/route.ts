@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { readData, writeData, createBackup } from '@/lib/backup';
 import { composeBundleCover } from '@/lib/compose-bundle-cover';
 
@@ -36,6 +37,7 @@ export async function PATCH(
     }
   }
 
+  revalidatePath('/', 'layout');
   return NextResponse.json({ ok: true, product: data.products[idx] });
 }
 
@@ -48,5 +50,6 @@ export async function DELETE(
   createBackup();
   data.products = data.products.filter((p: any) => p.id !== parseInt(id));
   await writeData(data);
+  revalidatePath('/', 'layout');
   return NextResponse.json({ ok: true });
 }

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { readData, writeData, createBackup } from '@/lib/backup';
 
 export async function GET() {
@@ -31,5 +32,6 @@ export async function POST(req: Request) {
   createBackup();
   data.products.push(newProduct);
   await writeData(data);
+  revalidatePath('/', 'layout');
   return NextResponse.json({ ok: true, product: newProduct });
 }

@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+
+export const dynamic = 'force-dynamic';
 import Hero from '@/components/home/Hero';
 import CategoryGrid from '@/components/home/CategoryGrid';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
