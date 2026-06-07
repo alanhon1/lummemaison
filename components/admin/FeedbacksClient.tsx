@@ -13,7 +13,8 @@ export interface FeedbackRow {
   orderRef: string | null;
   customerName: string | null;
   customerEmail: string | null;
-  // NOTE: Customer ID (customer_code) is added in Phase H — surface it here then.
+  source?: string;
+  feedbackTable?: 'feedback' | 'faq_feedback';
 }
 
 type Tab = 'all' | 'good' | 'bad';
@@ -60,7 +61,7 @@ export default function FeedbacksClient({ rows }: { rows: FeedbackRow[] }) {
     });
     if (!isRead(r)) {
       setReadOverlay(prev => ({ ...prev, [r.id]: true }));
-      void markFeedbackRead(r.id);
+      void markFeedbackRead(r.id, r.feedbackTable ?? 'feedback');
     }
   }
 
@@ -116,9 +117,18 @@ export default function FeedbacksClient({ rows }: { rows: FeedbackRow[] }) {
                         <ThumbsDown size={16} className="text-rose-600 shrink-0" />
                       )}
                       <div className="min-w-0">
-                        <p className="text-sm font-medium text-charcoal truncate">
-                          {r.customerName ?? 'Customer'}
-                          {r.orderRef && <span className="text-mist font-normal"> · {r.orderRef}</span>}
+                        <p className="text-sm font-medium text-charcoal truncate flex items-center gap-2">
+                          {r.source ? (
+                            <>
+                              <span className="text-[9px] uppercase tracking-widest bg-gold text-white px-2 py-0.5 rounded-full shrink-0">FAQ</span>
+                              <span>{r.source}</span>
+                            </>
+                          ) : (
+                            <>
+                              {r.customerName ?? 'Customer'}
+                              {r.orderRef && <span className="text-mist font-normal"> · {r.orderRef}</span>}
+                            </>
+                          )}
                         </p>
                         {r.customerEmail && <p className="text-[11px] text-mist truncate">{r.customerEmail}</p>}
                       </div>

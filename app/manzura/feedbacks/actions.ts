@@ -12,13 +12,16 @@ async function requireAdmin() {
 
 // Marks a feedback row read (service role bypasses RLS). Fired when the admin
 // opens a feedback item in the Feedbacks tab.
-export async function markFeedbackRead(id: number): Promise<{ ok: boolean }> {
+export async function markFeedbackRead(
+  id: number,
+  table: 'feedback' | 'faq_feedback' = 'feedback',
+): Promise<{ ok: boolean }> {
   try {
     await requireAdmin();
   } catch {
     return { ok: false };
   }
   const admin = createServiceClient();
-  const { error } = await admin.from('feedback').update({ is_read: true }).eq('id', id);
+  const { error } = await admin.from(table).update({ is_read: true }).eq('id', id);
   return { ok: !error };
 }

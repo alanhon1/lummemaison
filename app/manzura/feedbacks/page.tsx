@@ -21,13 +21,20 @@ export default async function AdminFeedbacksPage() {
   if (!session.loggedIn) redirect('/manzura/login');
 
   const admin = createServiceClient();
-  const { data, error } = await admin
-    .from('feedback')
-    .select(
-      'id, rating, comment, is_read, created_at, order_id, user_id, orders(customer_name, customer_email, order_seq, order_number)',
-    )
-    .order('created_at', { ascending: false })
-    .limit(500);
+  const [{ data, error }, { data: faqData }] = await Promise.all([
+    admin
+      .from('feedback')
+      .select(
+        'id, rating, comment, is_read, created_at, order_id, user_id, orders(customer_name, customer_email, order_seq, order_number)',
+      )
+      .order('created_at', { ascending: false })
+      .limit(500),
+    admin
+      .from('faq_feedback')
+      .select('id, faq_number, rating, comment, is_read, created_at')
+      .order('created_at', { ascending: false })
+      .limit(500),
+  ]);
 
   if (error) {
     return (
@@ -43,7 +50,7 @@ export default async function AdminFeedbacksPage() {
     );
   }
 
-  const rows: FeedbackRow[] = (data ?? []).map(f => {
+  const orderRows: FeedbackRow[] = (data ?? []).map(f => {
     const raw = (f as { orders?: EmbeddedOrder | EmbeddedOrder[] | null }).orders;
     const ord = Array.isArray(raw) ? raw[0] : raw;
     const orderRef = ord
@@ -60,8 +67,26 @@ export default async function AdminFeedbacksPage() {
       orderRef,
       customerName: ord?.customer_name ?? null,
       customerEmail: ord?.customer_email ?? null,
+      feedbackTable: 'feedback' as const,
     };
   });
+
+  const faqRows: FeedbackRow[] = (faqData ?? []).map(f => ({
+    id: f.id as number,
+    rating: f.rating as 'up' | 'down',
+    comment: (f.comment as string | null) ?? null,
+    is_read: Boolean(f.is_read),
+    created_at: f.created_at as string,
+    orderRef: null,
+    customerName: null,
+    customerEmail: null,
+    source: `FAQ No.${f.faq_number}`,
+    feedbackTable: 'faq_feedback' as const,
+  }));
+
+  const rows: FeedbackRow[] = [...orderRows, ...faqRows].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+  );
 
   return <FeedbacksClient rows={rows} />;
 }

@@ -65,6 +65,7 @@ export default function Header() {
     { href: localePath(locale, '/catalogue'), label: t('catalogue') },
     { href: localePath(locale, '/about'), label: t('about') },
     { href: localePath(locale, '/contact'), label: t('contact') },
+    { href: localePath(locale, '/faq'), label: t('faq') },
     { href: localePath(locale, '/account'), label: t('account') },
     { href: localePath(locale, '/account/inbox'), label: t('inbox'), unread: unreadCount },
   ];
