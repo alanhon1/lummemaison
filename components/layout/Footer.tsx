@@ -135,7 +135,12 @@ export default function Footer() {
         <div className="border-t border-cream/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-cream/40">{t('copyright')}</p>
           <p className="text-xs text-cream/40 text-center">{t('disclaimer')}</p>
-          <DisclaimerReset />
+          <div className="flex items-center gap-4">
+            <Link href={localePath(locale, '/privacy')} className="text-xs text-cream/40 hover:text-gold transition-colors">
+              Privacy Policy
+            </Link>
+            <DisclaimerReset />
+          </div>
         </div>
       </div>
     </footer>
