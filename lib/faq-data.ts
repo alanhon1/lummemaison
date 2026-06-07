@@ -94,7 +94,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     },
   },
   {
-    id: 10,
+    id: 9,
     q: {
       en: 'Can I modify my order after placing it?',
       ru: 'Можно ли изменить заказ после оформления?',
