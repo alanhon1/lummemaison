@@ -5,6 +5,7 @@ import createMiddleware from 'next-intl/middleware';
 import { locales, defaultLocale } from '@/lib/i18n';
 import { createServerClient } from '@supabase/ssr';
 import { siteConfig } from '@/lib/site-config';
+import { LAUNCH_AT } from '@/lib/launch';
 
 // ----- Geo-block -----
 // Customer-facing pages are not available from siteConfig.restrictedCountries
@@ -70,8 +71,6 @@ async function withSupabaseSession(req: NextRequest, baseResponse: NextResponse)
   await supabase.auth.getUser();
   return response;
 }
-
-import { LAUNCH_AT } from '@/lib/launch';
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
