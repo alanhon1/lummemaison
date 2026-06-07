@@ -29,7 +29,7 @@ const REPLY_TOOL: Anthropic.Tool = {
       is_fallback: {
         type: 'boolean',
         description:
-          'true only when you cannot answer and are directing the customer to info@lumeemaison.com.',
+          'true ONLY when the question IS about Lumée Maison (products, orders, shipping, payment, policies) but you do not have enough information to answer it and must direct to info@lumeemaison.com. NEVER set to true for off-topic questions (coding, recipes, general knowledge, etc.) — those are handled by the scope rule, not a fallback.',
       },
     },
     required: ['answer', 'category', 'summary', 'is_fallback'],
