@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { createClient } from '@/lib/supabase/browser';
 import { localePath } from '@/lib/i18n';
 
 type Message = { role: 'user' | 'assistant'; content: string };
@@ -15,7 +14,7 @@ const LIMIT_MESSAGES: Record<string, string> = {
   ru: 'Вы достигли дневного лимита (15 вопросов). По дальнейшим вопросам пишите на info@lumeemaison.com 💛',
 };
 
-export default function ChatWidget() {
+export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
   const locale = useLocale();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -23,19 +22,7 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false);
   const [limitReached, setLimitReached] = useState(false);
   const [sessionId, setSessionId] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getSession().then(({ data }) => {
-      setIsLoggedIn(!!data.session);
-    });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
-      setIsLoggedIn(!!session);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
 
   useEffect(() => {
     if (isLoggedIn) {

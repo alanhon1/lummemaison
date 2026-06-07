@@ -8,6 +8,7 @@ import CartPanel from '@/components/layout/CartPanel';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 import ChatWidget from '@/components/layout/ChatWidget';
 import GoldParticles from '@/components/effects/GoldParticles';
+import { createClient } from '@/lib/supabase/server';
 import DisclaimerModal from '@/components/disclaimer/DisclaimerModal';
 import type { Metadata } from 'next';
 
@@ -40,6 +41,9 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <div lang={locale} className="flex flex-col min-h-screen">
@@ -49,7 +53,7 @@ export default async function LocaleLayout({
         <Footer />
         <CartPanel />
         <FloatingWhatsApp />
-        <ChatWidget />
+        <ChatWidget isLoggedIn={!!user} />
         <DisclaimerModal />
       </div>
     </NextIntlClientProvider>
