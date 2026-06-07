@@ -16,6 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://lumeemaison.com'),
   title: {
     default: "Lumée Maison — Premium Korean Aesthetic Cosmetics",
     template: "%s | Lumée Maison",
@@ -23,9 +24,17 @@ export const metadata: Metadata = {
   description:
     "B2B wholesale supplier of premium Korean medical-grade aesthetic products. Fillers, mesotherapy, botulinum, and more. Serving professionals worldwide.",
   keywords: ["korean cosmetics", "aesthetic products", "B2B wholesale", "fillers", "mesotherapy", "botulinum"],
+  alternates: {
+    canonical: 'https://lumeemaison.com',
+  },
   openGraph: {
     type: "website",
     siteName: "Lumée Maison",
+    url: 'https://lumeemaison.com',
+  },
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
 };
 

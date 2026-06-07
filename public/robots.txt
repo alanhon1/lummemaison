@@ -3,3 +3,5 @@ Allow: /
 
 Disallow: /manzura
 Disallow: /api/admin/
+
+Host: https://lumeemaison.com
