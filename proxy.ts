@@ -75,10 +75,19 @@ async function withSupabaseSession(req: NextRequest, baseResponse: NextResponse)
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
+  // /test sets a bypass cookie and lands on the real site for manual testing
+  if (pathname === '/test') {
+    const res = NextResponse.redirect(new URL('/', req.url));
+    res.cookies.set('bypass_gate', '1', { httpOnly: true, sameSite: 'lax', path: '/' });
+    return res;
+  }
+
   // Coming-soon gate: redirect all public routes until launch time.
-  // Admin, API, the coming-soon page itself, and static assets bypass.
+  // Admin, API, the coming-soon page itself, static assets, and bypass-cookie holders skip.
+  const bypassCookie = req.cookies.get('bypass_gate')?.value === '1';
   if (
     Date.now() < LAUNCH_AT &&
+    !bypassCookie &&
     !pathname.startsWith('/manzura') &&
     !pathname.startsWith('/api') &&
     !pathname.startsWith('/coming-soon') &&
