@@ -6,6 +6,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CartPanel from '@/components/layout/CartPanel';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
+import ChatWidget from '@/components/layout/ChatWidget';
 import GoldParticles from '@/components/effects/GoldParticles';
 import DisclaimerModal from '@/components/disclaimer/DisclaimerModal';
 import type { Metadata } from 'next';
@@ -48,6 +49,7 @@ export default async function LocaleLayout({
         <Footer />
         <CartPanel />
         <FloatingWhatsApp />
+        <ChatWidget />
         <DisclaimerModal />
       </div>
     </NextIntlClientProvider>

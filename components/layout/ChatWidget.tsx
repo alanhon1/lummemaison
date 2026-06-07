@@ -1,0 +1,197 @@
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { MessageCircle, X, Send } from 'lucide-react';
+import { useLocale } from 'next-intl';
+
+type Message = { role: 'user' | 'assistant'; content: string };
+
+const LIMIT_MESSAGES: Record<string, string> = {
+  en: "You've reached today's limit of 15 questions. For further help, please email us at info@lumeemaison.com 💛",
+  ru: 'Вы достигли дневного лимита (15 вопросов). По дальнейшим вопросам пишите на info@lumeemaison.com 💛',
+};
+
+export default function ChatWidget() {
+  const locale = useLocale();
+  const [open, setOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [limitReached, setLimitReached] = useState(false);
+  const [sessionId, setSessionId] = useState('');
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('lm_chat_sid');
+    if (stored) {
+      setSessionId(stored);
+    } else {
+      const id = crypto.randomUUID();
+      localStorage.setItem('lm_chat_sid', id);
+      setSessionId(id);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (open) bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, open]);
+
+  async function send() {
+    const text = input.trim();
+    if (!text || loading || limitReached) return;
+
+    const next: Message[] = [...messages, { role: 'user', content: text }];
+    setMessages(next);
+    setInput('');
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: next, sessionId }),
+      });
+      const data = await res.json();
+
+      if (data.limitReached) {
+        const msg = LIMIT_MESSAGES[locale] ?? LIMIT_MESSAGES.en;
+        setMessages(prev => [...prev, { role: 'assistant', content: msg }]);
+        setLimitReached(true);
+      } else if (data.reply) {
+        setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
+      }
+    } catch {
+      setMessages(prev => [
+        ...prev,
+        { role: 'assistant', content: 'Something went wrong. Please try again.' },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end gap-2">
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 16, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            className="flex flex-col rounded-2xl shadow-2xl overflow-hidden bg-surface border border-bone"
+            style={{
+              width: 'min(320px, calc(100vw - 48px))',
+              height: 460,
+            }}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-3 bg-charcoal text-cream">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+                <span className="text-sm font-semibold tracking-wide">Lumée Maison</span>
+              </div>
+              <button
+                onClick={() => setOpen(false)}
+                className="text-mist hover:text-cream transition-colors"
+                aria-label="Close chat"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-cream">
+              {messages.length === 0 && (
+                <p className="text-xs text-mist text-center mt-4 px-4">
+                  Hi! 👋 Ask me anything about shipping, payment, or products.
+                </p>
+              )}
+              {messages.map((m, i) => (
+                <div
+                  key={i}
+                  className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-xl px-3 py-2 text-xs leading-relaxed whitespace-pre-wrap ${
+                      m.role === 'user'
+                        ? 'bg-gold text-white rounded-br-sm'
+                        : 'bg-surface text-charcoal border border-bone rounded-bl-sm'
+                    }`}
+                  >
+                    {m.content}
+                  </div>
+                </div>
+              ))}
+              {loading && (
+                <div className="flex justify-start">
+                  <div className="bg-surface border border-bone rounded-xl rounded-bl-sm px-3 py-2">
+                    <span className="flex gap-1">
+                      <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:0ms]" />
+                      <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:150ms]" />
+                      <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:300ms]" />
+                    </span>
+                  </div>
+                </div>
+              )}
+              <div ref={bottomRef} />
+            </div>
+
+            {/* Input */}
+            <div className="flex items-center gap-2 px-3 py-2 border-t border-bone bg-surface">
+              <input
+                type="text"
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && !e.shiftKey && send()}
+                disabled={loading || limitReached}
+                placeholder={limitReached ? 'Daily limit reached' : 'Type a message…'}
+                className="flex-1 text-xs bg-transparent outline-none text-charcoal placeholder:text-mist disabled:opacity-50"
+              />
+              <button
+                onClick={send}
+                disabled={loading || limitReached || !input.trim()}
+                className="w-7 h-7 rounded-full bg-gold flex items-center justify-center text-white disabled:opacity-40 hover:bg-gold-dark transition-colors"
+                aria-label="Send"
+              >
+                <Send size={13} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Toggle button */}
+      <button
+        onClick={() => setOpen(prev => !prev)}
+        className="w-14 h-14 rounded-full bg-gold text-white flex items-center justify-center shadow-lg hover:bg-gold-dark transition-all duration-300 hover:scale-110"
+        aria-label={open ? 'Close chat' : 'Open chat'}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {open ? (
+            <motion.span
+              key="x"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <X size={22} />
+            </motion.span>
+          ) : (
+            <motion.span
+              key="chat"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <MessageCircle size={22} />
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </button>
+    </div>
+  );
+}

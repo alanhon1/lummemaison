@@ -53,6 +53,7 @@
     "seed:stock:csv": "tsx scripts/seed-stock-from-csv.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.102.0",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.106.2",
     "axios": "^1.16.1",
