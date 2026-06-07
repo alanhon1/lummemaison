@@ -29,7 +29,7 @@ const REPLY_TOOL: Anthropic.Tool = {
       is_fallback: {
         type: 'boolean',
         description:
-          'Set to true whenever your answer tells the customer to email info@lumeemaison.com because you cannot fully answer their Lumée Maison question (missing info, policy not specified, refund/return details, etc.). If your response contains "email" or "info@lumeemaison.com" as a substitute for a real answer, this MUST be true. Set to false only when you give a complete, direct answer without deferring to email. Never set to true for off-topic refusals (coding, recipes, etc.).',
+          'Set to true ONLY when you cannot answer and are directing the customer to email info@lumeemaison.com AS THE MAIN RESPONSE (e.g., "I don\'t have that information, please email info@lumeemaison.com"). Set to false when you gave a complete, helpful answer — even if you politely added "feel free to email us if you have more questions" as a sign-off. A courtesy closing mention of the email does NOT make this true. Never set to true for off-topic refusals.',
       },
     },
     required: ['answer', 'category', 'summary', 'is_fallback'],
@@ -162,11 +162,9 @@ export async function POST(req: Request) {
       is_fallback: boolean;
     };
 
-    // Log when bot defers to email — check both the model's flag AND the answer text,
-    // because Haiku sometimes forgets to set is_fallback even when it mentions the email.
+    // Log only when bot genuinely can't answer — rely on the model's is_fallback flag.
     // Awaited (not fire-and-forget) so Vercel doesn't kill the task before it completes.
-    const answerMentionsEmail = answer.toLowerCase().includes('info@lumeemaison.com');
-    if ((is_fallback || answerMentionsEmail) && latestUserMsg) {
+    if (is_fallback && latestUserMsg) {
       const { error: qErr } = await supabase.from('unanswered_questions').insert({
         question_text: latestUserMsg.slice(0, 1000),
         category,
