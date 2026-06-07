@@ -68,7 +68,7 @@ export default async function CheckoutPaymentPage({ params, searchParams }: Page
       // Hidden while WhatsApp is disabled — USDT questions route to email.
       whatsapp: siteConfig.contactChannels.whatsapp ? envValue('PAYMENT_WHATSAPP') : '',
     },
-    adminEmail: envValue('ADMIN_NOTIFICATION_EMAIL'),
+    adminEmail: siteConfig.contact.email,
   };
 
   return (
