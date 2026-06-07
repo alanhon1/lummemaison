@@ -162,7 +162,10 @@ export async function POST(req: Request) {
       is_fallback: boolean;
     };
 
-    if (is_fallback && latestUserMsg) {
+    // Log when bot defers to email — check both the model's flag AND the answer text,
+    // because Haiku sometimes forgets to set is_fallback even when it mentions the email.
+    const answerMentionsEmail = answer.toLowerCase().includes('info@lumeemaison.com');
+    if ((is_fallback || answerMentionsEmail) && latestUserMsg) {
       void supabase.from('unanswered_questions').insert({
         question_text: latestUserMsg.slice(0, 1000),
         category,
