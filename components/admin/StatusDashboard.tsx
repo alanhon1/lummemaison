@@ -1,10 +1,13 @@
-// Presentational analytics dashboard for /manzura/status. Pure component (no
-// hooks, no 'use client') — rendered on the server with data computed in the
-// page. Charts are lightweight CSS/flex bars so there's no charting dependency.
+'use client';
+
+import {
+  LineChart, Line, BarChart, Bar,
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
+} from 'recharts';
 
 export interface DailyPoint {
-  date: string; // YYYY-MM-DD
-  label: string; // e.g. "Jun 4"
+  date: string;
+  label: string;
   count: number;
   revenueCents: number;
 }
@@ -46,12 +49,19 @@ function money(cents: number): string {
 }
 
 const STATUS_COLOR: Record<string, string> = {
-  order_received: 'bg-amber-400',
-  payment_verified: 'bg-sky-400',
-  packaging: 'bg-indigo-400',
-  shipped: 'bg-emerald-400',
-  delivered: 'bg-gold',
-  cancelled: 'bg-stone-400',
+  order_received:   '#f59e0b',
+  payment_verified: '#38bdf8',
+  packaging:        '#818cf8',
+  shipped:          '#34d399',
+  delivered:        '#c9a96e',
+  cancelled:        '#a8a29e',
+};
+
+const TOOLTIP_STYLE = {
+  fontSize: 11,
+  border: '1px solid #e8e2d9',
+  borderRadius: 6,
+  background: '#fff',
 };
 
 export default function StatusDashboard({
@@ -64,9 +74,7 @@ export default function StatusDashboard({
   topProducts,
   lowStock,
 }: Props) {
-  const maxDaily = Math.max(1, ...daily.map(d => d.count));
-  const maxStatus = Math.max(1, ...statusCounts.map(s => s.count));
-  const maxTop = Math.max(1, ...topProducts.map(p => p.quantity));
+  const activeStatusCounts = statusCounts.filter(s => s.count > 0);
 
   return (
     <div className="space-y-8">
@@ -78,7 +86,7 @@ export default function StatusDashboard({
         <StatCard label="Avg order value" value={money(avgOrderCents)} sub="last 30 days" />
       </div>
 
-      {/* Daily orders */}
+      {/* Daily orders — line chart */}
       <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
         <div className="flex items-baseline justify-between mb-5">
           <h2 className="font-display text-lg text-charcoal">Daily orders</h2>
@@ -87,45 +95,101 @@ export default function StatusDashboard({
         {daily.every(d => d.count === 0) ? (
           <p className="text-xs text-mist py-8 text-center">No orders in this window yet.</p>
         ) : (
-          <div className="flex items-end gap-[3px] h-40">
-            {daily.map(d => (
-              <div key={d.date} className="flex-1 flex flex-col items-center justify-end group" title={`${d.label}: ${d.count} order${d.count === 1 ? '' : 's'} · ${money(d.revenueCents)}`}>
-                <div
-                  className="w-full bg-gold/70 group-hover:bg-gold rounded-t-sm transition-colors"
-                  style={{ height: `${(d.count / maxDaily) * 100}%`, minHeight: d.count > 0 ? 2 : 0 }}
-                />
-              </div>
-            ))}
-          </div>
+          <ResponsiveContainer width="100%" height={180}>
+            <LineChart data={daily} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" />
+              <XAxis
+                dataKey="label"
+                tick={{ fontSize: 9, fill: '#6b6b6b' }}
+                tickLine={false}
+                axisLine={false}
+                interval={Math.floor(daily.length / 5)}
+              />
+              <YAxis
+                tick={{ fontSize: 9, fill: '#6b6b6b' }}
+                tickLine={false}
+                axisLine={false}
+                allowDecimals={false}
+              />
+              <Tooltip
+                contentStyle={TOOLTIP_STYLE}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                formatter={(val: any, _: any, entry: any) => [
+                  `${val} orders · ${money(entry?.payload?.revenueCents ?? 0)}`,
+                  '',
+                ]}
+                labelStyle={{ fontWeight: 600, marginBottom: 2 }}
+              />
+              <Line
+                type="monotone"
+                dataKey="count"
+                stroke="#c9a96e"
+                strokeWidth={2}
+                dot={{ r: 3, fill: '#c9a96e', strokeWidth: 0 }}
+                activeDot={{ r: 5 }}
+              />
+            </LineChart>
+          </ResponsiveContainer>
         )}
-        {/* sparse x labels: first, mid, last */}
-        <div className="flex justify-between mt-2 text-[9px] text-mist">
-          <span>{daily[0]?.label}</span>
-          <span>{daily[Math.floor(daily.length / 2)]?.label}</span>
-          <span>{daily[daily.length - 1]?.label}</span>
-        </div>
       </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Status distribution */}
         <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
           <h2 className="font-display text-lg text-charcoal mb-5">Orders by status</h2>
-          <div className="space-y-3">
-            {statusCounts.map(s => (
-              <div key={s.status}>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-charcoal">{s.label}</span>
-                  <span className="text-mist">{s.count}</span>
-                </div>
-                <div className="h-2 bg-cream rounded-full overflow-hidden">
-                  <div
-                    className={`h-full rounded-full ${STATUS_COLOR[s.status] ?? 'bg-gold'}`}
-                    style={{ width: `${(s.count / maxStatus) * 100}%` }}
+          {activeStatusCounts.length === 0 ? (
+            <p className="text-xs text-mist py-8 text-center">No orders yet.</p>
+          ) : (
+            <>
+              <ResponsiveContainer width="100%" height={200}>
+                <BarChart
+                  data={statusCounts}
+                  layout="vertical"
+                  margin={{ top: 0, right: 30, left: 0, bottom: 0 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" horizontal={false} />
+                  <XAxis
+                    type="number"
+                    tick={{ fontSize: 9, fill: '#6b6b6b' }}
+                    tickLine={false}
+                    axisLine={false}
+                    allowDecimals={false}
                   />
-                </div>
+                  <YAxis
+                    type="category"
+                    dataKey="label"
+                    tick={{ fontSize: 10, fill: '#1a1a1a' }}
+                    tickLine={false}
+                    axisLine={false}
+                    width={90}
+                  />
+                  <Tooltip
+                    contentStyle={TOOLTIP_STYLE}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    formatter={(val: any) => [`${val} orders`, '']}
+                  />
+                  <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={18}>
+                    {statusCounts.map(s => (
+                      <Cell key={s.status} fill={STATUS_COLOR[s.status] ?? '#c9a96e'} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+              {/* Legend */}
+              <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-4">
+                {statusCounts.map(s => (
+                  <div key={s.status} className="flex items-center gap-1.5">
+                    <span
+                      className="w-2.5 h-2.5 rounded-sm shrink-0"
+                      style={{ background: STATUS_COLOR[s.status] ?? '#c9a96e' }}
+                    />
+                    <span className="text-[10px] text-mist">{s.label}</span>
+                    <span className="text-[10px] font-semibold text-charcoal">{s.count}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </section>
 
         {/* Top products */}
@@ -134,19 +198,37 @@ export default function StatusDashboard({
           {topProducts.length === 0 ? (
             <p className="text-xs text-mist py-8 text-center">No sales recorded yet.</p>
           ) : (
-            <div className="space-y-3">
-              {topProducts.map(p => (
-                <div key={p.name}>
-                  <div className="flex justify-between text-xs mb-1 gap-3">
-                    <span className="text-charcoal truncate">{p.name}</span>
-                    <span className="text-mist whitespace-nowrap">{p.quantity} sold</span>
-                  </div>
-                  <div className="h-2 bg-cream rounded-full overflow-hidden">
-                    <div className="h-full rounded-full bg-gold-dark" style={{ width: `${(p.quantity / maxTop) * 100}%` }} />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <ResponsiveContainer width="100%" height={220}>
+              <BarChart
+                data={topProducts}
+                layout="vertical"
+                margin={{ top: 0, right: 30, left: 0, bottom: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" horizontal={false} />
+                <XAxis
+                  type="number"
+                  tick={{ fontSize: 9, fill: '#6b6b6b' }}
+                  tickLine={false}
+                  axisLine={false}
+                  allowDecimals={false}
+                />
+                <YAxis
+                  type="category"
+                  dataKey="name"
+                  tick={{ fontSize: 9, fill: '#1a1a1a' }}
+                  tickLine={false}
+                  axisLine={false}
+                  width={120}
+                  tickFormatter={(v: string) => v.length > 16 ? v.slice(0, 15) + '…' : v}
+                />
+                <Tooltip
+                  contentStyle={TOOLTIP_STYLE}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  formatter={(val: any) => [`${val} units sold`, '']}
+                />
+                <Bar dataKey="quantity" fill="#c9a96e" radius={[0, 4, 4, 0]} maxBarSize={16} />
+              </BarChart>
+            </ResponsiveContainer>
           )}
         </section>
       </div>

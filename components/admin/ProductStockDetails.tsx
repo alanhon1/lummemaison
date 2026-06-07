@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { X, TrendingUp } from 'lucide-react';
 import {
-  BarChart, Bar, LineChart, Line,
-  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  LineChart, Line,
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine,
 } from 'recharts';
 
 interface Movement {
@@ -50,22 +50,39 @@ const STATUS_CLS: Record<string, string> = {
   cancelled:         'bg-rose-50 text-rose-700',
 };
 
+const TOOLTIP_STYLE = {
+  fontSize: 11,
+  border: '1px solid #e8e2d9',
+  borderRadius: 6,
+  background: '#fff',
+};
+
 function toKst(iso: string): string {
   return new Intl.DateTimeFormat('ko-KR', {
     timeZone: 'Asia/Seoul', year: '2-digit', month: '2-digit', day: '2-digit',
   }).format(new Date(iso));
 }
 
-function kstMonthKey(iso: string): string {
+function toKstShort(iso: string): string {
   return new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit',
+    timeZone: 'Asia/Seoul', month: '2-digit', day: '2-digit',
   }).format(new Date(iso));
 }
 
-function monthLabel(key: string): string {
-  const [y, m] = key.split('-');
-  return new Date(Number(y), Number(m) - 1, 1)
-    .toLocaleString('en-US', { month: 'short' }) + " '" + y.slice(2);
+function kstDayKey(iso: string): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit',
+  }).format(new Date(iso));
+}
+
+interface ChartSectionProps { title: string; children: React.ReactNode }
+function ChartSection({ title, children }: ChartSectionProps) {
+  return (
+    <div className="bg-white border border-bone rounded p-4">
+      <p className="text-[10px] uppercase tracking-widest text-mist mb-3">{title}</p>
+      {children}
+    </div>
+  );
 }
 
 export default function ProductStockDetails({
@@ -89,32 +106,50 @@ export default function ProductStockDetails({
       .finally(() => setLoading(false));
   }, [open, productId, data]);
 
-  // Build monthly demand chart data (order movements only)
-  const demandChart = (() => {
+  // ── Chart data ────────────────────────────────────────────────────────────
+
+  // 1. Stock level over time (cumulative reconstruction, chronological)
+  const stockLevelChart = (() => {
+    if (!data || data.movements.length === 0) return [];
+    const chronological = [...data.movements].reverse();
+    let level = data.currentStock - data.movements.reduce((s, m) => s + m.delta, 0);
+    return chronological.map(m => {
+      level += m.delta;
+      return { date: toKstShort(m.created_at), stock: Math.max(0, level), fullDate: toKst(m.created_at) };
+    }).slice(-60);
+  })();
+
+  // 2. Daily order volume — units sold per day (chronological)
+  const orderVolumeChart = (() => {
     if (!data) return [];
     const map = new Map<string, number>();
     for (const m of data.movements) {
       if (m.reason !== 'order') continue;
-      const key = kstMonthKey(m.created_at);
-      map.set(key, (map.get(key) ?? 0) + Math.abs(m.delta));
+      const day = kstDayKey(m.created_at);
+      map.set(day, (map.get(day) ?? 0) + Math.abs(m.delta));
     }
     return [...map.entries()]
       .sort(([a], [b]) => a.localeCompare(b))
-      .map(([k, qty]) => ({ month: monthLabel(k), qty }));
+      .map(([day, units]) => ({ date: day.slice(5), units })); // MM-DD
   })();
 
-  // Build stock level over time (cumulative, reverse movements)
-  const stockChart = (() => {
-    if (!data) return [];
-    const reversed = [...data.movements].reverse();
-    let level = data.currentStock - data.movements.reduce((s, m) => s + m.delta, 0);
-    const points: Array<{ date: string; stock: number }> = [];
-    for (const m of reversed) {
-      level += m.delta;
-      points.push({ date: toKst(m.created_at), stock: Math.max(0, level) });
-    }
-    return points.slice(-30); // last 30 movements
+  // 3. Stock delta per movement (all types, chronological)
+  const deltaChart = (() => {
+    if (!data || data.movements.length === 0) return [];
+    return [...data.movements]
+      .reverse()
+      .slice(-60)
+      .map(m => ({
+        date: toKstShort(m.created_at),
+        delta: m.delta,
+        reason: m.reason,
+        fullDate: toKst(m.created_at),
+      }));
   })();
+
+  const totalSold = data
+    ? data.movements.filter(m => m.reason === 'order').reduce((s, m) => s + Math.abs(m.delta), 0)
+    : 0;
 
   return (
     <>
@@ -159,9 +194,7 @@ export default function ProductStockDetails({
                     </div>
                     <div className="bg-cream/60 border border-bone rounded p-3 text-center">
                       <p className="text-[10px] uppercase tracking-widest text-mist mb-1">Total Sold</p>
-                      <p className="text-xl font-semibold text-charcoal">
-                        {data.movements.filter(m => m.reason === 'order').reduce((s, m) => s + Math.abs(m.delta), 0)}
-                      </p>
+                      <p className="text-xl font-semibold text-charcoal">{totalSold}</p>
                     </div>
                     <div className="bg-cream/60 border border-bone rounded p-3 text-center">
                       <p className="text-[10px] uppercase tracking-widest text-mist mb-1">Total Orders</p>
@@ -169,37 +202,91 @@ export default function ProductStockDetails({
                     </div>
                   </div>
 
-                  {/* Stock level chart */}
-                  {stockChart.length > 1 && (
-                    <div className="bg-white border border-bone rounded p-4">
-                      <p className="text-[10px] uppercase tracking-widest text-mist mb-3">Stock Level (last 30 movements)</p>
-                      <ResponsiveContainer width="100%" height={160}>
-                        <LineChart data={stockChart} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" />
-                          <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
-                          <YAxis tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} allowDecimals={false} />
-                          <Tooltip contentStyle={{ fontSize: 11, border: '1px solid #e8e2d9', borderRadius: 4 }} />
-                          <Line type="stepAfter" dataKey="stock" stroke="#c9a96e" strokeWidth={2} dot={false} />
-                        </LineChart>
-                      </ResponsiveContainer>
-                    </div>
-                  )}
+                  {/* ── STATUS — 3 line charts ── */}
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-charcoal font-semibold mb-3 pb-2 border-b border-bone">
+                      Status
+                    </p>
+                    <div className="space-y-4">
 
-                  {/* Monthly demand chart */}
-                  {demandChart.length > 0 && (
-                    <div className="bg-white border border-bone rounded p-4">
-                      <p className="text-[10px] uppercase tracking-widest text-mist mb-3">Monthly Demand (units sold)</p>
-                      <ResponsiveContainer width="100%" height={160}>
-                        <BarChart data={demandChart} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                          <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" />
-                          <XAxis dataKey="month" tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} />
-                          <YAxis tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} allowDecimals={false} />
-                          <Tooltip contentStyle={{ fontSize: 11, border: '1px solid #e8e2d9', borderRadius: 4 }} />
-                          <Bar dataKey="qty" fill="#c9a96e" radius={[3, 3, 0, 0]} />
-                        </BarChart>
-                      </ResponsiveContainer>
+                      {/* Chart 1: Stock quantity over time */}
+                      {stockLevelChart.length > 1 ? (
+                        <ChartSection title="Stock Quantity">
+                          <ResponsiveContainer width="100%" height={150}>
+                            <LineChart data={stockLevelChart} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                              <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" />
+                              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
+                              <YAxis tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} allowDecimals={false} />
+                              <Tooltip
+                                contentStyle={TOOLTIP_STYLE}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                formatter={(v: any) => [`${v} units`, 'Stock']}
+                              />
+                              <Line type="monotone" dataKey="stock" stroke="#c9a96e" strokeWidth={2} dot={{ r: 2.5, fill: '#c9a96e', strokeWidth: 0 }} activeDot={{ r: 4 }} />
+                            </LineChart>
+                          </ResponsiveContainer>
+                        </ChartSection>
+                      ) : (
+                        <ChartSection title="Stock Quantity">
+                          <p className="text-xs text-mist py-4 text-center">Not enough movement data yet.</p>
+                        </ChartSection>
+                      )}
+
+                      {/* Chart 2: Daily order volume */}
+                      {orderVolumeChart.length > 0 ? (
+                        <ChartSection title="Daily Order Volume (units sold)">
+                          <ResponsiveContainer width="100%" height={150}>
+                            <LineChart data={orderVolumeChart} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                              <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" />
+                              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
+                              <YAxis tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} allowDecimals={false} />
+                              <Tooltip
+                                contentStyle={TOOLTIP_STYLE}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                formatter={(v: any) => [`${v} units`, 'Sold']}
+                              />
+                              <Line type="monotone" dataKey="units" stroke="#38bdf8" strokeWidth={2} dot={{ r: 2.5, fill: '#38bdf8', strokeWidth: 0 }} activeDot={{ r: 4 }} />
+                            </LineChart>
+                          </ResponsiveContainer>
+                        </ChartSection>
+                      ) : (
+                        <ChartSection title="Daily Order Volume (units sold)">
+                          <p className="text-xs text-mist py-4 text-center">No orders yet.</p>
+                        </ChartSection>
+                      )}
+
+                      {/* Chart 3: Stock delta per movement */}
+                      {deltaChart.length > 1 ? (
+                        <ChartSection title="Stock Changes (Δ per movement)">
+                          <ResponsiveContainer width="100%" height={150}>
+                            <LineChart data={deltaChart} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                              <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" />
+                              <XAxis dataKey="date" tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
+                              <YAxis tick={{ fontSize: 9, fill: '#6b6b6b' }} tickLine={false} axisLine={false} allowDecimals={false} />
+                              <ReferenceLine y={0} stroke="#e8e2d9" strokeWidth={1.5} />
+                              <Tooltip
+                                contentStyle={TOOLTIP_STYLE}
+                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                formatter={(v: any) => [v > 0 ? `+${v}` : String(v), 'Δ']}
+                              />
+                              <Line
+                                type="monotone"
+                                dataKey="delta"
+                                stroke="#a78bfa"
+                                strokeWidth={2}
+                                dot={{ r: 2.5, fill: '#a78bfa', strokeWidth: 0 }}
+                                activeDot={{ r: 4 }}
+                              />
+                            </LineChart>
+                          </ResponsiveContainer>
+                        </ChartSection>
+                      ) : (
+                        <ChartSection title="Stock Changes (Δ per movement)">
+                          <p className="text-xs text-mist py-4 text-center">Not enough movement data yet.</p>
+                        </ChartSection>
+                      )}
                     </div>
-                  )}
+                  </div>
 
                   {/* Recent movements feed */}
                   <div>

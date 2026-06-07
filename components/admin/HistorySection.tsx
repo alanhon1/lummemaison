@@ -25,6 +25,7 @@ const HISTORY_COLUMNS = ['Date (KST)', 'Product', 'Δ Qty', 'Reason', 'Ref / Com
 interface InboundBatchGroup {
   batchId: number;
   date: string;
+  createdAt: string;
   company: string;
   totalQty: number;
   productCount: number;
@@ -36,9 +37,10 @@ interface OrderBatchGroup {
   orderId: number;
   orderRef: string | null;
   date: string;
+  createdAt: string;
   totalQty: number;
   productCount: number;
-  reason: string; // 'order' | 'cancelled'
+  reason: string;
   movements: HistoryMovement[];
 }
 
@@ -95,6 +97,7 @@ export default function HistorySection({
     inboundBatchGroups.push({
       batchId,
       date: first.batch_date ?? first.created_at_kst.slice(0, 10),
+      createdAt: first.created_at_kst,
       company: first.company_name ?? '—',
       totalQty: bMovements.reduce((s, m) => s + m.delta, 0),
       productCount: bMovements.length,
@@ -111,6 +114,7 @@ export default function HistorySection({
         orderId,
         orderRef: first.order_ref,
         date: first.created_at_kst.slice(0, 10),
+        createdAt: first.created_at_kst,
         totalQty: oMovements.reduce((s, m) => s + m.delta, 0),
         productCount: oMovements.length,
         reason: first.reason,
@@ -126,9 +130,11 @@ export default function HistorySection({
     | { type: 'order_batch'; batch: OrderBatchGroup; sortKey: string }
     | { type: 'movement'; movement: HistoryMovement; sortKey: string };
 
+  // Sort all rows by actual datetime so inbound batches, order batches, and
+  // individual movements appear in strict chronological order regardless of type.
   const displayRows: DisplayRow[] = [
-    ...inboundBatchGroups.map(b => ({ type: 'inbound_batch' as const, batch: b, sortKey: b.date })),
-    ...orderBatchGroups.map(b => ({ type: 'order_batch' as const, batch: b, sortKey: b.date })),
+    ...inboundBatchGroups.map(b => ({ type: 'inbound_batch' as const, batch: b, sortKey: b.createdAt })),
+    ...orderBatchGroups.map(b => ({ type: 'order_batch' as const, batch: b, sortKey: b.createdAt })),
     ...individualMovements.map(m => ({ type: 'movement' as const, movement: m, sortKey: m.created_at_kst })),
   ].sort((a, b) => b.sortKey.localeCompare(a.sortKey));
 
