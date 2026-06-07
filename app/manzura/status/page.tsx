@@ -13,6 +13,8 @@ import StatusDashboard, {
   type MonthlyPoint,
   type CountryCount,
   type PaymentMethodCount,
+  type HourPoint,
+  type DayPoint,
 } from '@/components/admin/StatusDashboard';
 import KanbanBoard, { type KanbanOrder } from '@/components/admin/KanbanBoard';
 
@@ -222,6 +224,21 @@ export default async function StatusPage({ searchParams }: PageProps) {
     .map(([method, v]) => ({ method, ...v }))
     .sort((a, b) => b.count - a.count);
 
+  // Hour of day (UTC, last 30 days)
+  const hourly: HourPoint[] = Array.from({ length: 24 }, (_, h) => ({
+    hour: h,
+    label: h === 0 ? '12a' : h < 12 ? `${h}a` : h === 12 ? '12p' : `${h - 12}p`,
+    count: 0,
+  }));
+  // Day of week (0=Sun … 6=Sat, last 30 days)
+  const DOW_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const daily_dow: DayPoint[] = Array.from({ length: 7 }, (_, d) => ({ day: d, label: DOW_LABELS[d], count: 0 }));
+  for (const o of windowOrders) {
+    const dt = new Date(o.created_at as string);
+    hourly[dt.getUTCHours()].count += 1;
+    daily_dow[dt.getUTCDay()].count += 1;
+  }
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
       <h1 className="font-display text-3xl font-light text-charcoal mb-6">Status</h1>
@@ -238,6 +255,8 @@ export default async function StatusPage({ searchParams }: PageProps) {
         monthly={monthly}
         countries={countries}
         paymentMethods={paymentMethods}
+        hourly={hourly}
+        daily_dow={daily_dow}
       />
     </div>
   );

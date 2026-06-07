@@ -1,52 +1,20 @@
 'use client';
 
 import {
-  LineChart, Line, BarChart, Bar,
-  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
+  AreaChart, Area,
+  BarChart, Bar,
+  XAxis, YAxis, Tooltip, ResponsiveContainer, Cell,
 } from 'recharts';
 
-export interface DailyPoint {
-  date: string;
-  label: string;
-  count: number;
-  revenueCents: number;
-}
-
-export interface StatusCount {
-  status: string;
-  label: string;
-  count: number;
-}
-
-export interface TopProduct {
-  name: string;
-  quantity: number;
-}
-
-export interface LowStockItem {
-  id: number;
-  name: string;
-  stock: number;
-}
-
-export interface MonthlyPoint {
-  month: string;
-  label: string;
-  revenueCents: number;
-  count: number;
-}
-
-export interface CountryCount {
-  country: string;
-  count: number;
-  revenueCents: number;
-}
-
-export interface PaymentMethodCount {
-  method: string;
-  count: number;
-  revenueCents: number;
-}
+export interface DailyPoint   { date: string; label: string; count: number; revenueCents: number; }
+export interface StatusCount  { status: string; label: string; count: number; }
+export interface TopProduct   { name: string; quantity: number; }
+export interface LowStockItem { id: number; name: string; stock: number; }
+export interface MonthlyPoint { month: string; label: string; revenueCents: number; count: number; }
+export interface CountryCount { country: string; count: number; revenueCents: number; }
+export interface PaymentMethodCount { method: string; count: number; revenueCents: number; }
+export interface HourPoint    { hour: number; label: string; count: number; }
+export interface DayPoint     { day: number; label: string; count: number; }
 
 interface Props {
   totalOrders: number;
@@ -60,14 +28,17 @@ interface Props {
   monthly: MonthlyPoint[];
   countries: CountryCount[];
   paymentMethods: PaymentMethodCount[];
+  hourly: HourPoint[];
+  daily_dow: DayPoint[];
 }
 
 function money(cents: number): string {
-  return (cents / 100).toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  });
+  return (cents / 100).toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+}
+function compact(cents: number): string {
+  const v = cents / 100;
+  if (v >= 1000) return `$${(v / 1000).toFixed(1)}k`;
+  return `$${v.toFixed(0)}`;
 }
 
 const STATUS_COLOR: Record<string, string> = {
@@ -76,138 +47,177 @@ const STATUS_COLOR: Record<string, string> = {
   packaging:        '#818cf8',
   shipped:          '#34d399',
   delivered:        '#c9a96e',
-  cancelled:        '#a8a29e',
+  cancelled:        '#e2d9cc',
 };
 
-const TOOLTIP_STYLE = {
+const TT: React.CSSProperties = {
   fontSize: 11,
-  border: '1px solid #e8e2d9',
-  borderRadius: 6,
+  border: '1px solid #ede8e1',
+  borderRadius: 8,
   background: '#fff',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+  padding: '6px 10px',
 };
 
 export default function StatusDashboard({
-  totalOrders,
-  ordersToday,
-  revenueCents30,
-  avgOrderCents,
-  daily,
-  statusCounts,
-  topProducts,
-  lowStock,
-  monthly,
-  countries,
-  paymentMethods,
+  totalOrders, ordersToday, revenueCents30, avgOrderCents,
+  daily, statusCounts, topProducts, lowStock,
+  monthly, countries, paymentMethods, hourly, daily_dow,
 }: Props) {
-  const activeStatusCounts = statusCounts.filter(s => s.count > 0);
+  const totalPM = paymentMethods.reduce((s, p) => s + p.count, 0);
+  const activeStatus = statusCounts.filter(s => s.count > 0);
+  const peakHour = hourly.reduce((a, b) => b.count > a.count ? b : a, hourly[0]);
+  const peakDay  = daily_dow.reduce((a, b) => b.count > a.count ? b : a, daily_dow[0]);
+  const maxHour  = Math.max(...hourly.map(h => h.count), 1);
+  const maxDay   = Math.max(...daily_dow.map(d => d.count), 1);
 
   return (
-    <div className="space-y-8">
-      {/* Stat cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard label="Total orders" value={String(totalOrders)} sub="all time" />
-        <StatCard label="Orders today" value={String(ordersToday)} sub="since 00:00 UTC" />
-        <StatCard label="Gross order value" value={money(revenueCents30)} sub="last 30 days" />
-        <StatCard label="Avg order value" value={money(avgOrderCents)} sub="last 30 days" />
+    <div className="space-y-5">
+
+      {/* ── KPI cards ───────────────────────────────────────── */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <KPI label="Total orders"    value={String(totalOrders)}     sub="all time" />
+        <KPI label="Orders today"    value={String(ordersToday)}     sub="since 00:00 UTC" />
+        <KPI label="Revenue 30d"     value={money(revenueCents30)}   sub="non-cancelled" />
+        <KPI label="Avg order value" value={money(avgOrderCents)}    sub="last 30 days" />
       </div>
 
-      {/* Daily orders — line chart */}
-      <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
-        <div className="flex items-baseline justify-between mb-5">
-          <h2 className="font-display text-lg text-charcoal">Daily orders</h2>
-          <span className="text-[10px] uppercase tracking-widest text-mist">last 30 days</span>
-        </div>
-        {daily.every(d => d.count === 0) ? (
-          <p className="text-xs text-mist py-8 text-center">No orders in this window yet.</p>
+      {/* ── Daily revenue area chart ─────────────────────────── */}
+      <Panel title="Revenue" sub="last 30 days">
+        {daily.every(d => d.revenueCents === 0) ? (
+          <Empty>No orders in this window yet.</Empty>
         ) : (
-          <ResponsiveContainer width="100%" height={180}>
-            <LineChart data={daily} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" />
+          <ResponsiveContainer width="100%" height={160}>
+            <AreaChart data={daily} margin={{ top: 4, right: 4, left: -18, bottom: 0 }}>
+              <defs>
+                <linearGradient id="gRev" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"   stopColor="#c9a96e" stopOpacity={0.18} />
+                  <stop offset="100%" stopColor="#c9a96e" stopOpacity={0} />
+                </linearGradient>
+              </defs>
               <XAxis
                 dataKey="label"
-                tick={{ fontSize: 9, fill: '#6b6b6b' }}
-                tickLine={false}
-                axisLine={false}
-                interval={Math.floor(daily.length / 5)}
+                tick={{ fontSize: 9, fill: '#b0a898' }}
+                tickLine={false} axisLine={false}
+                interval={Math.floor(daily.length / 6)}
               />
               <YAxis
-                tick={{ fontSize: 9, fill: '#6b6b6b' }}
-                tickLine={false}
-                axisLine={false}
-                allowDecimals={false}
+                tick={{ fontSize: 9, fill: '#b0a898' }}
+                tickLine={false} axisLine={false}
+                tickFormatter={compact}
               />
               <Tooltip
-                contentStyle={TOOLTIP_STYLE}
+                contentStyle={TT}
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                formatter={(val: any, _: any, entry: any) => [
-                  `${val} orders · ${money(entry?.payload?.revenueCents ?? 0)}`,
-                  '',
-                ]}
-                labelStyle={{ fontWeight: 600, marginBottom: 2 }}
+                formatter={(v: any, _: any, e: any) => [`${money(v as number)} · ${e?.payload?.count ?? 0} orders`, '']}
+                labelStyle={{ fontWeight: 600, color: '#1a1a1a', marginBottom: 2 }}
               />
-              <Line
-                type="monotone"
-                dataKey="count"
-                stroke="#c9a96e"
-                strokeWidth={2}
-                dot={{ r: 3, fill: '#c9a96e', strokeWidth: 0 }}
-                activeDot={{ r: 5 }}
+              <Area
+                type="monotone" dataKey="revenueCents"
+                stroke="#c9a96e" strokeWidth={1.5}
+                fill="url(#gRev)" dot={false}
+                activeDot={{ r: 4, fill: '#c9a96e', strokeWidth: 0 }}
               />
-            </LineChart>
+            </AreaChart>
           </ResponsiveContainer>
         )}
-      </section>
+      </Panel>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Status distribution */}
-        <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
-          <h2 className="font-display text-lg text-charcoal mb-5">Orders by status</h2>
-          {activeStatusCounts.length === 0 ? (
-            <p className="text-xs text-mist py-8 text-center">No orders yet.</p>
-          ) : (
+      {/* ── Time analysis ─────────────────────────────────────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+        {/* Hour of day */}
+        <Panel title="Orders by hour" sub={`peak ${peakHour.label} · last 30 days`}>
+          {hourly.every(h => h.count === 0) ? <Empty>No data yet.</Empty> : (
+            <ResponsiveContainer width="100%" height={90}>
+              <BarChart data={hourly} margin={{ top: 4, right: 0, left: -24, bottom: 0 }} barCategoryGap="20%">
+                <XAxis
+                  dataKey="label"
+                  tick={{ fontSize: 8, fill: '#b0a898' }}
+                  tickLine={false} axisLine={false}
+                  interval={5}
+                />
+                <YAxis hide />
+                <Tooltip
+                  contentStyle={TT}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  formatter={(v: any) => [`${v} orders`, '']}
+                  labelStyle={{ fontWeight: 600, color: '#1a1a1a', marginBottom: 2 }}
+                />
+                <Bar dataKey="count" radius={[2, 2, 0, 0]} maxBarSize={7}>
+                  {hourly.map(h => (
+                    <Cell
+                      key={h.hour}
+                      fill={h.count === maxHour ? '#c9a96e' : h.count > maxHour * 0.6 ? '#dcc08d' : '#ede8e1'}
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </Panel>
+
+        {/* Day of week */}
+        <Panel title="Orders by day" sub={`peak ${peakDay.label} · last 30 days`}>
+          {daily_dow.every(d => d.count === 0) ? <Empty>No data yet.</Empty> : (
+            <ResponsiveContainer width="100%" height={90}>
+              <BarChart data={daily_dow} margin={{ top: 4, right: 0, left: -24, bottom: 0 }} barCategoryGap="25%">
+                <XAxis
+                  dataKey="label"
+                  tick={{ fontSize: 9, fill: '#b0a898' }}
+                  tickLine={false} axisLine={false}
+                />
+                <YAxis hide />
+                <Tooltip
+                  contentStyle={TT}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  formatter={(v: any) => [`${v} orders`, '']}
+                  labelStyle={{ fontWeight: 600, color: '#1a1a1a', marginBottom: 2 }}
+                />
+                <Bar dataKey="count" radius={[2, 2, 0, 0]} maxBarSize={20}>
+                  {daily_dow.map(d => (
+                    <Cell
+                      key={d.day}
+                      fill={d.count === maxDay ? '#c9a96e' : d.count > maxDay * 0.6 ? '#dcc08d' : '#ede8e1'}
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </Panel>
+      </div>
+
+      {/* ── Status + Top products ──────────────────────────────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+        <Panel title="Orders by status">
+          {activeStatus.length === 0 ? <Empty>No orders yet.</Empty> : (
             <>
-              <ResponsiveContainer width="100%" height={200}>
-                <BarChart
-                  data={statusCounts}
-                  layout="vertical"
-                  margin={{ top: 0, right: 30, left: 0, bottom: 0 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" horizontal={false} />
-                  <XAxis
-                    type="number"
-                    tick={{ fontSize: 9, fill: '#6b6b6b' }}
-                    tickLine={false}
-                    axisLine={false}
-                    allowDecimals={false}
-                  />
-                  <YAxis
-                    type="category"
-                    dataKey="label"
-                    tick={{ fontSize: 10, fill: '#1a1a1a' }}
-                    tickLine={false}
-                    axisLine={false}
-                    width={90}
-                  />
-                  <Tooltip
-                    contentStyle={TOOLTIP_STYLE}
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    formatter={(val: any) => [`${val} orders`, '']}
-                  />
-                  <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={18}>
-                    {statusCounts.map(s => (
-                      <Cell key={s.status} fill={STATUS_COLOR[s.status] ?? '#c9a96e'} />
-                    ))}
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-              {/* Legend */}
-              <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-4">
+              <div className="space-y-2 mt-1">
+                {statusCounts.filter(s => s.count > 0).map(s => {
+                  const total = activeStatus.reduce((a, b) => a + b.count, 0);
+                  const pct = total > 0 ? (s.count / total) * 100 : 0;
+                  return (
+                    <div key={s.status}>
+                      <div className="flex justify-between items-center mb-0.5">
+                        <span className="text-[11px] text-charcoal">{s.label}</span>
+                        <span className="text-[11px] font-medium text-charcoal tabular-nums">{s.count}</span>
+                      </div>
+                      <div className="h-1 w-full bg-bone rounded-full overflow-hidden">
+                        <div
+                          className="h-1 rounded-full transition-all"
+                          style={{ width: `${pct}%`, background: STATUS_COLOR[s.status] ?? '#c9a96e' }}
+                        />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 mt-4 pt-3 border-t border-bone">
                 {statusCounts.map(s => (
                   <div key={s.status} className="flex items-center gap-1.5">
-                    <span
-                      className="w-2.5 h-2.5 rounded-sm shrink-0"
-                      style={{ background: STATUS_COLOR[s.status] ?? '#c9a96e' }}
-                    />
+                    <span className="w-2 h-2 rounded-full shrink-0" style={{ background: STATUS_COLOR[s.status] ?? '#c9a96e' }} />
                     <span className="text-[10px] text-mist">{s.label}</span>
                     <span className="text-[10px] font-semibold text-charcoal">{s.count}</span>
                   </div>
@@ -215,201 +225,174 @@ export default function StatusDashboard({
               </div>
             </>
           )}
-        </section>
+        </Panel>
 
-        {/* Top products */}
-        <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
-          <h2 className="font-display text-lg text-charcoal mb-5">Top products</h2>
-          {topProducts.length === 0 ? (
-            <p className="text-xs text-mist py-8 text-center">No sales recorded yet.</p>
-          ) : (
-            <ResponsiveContainer width="100%" height={220}>
-              <BarChart
-                data={topProducts}
-                layout="vertical"
-                margin={{ top: 0, right: 30, left: 0, bottom: 0 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" horizontal={false} />
-                <XAxis
-                  type="number"
-                  tick={{ fontSize: 9, fill: '#6b6b6b' }}
-                  tickLine={false}
-                  axisLine={false}
-                  allowDecimals={false}
-                />
-                <YAxis
-                  type="category"
-                  dataKey="name"
-                  tick={{ fontSize: 9, fill: '#1a1a1a' }}
-                  tickLine={false}
-                  axisLine={false}
-                  width={120}
-                  tickFormatter={(v: string) => v.length > 16 ? v.slice(0, 15) + '…' : v}
-                />
-                <Tooltip
-                  contentStyle={TOOLTIP_STYLE}
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  formatter={(val: any) => [`${val} units sold`, '']}
-                />
-                <Bar dataKey="quantity" fill="#c9a96e" radius={[0, 4, 4, 0]} maxBarSize={16} />
-              </BarChart>
-            </ResponsiveContainer>
+        <Panel title="Top products" sub="all time by units sold">
+          {topProducts.length === 0 ? <Empty>No sales recorded yet.</Empty> : (
+            <div className="space-y-1.5 mt-1">
+              {topProducts.map((p, i) => {
+                const max = topProducts[0].quantity;
+                const pct = max > 0 ? (p.quantity / max) * 100 : 0;
+                return (
+                  <div key={p.name} className="flex items-center gap-3">
+                    <span className="text-[10px] text-mist w-4 shrink-0 tabular-nums text-right">{i + 1}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-center mb-0.5">
+                        <span className="text-[11px] text-charcoal truncate pr-2">{p.name}</span>
+                        <span className="text-[11px] font-medium text-charcoal tabular-nums shrink-0">{p.quantity}</span>
+                      </div>
+                      <div className="h-0.5 w-full bg-bone rounded-full">
+                        <div className="h-0.5 rounded-full bg-gold/70" style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           )}
-        </section>
+        </Panel>
       </div>
 
-      {/* Low stock */}
-      <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
-        <div className="flex items-baseline justify-between mb-4">
-          <h2 className="font-display text-lg text-charcoal">Low / out of stock</h2>
-          <span className="text-[10px] uppercase tracking-widest text-mist">≤ 2 units</span>
-        </div>
+      {/* ── Monthly revenue area chart ────────────────────────── */}
+      <Panel title="Monthly revenue" sub="last 12 months">
+        {monthly.every(m => m.revenueCents === 0) ? <Empty>No revenue recorded yet.</Empty> : (
+          <ResponsiveContainer width="100%" height={150}>
+            <AreaChart data={monthly} margin={{ top: 4, right: 4, left: -18, bottom: 0 }}>
+              <defs>
+                <linearGradient id="gMon" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%"   stopColor="#818cf8" stopOpacity={0.18} />
+                  <stop offset="100%" stopColor="#818cf8" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <XAxis
+                dataKey="label"
+                tick={{ fontSize: 9, fill: '#b0a898' }}
+                tickLine={false} axisLine={false}
+              />
+              <YAxis
+                tick={{ fontSize: 9, fill: '#b0a898' }}
+                tickLine={false} axisLine={false}
+                tickFormatter={compact}
+              />
+              <Tooltip
+                contentStyle={TT}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                formatter={(v: any, _: any, e: any) => [`${money(v as number)} · ${e?.payload?.count ?? 0} orders`, '']}
+                labelStyle={{ fontWeight: 600, color: '#1a1a1a', marginBottom: 2 }}
+              />
+              <Area
+                type="monotone" dataKey="revenueCents"
+                stroke="#818cf8" strokeWidth={1.5}
+                fill="url(#gMon)" dot={false}
+                activeDot={{ r: 4, fill: '#818cf8', strokeWidth: 0 }}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        )}
+      </Panel>
+
+      {/* ── Country + Payment ─────────────────────────────────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+        <Panel title="Orders by country" sub="top 10 · all time">
+          {countries.length === 0 ? <Empty>No orders yet.</Empty> : (
+            <div className="space-y-1.5 mt-1">
+              {countries.map((c, i) => {
+                const max = countries[0].count;
+                const pct = max > 0 ? (c.count / max) * 100 : 0;
+                return (
+                  <div key={c.country} className="flex items-center gap-3">
+                    <span className="text-[10px] text-mist w-4 shrink-0 tabular-nums text-right">{i + 1}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-center mb-0.5">
+                        <span className="text-[11px] text-charcoal">{c.country}</span>
+                        <span className="text-[11px] text-mist tabular-nums">{c.count} · {money(c.revenueCents)}</span>
+                      </div>
+                      <div className="h-0.5 w-full bg-bone rounded-full">
+                        <div className="h-0.5 rounded-full bg-indigo-300" style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </Panel>
+
+        <Panel title="Payment methods">
+          {paymentMethods.length === 0 ? <Empty>No orders yet.</Empty> : (
+            <div className="space-y-4 mt-1">
+              {paymentMethods.map(pm => {
+                const pct = totalPM > 0 ? Math.round((pm.count / totalPM) * 100) : 0;
+                const label = pm.method === 'wise' ? 'Wise' : pm.method === 'usdt' ? 'USDT' : pm.method ?? 'Unknown';
+                return (
+                  <div key={pm.method}>
+                    <div className="flex justify-between items-baseline mb-1.5">
+                      <span className="text-sm font-medium text-charcoal">{label}</span>
+                      <span className="text-[11px] text-mist tabular-nums">{pm.count} orders · {money(pm.revenueCents)}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1 h-1 bg-bone rounded-full overflow-hidden">
+                        <div className="h-1 rounded-full bg-gold transition-all" style={{ width: `${pct}%` }} />
+                      </div>
+                      <span className="text-[10px] text-mist tabular-nums w-8 text-right">{pct}%</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </Panel>
+      </div>
+
+      {/* ── Low stock ─────────────────────────────────────────── */}
+      <Panel title="Low / out of stock" sub="≤ 2 units">
         {lowStock.length === 0 ? (
-          <p className="text-xs text-mist py-4 text-center">Everything is well stocked.</p>
+          <p className="text-xs text-mist py-2">Everything is well stocked.</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 mt-1">
             {lowStock.map(item => (
               <a
                 key={item.id}
                 href={`/manzura/products/${item.id}`}
-                className="flex justify-between items-center text-xs py-1.5 border-b border-bone last:border-0 hover:text-gold-dark"
+                className="flex justify-between items-center text-xs py-1.5 border-b border-bone last:border-0 hover:text-gold transition-colors"
               >
                 <span className="text-charcoal truncate mr-3">#{item.id} {item.name}</span>
-                <span className={item.stock <= 0 ? 'text-rose-700 font-semibold whitespace-nowrap' : 'text-rose-600 whitespace-nowrap'}>
+                <span className={item.stock <= 0 ? 'text-rose-600 font-semibold whitespace-nowrap' : 'text-amber-600 whitespace-nowrap'}>
                   {item.stock <= 0 ? 'Sold out' : `${item.stock} left`}
                 </span>
               </a>
             ))}
           </div>
         )}
-      </section>
+      </Panel>
 
-      {/* Monthly revenue — bar chart */}
-      <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
-        <div className="flex items-baseline justify-between mb-5">
-          <h2 className="font-display text-lg text-charcoal">Monthly revenue</h2>
-          <span className="text-[10px] uppercase tracking-widest text-mist">last 12 months</span>
-        </div>
-        {monthly.every(m => m.revenueCents === 0) ? (
-          <p className="text-xs text-mist py-8 text-center">No revenue recorded yet.</p>
-        ) : (
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={monthly} margin={{ top: 5, right: 10, left: -5, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" vertical={false} />
-              <XAxis
-                dataKey="label"
-                tick={{ fontSize: 9, fill: '#6b6b6b' }}
-                tickLine={false}
-                axisLine={false}
-              />
-              <YAxis
-                tick={{ fontSize: 9, fill: '#6b6b6b' }}
-                tickLine={false}
-                axisLine={false}
-                tickFormatter={(v: number) => `$${(v / 100).toLocaleString('en-US', { notation: 'compact', maximumFractionDigits: 0 })}`}
-              />
-              <Tooltip
-                contentStyle={TOOLTIP_STYLE}
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                formatter={(val: any, _: any, entry: any) => [
-                  `${money(val as number)} · ${entry?.payload?.count ?? 0} orders`,
-                  '',
-                ]}
-                labelStyle={{ fontWeight: 600, marginBottom: 2 }}
-              />
-              <Bar dataKey="revenueCents" fill="#c9a96e" radius={[4, 4, 0, 0]} maxBarSize={32} />
-            </BarChart>
-          </ResponsiveContainer>
-        )}
-      </section>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Country distribution */}
-        <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
-          <div className="flex items-baseline justify-between mb-5">
-            <h2 className="font-display text-lg text-charcoal">Orders by country</h2>
-            <span className="text-[10px] uppercase tracking-widest text-mist">top 10</span>
-          </div>
-          {countries.length === 0 ? (
-            <p className="text-xs text-mist py-8 text-center">No orders yet.</p>
-          ) : (
-            <ResponsiveContainer width="100%" height={Math.max(180, countries.length * 28)}>
-              <BarChart
-                data={countries}
-                layout="vertical"
-                margin={{ top: 0, right: 30, left: 0, bottom: 0 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" horizontal={false} />
-                <XAxis
-                  type="number"
-                  tick={{ fontSize: 9, fill: '#6b6b6b' }}
-                  tickLine={false}
-                  axisLine={false}
-                  allowDecimals={false}
-                />
-                <YAxis
-                  type="category"
-                  dataKey="country"
-                  tick={{ fontSize: 10, fill: '#1a1a1a' }}
-                  tickLine={false}
-                  axisLine={false}
-                  width={36}
-                />
-                <Tooltip
-                  contentStyle={TOOLTIP_STYLE}
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  formatter={(val: any, _: any, entry: any) => [
-                    `${val} orders · ${money(entry?.payload?.revenueCents ?? 0)}`,
-                    '',
-                  ]}
-                />
-                <Bar dataKey="count" fill="#818cf8" radius={[0, 4, 4, 0]} maxBarSize={16} />
-              </BarChart>
-            </ResponsiveContainer>
-          )}
-        </section>
-
-        {/* Payment method split */}
-        <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
-          <h2 className="font-display text-lg text-charcoal mb-5">Payment methods</h2>
-          {paymentMethods.length === 0 ? (
-            <p className="text-xs text-mist py-8 text-center">No orders yet.</p>
-          ) : (
-            <div className="space-y-3">
-              {paymentMethods.map(pm => {
-                const total = paymentMethods.reduce((s, p) => s + p.count, 0);
-                const pct = total > 0 ? Math.round((pm.count / total) * 100) : 0;
-                const label = pm.method === 'wise' ? 'Wise' : pm.method === 'usdt' ? 'USDT' : pm.method ?? 'Unknown';
-                return (
-                  <div key={pm.method} className="space-y-1">
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-sm font-semibold text-charcoal">{label}</span>
-                      <span className="text-xs text-mist">{pm.count} orders · {money(pm.revenueCents)}</span>
-                    </div>
-                    <div className="w-full bg-bone rounded-full h-2">
-                      <div
-                        className="h-2 rounded-full bg-gold transition-all"
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                    <div className="text-[10px] text-mist text-right">{pct}%</div>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </section>
-      </div>
     </div>
   );
 }
 
-function StatCard({ label, value, sub }: { label: string; value: string; sub: string }) {
+function Panel({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) {
   return (
-    <div className="bg-white border border-bone rounded-lg p-4">
-      <div className="text-[10px] uppercase tracking-widest text-mist">{label}</div>
-      <div className="font-display text-2xl text-charcoal mt-1">{value}</div>
+    <section className="bg-white border border-bone rounded-xl p-5">
+      <div className="flex items-baseline justify-between mb-4">
+        <h2 className="text-[13px] font-semibold text-charcoal tracking-tight">{title}</h2>
+        {sub && <span className="text-[10px] text-mist">{sub}</span>}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+function KPI({ label, value, sub }: { label: string; value: string; sub: string }) {
+  return (
+    <div className="bg-white border border-bone rounded-xl p-4">
+      <div className="text-[10px] uppercase tracking-widest text-mist mb-1">{label}</div>
+      <div className="text-2xl font-semibold text-charcoal tabular-nums">{value}</div>
       <div className="text-[10px] text-mist mt-0.5">{sub}</div>
     </div>
   );
+}
+
+function Empty({ children }: { children: React.ReactNode }) {
+  return <p className="text-xs text-mist py-6 text-center">{children}</p>;
 }
