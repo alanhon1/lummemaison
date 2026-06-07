@@ -4,6 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { useLocale } from 'next-intl';
+import Link from 'next/link';
+import { createClient } from '@/lib/supabase/browser';
+import { localePath } from '@/lib/i18n';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
@@ -20,18 +23,32 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false);
   const [limitReached, setLimitReached] = useState(false);
   const [sessionId, setSessionId] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const stored = localStorage.getItem('lm_chat_sid');
-    if (stored) {
-      setSessionId(stored);
-    } else {
-      const id = crypto.randomUUID();
-      localStorage.setItem('lm_chat_sid', id);
-      setSessionId(id);
-    }
+    const supabase = createClient();
+    supabase.auth.getSession().then(({ data }) => {
+      setIsLoggedIn(!!data.session);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+      setIsLoggedIn(!!session);
+    });
+    return () => subscription.unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      const stored = localStorage.getItem('lm_chat_sid');
+      if (stored) {
+        setSessionId(stored);
+      } else {
+        const id = crypto.randomUUID();
+        localStorage.setItem('lm_chat_sid', id);
+        setSessionId(id);
+      }
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (open) bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -101,63 +118,82 @@ export default function ChatWidget() {
               </button>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-cream">
-              {messages.length === 0 && (
-                <p className="text-xs text-mist text-center mt-4 px-4">
-                  Hi! 👋 Ask me anything about shipping, payment, or products.
+            {/* Messages / Login gate */}
+            {isLoggedIn === false ? (
+              <div className="flex-1 flex flex-col items-center justify-center gap-4 bg-cream px-6 text-center">
+                <MessageCircle size={32} className="text-gold opacity-60" />
+                <p className="text-sm text-charcoal font-medium">
+                  {locale === 'ru'
+                    ? 'Войдите, чтобы написать нам'
+                    : 'Please log in to chat with us'}
                 </p>
-              )}
-              {messages.map((m, i) => (
-                <div
-                  key={i}
-                  className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                <Link
+                  href={localePath(locale, '/account/login')}
+                  className="px-5 py-2 rounded-full bg-gold text-white text-xs font-semibold hover:bg-gold-dark transition-colors"
                 >
+                  {locale === 'ru' ? 'Войти' : 'Log in'}
+                </Link>
+              </div>
+            ) : (
+              <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-cream">
+                {messages.length === 0 && (
+                  <p className="text-xs text-mist text-center mt-4 px-4">
+                    Hi! 👋 Ask me anything about shipping, payment, or products.
+                  </p>
+                )}
+                {messages.map((m, i) => (
                   <div
-                    className={`max-w-[80%] rounded-xl px-3 py-2 text-xs leading-relaxed whitespace-pre-wrap ${
-                      m.role === 'user'
-                        ? 'bg-gold text-white rounded-br-sm'
-                        : 'bg-surface text-charcoal border border-bone rounded-bl-sm'
-                    }`}
+                    key={i}
+                    className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    {m.content}
+                    <div
+                      className={`max-w-[80%] rounded-xl px-3 py-2 text-xs leading-relaxed whitespace-pre-wrap ${
+                        m.role === 'user'
+                          ? 'bg-gold text-white rounded-br-sm'
+                          : 'bg-surface text-charcoal border border-bone rounded-bl-sm'
+                      }`}
+                    >
+                      {m.content}
+                    </div>
                   </div>
-                </div>
-              ))}
-              {loading && (
-                <div className="flex justify-start">
-                  <div className="bg-surface border border-bone rounded-xl rounded-bl-sm px-3 py-2">
-                    <span className="flex gap-1">
-                      <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:0ms]" />
-                      <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:150ms]" />
-                      <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:300ms]" />
-                    </span>
+                ))}
+                {loading && (
+                  <div className="flex justify-start">
+                    <div className="bg-surface border border-bone rounded-xl rounded-bl-sm px-3 py-2">
+                      <span className="flex gap-1">
+                        <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:0ms]" />
+                        <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:150ms]" />
+                        <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:300ms]" />
+                      </span>
+                    </div>
                   </div>
-                </div>
-              )}
-              <div ref={bottomRef} />
-            </div>
+                )}
+                <div ref={bottomRef} />
+              </div>
+            )}
 
-            {/* Input */}
-            <div className="flex items-center gap-2 px-3 py-2 border-t border-bone bg-surface">
-              <input
-                type="text"
-                value={input}
-                onChange={e => setInput(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && !e.shiftKey && send()}
-                disabled={loading || limitReached}
-                placeholder={limitReached ? 'Daily limit reached' : 'Type a message…'}
-                className="flex-1 text-xs bg-transparent outline-none text-charcoal placeholder:text-mist disabled:opacity-50"
-              />
-              <button
-                onClick={send}
-                disabled={loading || limitReached || !input.trim()}
-                className="w-7 h-7 rounded-full bg-gold flex items-center justify-center text-white disabled:opacity-40 hover:bg-gold-dark transition-colors"
-                aria-label="Send"
-              >
-                <Send size={13} />
-              </button>
-            </div>
+            {/* Input — only when logged in */}
+            {isLoggedIn !== false && (
+              <div className="flex items-center gap-2 px-3 py-2 border-t border-bone bg-surface">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={e => setInput(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && !e.shiftKey && send()}
+                  disabled={loading || limitReached}
+                  placeholder={limitReached ? 'Daily limit reached' : 'Type a message…'}
+                  className="flex-1 text-xs bg-transparent outline-none text-charcoal placeholder:text-mist disabled:opacity-50"
+                />
+                <button
+                  onClick={send}
+                  disabled={loading || limitReached || !input.trim()}
+                  className="w-7 h-7 rounded-full bg-gold flex items-center justify-center text-white disabled:opacity-40 hover:bg-gold-dark transition-colors"
+                  aria-label="Send"
+                >
+                  <Send size={13} />
+                </button>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

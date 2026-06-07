@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { createServiceClient } from '@/lib/supabase/server';
+import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { SYSTEM_PROMPT } from '@/lib/chatbot-prompt';
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -7,6 +7,12 @@ const DAILY_LIMIT = 15;
 
 export async function POST(req: Request) {
   try {
+    const authClient = await createClient();
+    const { data: { user } } = await authClient.auth.getUser();
+    if (!user) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const { messages, sessionId } = await req.json();
 
     if (!sessionId || !Array.isArray(messages)) {
