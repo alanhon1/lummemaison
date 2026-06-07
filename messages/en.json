@@ -148,7 +148,9 @@
         "packaging": "Packing",
         "shipped": "Shipped",
         "delivered": "Delivered"
-      }
+      },
+      "reorder": "Reorder",
+      "reorderConfirm": "Your cart has items. Replace with this order?"
     }
   },
   "checkout": {

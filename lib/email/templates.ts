@@ -752,6 +752,169 @@ export function cancellationEmail(c: CancellationData): { subject: string; html:
 }
 
 // ----------------------------------------------------------------------------
+// Payment-verified notification — sent to the customer when admin confirms
+// their payment. Bridges the gap between order receipt and shipment emails.
+// ----------------------------------------------------------------------------
+
+export interface PaymentVerifiedData {
+  orderNumber: string;
+  customerName: string;
+  customerEmail: string;
+  items: OrderItem[];
+  subtotalCents: number;
+  shippingCents: number;
+  totalCents: number;
+  currency?: string;
+}
+
+export function paymentVerifiedEmail(d: PaymentVerifiedData): { subject: string; html: string; text: string } {
+  const currency = d.currency ?? 'USD';
+  const subject = `Your Lumée Maison Order ${d.orderNumber} — Payment Verified`;
+
+  const itemRows = d.items
+    .map(it => {
+      const line = it.price * it.quantity;
+      return `<tr>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;">${escapeHtml(it.name)}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:center;">${it.quantity}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(it.price, currency)}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(line, currency)}</td>
+      </tr>`;
+    })
+    .join('');
+
+  const totalsRows = [
+    `<tr><td style="padding:4px 12px;text-align:right;color:#6b6157;">Subtotal</td><td style="padding:4px 12px;text-align:right;width:120px;">${formatUSD(d.subtotalCents, currency)}</td></tr>`,
+    `<tr><td style="padding:4px 12px;text-align:right;color:#6b6157;">Shipping</td><td style="padding:4px 12px;text-align:right;">${formatUSD(d.shippingCents, currency)}</td></tr>`,
+    `<tr><td style="padding:8px 12px;text-align:right;font-weight:600;border-top:2px solid #c9b89a;">Total</td><td style="padding:8px 12px;text-align:right;font-weight:600;border-top:2px solid #c9b89a;">${formatUSD(d.totalCents, currency)}</td></tr>`,
+  ].join('');
+
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6f0;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #eadfd1;">
+        <tr><td style="padding:36px 40px 24px;text-align:center;border-bottom:1px solid #eadfd1;">
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;letter-spacing:1px;color:#3a342c;">Lumée Maison</div>
+          <div style="font-size:12px;letter-spacing:3px;color:#9a8e7e;margin-top:4px;text-transform:uppercase;">Payment Verified</div>
+        </td></tr>
+        <tr><td style="padding:32px 40px 8px;">
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(d.customerName)},</p>
+          <p style="margin:0 0 8px;font-size:15px;line-height:1.6;">Great news — we have verified your payment for order <strong>${escapeHtml(d.orderNumber)}</strong>. Your order is now being prepared for shipment and you will receive a tracking notification once it ships.</p>
+
+          <p style="margin:24px 0 4px;font-size:13px;color:#9a8e7e;text-transform:uppercase;letter-spacing:2px;">Order number</p>
+          <p style="margin:0 0 24px;font-size:20px;font-weight:600;letter-spacing:0.5px;color:#3a342c;">${escapeHtml(d.orderNumber)}</p>
+
+          <h3 style="font-family:Georgia,serif;font-style:italic;color:#3a342c;margin:0 0 8px;">Your order</h3>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #eadfd1;font-size:14px;">
+            <thead><tr style="background:#f7ede0;">
+              <th align="left" style="padding:8px 12px;color:#6b6157;font-weight:600;">Item</th>
+              <th align="center" style="padding:8px 12px;color:#6b6157;font-weight:600;">Qty</th>
+              <th align="right" style="padding:8px 12px;color:#6b6157;font-weight:600;">Unit</th>
+              <th align="right" style="padding:8px 12px;color:#6b6157;font-weight:600;">Total</th>
+            </tr></thead>
+            <tbody>${itemRows}</tbody>
+            <tfoot>${totalsRows}</tfoot>
+          </table>
+
+          <p style="margin:28px 0 4px;font-size:14px;line-height:1.6;">With gratitude,</p>
+          <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:16px;color:#3a342c;">The Lumée Maison Team</p>
+        </td></tr>
+        <tr><td style="padding:20px 40px 28px;border-top:1px solid #eadfd1;font-size:11px;color:#9a8e7e;text-align:center;">
+          This is a payment confirmation for your order ${escapeHtml(d.orderNumber)}.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const textLines = [
+    `Lumée Maison — Payment Verified`,
+    `Order number: ${d.orderNumber}`,
+    '',
+    `Dear ${d.customerName},`,
+    '',
+    `Great news — we have verified your payment for order ${d.orderNumber}. Your order is now being prepared for shipment.`,
+    '',
+    'Your order:',
+  ];
+  for (const it of d.items) {
+    textLines.push(`  ${it.name} × ${it.quantity}  ${formatUSD(it.price * it.quantity, currency)}`);
+  }
+  textLines.push(`  Subtotal: ${formatUSD(d.subtotalCents, currency)}`);
+  textLines.push(`  Shipping: ${formatUSD(d.shippingCents, currency)}`);
+  textLines.push(`  Total:    ${formatUSD(d.totalCents, currency)}`);
+  textLines.push('', 'With gratitude,', 'The Lumée Maison Team');
+
+  return { subject, html, text: textLines.join('\n') };
+}
+
+// ----------------------------------------------------------------------------
+// Admin low-stock alert — fired when any product in a just-verified order
+// drops to or below the LOW_STOCK_THRESHOLD after stock deduction.
+// ----------------------------------------------------------------------------
+
+export interface LowStockAlertData {
+  products: Array<{ id: number; name: string; stock: number }>;
+}
+
+export function lowStockAlertEmail(d: LowStockAlertData): { subject: string; html: string; text: string } {
+  const n = d.products.length;
+  const subject = `[Lumée Maison] Low Stock Alert — ${n} product${n !== 1 ? 's' : ''}`;
+
+  const rows = d.products
+    .map(
+      p =>
+        `<tr>
+          <td style="padding:8px 12px;border-bottom:1px solid #e5e7eb;">${escapeHtml(p.name)}</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #e5e7eb;text-align:center;font-weight:600;color:${p.stock === 0 ? '#dc2626' : '#d97706'};">${p.stock}</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #e5e7eb;text-align:center;color:#6b7280;font-size:12px;">${p.id}</td>
+        </tr>`,
+    )
+    .join('');
+
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#f6f7f9;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#111;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f7f9;padding:24px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e5e7eb;">
+        <tr><td style="padding:18px 24px;background:#7c3aed;color:#fff;">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.8;">Inventory Alert</div>
+          <div style="font-size:17px;font-weight:600;margin-top:2px;">Low Stock — ${n} product${n !== 1 ? 's' : ''}</div>
+        </td></tr>
+        <tr><td style="padding:20px 24px;">
+          <p style="margin:0 0 16px;font-size:14px;line-height:1.6;color:#374151;">The following products reached low stock after a recent order. Restock soon to avoid going out of stock.</p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;font-size:13px;">
+            <thead><tr style="background:#f3f4f6;">
+              <th align="left" style="padding:8px 12px;color:#374151;">Product</th>
+              <th align="center" style="padding:8px 12px;color:#374151;">Stock Left</th>
+              <th align="center" style="padding:8px 12px;color:#374151;">ID</th>
+            </tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+          <p style="margin:16px 0 0;font-size:13px;"><a href="https://www.lumeemaison.com/manzura/stock" style="color:#7c3aed;">Open Stock Management →</a></p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const textLines = [
+    subject,
+    '',
+    `The following products are low on stock:`,
+    '',
+    ...d.products.map(p => `  ${p.name} (ID: ${p.id}) — ${p.stock} left`),
+    '',
+    'Manage stock: https://www.lumeemaison.com/manzura/stock',
+  ];
+
+  return { subject, html, text: textLines.join('\n') };
+}
+
+// ----------------------------------------------------------------------------
 // Admin email — concise, fulfillment-focused, ship-to block prominent.
 // ----------------------------------------------------------------------------
 

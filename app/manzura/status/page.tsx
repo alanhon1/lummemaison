@@ -10,6 +10,9 @@ import StatusDashboard, {
   type StatusCount,
   type TopProduct,
   type LowStockItem,
+  type MonthlyPoint,
+  type CountryCount,
+  type PaymentMethodCount,
 } from '@/components/admin/StatusDashboard';
 import KanbanBoard, { type KanbanOrder } from '@/components/admin/KanbanBoard';
 
@@ -88,8 +91,9 @@ export default async function StatusPage({ searchParams }: PageProps) {
   const startToday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
   const since30 = new Date(startToday);
   since30.setUTCDate(since30.getUTCDate() - 29);
+  const since12m = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 12, 1));
 
-  const [allStatusRes, windowRes, itemsRes, lowStockRes] = await Promise.all([
+  const [allStatusRes, windowRes, itemsRes, lowStockRes, monthly12Res, countryRes, pmRes] = await Promise.all([
     supabase.from('orders').select('status'),
     supabase
       .from('orders')
@@ -102,12 +106,28 @@ export default async function StatusPage({ searchParams }: PageProps) {
       .lte('stock', LOW_STOCK_THRESHOLD)
       .order('stock', { ascending: true })
       .limit(60),
+    supabase
+      .from('orders')
+      .select('created_at, total_cents')
+      .neq('status', 'cancelled')
+      .gte('created_at', since12m.toISOString()),
+    supabase
+      .from('orders')
+      .select('shipping_address, total_cents')
+      .neq('status', 'cancelled'),
+    supabase
+      .from('orders')
+      .select('payment_method, total_cents')
+      .neq('status', 'cancelled'),
   ]);
 
   const allStatus = allStatusRes.data ?? [];
   const windowOrders = windowRes.data ?? [];
   const items = itemsRes.data ?? [];
   const lowStockRows = lowStockRes.data ?? [];
+  const monthly12 = monthly12Res.data ?? [];
+  const countryOrders = countryRes.data ?? [];
+  const pmOrders = pmRes.data ?? [];
 
   const statusCounts: StatusCount[] = STATUS_LABELS.map(({ status, label }) => ({
     status,
@@ -159,6 +179,49 @@ export default async function StatusPage({ searchParams }: PageProps) {
     stock: r.stock,
   }));
 
+  // Monthly revenue (12 months)
+  const monthBuckets = new Map<string, { label: string; revenueCents: number; count: number }>();
+  for (let i = 11; i >= 0; i--) {
+    const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - i, 1));
+    const key = d.toISOString().slice(0, 7);
+    const label = d.toLocaleDateString('en-US', { month: 'short', year: '2-digit', timeZone: 'UTC' });
+    monthBuckets.set(key, { label, revenueCents: 0, count: 0 });
+  }
+  for (const o of monthly12) {
+    const key = String(o.created_at).slice(0, 7);
+    const b = monthBuckets.get(key);
+    if (b) { b.count += 1; b.revenueCents += (o.total_cents as number) ?? 0; }
+  }
+  const monthly: MonthlyPoint[] = [...monthBuckets.entries()].map(([month, v]) => ({ month, ...v }));
+
+  // Country distribution (top 10)
+  const countryMap = new Map<string, { count: number; revenueCents: number }>();
+  for (const o of countryOrders) {
+    const addr = o.shipping_address as Record<string, string> | null;
+    const country = addr?.country ?? 'Unknown';
+    const e = countryMap.get(country) ?? { count: 0, revenueCents: 0 };
+    e.count += 1;
+    e.revenueCents += (o.total_cents as number) ?? 0;
+    countryMap.set(country, e);
+  }
+  const countries: CountryCount[] = [...countryMap.entries()]
+    .map(([country, v]) => ({ country, ...v }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
+
+  // Payment method split
+  const pmMap = new Map<string, { count: number; revenueCents: number }>();
+  for (const o of pmOrders) {
+    const method = (o.payment_method as string) ?? 'unknown';
+    const e = pmMap.get(method) ?? { count: 0, revenueCents: 0 };
+    e.count += 1;
+    e.revenueCents += (o.total_cents as number) ?? 0;
+    pmMap.set(method, e);
+  }
+  const paymentMethods: PaymentMethodCount[] = [...pmMap.entries()]
+    .map(([method, v]) => ({ method, ...v }))
+    .sort((a, b) => b.count - a.count);
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
       <h1 className="font-display text-3xl font-light text-charcoal mb-6">Status</h1>
@@ -172,6 +235,9 @@ export default async function StatusPage({ searchParams }: PageProps) {
         statusCounts={statusCounts}
         topProducts={topProducts}
         lowStock={lowStock}
+        monthly={monthly}
+        countries={countries}
+        paymentMethods={paymentMethods}
       />
     </div>
   );

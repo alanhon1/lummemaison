@@ -7,16 +7,20 @@ import {
   deliveryEmail,
   signupConfirmationEmail,
   passwordResetCodeEmail,
+  paymentVerifiedEmail,
+  lowStockAlertEmail,
   type OrderData,
   type ShipmentData,
   type CancellationData,
   type DeliveryData,
   type SignupConfirmData,
   type PasswordResetCodeData,
+  type PaymentVerifiedData,
+  type LowStockAlertData,
 } from './templates';
 import { createServiceClient } from '@/lib/supabase/server';
 
-export type { OrderData, ShipmentData, CancellationData, DeliveryData, SignupConfirmData, PasswordResetCodeData } from './templates';
+export type { OrderData, ShipmentData, CancellationData, DeliveryData, SignupConfirmData, PasswordResetCodeData, PaymentVerifiedData, LowStockAlertData } from './templates';
 
 export interface SendResult {
   customer: { ok: boolean; error?: string };
@@ -239,6 +243,23 @@ export async function sendSignupConfirmationEmail(s: SignupConfirmData): Promise
 
 export async function sendPasswordResetCodeEmail(s: PasswordResetCodeData): Promise<{ ok: boolean; error?: string }> {
   return sendOne(s.customerEmail, passwordResetCodeEmail(s), 'password-reset-code');
+}
+
+// Fires the customer-facing payment-verified notification when admin confirms
+// payment. Uses sendOne with customer email as recipient. Never throws.
+export async function sendPaymentVerifiedEmail(d: PaymentVerifiedData): Promise<{ ok: boolean; error?: string }> {
+  return sendOne(d.customerEmail, paymentVerifiedEmail(d), 'payment-verified');
+}
+
+// Fires the admin-facing low-stock alert after stock is deducted. Sends to
+// ADMIN_NOTIFICATION_EMAIL. Never throws.
+export async function sendLowStockAlert(d: LowStockAlertData): Promise<{ ok: boolean; error?: string }> {
+  const to = process.env.ADMIN_NOTIFICATION_EMAIL;
+  if (!to) {
+    console.warn('[email] ADMIN_NOTIFICATION_EMAIL missing — skipping low-stock alert');
+    return { ok: false, error: 'ADMIN_NOTIFICATION_EMAIL missing' };
+  }
+  return sendOne(to, lowStockAlertEmail(d), 'low-stock-alert');
 }
 
 // Same shape as sendShipmentEmail — fires the customer-facing cancellation

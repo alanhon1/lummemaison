@@ -9,7 +9,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { ORDER_STAGES, stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
-import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail } from '@/lib/email/sendOrderEmails';
+import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail, sendPaymentVerifiedEmail, sendLowStockAlert } from '@/lib/email/sendOrderEmails';
 import { deductStockForItems, restoreStockForItems } from '@/lib/products/stock';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
@@ -57,7 +57,7 @@ export async function updateOrderStatus(
   // still intact). One read either way.
   const { data: current } = await supabase
     .from('orders')
-    .select('order_seq, order_number, customer_name, customer_email, status, carrier, tracking_number, shipped_at, delivered_at, shipment_photo_path')
+    .select('order_seq, order_number, customer_name, customer_email, status, carrier, tracking_number, shipped_at, delivered_at, shipment_photo_path, subtotal_cents, shipping_cents, total_cents, currency')
     .eq('id', orderId)
     .single();
   if (!current) return { ok: false, error: 'order not found' };
@@ -101,20 +101,30 @@ export async function updateOrderStatus(
   }
 
   // Deduct stock when admin confirms payment.
+  let verifiedItems: Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }> | null = null;
   if (nextStatus === 'payment_verified' && current.status !== 'payment_verified') {
     const { data: items } = await supabase
       .from('order_items')
-      .select('product_id, quantity')
+      .select('product_id, product_name, unit_cents, quantity')
       .eq('order_id', orderId);
     if (items && items.length > 0) {
-      const typed = items as Array<{ product_id: number; quantity: number }>;
-      const deductResult = await deductStockForItems(typed);
+      const typed = items as Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }>;
+      verifiedItems = typed;
+      const deductResult = await deductStockForItems(typed.map(i => ({ product_id: i.product_id, quantity: i.quantity })));
       if (!deductResult.ok) {
         return { ok: false, error: `재고 차감 실패: ${deductResult.error}` };
       }
       await supabase.from('stock_movements').insert(
         typed.map(i => ({ product_id: i.product_id, delta: -i.quantity, reason: 'order', order_id: orderId })),
       );
+      // Low stock alert: check which products dropped to/below threshold after deduction.
+      const LOW = 2;
+      const { getStockMap } = await import('@/lib/products/stock');
+      const stockAfter = await getStockMap(typed.map(i => i.product_id));
+      const lowItems = typed
+        .filter(i => (stockAfter[i.product_id] ?? 0) <= LOW)
+        .map(i => ({ id: i.product_id, name: i.product_name, stock: stockAfter[i.product_id] ?? 0 }));
+      if (lowItems.length > 0) void sendLowStockAlert({ products: lowItems });
     }
   }
 
@@ -195,6 +205,16 @@ export async function updateOrderStatus(
     };
     if (nextStatus === 'cancelled') void sendCancellationEmail(recipient);
     if (nextStatus === 'delivered') void sendDeliveryEmail(recipient);
+    if (nextStatus === 'payment_verified' && verifiedItems) {
+      void sendPaymentVerifiedEmail({
+        ...recipient,
+        items: verifiedItems.map(i => ({ name: i.product_name, quantity: i.quantity, price: i.unit_cents })),
+        subtotalCents: (current.subtotal_cents as number) ?? 0,
+        shippingCents: (current.shipping_cents as number) ?? 0,
+        totalCents: (current.total_cents as number) ?? 0,
+        currency: (current.currency as string) ?? 'USD',
+      });
+    }
   }
 
   revalidatePath(`/manzura/orders/${orderId}`);

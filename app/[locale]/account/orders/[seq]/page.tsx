@@ -10,6 +10,8 @@ import OrderStepper from '@/components/account/OrderStepper';
 import OrderStatusBadge from '@/components/account/OrderStatusBadge';
 import MessagesSeenMarker from '@/components/account/MessagesSeenMarker';
 import CancelOrderButton from '@/components/account/CancelOrderButton';
+import ReorderButton from '@/components/account/ReorderButton';
+import productsData from '@/data/products.json';
 
 interface PageProps {
   params: Promise<{ locale: string; seq: string }>;
@@ -78,6 +80,21 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
   }
 
   const t = await getTranslations({ locale, namespace: 'account.orders' });
+
+  // Build reorder items: enrich order_items with image/specification from products.json
+  const productMap = new Map(productsData.products.map(p => [p.id, p]));
+  const reorderItems = (items ?? []).map(item => {
+    const p = productMap.get(item.product_id);
+    return {
+      id: item.product_id,
+      name: item.product_name,
+      price: item.unit_cents / 100,
+      image: p?.image ?? '',
+      specification: p?.specification ?? '',
+      quantity: item.quantity,
+    };
+  });
+
   const displayNumber =
     order.order_seq !== null && order.order_seq !== undefined
       ? formatOrderNumber(order.order_seq as number)
@@ -110,17 +127,23 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
 
         <OrderStepper status={order.status} />
 
-        {/* Cancel — only before shipped */}
-        {!['shipped', 'delivered', 'cancelled'].includes(order.status) && (
-          <div className="mb-6">
+        {/* Cancel / Reorder row */}
+        <div className="flex items-center gap-3 mb-6">
+          {!['shipped', 'delivered', 'cancelled'].includes(order.status) && (
             <CancelOrderButton
               orderId={order.id}
               label={t('cancelOrder')}
               confirmText={t('cancelConfirm')}
               cancelText={t('cancelNo')}
             />
-          </div>
-        )}
+          )}
+          <ReorderButton
+            items={reorderItems}
+            locale={locale}
+            reorderLabel={t('reorder')}
+            confirmText={t('reorderConfirm')}
+          />
+        </div>
 
         {/* Tracking + shipment photo */}
         {(order.tracking_number || order.shipment_photo_path) && (

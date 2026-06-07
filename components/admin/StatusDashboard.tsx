@@ -29,6 +29,25 @@ export interface LowStockItem {
   stock: number;
 }
 
+export interface MonthlyPoint {
+  month: string;
+  label: string;
+  revenueCents: number;
+  count: number;
+}
+
+export interface CountryCount {
+  country: string;
+  count: number;
+  revenueCents: number;
+}
+
+export interface PaymentMethodCount {
+  method: string;
+  count: number;
+  revenueCents: number;
+}
+
 interface Props {
   totalOrders: number;
   ordersToday: number;
@@ -38,6 +57,9 @@ interface Props {
   statusCounts: StatusCount[];
   topProducts: TopProduct[];
   lowStock: LowStockItem[];
+  monthly: MonthlyPoint[];
+  countries: CountryCount[];
+  paymentMethods: PaymentMethodCount[];
 }
 
 function money(cents: number): string {
@@ -73,6 +95,9 @@ export default function StatusDashboard({
   statusCounts,
   topProducts,
   lowStock,
+  monthly,
+  countries,
+  paymentMethods,
 }: Props) {
   const activeStatusCounts = statusCounts.filter(s => s.count > 0);
 
@@ -258,6 +283,123 @@ export default function StatusDashboard({
           </div>
         )}
       </section>
+
+      {/* Monthly revenue — bar chart */}
+      <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
+        <div className="flex items-baseline justify-between mb-5">
+          <h2 className="font-display text-lg text-charcoal">Monthly revenue</h2>
+          <span className="text-[10px] uppercase tracking-widest text-mist">last 12 months</span>
+        </div>
+        {monthly.every(m => m.revenueCents === 0) ? (
+          <p className="text-xs text-mist py-8 text-center">No revenue recorded yet.</p>
+        ) : (
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={monthly} margin={{ top: 5, right: 10, left: -5, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" vertical={false} />
+              <XAxis
+                dataKey="label"
+                tick={{ fontSize: 9, fill: '#6b6b6b' }}
+                tickLine={false}
+                axisLine={false}
+              />
+              <YAxis
+                tick={{ fontSize: 9, fill: '#6b6b6b' }}
+                tickLine={false}
+                axisLine={false}
+                tickFormatter={(v: number) => `$${(v / 100).toLocaleString('en-US', { notation: 'compact', maximumFractionDigits: 0 })}`}
+              />
+              <Tooltip
+                contentStyle={TOOLTIP_STYLE}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                formatter={(val: any, _: any, entry: any) => [
+                  `${money(val as number)} · ${entry?.payload?.count ?? 0} orders`,
+                  '',
+                ]}
+                labelStyle={{ fontWeight: 600, marginBottom: 2 }}
+              />
+              <Bar dataKey="revenueCents" fill="#c9a96e" radius={[4, 4, 0, 0]} maxBarSize={32} />
+            </BarChart>
+          </ResponsiveContainer>
+        )}
+      </section>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Country distribution */}
+        <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
+          <div className="flex items-baseline justify-between mb-5">
+            <h2 className="font-display text-lg text-charcoal">Orders by country</h2>
+            <span className="text-[10px] uppercase tracking-widest text-mist">top 10</span>
+          </div>
+          {countries.length === 0 ? (
+            <p className="text-xs text-mist py-8 text-center">No orders yet.</p>
+          ) : (
+            <ResponsiveContainer width="100%" height={Math.max(180, countries.length * 28)}>
+              <BarChart
+                data={countries}
+                layout="vertical"
+                margin={{ top: 0, right: 30, left: 0, bottom: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#e8e2d9" horizontal={false} />
+                <XAxis
+                  type="number"
+                  tick={{ fontSize: 9, fill: '#6b6b6b' }}
+                  tickLine={false}
+                  axisLine={false}
+                  allowDecimals={false}
+                />
+                <YAxis
+                  type="category"
+                  dataKey="country"
+                  tick={{ fontSize: 10, fill: '#1a1a1a' }}
+                  tickLine={false}
+                  axisLine={false}
+                  width={36}
+                />
+                <Tooltip
+                  contentStyle={TOOLTIP_STYLE}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  formatter={(val: any, _: any, entry: any) => [
+                    `${val} orders · ${money(entry?.payload?.revenueCents ?? 0)}`,
+                    '',
+                  ]}
+                />
+                <Bar dataKey="count" fill="#818cf8" radius={[0, 4, 4, 0]} maxBarSize={16} />
+              </BarChart>
+            </ResponsiveContainer>
+          )}
+        </section>
+
+        {/* Payment method split */}
+        <section className="bg-white border border-bone rounded-lg p-5 md:p-6">
+          <h2 className="font-display text-lg text-charcoal mb-5">Payment methods</h2>
+          {paymentMethods.length === 0 ? (
+            <p className="text-xs text-mist py-8 text-center">No orders yet.</p>
+          ) : (
+            <div className="space-y-3">
+              {paymentMethods.map(pm => {
+                const total = paymentMethods.reduce((s, p) => s + p.count, 0);
+                const pct = total > 0 ? Math.round((pm.count / total) * 100) : 0;
+                const label = pm.method === 'wise' ? 'Wise' : pm.method === 'usdt' ? 'USDT' : pm.method ?? 'Unknown';
+                return (
+                  <div key={pm.method} className="space-y-1">
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-sm font-semibold text-charcoal">{label}</span>
+                      <span className="text-xs text-mist">{pm.count} orders · {money(pm.revenueCents)}</span>
+                    </div>
+                    <div className="w-full bg-bone rounded-full h-2">
+                      <div
+                        className="h-2 rounded-full bg-gold transition-all"
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    <div className="text-[10px] text-mist text-right">{pct}%</div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </section>
+      </div>
     </div>
   );
 }

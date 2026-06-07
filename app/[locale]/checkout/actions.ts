@@ -256,6 +256,17 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     console.error('[checkout] sendOrderEmails threw', orderNumberDisplay, e);
   }
 
+  // Fire-and-forget: increment used_count on the matching promo code (if any).
+  if (discountCode) {
+    void admin
+      .rpc('increment_promo_used_count', { p_code: discountCode.trim().toUpperCase() })
+      .then(({ error }) => {
+        if (error && !error.message.includes('does not exist')) {
+          console.warn('[checkout] promo increment failed', error.message);
+        }
+      });
+  }
+
   return {
     ok: true,
     orderSeq,
