@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { requireAdmin } from '@/lib/admin-guard';
 
 const CONFIG_FILE = path.join(process.cwd(), 'lib', 'site-config.ts');
 
 export async function PATCH(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const updates = await req.json();
 
   let src: string;

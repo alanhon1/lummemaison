@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { readData, writeData, createBackup } from '@/lib/backup';
+import { requireAdmin } from '@/lib/admin-guard';
 
 export async function PATCH(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const { id, name } = await req.json();
 
   if (typeof id !== 'string' || typeof name !== 'string' || !name.trim()) {

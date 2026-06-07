@@ -1,13 +1,18 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { readData, writeData, createBackup } from '@/lib/backup';
+import { requireAdmin } from '@/lib/admin-guard';
 
 export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const data = await readData();
   return NextResponse.json({ products: data.products, categories: data.categories });
 }
 
 export async function POST(req: Request) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const updates = await req.json();
   const data = await readData();
   const maxId = Math.max(0, ...data.products.map((p: any) => p.id));

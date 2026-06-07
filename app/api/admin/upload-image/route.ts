@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import sharp from 'sharp';
 import { createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/admin-guard';
 
 const ALLOWED_TYPES = new Set([
   'image/jpeg',
@@ -17,6 +18,8 @@ const BUCKET = 'product-images';
 // bucket and returns its public URL. Storage (not the local filesystem) is the
 // durable home — Vercel's runtime FS is read-only, so disk writes don't persist.
 export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const id = req.nextUrl.searchParams.get('id');
   if (!id || !/^[a-zA-Z0-9_-]+$/.test(id)) {
     return NextResponse.json({ error: 'Invalid id' }, { status: 400 });

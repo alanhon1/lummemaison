@@ -4,15 +4,23 @@ export async function POST(req: Request) {
   try {
     const { faqNumber, rating, comment } = await req.json();
 
-    if (!faqNumber || !['up', 'down'].includes(rating)) {
+    if (
+      typeof faqNumber !== 'number' ||
+      !Number.isInteger(faqNumber) ||
+      faqNumber < 1 ||
+      faqNumber > 999 ||
+      !['up', 'down'].includes(rating)
+    ) {
       return Response.json({ error: 'Invalid request' }, { status: 400 });
     }
+
+    const trimmedComment = typeof comment === 'string' ? comment.trim().slice(0, 2000) : null;
 
     const supabase = createServiceClient();
     const { error } = await supabase.from('faq_feedback').insert({
       faq_number: faqNumber,
       rating,
-      comment: comment?.trim() || null,
+      comment: trimmedComment || null,
     });
 
     if (error) throw error;

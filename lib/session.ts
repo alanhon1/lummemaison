@@ -5,11 +5,18 @@ export interface SessionData {
   loggedIn?: boolean;
 }
 
+const secret = process.env.SESSION_SECRET;
+if (!secret && process.env.NODE_ENV === 'production') {
+  throw new Error('SESSION_SECRET environment variable must be set in production');
+}
+
 export const sessionOptions: SessionOptions = {
   cookieName: 'lumiere_admin_session',
-  password: process.env.SESSION_SECRET ?? 'lumiere-admin-fallback-secret-key-32chars!!',
+  password: secret ?? 'lumiere-local-dev-only-not-for-production-32+',
   cookieOptions: {
     secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    sameSite: 'lax',
     maxAge: 60 * 60 * 24 * 7,
   },
 };

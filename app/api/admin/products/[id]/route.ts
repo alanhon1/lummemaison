@@ -2,11 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { readData, writeData, createBackup } from '@/lib/backup';
 import { composeBundleCover } from '@/lib/compose-bundle-cover';
+import { requireAdmin } from '@/lib/admin-guard';
 
 export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const { id } = await params;
   const updates = await req.json();
   const data = await readData();
@@ -45,6 +48,8 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const { id } = await params;
   const data = await readData();
   createBackup();

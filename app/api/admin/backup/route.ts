@@ -2,11 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { createBackup } from '@/lib/backup';
+import { requireAdmin } from '@/lib/admin-guard';
 
 const BACKUP_DIR = path.join(process.cwd(), 'data', 'backups');
 const DATA_FILE = path.join(process.cwd(), 'data', 'products.json');
 
 export async function GET() {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   if (!fs.existsSync(BACKUP_DIR)) return NextResponse.json({ backups: [] });
   const backups = fs.readdirSync(BACKUP_DIR)
     .filter(f => f.endsWith('.json'))
@@ -23,6 +26,8 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const denied = await requireAdmin();
+  if (denied) return denied;
   const { filename } = await req.json();
   // Validate filename format to prevent path traversal
   if (!/^products-[\d\w-]+\.json$/.test(filename)) {
