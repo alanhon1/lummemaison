@@ -24,13 +24,18 @@ export default function ComingSoonPage() {
 
   useEffect(() => {
     setMounted(true);
-    setTime(getRemaining());
+    const r = getRemaining();
+    setTime(r);
+    if (r.done) {
+      window.location.replace('/');
+      return;
+    }
     const id = setInterval(() => {
-      const r = getRemaining();
-      setTime(r);
-      if (r.done) {
+      const t = getRemaining();
+      setTime(t);
+      if (t.done) {
         clearInterval(id);
-        window.location.href = '/';
+        window.location.replace('/');
       }
     }, 1000);
     return () => clearInterval(id);
