@@ -75,3 +75,28 @@ export async function toggleFaq(id: number, active: boolean): Promise<{ ok: bool
   const { error } = await admin.from('faqs').update({ active }).eq('id', id);
   return { ok: !error };
 }
+
+export async function deleteQuestions(ids: number[]): Promise<{ ok: boolean }> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false };
+  }
+  const admin = createServiceClient();
+  const { error } = await admin.from('unanswered_questions').delete().in('id', ids);
+  return { ok: !error };
+}
+
+export async function updateQuestionText(id: number, text: string): Promise<{ ok: boolean }> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false };
+  }
+  const admin = createServiceClient();
+  const { error } = await admin
+    .from('unanswered_questions')
+    .update({ question_text: text.trim().slice(0, 1000) })
+    .eq('id', id);
+  return { ok: !error };
+}
