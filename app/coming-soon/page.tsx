@@ -1,9 +1,48 @@
-import dynamic from 'next/dynamic';
+'use client';
 
-// ssr:false → countdown only runs in the browser, zero hydration mismatch
-const Countdown = dynamic(() => import('./Countdown'), { ssr: false });
+import { Fragment, useEffect, useState } from 'react';
+
+// Hardcoded to avoid any import/bundling issues
+const LAUNCH_AT = new Date('2026-06-08T16:34:49.000Z').getTime();
+
+function pad(n: number) {
+  return String(n).padStart(2, '0');
+}
+
+function getRemaining() {
+  const diff = Math.max(0, LAUNCH_AT - Date.now());
+  return {
+    h: Math.floor(diff / 3_600_000),
+    m: Math.floor((diff % 3_600_000) / 60_000),
+    s: Math.floor((diff % 60_000) / 1_000),
+    done: diff === 0,
+  };
+}
 
 export default function ComingSoonPage() {
+  const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState({ h: 0, m: 0, s: 0, done: false });
+
+  useEffect(() => {
+    setMounted(true);
+    setTime(getRemaining());
+    const id = setInterval(() => {
+      const r = getRemaining();
+      setTime(r);
+      if (r.done) {
+        clearInterval(id);
+        window.location.href = '/';
+      }
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const units = [
+    { value: pad(time.h), label: 'Hours' },
+    { value: pad(time.m), label: 'Minutes' },
+    { value: pad(time.s), label: 'Seconds' },
+  ];
+
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center px-6 select-none"
@@ -28,7 +67,41 @@ export default function ComingSoonPage() {
 
       <div style={{ width: 1, height: 40, backgroundColor: '#c9a96e', opacity: 0.35 }} className="mb-14" />
 
-      <Countdown />
+      {time.done ? (
+        <div className="text-center">
+          <p className="font-display font-light" style={{ fontSize: 'clamp(2rem, 6vw, 4rem)', color: '#c9a96e' }}>
+            We&apos;re Live
+          </p>
+          <a href="/" className="block mt-6 font-sans text-[11px] tracking-[0.35em] uppercase underline underline-offset-4" style={{ color: '#6b6b6b' }}>
+            Enter the Collection
+          </a>
+        </div>
+      ) : (
+        <div className="flex items-start gap-3 sm:gap-8">
+          {mounted ? units.map(({ value, label }, i) => (
+            <Fragment key={label}>
+              {i > 0 && (
+                <span className="font-display font-light leading-none mt-2 sm:mt-4" style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)', color: '#c9a96e', opacity: 0.45 }}>:</span>
+              )}
+              <div className="flex flex-col items-center gap-3">
+                <span
+                  className="font-display font-light tabular-nums leading-none"
+                  style={{ fontSize: 'clamp(3.5rem, 12vw, 9rem)', color: '#c9a96e', textShadow: '0 0 40px rgba(201,169,110,0.18)' }}
+                >
+                  {value}
+                </span>
+                <span className="font-sans text-[8px] sm:text-[9px] tracking-[0.35em] uppercase" style={{ color: '#b5aba0' }}>
+                  {label}
+                </span>
+              </div>
+            </Fragment>
+          )) : (
+            <span className="font-display font-light tabular-nums" style={{ fontSize: 'clamp(3.5rem, 12vw, 9rem)', color: '#c9a96e', opacity: 0.3 }}>
+              --:--:--
+            </span>
+          )}
+        </div>
+      )}
 
       <div style={{ width: 1, height: 40, backgroundColor: '#c9a96e', opacity: 0.35 }} className="mt-14" />
 
