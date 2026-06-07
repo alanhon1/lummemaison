@@ -71,8 +71,28 @@ async function withSupabaseSession(req: NextRequest, baseResponse: NextResponse)
   return response;
 }
 
+import { LAUNCH_AT } from '@/lib/launch';
+
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
+
+  // Coming-soon gate: redirect all public routes until launch time.
+  // Admin, API, the coming-soon page itself, and static assets bypass.
+  if (
+    Date.now() < LAUNCH_AT &&
+    !pathname.startsWith('/manzura') &&
+    !pathname.startsWith('/api') &&
+    !pathname.startsWith('/coming-soon') &&
+    !pathname.startsWith('/_next') &&
+    pathname !== '/favicon.ico'
+  ) {
+    return NextResponse.redirect(new URL('/coming-soon', req.url));
+  }
+
+  // Coming-soon page bypasses i18n routing entirely (no locale prefix needed)
+  if (pathname.startsWith('/coming-soon')) {
+    return NextResponse.next();
+  }
 
   // All /api/ routes bypass i18n entirely
   if (pathname.startsWith('/api/')) {
