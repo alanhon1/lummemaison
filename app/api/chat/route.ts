@@ -24,17 +24,19 @@ export async function POST(req: Request) {
 
     const { data: usage } = await supabase
       .from('chat_usage')
-      .select('count')
+      .select('*')
       .eq('session_id', sessionId)
       .eq('date', today)
       .single();
 
-    if (usage && usage.count >= DAILY_LIMIT) {
+    const currentCount = Number(usage?.count ?? 0);
+
+    if (currentCount >= DAILY_LIMIT) {
       return Response.json({ reply: null, limitReached: true });
     }
 
     await supabase.from('chat_usage').upsert(
-      { session_id: sessionId, date: today, count: (usage?.count ?? 0) + 1 },
+      { session_id: sessionId, date: today, count: currentCount + 1 },
       { onConflict: 'session_id,date' }
     );
 
