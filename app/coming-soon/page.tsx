@@ -49,9 +49,10 @@ export default function ComingSoonPage() {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center px-6 select-none"
+      className="min-h-screen flex flex-col items-center justify-center px-6 select-none relative"
       style={{ backgroundColor: '#faf8f5' }}
     >
+      <span className="absolute top-5 right-6 font-sans text-[11px] tracking-widest" style={{ color: '#c9a96e', opacity: 0.5 }}>713</span>
       <p className="font-sans text-[10px] tracking-[0.45em] uppercase mb-20" style={{ color: '#c9a96e' }}>
         Lumée Maison
       </p>
