@@ -25,6 +25,7 @@ export default function Footer() {
     { href: localePath(locale, '/catalogue'), label: tNav('catalogue') },
     { href: localePath(locale, '/about'), label: tNav('about') },
     { href: localePath(locale, '/contact'), label: tNav('contact') },
+    { href: localePath(locale, '/faq'), label: tNav('faq') },
   ];
 
   return (
