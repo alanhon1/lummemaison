@@ -23,8 +23,8 @@ export const FAQ_ITEMS: FaqItem[] = [
       ru: 'Какие способы оплаты вы принимаете?',
     },
     a: {
-      en: 'We accept two payment methods:\n\n• **Wise bank transfer** — fast and low-fee international transfer.\n• **USDT** — ERC-20 is our main network; TRC-20 is also accepted.\n\nAfter placing your order, you will receive complete payment instructions by email.',
-      ru: 'Мы принимаем два способа оплаты:\n\n• **Wise банковский перевод** — быстрый и недорогой международный перевод.\n• **USDT** — основная сеть ERC-20, также принимается TRC-20.\n\nПосле оформления заказа вы получите полные инструкции по оплате на почту.',
+      en: 'We accept two payment methods:\n\n• **Wise bank transfer** — fast and low-fee international transfer.\n• **USDT** — ERC-20 is our main network; TRC-20 is also accepted.\n\nPayment details are shown directly on the site during checkout. Once you send payment and upload your proof, we confirm the order from our side.',
+      ru: 'Мы принимаем два способа оплаты:\n\n• **Wise банковский перевод** — быстрый и недорогой международный перевод.\n• **USDT** — основная сеть ERC-20, также принимается TRC-20.\n\nРеквизиты для оплаты отображаются прямо на сайте в процессе оформления заказа. После отправки платежа и загрузки подтверждения мы подтвердим заказ с нашей стороны.',
     },
   },
   {
