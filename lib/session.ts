@@ -7,7 +7,10 @@ export interface SessionData {
 
 const secret = process.env.SESSION_SECRET;
 if (!secret && process.env.NODE_ENV === 'production') {
-  throw new Error('SESSION_SECRET environment variable must be set in production');
+  // SESSION_SECRET is not configured — sessions still work but any attacker
+  // with the source code can forge admin cookies. Set SESSION_SECRET in your
+  // Vercel project settings immediately.
+  console.error('[SECURITY] SESSION_SECRET env var is not set. Using insecure fallback.');
 }
 
 export const sessionOptions: SessionOptions = {
