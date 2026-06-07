@@ -164,14 +164,16 @@ export async function POST(req: Request) {
 
     // Log when bot defers to email — check both the model's flag AND the answer text,
     // because Haiku sometimes forgets to set is_fallback even when it mentions the email.
+    // Awaited (not fire-and-forget) so Vercel doesn't kill the task before it completes.
     const answerMentionsEmail = answer.toLowerCase().includes('info@lumeemaison.com');
     if ((is_fallback || answerMentionsEmail) && latestUserMsg) {
-      void supabase.from('unanswered_questions').insert({
+      const { error: qErr } = await supabase.from('unanswered_questions').insert({
         question_text: latestUserMsg.slice(0, 1000),
         category,
         summary: summary?.slice(0, 200) ?? null,
         status: 'pending',
       });
+      if (qErr) console.error('[chat] unanswered_questions insert failed:', qErr.message);
     }
 
     return Response.json({ reply: answer, limitReached: false });
