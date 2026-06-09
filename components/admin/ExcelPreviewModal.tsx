@@ -29,22 +29,31 @@ export default function ExcelPreviewModal({
 }: Props) {
   const [open, setOpen] = useState(false);
   const [downloading, setDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState('');
 
   async function handleDownload() {
     setDownloading(true);
+    setDownloadError('');
     try {
-      const res = await fetch(downloadUrl);
-      if (!res.ok) throw new Error('Download failed');
+      const res = await fetch(downloadUrl, { credentials: 'same-origin' });
+      if (!res.ok) throw new Error(`Download failed (${res.status})`);
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = filename;
+      // Append to the DOM before clicking — Firefox/Safari ignore a click on a
+      // detached anchor — and defer the revoke so the browser can begin the
+      // download before the object URL is torn down. Revoking synchronously
+      // right after click() is what caused "nothing downloads".
+      document.body.appendChild(a);
       a.click();
-      URL.revokeObjectURL(url);
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
       setOpen(false);
     } catch (e) {
       console.error(e);
+      setDownloadError(e instanceof Error ? e.message : 'Download failed');
     } finally {
       setDownloading(false);
     }
@@ -125,6 +134,9 @@ export default function ExcelPreviewModal({
               >
                 Cancel
               </button>
+              {downloadError && (
+                <span className="text-xs text-rose-600 px-2">{downloadError}</span>
+              )}
               <button
                 onClick={handleDownload}
                 disabled={downloading}

@@ -41,13 +41,15 @@ type Product = (typeof productsData.products)[number];
 function searchProducts(query: string, limit = 6): Product[] {
   const words = query
     .toLowerCase()
+    .replace(/#/g, ' ') // treat "#hairloss" the same as "hairloss"
     .split(/\s+/)
     .filter(w => w.length > 2);
   if (words.length === 0) return [];
 
   return productsData.products
     .map(p => {
-      const text = `${p.name} ${p.indication ?? ''}`.toLowerCase();
+      const tags = ((p as { tags?: string[] }).tags ?? []).join(' ');
+      const text = `${p.name} ${p.indication ?? ''} ${tags}`.toLowerCase();
       const score = words.reduce((acc, w) => acc + (text.includes(w) ? 1 : 0), 0);
       return { p, score };
     })

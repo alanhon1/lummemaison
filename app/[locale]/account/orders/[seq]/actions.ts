@@ -39,29 +39,37 @@ export async function cancelOrder(orderId: number): Promise<{ ok: boolean; error
   const { error } = await admin.from('orders').update({ status: 'cancelled' }).eq('id', orderId);
   if (error) return { ok: false, error: error.message };
 
-  // Best-effort: restore stock + log movements.
-  void (async () => {
-    try {
-      const { data: items } = await admin
-        .from('order_items')
-        .select('product_id, quantity')
-        .eq('order_id', orderId);
-      if (items && items.length > 0) {
-        const typed = items as Array<{ product_id: number; quantity: number }>;
-        await restoreStockForItems(typed);
-        await admin.from('stock_movements').insert(
-          typed.map(it => ({
-            product_id: it.product_id,
-            delta: it.quantity,
-            reason: 'cancel_restock',
-            order_id: orderId,
-          })),
-        );
-      }
-    } catch {
-      // Silent: stock_movements table may not exist yet (migration 013 not applied).
+  // Restore stock + log movements. Awaited (not fire-and-forget) — on
+  // serverless an un-awaited promise after the response can be killed before it
+  // finishes, leaving stock unrestored and history wrong.
+  try {
+    const { data: items } = await admin
+      .from('order_items')
+      .select('product_id, quantity')
+      .eq('order_id', orderId);
+    if (items && items.length > 0) {
+      const typed = items as Array<{ product_id: number; quantity: number }>;
+      await restoreStockForItems(typed);
+      // Mark the original deduction rows as 'cancelled' (greyed in History)…
+      await admin
+        .from('stock_movements')
+        .update({ reason: 'cancelled' })
+        .eq('order_id', orderId)
+        .eq('reason', 'order');
+      // …and add an explicit +n restock row per item so History shows the
+      // −n / +n pair (which nets to 0) rather than a single ambiguous row.
+      await admin.from('stock_movements').insert(
+        typed.map(it => ({
+          product_id: it.product_id,
+          delta: it.quantity,
+          reason: 'cancel_restock',
+          order_id: orderId,
+        })),
+      );
     }
-  })();
+  } catch {
+    // Best-effort: stock_movements table may not exist yet (migration 013 not applied).
+  }
 
   const orderNumber =
     order.order_seq != null

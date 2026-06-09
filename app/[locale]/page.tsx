@@ -7,7 +7,8 @@ import CategoryGrid from '@/components/home/CategoryGrid';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
 import CTASection from '@/components/home/CTASection';
 import ProductCard from '@/components/catalogue/ProductCard';
-import { getBestSellers, getNewProducts } from '@/lib/catalogue';
+import { getAllProducts, getBestSellers, getNewProducts } from '@/lib/catalogue';
+import { categories } from '@/lib/products';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -20,11 +21,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   await params;
-  const [bestSellers, newProducts] = await Promise.all([getBestSellers(8), getNewProducts(8)]);
+  const [bestSellers, newProducts, allProducts] = await Promise.all([
+    getBestSellers(8),
+    getNewProducts(8),
+    getAllProducts(),
+  ]);
 
   return (
     <div className="luxe-bg">
-      <Hero />
+      <Hero productCount={allProducts.length} categoryCount={categories.length} />
       <CategoryGrid />
 
       {/* Best Sellers */}

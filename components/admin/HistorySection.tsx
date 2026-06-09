@@ -386,7 +386,7 @@ export default function HistorySection({
                         {batch.productCount} products — {batch.orderRef ?? `Order #${batch.orderId}`}
                       </td>
                       <td className={`px-3 py-2.5 text-right font-semibold ${isCancelled ? 'text-stone-400' : 'text-rose-600'}`}>
-                        {isCancelled ? '0' : batch.totalQty}
+                        {batch.totalQty}
                       </td>
                       <td className="px-3 py-2.5">
                         <span className={`text-[10px] px-2 py-0.5 rounded-full border ${meta.cls}`}>{meta.label}</span>
@@ -400,7 +400,7 @@ export default function HistorySection({
                         <td className="px-3 py-2 pl-8 text-xs font-mono text-mist whitespace-nowrap">{m.created_at_kst}</td>
                         <td className="px-3 py-2 text-xs text-charcoal max-w-[150px] truncate">{m.product_name}</td>
                         <td className={`px-3 py-2 text-right font-semibold ${isCancelled ? 'text-stone-400' : m.delta >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-                          {isCancelled ? '0' : m.delta >= 0 ? `+${m.delta}` : m.delta}
+                          {m.delta >= 0 ? `+${m.delta}` : m.delta}
                         </td>
                         <td className="px-3 py-2" />
                         <td className="px-3 py-2 text-xs text-mist">{m.order_ref ?? '—'}</td>
@@ -437,7 +437,7 @@ export default function HistorySection({
                   <td className="px-3 py-2.5 text-xs font-mono text-mist whitespace-nowrap">{m.created_at_kst}</td>
                   <td className="px-3 py-2.5 text-xs text-charcoal max-w-[150px] truncate">{m.product_name}</td>
                   <td className={`px-3 py-2.5 text-right font-semibold ${m.reason === 'cancelled' ? 'text-stone-400' : m.delta >= 0 ? 'text-emerald-700' : 'text-rose-600'}`}>
-                    {m.reason === 'cancelled' ? '0' : m.delta >= 0 ? `+${m.delta}` : m.delta}
+                    {m.delta >= 0 ? `+${m.delta}` : m.delta}
                   </td>
                   <td className="px-3 py-2.5">
                     <span className={`text-[10px] px-2 py-0.5 rounded-full border ${meta.cls}`}>{meta.label}</span>

@@ -9,7 +9,13 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { localePath } from '@/lib/i18n';
 
-export default function Hero() {
+export default function Hero({
+  productCount,
+  categoryCount,
+}: {
+  productCount: number;
+  categoryCount: number;
+}) {
   const t = useTranslations('home.hero');
   const locale = useLocale();
 
@@ -154,8 +160,8 @@ export default function Hero() {
             className="grid grid-cols-3 gap-4 mt-8 pt-6 sm:flex sm:gap-12 sm:mt-12 sm:pt-8 border-t border-charcoal/10"
           >
             {[
-              { value: '420', label: 'Products' }, /* keep in sync with data/products.json */
-              { value: '20', label: 'Categories' },
+              { value: String(productCount), label: 'Products' },
+              { value: String(categoryCount), label: 'Categories' },
               { value: '50+', label: 'Countries Served' },
             ].map(stat => (
               <div key={stat.label}>

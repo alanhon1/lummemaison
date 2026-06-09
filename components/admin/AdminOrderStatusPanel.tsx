@@ -2,10 +2,10 @@
 
 import { useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { Check, ArrowRight, Undo2, X, Camera } from 'lucide-react';
+import { Check, ArrowRight, Undo2, X, Camera, Trash2 } from 'lucide-react';
 import { ORDER_STAGES, stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { CARRIERS, type CarrierKey } from '@/lib/orders/carriers';
-import { updateOrderStatus, markOrderShipped } from '@/app/manzura/orders/actions';
+import { updateOrderStatus, markOrderShipped, deleteOrder } from '@/app/manzura/orders/actions';
 
 // Visible labels (admin only, English) — order_received → Received, etc.
 const ADMIN_LABEL: Record<OrderStatus, string> = {
@@ -236,6 +236,26 @@ export default function AdminOrderStatusPanel({
           >
             Reopen → Received
           </button>
+          {isCancelled && (
+            <button
+              type="button"
+              disabled={pending}
+              onClick={() => {
+                if (!confirm('Delete this cancelled order permanently? This removes its items, messages, and stock history. This cannot be undone.')) return;
+                if (!confirm('Are you absolutely sure? This is permanent.')) return;
+                setError(null);
+                startTransition(async () => {
+                  const res = await deleteOrder(orderId);
+                  if (!res.ok) setError(res.error);
+                  else router.push('/manzura/orders');
+                });
+              }}
+              className="text-xs text-rose-700 hover:text-rose-900 inline-flex items-center gap-1.5 border border-rose-200 px-3 py-1.5 ml-auto"
+            >
+              <Trash2 size={13} />
+              Delete order
+            </button>
+          )}
         </div>
       )}
 

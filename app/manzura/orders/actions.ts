@@ -7,7 +7,7 @@ import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
-import { ORDER_STAGES, stageIndex, type OrderStatus } from '@/lib/orders/status';
+import { stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
 import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail, sendPaymentVerifiedEmail, sendLowStockAlert } from '@/lib/email/sendOrderEmails';
 import { deductStockForItems, restoreStockForItems } from '@/lib/products/stock';
@@ -139,28 +139,41 @@ export async function updateOrderStatus(
   }
 
   // On cancel: restore stock and relabel history movements as 'cancelled'.
+  // Awaited (not fire-and-forget) — on serverless, an un-awaited promise after
+  // the response can be frozen/killed before it finishes, which left stock
+  // unrestored and the history movements still tagged 'order' (showing -n
+  // instead of the cancelled/0 row).
   if (nextStatus === 'cancelled' && current.status !== 'cancelled') {
     const wasStockDeducted = stageIndex(current.status) >= stageIndex('payment_verified');
     if (wasStockDeducted) {
-      void (async () => {
-        try {
-          const { data: items } = await supabase
-            .from('order_items')
-            .select('product_id, quantity')
-            .eq('order_id', orderId);
-          if (items && items.length > 0) {
-            const typed = items as Array<{ product_id: number; quantity: number }>;
-            await restoreStockForItems(typed);
-            await supabase
-              .from('stock_movements')
-              .update({ reason: 'cancelled' })
-              .eq('order_id', orderId)
-              .eq('reason', 'order');
-          }
-        } catch {
-          // Best-effort: don't fail the status update if stock ops error.
+      try {
+        const { data: items } = await supabase
+          .from('order_items')
+          .select('product_id, quantity')
+          .eq('order_id', orderId);
+        if (items && items.length > 0) {
+          const typed = items as Array<{ product_id: number; quantity: number }>;
+          await restoreStockForItems(typed);
+          // Mark the original deduction rows as 'cancelled' (greyed in History)…
+          await supabase
+            .from('stock_movements')
+            .update({ reason: 'cancelled' })
+            .eq('order_id', orderId)
+            .eq('reason', 'order');
+          // …and add an explicit +n restock row per item so History shows the
+          // −n / +n pair (which nets to 0) rather than a single ambiguous row.
+          await supabase.from('stock_movements').insert(
+            typed.map(it => ({
+              product_id: it.product_id,
+              delta: it.quantity,
+              reason: 'cancel_restock',
+              order_id: orderId,
+            })),
+          );
         }
-      })();
+      } catch {
+        // Best-effort: don't fail the status update if stock ops error.
+      }
     }
   }
 
@@ -170,23 +183,32 @@ export async function updateOrderStatus(
     const nextIdx = stageIndex(nextStatus);
     const pvIdx = stageIndex('payment_verified');
     if (currentIdx >= pvIdx && nextIdx < pvIdx) {
-      void (async () => {
-        try {
-          const { data: items } = await supabase
-            .from('order_items')
-            .select('product_id, quantity')
-            .eq('order_id', orderId);
-          if (items && items.length > 0) {
-            const typed = items as Array<{ product_id: number; quantity: number }>;
-            await restoreStockForItems(typed);
-            await supabase
-              .from('stock_movements')
-              .update({ reason: 'cancelled' })
-              .eq('order_id', orderId)
-              .eq('reason', 'order');
-          }
-        } catch { /* best-effort */ }
-      })();
+      try {
+        const { data: items } = await supabase
+          .from('order_items')
+          .select('product_id, quantity')
+          .eq('order_id', orderId);
+        if (items && items.length > 0) {
+          const typed = items as Array<{ product_id: number; quantity: number }>;
+          await restoreStockForItems(typed);
+          // Mark the original deduction rows as 'cancelled' (greyed in History)…
+          await supabase
+            .from('stock_movements')
+            .update({ reason: 'cancelled' })
+            .eq('order_id', orderId)
+            .eq('reason', 'order');
+          // …and add an explicit +n restock row per item so History shows the
+          // −n / +n pair (which nets to 0) rather than a single ambiguous row.
+          await supabase.from('stock_movements').insert(
+            typed.map(it => ({
+              product_id: it.product_id,
+              delta: it.quantity,
+              reason: 'cancel_restock',
+              order_id: orderId,
+            })),
+          );
+        }
+      } catch { /* best-effort */ }
     }
   }
 
@@ -220,6 +242,7 @@ export async function updateOrderStatus(
   revalidatePath(`/manzura/orders/${orderId}`);
   revalidatePath('/manzura/orders');
   revalidatePath('/manzura');
+  revalidatePath('/manzura/stock');
   return { ok: true };
 }
 
@@ -334,5 +357,47 @@ export async function addOrderMessage(
   if (error) return { ok: false, error: error.message };
 
   revalidatePath(`/manzura/orders/${orderId}`);
+  return { ok: true };
+}
+
+// ----- deleteOrder -----
+// Permanently removes a CANCELLED order and all its child records (items,
+// messages, stock-movement history) plus any shipment photo. Guarded to
+// cancelled orders only — an active order must be cancelled first.
+export async function deleteOrder(orderId: number): Promise<ActionResult> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false, error: 'not authorized' };
+  }
+
+  const supabase = createServiceClient();
+
+  const { data: order } = await supabase
+    .from('orders')
+    .select('status, shipment_photo_path')
+    .eq('id', orderId)
+    .single();
+  if (!order) return { ok: false, error: 'order not found' };
+  if (order.status !== 'cancelled') {
+    return { ok: false, error: 'only cancelled orders can be deleted' };
+  }
+
+  // Remove child rows first so we don't depend on FK cascade being configured.
+  await supabase.from('stock_movements').delete().eq('order_id', orderId);
+  await supabase.from('order_messages').delete().eq('order_id', orderId);
+  await supabase.from('order_items').delete().eq('order_id', orderId);
+
+  // Best-effort: drop the now-orphaned shipment photo from Storage.
+  if (order.shipment_photo_path) {
+    void supabase.storage.from(SHIPMENT_BUCKET).remove([order.shipment_photo_path as string]);
+  }
+
+  const { error } = await supabase.from('orders').delete().eq('id', orderId);
+  if (error) return { ok: false, error: error.message };
+
+  revalidatePath('/manzura/orders');
+  revalidatePath('/manzura');
+  revalidatePath('/manzura/stock');
   return { ok: true };
 }

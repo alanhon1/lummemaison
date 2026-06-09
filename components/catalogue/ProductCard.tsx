@@ -16,6 +16,32 @@ interface ProductCardProps {
   layout?: 'grid' | 'list';
   variantCount?: number;
   isBundle?: boolean;
+  /** Active catalogue search query — when it matches a product tag, that tag is shown as a gold #chip. */
+  searchQuery?: string;
+}
+
+// Tags whose text contains the (de-#'d, de-spaced) search query — surfaced as gold #chips.
+function matchedTags(tags: string[] | undefined, query: string | undefined): string[] {
+  if (!query || !tags?.length) return [];
+  const q = query.toLowerCase().replace(/#/g, '').replace(/\s+/g, '');
+  if (!q) return [];
+  return tags.filter(t => t.toLowerCase().replace(/\s+/g, '').includes(q)).slice(0, 4);
+}
+
+function TagChips({ tags }: { tags: string[] }) {
+  if (tags.length === 0) return null;
+  return (
+    <div className="flex flex-wrap gap-1 mb-2">
+      {tags.map(t => (
+        <span
+          key={t}
+          className="text-[10px] leading-none text-gold bg-gold/10 border border-gold/30 rounded-full px-2 py-0.5"
+        >
+          #{t.replace(/\s+/g, '')}
+        </span>
+      ))}
+    </div>
+  );
 }
 
 function rememberCatalogueUrl() {
@@ -28,7 +54,7 @@ function rememberCatalogueUrl() {
   }
 }
 
-export default function ProductCard({ product, layout = 'grid', variantCount = 1, isBundle = false }: ProductCardProps) {
+export default function ProductCard({ product, layout = 'grid', variantCount = 1, isBundle = false, searchQuery }: ProductCardProps) {
   const t = useTranslations('catalogue');
   const tProduct = useTranslations('product');
   const locale = useLocale();
@@ -36,6 +62,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const { currency } = useCurrencyStore();
   const stock = useProductStock(product.id);
   const soldOut = stock === 0;
+  const tagChips = matchedTags(product.tags, searchQuery);
 
   const isGroup = variantCount > 1;
   const displayName = isGroup && product.groupName ? product.groupName : product.name;
@@ -96,6 +123,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
               {product.specification && (
                 <p className="text-sm text-mist mt-1 line-clamp-1">{getLocalizedSpecification(product, locale)}</p>
               )}
+              {tagChips.length > 0 && <div className="mt-1.5"><TagChips tags={tagChips} /></div>}
             </div>
             <div className="flex-shrink-0 text-right">
               <div className="font-display text-lg font-light text-charcoal">
@@ -183,6 +211,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         <h3 className="text-sm md:text-base font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight line-clamp-2 mb-2">
           {displayName}
         </h3>
+        <TagChips tags={tagChips} />
         {variantCount > 1 && (
           <p className="text-[10px] text-gold/80 font-medium tracking-wide mb-1">
             {variantCount} options available

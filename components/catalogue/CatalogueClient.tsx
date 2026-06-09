@@ -19,6 +19,7 @@ const fuseOptions = {
   keys: [
     { name: 'name', weight: 3 },
     { name: 'groupName', weight: 2 },
+    { name: 'tags', weight: 1.5 },
   ],
 };
 
@@ -49,7 +50,9 @@ export default function CatalogueClient({ products, initialCategory }: { product
     let result: Product[] = products;
 
     if (searchQuery.trim()) {
-      result = fuse.search(searchQuery).map(r => r.item);
+      // Strip a leading/embedded '#' so "#hairloss" and "hairloss" both match tags.
+      const q = searchQuery.replace(/#/g, '').trim();
+      result = fuse.search(q).map(r => r.item);
     }
 
     if (activeCategory) {
@@ -359,13 +362,13 @@ export default function CatalogueClient({ products, initialCategory }: { product
           ) : layout === 'grid' ? (
             <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 md:gap-5">
               {paginated.map(p => (
-                <ProductCard key={p.id} product={p} layout="grid" />
+                <ProductCard key={p.id} product={p} layout="grid" searchQuery={searchQuery} />
               ))}
             </div>
           ) : (
             <div className="flex flex-col gap-2">
               {paginated.map(p => (
-                <ProductCard key={p.id} product={p} layout="list" />
+                <ProductCard key={p.id} product={p} layout="list" searchQuery={searchQuery} />
               ))}
             </div>
           )}

@@ -121,7 +121,8 @@ export async function GET(req: NextRequest) {
     }>;
 
     const REASON_LABEL: Record<string, string> = {
-      inbound: 'Inbound', order: 'Order', cancel_restock: 'Cancel +stock', adjustment: 'Adjustment',
+      inbound: 'Inbound', order: 'Order', cancel_restock: 'Cancel +stock',
+      cancelled: 'Cancelled', adjustment: 'Adjustment',
     };
 
     const ws = wb.addWorksheet('History');
