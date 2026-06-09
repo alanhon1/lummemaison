@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { FAQ_ITEMS } from '@/lib/faq-data';
 import FaqClient from '@/components/faq/FaqClient';
+import OpenChatButton from '@/components/layout/OpenChatButton';
 
 export async function generateMetadata({
   params,
@@ -54,15 +55,22 @@ export default async function FaqPage({
           </p>
           <p className="text-xs text-mist mb-4">
             {l === 'ru'
-              ? 'Напишите нам — мы ответим в ближайшее время.'
-              : 'Reach out and we\'ll get back to you shortly.'}
+              ? 'Спросите нашего ассистента или напишите нам напрямую.'
+              : 'Ask our assistant, or reach us directly.'}
           </p>
-          <a
-            href="mailto:info@lumeemaison.com"
-            className="inline-block text-xs px-5 py-2.5 rounded-full bg-charcoal text-cream hover:bg-obsidian transition-colors"
-          >
-            info@lumeemaison.com
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <OpenChatButton
+              withIcon
+              label={l === 'ru' ? 'Спросить ассистента' : 'Chat with our assistant'}
+              className="inline-flex items-center gap-2 text-xs px-5 py-2.5 rounded-full bg-gold text-white hover:bg-gold-dark transition-colors"
+            />
+            <a
+              href="mailto:info@lumeemaison.com"
+              className="inline-block text-xs px-5 py-2.5 rounded-full bg-charcoal text-cream hover:bg-obsidian transition-colors"
+            >
+              info@lumeemaison.com
+            </a>
+          </div>
         </div>
       </div>
     </div>

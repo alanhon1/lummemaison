@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { Mail, MessageCircle, Send, MapPin } from 'lucide-react';
+import { Mail, MessageCircle, Send, MapPin, Sparkles } from 'lucide-react';
 import { siteConfig } from '@/lib/site-config';
 import AnimatedSection from '@/components/layout/AnimatedSection';
 import ContactForm from '@/components/contact/ContactForm';
+import OpenChatButton from '@/components/layout/OpenChatButton';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -49,6 +50,26 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                   <p className="text-sm text-charcoal">{siteConfig.contact.email}</p>
                 </div>
               </a>
+
+              {/* AI Assistant */}
+              <div className="bg-white border border-bone p-5">
+                <div className="flex items-start gap-4 mb-3">
+                  <div className="w-10 h-10 border border-gold flex items-center justify-center flex-shrink-0">
+                    <Sparkles size={18} className="text-gold" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold tracking-wider uppercase text-mist mb-1">{t('info.assistant')}</p>
+                    <p className="text-sm text-charcoal">{t('info.assistantDesc')}</p>
+                  </div>
+                </div>
+                <div className="pl-14">
+                  <OpenChatButton
+                    withIcon
+                    label={t('info.assistantCta')}
+                    className="inline-flex items-center gap-2 text-xs px-5 py-2.5 rounded-full bg-gold text-white hover:bg-gold-dark transition-colors"
+                  />
+                </div>
+              </div>
 
               {siteConfig.contactChannels.whatsapp && (
                 <div className="bg-white border border-bone p-5">

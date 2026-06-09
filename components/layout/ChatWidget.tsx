@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
+import Image from 'next/image';
 import { localePath } from '@/lib/i18n';
 
 type Message = { role: 'user' | 'assistant'; content: string };
@@ -17,6 +18,11 @@ const LIMIT_MESSAGES: Record<string, string> = {
 const LIMIT_BANNER: Record<string, string> = {
   en: "Daily limit reached — try again tomorrow",
   ru: 'Дневной лимит исчерпан — попробуйте завтра',
+};
+
+const LAUNCHER_LABEL: Record<string, string> = {
+  en: 'Chat with me! 👋',
+  ru: 'Напишите мне! 👋',
 };
 
 function todayUtc() {
@@ -72,6 +78,13 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
     if (open) bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, open]);
 
+  // Let other parts of the site (FAQ, Contact) open the chat via a global event
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener('lumee:open-chat', handler);
+    return () => window.removeEventListener('lumee:open-chat', handler);
+  }, []);
+
   async function send() {
     const text = input.trim();
     if (!text || loading || limitReached) return;
@@ -125,7 +138,20 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-charcoal text-cream">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+                <div className="w-9 h-9 rounded-full overflow-hidden bg-cream shrink-0">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    poster="/ai-assistant.png"
+                    className="w-full h-full object-cover"
+                  >
+                    <source src="/ai-assistant-wave.mp4" type="video/mp4" />
+                    <source src="/ai-assistant-wave.webm" type="video/webm" />
+                  </video>
+                </div>
                 <span className="text-sm font-semibold tracking-wide">Lumée Maison</span>
               </div>
               <button
@@ -225,12 +251,33 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
         )}
       </AnimatePresence>
 
-      {/* Toggle button */}
-      <button
-        onClick={() => setOpen(prev => !prev)}
-        className="w-14 h-14 rounded-full bg-gold text-white flex items-center justify-center shadow-lg hover:bg-gold-dark transition-all duration-300 hover:scale-110"
-        aria-label={open ? 'Close chat' : 'Open chat'}
+      {/* Launcher row: label bubble + toggle button — shrinks slightly together on hover */}
+      <motion.div
+        className="flex items-center gap-2"
+        whileHover={{ scale: 0.95 }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
       >
+        <AnimatePresence>
+          {!open && (
+            <motion.span
+              key="launcher-label"
+              initial={{ opacity: 0, x: 8, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 8, scale: 0.9 }}
+              transition={{ duration: 0.2, delay: 0.1 }}
+              className="select-none whitespace-nowrap rounded-full bg-surface border border-gold/40 shadow-md px-3 py-1.5 text-xs font-medium text-charcoal"
+            >
+              {LAUNCHER_LABEL[locale] ?? LAUNCHER_LABEL.en}
+            </motion.span>
+          )}
+        </AnimatePresence>
+
+        {/* Toggle button */}
+        <button
+          onClick={() => setOpen(prev => !prev)}
+          className="w-14 h-14 rounded-full bg-cream border border-gold/40 overflow-hidden flex items-center justify-center shadow-lg transition-all duration-300"
+          aria-label={open ? 'Close chat' : 'Open chat'}
+        >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
             <motion.span
@@ -239,22 +286,31 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.15 }}
+              className="text-charcoal"
             >
               <X size={22} />
             </motion.span>
           ) : (
             <motion.span
               key="chat"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.85 }}
               transition={{ duration: 0.15 }}
+              className="w-full h-full"
             >
-              <MessageCircle size={22} />
+              <Image
+                src="/ai-assistant.png"
+                alt="Lumée Maison AI assistant"
+                width={56}
+                height={56}
+                className="w-full h-full object-cover"
+              />
             </motion.span>
           )}
         </AnimatePresence>
-      </button>
+        </button>
+      </motion.div>
     </div>
   );
 }

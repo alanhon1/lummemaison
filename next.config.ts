@@ -36,6 +36,7 @@ const nextConfig: NextConfig = {
       { pathname: '/images/products/**' },
       { pathname: '/images/bundles/**' },
       { pathname: '/hero-maison.jpg' },
+      { pathname: '/ai-assistant.png' },
     ],
     remotePatterns: supabaseHost
       ? [{ protocol: 'https', hostname: supabaseHost, pathname: '/storage/v1/object/public/**' }]

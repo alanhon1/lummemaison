@@ -497,7 +497,10 @@
       "email": "Email",
       "whatsapp": "WhatsApp",
       "telegram": "Telegram",
-      "address": "Address"
+      "address": "Address",
+      "assistant": "AI Assistant",
+      "assistantDesc": "Ask direct questions and get instant answers",
+      "assistantCta": "Chat with our assistant"
     }
   },
   "footer": {

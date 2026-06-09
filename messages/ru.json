@@ -497,7 +497,10 @@
       "email": "Email",
       "whatsapp": "WhatsApp",
       "telegram": "Telegram",
-      "address": "Адрес"
+      "address": "Адрес",
+      "assistant": "AI-ассистент",
+      "assistantDesc": "Задайте вопрос напрямую — ответим мгновенно",
+      "assistantCta": "Спросить ассистента"
     }
   },
   "footer": {
