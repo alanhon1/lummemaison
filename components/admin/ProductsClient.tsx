@@ -3,10 +3,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, X, Edit2, Trash2, Check, Loader2, LayoutGrid, List } from 'lucide-react';
+import { Search, X, Edit2, Trash2, Check, Loader2, LayoutGrid, List, Home } from 'lucide-react';
 import Fuse from 'fuse.js';
 import type { Product, Category } from '@/lib/products';
 import { saveProductStockAction } from '@/app/manzura/products/actions';
+import ManageHomeModal from '@/components/admin/ManageHomeModal';
 
 interface Props {
   products: Product[];
@@ -148,6 +149,7 @@ function InlineStockCell({
 export default function ProductsClient({ products, categories, stockMap, initialFilter }: Props) {
   const router = useRouter();
   const [search, setSearch] = useState('');
+  const [manageOpen, setManageOpen] = useState(false);
   const [catFilter, setCatFilter] = useState('');
   const [imgFilter, setImgFilter] = useState(initialFilter === 'no-image' ? 'no-image' : '');
   const [stockFilter, setStockFilter] = useState<'all' | 'low-stock' | 'sold-out'>(
@@ -393,9 +395,20 @@ export default function ProductsClient({ products, categories, stockMap, initial
               Edit
             </button>
           )}
+          {!editMode && (
+            <button
+              onClick={() => setManageOpen(true)}
+              className="text-xs text-charcoal border border-gold/50 hover:border-gold hover:text-gold-dark px-3 py-1.5 inline-flex items-center gap-1.5 transition-colors"
+            >
+              <Home size={13} />
+              Manage home
+            </button>
+          )}
           <Link href="/manzura/products/new" className="btn-gold text-xs">+ New Product</Link>
         </div>
       </div>
+
+      {manageOpen && <ManageHomeModal products={products} onClose={() => setManageOpen(false)} />}
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-4">

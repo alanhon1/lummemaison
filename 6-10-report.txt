@@ -251,6 +251,19 @@
   비고: 챗봇은 마이그레이션 018 적용 시 질문 로깅(#3/#4)도 함께 동작.
 
 --------------------------------------------------------------------------
+#12 어드민에서 홈 베스트셀러/신상 관리 — 구현 완료 (BUILT)
+--------------------------------------------------------------------------
+  내용: 어드민 Products 탭 우상단 "Manage home" 버튼 → 모달에서 제품별
+        Best/New 토글. 토글 시 라이브 카탈로그의 isBestSeller/isNew 플래그를
+        기존 PATCH 라우트로 갱신(홈 revalidate). 검색으로 제품 추가, 선택된 것만
+        기본 표시. 홈의 Best Sellers / New Arrivals 행에 즉시 반영.
+  파일:
+    - components/admin/ManageHomeModal.tsx (신규 모달)
+    - components/admin/ProductsClient.tsx   (버튼 + 모달 연결)
+  검증: tsc 통과 · 내 코드 eslint 0 (ProductsClient 의 기존 InlineStockCell
+        useEffect set-state-in-effect 경고는 기존 코드, 빌드 영향 없음).
+
+--------------------------------------------------------------------------
 환경 메모 (Environment)
 --------------------------------------------------------------------------
   2026-06-10  OneDrive Files-On-Demand 가 .git 을 dehydrate 해 셸 git 이 간헐
