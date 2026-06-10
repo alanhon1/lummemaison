@@ -1,12 +1,10 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { revalidatePath } from 'next/cache';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { getProductStock, setProductStock } from '@/lib/products/stock';
 import { createServiceClient } from '@/lib/supabase/server';
-import { loadHomeConfig, saveHomeConfig } from '@/lib/home-config';
 
 export interface SaveStockResult {
   ok: boolean;
@@ -41,27 +39,4 @@ export async function saveProductStockAction(
   }
 
   return result;
-}
-
-// Saves the ordered product-id list for one home section (전시 = 'featured',
-// Best Sellers = 'bestSellers'). Merges into the existing config so editing one
-// section never clobbers the other. Revalidates the home page.
-export async function saveHomeSection(
-  section: 'featured' | 'bestSellers',
-  ids: number[],
-): Promise<{ ok: boolean; error?: string }> {
-  const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
-  if (!session.loggedIn) return { ok: false, error: 'Not authorized.' };
-  if (section !== 'featured' && section !== 'bestSellers') {
-    return { ok: false, error: 'Invalid section.' };
-  }
-  const clean = Array.from(new Set(ids.filter(n => Number.isFinite(n)))).slice(0, 24);
-  try {
-    const cfg = await loadHomeConfig();
-    await saveHomeConfig({ ...cfg, [section]: clean });
-    revalidatePath('/', 'layout');
-    return { ok: true };
-  } catch (e) {
-    return { ok: false, error: e instanceof Error ? e.message : 'Save failed' };
-  }
 }
