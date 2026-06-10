@@ -94,7 +94,6 @@ export async function buildFullStockReport(
   const moves = (movesRes.data ?? []) as unknown as MoveRow[];
   const stockMap = new Map(((stockRes.data ?? []) as Array<{ product_id: number; stock: number }>).map(r => [r.product_id, r.stock]));
 
-  const orderMap = new Map(orders.map(o => [o.id, o]));
   const cancelled = new Set(orders.filter(o => o.status === 'cancelled').map(o => o.id));
   const activeOrders = orders.filter(o => o.status !== 'cancelled');
 
@@ -277,29 +276,60 @@ export async function buildFullStockReport(
     });
   }
 
-  // ── ④ Order Items (normalised, one product per row) ───────────
+  // ── ④ Order Items (grouped per order, blank row between orders) ──
   function buildOrderItems() {
     const ws = wb.addWorksheet('Order Items');
     ws.columns = [
-      { header: 'Order #', key: 'ref', width: 13 },
-      { header: 'Product', key: 'product', width: 50 },
+      { header: 'Order # / Product', key: 'a', width: 52 },
       { header: 'Qty', key: 'qty', width: 8 },
-      { header: 'Order status', key: 'status', width: 14 },
+      { header: 'Status', key: 'status', width: 14 },
+      { header: 'Date (KST)', key: 'date', width: 13 },
     ];
     styleHeaderRow(ws);
-    items.forEach((it, i) => {
-      const o = orderMap.get(it.order_id);
-      const display = o ? (o.order_seq != null ? formatOrderNumber(o.order_seq) : o.order_number) : `#${it.order_id}`;
-      const row = ws.addRow({
-        ref: display,
-        product: it.product_name,
-        qty: it.quantity,
-        status: o ? (STATUS_LABEL[o.status] ?? o.status) : '',
+
+    // Group items by order, preserving the orders[] order (newest first).
+    const itemsByOrder = new Map<number, ItemRow[]>();
+    for (const it of items) {
+      const arr = itemsByOrder.get(it.order_id) ?? [];
+      arr.push(it);
+      itemsByOrder.set(it.order_id, arr);
+    }
+
+    let first = true;
+    for (const o of orders) {
+      const its = itemsByOrder.get(o.id);
+      if (!its || its.length === 0) continue;
+      if (!first) ws.addRow([]); // blank spacer between orders
+      first = false;
+
+      const display = o.order_seq != null ? formatOrderNumber(o.order_seq) : o.order_number;
+      const totalUnits = its.reduce((s, it) => s + it.quantity, 0);
+
+      // Group header row for the order.
+      const hdr = ws.addRow({
+        a: `${display} · ${o.customer_name}`,
+        qty: totalUnits,
+        status: STATUS_LABEL[o.status] ?? o.status,
+        date: kst(o.created_at),
       });
-      row.eachCell(c => applyDataStyle(c, i % 2 === 1));
-      row.getCell('qty').numFmt = '#,##0';
-      row.getCell('qty').alignment = { horizontal: 'right', vertical: 'middle' };
-    });
+      hdr.eachCell(c => {
+        c.font = { name: 'Arial', size: 9, bold: true, color: { argb: COLORS.DARK } };
+        c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLORS.CREAM } };
+        c.border = { top: thinBorder(COLORS.GOLD) };
+        c.alignment = { vertical: 'middle' };
+      });
+      hdr.getCell('qty').numFmt = '#,##0';
+      hdr.getCell('qty').alignment = { horizontal: 'right', vertical: 'middle' };
+
+      // Indented product rows under the order.
+      its.forEach((it, i) => {
+        const row = ws.addRow({ a: `    ${it.product_name}`, qty: it.quantity, status: '', date: '' });
+        const ev = i % 2 === 1;
+        row.eachCell(c => applyDataStyle(c, ev));
+        row.getCell('qty').numFmt = '#,##0';
+        row.getCell('qty').alignment = { horizontal: 'right', vertical: 'middle' };
+      });
+    }
   }
 
   // ── ⑤ History ─────────────────────────────────────────────────
