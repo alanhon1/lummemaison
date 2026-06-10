@@ -41,7 +41,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-3">
                 Handpicked Selection
               </p>
-              <h2 className="section-title">Featured</h2>
+              <h2 className="section-title">전시</h2>
               <div className="gold-divider mt-3" />
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
