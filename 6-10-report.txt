@@ -231,6 +231,26 @@
   비고: inbox 라벨 영어. 글로벌 안읽음 뱃지(있다면)는 user_messages 기준 — 후속 통합 가능.
 
 --------------------------------------------------------------------------
+#11 / #11-2 더 똑똑한 AI 챗봇 — 구현 완료 (BUILT)
+--------------------------------------------------------------------------
+  결정: add-to-cart 버튼 = 제품 페이지로 이동(골드 버튼) · 카탈로그 지식 = 검색 기반.
+  내용:
+    - 챗봇 제품 소스를 번들(420, 구버전) → 라이브 카탈로그(loadProducts, 440)로 교체.
+    - 검색 필드 확장: name+indication+description+protocol+태그(#6), '#' strip.
+    - 신제품 인지: NEW PRODUCTS 섹션을 컨텍스트에 항상 주입(이름+id) + /catalogue?new=1.
+    - REPLY_TOOL 에 recommended_product_ids 추가 → 봇이 언급/추천한 제품 id 반환.
+      챗 위젯이 이를 "View product" 골드 버튼(→ /product/<id>)으로 렌더.
+    - 시스템 프롬프트: "438 products" 제거(동적 카운트 주입) + 추천/선택권유/신제품/
+      how-to-use 가이드 추가.
+  파일:
+    - app/api/chat/route.ts        (라이브 소스, 검색 확장, 신제품, recommended ids)
+    - lib/chatbot-prompt.ts        (카운트/추천 가이드)
+    - components/layout/ChatWidget.tsx (제품 버튼 렌더)
+  검증: tsc 통과. eslint: 내 코드 0; 단 ChatWidget 의 기존 useEffect 2건(755ea58)에
+        새 규칙(set-state-in-effect) 경고/에러 — 내 변경 아님, 빌드엔 영향 없음(기존 배포 동일).
+  비고: 챗봇은 마이그레이션 018 적용 시 질문 로깅(#3/#4)도 함께 동작.
+
+--------------------------------------------------------------------------
 환경 메모 (Environment)
 --------------------------------------------------------------------------
   2026-06-10  OneDrive Files-On-Demand 가 .git 을 dehydrate 해 셸 git 이 간헐

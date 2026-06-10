@@ -2,13 +2,14 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MessageCircle, X, Send } from 'lucide-react';
+import { MessageCircle, X, Send, ShoppingBag } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { localePath } from '@/lib/i18n';
 
-type Message = { role: 'user' | 'assistant'; content: string };
+type RecommendedProduct = { id: number; name: string };
+type Message = { role: 'user' | 'assistant'; content: string; products?: RecommendedProduct[] };
 
 const LIMIT_MESSAGES: Record<string, string> = {
   en: "You've reached today's limit of 15 questions. Please try again tomorrow! For urgent help, contact us at info@lumeemaison.com 💛",
@@ -108,7 +109,10 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
         setLimitReached(true);
         localStorage.setItem('lm_chat_limit', JSON.stringify({ date: todayUtc() }));
       } else if (data.reply) {
-        setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
+        setMessages(prev => [
+          ...prev,
+          { role: 'assistant', content: data.reply, products: data.products as RecommendedProduct[] | undefined },
+        ]);
       }
     } catch {
       setMessages(prev => [
@@ -189,7 +193,7 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
                 {messages.map((m, i) => (
                   <div
                     key={i}
-                    className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    className={`flex flex-col ${m.role === 'user' ? 'items-end' : 'items-start'}`}
                   >
                     <div
                       className={`max-w-[80%] rounded-xl px-3 py-2 text-xs leading-relaxed whitespace-pre-wrap ${
@@ -200,6 +204,20 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
                     >
                       {m.content}
                     </div>
+                    {m.role === 'assistant' && m.products && m.products.length > 0 && (
+                      <div className="flex flex-col items-start gap-1 mt-1.5 max-w-[85%]">
+                        {m.products.map(p => (
+                          <Link
+                            key={p.id}
+                            href={localePath(locale, `/product/${p.id}`)}
+                            className="text-[11px] inline-flex items-center gap-1.5 bg-gold text-white rounded-full px-3 py-1.5 hover:bg-gold-dark transition-colors"
+                          >
+                            <ShoppingBag size={12} className="shrink-0" />
+                            <span className="line-clamp-1">{p.name}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
                 {loading && (
