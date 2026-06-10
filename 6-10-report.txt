@@ -102,6 +102,8 @@
   2026-06-10  origin/main 로 푸시 (755ea58..264b715) → Vercel 자동 배포 트리거.
               → 프로덕션에 버그 5건 반영. (#1 백업 기능은 포함 안 됨)
   2026-06-10  #1 백업/복원 구현 → origin/main 로 푸시 → Vercel 자동 배포.
+  2026-06-10  #3 모든 질문 로깅 + All questions 뷰 구현 → 커밋(=배포 대기/진행).
+              ※ Supabase 마이그레이션 018 적용 필요(수동).
 
 --------------------------------------------------------------------------
 #1 카탈로그 백업/복원 — 구현 완료 (BUILT)
@@ -128,6 +130,29 @@
   검증: tsc 통과 · eslint 에러 0.
   수동 점검: 어드민 대시보드 하단 "Catalogue backups" → Create →
             목록(최대 3, 개수/용량) → Preview 표 → Restore(2확인) → Delete.
+
+--------------------------------------------------------------------------
+#3 모든 질문 로깅 + "All questions" 뷰 — 구현 완료 (BUILT)
+--------------------------------------------------------------------------
+  결정: 새 테이블 chat_questions(질문만 저장) · unanswered_questions 는 fallback 전용 유지.
+  내용:
+    - 새 테이블 chat_questions (질문/카테고리/요약/is_fallback/status/user_id/created_at).
+      user_id 포함 → #4 usage 통계 기반도 같이 깔림.
+    - 챗봇이 이제 모든 질문을 chat_questions 에 로깅(답변/fallback 무관),
+      fallback 질문은 기존대로 unanswered_questions 에도 별도 기록.
+    - 어드민 AI Q 패널에 "All questions" 탭 추가(기존 수정/삭제/선택/FAQ 재사용)
+      + "Unanswered only" 필터 + fallback 배지. 탭 라벨: Unanswered / All questions / Bot FAQs.
+    - 질문 액션(markHandled/deleteQuestions/updateQuestionText/createFaq)을
+      테이블 인식(source)으로 일반화, 낙관적 상태는 source 로 네임스페이스(같은 id 충돌 방지).
+  파일:
+    - supabase/migrations/018_chat_questions.sql (신규 테이블)
+    - app/api/chat/route.ts                      (모든 질문 chat_questions 로깅)
+    - app/manzura/questions/actions.ts           (source 파라미터 추가)
+    - app/manzura/questions/page.tsx             (chat_questions 조회)
+    - components/admin/QuestionsClient.tsx       (All questions 탭 + 필터)
+  검증: tsc 통과 · eslint 에러 0 (경고 2건은 기존 스타일).
+  ⚠ 필요한 수동 작업: Supabase 에 마이그레이션 018 SQL 적용해야 실제로 동작
+    (미적용 시 앱은 안 깨지지만 All questions 탭이 비고 챗봇이 로그 에러를 남김).
 
 --------------------------------------------------------------------------
 다음 단계 (Next groups — 아직 안 함)

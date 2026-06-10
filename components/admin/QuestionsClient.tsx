@@ -20,6 +20,12 @@ export interface UnansweredRow {
   created_at: string;
 }
 
+// Rows from chat_questions (the "All questions" view) — same shape plus the
+// fallback flag (whether the bot couldn't answer).
+export interface AllQuestionRow extends UnansweredRow {
+  is_fallback: boolean;
+}
+
 export interface FaqRow {
   id: number;
   question: string;
@@ -41,28 +47,35 @@ function normalize(text: string) {
   return text.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
 }
 
-type MainTab   = 'unanswered' | 'faqs';
+type MainTab   = 'unanswered' | 'all' | 'faqs';
 type StatusTab = 'pending' | 'handled';
+type QSource   = 'unanswered_questions' | 'chat_questions';
 
 interface GroupedQuestion {
   key: string;
   ids: number[];
   representative: UnansweredRow;
   count: number;
+  anyFallback: boolean;
 }
 
 export default function QuestionsClient({
   unanswered,
+  allQuestions,
   faqs: initialFaqs,
 }: {
   unanswered: UnansweredRow[];
+  allQuestions: AllQuestionRow[];
   faqs: FaqRow[];
 }) {
   const [mainTab, setMainTab]       = useState<MainTab>('unanswered');
   const [statusTab, setStatusTab]   = useState<StatusTab>('pending');
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [handledIds, setHandledIds] = useState<Set<number>>(new Set());
-  const [deletedIds, setDeletedIds] = useState<Set<number>>(new Set());
+  const [fallbackOnly, setFallbackOnly] = useState(false);
+  // Optimistic hide sets are keyed `${source}:${id}` so the same numeric id in
+  // both tables (unanswered_questions / chat_questions) never collide.
+  const [handledIds, setHandledIds] = useState<Set<string>>(new Set());
+  const [deletedIds, setDeletedIds] = useState<Set<string>>(new Set());
   const [faqList, setFaqList]       = useState<FaqRow[]>(initialFaqs);
 
   // Selection
@@ -81,10 +94,26 @@ export default function QuestionsClient({
   const [expandedFaq, setExpandedFaq] = useState<Set<number>>(new Set());
   const [isPending, startTransition]  = useTransition();
 
+  // ── Active source ───────────────────────────────────────────
+  const activeSource: QSource = mainTab === 'all' ? 'chat_questions' : 'unanswered_questions';
+  const sourceRows: UnansweredRow[] = mainTab === 'all' ? allQuestions : unanswered;
+  const skey = (id: number) => `${activeSource}:${id}`;
+
+  function switchTab(tab: MainTab) {
+    setMainTab(tab);
+    setSelected(new Set());
+    setEditingId(null);
+    setCategoryFilter('all');
+  }
+
   // ── Derived data ────────────────────────────────────────────
   const rows = useMemo(
-    () => unanswered.filter(r => !handledIds.has(r.id) && !deletedIds.has(r.id)),
-    [unanswered, handledIds, deletedIds],
+    () => sourceRows.filter(r =>
+      !handledIds.has(`${activeSource}:${r.id}`) &&
+      !deletedIds.has(`${activeSource}:${r.id}`) &&
+      (mainTab !== 'all' || !fallbackOnly || (r as AllQuestionRow).is_fallback),
+    ),
+    [sourceRows, handledIds, deletedIds, activeSource, mainTab, fallbackOnly],
   );
 
   const filtered = useMemo(() => {
@@ -105,20 +134,24 @@ export default function QuestionsClient({
       ids: items.map(i => i.id),
       representative: items[0],
       count: items.length,
+      anyFallback: items.some(i => (i as AllQuestionRow).is_fallback),
     }));
   }, [filtered]);
 
   const categories = useMemo(
-    () => ['all', ...Array.from(new Set(unanswered.map(r => r.category)))],
-    [unanswered],
+    () => ['all', ...Array.from(new Set(sourceRows.map(r => r.category)))],
+    [sourceRows],
   );
 
   const pendingCount = unanswered.filter(
-    r => r.status === 'pending' && !handledIds.has(r.id) && !deletedIds.has(r.id),
+    r => r.status === 'pending'
+      && !handledIds.has(`unanswered_questions:${r.id}`)
+      && !deletedIds.has(`unanswered_questions:${r.id}`),
   ).length;
 
+  const allCount = allQuestions.filter(r => !deletedIds.has(`chat_questions:${r.id}`)).length;
+
   // All IDs currently visible in grouped rows
-  const allVisibleIds = useMemo(() => grouped.flatMap(g => g.ids), [grouped]);
   const allSelected   = grouped.length > 0 && grouped.every(g => selected.has(g.key));
 
   // Selected IDs (flat)
@@ -147,8 +180,8 @@ export default function QuestionsClient({
   // ── Actions ─────────────────────────────────────────────────
   function handleMarkHandled(ids: number[]) {
     startTransition(async () => {
-      await markHandled(ids);
-      setHandledIds(prev => new Set([...prev, ...ids]));
+      await markHandled(ids, activeSource);
+      setHandledIds(prev => new Set([...prev, ...ids.map(skey)]));
       setSelected(new Set());
     });
   }
@@ -156,8 +189,8 @@ export default function QuestionsClient({
   function handleBulkDelete() {
     if (!window.confirm(`Delete ${selectedIds.length} question(s)?`)) return;
     startTransition(async () => {
-      await deleteQuestions(selectedIds);
-      setDeletedIds(prev => new Set([...prev, ...selectedIds]));
+      await deleteQuestions(selectedIds, activeSource);
+      setDeletedIds(prev => new Set([...prev, ...selectedIds.map(skey)]));
       setSelected(new Set());
     });
   }
@@ -179,6 +212,7 @@ export default function QuestionsClient({
       ids: selectedIds,
       representative: firstGroup.representative,
       count: selectedIds.length,
+      anyFallback: firstGroup.anyFallback,
     };
     openCreateModal(mergedGroup);
   }
@@ -186,9 +220,9 @@ export default function QuestionsClient({
   async function handleCreateFaq() {
     if (!modal || !modalQ.trim() || !modalA.trim()) return;
     startTransition(async () => {
-      const res = await createFaq(modal.group.ids, modalQ, modalA, modalCat);
+      const res = await createFaq(modal.group.ids, modalQ, modalA, modalCat, activeSource);
       if (res.ok) {
-        setHandledIds(prev => new Set([...prev, ...modal.group.ids]));
+        setHandledIds(prev => new Set([...prev, ...modal.group.ids.map(skey)]));
         setFaqList(prev => [{
           id: Date.now(),
           question: modalQ,
@@ -212,9 +246,9 @@ export default function QuestionsClient({
   function handleSaveEdit(id: number) {
     if (!editText.trim()) return;
     startTransition(async () => {
-      await updateQuestionText(id, editText);
+      await updateQuestionText(id, editText, activeSource);
       // Mutate representative text optimistically — find the row in source array
-      const r = unanswered.find(r => r.id === id);
+      const r = sourceRows.find(r => r.id === id);
       if (r) r.question_text = editText.trim();
       setEditingId(null);
     });
@@ -240,25 +274,33 @@ export default function QuestionsClient({
       active ? 'bg-charcoal text-cream border-charcoal' : 'text-mist border-bone hover:text-charcoal'
     }`;
 
+  const showQuestions = mainTab === 'unanswered' || mainTab === 'all';
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
       <h1 className="font-display text-3xl font-light text-charcoal mb-6">AI Questions</h1>
 
       {/* Main tabs */}
       <div className="flex gap-2 mb-6 border-b border-bone pb-4">
-        <button onClick={() => setMainTab('unanswered')} className={tabCls(mainTab === 'unanswered')}>
-          Questions
+        <button onClick={() => switchTab('unanswered')} className={tabCls(mainTab === 'unanswered')}>
+          Unanswered
           {pendingCount > 0 && (
             <span className="ml-2 bg-rose-600 text-white text-[9px] px-1.5 py-0.5 rounded-full">{pendingCount}</span>
           )}
         </button>
-        <button onClick={() => setMainTab('faqs')} className={tabCls(mainTab === 'faqs')}>
+        <button onClick={() => switchTab('all')} className={tabCls(mainTab === 'all')}>
+          All questions
+          {allCount > 0 && (
+            <span className="ml-2 bg-charcoal/70 text-white text-[9px] px-1.5 py-0.5 rounded-full">{allCount}</span>
+          )}
+        </button>
+        <button onClick={() => switchTab('faqs')} className={tabCls(mainTab === 'faqs')}>
           Bot FAQs ({faqList.filter(f => f.active).length} active)
         </button>
       </div>
 
-      {/* ── QUESTIONS TAB ── */}
-      {mainTab === 'unanswered' && (
+      {/* ── QUESTIONS / ALL QUESTIONS TAB ── */}
+      {showQuestions && (
         <>
           {/* Filter bar */}
           <div className="flex flex-wrap gap-2 mb-4">
@@ -267,6 +309,14 @@ export default function QuestionsClient({
                 {s}
               </button>
             ))}
+            {mainTab === 'all' && (
+              <button
+                onClick={() => { setFallbackOnly(v => !v); setSelected(new Set()); }}
+                className={subTabCls(fallbackOnly)}
+              >
+                Unanswered only
+              </button>
+            )}
             <div className="ml-auto flex gap-1.5 flex-wrap">
               {categories.map(c => (
                 <button key={c} onClick={() => setCategoryFilter(c)}
@@ -360,6 +410,9 @@ export default function QuestionsClient({
                           {group.count > 1 && (
                             <span className="text-[10px] bg-gold/20 text-gold-dark px-2 py-0.5 rounded-full font-medium">×{group.count}</span>
                           )}
+                          {mainTab === 'all' && group.anyFallback && (
+                            <span className="text-[10px] bg-rose-100 text-rose-600 px-2 py-0.5 rounded-full font-medium">unanswered</span>
+                          )}
                           <span className="text-[11px] text-mist ml-auto">
                             {new Date(group.representative.created_at).toLocaleDateString()}
                           </span>
@@ -426,8 +479,8 @@ export default function QuestionsClient({
                           onClick={() => {
                             if (!window.confirm('Delete this question?')) return;
                             startTransition(async () => {
-                              await deleteQuestions(group.ids);
-                              setDeletedIds(prev => new Set([...prev, ...group.ids]));
+                              await deleteQuestions(group.ids, activeSource);
+                              setDeletedIds(prev => new Set([...prev, ...group.ids.map(skey)]));
                             });
                           }}
                           disabled={isPending}

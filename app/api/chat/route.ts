@@ -164,8 +164,21 @@ export async function POST(req: Request) {
       is_fallback: boolean;
     };
 
-    // Log only when bot genuinely can't answer — rely on the model's is_fallback flag.
-    // Awaited (not fire-and-forget) so Vercel doesn't kill the task before it completes.
+    // Log EVERY question to chat_questions (admin "All questions" view + usage
+    // stats), answered or not. Awaited so Vercel doesn't kill it before it runs.
+    if (latestUserMsg) {
+      const { error: cqErr } = await supabase.from('chat_questions').insert({
+        question_text: latestUserMsg.slice(0, 1000),
+        category,
+        summary: summary?.slice(0, 200) ?? null,
+        is_fallback,
+        user_id: user.id,
+      });
+      if (cqErr) console.error('[chat] chat_questions insert failed:', cqErr.message);
+    }
+
+    // Additionally log to unanswered_questions only when the bot genuinely can't
+    // answer — this stays the fallback-only triage list.
     if (is_fallback && latestUserMsg) {
       const { error: qErr } = await supabase.from('unanswered_questions').insert({
         question_text: latestUserMsg.slice(0, 1000),

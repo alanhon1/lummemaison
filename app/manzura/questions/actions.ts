@@ -10,7 +10,16 @@ async function requireAdmin() {
   if (!session.loggedIn) throw new Error('not authorized');
 }
 
-export async function markHandled(ids: number[]): Promise<{ ok: boolean }> {
+// The question lists live in two tables: unanswered_questions (fallback triage)
+// and chat_questions (every question — the "All questions" view). Actions take
+// an optional source so one set of handlers serves both. Allow-listed to avoid
+// any client-supplied table name reaching the query.
+export type QuestionSource = 'unanswered_questions' | 'chat_questions';
+function table(source?: string): QuestionSource {
+  return source === 'chat_questions' ? 'chat_questions' : 'unanswered_questions';
+}
+
+export async function markHandled(ids: number[], source?: string): Promise<{ ok: boolean }> {
   try {
     await requireAdmin();
   } catch {
@@ -18,17 +27,18 @@ export async function markHandled(ids: number[]): Promise<{ ok: boolean }> {
   }
   const admin = createServiceClient();
   const { error } = await admin
-    .from('unanswered_questions')
+    .from(table(source))
     .update({ status: 'handled' })
     .in('id', ids);
   return { ok: !error };
 }
 
 export async function createFaq(
-  unansweredIds: number[],
+  questionIds: number[],
   question: string,
   answer: string,
   category: string,
+  source?: string,
 ): Promise<{ ok: boolean; error?: string }> {
   try {
     await requireAdmin();
@@ -42,14 +52,15 @@ export async function createFaq(
     answer: answer.trim(),
     category,
     active: true,
-    unanswered_id: unansweredIds[0] ?? null,
+    // faqs.unanswered_id FKs unanswered_questions — only set it for that source.
+    unanswered_id: table(source) === 'unanswered_questions' ? (questionIds[0] ?? null) : null,
   });
   if (insertErr) return { ok: false, error: insertErr.message };
 
   await admin
-    .from('unanswered_questions')
+    .from(table(source))
     .update({ status: 'handled' })
-    .in('id', unansweredIds);
+    .in('id', questionIds);
 
   return { ok: true };
 }
@@ -76,18 +87,18 @@ export async function toggleFaq(id: number, active: boolean): Promise<{ ok: bool
   return { ok: !error };
 }
 
-export async function deleteQuestions(ids: number[]): Promise<{ ok: boolean }> {
+export async function deleteQuestions(ids: number[], source?: string): Promise<{ ok: boolean }> {
   try {
     await requireAdmin();
   } catch {
     return { ok: false };
   }
   const admin = createServiceClient();
-  const { error } = await admin.from('unanswered_questions').delete().in('id', ids);
+  const { error } = await admin.from(table(source)).delete().in('id', ids);
   return { ok: !error };
 }
 
-export async function updateQuestionText(id: number, text: string): Promise<{ ok: boolean }> {
+export async function updateQuestionText(id: number, text: string, source?: string): Promise<{ ok: boolean }> {
   try {
     await requireAdmin();
   } catch {
@@ -95,7 +106,7 @@ export async function updateQuestionText(id: number, text: string): Promise<{ ok
   }
   const admin = createServiceClient();
   const { error } = await admin
-    .from('unanswered_questions')
+    .from(table(source))
     .update({ question_text: text.trim().slice(0, 1000) })
     .eq('id', id);
   return { ok: !error };

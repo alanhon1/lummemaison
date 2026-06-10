@@ -13,10 +13,16 @@ export default async function AdminQuestionsPage() {
 
   const admin = createServiceClient();
 
-  const [{ data: unanswered }, { data: faqs }] = await Promise.all([
+  const [{ data: unanswered }, { data: allQuestions }, { data: faqs }] = await Promise.all([
     admin
       .from('unanswered_questions')
       .select('id, question_text, category, summary, status, created_at')
+      .order('created_at', { ascending: false })
+      .limit(500),
+    // chat_questions may not exist until migration 018 is applied → tolerate null.
+    admin
+      .from('chat_questions')
+      .select('id, question_text, category, summary, status, is_fallback, created_at')
       .order('created_at', { ascending: false })
       .limit(500),
     admin
@@ -26,5 +32,11 @@ export default async function AdminQuestionsPage() {
       .limit(200),
   ]);
 
-  return <QuestionsClient unanswered={unanswered ?? []} faqs={faqs ?? []} />;
+  return (
+    <QuestionsClient
+      unanswered={unanswered ?? []}
+      allQuestions={allQuestions ?? []}
+      faqs={faqs ?? []}
+    />
+  );
 }
