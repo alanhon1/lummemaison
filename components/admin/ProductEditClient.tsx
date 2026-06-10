@@ -325,7 +325,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
             </Field>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
               {([
-                ['isNew', 'New'],
+                // "New" is automatic (newest 40 products by id) — no manual toggle.
                 ['isSale', 'Sale'],
                 ['isBestSeller', 'Best Seller'],
                 ['inStock', 'In Stock'],

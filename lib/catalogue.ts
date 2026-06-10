@@ -9,28 +9,43 @@ import type { Product } from './products';
 // components / route handlers. Client components must not import this module —
 // they use the sync helpers + bundled `categories` from '@/lib/products'.
 
+// "New" is fully automatic — there is NO manual New toggle. The newest
+// NEW_LIMIT products by id (higher id = added later) are flagged isNew; once a
+// product falls outside that window it stops being New. Any stored isNew value
+// is overridden here.
+const NEW_LIMIT = 40;
+
+function applyAutoNew(products: Product[]): Product[] {
+  const cutoff = [...products].map(p => p.id).sort((a, b) => b - a)[NEW_LIMIT - 1] ?? -Infinity;
+  return products.map(p => ({ ...p, isNew: p.id >= cutoff }));
+}
+
+async function loadProductsWithNew(): Promise<Product[]> {
+  return applyAutoNew(await loadProducts());
+}
+
 export async function getAllProducts(): Promise<Product[]> {
-  return loadProducts();
+  return loadProductsWithNew();
 }
 
 export async function getProductById(id: number): Promise<Product | undefined> {
-  return (await loadProducts()).find(p => p.id === id);
+  return (await loadProductsWithNew()).find(p => p.id === id);
 }
 
 export async function getProductsByCategory(categoryId: string): Promise<Product[]> {
-  return (await loadProducts()).filter(p => p.categoryId === categoryId);
+  return (await loadProductsWithNew()).filter(p => p.categoryId === categoryId);
 }
 
 // New Arrivals: automatic — newest products first (higher id = added later).
 export async function getNewProducts(limit = 8): Promise<Product[]> {
-  return [...(await loadProducts())].sort((a, b) => b.id - a.id).slice(0, limit);
+  return [...(await loadProductsWithNew())].sort((a, b) => b.id - a.id).slice(0, limit);
 }
 
 // Most Popular: automatic — ranked by real order volume (order_items quantity,
 // cancelled orders excluded). Falls back to isBestSeller/first-N before any
 // orders exist so the home section is never empty.
 export async function getMostPopular(limit = 8): Promise<Product[]> {
-  const products = await loadProducts();
+  const products = await loadProductsWithNew();
   const byId = new Map(products.map(p => [p.id, p]));
   try {
     const supabase = createServiceClient();
@@ -57,9 +72,9 @@ export async function getMostPopular(limit = 8): Promise<Product[]> {
 }
 
 export async function getSaleProducts(limit = 8): Promise<Product[]> {
-  return (await loadProducts()).filter(p => p.isSale).slice(0, limit);
+  return (await loadProductsWithNew()).filter(p => p.isSale).slice(0, limit);
 }
 
 export async function getProductVariants(groupId: string): Promise<Product[]> {
-  return (await loadProducts()).filter(p => p.groupId === groupId).sort((a, b) => a.id - b.id);
+  return (await loadProductsWithNew()).filter(p => p.groupId === groupId).sort((a, b) => a.id - b.id);
 }
