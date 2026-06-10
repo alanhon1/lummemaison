@@ -35,6 +35,13 @@ export interface FaqRow {
   created_at: string;
 }
 
+export interface UsageStats {
+  totalQuestions: number;
+  totalUsers: number;
+  avgPerUser: number;
+  windows: Array<{ label: string; questions: number; users: number; avgPerUser: number }>;
+}
+
 const CATEGORY_COLORS: Record<string, string> = {
   shipping: 'bg-blue-100 text-blue-700',
   payment:  'bg-emerald-100 text-emerald-700',
@@ -47,7 +54,7 @@ function normalize(text: string) {
   return text.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
 }
 
-type MainTab   = 'unanswered' | 'all' | 'faqs';
+type MainTab   = 'unanswered' | 'all' | 'usage' | 'faqs';
 type StatusTab = 'pending' | 'handled';
 type QSource   = 'unanswered_questions' | 'chat_questions';
 
@@ -62,10 +69,12 @@ interface GroupedQuestion {
 export default function QuestionsClient({
   unanswered,
   allQuestions,
+  usage,
   faqs: initialFaqs,
 }: {
   unanswered: UnansweredRow[];
   allQuestions: AllQuestionRow[];
+  usage: UsageStats;
   faqs: FaqRow[];
 }) {
   const [mainTab, setMainTab]       = useState<MainTab>('unanswered');
@@ -294,6 +303,9 @@ export default function QuestionsClient({
             <span className="ml-2 bg-charcoal/70 text-white text-[9px] px-1.5 py-0.5 rounded-full">{allCount}</span>
           )}
         </button>
+        <button onClick={() => switchTab('usage')} className={tabCls(mainTab === 'usage')}>
+          Usage
+        </button>
         <button onClick={() => switchTab('faqs')} className={tabCls(mainTab === 'faqs')}>
           Bot FAQs ({faqList.filter(f => f.active).length} active)
         </button>
@@ -496,6 +508,50 @@ export default function QuestionsClient({
               })}
             </ul>
           )}
+        </>
+      )}
+
+      {/* ── USAGE TAB ── */}
+      {mainTab === 'usage' && (
+        <>
+          <div className="grid grid-cols-3 gap-3 mb-6">
+            {[
+              { label: 'Total questions', value: usage.totalQuestions },
+              { label: 'Users (asked ≥1)', value: usage.totalUsers },
+              { label: 'Avg / user', value: usage.avgPerUser },
+            ].map(c => (
+              <div key={c.label} className="border border-bone rounded-lg bg-white p-4 text-center">
+                <p className="font-display text-3xl font-light text-gold">{c.value}</p>
+                <p className="text-[10px] uppercase tracking-widest text-mist mt-1">{c.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="border border-bone rounded-lg bg-white overflow-hidden">
+            <table className="w-full text-sm">
+              <thead className="bg-cream">
+                <tr className="text-[10px] uppercase tracking-widest text-mist">
+                  <th className="text-left px-4 py-2.5 font-semibold">Window</th>
+                  <th className="text-right px-4 py-2.5 font-semibold">Questions</th>
+                  <th className="text-right px-4 py-2.5 font-semibold">Active users</th>
+                  <th className="text-right px-4 py-2.5 font-semibold">Avg / user</th>
+                </tr>
+              </thead>
+              <tbody>
+                {usage.windows.map((w, i) => (
+                  <tr key={w.label} className={`border-t border-bone ${i % 2 ? 'bg-cream/30' : ''}`}>
+                    <td className="px-4 py-2.5 text-charcoal">{w.label}</td>
+                    <td className="px-4 py-2.5 text-right text-charcoal">{w.questions}</td>
+                    <td className="px-4 py-2.5 text-right text-charcoal">{w.users}</td>
+                    <td className="px-4 py-2.5 text-right font-semibold text-gold-dark">{w.avgPerUser}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-[11px] text-mist mt-3">
+            질문을 1개 이상 한 유저만 집계됩니다. “Avg / user” = 해당 기간 질문 수 ÷ 해당 기간 활동 유저 수.
+          </p>
         </>
       )}
 

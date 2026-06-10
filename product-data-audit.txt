@@ -1,0 +1,81 @@
+PRODUCT DATA AUDIT (#5) — structural quick-check
+Source: data/products.json · 420 products
+
+SUMMARY (issue → count of products):
+   406  only 0 tag
+    14  only 1 tag
+     9  price bad value
+     0  duplicate description shared by ≥3 products
+     1  duplicate product name
+
+DETAIL (first 40 per issue):
+
+### only 0 tag (406)
+  #2  REGENOVUE FINE (CE) — only 0 tag(s) (#6 wants 6-15)
+  #3  REGENOVUE DEEP (CE) — only 0 tag(s) (#6 wants 6-15)
+  #4  REGENOVUE SUB-Q (CE) — only 0 tag(s) (#6 wants 6-15)
+  #5  REGENOVUE FINE PLUS (CE) — only 0 tag(s) (#6 wants 6-15)
+  #6  REGENOVUE DEEP PLUS (CE) — only 0 tag(s) (#6 wants 6-15)
+  #7  REGENOVUE SUB-Q PLUS (CE) — only 0 tag(s) (#6 wants 6-15)
+  #8  SOSUM S (CE) NO Lidocaine — only 0 tag(s) (#6 wants 6-15)
+  #9  SOSUM M (CE) NO Lidocaine — only 0 tag(s) (#6 wants 6-15)
+  #10  SOSUM H (CE) NO Lidocaine — only 0 tag(s) (#6 wants 6-15)
+  #11  SOSUM SOFT (CE) — only 0 tag(s) (#6 wants 6-15)
+  #12  SOSUM HARD — only 0 tag(s) (#6 wants 6-15)
+  #13  ELASTY FINE PLUS — only 0 tag(s) (#6 wants 6-15)
+  #14  ELASTY DEEP PLUS — only 0 tag(s) (#6 wants 6-15)
+  #15  ELASTY GRAND PLUS — only 0 tag(s) (#6 wants 6-15)
+  #16  VOM LIGHT (CE) NO Lidocaine — only 0 tag(s) (#6 wants 6-15)
+  #17  VOM INTENSE — only 0 tag(s) (#6 wants 6-15)
+  #18  VOM VOLUME (CE) — only 0 tag(s) (#6 wants 6-15)
+  #19  NEURAMIS LIGHT (MESO) — only 0 tag(s) (#6 wants 6-15)
+  #20  NEURAMIS — only 0 tag(s) (#6 wants 6-15)
+  #21  NEURAMIS DEEP — only 0 tag(s) (#6 wants 6-15)
+  #22  NEURAMIS DEEP WITH LIDOCAINE — only 0 tag(s) (#6 wants 6-15)
+  #23  NEURAMIS VOLUME LIDOCAINE — only 0 tag(s) (#6 wants 6-15)
+  #24  REVOLAX FINE PLUS — only 0 tag(s) (#6 wants 6-15)
+  #25  REVOLAX DEEP PLUS — only 0 tag(s) (#6 wants 6-15)
+  #26  REVOLAX SUB-Q PLUS — only 0 tag(s) (#6 wants 6-15)
+  #27  DERMALAX PLUS — only 0 tag(s) (#6 wants 6-15)
+  #28  DERMALAX DEEP PLUS — only 0 tag(s) (#6 wants 6-15)
+  #29  DERMALAX IMPLANT PLUS — only 0 tag(s) (#6 wants 6-15)
+  #30  YOUTHFILL FINE — only 0 tag(s) (#6 wants 6-15)
+  #31  YOUTHFILL DEEP — only 0 tag(s) (#6 wants 6-15)
+  #32  YOUTHFILL SHAPE — only 0 tag(s) (#6 wants 6-15)
+  #33  SOONSU FILL (E.P.T.Q) 100 — only 0 tag(s) (#6 wants 6-15)
+  #34  SOONSU FILL (E.P.T.Q) 300 — only 0 tag(s) (#6 wants 6-15)
+  #35  SOONSU FILL (E.P.T.Q) 500 — only 0 tag(s) (#6 wants 6-15)
+  #36  CELOSOME SOFT — only 0 tag(s) (#6 wants 6-15)
+  #37  CELOSOME MID — only 0 tag(s) (#6 wants 6-15)
+  #38  CELOSOME STRONG — only 0 tag(s) (#6 wants 6-15)
+  #39  CELOSOME IMPLANT — only 0 tag(s) (#6 wants 6-15)
+  #40  BONETTA FINE — only 0 tag(s) (#6 wants 6-15)
+  #41  BONETTA DEEP — only 0 tag(s) (#6 wants 6-15)
+  …and 366 more
+
+### only 1 tag (14)
+  #1  MisAdi Beso — only 1 tag(s) (#6 wants 6-15)
+  #56  BEADS MAX S — only 1 tag(s) (#6 wants 6-15)
+  #145  HAIRLUMA Exosome Hair Growth Solution — only 1 tag(s) (#6 wants 6-15)
+  #171  CELLEXO Bio-Cellulose Exosome Mask — only 1 tag(s) (#6 wants 6-15)
+  #172  CREBEAU Placenta Pearl Essence Mask — only 1 tag(s) (#6 wants 6-15)
+  #236  GTM EXOMELA — only 1 tag(s) (#6 wants 6-15)
+  #241  MELACELL + — only 1 tag(s) (#6 wants 6-15)
+  #242  GTM Balance Cleansing Gel — only 1 tag(s) (#6 wants 6-15)
+  #245  GTM MELA DUAL Day & Night Cream — only 1 tag(s) (#6 wants 6-15)
+  #248  T-TOX PEEL 6 SET — only 1 tag(s) (#6 wants 6-15)
+  #249  T-TOX PEEL mini — only 1 tag(s) (#6 wants 6-15)
+  #252  GTM Active Protect Sun Serum — only 1 tag(s) (#6 wants 6-15)
+  #288  PINE BOTTLE — only 1 tag(s) (#6 wants 6-15)
+  #381  Muchcaine (100G, Lidocaine+Prilocaine) — only 1 tag(s) (#6 wants 6-15)
+
+### price bad value (9)
+  #139  DERMAGEN Acssak Acne Clear Facial Foam Cleanser — price is 0
+  #192  WHEAT GERM COLLAGEN SKIN CARE SET — price is 0
+  #196  P198 RECORE INNER GEL (ExoNature) — price is 0
+  #255  BEAUTY MONSTER BLACK (Plasma Beauty Device) — price is 0
+  #275  NANO NEEDLE — price is 0
+  #295  LIPO SHRINKER — price is 0
+  #323  SALINE — price is 0
+  #355  Vita-D (300,000 IU) — price is 0
+  #370  Chioctocin inj (Thioctic acid) — price is 0
