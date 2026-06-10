@@ -140,7 +140,7 @@ export async function GET(req: NextRequest) {
       cancelled: 'Cancelled', adjustment: 'Adjustment',
     };
 
-    const ws = wb.addWorksheet('History');
+    const ws = wb.addWorksheet('Stock History'); // 'History' is a protected xlsx name
     ws.columns = [
       { header: 'Date (KST)', key: 'date',    width: 13 },
       { header: 'Product ID', key: 'pid',     width: 12 },

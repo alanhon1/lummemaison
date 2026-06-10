@@ -307,7 +307,9 @@ export async function buildFullStockReport(
     const REASON_LABEL: Record<string, string> = {
       inbound: 'Inbound', order: 'Order', cancel_restock: 'Cancel +stock', cancelled: 'Cancelled', adjustment: 'Adjustment',
     };
-    const ws = wb.addWorksheet('History');
+    // NB: 'History' is a reserved/protected sheet name in xlsx — exceljs throws
+    // on it (caused the Export All 500). Use 'Stock History'.
+    const ws = wb.addWorksheet('Stock History');
     ws.columns = [
       { header: 'Date (KST)', key: 'date', width: 18 },
       { header: 'Product', key: 'product', width: 46 },
