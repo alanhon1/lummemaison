@@ -269,7 +269,7 @@ export default function CatalogueClient({ products, initialCategory }: { product
                 updateUrl({ sort: v, page: 1 });
               }}
               aria-pressed={sortBy === 'new'}
-              className={`tag-chip ${sortBy === 'new' ? 'active' : ''}`}
+              className={`sort-toggle ${sortBy === 'new' ? 'active' : ''}`}
             >
               {t('sortNew')}
             </button>

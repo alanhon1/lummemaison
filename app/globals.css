@@ -330,6 +330,43 @@ body {
   }
   .tag-chip:hover::after { transform: translateX(150%); }
 
+  /* New Arrivals toggle — sized like the sort dropdown, smoothly rounded (not a
+     full pill), with the same gold fill + sheen sweep. */
+  .sort-toggle {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+    background: color-mix(in srgb, var(--accent) 9%, transparent);
+    color: var(--accent-dark);
+    padding: 0.5rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color .25s ease, background-color .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .sort-toggle:hover,
+  .sort-toggle.active {
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: var(--accent-glow);
+  }
+  .sort-toggle::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+    transform: translateX(-150%);
+    transition: transform .6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+  .sort-toggle:hover::after { transform: translateX(150%); }
+
   /* Section typography */
   .section-title {
     font-family: var(--font-display);
