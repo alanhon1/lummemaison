@@ -3,19 +3,16 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Search, X, Edit2, Trash2, Check, Loader2, LayoutGrid, List, Home, Star } from 'lucide-react';
+import { Search, X, Edit2, Trash2, Check, Loader2, LayoutGrid, List } from 'lucide-react';
 import Fuse from 'fuse.js';
 import type { Product, Category } from '@/lib/products';
 import { saveProductStockAction } from '@/app/manzura/products/actions';
-import ManageHomeModal from '@/components/admin/ManageHomeModal';
 
 interface Props {
   products: Product[];
   categories: Category[];
   stockMap: Record<number, number>;
   initialFilter?: string;
-  featuredIds: number[];
-  bestSellerIds: number[];
 }
 
 const PAGE_SIZE = 50;
@@ -148,10 +145,9 @@ function InlineStockCell({
   );
 }
 
-export default function ProductsClient({ products, categories, stockMap, initialFilter, featuredIds, bestSellerIds }: Props) {
+export default function ProductsClient({ products, categories, stockMap, initialFilter }: Props) {
   const router = useRouter();
   const [search, setSearch] = useState('');
-  const [manage, setManage] = useState<null | 'featured' | 'bestSellers'>(null);
   const [catFilter, setCatFilter] = useState('');
   const [imgFilter, setImgFilter] = useState(initialFilter === 'no-image' ? 'no-image' : '');
   const [stockFilter, setStockFilter] = useState<'all' | 'low-stock' | 'sold-out'>(
@@ -397,48 +393,9 @@ export default function ProductsClient({ products, categories, stockMap, initial
               Edit
             </button>
           )}
-          {!editMode && (
-            <>
-              <button
-                onClick={() => setManage('bestSellers')}
-                className="text-xs text-charcoal border border-gold/50 hover:border-gold hover:text-gold-dark px-3 py-1.5 inline-flex items-center gap-1.5 transition-colors"
-              >
-                <Home size={13} />
-                Manage items
-              </button>
-              <button
-                onClick={() => setManage('featured')}
-                className="text-xs text-charcoal border border-gold/50 hover:border-gold hover:text-gold-dark px-3 py-1.5 inline-flex items-center gap-1.5 transition-colors"
-              >
-                <Star size={13} />
-                Manage 전시
-              </button>
-            </>
-          )}
           <Link href="/manzura/products/new" className="btn-gold text-xs">+ New Product</Link>
         </div>
       </div>
-
-      {manage === 'bestSellers' && (
-        <ManageHomeModal
-          title="Manage items — Best Sellers"
-          section="bestSellers"
-          products={products}
-          initialIds={bestSellerIds}
-          max={8}
-          onClose={() => setManage(null)}
-        />
-      )}
-      {manage === 'featured' && (
-        <ManageHomeModal
-          title="Manage 전시 (Featured)"
-          section="featured"
-          products={products}
-          initialIds={featuredIds}
-          max={8}
-          onClose={() => setManage(null)}
-        />
-      )}
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-4">

@@ -7,7 +7,7 @@ import CategoryGrid from '@/components/home/CategoryGrid';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
 import CTASection from '@/components/home/CTASection';
 import ProductCard from '@/components/catalogue/ProductCard';
-import { getAllProducts, getFeatured, getBestSellers, getNewProducts } from '@/lib/catalogue';
+import { getAllProducts, getMostPopular, getNewProducts } from '@/lib/catalogue';
 import { categories } from '@/lib/products';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -21,9 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   await params;
-  const [featured, bestSellers, newProducts, allProducts] = await Promise.all([
-    getFeatured(8),
-    getBestSellers(8),
+  const [mostPopular, newProducts, allProducts] = await Promise.all([
+    getMostPopular(8),
     getNewProducts(8),
     getAllProducts(),
   ]);
@@ -33,39 +32,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Hero productCount={allProducts.length} categoryCount={categories.length} />
       <CategoryGrid />
 
-      {/* Featured (전시) — admin-curated, ordered */}
-      {featured.length > 0 && (
-        <section className="py-12 md:py-24 bg-transparent">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-8 md:mb-12">
-              <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-3">
-                Handpicked Selection
-              </p>
-              <h2 className="section-title">전시</h2>
-              <div className="gold-divider mt-3" />
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
-              {featured.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Best Sellers */}
-      {bestSellers.length > 0 && (
+      {/* Most Popular — automatic, ranked by real order volume */}
+      {mostPopular.length > 0 && (
         <section className="py-12 md:py-24 bg-transparent">
           <div className="max-w-7xl mx-auto px-6">
             <div className="mb-8 md:mb-12">
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-gold mb-3">
                 Trusted by Professionals
               </p>
-              <h2 className="section-title">Best Sellers</h2>
+              <h2 className="section-title">Most Popular</h2>
               <div className="gold-divider mt-3" />
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
-              {bestSellers.map(product => (
+              {mostPopular.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
