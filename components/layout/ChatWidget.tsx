@@ -99,7 +99,12 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: next, sessionId }),
+        // Send only role + content — assistant messages also carry a `products`
+        // field for the recommendation buttons, which must not be forwarded.
+        body: JSON.stringify({
+          messages: next.map(m => ({ role: m.role, content: m.content })),
+          sessionId,
+        }),
       });
       const data = await res.json();
 
@@ -222,11 +227,11 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
                 ))}
                 {loading && (
                   <div className="flex justify-start">
-                    <div className="bg-surface border border-bone rounded-xl rounded-bl-sm px-3 py-2">
-                      <span className="flex gap-1">
-                        <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:0ms]" />
-                        <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:150ms]" />
-                        <span className="w-1.5 h-1.5 bg-mist rounded-full animate-bounce [animation-delay:300ms]" />
+                    <div className="bg-surface border border-bone rounded-2xl rounded-bl-sm px-3.5 py-2.5">
+                      <span className="flex gap-1.5 items-center">
+                        <span className="w-2 h-2 bg-gold/80 rounded-full typing-dot" style={{ animationDelay: '0ms' }} />
+                        <span className="w-2 h-2 bg-gold/80 rounded-full typing-dot" style={{ animationDelay: '160ms' }} />
+                        <span className="w-2 h-2 bg-gold/80 rounded-full typing-dot" style={{ animationDelay: '320ms' }} />
                       </span>
                     </div>
                   </div>

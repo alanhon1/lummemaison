@@ -167,7 +167,15 @@ export async function POST(req: Request) {
       system: systemBlocks,
       tools: [REPLY_TOOL],
       tool_choice: { type: 'tool', name: 'reply' },
-      messages: messages.slice(-6),
+      // Only send role + content to the API. The client stores extra fields on
+      // assistant messages (e.g. `products` for the recommendation buttons);
+      // forwarding those unknown keys makes the Messages API reject every
+      // follow-up request — which is why the bot stopped answering after the
+      // first question.
+      messages: (messages.slice(-6) as Array<{ role: 'user' | 'assistant'; content: string }>).map(m => ({
+        role: m.role,
+        content: m.content,
+      })),
     });
 
     const toolUse = response.content.find(b => b.type === 'tool_use');
