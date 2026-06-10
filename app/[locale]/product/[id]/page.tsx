@@ -187,16 +187,29 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
               </span>
             </div>
 
-            {product.tags.length > 0 && (
-              <div className="mt-6 flex items-center gap-2">
-                <Tag size={13} className="text-mist" />
-                <div className="flex gap-2 flex-wrap">
-                  {product.tags.map(tag => (
-                    <span key={tag} className="text-xs text-mist border border-bone px-2 py-0.5">{tag}</span>
-                  ))}
+            {(() => {
+              const tags = product.tags.filter(
+                tag => tag && tag.toLowerCase() !== 'sale' && tag.toLowerCase() !== 'new',
+              );
+              if (tags.length === 0) return null;
+              return (
+                <div className="mt-6 flex items-start gap-2">
+                  <Tag size={13} className="text-mist mt-1.5 shrink-0" />
+                  <div className="flex gap-2 flex-wrap">
+                    {tags.slice(0, 20).map(tag => (
+                      <Link
+                        key={tag}
+                        href={localePath(locale, `/catalogue?q=${encodeURIComponent(tag)}`)}
+                        className="tag-chip"
+                        title={`Search "${tag}"`}
+                      >
+                        #{tag.replace(/\s+/g, '')}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
           </div>
         </div>

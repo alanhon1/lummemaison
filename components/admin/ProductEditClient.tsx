@@ -33,6 +33,9 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   // after the product is created (which assigns the id used in the storage path).
   const [pendingFile, setPendingFile] = useState<File | null>(null);
   const [pendingPreview, setPendingPreview] = useState<string | null>(null);
+  // Raw text of the tags field, shown with '#'. Kept separate from form.tags so
+  // typing commas isn't eaten by re-deriving the value from the parsed array.
+  const [tagInput, setTagInput] = useState<string>((product?.tags ?? []).map(t => `#${t}`).join(', '));
 
   function update<K extends keyof Product>(key: K, value: Product[K]) {
     setForm(f => ({ ...f, [key]: value }));
@@ -177,7 +180,6 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
     }
   }
 
-  const tagsStr = (form.tags ?? []).join(', ');
   const previewSrc = pendingPreview || form.image || '';
 
   return (
@@ -308,9 +310,18 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
               ru={form.protocol_ru ?? ''} onRu={v => update('protocol_ru', v)}
             />
 
-            <Field label="Tags (comma-separated)">
-              <input value={tagsStr} onChange={e => update('tags', e.target.value.split(',').map(t => t.trim()).filter(Boolean))}
-                className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
+            <Field label="Tags (comma-separated, e.g. #lips, #hyaluronicacid)">
+              <input
+                value={tagInput}
+                onChange={e => {
+                  setTagInput(e.target.value);
+                  // Split on commas, strip leading '#', trim — store clean tokens
+                  // (the catalogue/chatbot add the '#' back for display/search).
+                  update('tags', e.target.value.split(',').map(t => t.trim().replace(/^#+/, '').trim()).filter(Boolean));
+                }}
+                placeholder="#tag, #tag, #tag"
+                className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white"
+              />
             </Field>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
               {(['isNew', 'isSale', 'isBestSeller', 'inStock'] as const).map(key => (
