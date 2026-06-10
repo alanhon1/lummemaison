@@ -12,8 +12,9 @@ import {
   AlertTriangle,
   ShieldCheck,
 } from 'lucide-react';
+import BackupPreviewModal from './BackupPreviewModal';
 
-interface BackupFile { name: string; size: number; created: string; }
+interface BackupFile { name: string; size: number; created: string; productCount: number; }
 
 interface RecentOrder {
   id: number;
@@ -65,19 +66,64 @@ export default function DashboardClient({
 }: Props) {
   const router = useRouter();
   const [restoring, setRestoring] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState<string | null>(null);
+  const [creating, setCreating] = useState(false);
+  const [previewName, setPreviewName] = useState<string | null>(null);
+  const [backupError, setBackupError] = useState('');
 
-  async function handleRestore(filename: string) {
-    if (!confirm(`Restore backup "${filename}"? Current data will be overwritten.`)) return;
-    setRestoring(filename);
+  const JSON_HEADERS = { 'Content-Type': 'application/json' };
+
+  async function postBackup(payload: Record<string, unknown>): Promise<void> {
+    const res = await fetch('/api/admin/backup', {
+      method: 'POST',
+      headers: JSON_HEADERS,
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error ?? 'Request failed');
+    }
+  }
+
+  async function handleCreate() {
+    setBackupError('');
+    setCreating(true);
     try {
-      await fetch('/api/admin/backup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ filename }),
-      });
+      await postBackup({ action: 'create' });
       router.refresh();
+    } catch (e) {
+      setBackupError(e instanceof Error ? e.message : 'Backup failed');
+    } finally {
+      setCreating(false);
+    }
+  }
+
+  async function handleRestore(name: string) {
+    if (!confirm('이 백업으로 복원하면 현재 카탈로그 전체가 덮어써집니다. 계속할까요?')) return;
+    if (!confirm('정말 확실합니까? 이 작업은 되돌릴 수 없습니다. (복원 직전 현재 상태는 자동으로 백업됩니다)')) return;
+    setBackupError('');
+    setRestoring(name);
+    try {
+      await postBackup({ action: 'restore', name });
+      router.refresh();
+    } catch (e) {
+      setBackupError(e instanceof Error ? e.message : 'Restore failed');
     } finally {
       setRestoring(null);
+    }
+  }
+
+  async function handleDelete(name: string) {
+    if (!confirm('이 백업을 삭제할까요?')) return;
+    setBackupError('');
+    setDeleting(name);
+    try {
+      await postBackup({ action: 'delete', name });
+      router.refresh();
+    } catch (e) {
+      setBackupError(e instanceof Error ? e.message : 'Delete failed');
+    } finally {
+      setDeleting(null);
     }
   }
 
@@ -210,29 +256,65 @@ export default function DashboardClient({
         </div>
       </div>
 
-      {/* Backups — kept available but de-emphasised */}
-      {backups.length > 0 && (
-        <details className="bg-white border border-bone p-6">
-          <summary className="text-xs font-semibold tracking-[0.2em] uppercase text-mist cursor-pointer hover:text-charcoal">
-            Catalogue backups ({backups.length} most recent)
-          </summary>
-          <ul className="space-y-1 mt-4">
-            {backups.map(b => (
-              <li key={b.name} className="flex items-center justify-between text-xs py-1.5 border-b border-bone/50">
-                <span className="text-mist truncate mr-2">{b.created}</span>
-                <span className="text-mist mr-auto">{(b.size / 1024).toFixed(0)}KB</span>
-                <button
-                  onClick={() => handleRestore(b.name)}
-                  disabled={restoring === b.name}
-                  className="text-gold hover:underline disabled:opacity-50 ml-3"
-                >
-                  {restoring === b.name ? 'Restoring…' : 'Restore'}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </details>
-      )}
+      {/* Catalogue backups — de-emphasised. Manual snapshot / restore / delete. */}
+      <details className="bg-white border border-bone p-6">
+        <summary className="text-xs font-semibold tracking-[0.2em] uppercase text-mist cursor-pointer hover:text-charcoal">
+          Catalogue backups ({backups.length}/3)
+        </summary>
+        <div className="mt-4 space-y-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={handleCreate}
+              disabled={creating}
+              className="text-xs border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream px-3 py-1.5 rounded transition-colors disabled:opacity-50"
+            >
+              {creating ? 'Backing up…' : 'Create backup now'}
+            </button>
+            <span className="text-[11px] text-mist">
+              최대 3개 유지 · 복원은 현재 카탈로그를 덮어씁니다 (확인 2번, 복원 전 자동 백업)
+            </span>
+          </div>
+
+          {backupError && <p className="text-xs text-rose-600">{backupError}</p>}
+
+          {backups.length === 0 ? (
+            <p className="text-xs text-mist">백업이 없습니다.</p>
+          ) : (
+            <ul className="space-y-1">
+              {backups.map(b => (
+                <li key={b.name} className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs py-1.5 border-b border-bone/50">
+                  <span className="text-mist whitespace-nowrap">
+                    {b.created ? new Date(b.created).toLocaleString() : '—'}
+                  </span>
+                  <span className="text-charcoal whitespace-nowrap">· {b.productCount} products</span>
+                  <span className="text-mist whitespace-nowrap">· {(b.size / 1024).toFixed(0)}KB</span>
+                  <div className="ml-auto flex items-center gap-3">
+                    <button onClick={() => setPreviewName(b.name)} className="text-charcoal hover:underline">
+                      Preview
+                    </button>
+                    <button
+                      onClick={() => handleRestore(b.name)}
+                      disabled={restoring === b.name}
+                      className="text-gold hover:underline disabled:opacity-50"
+                    >
+                      {restoring === b.name ? 'Restoring…' : 'Restore'}
+                    </button>
+                    <button
+                      onClick={() => handleDelete(b.name)}
+                      disabled={deleting === b.name}
+                      className="text-rose-600 hover:underline disabled:opacity-50"
+                    >
+                      {deleting === b.name ? '…' : 'Delete'}
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </details>
+
+      {previewName && <BackupPreviewModal name={previewName} onClose={() => setPreviewName(null)} />}
     </div>
   );
 }

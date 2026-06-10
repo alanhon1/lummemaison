@@ -95,6 +95,41 @@
         (관리자 취소 / 사용자 취소 둘 다)
 
 --------------------------------------------------------------------------
+배포 로그 (Deploy log)
+--------------------------------------------------------------------------
+  2026-06-10  commit 264b715 — 버그 배치(#2,#6,#7,#10,#13) + 이 리포트.
+  2026-06-10  origin/fix/6-10-bug-batch 로 1차 푸시 (PR 브랜치).
+  2026-06-10  origin/main 로 푸시 (755ea58..264b715) → Vercel 자동 배포 트리거.
+              → 프로덕션에 버그 5건 반영. (#1 백업 기능은 포함 안 됨)
+  2026-06-10  #1 백업/복원 구현 → origin/main 로 푸시 → Vercel 자동 배포.
+
+--------------------------------------------------------------------------
+#1 카탈로그 백업/복원 — 구현 완료 (BUILT)
+--------------------------------------------------------------------------
+  결정: 백업 범위 = 카탈로그만(products.json) · preview = 제품 목록 표.
+  핵심: 백업 저장소를 로컬 FS → Supabase Storage(catalogue 버킷 'backups/'
+        prefix)로 이전 → Vercel 에서도 영구 보존. 파일명에 제품 수를 인코딩
+        (products-<ts>-<n>p.json)해서 목록에서 다운로드 없이 개수 표시.
+  기능:
+    - Create backup now: 현재 라이브 카탈로그 스냅샷, 생성 후 최대 3개로 정리.
+    - Restore: 확인 2번 + 복원 직전 현재 상태 자동 안전백업 → 라이브 덮어씀.
+    - Delete: 확인 1번.
+    - Preview: 그 백업의 제품 목록을 표(ID·이름·$가격·카테고리) 모달로.
+    - 옛 로컬 백업 정리: data/backups/ 는 gitignore 대상(레포에 없었음),
+      추적되던 .gitkeep 삭제 + 로컬 잔여 파일 제거. 더 이상 FS 백업 안 함.
+    - createBackup()(제품/카테고리 저장 시 호출되던 FS 스냅샷)은 no-op 으로
+      전환(매 편집마다 백업 생성 방지). 수동 백업만 사용.
+  파일:
+    - lib/backup.ts                          (Storage 헬퍼 5종 + createBackup no-op)
+    - app/api/admin/backup/route.ts          (GET 목록/preview, POST create/restore/delete)
+    - app/manzura/page.tsx                   (FS 조회 → listBackups())
+    - components/admin/DashboardClient.tsx   (Create/Preview/Restore/Delete UI + 핸들러)
+    - components/admin/BackupPreviewModal.tsx(신규 — 제품 표 모달)
+  검증: tsc 통과 · eslint 에러 0.
+  수동 점검: 어드민 대시보드 하단 "Catalogue backups" → Create →
+            목록(최대 3, 개수/용량) → Preview 표 → Restore(2확인) → Delete.
+
+--------------------------------------------------------------------------
 다음 단계 (Next groups — 아직 안 함)
 --------------------------------------------------------------------------
   B) 주문 UX: #8(주문 사진/코멘트 첨부), #9(주문 메시지→유저 inbox),

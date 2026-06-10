@@ -1,12 +1,11 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getIronSession } from 'iron-session';
-import fs from 'fs';
-import path from 'path';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import DashboardClient from '@/components/admin/DashboardClient';
 import { categories } from '@/lib/products';
 import { getAllProducts } from '@/lib/catalogue';
+import { listBackups } from '@/lib/backup';
 import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 
@@ -56,20 +55,9 @@ export default async function DashboardPage() {
       .limit(8),
   ]);
 
-  // Backups stay visible so the long-standing data-restore flow keeps working,
-  // but they're now de-emphasised below the operational stats.
-  const backupDir = path.join(process.cwd(), 'data', 'backups');
-  let backups: { name: string; size: number; created: string }[] = [];
-  if (fs.existsSync(backupDir)) {
-    backups = fs.readdirSync(backupDir)
-      .filter(f => f.endsWith('.json'))
-      .map(f => {
-        const stat = fs.statSync(path.join(backupDir, f));
-        return { name: f, size: stat.size, created: stat.mtime.toLocaleString() };
-      })
-      .sort((a, b) => b.name.localeCompare(a.name))
-      .slice(0, 5);
-  }
+  // Catalogue backups now live in Supabase Storage (persist on Vercel). The
+  // panel is de-emphasised below the operational stats.
+  const backups = await listBackups();
 
   return (
     <DashboardClient
