@@ -11,7 +11,7 @@ import ProductCard from './ProductCard';
 import { categories, type Product } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
 
-type SortOption = 'default' | 'price-asc' | 'price-desc' | 'name';
+type SortOption = 'default' | 'new' | 'price-asc' | 'price-desc' | 'name';
 
 const fuseOptions = {
   threshold: 0.2,
@@ -68,6 +68,10 @@ export default function CatalogueClient({ products, initialCategory }: { product
     }
 
     switch (sortBy) {
+      case 'new':
+        // New arrivals first, then newest id (products are added with rising ids).
+        result = [...result].sort((a, b) => (Number(b.isNew) - Number(a.isNew)) || (b.id - a.id));
+        break;
       case 'price-asc':
         result = [...result].sort((a, b) => a.price - b.price);
         break;
@@ -287,6 +291,7 @@ export default function CatalogueClient({ products, initialCategory }: { product
                 className="text-xs border border-bone rounded-md px-3 py-2 pr-7 bg-white text-charcoal outline-none hover:border-gold transition-colors appearance-none cursor-pointer"
               >
                 <option value="default">{t('sortDefault')}</option>
+                <option value="new">{t('sortNew')}</option>
                 <option value="price-asc">{t('sortPriceAsc')}</option>
                 <option value="price-desc">{t('sortPriceDesc')}</option>
                 <option value="name">{t('sortName')}</option>

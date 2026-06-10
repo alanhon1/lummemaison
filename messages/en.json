@@ -371,6 +371,7 @@
     "newOnly": "New Arrivals Only",
     "sortBy": "Sort By",
     "sortDefault": "Default",
+    "sortNew": "New Arrivals",
     "sortPriceAsc": "Price: Low to High",
     "sortPriceDesc": "Price: High to Low",
     "sortName": "Name A-Z",
