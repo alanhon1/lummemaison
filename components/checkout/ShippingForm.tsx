@@ -48,10 +48,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
     setHydrated(true);
   }, []);
 
-  // Shown for all countries so the hidden "ALANTEST" test code can be entered
-  // regardless of destination. US still uses this for FedEx shipping; for other
-  // countries it's an optional account field.
-  const showFedex = true;
+  const showFedex = form.country === 'US';
 
   function set<K extends keyof ShippingSnapshot>(key: K, value: ShippingSnapshot[K]) {
     setForm(prev => ({ ...prev, [key]: value }));

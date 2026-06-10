@@ -139,10 +139,11 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     return { ok: false, error: 'Shipping details are incomplete.' };
   }
 
-  // Hidden test mode: FedEx account "ALANTEST" places a PURE test order — nothing
-  // is persisted (no order/items, no email, no stock movement) and it never
-  // appears in admin / stock / excel. Lets the owner exercise the checkout flow.
-  if ((s.fedexAccount ?? '').trim().toUpperCase() === 'ALANTEST') {
+  // Hidden test mode: postal/ZIP code "ALANTEST" places a PURE test order —
+  // nothing is persisted (no order/items, no email, no stock movement) and it
+  // never appears in admin / stock / excel. Uses the postal code field so it
+  // works for any country. Lets the owner exercise the checkout flow.
+  if ((s.postalCode ?? '').trim().toUpperCase() === 'ALANTEST') {
     return { ok: true, test: true };
   }
 
