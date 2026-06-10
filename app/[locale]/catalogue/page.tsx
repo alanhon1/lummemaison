@@ -11,9 +11,10 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'catalogue' });
+  const products = await getAllProducts();
   return {
     title: t('title'),
-    description: t('subtitle'),
+    description: `${products.length} products across ${categories.length} categories`,
   };
 }
 
