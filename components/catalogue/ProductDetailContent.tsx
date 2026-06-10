@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import type { Product } from '@/lib/products';
 import {
   getLocalizedDescription,
@@ -9,6 +10,7 @@ import {
   getLocalizedPackaging,
   getLocalizedProtocol,
 } from '@/lib/products';
+import { localePath } from '@/lib/i18n';
 
 interface Props {
   product: Product;
@@ -57,6 +59,7 @@ export default function ProductDetailContent({ product, locale, labels }: Props)
   const indication = getLocalizedIndication(product, locale);
   const packaging = getLocalizedPackaging(product, locale);
   const protocol = getLocalizedProtocol(product, locale);
+  const tags = (product.tags ?? []).filter(t => t && t.toLowerCase() !== 'sale' && t.toLowerCase() !== 'new');
 
   return (
     <section className="mt-10 bg-white border border-bone rounded-sm p-5 md:p-8">
@@ -69,6 +72,25 @@ export default function ProductDetailContent({ product, locale, labels }: Props)
         <CollapsibleBlock label={labels.packaging} body={packaging} />
         <CollapsibleBlock label={labels.protocol} body={protocol} />
       </div>
+
+      {tags.length > 0 && (
+        <>
+          <div className="gold-divider my-6" />
+          <h3 className="text-xs font-semibold tracking-wider uppercase text-mist mb-3">Tags</h3>
+          <div className="flex flex-wrap gap-2">
+            {tags.slice(0, 20).map(tag => (
+              <Link
+                key={tag}
+                href={localePath(locale, `/catalogue?q=${encodeURIComponent(tag)}`)}
+                className="tag-chip"
+                title={`Search "${tag}"`}
+              >
+                #{tag.replace(/\s+/g, '')}
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 }

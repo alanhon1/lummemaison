@@ -296,6 +296,39 @@ body {
   .btn-frozen { background-color: var(--accent-dark); border-color: var(--accent-dark); box-shadow: 0 0 24px rgba(201, 169, 110, 0.45); }
   .btn-frozen::after { transform: translateX(8%); }
 
+  /* Clickable product hashtags — gold pill that fills + sheen-sweeps on hover */
+  .tag-chip {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    color: var(--accent-dark);
+    padding: 0.25rem 0.7rem;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: color .25s ease, background-color .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .tag-chip:hover {
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: var(--accent-glow);
+  }
+  .tag-chip::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+    transform: translateX(-150%);
+    transition: transform .6s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+  .tag-chip:hover::after { transform: translateX(150%); }
+
   /* Section typography */
   .section-title {
     font-family: var(--font-display);
