@@ -4,6 +4,7 @@ import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { categories } from '@/lib/products';
 import { getAllProducts } from '@/lib/catalogue';
+import { loadHomeConfig } from '@/lib/home-config';
 import { createServiceClient } from '@/lib/supabase/server';
 import ProductsClient from '@/components/admin/ProductsClient';
 
@@ -27,12 +28,16 @@ export default async function ProductsPage({
   const stockMap: Record<number, number> = {};
   for (const r of stockRows ?? []) stockMap[r.product_id] = r.stock;
 
+  const homeConfig = await loadHomeConfig();
+
   return (
     <ProductsClient
       products={products}
       categories={categories}
       stockMap={stockMap}
       initialFilter={filter}
+      featuredIds={homeConfig.featured}
+      bestSellerIds={homeConfig.bestSellers}
     />
   );
 }

@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { loadProducts } from './catalogue-store';
+import { loadHomeConfig } from './home-config';
 import type { Product } from './products';
 
 // Server-only async product accessors backed by the live store
@@ -20,12 +21,26 @@ export async function getProductsByCategory(categoryId: string): Promise<Product
   return (await loadProducts()).filter(p => p.categoryId === categoryId);
 }
 
-export async function getBestSellers(limit = 8): Promise<Product[]> {
-  return (await loadProducts()).filter(p => p.isBestSeller).slice(0, limit);
+// 전시 (Featured): admin-curated, ordered. Empty until set in "Manage 전시".
+export async function getFeatured(limit = 8): Promise<Product[]> {
+  const [products, cfg] = await Promise.all([loadProducts(), loadHomeConfig()]);
+  const byId = new Map(products.map(p => [p.id, p]));
+  return cfg.featured.map(id => byId.get(id)).filter((p): p is Product => !!p).slice(0, limit);
 }
 
+// Best Sellers: admin-curated ordered list ("Manage items"). Falls back to the
+// legacy isBestSeller flag until an ordered list has been saved.
+export async function getBestSellers(limit = 8): Promise<Product[]> {
+  const [products, cfg] = await Promise.all([loadProducts(), loadHomeConfig()]);
+  const byId = new Map(products.map(p => [p.id, p]));
+  const ordered = cfg.bestSellers.map(id => byId.get(id)).filter((p): p is Product => !!p);
+  if (ordered.length > 0) return ordered.slice(0, limit);
+  return products.filter(p => p.isBestSeller).slice(0, limit);
+}
+
+// New Arrivals: automatic — newest products first (higher id = added later).
 export async function getNewProducts(limit = 8): Promise<Product[]> {
-  return (await loadProducts()).filter(p => p.isNew).slice(0, limit);
+  return [...(await loadProducts())].sort((a, b) => b.id - a.id).slice(0, limit);
 }
 
 export async function getSaleProducts(limit = 8): Promise<Product[]> {
