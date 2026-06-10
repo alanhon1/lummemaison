@@ -9,6 +9,7 @@ import { findCountry } from '@/lib/countries';
 import AdminOrderStatusPanel from '@/components/admin/AdminOrderStatusPanel';
 import AdminOrderMessages from '@/components/admin/AdminOrderMessages';
 import OrderReceiptModal from '@/components/admin/OrderReceiptModal';
+import OrderAttachments from '@/components/account/OrderAttachments';
 
 export const dynamic = 'force-dynamic';
 
@@ -114,6 +115,26 @@ export default async function AdminOrderDetailPage({
       .maybeSingle(),
   ]);
   const customerCode = (customerProfile as { customer_code?: string } | null)?.customer_code ?? null;
+
+  // Customer photo attachments (#8): rows then signed URLs (private bucket).
+  const { data: attachmentRows } = await supabase
+    .from('order_attachments')
+    .select('id, storage_path, comment, created_at')
+    .eq('order_id', detail.id)
+    .order('created_at', { ascending: true });
+  const attachments = await Promise.all(
+    (attachmentRows ?? []).map(async a => {
+      const { data: signed } = await supabase.storage
+        .from('order-attachments')
+        .createSignedUrl(a.storage_path as string, SHIPMENT_PHOTO_TTL_SECONDS);
+      return {
+        id: a.id as number,
+        url: signed?.signedUrl ?? '',
+        comment: (a.comment as string | null) ?? null,
+        createdAt: a.created_at as string,
+      };
+    }),
+  );
 
   // Always mint a fresh signed URL on render so the admin can open the proof
   // even years after the email's 7-day link expires.
@@ -352,6 +373,11 @@ export default async function AdminOrderDetailPage({
             </tr>
           </tfoot>
         </table>
+      </section>
+
+      <section className="bg-white border border-bone rounded-lg p-5">
+        <h2 className="font-display text-lg text-charcoal mb-3">Customer photos</h2>
+        <OrderAttachments orderId={detail.id} attachments={attachments} readOnly />
       </section>
 
       <AdminOrderMessages orderId={detail.id} messages={(messages ?? []) as MessageRow[]} />

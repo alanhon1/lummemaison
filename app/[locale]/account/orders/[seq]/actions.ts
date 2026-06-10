@@ -1,6 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { randomUUID } from 'node:crypto';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { restoreStockForItems } from '@/lib/products/stock';
 import { sendCancellationEmail } from '@/lib/email/sendOrderEmails';
@@ -99,4 +100,89 @@ export async function markMessagesSeen(orderId: number): Promise<{ ok: boolean }
     .eq('id', orderId)
     .eq('user_id', user.id);
   return { ok: !error };
+}
+
+// ----- Order photo attachments (#8) -----
+const ATTACH_BUCKET = 'order-attachments';
+const MAX_ATTACHMENTS = 3;
+const MAX_COMMENT = 50;
+
+// Customer attaches one photo (+ optional ≤50-char comment) to their own order.
+// Up to MAX_ATTACHMENTS total; one at a time.
+export async function addOrderAttachment(formData: FormData): Promise<{ ok: boolean; error?: string }> {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { ok: false, error: 'Not signed in.' };
+
+  const orderId = Number.parseInt(String(formData.get('orderId') ?? ''), 10);
+  if (!Number.isFinite(orderId)) return { ok: false, error: 'Invalid order.' };
+
+  const admin = createServiceClient();
+  const { data: order } = await admin
+    .from('orders')
+    .select('id, user_id, order_seq, order_number')
+    .eq('id', orderId)
+    .single();
+  if (!order || order.user_id !== user.id) return { ok: false, error: 'Order not found.' };
+
+  const { count } = await admin
+    .from('order_attachments')
+    .select('id', { count: 'exact', head: true })
+    .eq('order_id', orderId);
+  if ((count ?? 0) >= MAX_ATTACHMENTS) {
+    return { ok: false, error: `You can attach up to ${MAX_ATTACHMENTS} photos.` };
+  }
+
+  const photo = formData.get('photo');
+  if (!(photo instanceof File) || photo.size === 0) return { ok: false, error: 'Please choose a photo.' };
+  if (photo.size > 10 * 1024 * 1024) return { ok: false, error: 'Photo is too large (max 10MB).' };
+  const comment = String(formData.get('comment') ?? '').trim().slice(0, MAX_COMMENT);
+
+  const ext = (photo.name.split('.').pop() ?? 'jpg').toLowerCase();
+  const path = `${orderId}/${randomUUID()}.${ext}`;
+  const buffer = Buffer.from(await photo.arrayBuffer());
+  const { error: upErr } = await admin.storage
+    .from(ATTACH_BUCKET)
+    .upload(path, buffer, { contentType: photo.type || 'application/octet-stream', upsert: false });
+  if (upErr) return { ok: false, error: `Upload failed: ${upErr.message}` };
+
+  const { error: insErr } = await admin
+    .from('order_attachments')
+    .insert({ order_id: orderId, storage_path: path, comment: comment || null });
+  if (insErr) {
+    await admin.storage.from(ATTACH_BUCKET).remove([path]); // best-effort cleanup
+    return { ok: false, error: insErr.message };
+  }
+
+  revalidatePath(`/account/orders/${order.order_seq ?? order.order_number}`);
+  return { ok: true };
+}
+
+// Customer removes one of their own order attachments.
+export async function deleteOrderAttachment(attachmentId: number): Promise<{ ok: boolean; error?: string }> {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { ok: false, error: 'Not signed in.' };
+  if (!Number.isFinite(attachmentId)) return { ok: false, error: 'Invalid attachment.' };
+
+  const admin = createServiceClient();
+  const { data: att } = await admin
+    .from('order_attachments')
+    .select('id, storage_path, order_id')
+    .eq('id', attachmentId)
+    .single();
+  if (!att) return { ok: false, error: 'Attachment not found.' };
+
+  const { data: order } = await admin
+    .from('orders')
+    .select('user_id, order_seq, order_number')
+    .eq('id', att.order_id)
+    .single();
+  if (!order || order.user_id !== user.id) return { ok: false, error: 'Not allowed.' };
+
+  await admin.storage.from(ATTACH_BUCKET).remove([att.storage_path as string]);
+  await admin.from('order_attachments').delete().eq('id', attachmentId);
+
+  revalidatePath(`/account/orders/${order.order_seq ?? order.order_number}`);
+  return { ok: true };
 }

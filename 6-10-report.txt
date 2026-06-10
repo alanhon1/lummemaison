@@ -198,6 +198,23 @@
         일부 휴리스틱 오탐(제품별 1~2개)은 어드민에서 개별 수정 가능.
 
 --------------------------------------------------------------------------
+#8 주문 사진/코멘트 첨부 — 구현 완료 (BUILT)
+--------------------------------------------------------------------------
+  유저: 주문 상세에서 사진 최대 3개(1개씩) + ≤50자 코멘트 첨부, 썸네일 클릭 확대,
+        본인 사진 삭제 가능. 어드민: 주문 상세에 동일 표시(읽기전용, 확대).
+  저장: 비공개 버킷 order-attachments + 테이블 order_attachments. 서명 URL 로 표시.
+  파일:
+    - supabase/migrations/019_order_attachments.sql (신규 테이블 + RLS read)
+    - scripts/ensure-order-attachments-bucket.ts + package.json(setup:order-attachments)
+    - app/[locale]/account/orders/[seq]/actions.ts (addOrderAttachment/deleteOrderAttachment)
+    - components/account/OrderAttachments.tsx (업로드/썸네일/라이트박스, 유저·어드민 공용)
+    - app/[locale]/account/orders/[seq]/page.tsx + app/manzura/orders/[id]/page.tsx (렌더)
+  검증: tsc 통과 · eslint 에러 0.
+  ✔ 버킷 order-attachments 는 내가 라이브로 생성 완료.
+  ⚠ 필요한 수동 작업: Supabase 에 마이그레이션 019 SQL 적용해야 첨부가 동작.
+  비고: 첨부 섹션 라벨은 영어(계정 페이지 i18n 키는 후속에 추가 가능).
+
+--------------------------------------------------------------------------
 환경 메모 (Environment)
 --------------------------------------------------------------------------
   2026-06-10  OneDrive Files-On-Demand 가 .git 을 dehydrate 해 셸 git 이 간헐

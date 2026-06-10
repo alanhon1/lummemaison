@@ -48,6 +48,7 @@
     "compose-bundle-covers": "tsx scripts/compose-bundle-covers.ts",
     "setup:storage": "tsx scripts/ensure-payment-proofs-bucket.ts",
     "setup:shipment-storage": "tsx scripts/ensure-shipment-photos-bucket.ts",
+    "setup:order-attachments": "tsx scripts/ensure-order-attachments-bucket.ts",
     "setup:product-images": "tsx scripts/ensure-product-images-bucket.ts",
     "migrate-ru-into-products": "tsx scripts/migrate-ru-into-products.ts",
     "seed:stock:csv": "tsx scripts/seed-stock-from-csv.ts"

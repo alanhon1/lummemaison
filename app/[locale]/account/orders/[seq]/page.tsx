@@ -11,6 +11,7 @@ import OrderStatusBadge from '@/components/account/OrderStatusBadge';
 import MessagesSeenMarker from '@/components/account/MessagesSeenMarker';
 import CancelOrderButton from '@/components/account/CancelOrderButton';
 import ReorderButton from '@/components/account/ReorderButton';
+import OrderAttachments from '@/components/account/OrderAttachments';
 import productsData from '@/data/products.json';
 
 interface PageProps {
@@ -78,6 +79,27 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
       .createSignedUrl(order.shipment_photo_path, SIGNED_URL_TTL_SECONDS);
     shipmentPhotoUrl = signed?.signedUrl ?? null;
   }
+
+  // Customer order photo attachments (#8): rows then signed URLs (private bucket).
+  const { data: attachmentRows } = await supabase
+    .from('order_attachments')
+    .select('id, storage_path, comment, created_at')
+    .eq('order_id', order.id)
+    .order('created_at', { ascending: true });
+  const attachAdmin = createServiceClient();
+  const attachments = await Promise.all(
+    (attachmentRows ?? []).map(async a => {
+      const { data: signed } = await attachAdmin.storage
+        .from('order-attachments')
+        .createSignedUrl(a.storage_path as string, SIGNED_URL_TTL_SECONDS);
+      return {
+        id: a.id as number,
+        url: signed?.signedUrl ?? '',
+        comment: (a.comment as string | null) ?? null,
+        createdAt: a.created_at as string,
+      };
+    }),
+  );
 
   const t = await getTranslations({ locale, namespace: 'account.orders' });
 
@@ -231,6 +253,15 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
             <br />
             {countryName}
           </p>
+        </section>
+
+        {/* Customer photo attachments */}
+        <section className="bg-white border border-bone rounded-lg p-5 md:p-6 mb-6">
+          <h2 className="font-display italic text-xl text-charcoal mb-2">Photos</h2>
+          <p className="text-xs text-mist mb-4">
+            Attach up to 3 photos (e.g. a reference or an issue) with an optional short note. Visible to our team.
+          </p>
+          <OrderAttachments orderId={order.id} attachments={attachments} />
         </section>
 
         {/* Messages from us */}
