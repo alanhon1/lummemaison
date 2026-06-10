@@ -45,6 +45,7 @@ export interface CreateOrderResult {
   viewToken?: string;
   orderNumber?: string;
   error?: string;
+  test?: boolean; // hidden test order (FedEx "ALANTEST") — nothing persisted
 }
 
 export interface UploadProofResult {
@@ -136,6 +137,13 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   const s = input.shipping;
   if (!s.fullName || !s.email || !s.phone || !s.country || !s.street || !s.city || !s.postalCode) {
     return { ok: false, error: 'Shipping details are incomplete.' };
+  }
+
+  // Hidden test mode: FedEx account "ALANTEST" places a PURE test order — nothing
+  // is persisted (no order/items, no email, no stock movement) and it never
+  // appears in admin / stock / excel. Lets the owner exercise the checkout flow.
+  if ((s.fedexAccount ?? '').trim().toUpperCase() === 'ALANTEST') {
+    return { ok: true, test: true };
   }
 
   // Payment screenshot is required; transaction link is optional.
@@ -322,6 +330,9 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
     redirect(`${localePath(locale, '/checkout/payment')}?error=bad-payload`);
   }
   const result = await createOrder(input);
+  if (result.ok && result.test) {
+    redirect(localePath(locale, '/checkout/confirmation/test'));
+  }
   if (!result.ok || result.orderSeq === undefined || !result.viewToken) {
     const message = encodeURIComponent(result.error ?? 'unknown');
     redirect(`${localePath(locale, '/checkout/payment')}?error=${message}`);
