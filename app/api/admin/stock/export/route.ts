@@ -5,6 +5,7 @@ import ExcelJS from 'exceljs';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
+import { buildFullStockReport } from '@/lib/excel/stock-report';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { applyHeaderStyle, applyDataStyle, applyStatusStyle, freezeAndFilter, COLORS, thinBorder } from '@/lib/excel/styles';
 
@@ -31,6 +32,20 @@ export async function GET(req: NextRequest) {
   const wb = new ExcelJS.Workbook();
   wb.creator = 'Lumée Maison';
   wb.created = new Date();
+
+  // ── ALL (5-tab professional workbook: Overview/Stock/Orders/Items/History) ──
+  if (type === 'all') {
+    await buildFullStockReport(wb, supabase, allProducts);
+    const filename = `lumee-stock-report-${toKstDate(new Date().toISOString())}.xlsx`;
+    const buffer = await wb.xlsx.writeBuffer();
+    return new NextResponse(buffer, {
+      headers: {
+        'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'Content-Disposition': `attachment; filename="${filename}"`,
+        'Cache-Control': 'no-store',
+      },
+    });
+  }
 
   // ── STOCK ─────────────────────────────────────────────────────
   if (type === 'stock') {

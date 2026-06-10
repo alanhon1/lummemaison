@@ -24,12 +24,12 @@ export default function StockExportButton({ rows, date }: { rows: StockRow[]; da
           type="button"
           className="text-xs border border-bone text-mist hover:text-charcoal hover:border-charcoal px-4 py-2 rounded transition-colors"
         >
-          ↓ Export .xlsx
+          ↓ Export All (5 tabs)
         </button>
       }
-      title="Stock Export Preview"
-      filename={`stock-current-${date}.xlsx`}
-      downloadUrl="/api/admin/stock/export?type=stock"
+      title="Stock & Info — Export All (5-tab workbook)"
+      filename={`lumee-stock-report-${date}.xlsx`}
+      downloadUrl="/api/admin/stock/export?type=all"
       columns={columns}
       rows={previewRows}
     />

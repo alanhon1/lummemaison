@@ -264,6 +264,29 @@
         useEffect set-state-in-effect 경고는 기존 코드, 빌드 영향 없음).
 
 --------------------------------------------------------------------------
+#14 엑셀 5탭 프로 워크북 리메이크 — 구현 완료 (BUILT)
+--------------------------------------------------------------------------
+  내용: Stock & Info "Export All" → 5탭 한 워크북(exceljs, 공통 스타일 헬퍼 재사용).
+    ① Stock Overview — KPI 10종(취소 제외) + Most Demanded top15(order_items 집계)
+       + Top Customers top10(spend).
+    ② Current Stock — ID/이름/재고/상태 + TOTAL UNITS 합계행.
+    ③ Orders — 짧게(Items 는 "N items · M units" 요약), 통화/주소 wrap.
+    ④ Order Items — 주문×제품 정규화(한 줄에 하나), 주문상태 포함.
+    ⑤ History — Date(KST)/Product/Δ Qty(+초록/−빨강)/Reason/Ref/Note.
+    LOW_THRESHOLD=10, 전부 KST, 차트 없음, 빈 시트도 헤더 표시.
+  파일:
+    - lib/excel/stock-report.ts        (신규 — 5탭 빌더 buildFullStockReport)
+    - app/api/admin/stock/export/route.ts (type=all 분기 추가)
+    - components/admin/StockExportButton.tsx (버튼 → ?type=all, "Export All (5 tabs)")
+  검증: tsc 통과 · eslint 에러 0. (기존 단일 export(stock/history/orders)는 그대로 유지)
+  비고: 런타임 실제 다운로드는 어드민 로그인 후 Stock & Info → Export All 로 점검 권장.
+        #7(다운로드 동작)은 버그배치에서 이미 수정됨.
+
+==========================================================================
+ 전체 6-10promt.txt 리스트 처리 완료 (#1~#14)
+==========================================================================
+
+--------------------------------------------------------------------------
 환경 메모 (Environment)
 --------------------------------------------------------------------------
   2026-06-10  OneDrive Files-On-Demand 가 .git 을 dehydrate 해 셸 git 이 간헐
