@@ -312,7 +312,8 @@ body {
     white-space: nowrap;
     transition: color .25s ease, background-color .25s ease, border-color .25s ease, box-shadow .25s ease;
   }
-  .tag-chip:hover {
+  .tag-chip:hover,
+  .tag-chip.active {
     color: #fff;
     background: var(--accent);
     border-color: var(--accent);

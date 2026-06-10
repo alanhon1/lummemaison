@@ -204,30 +204,6 @@ export default function CatalogueClient({ products, initialCategory }: { product
             </ul>
           </div>
 
-          {/* Quick Filters */}
-          <div className="space-y-3 mb-8">
-            <h3 className="text-sm font-semibold tracking-wider uppercase text-mist mb-3">
-              Quick Filters
-            </h3>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={saleOnly}
-                onChange={e => { setSaleOnly(e.target.checked); setPage(1); updateUrl({ sale: e.target.checked, page: 1 }); }}
-                className="w-3 h-3 accent-gold"
-              />
-              <span className="text-sm text-charcoal">{t('saleOnly')}</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={newOnly}
-                onChange={e => { setNewOnly(e.target.checked); setPage(1); updateUrl({ new: e.target.checked, page: 1 }); }}
-                className="w-3 h-3 accent-gold"
-              />
-              <span className="text-sm text-charcoal">{t('newOnly')}</span>
-            </label>
-          </div>
 
           {/* Catalogue stats */}
           <div className="mt-10 pt-6 border-t border-bone hidden lg:grid grid-cols-2 gap-3 text-center">
@@ -283,6 +259,21 @@ export default function CatalogueClient({ products, initialCategory }: { product
               )}
             </div>
 
+            {/* New Arrivals — standalone gold toggle (sorts newest-first) */}
+            <button
+              type="button"
+              onClick={() => {
+                const v: SortOption = sortBy === 'new' ? 'default' : 'new';
+                setSortBy(v);
+                setPage(1);
+                updateUrl({ sort: v, page: 1 });
+              }}
+              aria-pressed={sortBy === 'new'}
+              className={`tag-chip ${sortBy === 'new' ? 'active' : ''}`}
+            >
+              {t('sortNew')}
+            </button>
+
             {/* Sort */}
             <div className="relative">
               <select
@@ -291,7 +282,6 @@ export default function CatalogueClient({ products, initialCategory }: { product
                 className="text-xs border border-bone rounded-md px-3 py-2 pr-7 bg-white text-charcoal outline-none hover:border-gold transition-colors appearance-none cursor-pointer"
               >
                 <option value="default">{t('sortDefault')}</option>
-                <option value="new">{t('sortNew')}</option>
                 <option value="price-asc">{t('sortPriceAsc')}</option>
                 <option value="price-desc">{t('sortPriceDesc')}</option>
                 <option value="name">{t('sortName')}</option>
