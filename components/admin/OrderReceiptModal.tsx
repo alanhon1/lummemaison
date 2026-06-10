@@ -17,6 +17,7 @@ interface ReceiptProps {
   customerEmail: string;
   customerPhone: string;
   customerCode: string | null;
+  fedexAccount: string | null;
   shippingAddress: {
     street: string;
     city: string;
@@ -129,6 +130,7 @@ export default function OrderReceiptModal(props: ReceiptProps) {
                     <p>{props.customerEmail}</p>
                     <p>{props.customerPhone}</p>
                     {props.customerCode && <p className="font-mono text-mist">{props.customerCode}</p>}
+                    {props.fedexAccount && <p className="font-mono text-mist">FedEx: {props.fedexAccount}</p>}
                   </div>
                 </div>
                 <div>

@@ -93,6 +93,7 @@ export async function GET(
     ['Customer', order.customer_name as string],
     ['Email', order.customer_email as string],
     ['Phone', order.customer_phone as string],
+    ...(order.fedex_account ? [['FedEx Account', order.fedex_account as string]] : []),
     ['Ship To', [addr.street, [addr.city, addr.state_province, addr.postal_code].filter(Boolean).join(', '), countryName].join(', ')],
   ];
   for (const [label, val] of metaData) {

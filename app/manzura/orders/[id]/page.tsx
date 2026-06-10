@@ -177,6 +177,7 @@ export default async function AdminOrderDetailPage({
             customerEmail={detail.customer_email}
             customerPhone={detail.customer_phone}
             customerCode={customerCode}
+            fedexAccount={detail.fedex_account}
             shippingAddress={{
               street: detail.shipping_address.street,
               city: detail.shipping_address.city,
