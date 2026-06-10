@@ -62,6 +62,8 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const { currency } = useCurrencyStore();
   const stock = useProductStock(product.id);
   const soldOut = stock === 0;
+  const notForSale = !!product.notForSale;
+  const cannotBuy = soldOut || notForSale;
   const tagChips = matchedTags(product.tags, searchQuery);
 
   const isGroup = variantCount > 1;
@@ -76,7 +78,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   function handleAddToCart(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
-    if (soldOut) return;
+    if (cannotBuy) return;
     addItem({
       id: product.id,
       name: product.name,
@@ -137,9 +139,9 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         </div>
         <button
           onClick={handleAddToCart}
-          disabled={soldOut}
+          disabled={cannotBuy}
           className="self-center flex-shrink-0 w-9 h-9 border border-bone rounded-md flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-bone disabled:hover:text-charcoal"
-          aria-label={soldOut ? tProduct('soldOut') : t('addToCart')}
+          aria-label={notForSale ? 'Not for sale' : soldOut ? tProduct('soldOut') : t('addToCart')}
         >
           <ShoppingBag size={16} />
         </button>
@@ -169,7 +171,15 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         <div className="absolute top-3 left-3 flex flex-col gap-1">
           {(() => {
             const all = [
-              soldOut && (
+              notForSale && (
+                <span
+                  key="nfs"
+                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-charcoal/80 text-cream"
+                >
+                  Not for sale
+                </span>
+              ),
+              soldOut && !notForSale && (
                 <span
                   key="so"
                   className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-charcoal text-cream"
@@ -196,11 +206,11 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         <div className="hidden md:block absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
           <button
             onClick={handleAddToCart}
-            disabled={soldOut}
+            disabled={cannotBuy}
             className="w-full btn-gold text-[10px] py-2.5 flex items-center justify-center gap-2 disabled:bg-charcoal disabled:opacity-100"
           >
             <ShoppingBag size={13} />
-            {soldOut ? tProduct('soldOut') : t('addToCart')}
+            {notForSale ? 'Not for sale' : soldOut ? tProduct('soldOut') : t('addToCart')}
           </button>
         </div>
       </div>

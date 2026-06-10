@@ -323,12 +323,18 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
                 className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white"
               />
             </Field>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-              {(['isNew', 'isSale', 'isBestSeller', 'inStock'] as const).map(key => (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+              {([
+                ['isNew', 'New'],
+                ['isSale', 'Sale'],
+                ['isBestSeller', 'Best Seller'],
+                ['inStock', 'In Stock'],
+                ['notForSale', 'Not for sale (purchase disabled)'],
+              ] as const).map(([key, label]) => (
                 <label key={key} className="flex items-center gap-2 cursor-pointer">
                   <input type="checkbox" checked={!!form[key]} onChange={e => update(key, e.target.checked as Product[typeof key])}
                     className="accent-gold" />
-                  <span className="text-xs capitalize">{key.replace('is', '').replace('Best', ' Best ')}</span>
+                  <span className="text-xs">{label}</span>
                 </label>
               ))}
             </div>

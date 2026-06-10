@@ -19,9 +19,11 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
   const stock = useProductStock(product.id);
   const soldOut = stock === 0;
+  const notForSale = !!product.notForSale;
+  const cannotBuy = soldOut || notForSale;
 
   function handleAddToCart() {
-    if (soldOut) return;
+    if (cannotBuy) return;
     addItem({
       id: product.id,
       name: product.name,
@@ -37,17 +39,17 @@ export default function ProductDetailClient({ product }: { product: Product }) {
     <div className="flex flex-col sm:flex-row gap-3">
       <button
         onClick={handleAddToCart}
-        disabled={soldOut}
+        disabled={cannotBuy}
         className={`flex-1 flex items-center justify-center gap-2 py-4 text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 ${
-          soldOut
+          cannotBuy
             ? 'bg-charcoal text-cream cursor-not-allowed'
             : added
               ? 'bg-green-600 text-white border border-green-600'
               : 'btn-gold'
         }`}
       >
-        {soldOut ? (
-          <>{t('soldOut')}</>
+        {cannotBuy ? (
+          <>{notForSale ? 'Not for sale' : t('soldOut')}</>
         ) : added ? (
           <>
             <Check size={16} />
