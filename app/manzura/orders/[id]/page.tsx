@@ -361,6 +361,16 @@ export default async function AdminOrderDetailPage({
               <td colSpan={3} className="py-1 pr-4 text-right text-xs text-mist">Subtotal</td>
               <td className="py-1 text-right text-charcoal">{formatUSD(detail.subtotal_cents, detail.currency)}</td>
             </tr>
+            {detail.subtotal_cents + detail.shipping_cents - detail.total_cents > 0 && (
+              <tr>
+                <td colSpan={3} className="py-1 pr-4 text-right text-xs text-emerald-700">
+                  Discount{detail.discount_code ? ` (${detail.discount_code})` : ''}
+                </td>
+                <td className="py-1 text-right text-emerald-700">
+                  -{formatUSD(detail.subtotal_cents + detail.shipping_cents - detail.total_cents, detail.currency)}
+                </td>
+              </tr>
+            )}
             <tr>
               <td colSpan={3} className="py-1 pr-4 text-right text-xs text-mist">Shipping</td>
               <td className="py-1 text-right text-charcoal">{formatUSD(detail.shipping_cents, detail.currency)}</td>

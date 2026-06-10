@@ -155,6 +155,8 @@ export async function GET(
   };
   ws.addRow([]);
   addTotal('Subtotal', order.subtotal_cents as number);
+  const discountCents = (order.subtotal_cents as number) + (order.shipping_cents as number) - (order.total_cents as number);
+  if (discountCents > 0) addTotal('Discount', -discountCents);
   addTotal('Shipping', order.shipping_cents as number);
   addTotal('TOTAL', order.total_cents as number, true);
 

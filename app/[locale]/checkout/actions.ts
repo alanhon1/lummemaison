@@ -150,13 +150,16 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
 
   const subtotal = input.items.reduce((sum, l) => sum + l.unit_cents * l.quantity, 0);
   const shipping = computeShippingCents(input.shipping);
-  const total = subtotal + shipping;
 
   // Cap user-supplied text server-side regardless of what the form sent.
   const notes = (s.notes ?? '').trim().slice(0, 500);
   const discountCode = (s.discountCode ?? '').trim().slice(0, 64);
 
   const admin = createServiceClient();
+
+  // Discount the PRODUCTS SUBTOTAL only — shipping is never discounted.
+  const discountCents = await promoDiscountCents(admin, discountCode, subtotal);
+  const total = subtotal - discountCents + shipping;
 
   // order_seq, order_number, view_token are populated by DB column defaults
   // and the BEFORE INSERT trigger (see supabase/migrations/002_order_seq.sql).
@@ -256,8 +259,8 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     console.error('[checkout] sendOrderEmails threw', orderNumberDisplay, e);
   }
 
-  // Fire-and-forget: increment used_count on the matching promo code (if any).
-  if (discountCode) {
+  // Fire-and-forget: increment used_count only when the code actually applied.
+  if (discountCode && discountCents > 0) {
     void admin
       .rpc('increment_promo_used_count', { p_code: discountCode.trim().toUpperCase() })
       .then(({ error }) => {
@@ -273,6 +276,38 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     viewToken,
     orderNumber: orderNumberDisplay,
   };
+}
+
+// Promo lookup → discount in cents on the given subtotal (shipping is never
+// discounted). Returns 0 for invalid/inactive/expired/used-up/below-minimum.
+async function promoDiscountCents(
+  admin: ReturnType<typeof createServiceClient>,
+  code: string,
+  subtotalCents: number,
+): Promise<number> {
+  const c = (code ?? '').trim();
+  if (!c) return 0;
+  const { data: promo } = await admin
+    .from('promo_codes')
+    .select('discount_type, discount_value, min_order_cents, max_uses, used_count, active, expires_at')
+    .ilike('code', c)
+    .maybeSingle();
+  if (!promo || !promo.active) return 0;
+  if (promo.expires_at != null && new Date(promo.expires_at as string) <= new Date()) return 0;
+  if (promo.max_uses != null && (promo.used_count as number) >= (promo.max_uses as number)) return 0;
+  if (subtotalCents < (promo.min_order_cents as number)) return 0;
+  return promo.discount_type === 'percent'
+    ? Math.round((subtotalCents * (promo.discount_value as number)) / 100)
+    : Math.min(promo.discount_value as number, subtotalCents);
+}
+
+// Client-callable preview: returns the discount a code would give on a subtotal.
+export async function validatePromoCode(
+  code: string,
+  subtotalCents: number,
+): Promise<{ discountCents: number }> {
+  const admin = createServiceClient();
+  return { discountCents: await promoDiscountCents(admin, code, subtotalCents) };
 }
 
 // Convenience server action used by the payment step's "Confirm Order" form.

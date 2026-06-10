@@ -220,6 +220,7 @@
       "subtitle": "Choose either Wise or USDT and send payment using the details below.",
       "summary": "Order summary",
       "subtotal": "Subtotal",
+      "discount": "Discount",
       "shipping": "Shipping",
       "shippingFlat": "$35 flat — FedEx",
       "shippingUsaNoFedex": "$65 — FedEx Priority (no FedEx account)",

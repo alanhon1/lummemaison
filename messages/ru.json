@@ -220,6 +220,7 @@
       "subtitle": "Выберите Wise или USDT и отправьте оплату по реквизитам ниже.",
       "summary": "Сводка заказа",
       "subtotal": "Сумма товаров",
+      "discount": "Скидка",
       "shipping": "Доставка",
       "shippingFlat": "$35 — FedEx (фикс.)",
       "shippingUsaNoFedex": "$65 — FedEx Priority (без аккаунта FedEx)",

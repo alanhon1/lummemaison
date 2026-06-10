@@ -173,6 +173,12 @@ export default function OrderReceiptModal(props: ReceiptProps) {
                       <td colSpan={3} className="px-3 py-1.5 text-right text-xs text-mist">Subtotal</td>
                       <td className="px-3 py-1.5 text-right text-charcoal">{fmtUSD(props.subtotalCents, props.currency)}</td>
                     </tr>
+                    {props.subtotalCents + props.shippingCents - props.totalCents > 0 && (
+                      <tr>
+                        <td colSpan={3} className="px-3 py-1.5 text-right text-xs text-emerald-700">Discount</td>
+                        <td className="px-3 py-1.5 text-right text-emerald-700">-{fmtUSD(props.subtotalCents + props.shippingCents - props.totalCents, props.currency)}</td>
+                      </tr>
+                    )}
                     <tr>
                       <td colSpan={3} className="px-3 py-1.5 text-right text-xs text-mist">Shipping</td>
                       <td className="px-3 py-1.5 text-right text-charcoal">{fmtUSD(props.shippingCents, props.currency)}</td>

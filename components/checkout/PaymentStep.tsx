@@ -6,7 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { AlertTriangle, MessageCircle, FileCheck2, Loader2 } from 'lucide-react';
 import { readDraft, computeShippingCents, type CheckoutDraft } from '@/lib/checkout/state';
 import { useCartStore } from '@/lib/store';
-import { placeOrderAction, uploadPaymentProof } from '@/app/[locale]/checkout/actions';
+import { placeOrderAction, uploadPaymentProof, validatePromoCode } from '@/app/[locale]/checkout/actions';
 import { localePath } from '@/lib/i18n';
 import CopyButton from './CopyButton';
 
@@ -60,6 +60,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
   const [transactionLink, setTransactionLink] = useState('');
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState('');
+  const [discountCents, setDiscountCents] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -70,6 +71,19 @@ export default function PaymentStep({ payment, serverError }: Props) {
     }
     setDraft(d);
   }, [locale, router]);
+
+  // Live discount preview for the entered promo code (server-validated so the
+  // amount matches what checkout will actually charge). Shipping isn't discounted.
+  const promoCode = draft?.shipping?.discountCode?.trim() ?? '';
+  useEffect(() => {
+    const sub = items.reduce((s, i) => s + Math.round(i.price * 100) * i.quantity, 0);
+    if (!promoCode || sub === 0) { setDiscountCents(0); return; }
+    let active = true;
+    validatePromoCode(promoCode, sub)
+      .then(r => { if (active) setDiscountCents(r.discountCents); })
+      .catch(() => { if (active) setDiscountCents(0); });
+    return () => { active = false; };
+  }, [promoCode, items]);
 
   if (!draft || !draft.shipping || !draft.disclaimers) {
     return <div className="text-sm text-mist">{t('loading')}</div>;
@@ -91,7 +105,8 @@ export default function PaymentStep({ payment, serverError }: Props) {
     0,
   );
   const shippingCents = computeShippingCents(draft.shipping);
-  const totalCents = subtotalCents + shippingCents;
+  const appliedDiscount = Math.min(discountCents, subtotalCents);
+  const totalCents = subtotalCents - appliedDiscount + shippingCents;
 
   const payload = JSON.stringify({
     locale,
@@ -176,6 +191,9 @@ export default function PaymentStep({ payment, serverError }: Props) {
         </ul>
         <div className="border-t border-bone pt-3 space-y-1.5 text-sm">
           <Row label={t('payment.subtotal')} value={formatUSD(subtotalCents, locale)} />
+          {appliedDiscount > 0 && (
+            <Row label={t('payment.discount')} value={`-${formatUSD(appliedDiscount, locale)}`} />
+          )}
           <Row
             label={t('payment.shipping')}
             value={formatUSD(shippingCents, locale)}

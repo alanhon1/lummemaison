@@ -167,6 +167,9 @@ function receiptEmail(order: OrderData): { subject: string; html: string; text: 
   const totalsRows: string[] = [];
   if (order.subtotal !== undefined) {
     totalsRows.push(`<tr><td style="padding:4px 12px;text-align:right;color:#6b6157;">Subtotal</td><td style="padding:4px 12px;text-align:right;width:120px;">${formatUSD(order.subtotal, currency)}</td></tr>`);
+    if (order.subtotal + (order.shipping ?? 0) - order.total > 0) {
+      totalsRows.push(`<tr><td style="padding:4px 12px;text-align:right;color:#0a7a4f;">Discount</td><td style="padding:4px 12px;text-align:right;color:#0a7a4f;">-${formatUSD(order.subtotal + (order.shipping ?? 0) - order.total, currency)}</td></tr>`);
+    }
   }
   if (order.shipping !== undefined) {
     totalsRows.push(`<tr><td style="padding:4px 12px;text-align:right;color:#6b6157;">Shipping</td><td style="padding:4px 12px;text-align:right;">${formatUSD(order.shipping, currency)}</td></tr>`);
@@ -240,6 +243,9 @@ function receiptEmail(order: OrderData): { subject: string; html: string; text: 
     textLines.push(`  ${it.name} × ${it.quantity}  ${formatUSD(it.price * it.quantity, currency)}`);
   }
   if (order.subtotal !== undefined) textLines.push(`  Subtotal: ${formatUSD(order.subtotal, currency)}`);
+  if (order.subtotal !== undefined && order.subtotal + (order.shipping ?? 0) - order.total > 0) {
+    textLines.push(`  Discount: -${formatUSD(order.subtotal + (order.shipping ?? 0) - order.total, currency)}`);
+  }
   if (order.shipping !== undefined) textLines.push(`  Shipping: ${formatUSD(order.shipping, currency)}`);
   textLines.push(`  Total:    ${formatUSD(order.total, currency)}`);
   if (order.shippingAddress) {
@@ -299,6 +305,9 @@ export function customerEmail(order: OrderData): { subject: string; html: string
   const totalsRows: string[] = [];
   if (order.subtotal !== undefined) {
     totalsRows.push(`<tr><td style="padding:4px 12px;text-align:right;color:#6b6157;">Subtotal</td><td style="padding:4px 12px;text-align:right;width:120px;">${formatUSD(order.subtotal, currency)}</td></tr>`);
+    if (order.subtotal + (order.shipping ?? 0) - order.total > 0) {
+      totalsRows.push(`<tr><td style="padding:4px 12px;text-align:right;color:#0a7a4f;">Discount</td><td style="padding:4px 12px;text-align:right;color:#0a7a4f;">-${formatUSD(order.subtotal + (order.shipping ?? 0) - order.total, currency)}</td></tr>`);
+    }
   }
   if (order.shipping !== undefined) {
     totalsRows.push(`<tr><td style="padding:4px 12px;text-align:right;color:#6b6157;">Shipping</td><td style="padding:4px 12px;text-align:right;">${formatUSD(order.shipping, currency)}</td></tr>`);
@@ -422,6 +431,9 @@ export function customerEmail(order: OrderData): { subject: string; html: string
     textLines.push(`  - ${it.name} × ${it.quantity} @ ${formatUSD(it.price, currency)} = ${formatUSD(line, currency)}`);
   }
   if (order.subtotal !== undefined) textLines.push(`  Subtotal: ${formatUSD(order.subtotal, currency)}`);
+  if (order.subtotal !== undefined && order.subtotal + (order.shipping ?? 0) - order.total > 0) {
+    textLines.push(`  Discount: -${formatUSD(order.subtotal + (order.shipping ?? 0) - order.total, currency)}`);
+  }
   if (order.shipping !== undefined) textLines.push(`  Shipping: ${formatUSD(order.shipping, currency)}`);
   textLines.push(`  Total:    ${formatUSD(order.total, currency)}`);
   if (order.shippingAddress) {
@@ -1058,6 +1070,9 @@ export function adminEmail(order: OrderData): { subject: string; html: string; t
     textLines.push(`  - ${it.name} × ${it.quantity} @ ${formatUSD(it.price, currency)} = ${formatUSD(line, currency)}`);
   }
   if (order.subtotal !== undefined) textLines.push(`  Subtotal: ${formatUSD(order.subtotal, currency)}`);
+  if (order.subtotal !== undefined && order.subtotal + (order.shipping ?? 0) - order.total > 0) {
+    textLines.push(`  Discount: -${formatUSD(order.subtotal + (order.shipping ?? 0) - order.total, currency)}`);
+  }
   if (order.shipping !== undefined) textLines.push(`  Shipping: ${formatUSD(order.shipping, currency)}`);
   textLines.push(`  Total:    ${formatUSD(order.total, currency)}`);
   if (order.notes) {

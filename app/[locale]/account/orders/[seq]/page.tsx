@@ -230,6 +230,12 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
           </ul>
           <div className="border-t border-bone mt-3 pt-3 space-y-1.5 text-sm">
             <TotalRow label={t('subtotal')} value={formatCurrency(order.subtotal_cents, order.currency, locale)} />
+            {order.subtotal_cents + order.shipping_cents - order.total_cents > 0 && (
+              <TotalRow
+                label="Discount"
+                value={`-${formatCurrency(order.subtotal_cents + order.shipping_cents - order.total_cents, order.currency, locale)}`}
+              />
+            )}
             <TotalRow label={t('shipping')} value={formatCurrency(order.shipping_cents, order.currency, locale)} />
             <TotalRow
               label={t('total')}
