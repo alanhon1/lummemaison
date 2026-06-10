@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { Send, EyeOff, Eye } from 'lucide-react';
+import { Send, EyeOff, Eye, CheckCheck } from 'lucide-react';
 import { addOrderMessage } from '@/app/manzura/orders/actions';
 
 interface MessageRow {
@@ -16,9 +16,11 @@ interface MessageRow {
 export default function AdminOrderMessages({
   orderId,
   messages,
+  lastMessageSeenAt,
 }: {
   orderId: number;
   messages: MessageRow[];
+  lastMessageSeenAt?: string | null;
 }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
@@ -49,7 +51,10 @@ export default function AdminOrderMessages({
         <p className="text-sm text-mist italic mb-5">No messages yet.</p>
       ) : (
         <ul className="space-y-3 mb-6">
-          {messages.map(m => (
+          {messages.map(m => {
+            const showReceipt = m.sender_role === 'admin' && !m.is_internal;
+            const seen = showReceipt && !!lastMessageSeenAt && new Date(lastMessageSeenAt) >= new Date(m.created_at);
+            return (
             <li
               key={m.id}
               className={`border-l-2 pl-4 py-1 ${
@@ -73,10 +78,20 @@ export default function AdminOrderMessages({
                 <span className="ml-auto text-mist normal-case tracking-normal">
                   {new Date(m.created_at).toLocaleString()}
                 </span>
+                {showReceipt && (
+                  <span
+                    className={`normal-case tracking-normal inline-flex items-center gap-0.5 ${seen ? 'text-emerald-600' : 'text-mist'}`}
+                    title={seen ? 'Customer has opened the order' : 'Not yet seen by customer'}
+                  >
+                    <CheckCheck size={11} />
+                    {seen ? 'Seen' : 'Sent'}
+                  </span>
+                )}
               </div>
               <p className="text-sm text-charcoal whitespace-pre-wrap leading-relaxed">{m.body}</p>
             </li>
-          ))}
+            );
+          })}
         </ul>
       )}
 

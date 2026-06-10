@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { createClient } from '@/lib/supabase/server';
 import { localePath } from '@/lib/i18n';
+import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { markMessagesRead } from './actions';
 
 export const dynamic = 'force-dynamic';
@@ -59,6 +60,58 @@ export default async function InboxPage({ params }: PageProps) {
     await markMessagesRead(user.id);
   }
 
+  // Surface admin order-messages in the inbox too (clickable → the order). Read
+  // state mirrors the order's last_message_seen_at — so reading the order marks
+  // the inbox item read and vice-versa (single source of truth, no extra flag).
+  const { data: ordersForMsgs } = await supabase
+    .from('orders')
+    .select('id, order_seq, order_number, last_message_seen_at')
+    .eq('user_id', user.id);
+  const orderById = new Map((ordersForMsgs ?? []).map(o => [o.id, o]));
+  const orderIds = (ordersForMsgs ?? []).map(o => o.id);
+  let orderMsgs: Array<{ id: number; body: string; created_at: string; order_id: number }> = [];
+  if (orderIds.length > 0) {
+    const { data: om } = await supabase
+      .from('order_messages')
+      .select('id, body, created_at, order_id')
+      .eq('sender_role', 'admin')
+      .eq('is_internal', false)
+      .in('order_id', orderIds);
+    orderMsgs = (om ?? []) as typeof orderMsgs;
+  }
+
+  interface InboxItem {
+    key: string;
+    subject: string;
+    body: string;
+    createdAt: string;
+    read: boolean;
+    href?: string;
+  }
+  const items: InboxItem[] = [
+    ...messages.map(m => ({
+      key: `u${m.id}`,
+      subject: m.subject,
+      body: m.body,
+      createdAt: m.created_at,
+      read: m.is_read,
+    })),
+    ...orderMsgs.map(m => {
+      const o = orderById.get(m.order_id);
+      const num = o && o.order_seq != null ? formatOrderNumber(o.order_seq) : (o?.order_number ?? '');
+      const seen = !!(o?.last_message_seen_at && new Date(o.last_message_seen_at) >= new Date(m.created_at));
+      const seqOrNum = o?.order_seq ?? o?.order_number ?? '';
+      return {
+        key: `o${m.id}`,
+        subject: `Order ${num}`,
+        body: m.body,
+        createdAt: m.created_at,
+        read: seen,
+        href: localePath(locale, `/account/orders/${seqOrNum}`),
+      };
+    }),
+  ].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-28 pb-12 space-y-6">
       <Link href={`/${locale}`} className="inline-flex items-center gap-1 text-sm text-mist hover:text-charcoal py-2 pr-6">
@@ -70,38 +123,47 @@ export default async function InboxPage({ params }: PageProps) {
         <p className="text-xs text-mist mt-1">{t('subtitle')}</p>
       </div>
 
-      {messages.length === 0 ? (
+      {items.length === 0 ? (
         <p className="text-sm text-mist border border-dashed border-bone p-8 text-center">
           {t('noMessages')}
         </p>
       ) : (
         <ul className="space-y-4">
-          {messages.map(m => (
-            <li
-              key={m.id}
-              className={`border rounded-sm p-5 ${
-                m.is_read && !hasUnread ? 'bg-white border-bone' : 'bg-cream border-gold/40'
-              }`}
-            >
-              <div className="flex items-start justify-between gap-3 mb-2">
-                <div>
-                  <p className="text-sm font-semibold text-charcoal">{m.subject}</p>
-                  <p className="text-[11px] text-mist">{t('from')}</p>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  {(!m.is_read || hasUnread) && (
-                    <span className="text-[9px] uppercase tracking-widest bg-gold text-white px-2 py-0.5 rounded-full">
-                      {t('unread')}
+          {items.map(item => {
+            const cardCls = `block border rounded-sm p-5 ${
+              item.read ? 'bg-white border-bone' : 'bg-cream border-gold/40'
+            }`;
+            const inner = (
+              <>
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <div>
+                    <p className="text-sm font-semibold text-charcoal">{item.subject}</p>
+                    <p className="text-[11px] text-mist">{item.href ? 'Open order →' : t('from')}</p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    {!item.read && (
+                      <span className="text-[9px] uppercase tracking-widest bg-gold text-white px-2 py-0.5 rounded-full">
+                        {t('unread')}
+                      </span>
+                    )}
+                    <span className="text-[11px] text-mist whitespace-nowrap">
+                      {new Date(item.createdAt).toLocaleDateString()}
                     </span>
-                  )}
-                  <span className="text-[11px] text-mist whitespace-nowrap">
-                    {new Date(m.created_at).toLocaleDateString()}
-                  </span>
+                  </div>
                 </div>
-              </div>
-              <p className="text-sm text-charcoal leading-relaxed whitespace-pre-wrap">{m.body}</p>
-            </li>
-          ))}
+                <p className="text-sm text-charcoal leading-relaxed whitespace-pre-wrap line-clamp-3">{item.body}</p>
+              </>
+            );
+            return item.href ? (
+              <li key={item.key}>
+                <Link href={item.href} className={`${cardCls} hover:border-gold transition-colors`}>
+                  {inner}
+                </Link>
+              </li>
+            ) : (
+              <li key={item.key} className={cardCls}>{inner}</li>
+            );
+          })}
         </ul>
       )}
     </div>

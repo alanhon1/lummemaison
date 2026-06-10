@@ -215,6 +215,22 @@
   비고: 첨부 섹션 라벨은 영어(계정 페이지 i18n 키는 후속에 추가 가능).
 
 --------------------------------------------------------------------------
+#9 어드민 주문 메시지 → 유저 inbox + 읽음 동기화 — 구현 완료 (BUILT, 마이그레이션 불필요)
+--------------------------------------------------------------------------
+  접근: 새 테이블 없이 기존 order_messages + orders.last_message_seen_at 재사용.
+  유저 inbox: user_messages + (어드민·비내부) 주문 메시지를 합쳐 한 목록으로.
+    주문 메시지 항목 = "Order <번호>" + 미리보기, 클릭 → 해당 주문으로 이동.
+    읽음 = last_message_seen_at >= 메시지 시각 → 주문을 열면 inbox도 읽음 처리(양쪽 동기화).
+  어드민: 주문 메시지 패널에 고객 노출 메시지마다 "Seen/Sent" 표시(고객이 주문을
+    열어 last_message_seen_at 갱신되면 Seen).
+  파일:
+    - app/[locale]/account/inbox/page.tsx        (order_messages 병합 + 클릭 이동)
+    - components/admin/AdminOrderMessages.tsx     (Seen/Sent 읽음표시)
+    - app/manzura/orders/[id]/page.tsx            (last_message_seen_at 전달)
+  검증: tsc 통과 · eslint 에러 0. (마이그레이션/수동작업 없음 — 배포 즉시 동작)
+  비고: inbox 라벨 영어. 글로벌 안읽음 뱃지(있다면)는 user_messages 기준 — 후속 통합 가능.
+
+--------------------------------------------------------------------------
 환경 메모 (Environment)
 --------------------------------------------------------------------------
   2026-06-10  OneDrive Files-On-Demand 가 .git 을 dehydrate 해 셸 git 이 간헐

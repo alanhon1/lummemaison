@@ -64,6 +64,7 @@ interface OrderDetail {
   shipment_photo_path: string | null;
   shipped_at: string | null;
   delivered_at: string | null;
+  last_message_seen_at: string | null;
   created_at: string;
 }
 
@@ -380,7 +381,11 @@ export default async function AdminOrderDetailPage({
         <OrderAttachments orderId={detail.id} attachments={attachments} readOnly />
       </section>
 
-      <AdminOrderMessages orderId={detail.id} messages={(messages ?? []) as MessageRow[]} />
+      <AdminOrderMessages
+        orderId={detail.id}
+        messages={(messages ?? []) as MessageRow[]}
+        lastMessageSeenAt={detail.last_message_seen_at}
+      />
     </div>
   );
 }
