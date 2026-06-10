@@ -79,6 +79,7 @@ export async function buildFullStockReport(
     supabase
       .from('orders')
       .select('id, order_seq, order_number, status, customer_name, customer_email, customer_phone, total_cents, currency, created_at, shipping_address, user_id')
+      .not('order_number', 'ilike', 'TEST-%')
       .order('created_at', { ascending: false })
       .limit(10000),
     supabase.from('order_items').select('order_id, product_id, product_name, quantity').limit(100000),
@@ -110,9 +111,13 @@ export async function buildFullStockReport(
   for (const o of orders) if (o.user_id && !nameByUser.has(o.user_id)) nameByUser.set(o.user_id, o.customer_name);
 
   // Aggregations (order_items based; cancelled excluded for demand/revenue).
+  // realOrderIds = the fetched orders (test orders are already filtered out of
+  // `orders`), so test/orphan items never count toward demand.
+  const realOrderIds = new Set(orders.map(o => o.id));
   const demand = new Map<number, { units: number; orders: Set<number> }>();
   const itemAgg = new Map<number, { items: number; units: number }>();
   for (const it of items) {
+    if (!realOrderIds.has(it.order_id)) continue;
     const agg = itemAgg.get(it.order_id) ?? { items: 0, units: 0 };
     agg.items += 1;
     agg.units += it.quantity;

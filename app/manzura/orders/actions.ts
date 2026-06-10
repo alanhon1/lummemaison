@@ -100,9 +100,11 @@ export async function updateOrderStatus(
     patch.delivered_at = null;
   }
 
-  // Deduct stock when admin confirms payment.
+  // Deduct stock when admin confirms payment — but NEVER for test orders
+  // (order_number "TEST-..."), so they never touch real inventory.
+  const isTestOrder = String(current.order_number ?? '').toUpperCase().startsWith('TEST-');
   let verifiedItems: Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }> | null = null;
-  if (nextStatus === 'payment_verified' && current.status !== 'payment_verified') {
+  if (nextStatus === 'payment_verified' && current.status !== 'payment_verified' && !isTestOrder) {
     const { data: items } = await supabase
       .from('order_items')
       .select('product_id, product_name, unit_cents, quantity')

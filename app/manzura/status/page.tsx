@@ -68,6 +68,7 @@ export default async function StatusPage({ searchParams }: PageProps) {
       .from('orders')
       .select('id, order_seq, order_number, status, customer_name, total_cents, currency, created_at')
       .neq('status', 'cancelled')
+      .not('order_number', 'ilike', 'TEST-%')
       .order('created_at', { ascending: false })
       .limit(500);
 
@@ -96,10 +97,11 @@ export default async function StatusPage({ searchParams }: PageProps) {
   const since12m = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 12, 1));
 
   const [allStatusRes, windowRes, itemsRes, lowStockRes, monthly12Res, countryRes, pmRes] = await Promise.all([
-    supabase.from('orders').select('status'),
+    supabase.from('orders').select('status').not('order_number', 'ilike', 'TEST-%'),
     supabase
       .from('orders')
       .select('created_at, total_cents')
+      .not('order_number', 'ilike', 'TEST-%')
       .gte('created_at', since30.toISOString()),
     supabase.from('order_items').select('product_name, quantity').limit(10000),
     supabase
@@ -112,15 +114,18 @@ export default async function StatusPage({ searchParams }: PageProps) {
       .from('orders')
       .select('created_at, total_cents')
       .neq('status', 'cancelled')
+      .not('order_number', 'ilike', 'TEST-%')
       .gte('created_at', since12m.toISOString()),
     supabase
       .from('orders')
       .select('shipping_address, total_cents')
-      .neq('status', 'cancelled'),
+      .neq('status', 'cancelled')
+      .not('order_number', 'ilike', 'TEST-%'),
     supabase
       .from('orders')
       .select('payment_method, total_cents')
-      .neq('status', 'cancelled'),
+      .neq('status', 'cancelled')
+      .not('order_number', 'ilike', 'TEST-%'),
   ]);
 
   const allStatus = allStatusRes.data ?? [];

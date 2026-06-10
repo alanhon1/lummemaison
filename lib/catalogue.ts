@@ -35,7 +35,7 @@ export async function getMostPopular(limit = 8): Promise<Product[]> {
   try {
     const supabase = createServiceClient();
     const [{ data: orders }, { data: items }] = await Promise.all([
-      supabase.from('orders').select('id').neq('status', 'cancelled').limit(20000),
+      supabase.from('orders').select('id').neq('status', 'cancelled').not('order_number', 'ilike', 'TEST-%').limit(20000),
       supabase.from('order_items').select('order_id, product_id, quantity').limit(100000),
     ]);
     const activeIds = new Set((orders ?? []).map(o => o.id as number));

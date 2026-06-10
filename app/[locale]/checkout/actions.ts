@@ -139,18 +139,17 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     return { ok: false, error: 'Shipping details are incomplete.' };
   }
 
-  // Hidden test mode: postal/ZIP code "ALANTEST" places a PURE test order —
-  // nothing is persisted (no order/items, no email, no stock movement) and it
-  // never appears in admin / stock / excel. Uses the postal code field so it
-  // works for any country. Lets the owner exercise the checkout flow.
-  if ((s.postalCode ?? '').trim().toUpperCase() === 'ALANTEST') {
-    return { ok: true, test: true };
-  }
+  // Hidden test mode: postal/ZIP code "ALANTEST" creates a TEST order. It DOES
+  // show in the admin orders list — as "TEST-xxxx" (order_seq null, so no real
+  // #5000 number is consumed) — but is excluded from stock, analytics, exports
+  // and emails. Identified everywhere by the order_number "TEST-" prefix. Works
+  // for any country since the postal code field is always present.
+  const isTest = (s.postalCode ?? '').trim().toUpperCase() === 'ALANTEST';
 
-  // Payment screenshot is required; transaction link is optional.
+  // Payment screenshot is required (skipped for test orders).
   const proofPath = (input.paymentProofPath ?? '').trim();
   const transactionLink = (input.paymentTransactionLink ?? '').trim().slice(0, 500);
-  if (!proofPath) {
+  if (!isTest && !proofPath) {
     return {
       ok: false,
       error: 'Please upload a payment screenshot before confirming.',
@@ -198,6 +197,9 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
       discount_code: discountCode || null,
       payment_proof_path: proofPath || null,
       payment_transaction_link: transactionLink || null,
+      // Test orders skip the real sequence and get a "TEST-" number so they're
+      // visible in admin but excluded from stock/analytics/exports by prefix.
+      ...(isTest ? { order_seq: null, order_number: `TEST-${randomUUID().slice(0, 8).toUpperCase()}` } : {}),
     })
     .select('id, order_seq, view_token, order_number')
     .single();
@@ -224,14 +226,13 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   // Stock is deducted when admin confirms payment (payment_verified step),
   // not at order creation — see app/manzura/orders/actions.ts.
 
-  const orderSeq = order.order_seq as number;
+  const orderSeq = (order.order_seq as number | null) ?? undefined;
   const viewToken = order.view_token as string;
-  const orderNumberDisplay = formatOrderNumber(orderSeq);
+  const orderNumberDisplay = orderSeq != null ? formatOrderNumber(orderSeq) : (order.order_number as string);
 
-  // Fire transactional emails. Wrapped so a send failure never breaks the
-  // order — the orders table is already populated and the customer will
-  // still see the confirmation page. Errors land in Vercel function logs.
-  try {
+  // Fire transactional emails — but NOT for test orders (no order@ / admin mail).
+  // Wrapped so a send failure never breaks the order.
+  if (!isTest) try {
     const countryName =
       findCountry(input.shipping.country)?.name ?? input.shipping.country;
     const payload: OrderData = {
@@ -268,8 +269,9 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     console.error('[checkout] sendOrderEmails threw', orderNumberDisplay, e);
   }
 
-  // Fire-and-forget: increment used_count only when the code actually applied.
-  if (discountCode && discountCents > 0) {
+  // Fire-and-forget: increment used_count only when the code actually applied
+  // (never for test orders).
+  if (!isTest && discountCode && discountCents > 0) {
     void admin
       .rpc('increment_promo_used_count', { p_code: discountCode.trim().toUpperCase() })
       .then(({ error }) => {
@@ -284,6 +286,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     orderSeq,
     viewToken,
     orderNumber: orderNumberDisplay,
+    test: isTest,
   };
 }
 
@@ -331,8 +334,9 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
     redirect(`${localePath(locale, '/checkout/payment')}?error=bad-payload`);
   }
   const result = await createOrder(input);
-  if (result.ok && result.test) {
-    redirect(localePath(locale, '/checkout/confirmation/test'));
+  if (result.ok && result.test && result.orderNumber && result.viewToken) {
+    // Test order persisted as TEST-xxxx — show its confirmation by order_number.
+    redirect(`${localePath(locale, `/checkout/confirmation/${result.orderNumber}`)}?t=${result.viewToken}`);
   }
   if (!result.ok || result.orderSeq === undefined || !result.viewToken) {
     const message = encodeURIComponent(result.error ?? 'unknown');

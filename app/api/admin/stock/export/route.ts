@@ -203,6 +203,7 @@ export async function GET(req: NextRequest) {
     let ordersQuery = supabase
       .from('orders')
       .select('id, order_seq, order_number, status, customer_name, customer_email, customer_phone, total_cents, currency, created_at, shipping_address, user_id')
+      .not('order_number', 'ilike', 'TEST-%')
       .order('created_at', { ascending: false })
       .limit(10000);
     if (status) ordersQuery = ordersQuery.eq('status', status);

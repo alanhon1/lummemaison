@@ -29,24 +29,6 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function CheckoutConfirmationPage({ params, searchParams }: PageProps) {
   const { locale, orderNumber } = await params;
-
-  // Hidden test order (postal code "ALANTEST") — nothing was persisted, so
-  // there's no real order to load. Show a plain confirmation that the test ran.
-  if (orderNumber === 'test') {
-    return (
-      <main className="bg-cream min-h-[70vh] py-16 px-6 flex items-center justify-center">
-        <div className="max-w-md w-full bg-white border border-bone rounded-lg p-8 text-center">
-          <p className="text-4xl mb-3">🧪</p>
-          <h1 className="font-display text-2xl text-charcoal mb-2">Test order complete</h1>
-          <p className="text-sm text-mist leading-relaxed">
-            This was a test (postal code “ALANTEST”). Nothing was saved — no order, no
-            email, and no stock change. It will not appear in orders, stock, or exports.
-          </p>
-        </div>
-      </main>
-    );
-  }
-
   const { t: token } = await searchParams;
 
   const supabase = await createClient();

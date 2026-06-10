@@ -35,14 +35,17 @@ export default async function DashboardPage() {
     supabase
       .from('orders')
       .select('id', { count: 'exact', head: true })
+      .not('order_number', 'ilike', 'TEST-%')
       .gte('created_at', startOfToday.toISOString()),
     supabase
       .from('orders')
       .select('id', { count: 'exact', head: true })
+      .not('order_number', 'ilike', 'TEST-%')
       .eq('status', 'order_received'),
     supabase
       .from('orders')
       .select('id', { count: 'exact', head: true })
+      .not('order_number', 'ilike', 'TEST-%')
       .in('status', ['payment_verified', 'packaging']),
     supabase
       .from('product_stock')
@@ -51,6 +54,7 @@ export default async function DashboardPage() {
     supabase
       .from('orders')
       .select('id, order_seq, order_number, status, customer_name, total_cents, currency, created_at')
+      .not('order_number', 'ilike', 'TEST-%')
       .order('created_at', { ascending: false })
       .limit(8),
   ]);
