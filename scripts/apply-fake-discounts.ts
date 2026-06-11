@@ -77,8 +77,12 @@ interface Product {
   [k: string]: unknown;
 }
 
-// Excluded from any fake discount: the $0.5 random face mask sheets.
+// Excluded from any fake discount:
+//  - high-ticket items ($1000+, i.e. the big devices/machines)
+//  - the $0.5 random face mask sheets
+const MAX_DISCOUNT_PRICE = 1000;
 function isExcluded(p: Product): boolean {
+  if (typeof p.price === 'number' && p.price >= MAX_DISCOUNT_PRICE) return true;
   return /mask\s*sheets?/i.test(p.name) && p.price <= 1;
 }
 
