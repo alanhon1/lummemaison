@@ -44,6 +44,25 @@ function TagChips({ tags }: { tags: string[] }) {
   );
 }
 
+// Integer percent off, or 0 when there's no valid discount. The real `price` is
+// always what the customer pays; `originalPrice` is the higher struck-through "was".
+function discountPct(product: Pick<Product, 'price' | 'originalPrice'>): number {
+  const o = product.originalPrice;
+  if (typeof o !== 'number' || o <= product.price || product.price <= 0) return 0;
+  return Math.round((o - product.price) / o * 100);
+}
+
+// Struck-through "was" price next to the current price. The percent-off is shown
+// separately as the corner badge on the image.
+function WasPrice({ price, originalPrice, currency }: { price: number; originalPrice?: number; currency: Parameters<typeof formatPrice>[1] }) {
+  if (!(typeof originalPrice === 'number') || originalPrice <= price || price <= 0) return null;
+  return (
+    <span className="text-xs text-mist line-through ml-1.5">
+      {formatPrice(originalPrice, currency)}
+    </span>
+  );
+}
+
 function rememberCatalogueUrl() {
   if (typeof window === 'undefined') return;
   if (!window.location.pathname.includes('/catalogue')) return;
@@ -65,6 +84,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const notForSale = !!product.notForSale;
   const cannotBuy = soldOut || notForSale;
   const tagChips = matchedTags(product.tags, searchQuery);
+  const pct = discountPct(product);
 
   const isGroup = variantCount > 1;
   const displayName = isGroup && product.groupName ? product.groupName : product.name;
@@ -110,8 +130,8 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
             <div>
               <div className="flex gap-1.5 mb-1.5">
                 {isBundle && <span className="badge-bundle">BUNDLE</span>}
+                {pct > 0 && <span className="badge-discount">−{pct}%</span>}
                 {product.isNew && <span className="badge-new">{tProduct('tags.new')}</span>}
-                {product.isSale && <span className="badge-sale">{tProduct('tags.sale')}</span>}
                 {product.isBestSeller && <span className="badge-best">{tProduct('tags.bestSeller')}</span>}
               </div>
               <h3 className="text-sm font-semibold text-charcoal group-hover:text-gold transition-colors leading-tight">
@@ -131,6 +151,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
               <div className="font-display text-lg font-light text-charcoal">
                 {formatPrice(product.price, currency)}
               </div>
+              <WasPrice price={product.price} originalPrice={product.originalPrice} currency={currency} />
               {product.moq > 1 && (
                 <div className="text-xs text-mist">MOQ: {product.moq}</div>
               )}
@@ -187,7 +208,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
                   {tProduct('soldOut')}
                 </span>
               ),
-              product.isSale && <span key="s" className="badge-sale">{tProduct('tags.sale')}</span>,
+              pct > 0 && <span key="s" className="badge-discount">−{pct}%</span>,
               product.isNew && <span key="n" className="badge-new">{tProduct('tags.new')}</span>,
               product.isBestSeller && <span key="b" className="badge-best">{tProduct('tags.bestSeller')}</span>,
               isBundle && <span key="bd" className="badge-bundle">BUNDLE</span>,
@@ -235,6 +256,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
             <span className="font-display text-base md:text-lg font-light text-charcoal">
               {formatPrice(product.price, currency)}
             </span>
+            <WasPrice price={product.price} originalPrice={product.originalPrice} currency={currency} />
             {product.moq > 1 && (
               <span className="text-xs text-mist ml-1.5">MOQ:{product.moq}</span>
             )}

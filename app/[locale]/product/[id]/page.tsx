@@ -137,7 +137,9 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             badges={
               <>
                 {product.isNew && <span className="badge-new text-xs px-2 py-1">{t('tags.new')}</span>}
-                {product.isSale && <span className="badge-sale text-xs px-2 py-1">{t('tags.sale')}</span>}
+                {typeof product.originalPrice === 'number' && product.originalPrice > product.price && product.price > 0 && (
+                  <span className="badge-discount text-xs px-2 py-1">−{Math.round((product.originalPrice - product.price) / product.originalPrice * 100)}%</span>
+                )}
                 {product.isBestSeller && <span className="badge-best text-xs px-2 py-1">{t('tags.bestSeller')}</span>}
               </>
             }
@@ -163,7 +165,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             <div className="gold-divider mb-6" />
 
             <VariantSelector currentProduct={product} variants={variants} />
-            <ProductPrice price={product.price} moq={product.moq} moqLabel={t('units')} />
+            <ProductPrice price={product.price} originalPrice={product.originalPrice} moq={product.moq} moqLabel={t('units')} />
 
             <div className="mt-6 mb-8">
               <ProductDetailClient product={product} />

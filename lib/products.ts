@@ -54,6 +54,9 @@ export interface Product {
   packaging_ru?: string;
   protocol_ru?: string;
   price: number;
+  // Pre-discount "was" price shown struck-through next to `price`. Display only —
+  // the customer always pays `price`. Absent / <= price ⇒ no discount shown.
+  originalPrice?: number;
   tags: string[];
   isNew: boolean;
   isSale: boolean;

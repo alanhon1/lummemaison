@@ -473,6 +473,18 @@ body {
     text-transform: uppercase;
     border-radius: 6px;
   }
+  /* Discount badge — the percent-off corner sticker (e.g. "−31%"). Solid accent
+     so it reads as a sale flag on the product image, like a typical outlet store. */
+  .badge-discount {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background-color: var(--accent);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-radius: 6px;
+  }
   .badge-bundle {
     display: inline-block;
     padding: 0.2rem 0.6rem;

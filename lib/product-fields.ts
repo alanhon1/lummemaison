@@ -19,6 +19,7 @@ export const ALLOWED_PRODUCT_FIELDS = [
   'packaging_ru',
   'protocol_ru',
   'price',
+  'originalPrice',
   'tags',
   'isNew',
   'isSale',

@@ -51,7 +51,8 @@
     "setup:order-attachments": "tsx scripts/ensure-order-attachments-bucket.ts",
     "setup:product-images": "tsx scripts/ensure-product-images-bucket.ts",
     "migrate-ru-into-products": "tsx scripts/migrate-ru-into-products.ts",
-    "seed:stock:csv": "tsx scripts/seed-stock-from-csv.ts"
+    "seed:stock:csv": "tsx scripts/seed-stock-from-csv.ts",
+    "apply-fake-discounts": "tsx scripts/apply-fake-discounts.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.102.0",
