@@ -116,7 +116,7 @@ export default async function ProcurementPage({
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
       <div className="flex items-start justify-between gap-4 mb-1">
-        <h1 className="font-display text-2xl sm:text-3xl font-light text-charcoal">To Order</h1>
+        <h1 className="font-display text-2xl sm:text-3xl font-light text-charcoal">Items in Orders</h1>
         {rows.length > 0 && <ProcurementActions copyText={copyText} />}
       </div>
       <p className="text-sm text-mist mb-6">
