@@ -100,18 +100,34 @@ export async function updateOrderStatus(
     patch.delivered_at = null;
   }
 
-  // Deduct stock when admin confirms payment — but NEVER for test orders
-  // (order_number "TEST-..."), so they never touch real inventory.
+  // Stock is deducted when the order first reaches PACKING (not at
+  // payment_verified) — inventory only leaves the shelf once fulfilment starts.
+  // Until then, payment-verified orders surface on the "Items in Orders" page as
+  // what still needs to be procured. NEVER for test orders (order_number
+  // "TEST-..."), so they never touch real inventory.
   const isTestOrder = String(current.order_number ?? '').toUpperCase().startsWith('TEST-');
+  const PACK_IDX = stageIndex('packaging');
+
+  // Items snapshot for the "payment verified" customer email (no stock change).
   let verifiedItems: Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }> | null = null;
   if (nextStatus === 'payment_verified' && current.status !== 'payment_verified' && !isTestOrder) {
     const { data: items } = await supabase
       .from('order_items')
       .select('product_id, product_name, unit_cents, quantity')
       .eq('order_id', orderId);
+    verifiedItems = (items as Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }> | null) ?? null;
+  }
+
+  // Deduct on the FORWARD crossing into packaging-or-beyond (threshold-crossing,
+  // so a packing↔shipped rollback never re-deducts and a jump past packaging
+  // still deducts once).
+  if (!isTestOrder && stageIndex(current.status) < PACK_IDX && stageIndex(nextStatus) >= PACK_IDX) {
+    const { data: items } = await supabase
+      .from('order_items')
+      .select('product_id, product_name, unit_cents, quantity')
+      .eq('order_id', orderId);
     if (items && items.length > 0) {
       const typed = items as Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }>;
-      verifiedItems = typed;
       const deductResult = await deductStockForItems(typed.map(i => ({ product_id: i.product_id, quantity: i.quantity })));
       if (!deductResult.ok) {
         return { ok: false, error: `재고 차감 실패: ${deductResult.error}` };
@@ -119,7 +135,7 @@ export async function updateOrderStatus(
       await supabase.from('stock_movements').insert(
         typed.map(i => ({ product_id: i.product_id, delta: -i.quantity, reason: 'order', order_id: orderId })),
       );
-      // Low stock alert: check which products dropped to/below threshold after deduction.
+      // Low stock alert: products at/below threshold after deduction.
       const LOW = 2;
       const { getStockMap } = await import('@/lib/products/stock');
       const stockAfter = await getStockMap(typed.map(i => i.product_id));
@@ -146,7 +162,7 @@ export async function updateOrderStatus(
   // unrestored and the history movements still tagged 'order' (showing -n
   // instead of the cancelled/0 row).
   if (nextStatus === 'cancelled' && current.status !== 'cancelled') {
-    const wasStockDeducted = stageIndex(current.status) >= stageIndex('payment_verified');
+    const wasStockDeducted = stageIndex(current.status) >= stageIndex('packaging');
     if (wasStockDeducted) {
       try {
         const { data: items } = await supabase
@@ -179,12 +195,12 @@ export async function updateOrderStatus(
     }
   }
 
-  // Rollback past payment_verified: restore stock and relabel history movements as 'cancelled'.
+  // Rollback past packing: restore stock and relabel history movements as 'cancelled'.
   if (nextStatus !== 'cancelled' && current.status !== nextStatus) {
     const currentIdx = stageIndex(current.status);
     const nextIdx = stageIndex(nextStatus);
-    const pvIdx = stageIndex('payment_verified');
-    if (currentIdx >= pvIdx && nextIdx < pvIdx) {
+    const packIdx = stageIndex('packaging');
+    if (currentIdx >= packIdx && nextIdx < packIdx) {
       try {
         const { data: items } = await supabase
           .from('order_items')

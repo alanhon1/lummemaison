@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { randomUUID } from 'node:crypto';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { restoreStockForItems } from '@/lib/products/stock';
+import { stageIndex } from '@/lib/orders/status';
 import { sendCancellationEmail } from '@/lib/email/sendOrderEmails';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 
@@ -40,14 +41,16 @@ export async function cancelOrder(orderId: number): Promise<{ ok: boolean; error
   const { error } = await admin.from('orders').update({ status: 'cancelled' }).eq('id', orderId);
   if (error) return { ok: false, error: error.message };
 
-  // Restore stock + log movements. Awaited (not fire-and-forget) — on
-  // serverless an un-awaited promise after the response can be killed before it
-  // finishes, leaving stock unrestored and history wrong.
+  // Restore stock + log movements — but ONLY if stock was actually deducted,
+  // which now happens at the packing stage (not payment_verified). Cancelling a
+  // not-yet-packed order must not add phantom stock. Awaited (not fire-and-
+  // forget) — on serverless an un-awaited promise after the response can be
+  // killed before it finishes, leaving stock unrestored and history wrong.
+  const wasStockDeducted = stageIndex(order.status as string) >= stageIndex('packaging');
   try {
-    const { data: items } = await admin
-      .from('order_items')
-      .select('product_id, quantity')
-      .eq('order_id', orderId);
+    const { data: items } = wasStockDeducted
+      ? await admin.from('order_items').select('product_id, quantity').eq('order_id', orderId)
+      : { data: null };
     if (items && items.length > 0) {
       const typed = items as Array<{ product_id: number; quantity: number }>;
       await restoreStockForItems(typed);
