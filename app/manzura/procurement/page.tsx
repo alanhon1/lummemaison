@@ -34,9 +34,15 @@ interface OrderGroup {
 // "To Order" — what (and how many) to order from suppliers. Two views over the
 // same Payment-verified orders (test orders excluded): a per-product buy list
 // (against current stock) and a per-order grouping. Dates shown in KST.
-export default async function ProcurementPage() {
+// `?filter=short` narrows the buy list to products short on stock.
+export default async function ProcurementPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ filter?: string }>;
+}) {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
   if (!session.loggedIn) redirect('/manzura/login');
+  const shortOnly = (await searchParams).filter === 'short';
 
   const supabase = createServiceClient();
 
@@ -98,8 +104,9 @@ export default async function ProcurementPage() {
   const orderGroups = [...byOrder.values()];
   const totalUnits = rows.reduce((s, r) => s + r.total, 0);
   const shortRows = rows.filter(r => r.total > r.stock);
+  const visibleRows = shortOnly ? shortRows : rows;
 
-  const copyText = rows
+  const copyText = visibleRows
     .map(r => {
       const short = r.total - r.stock;
       return `${r.name} ×${r.total}${short > 0 ? `  (have ${r.stock}, order ${short})` : ''}`;
@@ -133,9 +140,30 @@ export default async function ProcurementPage() {
           </div>
 
           {/* ── By product (buy list) ───────────────────────────────── */}
-          <h2 className="text-xs font-semibold tracking-widest uppercase text-mist mb-2 print:hidden">By product</h2>
+          <div className="flex items-center justify-between gap-3 mb-2 print:hidden">
+            <h2 className="text-xs font-semibold tracking-widest uppercase text-mist">By product</h2>
+            <div className="flex gap-1 text-[11px] font-semibold uppercase tracking-wider">
+              <Link
+                href="/manzura/procurement"
+                className={`px-2.5 py-1 rounded ${!shortOnly ? 'bg-charcoal text-cream' : 'text-mist hover:text-charcoal'}`}
+              >
+                All
+              </Link>
+              <Link
+                href="/manzura/procurement?filter=short"
+                className={`px-2.5 py-1 rounded ${shortOnly ? 'bg-red-600 text-white' : 'text-mist hover:text-charcoal'}`}
+              >
+                Short only{shortRows.length > 0 ? ` (${shortRows.length})` : ''}
+              </Link>
+            </div>
+          </div>
+          {visibleRows.length === 0 ? (
+            <p className="text-sm text-mist border border-dashed border-bone rounded-md p-6 text-center print:hidden">
+              No products short on stock. 🎉
+            </p>
+          ) : (
           <ul className="space-y-2 print:hidden">
-            {rows.map(r => {
+            {visibleRows.map(r => {
               const short = r.total - r.stock;
               return (
                 <li key={r.productId}>
@@ -179,6 +207,7 @@ export default async function ProcurementPage() {
               );
             })}
           </ul>
+          )}
 
           {/* ── By order ────────────────────────────────────────────── */}
           <h2 className="text-xs font-semibold tracking-widest uppercase text-mist mt-8 mb-2 print:hidden">By order</h2>
@@ -214,7 +243,7 @@ export default async function ProcurementPage() {
               </tr>
             </thead>
             <tbody>
-              {rows.map(r => {
+              {visibleRows.map(r => {
                 const short = Math.max(0, r.total - r.stock);
                 return (
                   <tr key={r.productId} className="border-b border-bone">
