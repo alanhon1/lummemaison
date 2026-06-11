@@ -238,7 +238,7 @@
         "postcode": "Postcode",
         "currency": "Currency",
         "notConfigured": "Wise transfer details are being updated. Please contact us for current information.",
-        "example": "이건 예시입니다",
+        "example": "This is an example",
         "warnings": {
           "creditCard": "Do not pay via credit or debit card on Wise — card fees are typically 40–50 USD per transfer.",
           "recommended": "Recommended: link Wise to your own bank account and send via bank transfer instead — fees usually drop to 5–9 USD.",
