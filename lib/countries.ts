@@ -22,3 +22,17 @@ export const COUNTRIES: Country[] = countries
 export function findCountry(code: string): Country | undefined {
   return COUNTRIES.find(c => c.code === code);
 }
+
+// Map any stored country value to a valid ISO alpha-2 code, or '' if unknown.
+// Guards the <select> against falling through to its first option (Afghanistan)
+// when the value is null/empty or a legacy full name like "United States".
+export function resolveCountryCode(value: string | null | undefined): string {
+  if (!value) return '';
+  const v = value.trim();
+  if (COUNTRIES.some(c => c.code === v)) return v; // exact code
+  const byCode = COUNTRIES.find(c => c.code === v.toUpperCase()); // case-insensitive code
+  if (byCode) return byCode.code;
+  const byName = COUNTRIES.find(c => c.name.toLowerCase() === v.toLowerCase()); // legacy full name
+  if (byName) return byName.code;
+  return ''; // unknown → placeholder
+}

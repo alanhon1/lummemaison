@@ -113,6 +113,7 @@
       "save": "Save changes",
       "saving": "Saving…",
       "saved": "Saved.",
+      "unsaved": "You have unsaved changes — click Save changes to keep them.",
       "logout": "Sign out"
     },
     "orders": {

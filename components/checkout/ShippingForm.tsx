@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import CountrySelect from '@/components/account/CountrySelect';
+import { resolveCountryCode } from '@/lib/countries';
 import { readDraft, writeDraft, type ShippingSnapshot } from '@/lib/checkout/state';
 import { localePath } from '@/lib/i18n';
 
@@ -31,7 +32,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
     fullName: profile.fullName,
     email: profile.email,
     phone: profile.phone,
-    country: profile.country,
+    country: resolveCountryCode(profile.country),
     street: profile.street,
     city: profile.city,
     stateProvince: profile.stateProvince,

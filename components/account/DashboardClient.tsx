@@ -7,7 +7,7 @@ import { ChevronRight, ChevronLeft, Search, X } from 'lucide-react';
 import { updateProfile, logout, type FormState } from '@/app/[locale]/account/actions';
 import { localePath } from '@/lib/i18n';
 import CountrySelect from './CountrySelect';
-import { findCountry } from '@/lib/countries';
+import { findCountry, resolveCountryCode } from '@/lib/countries';
 import OrderStatusBadge from './OrderStatusBadge';
 
 interface Profile {
@@ -45,9 +45,20 @@ export default function DashboardClient({
 }) {
   const t = useTranslations('account');
   const locale = useLocale();
-  const [country, setCountry] = useState(profile.country);
+  const [country, setCountry] = useState(resolveCountryCode(profile.country));
   const [state, formAction, pending] = useActionState(updateProfile, initialState);
   const showFedex = country === 'US';
+
+  // Profile edits only persist when the user clicks Save. Track unsaved changes
+  // so we can remind them, and clear the flag once a save succeeds. Clearing is
+  // done by adjusting state during render (not an effect) when a new action
+  // result arrives — see https://react.dev/learn/you-might-not-need-an-effect.
+  const [dirty, setDirty] = useState(false);
+  const [lastState, setLastState] = useState(state);
+  if (state !== lastState) {
+    setLastState(state);
+    if (state.success) setDirty(false);
+  }
 
   // Order history: search (by order number digits and/or date) + pagination.
   const PAGE_SIZE = 5;
@@ -97,7 +108,7 @@ export default function DashboardClient({
 
         <p className="text-sm text-mist mb-6">{email}</p>
 
-        <form action={formAction} className="space-y-4">
+        <form action={formAction} onChange={() => setDirty(true)} className="space-y-4">
           <Labelled label={t('fields.fullName')}>
             <input name="fullName" defaultValue={profile.full_name} required className={inputClass} />
           </Labelled>
@@ -128,7 +139,11 @@ export default function DashboardClient({
           )}
 
           {state.error && <p className="text-sm text-red-600">{state.error}</p>}
-          {state.success && <p className="text-sm text-gold-dark">{t('dashboard.saved')}</p>}
+          {dirty ? (
+            <p className="text-sm text-red-600">{t('dashboard.unsaved')}</p>
+          ) : (
+            state.success && <p className="text-sm text-gold-dark">{t('dashboard.saved')}</p>
+          )}
 
           <button type="submit" disabled={pending} className="btn-gold w-full disabled:opacity-60">
             {pending ? t('dashboard.saving') : t('dashboard.save')}

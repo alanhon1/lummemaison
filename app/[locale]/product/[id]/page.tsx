@@ -9,6 +9,7 @@ import { localePath } from '@/lib/i18n';
 import { getProductById, getProductsByCategory, getProductVariants } from '@/lib/catalogue';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
+import ProductStockStatus from '@/components/catalogue/ProductStockStatus';
 import ProductDetailContent from '@/components/catalogue/ProductDetailContent';
 import ProductPrice from '@/components/catalogue/ProductPrice';
 import RelatedProducts from '@/components/catalogue/RelatedProducts';
@@ -180,12 +181,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
               </div>
             )}
 
-            <div className="flex items-center gap-2 mb-8">
-              <div className={`w-2 h-2 rounded-full ${product.inStock ? 'bg-green-500' : 'bg-red-400'}`} />
-              <span className="text-xs font-semibold text-charcoal">
-                {product.inStock ? t('inStock') : t('outOfStock')}
-              </span>
-            </div>
+            <ProductStockStatus product={product} />
 
             {(() => {
               const tags = product.tags.filter(
