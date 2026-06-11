@@ -117,13 +117,17 @@ function buildDynamicContext(
   if (products.length > 0) {
     parts.push('--- PRODUCT DATA (matched to this question) ---');
     products.forEach(p => {
-      const stock = !p.inStock ? 'Sold Out' : p.isSale ? 'On Sale' : 'In Stock';
+      const onSale = typeof p.originalPrice === 'number' && p.originalPrice > p.price && p.price > 0;
+      const stock = !p.inStock ? 'Sold Out' : onSale ? 'On Sale' : 'In Stock';
+      const priceStr = onSale
+        ? `$${p.price} (ON SALE — was $${p.originalPrice}, ${Math.round((p.originalPrice! - p.price) / p.originalPrice! * 100)}% off)`
+        : `$${p.price}`;
       parts.push(
-        `• ${p.name} — id ${p.id} — $${p.price} — ${stock}\n  Use: ${(p.indication ?? '').slice(0, 150)}\n  Page: /product/${p.id}`,
+        `• ${p.name} — id ${p.id} — ${priceStr} — ${stock}\n  Use: ${(p.indication ?? '').slice(0, 150)}\n  Page: /product/${p.id}`,
       );
     });
     parts.push(
-      'These are the products matched to THIS question (not the whole catalogue). If one matches what the customer asked for, confirm we carry it by its exact name and include its numeric id in recommended_product_ids so a button appears. For detailed protocol/indications, direct them to the product page.',
+      'These are the products matched to THIS question (not the whole catalogue). If one matches what the customer asked for, confirm we carry it by its exact name and include its numeric id in recommended_product_ids so a button appears. When a product is ON SALE, mention the current price, the original price, and the % off so the customer sees the deal. For detailed protocol/indications, direct them to the product page.',
     );
     parts.push('--- END PRODUCT DATA ---');
   }
