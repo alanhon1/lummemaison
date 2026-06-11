@@ -235,6 +235,21 @@ export default function PaymentStep({ payment, serverError }: Props) {
             ))}
           </dl>
         )}
+
+        {/* Example screenshot — how to add the recipient in the Wise app. */}
+        <figure className="mt-5">
+          <figcaption className="text-xs font-semibold tracking-wider uppercase text-gold-dark mb-2">
+            {t('payment.wise.example')}
+          </figcaption>
+          <a href="/wise-example.jpg" target="_blank" rel="noopener noreferrer" className="inline-block">
+            <img
+              src="/wise-example.jpg"
+              alt={t('payment.wise.example')}
+              loading="lazy"
+              className="w-full max-w-[240px] rounded-md border border-bone"
+            />
+          </a>
+        </figure>
       </article>
 
       {/* USDT */}
