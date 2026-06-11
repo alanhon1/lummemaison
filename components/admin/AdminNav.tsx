@@ -46,7 +46,7 @@ export default function AdminNav() {
   return (
     <>
       {/* Top bar */}
-      <header className="bg-white border-b border-bone sticky top-0 z-30">
+      <header className="bg-white border-b border-bone sticky top-0 z-30 print:hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center gap-6 h-14">
           <Link href="/manzura" className="font-display italic text-lg text-charcoal mr-2">
             Lumée Admin
@@ -82,7 +82,7 @@ export default function AdminNav() {
       </header>
 
       {/* Bottom tab bar — mobile only */}
-      <nav className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white border-t border-bone flex pb-[env(safe-area-inset-bottom)]">
+      <nav className="md:hidden fixed bottom-0 inset-x-0 z-30 bg-white border-t border-bone flex pb-[env(safe-area-inset-bottom)] print:hidden">
         {TABS.map(t => {
           const active = isActive(t);
           return (
