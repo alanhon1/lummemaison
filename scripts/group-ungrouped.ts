@@ -42,7 +42,7 @@ if (!url || !key) { console.error('Missing Supabase env.'); process.exit(1); }
 const apply = process.argv.includes('--apply');
 
 // Words too generic to anchor a brand key on their own → fall back to two words.
-const STOP = new Set(['the', 'for', 'with', 'and', 'mis', 'neo', 'dr', 'dk', 'jbp', 'line', 'skin', 'gold', 'plla', 'pdrn']);
+const STOP = new Set(['the', 'for', 'with', 'and', 'mis', 'neo', 'dr', 'dk', 'jbp', 'line', 'skin', 'gold', 'plla', 'pdrn', 'vita']);
 
 interface Product {
   id: number;
@@ -91,32 +91,49 @@ async function main() {
   const parsed = JSON.parse(await blob.text());
   const products: Product[] = Array.isArray(parsed) ? parsed : parsed.products;
 
-  const existing = new Set(products.map(p => p.groupId).filter((g): g is string => !!g));
+  const existingSlugs = new Set(products.map(p => p.groupId).filter((g): g is string => !!g));
 
+  // Bucket ALL priced products by brand key, CATEGORY-INDEPENDENT — so a line
+  // split across site categories (e.g. HANHEAL in mesotherapy + hair-treatment)
+  // unifies into one group.
   const buckets = new Map<string, Product[]>();
   for (const p of products) {
-    if (p.groupId) continue;
     if (!(typeof p.price === 'number') || (p.price as number) <= 0) continue;
     const k = brandKey(p.name);
     if (!k) continue;
-    const bk = `${p.categoryId}::${k}`;
-    (buckets.get(bk) ?? buckets.set(bk, []).get(bk)!).push(p);
+    (buckets.get(k) ?? buckets.set(k, []).get(k)!).push(p);
   }
 
   let groupsCreated = 0;
+  let joined = 0;
+  let ambiguous = 0;
   let productsGrouped = 0;
   const report: string[] = [];
-  for (const [bk, members] of buckets) {
+  for (const [k, members] of buckets) {
     if (members.length < 2) continue;
-    const [categoryId, k] = bk.split('::');
-    let gid = slugify(k);
-    if (existing.has(gid)) gid = `${gid}-${categoryId}`;
-    existing.add(gid);
+    const ungrouped = members.filter(m => !m.groupId);
+    if (ungrouped.length === 0) continue; // already fully grouped
+    const gids = [...new Set(members.map(m => m.groupId).filter((g): g is string => !!g))];
+    if (gids.length > 1) { ambiguous++; report.push(`~ SKIP "${k}" — spans multiple groups (${gids.join(', ')})`); continue; }
     const lead = commonLeading(members.map(m => m.name));
-    const groupName = (lead.join(' ') || k).trim();
-    groupsCreated++;
-    report.push(`• ${gid}  (${members.length})  name="${groupName}"`);
-    for (const p of members.sort((a, b) => a.id - b.id)) {
+    let gid: string;
+    let groupName: string;
+    if (gids.length === 1) {
+      // Join the existing group (assign only the ungrouped stragglers).
+      gid = gids[0];
+      groupName = members.find(m => m.groupId === gid && m.groupName)?.groupName ?? (lead.join(' ') || k);
+      report.push(`+ JOIN ${gid} ("${groupName}") <- ${ungrouped.length}`);
+      joined++;
+    } else {
+      gid = slugify(k);
+      let n = 2;
+      while (existingSlugs.has(gid)) gid = `${slugify(k)}-${n++}`;
+      existingSlugs.add(gid);
+      groupName = lead.join(' ') || k;
+      report.push(`• NEW ${gid} ("${groupName}") — ${members.length}`);
+      groupsCreated++;
+    }
+    for (const p of ungrouped.sort((a, b) => a.id - b.id)) {
       const label = variantLabelFor(p.name, lead.length);
       report.push(`    #${p.id} $${p.price}  "${p.name.trim()}"  ->  "${label}"`);
       if (apply) {
@@ -128,7 +145,7 @@ async function main() {
     }
   }
 
-  console.log(`group-ungrouped: ${groupsCreated} groups, ${productsGrouped} products ${apply ? '(APPLIED)' : '(preview — pass --apply to write)'}`);
+  console.log(`group-ungrouped: ${groupsCreated} new groups, ${joined} joins, ${ambiguous} skipped(ambiguous), ${productsGrouped} products ${apply ? '(APPLIED)' : '(preview — pass --apply to write)'}`);
   console.log(report.join('\n'));
 
   if (apply) {

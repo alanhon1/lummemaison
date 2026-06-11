@@ -111,6 +111,19 @@ function fakeOriginal(price: number, pct: number): number {
   return was > price ? was : Math.round((price + 0.01) * 100) / 100;
 }
 
+// Snap a raw "was" price to an attractive retail ending (.49 or .99) — the nearest
+// such value that stays above `maxPrice` (every cluster member keeps a discount)
+// and doesn't push the cheapest member's % over the cap.
+function niceWas(rawWas: number, minPrice: number, maxPrice: number): number {
+  const base = Math.floor(rawWas);
+  const cands: number[] = [];
+  for (let k = base - 1; k <= base + 2; k++) cands.push(k + 0.49, k + 0.99);
+  const aboveFloor = cands.filter(c => c > maxPrice + 1e-9);
+  const ok = aboveFloor.filter(c => (c - minPrice) / c * 100 <= MAX_PCT + 0.4);
+  const pool = (ok.length ? ok : aboveFloor).sort((a, b) => Math.abs(a - rawWas) - Math.abs(b - rawWas));
+  return pool.length ? Math.round(pool[0] * 100) / 100 : Math.round((maxPrice + 0.49) * 100) / 100;
+}
+
 async function main() {
   const supabase = createClient(url!, key!, {
     auth: { autoRefreshToken: false, persistSession: false },
@@ -185,8 +198,7 @@ async function main() {
     const minPrice = members[0].price;
     const maxPrice = members[members.length - 1].price;
     const target = clampPct(basePct(minPrice) + jitter(seed));
-    let was = fakeOriginal(minPrice, target);
-    if (was <= maxPrice) was = Math.round((maxPrice + 0.01) * 100) / 100;
+    const was = niceWas(fakeOriginal(minPrice, target), minPrice, maxPrice);
     for (const p of members) {
       if (typeof p.originalPrice === 'number' && p.originalPrice === was) { skippedSame++; continue; }
       p.originalPrice = was;
