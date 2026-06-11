@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache';
 import { readData, writeData, createBackup } from '@/lib/backup';
 import { composeBundleCover } from '@/lib/compose-bundle-cover';
 import { requireAdmin } from '@/lib/admin-guard';
+import { pickProductFields } from '@/lib/product-fields';
 
 export async function PATCH(
   req: NextRequest,
@@ -11,11 +12,12 @@ export async function PATCH(
   const denied = await requireAdmin();
   if (denied) return denied;
   const { id } = await params;
-  const updates = await req.json();
+  const updates = pickProductFields(await req.json());
   const data = await readData();
   const idx = data.products.findIndex((p: any) => p.id === parseInt(id));
   if (idx === -1) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   createBackup();
+  // `id` is never in `updates` (allowlist excludes it), so it stays server-controlled.
   data.products[idx] = { ...data.products[idx], ...updates };
   await writeData(data);
 

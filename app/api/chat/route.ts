@@ -150,15 +150,21 @@ export async function POST(req: Request) {
     const today = new Date().toISOString().split('T')[0];
     const rateLimitKey = user.id;
 
-    const { data: usage } = await supabase
-      .from('chat_usage')
-      .select('*')
-      .eq('session_id', rateLimitKey)
-      .eq('date', today)
-      .single();
-
-    const currentCount = Number(usage?.count ?? 0);
-    if (currentCount >= DAILY_LIMIT) {
+    // Atomic check-and-increment (see migration 020). Reserves one slot for
+    // today and returns the new count in a single statement, closing the race
+    // where two concurrent requests both read the same count and slip past the
+    // cap to run up the Anthropic bill. Returns DAILY_LIMIT+1 when already at
+    // the cap, in which case no increment happened and we stop before any work.
+    const { data: usageCount, error: rlErr } = await supabase.rpc('increment_chat_usage', {
+      p_session_id: rateLimitKey,
+      p_date: today,
+      p_limit: DAILY_LIMIT,
+    });
+    if (rlErr) {
+      console.error('[chat] rate-limit rpc failed:', rlErr.message);
+      return Response.json({ error: 'Internal server error' }, { status: 500 });
+    }
+    if (typeof usageCount === 'number' && usageCount > DAILY_LIMIT) {
       return Response.json({ reply: null, limitReached: true });
     }
 
@@ -173,10 +179,7 @@ export async function POST(req: Request) {
     const newProducts = liveProducts.filter(p => p.isNew);
     const dynamicContext = buildDynamicContext(faqRows ?? [], matchedProducts, newProducts, liveProducts.length, categories.map(c => c.name));
 
-    await supabase.from('chat_usage').upsert(
-      { session_id: rateLimitKey, date: today, count: currentCount + 1 },
-      { onConflict: 'session_id,date' },
-    );
+    // (Usage already incremented atomically above via increment_chat_usage.)
 
     const systemBlocks: Anthropic.TextBlockParam[] = [
       { type: 'text', text: SYSTEM_PROMPT, cache_control: { type: 'ephemeral' } },

@@ -88,7 +88,15 @@ scripts/websearch-batches/
 
 # Local-only secrets and scratch notes (never push to a public repo)
 secret.txt
+claudeapi.txt
+*.key
+*.pem
+*credentials*
+*secret*
 *promt*
 *PROMT*
 SG_STOCK_MAY.qty.xlsx
 KOREANO.txt
+
+# Security report — keep the findings out of any public push as a precaution
+security improvr/
