@@ -88,7 +88,12 @@ export default function DisclaimerModal() {
       aria-labelledby={titleId}
     >
       <div
-        className="w-full max-w-xl rounded-2xl p-6 md:p-10 max-h-[92vh] overflow-hidden flex flex-col"
+        // max-h uses dvh (dynamic viewport height) NOT vh: on iOS Safari `vh`
+        // is measured with the address bar hidden, so 92vh was taller than the
+        // actually-visible area and pushed the bottom buttons off-screen. The
+        // scrollable text below is flex-1/min-h-0 and the buttons are shrink-0,
+        // so the Agree/Continue buttons are ALWAYS visible regardless of height.
+        className="w-full max-w-xl rounded-2xl p-6 md:p-10 max-h-[92dvh] overflow-hidden flex flex-col"
         style={{
           background: 'var(--surface)',
           border: '1px solid var(--accent)',
@@ -124,14 +129,14 @@ function Step1({
     <>
       <h2
         id={titleId}
-        className="font-display italic text-2xl md:text-3xl font-light"
+        className="shrink-0 font-display italic text-2xl md:text-3xl font-light"
         style={{ color: 'var(--page-text)' }}
       >
         {t('step1.title')}
       </h2>
-      <div className="gold-divider" />
+      <div className="gold-divider shrink-0" />
 
-      <div className="overflow-y-auto pr-1" style={{ maxHeight: 'min(50vh, 28rem)' }}>
+      <div className="flex-1 min-h-0 overflow-y-auto pr-1">
         <p className="text-sm md:text-base mb-4" style={{ color: 'var(--page-text-2)' }}>
           {t('step1.intro')}
         </p>
@@ -155,7 +160,7 @@ function Step1({
         </ul>
       </div>
 
-      <div className="mt-6 flex flex-col-reverse sm:flex-row gap-3 sm:justify-end">
+      <div className="shrink-0 mt-6 flex flex-col-reverse sm:flex-row gap-3 sm:justify-end">
         <button
           type="button"
           onClick={onExit}
@@ -198,14 +203,14 @@ function Step2({
     <>
       <h2
         id={titleId}
-        className="font-display italic text-2xl md:text-3xl font-light"
+        className="shrink-0 font-display italic text-2xl md:text-3xl font-light"
         style={{ color: 'var(--page-text)' }}
       >
         {t('step2.title')}
       </h2>
-      <div className="gold-divider" />
+      <div className="gold-divider shrink-0" />
 
-      <div className="overflow-y-auto pr-2" style={{ maxHeight: 'min(60vh, 32rem)' }}>
+      <div className="flex-1 min-h-0 overflow-y-auto pr-2">
         {SECTION_KEYS.map(key => (
           <section key={key} className="mb-6 last:mb-2">
             <h3
@@ -242,7 +247,7 @@ function Step2({
         </p>
       </div>
 
-      <div className="mt-6 flex flex-col-reverse sm:flex-row gap-3 sm:justify-end">
+      <div className="shrink-0 mt-6 flex flex-col-reverse sm:flex-row gap-3 sm:justify-end">
         <button
           type="button"
           onClick={onDecline}
