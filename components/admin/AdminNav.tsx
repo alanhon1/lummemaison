@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, ClipboardList, Package, BarChart3, MessageSquare, Users, Warehouse, LogOut, BrainCircuit, Tag } from 'lucide-react';
+import { LayoutDashboard, ClipboardList, ShoppingCart, Package, BarChart3, MessageSquare, Users, Warehouse, LogOut, BrainCircuit, Tag } from 'lucide-react';
 
 // Admin navigation. Mounted in app/manzura/layout.tsx; suppresses itself on
 // /manzura/login so the login page stays clean.
@@ -14,6 +14,7 @@ import { LayoutDashboard, ClipboardList, Package, BarChart3, MessageSquare, User
 const TABS: Array<{ href: string; label: string; icon: typeof LayoutDashboard }> = [
   { href: '/manzura', label: 'Home', icon: LayoutDashboard },
   { href: '/manzura/orders', label: 'Orders', icon: ClipboardList },
+  { href: '/manzura/procurement', label: 'To Order', icon: ShoppingCart },
   { href: '/manzura/products', label: 'Products', icon: Package },
   { href: '/manzura/status', label: 'Status', icon: BarChart3 },
   { href: '/manzura/feedbacks', label: 'Reviews', icon: MessageSquare },
