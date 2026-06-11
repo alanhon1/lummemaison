@@ -445,7 +445,9 @@
     "total": "Total",
     "items": "items",
     "checkout": "Proceed to Checkout",
-    "clear": "Clear Cart"
+    "clear": "Clear Cart",
+    "soldOut": "Sold out",
+    "soldOutBlock": "Remove sold-out items to check out."
   },
   "about": {
     "title": "About Us",

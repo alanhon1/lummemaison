@@ -8,6 +8,7 @@ import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/stat
 import { computeShippingCents } from '@/lib/checkout/state';
 import { sendOrderEmails, type OrderData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
+import { getStockMap } from '@/lib/products/stock';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { heicToJpegBuffer } from '@/lib/uploads/heicToJpeg';
 
@@ -145,6 +146,24 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   // and emails. Identified everywhere by the order_number "TEST-" prefix. Works
   // for any country since the postal code field is always present.
   const isTest = (s.postalCode ?? '').trim().toUpperCase() === 'ALANTEST';
+
+  // Re-validate stock against the live counts before creating the order — the
+  // cart is persisted client-side and may be stale (item sold out, or fewer
+  // units left than requested). Test orders bypass real inventory entirely.
+  if (!isTest) {
+    const stockMap = await getStockMap(input.items.map(i => i.product_id));
+    const offending = input.items.find(i => (stockMap[i.product_id] ?? 0) < i.quantity);
+    if (offending) {
+      const available = stockMap[offending.product_id] ?? 0;
+      return {
+        ok: false,
+        error:
+          available === 0
+            ? `${offending.product_name} is sold out. Please remove it from your cart.`
+            : `${offending.product_name} is no longer available in the requested quantity. Please reduce the amount.`,
+      };
+    }
+  }
 
   // Payment screenshot is required (skipped for test orders).
   const proofPath = (input.paymentProofPath ?? '').trim();

@@ -6,12 +6,14 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
+import { useCartStock } from '@/lib/useCartStock';
 import { localePath } from '@/lib/i18n';
 
 export default function CartPageClient() {
   const t = useTranslations('cart');
   const locale = useLocale();
   const { items, removeItem, updateQuantity, clearCart, totalPrice } = useCartStore();
+  const { isSoldOut, hasSoldOut } = useCartStock();
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
@@ -32,9 +34,11 @@ export default function CartPageClient() {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       {/* Items */}
       <div className="order-2 lg:order-1 lg:col-span-2 space-y-3">
-        {items.map(item => (
+        {items.map(item => {
+          const soldOut = isSoldOut(item.id);
+          return (
           <div key={item.id} className="flex gap-4 p-4 bg-white border border-bone rounded-sm">
-            <div className="w-20 h-20 bg-cream flex-shrink-0 flex items-center justify-center">
+            <div className={`w-20 h-20 bg-cream flex-shrink-0 flex items-center justify-center ${soldOut ? 'opacity-50' : ''}`}>
               {item.image ? (
                 <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
               ) : (
@@ -47,17 +51,22 @@ export default function CartPageClient() {
                 <p className="text-xs text-mist mt-0.5 line-clamp-1">{item.specification}</p>
               )}
               <p className="text-base font-semibold text-gold mt-1">${item.price.toFixed(2)}</p>
+              {soldOut && (
+                <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mt-1">{t('soldOut')}</p>
+              )}
               <div className="flex items-center gap-3 mt-2">
                 <button
                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  className="w-7 h-7 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
+                  disabled={soldOut}
+                  className="w-7 h-7 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-40 disabled:hover:border-bone disabled:hover:text-current"
                 >
                   <Minus size={11} />
                 </button>
                 <span className="text-sm font-semibold w-6 text-center">{item.quantity}</span>
                 <button
                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  className="w-7 h-7 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
+                  disabled={soldOut}
+                  className="w-7 h-7 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-40 disabled:hover:border-bone disabled:hover:text-current"
                 >
                   <Plus size={11} />
                 </button>
@@ -75,7 +84,8 @@ export default function CartPageClient() {
               </p>
             </div>
           </div>
-        ))}
+          );
+        })}
 
         <div className="flex justify-between pt-2">
           <Link
@@ -113,13 +123,26 @@ export default function CartPageClient() {
           <span className="text-sm font-semibold">{t('total')}</span>
           <span className="font-display text-2xl font-light">${totalPrice().toFixed(2)}</span>
         </div>
-        <Link
-          href={localePath(locale, '/checkout')}
-          className="btn-primary w-full text-center flex items-center justify-center gap-2"
-        >
-          {t('checkout')}
-          <ArrowRight size={14} />
-        </Link>
+        {hasSoldOut ? (
+          <>
+            <button
+              disabled
+              className="btn-primary w-full text-center flex items-center justify-center gap-2 opacity-50 cursor-not-allowed"
+            >
+              {t('checkout')}
+              <ArrowRight size={14} />
+            </button>
+            <p className="text-xs text-red-500 text-center mt-2">{t('soldOutBlock')}</p>
+          </>
+        ) : (
+          <Link
+            href={localePath(locale, '/checkout')}
+            className="btn-primary w-full text-center flex items-center justify-center gap-2"
+          >
+            {t('checkout')}
+            <ArrowRight size={14} />
+          </Link>
+        )}
         <p className="text-xs text-mist text-center mt-4">
           + Shipping calculated at checkout
         </p>
