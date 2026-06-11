@@ -8,8 +8,10 @@
 //
 // The discount % is tied to price: cheaper items get a bigger % (up to 33%),
 // premium items a smaller % (down to 5%), with a mild deterministic jitter so it's
-// *mostly* — not rigidly — that trend. Products in the same section (groupId) share
-// one %. The $0.5 random mask sheets are excluded (no fake discount).
+// *mostly* — not rigidly — that trend. Within a section (groupId), items priced
+// within $1 of each other share ONE "was" price (so near-identical variants look
+// uniform; their displayed % differs slightly as the now-price differs). The $0.5
+// random mask sheets are excluded (no fake discount).
 //
 // Deterministic & idempotent: percentages are computed from price + a hashed seed
 // (no RNG), so re-running produces the same result and only rewrites what changed.
@@ -62,7 +64,8 @@ if (!url || !key) {
 // smaller % — with a mild deterministic jitter so it's *mostly* (not rigidly) that
 // trend. PRICE_LOW/HIGH bound the log-scale mapping band.
 const PRICE_LOW = 10;    // <= this → ~MAX_PCT off
-const PRICE_HIGH = 250;  // >= this → ~MIN_PCT off
+const PRICE_HIGH = 120;  // >= this → ~MIN_PCT off
+const CLUSTER_SPAN = 1;  // same section, prices within $1 → share one "was" price
 
 interface Product {
   id: number;
@@ -97,20 +100,6 @@ function jitter(seed: string, J = 4): number {
 }
 function clampPct(x: number): number {
   return Math.min(MAX_PCT, Math.max(MIN_PCT, Math.round(x)));
-}
-function median(nums: number[]): number {
-  const s = [...nums].sort((a, b) => a - b);
-  const m = Math.floor(s.length / 2);
-  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
-}
-
-// The discount % currently implied by a product's stored originalPrice, or 0.
-function impliedPct(p: Product): number {
-  const o = p.originalPrice;
-  if (typeof o === 'number' && o > p.price && p.price > 0) {
-    return Math.round((o - p.price) / o * 100);
-  }
-  return 0;
 }
 
 // Pre-discount "was" price = price / (1 - d), rounded UP to the cent. Rounding to
@@ -153,36 +142,61 @@ async function main() {
     }
   }
 
-  // 1. One % per group (same section → same %), from the group's MEDIAN price so
-  //    the whole line shares a single inverse-price discount.
-  const byGroup = new Map<string, Product[]>();
+  // 1. Build clusters: within a section (groupId), members whose prices fall within
+  //    CLUSTER_SPAN ($1) of the cluster's cheapest item share ONE "was" price, so
+  //    e.g. ELASTY $13/$13/$13 (or SOSUM $37/$38/$38) get an identical original.
+  //    Pricier siblings of the same line (SOSUM $106) fall into their own cluster
+  //    and keep a smaller discount. Standalone products are singleton clusters.
+  const clusters: { seed: string; members: Product[] }[] = [];
+  const bySection = new Map<string, Product[]>();
   for (const p of products) {
-    if (typeof p.groupId === 'string' && p.groupId && p.price > 0 && !isExcluded(p)) {
-      const list = byGroup.get(p.groupId) ?? [];
+    if (isExcluded(p) || !(typeof p.price === 'number') || p.price <= 0) continue;
+    if (typeof p.groupId === 'string' && p.groupId) {
+      const list = bySection.get(p.groupId) ?? [];
       list.push(p);
-      byGroup.set(p.groupId, list);
+      bySection.set(p.groupId, list);
+    } else {
+      clusters.push({ seed: `p${p.id}`, members: [p] }); // standalone
     }
   }
-  const groupPct = new Map<string, number>();
-  for (const [gid, members] of byGroup) {
-    groupPct.set(gid, clampPct(basePct(median(members.map(m => m.price))) + jitter(gid)));
+  for (const [gid, members] of bySection) {
+    members.sort((a, b) => a.price - b.price);
+    let cur: Product[] = [];
+    let idx = 0;
+    for (const m of members) {
+      // Single-linkage on the sorted prices: a new item joins while it's within
+      // $1 of the PREVIOUS one. This guarantees the invariant "any two items in a
+      // section within $1 share a cluster (and thus one 'was' price)".
+      if (cur.length === 0 || m.price - cur[cur.length - 1].price <= CLUSTER_SPAN) {
+        cur.push(m);
+      } else {
+        clusters.push({ seed: `${gid}#${idx++}`, members: cur });
+        cur = [m];
+      }
+    }
+    if (cur.length) clusters.push({ seed: `${gid}#${idx}`, members: cur });
   }
 
-  // 2. Apply. Target %: the group's shared %, else the product's own price-based %.
-  for (const p of products) {
-    if (isExcluded(p)) continue;
-    if (!(typeof p.price === 'number') || p.price <= 0) { skippedPOA++; continue; } // POA
-    const gid = typeof p.groupId === 'string' ? p.groupId : '';
-    const target = gid ? groupPct.get(gid)! : clampPct(basePct(p.price) + jitter('p' + p.id));
-    if (typeof p.originalPrice === 'number' && impliedPct(p) === target) {
-      skippedSame++;
-      continue;
+  // 2. One "was" price per cluster: from the cheapest member's inverse-price % (so
+  //    its displayed discount stays the largest and within the cap). Pricier members
+  //    of the cluster show a slightly smaller % off the same "was". Guard so the
+  //    shared "was" stays above every member's price.
+  for (const { seed, members } of clusters) {
+    const minPrice = members[0].price;
+    const maxPrice = members[members.length - 1].price;
+    const target = clampPct(basePct(minPrice) + jitter(seed));
+    let was = fakeOriginal(minPrice, target);
+    if (was <= maxPrice) was = Math.round((maxPrice + 0.01) * 100) / 100;
+    for (const p of members) {
+      if (typeof p.originalPrice === 'number' && p.originalPrice === was) { skippedSame++; continue; }
+      p.originalPrice = was;
+      p.isSale = true;
+      pctList.push(Math.round((was - p.price) / was * 100));
+      applied++;
     }
-    p.originalPrice = fakeOriginal(p.price, target);
-    p.isSale = true;
-    pctList.push(Math.round((p.originalPrice - p.price) / p.originalPrice * 100));
-    applied++;
   }
+  // POA / excluded already counted by being skipped above.
+  skippedPOA = products.filter(p => typeof p.price === 'number' && p.price <= 0).length;
 
   // Upload (preserve the { products } wrapper shape used by the store).
   const out = Array.isArray(parsed) ? products : { ...parsed, products };
@@ -203,21 +217,32 @@ async function main() {
   const minPct = pctList.length ? Math.min(...pctList) : 0;
   const maxPct = pctList.length ? Math.max(...pctList) : 0;
 
-  // Sanity check: every group must now show a single discount %.
-  const afterGroups = new Map<string, Set<number>>();
+  // Sanity check the invariant: in a section, any two items priced within $1 must
+  // share the same "was" price. Count violating pairs (should be 0).
+  const sections = new Map<string, Product[]>();
   for (const p of afterArr) {
-    if (typeof p.groupId === 'string' && p.groupId && impliedPct(p) > 0) {
-      const s = afterGroups.get(p.groupId) ?? new Set<number>();
-      s.add(impliedPct(p));
-      afterGroups.set(p.groupId, s);
+    if (typeof p.groupId === 'string' && p.groupId && typeof p.originalPrice === 'number') {
+      const l = sections.get(p.groupId) ?? [];
+      l.push(p);
+      sections.set(p.groupId, l);
     }
   }
-  const inconsistent = [...afterGroups.entries()].filter(([, s]) => s.size > 1);
+  let violations = 0;
+  for (const [, members] of sections) {
+    for (let i = 0; i < members.length; i++) {
+      for (let j = i + 1; j < members.length; j++) {
+        if (Math.abs(members[i].price - members[j].price) <= CLUSTER_SPAN &&
+            members[i].originalPrice !== members[j].originalPrice) {
+          violations++;
+        }
+      }
+    }
+  }
 
   console.log(`apply-fake-discounts: applied=${applied} skipped(same)=${skippedSame} skipped(POA)=${skippedPOA} excluded-cleared=${excludedCleared}`);
   console.log(`apply-fake-discounts: displayed discount range this run: ${minPct}%..${maxPct}%`);
   console.log(`apply-fake-discounts: catalogue now shows ${onSale}/${afterArr.length} products on sale`);
-  console.log(`apply-fake-discounts: groups with mismatched %: ${inconsistent.length}${inconsistent.length ? ' -> ' + inconsistent.map(([g, s]) => `${g}(${[...s].join('/')})`).join(', ') : ''}`);
+  console.log(`apply-fake-discounts: within-$1 same-section "was" mismatches: ${violations}`);
   const sample = afterArr.find(p => typeof p.originalPrice === 'number');
   if (sample) {
     console.log(`apply-fake-discounts: sample #${sample.id} "${sample.name.trim()}" was $${sample.originalPrice} now $${sample.price}`);
