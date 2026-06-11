@@ -61,7 +61,15 @@ export async function POST(req: NextRequest) {
   const supabase = createServiceClient();
   const { error: uploadError } = await supabase.storage
     .from(BUCKET)
-    .upload(objectPath, webp, { upsert: true, contentType: 'image/webp' });
+    // The object path is versioned (Date.now()), so a re-upload always gets a
+    // fresh URL — the old one is never reused. That makes it safe to serve these
+    // public images as immutable for a year, so the CDN / next/image optimizer
+    // caches them long-term instead of repeatedly re-fetching from Storage.
+    .upload(objectPath, webp, {
+      upsert: true,
+      contentType: 'image/webp',
+      cacheControl: '31536000, immutable',
+    });
   if (uploadError) {
     return NextResponse.json(
       { error: 'Storage upload failed', detail: uploadError.message },

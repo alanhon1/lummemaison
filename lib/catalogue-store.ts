@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { cache } from 'react';
+import { unstable_cache, revalidateTag } from 'next/cache';
 import { createServiceClient } from '@/lib/supabase/server';
 import bundled from '@/data/products.json';
 import type { Product } from '@/lib/products';
@@ -17,6 +18,7 @@ import type { Product } from '@/lib/products';
 
 const BUCKET = 'catalogue';
 const OBJECT = 'products.json';
+const CATALOGUE_TAG = 'catalogue';
 
 type ServiceClient = ReturnType<typeof createServiceClient>;
 
@@ -41,14 +43,29 @@ async function downloadProducts(): Promise<Product[] | null> {
   }
 }
 
-// Returns the live product list. Memoized per request (React cache) so a single
-// page render downloads it once; always fresh across requests so admin edits
-// show up immediately. Falls back to the bundled seed if the storage object
-// doesn't exist yet or can't be read.
-export const loadProducts = cache(async (): Promise<Product[]> => {
-  const fromStore = await downloadProducts();
-  return fromStore ?? ((bundled as { products: Product[] }).products);
-});
+// Cross-request / cross-deployment cache for the catalogue object.
+//
+// Previously this was memoized only per request (React `cache`), so EVERY
+// dynamic render — home, /catalogue, every /product/[id] — and every chatbot
+// message re-downloaded the full ~700KB products.json from Storage. That was
+// the source of the runaway Supabase Storage egress (≈72GB/day from ~7MB of
+// files). `unstable_cache` persists the parsed list across requests AND
+// deployments, so Storage is hit at most once per `revalidate` window instead
+// of once per request. Admin saves call `revalidateTag` (see persistProducts)
+// for instant freshness; the 5-min revalidate is just a safety net.
+const loadProductsCached = unstable_cache(
+  async (): Promise<Product[]> => {
+    const fromStore = await downloadProducts();
+    return fromStore ?? (bundled as { products: Product[] }).products;
+  },
+  ['catalogue-products'],
+  { tags: [CATALOGUE_TAG], revalidate: 300 },
+);
+
+// Returns the live product list. React `cache` dedupes within a single render;
+// `unstable_cache` (above) dedupes across requests. Falls back to the bundled
+// seed if the storage object doesn't exist yet or can't be read.
+export const loadProducts = cache((): Promise<Product[]> => loadProductsCached());
 
 // Overwrites the stored product list.
 export async function persistProducts(products: Product[]): Promise<void> {
@@ -59,4 +76,17 @@ export async function persistProducts(products: Product[]): Promise<void> {
     .from(BUCKET)
     .upload(OBJECT, body, { upsert: true, contentType: 'application/json' });
   if (error) throw new Error(`catalogue save failed: ${error.message}`);
+  // Drop the cached catalogue so admin edits appear immediately instead of
+  // waiting out the revalidate window. Wrapped because revalidateTag is only
+  // valid inside a request scope (route handler / server action) — a plain
+  // script calling persistProducts must not crash here.
+  try {
+    // Next 16 exports the Cache-Components `revalidateTag` type (tag, profile),
+    // but this project is NOT on cacheComponents — the runtime takes the legacy
+    // single-tag form documented in the "Caching (Previous Model)" guide, which
+    // is what invalidates an unstable_cache tag. Cast to that signature.
+    (revalidateTag as (tag: string) => void)(CATALOGUE_TAG);
+  } catch {
+    /* not in a request scope (e.g. a CLI script) — cache will revalidate on its own */
+  }
 }
