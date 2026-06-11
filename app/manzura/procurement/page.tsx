@@ -14,8 +14,8 @@ export const dynamic = 'force-dynamic';
 interface OrderRef {
   id: number;
   label: string;
+  date: string;
   qty: number;
-  packing: boolean;
 }
 interface Row {
   productId: number;
@@ -24,11 +24,16 @@ interface Row {
   stock: number;
   orders: OrderRef[];
 }
+interface OrderGroup {
+  id: number;
+  label: string;
+  date: string;
+  items: Array<{ name: string; qty: number }>;
+}
 
-// "To Order" — aggregates line items across every Payment-verified (and Packing)
-// order so the admin sees, in one place, exactly what (and how many) to order
-// from suppliers, against current stock. Per-product total + a breakdown of
-// which orders need it. Test orders excluded.
+// "To Order" — what (and how many) to order from suppliers. Two views over the
+// same Payment-verified orders (test orders excluded): a per-product buy list
+// (against current stock) and a per-order grouping. Dates shown in KST.
 export default async function ProcurementPage() {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
   if (!session.loggedIn) redirect('/manzura/login');
@@ -37,21 +42,21 @@ export default async function ProcurementPage() {
 
   const { data: ordersData } = await supabase
     .from('orders')
-    .select('id, order_seq, order_number, status, created_at')
-    .in('status', ['payment_verified', 'packaging'])
+    .select('id, order_seq, order_number, created_at')
+    .eq('status', 'payment_verified')
     .not('order_number', 'ilike', 'TEST-%')
-    .order('created_at', { ascending: true });
+    .order('created_at', { ascending: false });
 
   const orders = (ordersData ?? []) as Array<{
     id: number;
     order_seq: number | null;
     order_number: string;
-    status: string;
     created_at: string;
   }>;
+  const fmtDate = (iso: string) => new Date(iso).toLocaleDateString('en-CA', { timeZone: 'Asia/Seoul' });
   const labelOf = (o: { order_seq: number | null; order_number: string }) =>
     o.order_seq != null ? formatOrderNumber(o.order_seq) : o.order_number;
-  const orderInfo = new Map(orders.map(o => [o.id, { label: labelOf(o), packing: o.status === 'packaging' }]));
+  const orderInfo = new Map(orders.map(o => [o.id, { label: labelOf(o), date: fmtDate(o.created_at) }]));
 
   const ids = orders.map(o => o.id);
   let items: Array<{ order_id: number; product_id: number; product_name: string; quantity: number }> = [];
@@ -63,32 +68,37 @@ export default async function ProcurementPage() {
     items = (data ?? []) as typeof items;
   }
 
-  // Aggregate by product, keeping which orders contributed (and how many).
+  // Per-product aggregate (with which orders need it).
   const byProduct = new Map<number, Row>();
+  // Per-order grouping (in the orders' display order — newest first).
+  const byOrder = new Map<number, OrderGroup>();
+  for (const o of orders) {
+    const info = orderInfo.get(o.id)!;
+    byOrder.set(o.id, { id: o.id, label: info.label, date: info.date, items: [] });
+  }
   for (const it of items) {
     const qty = it.quantity ?? 0;
+    const info = orderInfo.get(it.order_id);
     const row =
       byProduct.get(it.product_id) ??
       { productId: it.product_id, name: it.product_name, total: 0, stock: 0, orders: [] };
     row.total += qty;
-    const ex = row.orders.find(o => o.id === it.order_id);
+    const ex = row.orders.find(r => r.id === it.order_id);
     if (ex) ex.qty += qty;
-    else {
-      const info = orderInfo.get(it.order_id);
-      row.orders.push({ id: it.order_id, label: info?.label ?? `#${it.order_id}`, qty, packing: !!info?.packing });
-    }
+    else row.orders.push({ id: it.order_id, label: info?.label ?? `#${it.order_id}`, date: info?.date ?? '', qty });
     byProduct.set(it.product_id, row);
+
+    byOrder.get(it.order_id)?.items.push({ name: it.product_name, qty });
   }
 
-  // Current stock for the products in the list.
   const stockMap = await getStockMap([...byProduct.keys()]);
   for (const row of byProduct.values()) row.stock = stockMap[row.productId] ?? 0;
 
   const rows = [...byProduct.values()].sort((a, b) => b.total - a.total || a.name.localeCompare(b.name));
+  const orderGroups = [...byOrder.values()];
   const totalUnits = rows.reduce((s, r) => s + r.total, 0);
   const shortRows = rows.filter(r => r.total > r.stock);
 
-  // Plain-text buy list for the Copy button (name ×qty, shortfall noted).
   const copyText = rows
     .map(r => {
       const short = r.total - r.stock;
@@ -103,18 +113,17 @@ export default async function ProcurementPage() {
         {rows.length > 0 && <ProcurementActions copyText={copyText} />}
       </div>
       <p className="text-sm text-mist mb-6">
-        Items from <strong className="text-charcoal font-semibold">Payment verified</strong> and{' '}
-        <strong className="text-charcoal font-semibold">Packing</strong> orders, totalled by product against current
-        stock. Tap a product to see which orders need it. Test orders excluded.
+        Items from <strong className="text-charcoal font-semibold">Payment verified</strong> orders only, against
+        current stock. Test orders excluded.
       </p>
 
       {rows.length === 0 ? (
         <p className="text-sm text-mist border border-dashed border-bone rounded-md p-10 text-center">
-          Nothing to order — no payment-verified or packing orders right now.
+          Nothing to order — no payment-verified orders right now.
         </p>
       ) : (
         <>
-          <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-charcoal mb-5">
+          <div className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-charcoal mb-6">
             <span><strong className="font-semibold">{rows.length}</strong> products</span>
             <span><strong className="font-semibold">{totalUnits}</strong> units total</span>
             <span><strong className="font-semibold">{orders.length}</strong> orders</span>
@@ -123,7 +132,8 @@ export default async function ProcurementPage() {
             )}
           </div>
 
-          {/* Interactive list (hidden when printing). */}
+          {/* ── By product (buy list) ───────────────────────────────── */}
+          <h2 className="text-xs font-semibold tracking-widest uppercase text-mist mb-2 print:hidden">By product</h2>
           <ul className="space-y-2 print:hidden">
             {rows.map(r => {
               const short = r.total - r.stock;
@@ -148,18 +158,18 @@ export default async function ProcurementPage() {
                     </summary>
                     <div className="border-t border-bone bg-cream/30 px-4 sm:px-12 py-1">
                       {short > 0 && (
-                        <p className="text-xs text-red-600 py-2">
-                          Need {r.total}, have {r.stock} — order {short} more.
-                        </p>
+                        <p className="text-xs text-red-600 py-2">Need {r.total}, have {r.stock} — order {short} more.</p>
                       )}
                       <ul className="divide-y divide-bone/60">
                         {r.orders.map(o => (
-                          <li key={o.id} className="flex items-center justify-between py-2 text-sm">
+                          <li key={o.id} className="flex items-center justify-between py-2 text-sm gap-3">
                             <Link href={`/manzura/orders/${o.id}`} className="text-gold-dark hover:underline">
                               {o.label}
-                              {o.packing && <span className="text-[10px] text-amber-700 ml-1.5 uppercase tracking-wide">packing</span>}
                             </Link>
-                            <span className="text-charcoal tabular-nums">×{o.qty}</span>
+                            <span className="flex items-center gap-3 whitespace-nowrap">
+                              <span className="text-[11px] text-mist">{o.date}</span>
+                              <span className="text-charcoal tabular-nums">×{o.qty}</span>
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -168,6 +178,29 @@ export default async function ProcurementPage() {
                 </li>
               );
             })}
+          </ul>
+
+          {/* ── By order ────────────────────────────────────────────── */}
+          <h2 className="text-xs font-semibold tracking-widest uppercase text-mist mt-8 mb-2 print:hidden">By order</h2>
+          <ul className="space-y-2 print:hidden">
+            {orderGroups.map(g => (
+              <li key={g.id} className="bg-white border border-bone rounded-lg overflow-hidden">
+                <div className="flex items-center justify-between gap-3 px-4 py-2.5 border-b border-bone bg-cream/40">
+                  <Link href={`/manzura/orders/${g.id}`} className="text-sm font-semibold text-gold-dark hover:underline">
+                    {g.label}
+                  </Link>
+                  <span className="text-[11px] text-mist whitespace-nowrap">{g.date}</span>
+                </div>
+                <ul className="divide-y divide-bone/60 px-4">
+                  {g.items.map((it, i) => (
+                    <li key={i} className="flex items-center justify-between py-2 text-sm gap-3">
+                      <span className="text-charcoal leading-snug">{it.name}</span>
+                      <span className="text-charcoal tabular-nums whitespace-nowrap">×{it.qty}</span>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
           </ul>
 
           {/* Print-only clean buy list. */}
