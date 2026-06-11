@@ -2,12 +2,17 @@
 //   npx tsx scripts/apply-fake-discounts.ts
 //
 // For each priced product we invent a higher `originalPrice` (the struck-through
-// "was" price) so the product LOOKS discounted by a random 5%–33%, and flag it
-// `isSale`. The real selling `price` is NEVER changed — the customer still pays
-// `price`; the cart/checkout/stock are untouched.
+// "was" price) so the product LOOKS discounted, and flag it `isSale`. The real
+// selling `price` is NEVER changed — the customer still pays `price`; the
+// cart/checkout/stock are untouched.
 //
-// Idempotent: a product that already has `originalPrice` is left alone, so
-// re-running never re-rolls the discount. Pass `--reroll` to regenerate all.
+// The discount % is tied to price: cheaper items get a bigger % (up to 33%),
+// premium items a smaller % (down to 5%), with a mild deterministic jitter so it's
+// *mostly* — not rigidly — that trend. Products in the same section (groupId) share
+// one %. The $0.5 random mask sheets are excluded (no fake discount).
+//
+// Deterministic & idempotent: percentages are computed from price + a hashed seed
+// (no RNG), so re-running produces the same result and only rewrites what changed.
 //
 // Reads env from `.env.local` (same as seed-catalogue.ts). Operates on the live
 // Supabase Storage object `catalogue/products.json`, which is the source of
@@ -53,7 +58,11 @@ if (!url || !key) {
   process.exit(1);
 }
 
-const reroll = process.argv.includes('--reroll');
+// Discount % is tied to price — cheaper items get a bigger %, premium items a
+// smaller % — with a mild deterministic jitter so it's *mostly* (not rigidly) that
+// trend. PRICE_LOW/HIGH bound the log-scale mapping band.
+const PRICE_LOW = 10;    // <= this → ~MAX_PCT off
+const PRICE_HIGH = 250;  // >= this → ~MIN_PCT off
 
 interface Product {
   id: number;
@@ -65,8 +74,34 @@ interface Product {
   [k: string]: unknown;
 }
 
-function randPct(): number {
-  return MIN_PCT + Math.floor(Math.random() * (MAX_PCT - MIN_PCT + 1)); // 5..33
+// Excluded from any fake discount: the $0.5 random face mask sheets.
+function isExcluded(p: Product): boolean {
+  return /mask\s*sheets?/i.test(p.name) && p.price <= 1;
+}
+
+// Inverse-price percent on a log scale (so the $10–$250 bulk spreads evenly),
+// clamped to [MIN_PCT, MAX_PCT]. No jitter here.
+function basePct(price: number): number {
+  const t = Math.min(1, Math.max(0,
+    (Math.log(price) - Math.log(PRICE_LOW)) / (Math.log(PRICE_HIGH) - Math.log(PRICE_LOW))));
+  return MAX_PCT - t * (MAX_PCT - MIN_PCT);
+}
+// Deterministic ±J jitter from a seed string → stable across runs (idempotent).
+function hashStr(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) h = Math.imul(h ^ s.charCodeAt(i), 16777619);
+  return h >>> 0;
+}
+function jitter(seed: string, J = 4): number {
+  return (hashStr(seed) % (2 * J + 1)) - J;
+}
+function clampPct(x: number): number {
+  return Math.min(MAX_PCT, Math.max(MIN_PCT, Math.round(x)));
+}
+function median(nums: number[]): number {
+  const s = [...nums].sort((a, b) => a - b);
+  const m = Math.floor(s.length / 2);
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
 }
 
 // The discount % currently implied by a product's stored originalPrice, or 0.
@@ -105,18 +140,24 @@ async function main() {
   }
 
   let applied = 0;
-  let skippedExisting = 0;
+  let skippedSame = 0;
   let skippedPOA = 0;
-  let healed = 0;
+  let excludedCleared = 0;
   const pctList: number[] = [];
 
-  // Same section (same groupId) → same discount %, so variants like ELASTY
-  // FINE/DEEP/GRAND never show mismatched percents. One pct is chosen per group:
-  // on a plain run we keep the % already on the group's lowest-id member (stable,
-  // minimal churn) and only realign the others; --reroll picks a fresh group %.
+  // 0. Strip any fake discount off excluded items (the $0.5 mask sheets).
+  for (const p of products) {
+    if (isExcluded(p)) {
+      if (typeof p.originalPrice === 'number') { delete p.originalPrice; excludedCleared++; }
+      p.isSale = false;
+    }
+  }
+
+  // 1. One % per group (same section → same %), from the group's MEDIAN price so
+  //    the whole line shares a single inverse-price discount.
   const byGroup = new Map<string, Product[]>();
   for (const p of products) {
-    if (typeof p.groupId === 'string' && p.groupId) {
+    if (typeof p.groupId === 'string' && p.groupId && p.price > 0 && !isExcluded(p)) {
       const list = byGroup.get(p.groupId) ?? [];
       list.push(p);
       byGroup.set(p.groupId, list);
@@ -124,30 +165,22 @@ async function main() {
   }
   const groupPct = new Map<string, number>();
   for (const [gid, members] of byGroup) {
-    let pct = 0;
-    if (!reroll) {
-      const existing = members.filter(m => impliedPct(m) > 0).sort((a, b) => a.id - b.id);
-      if (existing.length) pct = impliedPct(existing[0]);
-    }
-    groupPct.set(gid, pct || randPct());
+    groupPct.set(gid, clampPct(basePct(median(members.map(m => m.price))) + jitter(gid)));
   }
 
+  // 2. Apply. Target %: the group's shared %, else the product's own price-based %.
   for (const p of products) {
+    if (isExcluded(p)) continue;
     if (!(typeof p.price === 'number') || p.price <= 0) { skippedPOA++; continue; } // POA
     const gid = typeof p.groupId === 'string' ? p.groupId : '';
-    // Target % for this product: its group's shared %, else its own existing % (plain
-    // run) or a fresh random one.
-    const target = gid ? groupPct.get(gid)! : (!reroll && impliedPct(p) > 0 ? impliedPct(p) : randPct());
-    // Already correct on a plain run → leave it untouched.
-    if (!reroll && typeof p.originalPrice === 'number' && impliedPct(p) === target) {
-      skippedExisting++;
+    const target = gid ? groupPct.get(gid)! : clampPct(basePct(p.price) + jitter('p' + p.id));
+    if (typeof p.originalPrice === 'number' && impliedPct(p) === target) {
+      skippedSame++;
       continue;
     }
-    const wasInconsistent = gid && !reroll && typeof p.originalPrice === 'number';
     p.originalPrice = fakeOriginal(p.price, target);
     p.isSale = true;
     pctList.push(Math.round((p.originalPrice - p.price) / p.originalPrice * 100));
-    if (wasInconsistent) healed++;
     applied++;
   }
 
@@ -181,7 +214,7 @@ async function main() {
   }
   const inconsistent = [...afterGroups.entries()].filter(([, s]) => s.size > 1);
 
-  console.log(`apply-fake-discounts: applied=${applied} (healed=${healed}) skipped(existing)=${skippedExisting} skipped(POA)=${skippedPOA}`);
+  console.log(`apply-fake-discounts: applied=${applied} skipped(same)=${skippedSame} skipped(POA)=${skippedPOA} excluded-cleared=${excludedCleared}`);
   console.log(`apply-fake-discounts: displayed discount range this run: ${minPct}%..${maxPct}%`);
   console.log(`apply-fake-discounts: catalogue now shows ${onSale}/${afterArr.length} products on sale`);
   console.log(`apply-fake-discounts: groups with mismatched %: ${inconsistent.length}${inconsistent.length ? ' -> ' + inconsistent.map(([g, s]) => `${g}(${[...s].join('/')})`).join(', ') : ''}`);
