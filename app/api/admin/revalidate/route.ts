@@ -11,8 +11,10 @@ import { revalidateTag } from 'next/cache';
 // match in both .env.local and the Vercel env. Only revalidates a cache tag — it
 // reads and changes no data — so the blast radius is nil even if the secret leaked.
 export async function POST(req: NextRequest) {
-  const secret = process.env.REVALIDATE_SECRET;
-  const provided = req.headers.get('x-revalidate-secret');
+  // Trim both sides — a value pasted into the Vercel dashboard often picks up a
+  // trailing newline/space, which would otherwise never match.
+  const secret = process.env.REVALIDATE_SECRET?.trim();
+  const provided = req.headers.get('x-revalidate-secret')?.trim();
   if (!secret || provided !== secret) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   }
