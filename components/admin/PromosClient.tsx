@@ -15,6 +15,7 @@ export interface PromoCode {
   active: boolean;
   expires_at: string | null;
   notes: string | null;
+  include_shipping: boolean;
   created_at: string;
 }
 
@@ -96,6 +97,14 @@ export default function PromosClient({ codes }: Props) {
               <p className="text-[10px] text-mist mt-1">For percent: 1–100. For fixed: value in cents (e.g. 1000 = $10)</p>
             </div>
             <div>
+              <label className={labelCls}>Discount applies to</label>
+              <select name="include_shipping" className={inputCls}>
+                <option value="0">Products subtotal (shipping excluded)</option>
+                <option value="1">Order total (shipping included)</option>
+              </select>
+              <p className="text-[10px] text-mist mt-1">Default discounts products only. Choose “included” to also discount shipping.</p>
+            </div>
+            <div>
               <label className={labelCls}>Min Order (cents)</label>
               <input name="min_order_cents" type="number" min="0" placeholder="0" className={inputCls} />
             </div>
@@ -148,7 +157,10 @@ export default function PromosClient({ codes }: Props) {
                       <div className="font-mono font-semibold text-charcoal">{c.code}</div>
                       {c.description && <div className="text-xs text-mist">{c.description}</div>}
                     </td>
-                    <td className="px-4 py-3 text-charcoal">{formatDiscount(c.discount_type, c.discount_value)}</td>
+                    <td className="px-4 py-3 text-charcoal">
+                      {formatDiscount(c.discount_type, c.discount_value)}
+                      <div className="text-[10px] text-mist">{c.include_shipping ? 'incl. shipping' : 'subtotal only'}</div>
+                    </td>
                     <td className="px-4 py-3 text-right text-mist">{c.min_order_cents > 0 ? `$${(c.min_order_cents / 100).toFixed(0)}` : '—'}</td>
                     <td className="px-4 py-3 text-right">
                       <span className="text-charcoal">{c.used_count}</span>

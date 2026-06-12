@@ -39,6 +39,7 @@ export async function createPromoCode(formData: FormData): Promise<ActionResult>
 
   const description = String(formData.get('description') ?? '').trim().slice(0, 200) || null;
   const notes = String(formData.get('notes') ?? '').trim().slice(0, 500) || null;
+  const includeShipping = formData.get('include_shipping') === '1';
 
   const supabase = createServiceClient();
   const { error } = await supabase.from('promo_codes').insert({
@@ -50,6 +51,7 @@ export async function createPromoCode(formData: FormData): Promise<ActionResult>
     max_uses: maxUses,
     expires_at: expiresAt,
     notes,
+    include_shipping: includeShipping,
   });
 
   if (error) {

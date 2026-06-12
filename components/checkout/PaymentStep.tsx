@@ -73,17 +73,19 @@ export default function PaymentStep({ payment, serverError }: Props) {
   }, [locale, router]);
 
   // Live discount preview for the entered promo code (server-validated so the
-  // amount matches what checkout will actually charge). Shipping isn't discounted.
+  // amount matches what checkout will actually charge). Shipping is passed so
+  // an include_shipping promo previews the same amount it will charge.
   const promoCode = draft?.shipping?.discountCode?.trim() ?? '';
   useEffect(() => {
     const sub = items.reduce((s, i) => s + Math.round(i.price * 100) * i.quantity, 0);
+    const ship = draft?.shipping ? computeShippingCents(draft.shipping) : 0;
     if (!promoCode || sub === 0) { setDiscountCents(0); return; }
     let active = true;
-    validatePromoCode(promoCode, sub)
+    validatePromoCode(promoCode, sub, ship)
       .then(r => { if (active) setDiscountCents(r.discountCents); })
       .catch(() => { if (active) setDiscountCents(0); });
     return () => { active = false; };
-  }, [promoCode, items]);
+  }, [promoCode, items, draft]);
 
   if (!draft || !draft.shipping || !draft.disclaimers) {
     return <div className="text-sm text-mist">{t('loading')}</div>;
@@ -105,8 +107,10 @@ export default function PaymentStep({ payment, serverError }: Props) {
     0,
   );
   const shippingCents = computeShippingCents(draft.shipping);
-  const appliedDiscount = Math.min(discountCents, subtotalCents);
-  const totalCents = subtotalCents - appliedDiscount + shippingCents;
+  // Clamp to subtotal + shipping so an include_shipping promo can also discount
+  // shipping without the total going negative.
+  const appliedDiscount = Math.min(discountCents, subtotalCents + shippingCents);
+  const totalCents = subtotalCents + shippingCents - appliedDiscount;
 
   const payload = JSON.stringify({
     locale,
