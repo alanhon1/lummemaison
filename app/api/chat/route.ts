@@ -180,7 +180,23 @@ export async function POST(req: Request) {
       loadProducts(),
     ]);
     const matchedProducts = searchProducts(latestUserMsg, liveProducts);
-    const newProducts = liveProducts.filter(p => p.isNew);
+    // "New products" = the most recently ADDED, by id descending. New products
+    // are created with id = maxId+1 and default isNew:false (see
+    // app/api/admin/products/route.ts), so the manual isNew flag is unreliable
+    // (stale on old seed items, never set on real additions) — ranking by id
+    // reflects what was actually added last. Dedupe by group so variants of one
+    // line don't fill the list.
+    const seenNew = new Set<string>();
+    const newProducts = [...liveProducts]
+      .filter(p => !p.notForSale)
+      .sort((a, b) => b.id - a.id)
+      .filter(p => {
+        const key = p.groupId || `id:${p.id}`;
+        if (seenNew.has(key)) return false;
+        seenNew.add(key);
+        return true;
+      })
+      .slice(0, 15);
     const dynamicContext = buildDynamicContext(faqRows ?? [], matchedProducts, newProducts, liveProducts.length, categories.map(c => c.name));
 
     // (Usage already incremented atomically above via increment_chat_usage.)
