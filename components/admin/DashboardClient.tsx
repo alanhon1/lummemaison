@@ -11,6 +11,7 @@ import {
   Truck,
   AlertTriangle,
   ShieldCheck,
+  Tag,
 } from 'lucide-react';
 import BackupPreviewModal from './BackupPreviewModal';
 
@@ -143,11 +144,19 @@ export default function DashboardClient({
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
-      <div className="mb-8">
-        <h1 className="font-display text-4xl font-light text-charcoal">Dashboard</h1>
-        <p className="text-xs text-mist mt-1 tracking-wider">
-          {totalProducts} products · {totalCategories} categories
-        </p>
+      <div className="mb-8 flex items-start justify-between gap-4">
+        <div>
+          <h1 className="font-display text-4xl font-light text-charcoal">Dashboard</h1>
+          <p className="text-xs text-mist mt-1 tracking-wider">
+            {totalProducts} products · {totalCategories} categories
+          </p>
+        </div>
+        <Link
+          href="/manzura/promos"
+          className="inline-flex items-center gap-1.5 shrink-0 text-xs uppercase tracking-widest border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream px-4 py-2 rounded transition-colors"
+        >
+          <Tag size={14} /> Promos
+        </Link>
       </div>
 
       {/* Operational stat cards */}
