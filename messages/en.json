@@ -18,8 +18,13 @@
     "cart": "Cart",
     "search": "Search",
     "faq": "FAQ",
+    "announcements": "News",
     "account": "Account",
     "inbox": "Inbox"
+  },
+  "announcements": {
+    "close": "Close",
+    "readMore": "Read all news"
   },
   "inbox": {
     "title": "Inbox",

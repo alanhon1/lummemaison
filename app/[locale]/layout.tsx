@@ -10,6 +10,8 @@ import ChatWidget from '@/components/layout/ChatWidget';
 import GoldParticles from '@/components/effects/GoldParticles';
 import { createClient } from '@/lib/supabase/server';
 import DisclaimerModal from '@/components/disclaimer/DisclaimerModal';
+import AnnouncementModal from '@/components/announcements/AnnouncementModal';
+import { loadActiveAnnouncements } from '@/lib/announcements';
 import type { Metadata } from 'next';
 
 export function generateStaticParams() {
@@ -44,6 +46,8 @@ export default async function LocaleLayout({
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  const announcements = await loadActiveAnnouncements();
+
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <div lang={locale} className="flex flex-col min-h-screen">
@@ -55,6 +59,7 @@ export default async function LocaleLayout({
         <FloatingWhatsApp />
         <ChatWidget isLoggedIn={!!user} />
         <DisclaimerModal />
+        <AnnouncementModal announcements={announcements} />
       </div>
     </NextIntlClientProvider>
   );

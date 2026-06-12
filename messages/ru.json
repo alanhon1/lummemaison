@@ -18,8 +18,13 @@
     "cart": "Корзина",
     "search": "Поиск",
     "faq": "FAQ",
+    "announcements": "Новости",
     "account": "Аккаунт",
     "inbox": "Входящие"
+  },
+  "announcements": {
+    "close": "Закрыть",
+    "readMore": "Все новости"
   },
   "inbox": {
     "title": "Входящие",

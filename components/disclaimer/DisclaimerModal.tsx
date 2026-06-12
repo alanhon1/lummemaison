@@ -71,6 +71,12 @@ export default function DisclaimerModal() {
       // ignore — best effort
     }
     setDismissed(true);
+    // Let the announcement popup know it may now appear (no first-visit overlap).
+    try {
+      window.dispatchEvent(new Event('lumee:disclaimer-agreed'));
+    } catch {
+      // ignore — best effort
+    }
   }
 
   function handleDecline() {
