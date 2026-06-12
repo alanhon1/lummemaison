@@ -274,9 +274,9 @@ async function main() {
 // refreshes on its own within ~5 minutes.
 async function bustCatalogueCache(): Promise<void> {
   const target = (process.env.REVALIDATE_URL || 'https://www.lumeemaison.com').replace(/\/$/, '');
-  const secret = process.env.SESSION_SECRET;
+  const secret = process.env.REVALIDATE_SECRET;
   if (!secret) {
-    console.log('apply-fake-discounts: SESSION_SECRET not set — skipped cache bust (live refreshes within ~5 min).');
+    console.log('apply-fake-discounts: REVALIDATE_SECRET not set — skipped cache bust (live refreshes within ~5 min).');
     return;
   }
   try {

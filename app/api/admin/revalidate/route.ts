@@ -7,11 +7,11 @@ import { revalidateTag } from 'next/cache';
 // cached catalogue for up to the 5-min revalidate window. The script POSTs here
 // after writing, and this route (running in the deployment) busts the tag.
 //
-// Authenticated with the shared SESSION_SECRET (a server-only secret present in
-// both .env.local and the Vercel env). Only revalidates a cache tag — it reads
-// and changes no data — so the blast radius is nil even if the secret leaked.
+// Authenticated with REVALIDATE_SECRET, a dedicated server-only secret that must
+// match in both .env.local and the Vercel env. Only revalidates a cache tag — it
+// reads and changes no data — so the blast radius is nil even if the secret leaked.
 export async function POST(req: NextRequest) {
-  const secret = process.env.SESSION_SECRET;
+  const secret = process.env.REVALIDATE_SECRET;
   const provided = req.headers.get('x-revalidate-secret');
   if (!secret || provided !== secret) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
