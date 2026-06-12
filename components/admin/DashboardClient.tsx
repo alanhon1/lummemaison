@@ -12,6 +12,7 @@ import {
   AlertTriangle,
   ShieldCheck,
   Tag,
+  Megaphone,
 } from 'lucide-react';
 import BackupPreviewModal from './BackupPreviewModal';
 
@@ -151,12 +152,20 @@ export default function DashboardClient({
             {totalProducts} products · {totalCategories} categories
           </p>
         </div>
-        <Link
-          href="/manzura/promos"
-          className="inline-flex items-center gap-1.5 shrink-0 text-xs uppercase tracking-widest border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream px-4 py-2 rounded transition-colors"
-        >
-          <Tag size={14} /> Promos
-        </Link>
+        <div className="flex shrink-0 items-center gap-2">
+          <Link
+            href="/manzura/announcements"
+            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream px-4 py-2 rounded transition-colors"
+          >
+            <Megaphone size={14} /> News
+          </Link>
+          <Link
+            href="/manzura/promos"
+            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream px-4 py-2 rounded transition-colors"
+          >
+            <Tag size={14} /> Promos
+          </Link>
+        </div>
       </div>
 
       {/* Operational stat cards */}
