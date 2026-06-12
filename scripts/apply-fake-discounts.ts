@@ -263,6 +263,36 @@ async function main() {
   if (sample) {
     console.log(`apply-fake-discounts: sample #${sample.id} "${sample.name.trim()}" was $${sample.originalPrice} now $${sample.price}`);
   }
+
+  await bustCatalogueCache();
+}
+
+// Bust the live catalogue cache so changes show immediately instead of waiting
+// out the 5-min revalidate window. This CLI can't call revalidateTag in a
+// production request scope, so it pings the deployed /api/admin/revalidate route
+// (authed with SESSION_SECRET). Best-effort: a failure just means the live site
+// refreshes on its own within ~5 minutes.
+async function bustCatalogueCache(): Promise<void> {
+  const target = (process.env.REVALIDATE_URL || 'https://www.lumeemaison.com').replace(/\/$/, '');
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) {
+    console.log('apply-fake-discounts: SESSION_SECRET not set — skipped cache bust (live refreshes within ~5 min).');
+    return;
+  }
+  try {
+    const res = await fetch(`${target}/api/admin/revalidate`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-revalidate-secret': secret },
+      body: JSON.stringify({ tag: 'catalogue' }),
+    });
+    console.log(
+      res.ok
+        ? `apply-fake-discounts: catalogue cache busted (${target}) — changes are live now.`
+        : `apply-fake-discounts: cache bust returned ${res.status} (${target}) — live refreshes within ~5 min.`,
+    );
+  } catch (e) {
+    console.log(`apply-fake-discounts: cache bust skipped (${e instanceof Error ? e.message : 'error'}) — live refreshes within ~5 min.`);
+  }
 }
 
 main();
