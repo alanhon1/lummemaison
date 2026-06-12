@@ -96,6 +96,10 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       : `#${product.id}`;
 
   function handleAddToCart(e: React.MouseEvent) {
+    // Products with purchase options (e.g. needle length) can't be quick-added
+    // from the card — let the click fall through to the card link so the
+    // customer picks the option on the product page.
+    if (product.options && product.options.length > 0) return;
     e.preventDefault();
     e.stopPropagation();
     if (cannotBuy) return;

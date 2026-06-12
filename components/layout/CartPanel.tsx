@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
-import { useCartStore } from '@/lib/store';
+import { useCartStore, cartLineKey } from '@/lib/store';
 import { useCartStock } from '@/lib/useCartStock';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 import { localePath } from '@/lib/i18n';
@@ -65,8 +65,9 @@ export default function CartPanel() {
             <div className="flex-1 overflow-y-auto py-4">
               {items.map(item => {
                 const soldOut = isSoldOut(item.id);
+                const lineKey = cartLineKey(item);
                 return (
-                <div key={item.id} className="flex gap-4 px-6 py-4 border-b border-bone/50">
+                <div key={lineKey} className="flex gap-4 px-6 py-4 border-b border-bone/50">
                   {/* Image */}
                   <div
                     className={`w-16 h-16 flex-shrink-0 flex items-center justify-center ${soldOut ? 'opacity-50' : ''}`}
@@ -92,6 +93,9 @@ export default function CartPanel() {
                     {item.specification ? (
                       <p className="text-xs text-mist line-clamp-1">{item.specification}</p>
                     ) : null}
+                    {item.option ? (
+                      <p className="text-xs font-semibold text-gold-dark">{item.option}</p>
+                    ) : null}
                     <p className="text-sm font-semibold text-gold mt-1">{formatPrice(item.price, currency)}</p>
                     {soldOut && (
                       <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mt-1">{t('soldOut')}</p>
@@ -100,7 +104,7 @@ export default function CartPanel() {
                     {/* Quantity */}
                     <div className="flex items-center gap-2 mt-2">
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        onClick={() => updateQuantity(lineKey, item.quantity - 1)}
                         disabled={soldOut}
                         className="w-6 h-6 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-40 disabled:hover:border-bone disabled:hover:text-current"
                       >
@@ -108,14 +112,14 @@ export default function CartPanel() {
                       </button>
                       <span className="text-xs font-semibold w-6 text-center">{item.quantity}</span>
                       <button
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        onClick={() => updateQuantity(lineKey, item.quantity + 1)}
                         disabled={soldOut}
                         className="w-6 h-6 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-40 disabled:hover:border-bone disabled:hover:text-current"
                       >
                         <Plus size={10} />
                       </button>
                       <button
-                        onClick={() => removeItem(item.id)}
+                        onClick={() => removeItem(lineKey)}
                         className="ml-auto text-mist hover:text-red-500 transition-colors"
                         aria-label={t('remove')}
                       >

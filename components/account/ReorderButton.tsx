@@ -10,6 +10,7 @@ export interface ReorderItem {
   image: string;
   specification: string;
   quantity: number;
+  option?: string;
 }
 
 interface Props {
@@ -34,6 +35,7 @@ export default function ReorderButton({ items, locale, reorderLabel, confirmText
         price: item.price,
         image: item.image,
         specification: item.specification,
+        ...(item.option ? { option: item.option } : {}),
       };
       // addItem increments qty by 1 each call; call once per quantity
       for (let i = 0; i < item.quantity; i++) {

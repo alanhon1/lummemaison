@@ -57,7 +57,7 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
   const [{ data: items }, { data: messages }] = await Promise.all([
     supabase
       .from('order_items')
-      .select('product_id, product_name, unit_cents, quantity, line_cents')
+      .select('product_id, product_name, unit_cents, quantity, line_cents, option')
       .eq('order_id', order.id),
     supabase
       .from('order_messages')
@@ -114,6 +114,7 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
       image: p?.image ?? '',
       specification: p?.specification ?? '',
       quantity: item.quantity,
+      option: item.option ?? undefined,
     };
   });
 
@@ -217,10 +218,10 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
         <section className="bg-white border border-bone rounded-lg p-5 md:p-6 mb-6">
           <h2 className="font-display italic text-xl text-charcoal mb-4">{t('itemsTitle')}</h2>
           <ul className="space-y-2 text-sm">
-            {(items ?? []).map(item => (
-              <li key={item.product_id} className="flex justify-between gap-3">
+            {(items ?? []).map((item, idx) => (
+              <li key={`${item.product_id}-${idx}`} className="flex justify-between gap-3">
                 <span className="text-charcoal pr-3 line-clamp-1">
-                  {item.product_name} <span className="text-mist">× {item.quantity}</span>
+                  {item.product_name}{item.option ? ` (${item.option})` : ''} <span className="text-mist">× {item.quantity}</span>
                 </span>
                 <span className="text-charcoal whitespace-nowrap">
                   {formatCurrency(item.line_cents, order.currency, locale)}

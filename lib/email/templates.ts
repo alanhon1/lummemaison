@@ -6,6 +6,12 @@ export interface OrderItem {
   name: string;
   quantity: number;
   price: number; // unit price in cents
+  option?: string; // chosen purchase option, e.g. "6mm"
+}
+
+// Product name with its chosen option appended, e.g. "REJUBEAU 30G (6mm)".
+export function itemLabel(it: OrderItem): string {
+  return it.option ? `${it.name} (${it.option})` : it.name;
 }
 
 export interface OrderShippingAddress {
@@ -156,7 +162,7 @@ function receiptEmail(order: OrderData): { subject: string; html: string; text: 
     .map(it => {
       const line = it.price * it.quantity;
       return `<tr>
-        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;">${escapeHtml(it.name)}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;">${escapeHtml(itemLabel(it))}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:center;">${it.quantity}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(it.price, currency)}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(line, currency)}</td>
@@ -240,7 +246,7 @@ function receiptEmail(order: OrderData): { subject: string; html: string; text: 
     'Your order:',
   ];
   for (const it of order.items) {
-    textLines.push(`  ${it.name} × ${it.quantity}  ${formatUSD(it.price * it.quantity, currency)}`);
+    textLines.push(`  ${itemLabel(it)} × ${it.quantity}  ${formatUSD(it.price * it.quantity, currency)}`);
   }
   if (order.subtotal !== undefined) textLines.push(`  Subtotal: ${formatUSD(order.subtotal, currency)}`);
   if (order.subtotal !== undefined && order.subtotal + (order.shipping ?? 0) - order.total > 0) {
@@ -294,7 +300,7 @@ export function customerEmail(order: OrderData): { subject: string; html: string
     .map(it => {
       const line = it.price * it.quantity;
       return `<tr>
-        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;">${escapeHtml(it.name)}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;">${escapeHtml(itemLabel(it))}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:center;">${it.quantity}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(it.price, currency)}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(line, currency)}</td>
@@ -428,7 +434,7 @@ export function customerEmail(order: OrderData): { subject: string; html: string
   textLines.push('Your order:');
   for (const it of order.items) {
     const line = it.price * it.quantity;
-    textLines.push(`  - ${it.name} × ${it.quantity} @ ${formatUSD(it.price, currency)} = ${formatUSD(line, currency)}`);
+    textLines.push(`  - ${itemLabel(it)} × ${it.quantity} @ ${formatUSD(it.price, currency)} = ${formatUSD(line, currency)}`);
   }
   if (order.subtotal !== undefined) textLines.push(`  Subtotal: ${formatUSD(order.subtotal, currency)}`);
   if (order.subtotal !== undefined && order.subtotal + (order.shipping ?? 0) - order.total > 0) {
@@ -787,7 +793,7 @@ export function paymentVerifiedEmail(d: PaymentVerifiedData): { subject: string;
     .map(it => {
       const line = it.price * it.quantity;
       return `<tr>
-        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;">${escapeHtml(it.name)}</td>
+        <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;">${escapeHtml(itemLabel(it))}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:center;">${it.quantity}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(it.price, currency)}</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eadfd1;text-align:right;">${formatUSD(line, currency)}</td>
@@ -852,7 +858,7 @@ export function paymentVerifiedEmail(d: PaymentVerifiedData): { subject: string;
     'Your order:',
   ];
   for (const it of d.items) {
-    textLines.push(`  ${it.name} × ${it.quantity}  ${formatUSD(it.price * it.quantity, currency)}`);
+    textLines.push(`  ${itemLabel(it)} × ${it.quantity}  ${formatUSD(it.price * it.quantity, currency)}`);
   }
   textLines.push(`  Subtotal: ${formatUSD(d.subtotalCents, currency)}`);
   textLines.push(`  Shipping: ${formatUSD(d.shippingCents, currency)}`);
@@ -952,7 +958,7 @@ export function adminEmail(order: OrderData): { subject: string; html: string; t
     .map(it => {
       const line = it.price * it.quantity;
       return `<tr>
-        <td style="padding:6px 10px;border-bottom:1px solid #e5e7eb;">${escapeHtml(it.name)}</td>
+        <td style="padding:6px 10px;border-bottom:1px solid #e5e7eb;">${escapeHtml(itemLabel(it))}</td>
         <td style="padding:6px 10px;border-bottom:1px solid #e5e7eb;text-align:center;">${it.quantity}</td>
         <td style="padding:6px 10px;border-bottom:1px solid #e5e7eb;text-align:right;">${formatUSD(it.price, currency)}</td>
         <td style="padding:6px 10px;border-bottom:1px solid #e5e7eb;text-align:right;">${formatUSD(line, currency)}</td>
@@ -1067,7 +1073,7 @@ export function adminEmail(order: OrderData): { subject: string; html: string; t
   textLines.push('Items:');
   for (const it of order.items) {
     const line = it.price * it.quantity;
-    textLines.push(`  - ${it.name} × ${it.quantity} @ ${formatUSD(it.price, currency)} = ${formatUSD(line, currency)}`);
+    textLines.push(`  - ${itemLabel(it)} × ${it.quantity} @ ${formatUSD(it.price, currency)} = ${formatUSD(line, currency)}`);
   }
   if (order.subtotal !== undefined) textLines.push(`  Subtotal: ${formatUSD(order.subtotal, currency)}`);
   if (order.subtotal !== undefined && order.subtotal + (order.shipping ?? 0) - order.total > 0) {

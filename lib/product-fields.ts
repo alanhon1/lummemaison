@@ -21,6 +21,7 @@ export const ALLOWED_PRODUCT_FIELDS = [
   'price',
   'originalPrice',
   'tags',
+  'options',
   'isNew',
   'isSale',
   'isBestSeller',

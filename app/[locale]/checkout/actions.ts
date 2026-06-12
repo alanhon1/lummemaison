@@ -28,6 +28,7 @@ export interface CartLineInput {
   product_name: string;
   unit_cents: number;
   quantity: number;
+  option?: string;
 }
 
 export interface CreateOrderInput {
@@ -235,6 +236,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
     unit_cents: l.unit_cents,
     quantity: l.quantity,
     line_cents: l.unit_cents * l.quantity,
+    option: l.option?.trim() || null,
   }));
   const { error: itemsError } = await admin.from('order_items').insert(itemLines);
   if (itemsError) {
@@ -273,6 +275,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
         name: l.product_name,
         quantity: l.quantity,
         price: l.unit_cents,
+        option: l.option ?? undefined,
       })),
       subtotal,
       shipping,

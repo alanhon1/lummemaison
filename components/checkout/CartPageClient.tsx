@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
-import { useCartStore } from '@/lib/store';
+import { useCartStore, cartLineKey } from '@/lib/store';
 import { useCartStock } from '@/lib/useCartStock';
 import { localePath } from '@/lib/i18n';
 
@@ -36,8 +36,9 @@ export default function CartPageClient() {
       <div className="order-2 lg:order-1 lg:col-span-2 space-y-3">
         {items.map(item => {
           const soldOut = isSoldOut(item.id);
+          const lineKey = cartLineKey(item);
           return (
-          <div key={item.id} className="flex gap-4 p-4 bg-white border border-bone rounded-sm">
+          <div key={lineKey} className="flex gap-4 p-4 bg-white border border-bone rounded-sm">
             <div className={`w-20 h-20 bg-cream flex-shrink-0 flex items-center justify-center ${soldOut ? 'opacity-50' : ''}`}>
               {item.image ? (
                 <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
@@ -50,13 +51,16 @@ export default function CartPageClient() {
               {item.specification && (
                 <p className="text-xs text-mist mt-0.5 line-clamp-1">{item.specification}</p>
               )}
+              {item.option && (
+                <p className="text-xs font-semibold text-gold-dark mt-0.5">{item.option}</p>
+              )}
               <p className="text-base font-semibold text-gold mt-1">${item.price.toFixed(2)}</p>
               {soldOut && (
                 <p className="text-xs font-semibold text-red-500 uppercase tracking-wider mt-1">{t('soldOut')}</p>
               )}
               <div className="flex items-center gap-3 mt-2">
                 <button
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  onClick={() => updateQuantity(lineKey, item.quantity - 1)}
                   disabled={soldOut}
                   className="w-7 h-7 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-40 disabled:hover:border-bone disabled:hover:text-current"
                 >
@@ -64,7 +68,7 @@ export default function CartPageClient() {
                 </button>
                 <span className="text-sm font-semibold w-6 text-center">{item.quantity}</span>
                 <button
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  onClick={() => updateQuantity(lineKey, item.quantity + 1)}
                   disabled={soldOut}
                   className="w-7 h-7 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors disabled:opacity-40 disabled:hover:border-bone disabled:hover:text-current"
                 >
@@ -74,7 +78,7 @@ export default function CartPageClient() {
             </div>
             <div className="flex flex-col items-end justify-between">
               <button
-                onClick={() => removeItem(item.id)}
+                onClick={() => removeItem(lineKey)}
                 className="text-mist hover:text-red-500 transition-colors"
               >
                 <Trash2 size={16} />
@@ -109,9 +113,9 @@ export default function CartPageClient() {
         <h2 className="font-display text-xl font-light mb-6">Order Summary</h2>
         <div className="space-y-3 mb-6 pb-6 border-b border-bone">
           {items.map(item => (
-            <div key={item.id} className="flex justify-between text-xs">
+            <div key={cartLineKey(item)} className="flex justify-between text-xs">
               <span className="text-mist line-clamp-1 flex-1 mr-2">
-                {item.name} × {item.quantity}
+                {item.name}{item.option ? ` (${item.option})` : ''} × {item.quantity}
               </span>
               <span className="font-semibold text-charcoal flex-shrink-0">
                 ${(item.price * item.quantity).toFixed(2)}

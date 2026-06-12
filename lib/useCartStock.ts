@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useCartStore } from './store';
+import { useCartStore, cartLineKey } from './store';
 import { useStockStore } from './stock-store';
 
 export interface CartStockInfo {
@@ -37,7 +37,7 @@ export function useCartStock(): CartStockInfo {
     for (const i of items) {
       const s = stockMap[i.id];
       if (typeof s === 'number' && s > 0 && i.quantity > s) {
-        updateQuantity(i.id, s);
+        updateQuantity(cartLineKey(i), s);
       }
     }
   }, [items, stockMap, updateQuantity]);

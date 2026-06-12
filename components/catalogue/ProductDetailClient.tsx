@@ -22,6 +22,10 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const notForSale = !!product.notForSale;
   const cannotBuy = soldOut || notForSale;
 
+  const options = product.options ?? [];
+  const [option, setOption] = useState(options[0] ?? '');
+  const optionLabel = options.length > 0 && options.every(o => /mm$/i.test(o)) ? 'Length' : 'Option';
+
   function handleAddToCart() {
     if (cannotBuy) return;
     addItem({
@@ -30,13 +34,38 @@ export default function ProductDetailClient({ product }: { product: Product }) {
       price: product.price,
       image: product.image,
       specification: product.specification,
+      ...(options.length > 0 ? { option: option || options[0] } : {}),
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   }
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3">
+    <div className="flex flex-col gap-4">
+      {options.length > 0 && (
+        <div>
+          <label className="block text-xs font-semibold tracking-[0.2em] uppercase text-mist mb-2">
+            {optionLabel}
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {options.map(o => (
+              <button
+                key={o}
+                type="button"
+                onClick={() => setOption(o)}
+                className={`px-4 py-2 text-xs font-semibold tracking-wider rounded-sm border transition-colors ${
+                  o === option
+                    ? 'border-gold text-gold bg-gold/10'
+                    : 'border-bone text-charcoal hover:border-gold'
+                }`}
+              >
+                {o}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      <div className="flex flex-col sm:flex-row gap-3">
       <button
         onClick={handleAddToCart}
         disabled={cannotBuy}
@@ -68,6 +97,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
       >
         {t('contactForOrder')}
       </Link>
+      </div>
     </div>
   );
 }

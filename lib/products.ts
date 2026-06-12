@@ -58,6 +58,10 @@ export interface Product {
   // the customer always pays `price`. Absent / <= price ⇒ no discount shown.
   originalPrice?: number;
   tags: string[];
+  // Purchase-time options chosen on the same product line (e.g. needle length
+  // ['4mm','6mm','13mm']). NOT separate products — the choice rides on the cart
+  // line and the order. Absent/empty ⇒ no selector shown.
+  options?: string[];
   isNew: boolean;
   isSale: boolean;
   isBestSeller: boolean;

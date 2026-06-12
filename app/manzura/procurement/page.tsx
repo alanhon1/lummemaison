@@ -65,17 +65,18 @@ export default async function ProcurementPage({
   const orderInfo = new Map(orders.map(o => [o.id, { label: labelOf(o), date: fmtDate(o.created_at) }]));
 
   const ids = orders.map(o => o.id);
-  let items: Array<{ order_id: number; product_id: number; product_name: string; quantity: number }> = [];
+  let items: Array<{ order_id: number; product_id: number; product_name: string; quantity: number; option: string | null }> = [];
   if (ids.length > 0) {
     const { data } = await supabase
       .from('order_items')
-      .select('order_id, product_id, product_name, quantity')
+      .select('order_id, product_id, product_name, quantity, option')
       .in('order_id', ids);
     items = (data ?? []) as typeof items;
   }
 
-  // Per-product aggregate (with which orders need it).
-  const byProduct = new Map<number, Row>();
+  // Per-product aggregate (with which orders need it). Keyed by product + option
+  // so a needle bought in 4mm and 6mm are listed (and counted) separately.
+  const byProduct = new Map<string, Row>();
   // Per-order grouping (in the orders' display order — newest first).
   const byOrder = new Map<number, OrderGroup>();
   for (const o of orders) {
@@ -85,19 +86,21 @@ export default async function ProcurementPage({
   for (const it of items) {
     const qty = it.quantity ?? 0;
     const info = orderInfo.get(it.order_id);
+    const label = it.option ? `${it.product_name} (${it.option})` : it.product_name;
+    const key = `${it.product_id}|${it.option ?? ''}`;
     const row =
-      byProduct.get(it.product_id) ??
-      { productId: it.product_id, name: it.product_name, total: 0, stock: 0, orders: [] };
+      byProduct.get(key) ??
+      { productId: it.product_id, name: label, total: 0, stock: 0, orders: [] };
     row.total += qty;
     const ex = row.orders.find(r => r.id === it.order_id);
     if (ex) ex.qty += qty;
     else row.orders.push({ id: it.order_id, label: info?.label ?? `#${it.order_id}`, date: info?.date ?? '', qty });
-    byProduct.set(it.product_id, row);
+    byProduct.set(key, row);
 
-    byOrder.get(it.order_id)?.items.push({ name: it.product_name, qty });
+    byOrder.get(it.order_id)?.items.push({ name: label, qty });
   }
 
-  const stockMap = await getStockMap([...byProduct.keys()]);
+  const stockMap = await getStockMap([...new Set([...byProduct.values()].map(r => r.productId))]);
   for (const row of byProduct.values()) row.stock = stockMap[row.productId] ?? 0;
 
   const rows = [...byProduct.values()].sort((a, b) => b.total - a.total || a.name.localeCompare(b.name));

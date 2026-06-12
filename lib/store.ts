@@ -11,14 +11,25 @@ export interface CartItem {
   quantity: number;
   image: string;
   specification: string;
+  // Chosen purchase option (e.g. needle length "6mm"), when the product offers
+  // one. The same product id with different options is a SEPARATE cart line.
+  option?: string;
+}
+
+// Identifies a cart line. Same product + same option merge; different options
+// stay separate. No option ⇒ key is just the id (unchanged from before).
+export function cartLineKey(item: { id: number; option?: string }): string {
+  return item.option ? `${item.id}::${item.option}` : String(item.id);
 }
 
 interface CartStore {
   items: CartItem[];
   isOpen: boolean;
   addItem: (item: Omit<CartItem, 'quantity'>) => void;
-  removeItem: (id: number) => void;
-  updateQuantity: (id: number, quantity: number) => void;
+  // Operate on a cart LINE (by cartLineKey), not just a product id, so option
+  // variants of the same product can be managed independently.
+  removeItem: (key: string) => void;
+  updateQuantity: (key: string, quantity: number) => void;
   clearCart: () => void;
   openCart: () => void;
   closeCart: () => void;
@@ -44,7 +55,8 @@ export const useCartStore = create<CartStore>()(
       isOpen: false,
 
       addItem: (item) => {
-        const existing = get().items.find(i => i.id === item.id);
+        const key = cartLineKey(item);
+        const existing = get().items.find(i => cartLineKey(i) === key);
         const desired = (existing?.quantity ?? 0) + 1;
         const next = clampToStock(item.id, desired);
         if (next === 0) return; // stock known to be 0 — drop silently
@@ -56,7 +68,7 @@ export const useCartStore = create<CartStore>()(
         if (existing) {
           set(state => ({
             items: state.items.map(i =>
-              i.id === item.id ? { ...i, quantity: next } : i,
+              cartLineKey(i) === key ? { ...i, quantity: next } : i,
             ),
           }));
         } else {
@@ -65,22 +77,23 @@ export const useCartStore = create<CartStore>()(
         set({ isOpen: true });
       },
 
-      removeItem: (id) => {
-        set(state => ({ items: state.items.filter(i => i.id !== id) }));
+      removeItem: (key) => {
+        set(state => ({ items: state.items.filter(i => cartLineKey(i) !== key) }));
       },
 
-      updateQuantity: (id, quantity) => {
+      updateQuantity: (key, quantity) => {
         if (quantity <= 0) {
-          get().removeItem(id);
+          get().removeItem(key);
           return;
         }
-        const clamped = clampToStock(id, quantity);
+        const line = get().items.find(i => cartLineKey(i) === key);
+        const clamped = line ? clampToStock(line.id, quantity) : quantity;
         if (clamped === 0) {
-          get().removeItem(id);
+          get().removeItem(key);
           return;
         }
         set(state => ({
-          items: state.items.map(i => (i.id === id ? { ...i, quantity: clamped } : i)),
+          items: state.items.map(i => (cartLineKey(i) === key ? { ...i, quantity: clamped } : i)),
         }));
       },
 

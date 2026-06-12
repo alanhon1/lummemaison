@@ -29,6 +29,7 @@ interface OrderItem {
   unit_cents: number;
   quantity: number;
   line_cents: number;
+  option: string | null;
 }
 
 interface ShippingAddress {
@@ -101,7 +102,7 @@ export default async function AdminOrderDetailPage({
   const [{ data: items }, { data: messages }, { data: customerProfile }] = await Promise.all([
     supabase
       .from('order_items')
-      .select('id, product_id, product_name, unit_cents, quantity, line_cents')
+      .select('id, product_id, product_name, unit_cents, quantity, line_cents, option')
       .eq('order_id', detail.id)
       .order('id'),
     supabase
@@ -349,7 +350,7 @@ export default async function AdminOrderDetailPage({
           <tbody>
             {(items ?? []).map((it: OrderItem) => (
               <tr key={it.id} className="border-b border-bone">
-                <td className="py-2 text-charcoal">{it.product_name}</td>
+                <td className="py-2 text-charcoal">{it.product_name}{it.option ? ` (${it.option})` : ''}</td>
                 <td className="py-2 text-center text-charcoal">{it.quantity}</td>
                 <td className="py-2 text-right text-charcoal">{formatUSD(it.unit_cents, detail.currency)}</td>
                 <td className="py-2 text-right text-charcoal">{formatUSD(it.line_cents, detail.currency)}</td>

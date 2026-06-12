@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { AlertTriangle, MessageCircle, FileCheck2, Loader2 } from 'lucide-react';
 import { readDraft, computeShippingCents, type CheckoutDraft } from '@/lib/checkout/state';
-import { useCartStore } from '@/lib/store';
+import { useCartStore, cartLineKey } from '@/lib/store';
 import { placeOrderAction, uploadPaymentProof, validatePromoCode } from '@/app/[locale]/checkout/actions';
 import { localePath } from '@/lib/i18n';
 import CopyButton from './CopyButton';
@@ -121,6 +121,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
       product_name: i.name,
       unit_cents: Math.round(i.price * 100),
       quantity: i.quantity,
+      option: i.option || undefined,
     })),
     paymentProofPath: proofPath || undefined,
     paymentTransactionLink: transactionLink.trim() || undefined,
@@ -183,9 +184,9 @@ export default function PaymentStep({ payment, serverError }: Props) {
         <h2 className="font-display italic text-xl text-charcoal mb-4">{t('payment.summary')}</h2>
         <ul className="space-y-2 mb-4 max-h-40 overflow-y-auto pr-1">
           {items.map(i => (
-            <li key={i.id} className="flex justify-between text-sm">
+            <li key={cartLineKey(i)} className="flex justify-between text-sm">
               <span className="text-charcoal line-clamp-1 pr-3">
-                {i.name} <span className="text-mist">× {i.quantity}</span>
+                {i.name}{i.option ? ` (${i.option})` : ''} <span className="text-mist">× {i.quantity}</span>
               </span>
               <span className="text-charcoal whitespace-nowrap">
                 {formatUSD(Math.round(i.price * 100) * i.quantity, locale)}

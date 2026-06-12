@@ -8,6 +8,12 @@ interface ReceiptItem {
   quantity: number;
   unit_cents: number;
   line_cents: number;
+  option?: string | null;
+}
+
+// Product name with chosen option appended, e.g. "REJUBEAU 30G (6mm)".
+function itemName(it: ReceiptItem): string {
+  return it.option ? `${it.product_name} (${it.option})` : it.product_name;
 }
 
 interface ReceiptProps {
@@ -43,7 +49,7 @@ function buildPackagingText(props: ReceiptProps): string {
     `No:   ${props.orderNumber}`,
     `Name: ${props.customerName}`,
     '',
-    ...props.items.flatMap(it => [it.product_name, `Quantity: ${it.quantity}`, '']),
+    ...props.items.flatMap(it => [itemName(it), `Quantity: ${it.quantity}`, '']),
   ];
   return lines.join('\n').trimEnd();
 }
@@ -161,7 +167,7 @@ export default function OrderReceiptModal(props: ReceiptProps) {
                   <tbody>
                     {props.items.map((it, i) => (
                       <tr key={i} className={`border-t border-bone ${i % 2 === 1 ? 'bg-cream/30' : ''}`}>
-                        <td className="px-3 py-2 text-charcoal">{it.product_name}</td>
+                        <td className="px-3 py-2 text-charcoal">{itemName(it)}</td>
                         <td className="px-3 py-2 text-center text-charcoal">{it.quantity}</td>
                         <td className="px-3 py-2 text-right text-charcoal">{fmtUSD(it.unit_cents, props.currency)}</td>
                         <td className="px-3 py-2 text-right text-charcoal">{fmtUSD(it.line_cents, props.currency)}</td>
