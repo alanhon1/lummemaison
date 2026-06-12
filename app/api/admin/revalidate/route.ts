@@ -16,7 +16,12 @@ export async function POST(req: NextRequest) {
   const secret = process.env.REVALIDATE_SECRET?.trim();
   const provided = req.headers.get('x-revalidate-secret')?.trim();
   if (!secret || provided !== secret) {
-    return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+    // TEMP diagnostic (no value leaked): tells us if the env var is set for this
+    // environment and whether lengths match. Remove after confirming.
+    return NextResponse.json(
+      { error: 'unauthorized', hasSecret: !!secret, secretLen: secret?.length ?? 0, providedLen: provided?.length ?? 0 },
+      { status: 401 },
+    );
   }
 
   let tag = 'catalogue';
