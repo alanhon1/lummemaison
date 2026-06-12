@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache';
 import { readData, writeData, createBackup } from '@/lib/backup';
 import { requireAdmin } from '@/lib/admin-guard';
 import { pickProductFields } from '@/lib/product-fields';
+import { computeStandaloneOriginal } from '@/lib/fake-discount';
 
 export async function GET() {
   const denied = await requireAdmin();
@@ -35,6 +36,20 @@ export async function POST(req: Request) {
     ...updates,
   };
   newProduct.id = newId; // ensure auto-incremented id wins
+
+  // Auto-apply a fake "was/now" sale on creation (unless one was set explicitly),
+  // so new products show a discount without a manual step. Admin can override or
+  // clear the was-price in the editor afterwards. Same deterministic value the
+  // bulk apply-fake-discounts script would assign to a standalone product.
+  const np = newProduct as { price: number; originalPrice?: number; isSale?: boolean };
+  if (np.originalPrice == null && typeof np.price === 'number') {
+    const was = computeStandaloneOriginal(np.price, newId);
+    if (was != null) {
+      np.originalPrice = was;
+      np.isSale = true;
+    }
+  }
+
   createBackup();
   data.products.push(newProduct);
   await writeData(data);

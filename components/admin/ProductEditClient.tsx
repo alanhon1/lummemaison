@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Save, Trash2, ArrowLeft } from 'lucide-react';
 import type { Product, Category } from '@/lib/products';
+import { discountPercent } from '@/lib/fake-discount';
 
 interface Props {
   product?: Product;
@@ -275,6 +276,33 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
                   className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white" />
               </Field>
             </div>
+
+            {/* Manual sale control. The "was" price drives the struck-through
+                price + −N% badge. 0 / blank = no sale. New products get one
+                automatically; here you can override or clear it. */}
+            <Field label="Sale — original “was” price ($), 0 = no sale">
+              <input
+                type="number" step="0.01" min="0"
+                value={form.originalPrice ?? 0}
+                onChange={e => {
+                  const v = parseFloat(e.target.value);
+                  const val = Number.isFinite(v) && v > 0 ? Math.round(v * 100) / 100 : 0;
+                  update('originalPrice', val);
+                  update('isSale', val > (form.price ?? 0));
+                }}
+                className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white"
+              />
+              {(() => {
+                const pct = discountPercent(form.price ?? 0, form.originalPrice);
+                return pct > 0 ? (
+                  <p className="text-[11px] text-gold-dark mt-1">
+                    Shows −{pct}% off: ${Number(form.originalPrice).toFixed(2)} → ${Number(form.price ?? 0).toFixed(2)}
+                  </p>
+                ) : (
+                  <p className="text-[11px] text-mist mt-1">No sale shown — enter a price higher than ${Number(form.price ?? 0).toFixed(2)}.</p>
+                );
+              })()}
+            </Field>
             <Field label="Category">
               <select value={form.categoryId ?? ''} onChange={e => update('categoryId', e.target.value)}
                 className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white">
