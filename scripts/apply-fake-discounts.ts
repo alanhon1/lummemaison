@@ -269,7 +269,7 @@ async function main() {
 
 // Bust the live catalogue cache so changes show immediately instead of waiting
 // out the 5-min revalidate window. This CLI can't call revalidateTag in a
-// production request scope, so it pings the deployed /api/admin/revalidate route
+// production request scope, so it pings the deployed /api/revalidate route
 // (authed with SESSION_SECRET). Best-effort: a failure just means the live site
 // refreshes on its own within ~5 minutes.
 async function bustCatalogueCache(): Promise<void> {
@@ -280,7 +280,7 @@ async function bustCatalogueCache(): Promise<void> {
     return;
   }
   try {
-    const res = await fetch(`${target}/api/admin/revalidate`, {
+    const res = await fetch(`${target}/api/revalidate`, {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-revalidate-secret': secret },
       body: JSON.stringify({ tag: 'catalogue' }),
