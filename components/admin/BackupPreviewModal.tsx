@@ -1,14 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Download } from 'lucide-react';
 import { categories } from '@/lib/products';
+import { discountPercent } from '@/lib/fake-discount';
 
 interface PreviewProduct {
   id: number;
   name: string;
   price: number;
   categoryId: string;
+  originalPrice?: number;
 }
 
 const CATEGORY_NAME = new Map(categories.map(c => [c.id, c.name]));
@@ -40,9 +42,17 @@ export default function BackupPreviewModal({ name, onClose }: { name: string; on
               {name}{rows ? ` · ${rows.length} products` : ''}
             </p>
           </div>
-          <button onClick={onClose} className="text-mist hover:text-charcoal flex-shrink-0 ml-3">
-            <X size={18} />
-          </button>
+          <div className="flex items-center gap-2 flex-shrink-0 ml-3">
+            <a
+              href={`/api/admin/backup/export?name=${encodeURIComponent(name)}`}
+              className="btn-gold text-xs inline-flex items-center gap-1.5 px-3 py-1.5"
+            >
+              <Download size={13} /> Excel
+            </a>
+            <button onClick={onClose} className="text-mist hover:text-charcoal">
+              <X size={18} />
+            </button>
+          </div>
         </div>
         <div className="p-6 overflow-y-auto">
           {error && <p className="text-sm text-rose-600">{error}</p>}
@@ -54,18 +64,25 @@ export default function BackupPreviewModal({ name, onClose }: { name: string; on
                   <th className="text-left px-3 py-2 font-semibold">ID</th>
                   <th className="text-left px-3 py-2 font-semibold">Name</th>
                   <th className="text-right px-3 py-2 font-semibold">Price</th>
+                  <th className="text-right px-3 py-2 font-semibold">Was</th>
+                  <th className="text-right px-3 py-2 font-semibold">% Off</th>
                   <th className="text-left px-3 py-2 font-semibold">Category</th>
                 </tr>
               </thead>
               <tbody>
-                {rows.map((p, i) => (
+                {rows.map((p, i) => {
+                  const pct = discountPercent(p.price, p.originalPrice);
+                  return (
                   <tr key={p.id} className={`border-t border-bone ${i % 2 ? 'bg-cream/30' : ''}`}>
                     <td className="px-3 py-1.5 font-mono text-mist whitespace-nowrap">#{p.id}</td>
                     <td className="px-3 py-1.5 text-charcoal">{p.name}</td>
                     <td className="px-3 py-1.5 text-right text-charcoal whitespace-nowrap">${p.price}</td>
+                    <td className="px-3 py-1.5 text-right text-mist whitespace-nowrap">{pct > 0 ? `$${p.originalPrice}` : '—'}</td>
+                    <td className="px-3 py-1.5 text-right whitespace-nowrap">{pct > 0 ? <span className="text-gold-dark font-semibold">−{pct}%</span> : '—'}</td>
                     <td className="px-3 py-1.5 text-mist">{CATEGORY_NAME.get(p.categoryId) ?? p.categoryId}</td>
                   </tr>
-                ))}
+                  );
+                })}
               </tbody>
             </table>
           )}
