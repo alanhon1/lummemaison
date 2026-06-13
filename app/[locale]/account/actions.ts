@@ -76,44 +76,28 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
     return { error: 'Password must be at least 8 characters.' };
   }
 
-  // Two-step flow so the customer must confirm their email before they can
-  // sign in:
+  // Email confirmation is OPTIONAL (see migration 024_email_optional). We create
+  // the account already confirmed in Supabase so the customer can sign in
+  // immediately — a failed confirmation email must never lock them out of a
+  // store they're trying to buy from. Whether they actually verify their address
+  // is tracked separately in customer_profiles.email_verified (flipped to true
+  // in /auth/confirm), which powers the admin "Email not confirmed" badge.
   //
-  //   1. admin.generateLink({ type: 'signup' }) — creates the auth.users row
-  //      (unconfirmed) and returns an action_link we can mail ourselves.
-  //      Synchronous, so the FK to customer_profiles is guaranteed valid by
-  //      the time we INSERT (this was the race that previously surfaced as
-  //      "customer_profiles_user_id_fkey" errors on anon.signUp).
-  //   2. sendSignupConfirmationEmail() — sends the action_link via our own
-  //      Nodemailer (lib/email/mailer.ts) instead of Supabase's internal
-  //      SMTP, which is rate-limited at 3/hour on the free tier and was
-  //      blocking real signups in production.
-  //
-  // When the customer clicks the link, Supabase verifies the token and
-  // redirects to /<locale>/account/login?confirmed=1, where the LoginForm
-  // surfaces a success banner.
+  // admin.createUser is synchronous and returns the user, so the FK from
+  // customer_profiles -> auth.users is valid by the time we INSERT (this was the
+  // race that previously surfaced as "customer_profiles_user_id_fkey" errors on
+  // anon.signUp). It sends no email of its own.
   const admin = createServiceClient();
-  const origin = await getOrigin();
-  const { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
-    type: 'signup',
+  const { data: created, error: createError } = await admin.auth.admin.createUser({
     email: input.email,
     password: input.password,
-    options: {
-      data: { full_name: input.fullName },
-    },
+    email_confirm: true,
+    user_metadata: { full_name: input.fullName },
   });
-  if (linkError) return { error: linkError.message };
-  const user = linkData.user;
-  const hashedToken = linkData.properties?.hashed_token;
-  if (!user || !hashedToken) return { error: 'Unable to create account. Please try again.' };
-
-  // Don't use linkData.properties.action_link — that's a Supabase-hosted URL
-  // and the verify+redirect dance over there can't set auth cookies on OUR
-  // domain. Instead build a URL to our own /auth/confirm route handler, which
-  // calls supabase.auth.verifyOtp on the SSR client so cookies land on
-  // lumeemaison.com. After verification we redirect into /[locale]/account.
-  const nextPath = `${localePath(input.locale, '/account')}?welcome=1`;
-  const confirmUrl = `${origin}/auth/confirm?token_hash=${encodeURIComponent(hashedToken)}&type=email&next=${encodeURIComponent(nextPath)}`;
+  if (createError || !created?.user) {
+    return { error: createError?.message ?? 'Unable to create account. Please try again.' };
+  }
+  const user = created.user;
 
   const { error: profileError } = await admin.from('customer_profiles').insert({
     user_id: user.id,
@@ -133,40 +117,46 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
     return { error: profileError.message };
   }
 
-  // Send the confirmation email. If the mailer is misconfigured the user
-  // still exists with their profile — surfacing the error here lets them
-  // retry without having to re-enter the whole form (and without orphaning
-  // the auth row, which would block them from retrying with the same email).
-  const sendResult = await sendSignupConfirmationEmail({
-    customerName: input.fullName,
-    customerEmail: input.email,
-    confirmUrl,
-  });
-  if (!sendResult.ok) {
-    // Log the precise cause server-side (including which env vars are missing,
-    // the usual culprit in production) but show the customer a friendly,
-    // non-technical message — "SMTP_FROM missing" means nothing to them.
-    const missing = missingEmailEnv();
-    console.error(
-      '[signup] confirmation email failed for',
-      input.email,
-      '— reason:',
-      sendResult.error ?? 'unknown',
-      missing.length ? `— missing env: ${missing.join(', ')}` : '',
-    );
-    return {
-      error:
-        "Your account was created, but we couldn't send the confirmation email right now. Please contact support and we'll confirm your account.",
-    };
+  // Fire the confirmation/verify email but DON'T block signup on it. The account
+  // already works; a delivery failure just leaves email_verified=false, which the
+  // team sees via the admin badge. The link is a magic link that both signs them
+  // in and flips email_verified to true on /auth/confirm.
+  try {
+    const origin = await getOrigin();
+    const { data: linkData } = await admin.auth.admin.generateLink({
+      type: 'magiclink',
+      email: input.email,
+    });
+    const hashedToken = linkData?.properties?.hashed_token;
+    if (hashedToken) {
+      const nextPath = `${localePath(input.locale, '/account')}?welcome=1`;
+      const confirmUrl = `${origin}/auth/confirm?token_hash=${encodeURIComponent(hashedToken)}&type=magiclink&next=${encodeURIComponent(nextPath)}`;
+      const sendResult = await sendSignupConfirmationEmail({
+        customerName: input.fullName,
+        customerEmail: input.email,
+        confirmUrl,
+      });
+      if (!sendResult.ok) {
+        const missing = missingEmailEnv();
+        console.error(
+          '[signup] confirmation email failed for',
+          input.email,
+          '— reason:',
+          sendResult.error ?? 'unknown',
+          missing.length ? `— missing env: ${missing.join(', ')}` : '',
+        );
+      }
+    }
+  } catch (e) {
+    console.error('[signup] confirmation email threw for', input.email, e);
   }
 
-  // Redirect to login with a banner — the customer must confirm before they
-  // can sign in. Preserve returnTo so we still land them where they intended
-  // to go (e.g. checkout) once they're authenticated.
+  // Log the customer straight in (no inbox gate to wait behind anymore) and send
+  // them where they were headed, e.g. back to checkout.
+  const supabase = await createClient();
+  await supabase.auth.signInWithPassword({ email: input.email, password: input.password });
   const returnTo = String(formData.get('returnTo') ?? '');
-  const params = new URLSearchParams({ checkInbox: '1' });
-  if (returnTo) params.set('returnTo', returnTo);
-  redirect(`${localePath(input.locale, '/account/login')}?${params.toString()}`);
+  redirect(returnTo ? safeReturnTo(returnTo, input.locale) : localePath(input.locale, '/account'));
 }
 
 function safeReturnTo(value: string, locale: string): string {
@@ -190,22 +180,27 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  let { error } = await supabase.auth.signInWithPassword({ email, password });
 
+  // Email confirmation is optional now (see migration 024). A straggler created
+  // before that change (or via another path) may still be unconfirmed in GoTrue,
+  // which blocks login BEFORE the password is checked. Confirm on the fly and
+  // retry once — the retry still validates the password, so this grants no access
+  // it shouldn't, and email_verified is left untouched so the admin badge stays
+  // accurate.
   if (error) {
-    // GoTrue checks email-confirmation BEFORE password — so an unconfirmed
-    // user gets "Email not confirmed" regardless of whether the password is
-    // right or wrong. Surface a dedicated message so the customer knows to
-    // check their inbox instead of thinking they've mistyped the password.
     const code = (error as { code?: string }).code;
     const msg = error.message?.toLowerCase() ?? '';
     if (code === 'email_not_confirmed' || msg.includes('not confirmed')) {
-      return {
-        error: 'Your email is not confirmed yet. Please check your inbox for the confirmation link before signing in.',
-      };
+      const found = await findUserByEmail(email);
+      if (found) {
+        const admin = createServiceClient();
+        await admin.auth.admin.updateUserById(found.id, { email_confirm: true });
+        ({ error } = await supabase.auth.signInWithPassword({ email, password }));
+      }
     }
-    return { error: error.message };
   }
+  if (error) return { error: error.message };
   redirect(returnTo ? safeReturnTo(returnTo, locale) : localePath(locale, '/account'));
 }
 
@@ -222,8 +217,16 @@ export async function resendConfirmation(_prev: FormState, formData: FormData): 
   if (!found) return { success: true };
 
   const admin = createServiceClient();
-  const { data: got } = await admin.auth.admin.getUserById(found.id);
-  if (!got?.user || got.user.email_confirmed_at) return { success: true };
+  // Every account is confirmed in auth.users now (so login works without email),
+  // so email_confirmed_at no longer signals whether the customer verified. Gate on
+  // our own flag: only resend to someone who hasn't actually verified yet. Still
+  // report success either way so this can't probe which emails exist.
+  const { data: prof } = await admin
+    .from('customer_profiles')
+    .select('email_verified')
+    .eq('user_id', found.id)
+    .maybeSingle();
+  if (!prof || prof.email_verified) return { success: true };
 
   const { data: linkData, error } = await admin.auth.admin.generateLink({
     type: 'magiclink',

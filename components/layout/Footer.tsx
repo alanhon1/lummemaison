@@ -6,6 +6,7 @@ import { siteConfig } from '@/lib/site-config';
 import { localePath } from '@/lib/i18n';
 import { MessageCircle, Send, ChevronDown } from 'lucide-react';
 import DisclaimerReset from '@/components/disclaimer/DisclaimerReset';
+import ReportIssueLink from '@/components/layout/ReportIssueLink';
 
 function SectionHeader({ title }: { title: string }) {
   return (
@@ -139,6 +140,7 @@ export default function Footer() {
             <Link href={localePath(locale, '/privacy')} className="text-xs text-cream/40 hover:text-gold transition-colors">
               Privacy Policy
             </Link>
+            <ReportIssueLink />
             <DisclaimerReset />
           </div>
         </div>

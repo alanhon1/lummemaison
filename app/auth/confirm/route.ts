@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, createServiceClient } from '@/lib/supabase/server';
 
 // Signup-confirmation callback. The signup server action mails a link that
 // points here with ?token_hash=<hash>&type=email&next=<path>. We hand the
@@ -30,6 +30,18 @@ export async function GET(request: NextRequest) {
   if (error) {
     const reason = error.message.toLowerCase().includes('expired') ? 'expired' : 'invalid';
     return NextResponse.redirect(`${origin}/account/login?confirmError=${reason}`);
+  }
+
+  // Record that the customer actually verified their address. Every account is
+  // now confirmed in auth.users up-front (so login always works), so this
+  // separate flag — not email_confirmed_at — is what clears the admin
+  // "Email not confirmed" badge. verifyOtp just established the session, so
+  // getUser() returns the verified user; write with the service client so the
+  // update never depends on RLS column permissions.
+  const { data: { user } } = await supabase.auth.getUser();
+  if (user) {
+    const admin = createServiceClient();
+    await admin.from('customer_profiles').update({ email_verified: true }).eq('user_id', user.id);
   }
 
   return NextResponse.redirect(`${origin}${safeNext}`);

@@ -49,6 +49,7 @@ interface Profile {
   fedex_account: string | null;
   customer_code: string | null;
   created_at: string;
+  email_verified: boolean;
 }
 
 interface PageProps {
@@ -123,6 +124,11 @@ export default async function UserDetailPage({ params }: PageProps) {
         <div>
           <p className="text-[10px] uppercase tracking-widest text-mist mb-1">Email</p>
           <p className="text-sm text-charcoal">{email || '—'}</p>
+          {!profile.email_verified && (
+            <span className="inline-block mt-1.5 text-[10px] uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+              Email not confirmed — the customer may be unreachable by email
+            </span>
+          )}
         </div>
         <div>
           <p className="text-[10px] uppercase tracking-widest text-mist mb-1">Phone</p>

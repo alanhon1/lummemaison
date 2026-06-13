@@ -224,13 +224,6 @@ export default function PaymentStep({ payment, serverError }: Props) {
           <p>{t('payment.wise.warnings.feesAtSender')}</p>
         </div>
 
-        <div className="bg-gold/10 border border-gold-dark/40 rounded-md p-4 mb-5 text-sm text-charcoal">
-          <p className="font-semibold tracking-wider uppercase text-xs text-gold-dark mb-1">
-            {t('payment.wise.reference.label')}
-          </p>
-          <p>{t('payment.wise.reference.body')}</p>
-        </div>
-
         {wiseFields.length === 0 ? (
           <p className="text-sm text-mist italic">{t('payment.wise.notConfigured')}</p>
         ) : (

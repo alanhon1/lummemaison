@@ -4,7 +4,7 @@ import { useActionState, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Search, X } from 'lucide-react';
-import { updateProfile, logout, type FormState } from '@/app/[locale]/account/actions';
+import { updateProfile, logout, resendConfirmation, type FormState } from '@/app/[locale]/account/actions';
 import { localePath } from '@/lib/i18n';
 import CountrySelect from './CountrySelect';
 import { findCountry, resolveCountryCode } from '@/lib/countries';
@@ -19,6 +19,7 @@ interface Profile {
   state_province: string | null;
   postal_code: string;
   fedex_account: string | null;
+  email_verified: boolean;
 }
 
 interface OrderRow {
@@ -107,6 +108,8 @@ export default function DashboardClient({
         </div>
 
         <p className="text-sm text-mist mb-6">{email}</p>
+
+        {!profile.email_verified && <EmailNotConfirmedBanner email={email} locale={locale} />}
 
         <form action={formAction} onChange={() => setDirty(true)} className="space-y-4">
           <Labelled label={t('fields.fullName')}>
@@ -336,6 +339,42 @@ function Labelled({
       </label>
       {children}
       {hint && <p className="text-xs text-mist mt-1.5">{hint}</p>}
+    </div>
+  );
+}
+
+// Shown to customers who signed up but never verified their email. Email
+// confirmation is optional (they can use the account as-is), so this is an FYI
+// + a one-click resend — not a hard gate.
+function EmailNotConfirmedBanner({ email, locale }: { email: string; locale: string }) {
+  const [state, formAction, pending] = useActionState(resendConfirmation, {} as FormState);
+  return (
+    <div className="mb-6 rounded-md border border-amber-300 bg-amber-50 p-4">
+      <p className="text-sm font-semibold text-amber-900">Your email isn&apos;t confirmed yet</p>
+      <p className="mt-1 text-sm text-amber-800">
+        We weren&apos;t able to verify your email address, so our team may be unable to reach you about
+        your orders — shipping updates, payment confirmation, and similar. You can keep using your
+        account as it is. If that&apos;s okay with you, no action is needed; otherwise, please confirm
+        your email so we can stay in touch.
+      </p>
+      {state.success ? (
+        <p className="mt-3 text-sm font-medium text-emerald-700">
+          Confirmation email sent. Please check your inbox (and your spam folder).
+        </p>
+      ) : (
+        <form action={formAction} className="mt-3 flex flex-wrap items-center gap-3">
+          <input type="hidden" name="email" value={email} />
+          <input type="hidden" name="locale" value={locale} />
+          <button
+            type="submit"
+            disabled={pending}
+            className="text-xs font-semibold uppercase tracking-widest rounded-md border border-amber-600 px-4 py-2 text-amber-900 hover:bg-amber-100 transition-colors disabled:opacity-50"
+          >
+            {pending ? 'Sending…' : 'Resend confirmation email'}
+          </button>
+          {state.error && <span className="text-xs text-red-600">{state.error}</span>}
+        </form>
+      )}
     </div>
   );
 }

@@ -100,6 +100,15 @@ body {
   }
 
   /* Buttons */
+  /* touch-action: manipulation removes the ~300ms double-tap-zoom delay mobile
+     browsers add to tappable elements — the usual cause of "the button didn't
+     respond" on phones. Applies to both <button> and <Link> (.btn-* is used on
+     anchors too). */
+  .btn-primary, .btn-secondary, .btn-gold, .btn-whatsapp, .btn-telegram {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(201, 169, 110, 0.25);
+    cursor: pointer;
+  }
   .btn-primary {
     display: inline-flex;
     align-items: center;

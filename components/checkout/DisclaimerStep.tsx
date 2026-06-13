@@ -98,7 +98,7 @@ export default function DisclaimerStep() {
         ))}
       </div>
 
-      <label className="flex items-start gap-3 bg-white border border-bone rounded-lg p-5">
+      <label className="flex items-start gap-3 bg-white border border-bone rounded-lg p-5 cursor-pointer select-none [touch-action:manipulation]">
         <input
           type="checkbox"
           checked={allChecked}
@@ -112,20 +112,23 @@ export default function DisclaimerStep() {
               fragileItems: v,
             });
           }}
-          className="mt-0.5 w-4 h-4 accent-gold"
+          className="mt-0.5 w-5 h-5 shrink-0 accent-gold cursor-pointer"
         />
         <span className="text-sm text-charcoal">{t('disclaimers.acceptAll')}</span>
       </label>
 
-      <div className="flex flex-col-reverse sm:flex-row gap-3 sm:justify-end">
+      <div className="flex flex-col-reverse sm:flex-row sm:items-center gap-3 sm:justify-end">
+        {!allChecked && (
+          <p className="text-xs text-mist sm:mr-auto">{t('disclaimers.mustAccept')}</p>
+        )}
         <button
           type="button"
           onClick={() => router.push(localePath(locale, '/checkout/shipping'))}
-          className="text-xs font-semibold tracking-widest uppercase px-6 py-3 rounded-md border border-charcoal/30 text-charcoal hover:border-gold-dark hover:text-gold-dark transition-colors"
+          className="text-xs font-semibold tracking-widest uppercase px-6 py-3 rounded-md border border-charcoal/30 text-charcoal hover:border-gold-dark hover:text-gold-dark transition-colors [touch-action:manipulation]"
         >
           {t('back')}
         </button>
-        <button type="submit" disabled={!allChecked} className="btn-gold disabled:opacity-50">
+        <button type="submit" disabled={!allChecked} className="btn-gold disabled:opacity-50 disabled:cursor-not-allowed">
           {t('disclaimers.continue')}
         </button>
       </div>

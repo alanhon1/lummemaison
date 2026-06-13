@@ -199,6 +199,7 @@
       "title": "Disclaimers & policies",
       "subtitle": "Please review and accept the following before payment.",
       "acceptAll": "I have read and agree to all of the above.",
+      "mustAccept": "Please tick the box above to continue.",
       "continue": "Continue to payment",
       "shipping": {
         "heading": "Shipping",
@@ -514,6 +515,22 @@
       "assistantDesc": "Ask direct questions and get instant answers",
       "assistantCta": "Chat with our assistant"
     }
+  },
+  "report": {
+    "trigger": "Report an issue",
+    "title": "Report an issue",
+    "subtitle": "Found a bug or something not working? Let us know and we'll look into it.",
+    "messageLabel": "What went wrong?",
+    "messagePlaceholder": "Describe the issue — what you were doing, what happened, and on which page.",
+    "emailLabel": "Your email",
+    "optional": "(optional)",
+    "emailPlaceholder": "you@example.com — so we can follow up",
+    "submit": "Send report",
+    "submitting": "Sending…",
+    "successTitle": "Thank you",
+    "successBody": "Your report has been sent to our team. We appreciate you helping us improve.",
+    "done": "Done",
+    "close": "Close"
   },
   "footer": {
     "company": "Company",

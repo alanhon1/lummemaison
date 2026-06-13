@@ -15,7 +15,7 @@ export default async function AdminUsersPage() {
 
   const [authResult, profilesResult, ordersResult] = await Promise.all([
     admin.auth.admin.listUsers({ perPage: 1000 }),
-    admin.from('customer_profiles').select('user_id, full_name, phone, customer_code, city, country, created_at'),
+    admin.from('customer_profiles').select('user_id, full_name, phone, customer_code, city, country, created_at, email_verified'),
     admin.from('orders').select('user_id, total_cents, status'),
   ]);
 
@@ -28,26 +28,26 @@ export default async function AdminUsersPage() {
     );
   }
 
-  // Build a map of confirmed auth users keyed by ID
-  const confirmedMap = new Map(
-    (authResult.data?.users ?? [])
-      .filter(u => u.email_confirmed_at !== null)
-      .map(u => [u.id, u]),
+  // Map every auth user by ID — we now list all customers (email confirmation is
+  // optional), reading the address from auth.users and the verified state from
+  // our own customer_profiles.email_verified flag.
+  const authMap = new Map(
+    (authResult.data?.users ?? []).map(u => [u.id, u]),
   );
 
   const orderRows = ordersResult.data ?? [];
 
   const rows: UserRow[] = (profilesResult.data ?? [])
-    .filter(p => confirmedMap.has(p.user_id as string))
     .map(p => {
-      const authUser = confirmedMap.get(p.user_id as string)!;
+      const authUser = authMap.get(p.user_id as string);
       const userOrders = orderRows.filter(
         o => o.user_id === p.user_id && o.status !== 'cancelled',
       );
       return {
         user_id: p.user_id as string,
         full_name: (p.full_name as string) ?? '',
-        email: authUser.email ?? '',
+        email: authUser?.email ?? '',
+        email_verified: (p.email_verified as boolean) ?? false,
         phone: (p.phone as string) ?? '',
         customer_code: (p.customer_code as string | null) ?? null,
         city: (p.city as string) ?? '',
