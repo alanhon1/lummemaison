@@ -15,6 +15,7 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const returnTo = searchParams.get('returnTo') ?? '';
   const checkInbox = searchParams.get('checkInbox') === '1';
+  const accountCreated = searchParams.get('created') === '1';
   const confirmedOk = searchParams.get('confirmed') === '1';
   const confirmError = searchParams.get('confirmError');
   const passwordReset = searchParams.get('passwordReset') === '1';
@@ -32,6 +33,11 @@ export default function LoginForm() {
       <input type="hidden" name="locale" value={locale} />
       {returnTo && <input type="hidden" name="returnTo" value={returnTo} />}
 
+      {accountCreated && (
+        <p className="text-sm text-green-800 bg-green-50 border border-green-200 px-3 py-2 rounded-md" role="status">
+          {t('login.accountCreated')}
+        </p>
+      )}
       {checkInbox && (
         <p className="text-sm text-charcoal bg-gold/10 border border-gold/30 px-3 py-2 rounded-md" role="status">
           {t('login.checkInbox')}

@@ -70,6 +70,7 @@
       "signUp": "Create one",
       "forgotPassword": "Forgot your password?",
       "checkInbox": "A confirmation email was sent — please check your inbox before signing in.",
+      "accountCreated": "Account created — please sign in below.",
       "confirmed": "Email confirmed. You can sign in now.",
       "confirmExpired": "That confirmation link has expired. Please sign up again or contact support.",
       "confirmInvalid": "That confirmation link is invalid or already used.",

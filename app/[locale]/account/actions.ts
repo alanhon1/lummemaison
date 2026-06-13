@@ -151,12 +151,12 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
     console.error('[signup] confirmation email threw for', input.email, e);
   }
 
-  // Log the customer straight in (no inbox gate to wait behind anymore) and send
-  // them where they were headed, e.g. back to checkout.
-  const supabase = await createClient();
-  await supabase.auth.signInWithPassword({ email: input.email, password: input.password });
+  // Send the customer to the login page to sign in themselves (no auto-login),
+  // preserving returnTo so they still land where they intended (e.g. checkout).
   const returnTo = String(formData.get('returnTo') ?? '');
-  redirect(returnTo ? safeReturnTo(returnTo, input.locale) : localePath(input.locale, '/account'));
+  const params = new URLSearchParams({ created: '1' });
+  if (returnTo) params.set('returnTo', returnTo);
+  redirect(`${localePath(input.locale, '/account/login')}?${params.toString()}`);
 }
 
 function safeReturnTo(value: string, locale: string): string {
@@ -258,6 +258,24 @@ export async function resendConfirmation(_prev: FormState, formData: FormData): 
     return { error: "Couldn't resend the email right now. Please try again shortly." };
   }
   return { success: true };
+}
+
+// Re-reads the signed-in customer's verification state. Used by the account
+// banner's "I've confirmed" button so a customer who just clicked the email link
+// (in another tab) can clear the notice without a full reload. Reads via the
+// user-scoped client — RLS lets a user read their own profile row.
+export async function checkEmailVerified(): Promise<{ verified: boolean }> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { verified: false };
+  const { data } = await supabase
+    .from('customer_profiles')
+    .select('email_verified')
+    .eq('user_id', user.id)
+    .maybeSingle();
+  return { verified: !!data?.email_verified };
 }
 
 // ---------------------------------------------------------------------------

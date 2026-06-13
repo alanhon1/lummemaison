@@ -4,7 +4,7 @@ import { useActionState, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft, Search, X } from 'lucide-react';
-import { updateProfile, logout, resendConfirmation, type FormState } from '@/app/[locale]/account/actions';
+import { updateProfile, logout, resendConfirmation, checkEmailVerified, type FormState } from '@/app/[locale]/account/actions';
 import { localePath } from '@/lib/i18n';
 import CountrySelect from './CountrySelect';
 import { findCountry, resolveCountryCode } from '@/lib/countries';
@@ -348,6 +348,33 @@ function Labelled({
 // + a one-click resend — not a hard gate.
 function EmailNotConfirmedBanner({ email, locale }: { email: string; locale: string }) {
   const [state, formAction, pending] = useActionState(resendConfirmation, {} as FormState);
+  const [checking, setChecking] = useState(false);
+  // null = not checked yet, true = confirmed, false = checked but still not confirmed.
+  const [checkedVerified, setCheckedVerified] = useState<boolean | null>(null);
+
+  async function handleCheck() {
+    setChecking(true);
+    try {
+      const r = await checkEmailVerified();
+      setCheckedVerified(r.verified);
+    } finally {
+      setChecking(false);
+    }
+  }
+
+  // A re-check that comes back verified replaces the warning with a success note,
+  // so a customer who just clicked the email link doesn't need to reload.
+  if (checkedVerified === true) {
+    return (
+      <div className="mb-6 rounded-md border border-emerald-300 bg-emerald-50 p-4">
+        <p className="text-sm font-semibold text-emerald-900">Email confirmed</p>
+        <p className="mt-1 text-sm text-emerald-800">
+          Thank you — your email address is verified. We can now reach you about your orders.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="mb-6 rounded-md border border-amber-300 bg-amber-50 p-4">
       <p className="text-sm font-semibold text-amber-900">Your email isn&apos;t confirmed yet</p>
@@ -359,7 +386,8 @@ function EmailNotConfirmedBanner({ email, locale }: { email: string; locale: str
       </p>
       {state.success ? (
         <p className="mt-3 text-sm font-medium text-emerald-700">
-          Confirmation email sent. Please check your inbox (and your spam folder).
+          Confirmation email sent. Please check your inbox (and your spam folder), then use
+          “I&apos;ve confirmed — check now”.
         </p>
       ) : (
         <form action={formAction} className="mt-3 flex flex-wrap items-center gap-3">
@@ -368,13 +396,30 @@ function EmailNotConfirmedBanner({ email, locale }: { email: string; locale: str
           <button
             type="submit"
             disabled={pending}
-            className="text-xs font-semibold uppercase tracking-widest rounded-md border border-amber-600 px-4 py-2 text-amber-900 hover:bg-amber-100 transition-colors disabled:opacity-50"
+            className="text-xs font-semibold uppercase tracking-widest rounded-md border border-amber-600 px-4 py-2 text-amber-900 hover:bg-amber-100 transition-colors disabled:opacity-50 [touch-action:manipulation]"
           >
             {pending ? 'Sending…' : 'Resend confirmation email'}
           </button>
           {state.error && <span className="text-xs text-red-600">{state.error}</span>}
         </form>
       )}
+
+      {/* Re-check verification status (e.g. after clicking the email link in another tab). */}
+      <div className="mt-3 flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          onClick={handleCheck}
+          disabled={checking}
+          className="text-xs font-semibold uppercase tracking-widest rounded-md border border-charcoal/30 px-4 py-2 text-charcoal hover:border-gold-dark hover:text-gold-dark transition-colors disabled:opacity-50 [touch-action:manipulation]"
+        >
+          {checking ? 'Checking…' : "I've confirmed — check now"}
+        </button>
+        {checkedVerified === false && (
+          <span className="text-xs text-amber-800">
+            Still not confirmed. Click the link in the confirmation email (check spam too), then try again.
+          </span>
+        )}
+      </div>
     </div>
   );
 }
