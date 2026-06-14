@@ -19,19 +19,27 @@ export default async function ProductsPage({
   const { filter } = await searchParams;
   const products = await getAllProducts();
 
-  // Live stock map — keyed by product id. Products without a row treat as 0.
+  // Live stock map + admin flags — keyed by product id. Missing rows treat as 0.
   const supabase = createServiceClient();
   const { data: stockRows } = await supabase
     .from('product_stock')
-    .select('product_id, stock');
+    .select('product_id, stock, wonder, stock_unknown');
   const stockMap: Record<number, number> = {};
-  for (const r of stockRows ?? []) stockMap[r.product_id] = r.stock;
+  const wonderIds: number[] = [];
+  const unknownIds: number[] = [];
+  for (const r of stockRows ?? []) {
+    stockMap[r.product_id] = r.stock;
+    if (r.wonder) wonderIds.push(r.product_id);
+    if (r.stock_unknown) unknownIds.push(r.product_id);
+  }
 
   return (
     <ProductsClient
       products={products}
       categories={categories}
       stockMap={stockMap}
+      wonderIds={wonderIds}
+      unknownIds={unknownIds}
       initialFilter={filter}
     />
   );

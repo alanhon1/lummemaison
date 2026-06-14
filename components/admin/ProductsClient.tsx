@@ -7,11 +7,14 @@ import { Search, X, Edit2, Trash2, Check, Loader2, LayoutGrid, List } from 'luci
 import Fuse from 'fuse.js';
 import type { Product, Category } from '@/lib/products';
 import { saveProductStockAction } from '@/app/manzura/products/actions';
+import WonderMark from './WonderMark';
 
 interface Props {
   products: Product[];
   categories: Category[];
   stockMap: Record<number, number>;
+  wonderIds?: number[];
+  unknownIds?: number[];
   initialFilter?: string;
 }
 
@@ -145,8 +148,10 @@ function InlineStockCell({
   );
 }
 
-export default function ProductsClient({ products, categories, stockMap, initialFilter }: Props) {
+export default function ProductsClient({ products, categories, stockMap, wonderIds, unknownIds, initialFilter }: Props) {
   const router = useRouter();
+  const wonderSet = useMemo(() => new Set(wonderIds ?? []), [wonderIds]);
+  const unknownSet = useMemo(() => new Set(unknownIds ?? []), [unknownIds]);
   const [search, setSearch] = useState('');
   const [catFilter, setCatFilter] = useState('');
   const [imgFilter, setImgFilter] = useState(initialFilter === 'no-image' ? 'no-image' : '');
@@ -543,17 +548,24 @@ export default function ProductsClient({ products, categories, stockMap, initial
                 href={`/manzura/products/${product.id}`}
                 className="text-xs font-medium text-charcoal line-clamp-2 mb-2 hover:text-gold-dark transition-colors"
               >
-                {nameOf(product)}
+                <span className="inline-flex items-center gap-1">
+                  {nameOf(product)}
+                  {wonderSet.has(product.id) && <WonderMark />}
+                </span>
               </Link>
               <div className="flex items-center justify-between mt-auto pt-1">
                 <span className="text-xs font-semibold text-charcoal">
                   {priceOf(product) > 0 ? `$${priceOf(product)}` : 'POA'}
                 </span>
-                <InlineStockCell
-                  productId={product.id}
-                  initial={effectiveStock(product.id)}
-                  onChange={next => setStockOverrides(prev => ({ ...prev, [product.id]: next }))}
-                />
+                {unknownSet.has(product.id) ? (
+                  <span className="text-purple-700 font-semibold text-xs" title="Unknown — set the real stock">???</span>
+                ) : (
+                  <InlineStockCell
+                    productId={product.id}
+                    initial={effectiveStock(product.id)}
+                    onChange={next => setStockOverrides(prev => ({ ...prev, [product.id]: next }))}
+                  />
+                )}
               </div>
               <div className="flex justify-end gap-1 mt-2 pt-2 border-t border-bone">
                 <Link
@@ -633,7 +645,10 @@ export default function ProductsClient({ products, categories, stockMap, initial
                         className="w-full border border-gold/60 bg-white px-2 py-1 text-xs text-charcoal outline-none focus:border-gold rounded"
                       />
                     ) : (
-                      <span className="line-clamp-1">{nameOf(product)}</span>
+                      <span className="line-clamp-1 inline-flex items-center gap-1">
+                        {nameOf(product)}
+                        {wonderSet.has(product.id) && <WonderMark />}
+                      </span>
                     )}
                   </td>
                   <td className="px-4 py-3 font-semibold text-charcoal">
@@ -666,6 +681,8 @@ export default function ProductsClient({ products, categories, stockMap, initial
                         onChange={e => updateDraft(product, 'stock', e.target.value)}
                         className="w-16 border border-gold/60 bg-white px-1.5 py-1 text-xs text-charcoal outline-none focus:border-gold rounded"
                       />
+                    ) : unknownSet.has(product.id) ? (
+                      <span className="text-purple-700 font-semibold" title="Unknown — set the real stock">???</span>
                     ) : (
                       <InlineStockCell
                         productId={product.id}
