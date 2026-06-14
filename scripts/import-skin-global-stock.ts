@@ -9,7 +9,7 @@ const MAP_PATH = path.join(ROOT, 'scripts', 'skin-global-manual-map.json');
 const SQL_OUT = path.join(ROOT, 'docs', 'superpowers', 'plans', 'stock-import.generated.sql');
 const REPORT_OUT = path.join(ROOT, 'docs', 'superpowers', 'plans', 'stock-import-report.md');
 
-interface Prod { id: number; name: string }
+interface Prod { id: number; name: string; spec: string; desc: string }
 
 function norm(s: string): string {
   return String(s).toUpperCase().replace(/\[[^\]]*\]/g, ' ').replace(/\([^)]*\)/g, ' ').replace(/[^A-Z0-9]/g, '');
@@ -23,6 +23,16 @@ function core(s: string): string {
     .replace(/[^A-Z0-9]/g, '');
 }
 
+// Significant name tokens for fuzzy candidate suggestions (brand/product words,
+// dropping units, sizes, and generic dosage-form words).
+const STOP = new Set(['INJ', 'CREAM', 'SPRAY', 'GEL', 'SERUM', 'MASK', 'TAB', 'TABS', 'AMP', 'VIAL', 'BOX', 'PCS', 'UNIT', 'UNITS', 'PLUS', 'SOLUTION', 'ESSENCE', 'CLEANSER', 'FOAM', 'PACK', 'BOOSTER', 'AMPOULE', 'POWDER', 'THE', 'FOR', 'AND', 'WITH']);
+function tokens(s: string): string[] {
+  return [...new Set(
+    String(s).toUpperCase().replace(/[^A-Z0-9]/g, ' ').split(/\s+/)
+      .filter(t => t.length >= 3 && !/^\d+$/.test(t) && !STOP.has(t)),
+  )];
+}
+
 const wb = xlsx.readFile(XLSX_PATH);
 const rawRows = xlsx.utils.sheet_to_json<(string | number)[]>(wb.Sheets[wb.SheetNames[0]], { header: 1, defval: '' });
 const xlsxItems = rawRows.slice(2)
@@ -31,7 +41,12 @@ const xlsxItems = rawRows.slice(2)
 
 const prodRaw = JSON.parse(readFileSync(PRODUCTS_PATH, 'utf8'));
 const products: Prod[] = (Array.isArray(prodRaw) ? prodRaw : prodRaw.products || Object.values(prodRaw))
-  .map((p: { id: number; name: string }) => ({ id: p.id, name: String(p.name) }));
+  .map((p: { id: number; name: string; specification?: string; description?: string }) => ({
+    id: p.id,
+    name: String(p.name),
+    spec: String(p.specification ?? ''),
+    desc: String(p.description ?? '').slice(0, 90),
+  }));
 
 const manual = JSON.parse(readFileSync(MAP_PATH, 'utf8')).mappings as Record<string, number>;
 
@@ -67,8 +82,19 @@ for (const it of xlsxItems) {
   // core, auto-accept it (flagged 'core' so the owner can skim these).
   const c = byCore.get(core(it.name));
   if (c && c.length === 1) { matched.push({ name: it.name, qty: it.qty, id: c[0].id, how: 'core' }); continue; }
-  // ambiguous or unmatched → report with core candidates
-  const cands = (c ?? n ?? []).slice(0, 6);
+  // ambiguous or unmatched → suggest candidates. Prefer core/normalized hits;
+  // otherwise score all products by shared significant name tokens (top 4).
+  let cands = (c ?? n ?? []).slice(0, 6);
+  if (cands.length === 0) {
+    const itTokens = tokens(it.name);
+    const scored = products
+      .map(p => ({ p, score: tokens(p.name).filter(t => itTokens.includes(t)).length }))
+      .filter(x => x.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 4)
+      .map(x => x.p);
+    cands = scored;
+  }
   report.push({ name: it.name, qty: it.qty, candidates: cands });
 }
 
@@ -116,16 +142,20 @@ const rep = [
   '## Fuzzy auto-matches — please skim (tell me if any are wrong)',
   'These were matched after stripping volume/variant tokens. Usually right, but double-check.',
   '',
-  ...fuzzy.map(m => `- **${m.name}** (qty ${m.qty}) → #${m.id} ${prodById.get(m.id)?.name ?? '?'}`),
+  ...fuzzy.map(m => {
+    const p = prodById.get(m.id);
+    return `- **${m.name}** (qty ${m.qty}) → #${m.id} ${p?.name ?? '?'} — spec: ${p?.spec || '—'}`;
+  }),
   '',
   '## Needs your decision',
   'For each, reply with the site product id (or "skip"). Best-guess candidates shown.',
   '',
   ...report.map(r => {
-    const cands = r.candidates.length
-      ? r.candidates.map(c => `#${c.id} ${c.name}`).join(' · ')
-      : '(no candidates found)';
-    return `- **${r.name}** (qty ${r.qty})\n  - candidates: ${cands}`;
+    if (!r.candidates.length) return `- **${r.name}** (qty ${r.qty}) — (no candidates found)`;
+    const cands = r.candidates
+      .map(c => `\n    - #${c.id} ${c.name} — spec: ${c.spec || '—'}${c.desc ? ` — ${c.desc}…` : ''}`)
+      .join('');
+    return `- **${r.name}** (qty ${r.qty})${cands}`;
   }),
   '',
 ].join('\n');
