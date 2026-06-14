@@ -58,8 +58,15 @@ wonder upserts a row with `wonder=true, stock_unknown=true`.
 
 **Behavior**
 - `stock_unknown=true` → the stock value renders as **"???"**; the system treats
-  it as **0** for ordering (oversell rules already allow 0 = backorder); admin
-  product/stock views show a **warning** to adjust it.
+  it as **0** everywhere stock is read. Because it is 0, the **existing
+  packaging/oversell guard** (admin order detail + `app/manzura/orders/actions.ts`)
+  applies unchanged: a customer can still place the order (oversell allows 0 =
+  backorder), but once payment is verified the order **cannot be advanced to
+  packaging** — it shows the usual "short by N / 재입고 필요" shortfall until the
+  admin fills in real stock. Admin product/stock views show a **warning** to
+  adjust it. No new blocking logic is added; "???" simply reuses the 0-stock path.
+- Adjusting the stock to a real number → **"???" disappears, the number shows**,
+  and `stock_unknown` becomes false while **`wonder` (the (W) mark) stays**.
 - A purple **(W)** icon (hover tooltip "wonder") shows next to the product name in
   `admin/products` (list + detail) and `admin/stock` (stock tab). Reuses the same
   small-inline-mark pattern as `EmailVerifiedMark`.
