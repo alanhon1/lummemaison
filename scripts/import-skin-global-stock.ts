@@ -26,6 +26,23 @@ function core(s: string): string {
 // Significant name tokens for fuzzy candidate suggestions (brand/product words,
 // dropping units, sizes, and generic dosage-form words).
 const STOP = new Set(['INJ', 'CREAM', 'SPRAY', 'GEL', 'SERUM', 'MASK', 'TAB', 'TABS', 'AMP', 'VIAL', 'BOX', 'PCS', 'UNIT', 'UNITS', 'PLUS', 'SOLUTION', 'ESSENCE', 'CLEANSER', 'FOAM', 'PACK', 'BOOSTER', 'AMPOULE', 'POWDER', 'THE', 'FOR', 'AND', 'WITH']);
+// Character-bigram Dice coefficient (0..1) for typo/compound-word tolerance,
+// so 1-letter differences (MAXIBLUE↔MAXYBLUE) and merges (MULTI VITA↔
+// Multivitamin) still surface as candidates.
+function bigrams(s: string): string[] {
+  const out: string[] = [];
+  for (let i = 0; i < s.length - 1; i++) out.push(s.slice(i, i + 2));
+  return out;
+}
+function dice(a: string, b: string): number {
+  if (a.length < 2 || b.length < 2) return a === b ? 1 : 0;
+  const A = bigrams(a);
+  const counts = new Map<string, number>();
+  for (const g of bigrams(b)) counts.set(g, (counts.get(g) ?? 0) + 1);
+  let inter = 0;
+  for (const g of A) { const c = counts.get(g); if (c) { inter++; counts.set(g, c - 1); } }
+  return (2 * inter) / (A.length + bigrams(b).length);
+}
 function tokens(s: string): string[] {
   return [...new Set(
     String(s).toUpperCase().replace(/[^A-Z0-9]/g, ' ').split(/\s+/)
@@ -94,14 +111,16 @@ for (const it of xlsxItems) {
   if (cands.length === 0) {
     const itTokens = tokens(it.name);
     const first = itTokens[0];
+    const itNorm = norm(it.name);
     cands = products
       .map(p => {
         const pt = tokens(p.name);
         let score = pt.filter(t => itTokens.includes(t)).length;
         if (first && pt[0] === first) score += 2; // same leading brand/word
+        score += dice(itNorm, norm(p.name)) * 4; // typo / compound-word similarity
         return { p, score };
       })
-      .filter(x => x.score > 0)
+      .filter(x => x.score > 0.6)
       .sort((a, b) => b.score - a.score)
       .slice(0, 6)
       .map(x => x.p);
