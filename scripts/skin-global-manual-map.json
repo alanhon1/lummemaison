@@ -1,4 +1,22 @@
 {
   "_comment": "Owner-confirmed mappings: xlsx product name -> site product id. Add entries as the owner confirms them. Use 0 to mark 'not on site (skip)'.",
-  "mappings": {}
+  "mappings": {
+    "BOTULAX 100U": 296,
+    "BOTULAX 200U": 297,
+    "BOTULAX 300U": 298,
+    "INNOTOX 50U": 301,
+    "INNOTOX 100U": 302,
+    "METOX 100U": 299,
+    "NABOTA 100u": 303,
+    "NABOTA 150u": 422,
+    "NABOTA 200u": 304,
+    "RENTOX 100u": 312,
+    "RENTOX 200u": 311,
+    "MUCHCAINE 30g": 383,
+    "MUCHCAINE 100g": 381,
+    "MUCHCAINE 500g": 382,
+    "NEO-CAIN CREAM [30G]": 375,
+    "DOXY TAB [30]": 359,
+    "WHEAT GERM AMPOULE 50G": 424
+  }
 }

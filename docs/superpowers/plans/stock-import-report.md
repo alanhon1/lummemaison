@@ -1,8 +1,8 @@
 # Stock Import Report — 298 xlsx products
 
-- Matched (will be in the SQL): **134** (exact/normalized: 112, fuzzy 'core': 22)
+- Matched (will be in the SQL): **150** (exact/normalized: 128, fuzzy 'core': 22)
 - Skipped (manual map = 0, not on site): **0**
-- Needs your decision: **164**
+- Needs your decision: **148**
 
 ## Fuzzy auto-matches — please skim (tell me if any are wrong)
 These were matched after stripping volume/variant tokens. Usually right, but double-check.
@@ -57,12 +57,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **BM HID INJ 200,000 IU / 1 ML** (qty 70)
   - candidates: (no candidates found)
-- **BOTULAX 100U** (qty 30)
-  - candidates: #296 BOTULAX 100 units · #297 BOTULAX 200 units · #298 BOTULAX 300 units
-- **BOTULAX 200U** (qty 36)
-  - candidates: #296 BOTULAX 100 units · #297 BOTULAX 200 units · #298 BOTULAX 300 units
-- **BOTULAX 300U** (qty 21)
-  - candidates: #296 BOTULAX 100 units · #297 BOTULAX 200 units · #298 BOTULAX 300 units
 - **CARTIN INJ  (L-CARNITINE) 1000mg 5mL X 10 amp** (qty 5)
   - candidates: (no candidates found)
 - **CELLEXO BIO-CELLULOSE EXOSOME MASK 30 ML X 5 MASKS** (qty 28)
@@ -117,8 +111,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **DOMINA Medical Whitening Cream 60mg** (qty 9)
   - candidates: (no candidates found)
-- **DOXY TAB [30]** (qty 8)
-  - candidates: #358 Doxy Tab. (300) · #359 Doxy Tab. (30)
 - **DOXY TAB 300** (qty 2)
   - candidates: (no candidates found)
 - **Dr. deep ABP Spot Cream** (qty 1)
@@ -207,10 +199,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **GTM T-TOX PEEL PROF SET (BIG) (6ea 1g x 6ea 10ml)** (qty 3)
   - candidates: (no candidates found)
-- **INNOTOX 100U** (qty 25)
-  - candidates: #301 INNOTOX 50 units · #302 INNOTOX 100 units
-- **INNOTOX 50U** (qty 71)
-  - candidates: #301 INNOTOX 50 units · #302 INNOTOX 100 units
 - **JM SOLUTION BIO-COLLAGEN PDRN FIRMING MASK** (qty 5)
   - candidates: (no candidates found)
 - **JOLLA GREENTEA 1 KG MASK** (qty 2)
@@ -243,30 +231,14 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **MELLAMIN (멜라민 )** (qty 4)
   - candidates: (no candidates found)
-- **METOX 100U** (qty 21)
-  - candidates: #299 METOX 100 units · #300 METOX 200 units
 - **MIRACLE TOUCH UP** (qty 1)
   - candidates: (no candidates found)
-- **MUCHCAINE 100g** (qty 42)
-  - candidates: #381 Muchcaine (100G, Lidocaine+Prilocaine) · #382 MUCHCAINE (500G) · #383 MUCHCAINE (30G)
-- **MUCHCAINE 30g** (qty 0)
-  - candidates: #381 Muchcaine (100G, Lidocaine+Prilocaine) · #382 MUCHCAINE (500G) · #383 MUCHCAINE (30G)
-- **MUCHCAINE 500g** (qty 0)
-  - candidates: #381 Muchcaine (100G, Lidocaine+Prilocaine) · #382 MUCHCAINE (500G) · #383 MUCHCAINE (30G)
 - **MULTI VITA INJ** (qty 26)
   - candidates: (no candidates found)
 - **MULTIPOTEN INJ** (qty 5)
   - candidates: (no candidates found)
-- **NABOTA 100u** (qty 10)
-  - candidates: #303 NABOTA 100 units · #304 NABOTA 200 units · #422 NABOTA 150 Units (Botulinum Toxin Type A)
-- **NABOTA 150u** (qty 69)
-  - candidates: #303 NABOTA 100 units · #304 NABOTA 200 units · #422 NABOTA 150 Units (Botulinum Toxin Type A)
-- **NABOTA 200u** (qty 21)
-  - candidates: #303 NABOTA 100 units · #304 NABOTA 200 units · #422 NABOTA 150 Units (Botulinum Toxin Type A)
 - **NAD+ EXO COLLA EXOCOME** (qty 1)
   - candidates: (no candidates found)
-- **NEO-CAIN CREAM [30G]** (qty 13)
-  - candidates: #375 NEO-CAIN CREAM (30G) · #376 NEO-CAIN CREAM [500G]
 - **NOSCARNA GEL 20g** (qty 12)
   - candidates: (no candidates found)
 - **OASIS REPAIR PN** (qty 3)
@@ -295,10 +267,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **REJURAN I** (qty 3)
   - candidates: (no candidates found)
-- **RENTOX 100u** (qty 23)
-  - candidates: #311 Re N Tox 200 units · #312 RE N TOX 100 units
-- **RENTOX 200u** (qty 30)
-  - candidates: #311 Re N Tox 200 units · #312 RE N TOX 100 units
 - **REVOLAX DEEP** (qty 9)
   - candidates: (no candidates found)
 - **SKINVIVE BY JUVEDERM** (qty 8)
@@ -357,7 +325,7 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **WELLSCAINE PLUS 500g** (qty 22)
   - candidates: (no candidates found)
-- **WHEAT GERM AMPOULE 50G** (qty 19)
-  - candidates: #189 WHEAT GERM AMPOULE · #424 Wheat Germ Ampoule
 - **YOUTHFILL PN WITH LIDOCAINE** (qty 6)
   - candidates: (no candidates found)
+- **ASCORBIC INJ (HUONS)** (qty 2)
+  - candidates: #349 ASCORBIC INJ
