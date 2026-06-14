@@ -93,13 +93,18 @@ for (const it of xlsxItems) {
   let cands = (c ?? n ?? []).slice(0, 6);
   if (cands.length === 0) {
     const itTokens = tokens(it.name);
-    const scored = products
-      .map(p => ({ p, score: tokens(p.name).filter(t => itTokens.includes(t)).length }))
+    const first = itTokens[0];
+    cands = products
+      .map(p => {
+        const pt = tokens(p.name);
+        let score = pt.filter(t => itTokens.includes(t)).length;
+        if (first && pt[0] === first) score += 2; // same leading brand/word
+        return { p, score };
+      })
       .filter(x => x.score > 0)
       .sort((a, b) => b.score - a.score)
-      .slice(0, 4)
+      .slice(0, 6)
       .map(x => x.p);
-    cands = scored;
   }
   report.push({ name: it.name, qty: it.qty, candidates: cands });
 }
