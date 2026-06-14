@@ -487,7 +487,12 @@ export async function updateProfile(
     return { error: 'Please fill in every required field.' };
   }
 
-  const { error } = await supabase
+  // Write with the service role, scoped to this authenticated user's own row.
+  // The profile row is created via the service client at signup; updating it via
+  // the RLS-bound anon client was silently affecting 0 rows for some sessions —
+  // the action returned success but nothing changed (e.g. country never saved).
+  const admin = createServiceClient();
+  const { error } = await admin
     .from('customer_profiles')
     .update({
       full_name: input.fullName,
