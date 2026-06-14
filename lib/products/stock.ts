@@ -34,6 +34,37 @@ export async function getProductStock(productId: number): Promise<number> {
   return map[productId] ?? 0;
 }
 
+export interface StockFlags {
+  stock: number;
+  wonder: boolean;
+  stockUnknown: boolean;
+}
+
+// Reads stock + admin flags for the given ids. Missing rows default to
+// { stock: 0, wonder: false, stockUnknown: false }.
+export async function getStockFlagsMap(productIds: number[]): Promise<Record<number, StockFlags>> {
+  const out: Record<number, StockFlags> = {};
+  for (const id of productIds) out[id] = { stock: 0, wonder: false, stockUnknown: false };
+  if (productIds.length === 0) return out;
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from('product_stock')
+    .select('product_id, stock, wonder, stock_unknown')
+    .in('product_id', productIds);
+  if (error) {
+    console.error('[stock] getStockFlagsMap failed', error.message);
+    return out;
+  }
+  for (const r of data ?? []) {
+    out[r.product_id as number] = {
+      stock: (r.stock as number) ?? 0,
+      wonder: Boolean(r.wonder),
+      stockUnknown: Boolean(r.stock_unknown),
+    };
+  }
+  return out;
+}
+
 // Admin write — upserts the row. Negative values are clamped to 0 so the
 // UI cannot accidentally introduce a CHECK-violating row.
 export async function setProductStock(productId: number, stock: number): Promise<{ ok: boolean; error?: string }> {
@@ -41,7 +72,28 @@ export async function setProductStock(productId: number, stock: number): Promise
   const supabase = createServiceClient();
   const { error } = await supabase
     .from('product_stock')
-    .upsert({ product_id: productId, stock: clamped }, { onConflict: 'product_id' });
+    .upsert(
+      { product_id: productId, stock: clamped, stock_unknown: false },
+      { onConflict: 'product_id' },
+    );
+  if (error) return { ok: false, error: error.message };
+  return { ok: true };
+}
+
+// Toggles the admin-only "wonder" flag. Enabling it also marks stock unknown
+// (the product's real stock isn't known yet → shows "???"). Disabling clears
+// both the flag and the unknown state.
+export async function setProductWonder(productId: number, wonder: boolean): Promise<{ ok: boolean; error?: string }> {
+  const supabase = createServiceClient();
+  // Enabling: mark wonder + unknown (stock resets to 0 / "???"). Disabling:
+  // just clear the flags, leaving the current stock value intact.
+  const { error } = wonder
+    ? await supabase
+        .from('product_stock')
+        .upsert({ product_id: productId, wonder: true, stock_unknown: true, stock: 0 }, { onConflict: 'product_id' })
+    : await supabase
+        .from('product_stock')
+        .upsert({ product_id: productId, wonder: false, stock_unknown: false }, { onConflict: 'product_id' });
   if (error) return { ok: false, error: error.message };
   return { ok: true };
 }
