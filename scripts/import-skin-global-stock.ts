@@ -65,12 +65,14 @@ for (const p of products) {
 
 const matched: { name: string; qty: number; id: number; how: string }[] = [];
 const skipped: string[] = [];
+const wonderList: { name: string; qty: number }[] = [];
 const report: { name: string; qty: number; candidates: Prod[] }[] = [];
 
 for (const it of xlsxItems) {
   if (Object.prototype.hasOwnProperty.call(manual, it.name)) {
     const id = manual[it.name];
     if (id === 0) { skipped.push(it.name); continue; }
+    if (id === -1) { wonderList.push({ name: it.name, qty: it.qty }); continue; }
     matched.push({ name: it.name, qty: it.qty, id, how: 'manual' });
     continue;
   }
@@ -137,8 +139,10 @@ const rep = [
   '',
   `- Matched (will be in the SQL): **${finalMatched.length}** (exact/normalized: ${finalMatched.length - fuzzy.length}, fuzzy 'core': ${fuzzy.length})`,
   `- Skipped (manual map = 0, not on site): **${skipped.length}**`,
+  `- Marked WONDER (no number; toggle in admin after deploy): **${wonderList.length}**`,
   `- Needs your decision: **${report.length}**`,
   '',
+  ...(wonderList.length ? ['## Marked WONDER', ...wonderList.map(w => `- ${w.name} (qty ${w.qty})`), ''] : []),
   '## Fuzzy auto-matches — please skim (tell me if any are wrong)',
   'These were matched after stripping volume/variant tokens. Usually right, but double-check.',
   '',
