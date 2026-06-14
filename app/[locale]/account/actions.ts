@@ -13,6 +13,11 @@ import { missingEmailEnv } from '@/lib/email/mailer';
 
 export type FormState = { error?: string; success?: boolean };
 
+// Email verification is required to sign in as of this timestamp. Accounts
+// created BEFORE it are grandfathered (may sign in unverified) so existing
+// customers are never locked out; accounts created on/after must verify first.
+const VERIFY_REQUIRED_SINCE = '2026-06-13T05:54:43Z';
+
 // Resolves the public-facing absolute origin (https://lumeemaison.com,
 // http://localhost:3000, etc.) so we can build the redirect_to URL that
 // Supabase will send the customer back to after they click the
@@ -169,6 +174,28 @@ function safeReturnTo(value: string, locale: string): string {
   return localePath(locale, '/account');
 }
 
+// Builds a fresh magic-link confirmation URL for an unverified account and
+// emails it (the link both signs the customer in and flips email_verified on
+// /auth/confirm). Best-effort; returns whether the send succeeded.
+async function sendConfirmationLink(email: string, fullName: string | null, locale: string): Promise<{ ok: boolean }> {
+  const admin = createServiceClient();
+  const { data: linkData, error } = await admin.auth.admin.generateLink({ type: 'magiclink', email });
+  const hashedToken = linkData?.properties?.hashed_token;
+  if (error || !hashedToken) {
+    console.error('[confirmation-link] generateLink failed:', error?.message);
+    return { ok: false };
+  }
+  const origin = await getOrigin();
+  const nextPath = `${localePath(locale, '/account')}?welcome=1`;
+  const confirmUrl = `${origin}/auth/confirm?token_hash=${encodeURIComponent(hashedToken)}&type=magiclink&next=${encodeURIComponent(nextPath)}`;
+  const sendResult = await sendSignupConfirmationEmail({
+    customerName: fullName ?? email,
+    customerEmail: email,
+    confirmUrl,
+  });
+  return { ok: sendResult.ok };
+}
+
 export async function login(_prev: FormState, formData: FormData): Promise<FormState> {
   const email = String(formData.get('email') ?? '').trim().toLowerCase();
   const password = String(formData.get('password') ?? '');
@@ -201,6 +228,25 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
     }
   }
   if (error) return { error: error.message };
+
+  // Email verification is required to sign in. Grandfather accounts created
+  // before VERIFY_REQUIRED_SINCE (existing customers stay in); block newer
+  // unverified accounts and re-send them a fresh confirmation link.
+  const { data: { user } } = await supabase.auth.getUser();
+  if (user && new Date(user.created_at).getTime() >= new Date(VERIFY_REQUIRED_SINCE).getTime()) {
+    const admin = createServiceClient();
+    const { data: prof } = await admin
+      .from('customer_profiles')
+      .select('email_verified, full_name')
+      .eq('user_id', user.id)
+      .maybeSingle();
+    if (!prof?.email_verified) {
+      await sendConfirmationLink(email, (prof?.full_name as string | null) ?? null, locale);
+      await supabase.auth.signOut();
+      return { error: 'Please confirm your email before signing in. We just sent a confirmation link — check your inbox and your spam folder.' };
+    }
+  }
+
   redirect(returnTo ? safeReturnTo(returnTo, locale) : localePath(locale, '/account'));
 }
 
