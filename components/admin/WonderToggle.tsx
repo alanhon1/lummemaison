@@ -7,9 +7,11 @@ import WonderMark from './WonderMark';
 
 export default function WonderToggle({
   productId,
+  option = '',
   initialWonder,
 }: {
   productId: number;
+  option?: string;
   initialWonder: boolean;
 }) {
   const [wonder, setWonder] = useState(initialWonder);
@@ -20,7 +22,7 @@ export default function WonderToggle({
     setSaving(true);
     setError(null);
     const next = !wonder;
-    const res = await toggleWonderAction(productId, next);
+    const res = await toggleWonderAction(productId, option, next);
     setSaving(false);
     if (!res.ok) { setError(res.error ?? 'Failed.'); return; }
     setWonder(next);

@@ -69,7 +69,7 @@ function InlineStockCell({
     }
     setSaving(true);
     setError(null);
-    const res = await saveProductStockAction(productId, parsed);
+    const res = await saveProductStockAction(productId, '', parsed);
     setSaving(false);
     if (!res.ok) {
       setError(res.error ?? 'Save failed');
@@ -263,7 +263,7 @@ export default function ProductsClient({ products, categories, stockMap, wonderI
       // Stock → dedicated server action.
       const newStock = Math.max(0, Math.floor(Number.parseInt(d.stock, 10) || 0));
       if (newStock !== effectiveStock(id)) {
-        const res = await saveProductStockAction(id, newStock);
+        const res = await saveProductStockAction(id, '', newStock);
         if (!res.ok) {
           setSaveError(res.error ?? `Failed to save stock for #${id}.`);
           setSavingAll(false);

@@ -6,11 +6,12 @@ import { saveProductStockAction } from '@/app/manzura/products/actions';
 
 interface Props {
   productId: number;
+  option?: string;
   initialStock: number;
   initialUnknown?: boolean;
 }
 
-export default function StockInput({ productId, initialStock, initialUnknown = false }: Props) {
+export default function StockInput({ productId, option = '', initialStock, initialUnknown = false }: Props) {
   const [value, setValue] = useState(String(initialStock));
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<number | null>(null);
@@ -26,7 +27,7 @@ export default function StockInput({ productId, initialStock, initialUnknown = f
     setSaving(true);
     setError(null);
     try {
-      const res = await saveProductStockAction(productId, parsed);
+      const res = await saveProductStockAction(productId, option, parsed);
       if (!res.ok) {
         setError(res.error ?? 'Save failed.');
         return;

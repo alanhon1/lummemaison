@@ -52,10 +52,11 @@ export async function cancelOrder(orderId: number): Promise<{ ok: boolean; error
   const wasStockDeducted = !isTestOrder && stageIndex(order.status as string) >= stageIndex('packaging');
   try {
     const { data: items } = wasStockDeducted
-      ? await admin.from('order_items').select('product_id, quantity').eq('order_id', orderId)
+      ? await admin.from('order_items').select('product_id, quantity, option').eq('order_id', orderId)
       : { data: null };
     if (items && items.length > 0) {
-      const typed = items as Array<{ product_id: number; quantity: number }>;
+      const typed = (items as Array<{ product_id: number; quantity: number; option: string | null }>)
+        .map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option ?? '' }));
       await restoreStockForItems(typed);
       // Mark the original deduction rows as 'cancelled' (greyed in History)…
       await admin
@@ -68,6 +69,7 @@ export async function cancelOrder(orderId: number): Promise<{ ok: boolean; error
       await admin.from('stock_movements').insert(
         typed.map(it => ({
           product_id: it.product_id,
+          option: it.option,
           delta: it.quantity,
           reason: 'cancel_restock',
           order_id: orderId,

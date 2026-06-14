@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
-import { getStockMap } from '@/lib/products/stock';
+import { getStockFlagsMap, stockKey } from '@/lib/products/stock';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { findCountry } from '@/lib/countries';
 import AdminOrderStatusPanel from '@/components/admin/AdminOrderStatusPanel';
@@ -129,9 +129,9 @@ export default async function AdminOrderDetailPage({
   // quantity exceeds the stock we currently hold — the order can't be packed
   // until it's replenished.
   const orderItems = ((items ?? []) as OrderItem[]);
-  const itemStock = await getStockMap(orderItems.map(i => i.product_id));
-  const stockOf = (pid: number) => itemStock[pid] ?? 0;
-  const shortItems = orderItems.filter(i => stockOf(i.product_id) < i.quantity);
+  const itemFlags = await getStockFlagsMap(orderItems.map(i => ({ product_id: i.product_id, option: i.option ?? '' })));
+  const stockOf = (pid: number, option: string | null) => itemFlags[stockKey(pid, option ?? '')]?.stock ?? 0;
+  const shortItems = orderItems.filter(i => stockOf(i.product_id, i.option) < i.quantity);
   const isPacked = ['packaging', 'shipped', 'delivered'].includes(detail.status);
   const showShortfall = shortItems.length > 0 && !isPacked;
 
@@ -391,7 +391,7 @@ export default async function AdminOrderDetailPage({
           </thead>
           <tbody>
             {orderItems.map((it: OrderItem) => {
-              const stock = stockOf(it.product_id);
+              const stock = stockOf(it.product_id, it.option);
               const short = !isPacked && stock < it.quantity;
               return (
               <tr key={it.id} className="border-b border-bone">

@@ -13,6 +13,7 @@ export interface SaveStockResult {
 
 export async function saveProductStockAction(
   productId: number,
+  option: string,
   stock: number,
 ): Promise<SaveStockResult> {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
@@ -21,8 +22,8 @@ export async function saveProductStockAction(
     return { ok: false, error: 'Invalid product id.' };
   }
 
-  const oldStock = await getProductStock(productId);
-  const result = await setProductStock(productId, stock);
+  const oldStock = await getProductStock(productId, option);
+  const result = await setProductStock(productId, option, stock);
   if (!result.ok) return result;
 
   const delta = Math.max(0, Math.floor(stock)) - oldStock;
@@ -30,6 +31,7 @@ export async function saveProductStockAction(
     try {
       await createServiceClient().from('stock_movements').insert({
         product_id: productId,
+        option,
         delta,
         reason: 'adjustment',
       });
@@ -43,6 +45,7 @@ export async function saveProductStockAction(
 
 export async function toggleWonderAction(
   productId: number,
+  option: string,
   wonder: boolean,
 ): Promise<SaveStockResult> {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
@@ -50,5 +53,5 @@ export async function toggleWonderAction(
   if (!Number.isFinite(productId) || productId <= 0) {
     return { ok: false, error: 'Invalid product id.' };
   }
-  return setProductWonder(productId, wonder);
+  return setProductWonder(productId, option, wonder);
 }

@@ -10,7 +10,7 @@ import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
 import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail, sendPaymentVerifiedEmail, sendLowStockAlert } from '@/lib/email/sendOrderEmails';
-import { deductStockForItems, restoreStockForItems, getStockMap } from '@/lib/products/stock';
+import { deductStockForItems, restoreStockForItems, getStockFlagsMap, stockKey } from '@/lib/products/stock';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
 
@@ -124,39 +124,40 @@ export async function updateOrderStatus(
   if (!isTestOrder && stageIndex(current.status) < PACK_IDX && stageIndex(nextStatus) >= PACK_IDX) {
     const { data: items } = await supabase
       .from('order_items')
-      .select('product_id, product_name, unit_cents, quantity')
+      .select('product_id, product_name, unit_cents, quantity, option')
       .eq('order_id', orderId);
     if (items && items.length > 0) {
-      const typed = items as Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }>;
-      // Oversell guard: an order may have been placed for more than we hold in
-      // stock (oversell is allowed on the storefront). Stock must never go
-      // negative, so block the packaging crossing until every item is covered —
-      // the admin replenishes via "add inbound", then this passes. Checked
-      // BEFORE deduction so nothing is taken from the shelf on a failed pack.
-      const stockBefore = await getStockMap(typed.map(i => i.product_id));
-      const short = typed.filter(i => (stockBefore[i.product_id] ?? 0) < i.quantity);
+      const lines = (items as Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number; option: string | null }>)
+        .map(i => ({ ...i, option: i.option ?? '' }));
+      // Oversell guard, per (product_id, option): an order may have been placed
+      // for more than we hold (oversell is allowed). Stock must never go
+      // negative, so block the packaging crossing until every option is covered.
+      // Checked BEFORE deduction so nothing is taken on a failed pack.
+      const flags = await getStockFlagsMap(lines.map(i => ({ product_id: i.product_id, option: i.option })));
+      const stockOf = (i: { product_id: number; option: string }) => flags[stockKey(i.product_id, i.option)]?.stock ?? 0;
+      const short = lines.filter(i => stockOf(i) < i.quantity);
       if (short.length > 0) {
         const detail = short
-          .map(i => `${i.product_name} (재고 ${stockBefore[i.product_id] ?? 0} / 주문 ${i.quantity}, ${i.quantity - (stockBefore[i.product_id] ?? 0)}개 부족)`)
+          .map(i => `${i.product_name}${i.option ? ` (${i.option})` : ''} (재고 ${stockOf(i)} / 주문 ${i.quantity}, ${i.quantity - stockOf(i)}개 부족)`)
           .join(', ');
         return {
           ok: false,
           error: `재고 부족으로 packaging 불가 — 재입고 후 다시 시도하세요: ${detail}`,
         };
       }
-      const deductResult = await deductStockForItems(typed.map(i => ({ product_id: i.product_id, quantity: i.quantity })));
+      const deductResult = await deductStockForItems(lines.map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option })));
       if (!deductResult.ok) {
         return { ok: false, error: `재고 차감 실패: ${deductResult.error}` };
       }
       await supabase.from('stock_movements').insert(
-        typed.map(i => ({ product_id: i.product_id, delta: -i.quantity, reason: 'order', order_id: orderId })),
+        lines.map(i => ({ product_id: i.product_id, option: i.option, delta: -i.quantity, reason: 'order', order_id: orderId })),
       );
-      // Low stock alert: products at/below threshold after deduction.
+      // Low stock alert: options at/below threshold after deduction.
       const LOW = 2;
-      const stockAfter = await getStockMap(typed.map(i => i.product_id));
-      const lowItems = typed
-        .filter(i => (stockAfter[i.product_id] ?? 0) <= LOW)
-        .map(i => ({ id: i.product_id, name: i.product_name, stock: stockAfter[i.product_id] ?? 0 }));
+      const flagsAfter = await getStockFlagsMap(lines.map(i => ({ product_id: i.product_id, option: i.option })));
+      const lowItems = lines
+        .filter(i => (flagsAfter[stockKey(i.product_id, i.option)]?.stock ?? 0) <= LOW)
+        .map(i => ({ id: i.product_id, name: `${i.product_name}${i.option ? ` (${i.option})` : ''}`, stock: flagsAfter[stockKey(i.product_id, i.option)]?.stock ?? 0 }));
       if (lowItems.length > 0) void sendLowStockAlert({ products: lowItems });
     }
   }
@@ -182,10 +183,11 @@ export async function updateOrderStatus(
       try {
         const { data: items } = await supabase
           .from('order_items')
-          .select('product_id, quantity')
+          .select('product_id, quantity, option')
           .eq('order_id', orderId);
         if (items && items.length > 0) {
-          const typed = items as Array<{ product_id: number; quantity: number }>;
+          const typed = (items as Array<{ product_id: number; quantity: number; option: string | null }>)
+            .map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option ?? '' }));
           await restoreStockForItems(typed);
           // Mark the original deduction rows as 'cancelled' (greyed in History)…
           await supabase
@@ -198,6 +200,7 @@ export async function updateOrderStatus(
           await supabase.from('stock_movements').insert(
             typed.map(it => ({
               product_id: it.product_id,
+              option: it.option,
               delta: it.quantity,
               reason: 'cancel_restock',
               order_id: orderId,
@@ -219,10 +222,11 @@ export async function updateOrderStatus(
       try {
         const { data: items } = await supabase
           .from('order_items')
-          .select('product_id, quantity')
+          .select('product_id, quantity, option')
           .eq('order_id', orderId);
         if (items && items.length > 0) {
-          const typed = items as Array<{ product_id: number; quantity: number }>;
+          const typed = (items as Array<{ product_id: number; quantity: number; option: string | null }>)
+            .map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option ?? '' }));
           await restoreStockForItems(typed);
           // Mark the original deduction rows as 'cancelled' (greyed in History)…
           await supabase
@@ -235,6 +239,7 @@ export async function updateOrderStatus(
           await supabase.from('stock_movements').insert(
             typed.map(it => ({
               product_id: it.product_id,
+              option: it.option,
               delta: it.quantity,
               reason: 'cancel_restock',
               order_id: orderId,
