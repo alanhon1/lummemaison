@@ -4400,7 +4400,7 @@
     },
     {
       "id": 112,
-      "name": "TOUCH UP PCL",
+      "name": "MIRACLE TOUCH UP PCL",
       "categoryId": "mesotherapy",
       "specification": "5 vials (2 mL each)",
       "description": "Touch Up PCL is a polycaprolactone-based skin rejuvenation booster supplied in five 2 mL vials, combining PCL microspheres with stem-cell-derived growth factors to induce sustained collagen neosynthesis and tissue regeneration. The PCL scaffold supports long-term fibroblast stimulation while the growth factor component accelerates cellular proliferation and skin matrix renewal for a synergistic biostimulatory effect. It is indicated for skin rejuvenation, laxity improvement, and post-treatment matrix restoration in patients seeking gradual, natural-looking lift.",
@@ -4441,7 +4441,7 @@
     },
     {
       "id": 113,
-      "name": "TOUCH BR",
+      "name": "MIRACLE TOUCH BR",
       "categoryId": "mesotherapy",
       "specification": "5 vials (5 mL each)",
       "description": "Touch BR is a brightening mesotherapy cocktail supplied in five 5 mL vials, formulated with tyrosinase-inhibiting actives, antioxidants, and melanogenesis-suppressing agents to address uneven skin pigmentation and dullness. The multi-target whitening complex reduces melanin synthesis, prevents melanin transfer to keratinocytes, and quenches UV-induced free radical activity to restore an even, luminous skin tone. It is indicated for diffuse pigmentation, melasma, post-inflammatory hyperpigmentation, and facial dullness requiring systemic brightening.",
@@ -13352,7 +13352,7 @@
     },
     {
       "id": 367,
-      "name": "MAXYBLUE INJ",
+      "name": "MAXIBLUE INJ",
       "categoryId": "injections",
       "specification": "10 mL x 10 vials",
       "description": "MAXYBLUE INJ is a sterile multi-trace mineral injectable solution supplying five essential microelements — zinc (Zn), copper (Cu), manganese (Mn), selenium (Se), and chromium (Cr) — in a single 10 mL vial for IV administration. Each element fulfils specific enzymatic roles: zinc supports wound healing and immune function; copper is a co-factor for ceruloplasmin and lysyl oxidase; manganese activates mitochondrial superoxide dismutase; selenium is integral to glutathione peroxidase activity; and chromium enhances insulin receptor sensitivity. Indicated for trace element repletion in patients on IV nutrition, immune support protocols, and metabolic wellness programmes.",
@@ -14541,7 +14541,7 @@
         "SungshimMesoNeedles"
       ],
       "isNew": false,
-      "isSale": true,
+      "isSale": false,
       "isBestSeller": false,
       "inStock": true,
       "image": "/images/products/product-399.webp?v=1779186381303",
@@ -14554,7 +14554,12 @@
       "originalPrice": 27.49,
       "groupId": "sungshim",
       "variantLabel": "meso needles",
-      "groupName": "Sungshim"
+      "groupName": "Sungshim",
+      "notForSale": true,
+      "options": [
+        "30G/13mm",
+        "30G/4mm"
+      ]
     },
     {
       "id": 400,
@@ -14589,7 +14594,14 @@
       "originalPrice": 28.99,
       "groupId": "sungshim",
       "variantLabel": "syringes (for botox)",
-      "groupName": "Sungshim"
+      "groupName": "Sungshim",
+      "notForSale": true,
+      "options": [
+        "0.5mL/30G/8mm",
+        "0.5mL/31G/8mm",
+        "1mL/30G/8mm",
+        "1mL/31G/8mm"
+      ]
     },
     {
       "id": 401,
@@ -14624,7 +14636,11 @@
       "originalPrice": 21.99,
       "groupId": "sungshim",
       "variantLabel": "PEN NEEDLES",
-      "groupName": "Sungshim"
+      "groupName": "Sungshim",
+      "options": [
+        "32G/6mm"
+      ],
+      "notForSale": true
     },
     {
       "id": 402,
@@ -17152,6 +17168,27 @@
       "packaging": "Colorless, transparent solution in multi-layer plastic (polypropylene) containers. Storage: sealed container, room temperature (1–30°C).\n",
       "protocol": "\nHospital/clinical use under an experienced physician's supervision only.\nStandard: IV infusion per physician's prescription, dose adjusted by body weight and condition.\nRate: Infused slowly; rapid infusion must be avoided to prevent adverse reactions.\nReport any side effects to physician immediately during or after infusion.\n\nIngredients (per 100 mL):\nL-Arginine Hydrochloride 1,000 mg (10 mg/mL)\nExcipients: Water for injection\nStorage: Sealed container, room temperature (1–30°C)\nCaution:\nPrescription-only; administer only under experienced medical supervision.\nDo not use in: hypersensitivity to L-Arginine or any component of the formulation.\nUse with caution in: patients with renal or hepatic impairment; electrolyte imbalances (risk of hyperkalemia/hyperchloremic acidosis).\nPossible adverse reactions: nausea, vomiting, flushing, headache, numbness, dizziness, local site reactions.\nBreastfeeding: use with caution; passage into breast milk not fully established — consult physician.\nDo not use if packaging is damaged or solution appears cloudy/discolored.",
       "originalPrice": 16.49
+    },
+    {
+      "id": 480,
+      "name": "Exoderm Premium Bio-Cellulose Mask",
+      "categoryId": "topical-cosmetics",
+      "specification": "40g × 10 sheets",
+      "description": "A premium bio-cellulose sheet mask that wraps both the face and neck in one step. The sheet is fermented from coconut into an ultra-fine, high-density 3D mesh (fiber diameter 20–100nm vs. ~20,000–50,000nm for ordinary pulp sheets), so it clings like a second skin — even into pores and wrinkles — locking in essence and delivering actives effectively without drying out. Powered by a 5-Peptide Complex and 7 plant-derived anti-aging extracts for three core benefits: lifting, anti-aging, and brightening.",
+      "price": 28,
+      "moq": 1,
+      "tags": [
+        "biocellulosemask #sheetmask #faceandneck #necksheetmask #peptidecomplex #5peptide #antiaging #brightening #lifting #niacinamide #adenosine #coppertripeptide #wrinklecare #hydrating #Kbeauty #functionalcosmetic"
+      ],
+      "isNew": false,
+      "isSale": true,
+      "isBestSeller": false,
+      "inStock": true,
+      "image": "https://axamhqgapwguurisgvvi.supabase.co/storage/v1/object/public/product-images/product-480/1781442156252.webp",
+      "indication": "Whitening (brightening) and wrinkle improvement — a Korean functional cosmetic. Targets full-face and neck concerns: forehead and brow lines, eye-area wrinkles, nasolabial folds, face line and double chin, and overall neck wrinkles. Helps firm, even tone, and restore elasticity from face to neck.",
+      "packaging": "40g × 10 sheets (face + neck care set)\n",
+      "protocol": "1. After cleansing, prep skin with toner.\n2. Peel the film from one side of the face mask, press it onto the whole face, then remove the remaining film.\n3. Peel one side of the neck mask, position it on the neck, then remove the remaining film.\n4. After 10–20 minutes, remove the sheet and gently pat the remaining essence into the skin.\nUse immediately after opening · avoid the eye area · avoid broken skin.\n\nIngredients (full INCI)\nWater, Glycerin, Niacinamide, Adenosine, Green Tea (Camellia Sinensis) Leaf Extract, Centella Asiatica Extract, Noni (Morinda Citrifolia) Fruit Extract, Olive (Olea Europaea) Leaf Extract, Red Ginseng (Panax Ginseng) Root Extract, Artemisia Capillaris Extract, Plantago Asiatica (Plantain) Extract, Copper Tripeptide-1, Acetyl Hexapeptide-8, Tripeptide-1, Palmitoyl Pentapeptide-4, Hexapeptide-9, Betaine, Carbomer, Arginine, Xanthan Gum, Hydrolyzed Extensin, Hydrolyzed Ginseng Saponins, 1,2-Hexanediol, Caprylyl Glycol, Ethylhexylglycerin, PEG/PPG-17/6 Copolymer, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Fragrance",
+      "originalPrice": 36.49
     }
   ]
 }
