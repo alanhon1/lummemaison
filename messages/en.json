@@ -120,7 +120,12 @@
       "saving": "Saving…",
       "saved": "Saved.",
       "unsaved": "You have unsaved changes — click Save changes to keep them.",
-      "logout": "Sign out"
+      "logout": "Sign out",
+      "emailConfirmed": "Email confirmed",
+      "emailNotConfirmed": "Email not confirmed",
+      "resendConfirmation": "Resend confirmation",
+      "resending": "Sending…",
+      "confirmationSent": "Confirmation sent ✓"
     },
     "orders": {
       "pageTitle": "Order {number}",

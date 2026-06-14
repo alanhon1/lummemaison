@@ -100,6 +100,7 @@ export default async function AccountPage({ params }: PageProps) {
         <p className="text-sm text-mist mb-10">{t('dashboard.subtitle', { name: profile.full_name })}</p>
         <DashboardClient
           email={user.email ?? ''}
+          emailVerified={profile.email_verified ?? false}
           profile={profile}
           orders={orderRows.map(o => ({
             id: o.id,

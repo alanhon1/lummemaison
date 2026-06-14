@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import EmailVerifiedMark from '@/components/account/EmailVerifiedMark';
 
 export interface UserRow {
   user_id: string;
@@ -76,7 +77,6 @@ export default function UsersClient({ rows }: { rows: UserRow[] }) {
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const safePage = Math.min(page, totalPages);
   const paged = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
-  const unverifiedCount = rows.filter(r => !r.email_verified).length;
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
@@ -85,9 +85,6 @@ export default function UsersClient({ rows }: { rows: UserRow[] }) {
           <h1 className="font-display text-4xl font-light text-charcoal">Users</h1>
           <p className="text-xs text-mist mt-1 tracking-wider">
             {rows.length} customer{rows.length !== 1 ? 's' : ''}
-            {unverifiedCount > 0 && (
-              <span className="text-amber-600"> · {unverifiedCount} email{unverifiedCount !== 1 ? 's' : ''} not confirmed</span>
-            )}
           </p>
         </div>
       </div>
@@ -167,12 +164,10 @@ export default function UsersClient({ rows }: { rows: UserRow[] }) {
                       </span>
                     )}
                   </div>
-                  <p className="text-[11px] text-mist truncate">{u.email}</p>
-                  {!u.email_verified && (
-                    <span className="inline-block mt-1 text-[9px] uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded">
-                      Email not confirmed
-                    </span>
-                  )}
+                  <p className="text-[11px] text-mist flex items-center gap-1">
+                    <span className="truncate">{u.email}</span>
+                    <EmailVerifiedMark verified={u.email_verified} />
+                  </p>
                   <p className="text-[11px] text-mist mt-1">
                     {u.order_count} order{u.order_count !== 1 ? 's' : ''}
                     {u.total_spent_cents > 0 && ` · ${formatTotal(u.total_spent_cents)}`}
@@ -206,12 +201,10 @@ export default function UsersClient({ rows }: { rows: UserRow[] }) {
                     <tr key={u.user_id} className="border-t border-bone hover:bg-cream/50">
                       <td className="px-4 py-3 text-charcoal font-medium whitespace-nowrap">{u.full_name}</td>
                       <td className="px-4 py-3 text-mist text-xs max-w-[14rem]">
-                        <span className="block truncate">{u.email}</span>
-                        {!u.email_verified && (
-                          <span className="inline-block mt-1 text-[9px] uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded whitespace-nowrap">
-                            Not confirmed
-                          </span>
-                        )}
+                        <span className="flex items-center gap-1">
+                          <span className="truncate">{u.email}</span>
+                          <EmailVerifiedMark verified={u.email_verified} />
+                        </span>
                       </td>
                       <td className="px-4 py-3 text-mist text-xs whitespace-nowrap">{u.phone}</td>
                       <td className="px-4 py-3">

@@ -8,6 +8,7 @@ import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { findCountry } from '@/lib/countries';
 import SendMessageForm from '@/components/admin/SendMessageForm';
 import UserAnalyticsSection, { type AnalyticsOrder } from '@/components/admin/UserAnalyticsSection';
+import EmailVerifiedMark from '@/components/account/EmailVerifiedMark';
 
 export const dynamic = 'force-dynamic';
 
@@ -123,12 +124,10 @@ export default async function UserDetailPage({ params }: PageProps) {
       <section className="bg-white border border-bone rounded-sm p-6 grid sm:grid-cols-2 gap-4">
         <div>
           <p className="text-[10px] uppercase tracking-widest text-mist mb-1">Email</p>
-          <p className="text-sm text-charcoal">{email || '—'}</p>
-          {!profile.email_verified && (
-            <span className="inline-block mt-1.5 text-[10px] uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
-              Email not confirmed — the customer may be unreachable by email
-            </span>
-          )}
+          <p className="text-sm text-charcoal flex items-center gap-1.5">
+            <span>{email || '—'}</span>
+            <EmailVerifiedMark verified={profile.email_verified} />
+          </p>
         </div>
         <div>
           <p className="text-[10px] uppercase tracking-widest text-mist mb-1">Phone</p>

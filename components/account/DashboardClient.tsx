@@ -9,6 +9,8 @@ import { localePath } from '@/lib/i18n';
 import CountrySelect from './CountrySelect';
 import { findCountry, resolveCountryCode } from '@/lib/countries';
 import OrderStatusBadge from './OrderStatusBadge';
+import EmailVerifiedMark from './EmailVerifiedMark';
+import ResendConfirmationButton from './ResendConfirmationButton';
 
 interface Profile {
   full_name: string;
@@ -36,10 +38,12 @@ const initialState: FormState = {};
 
 export default function DashboardClient({
   email,
+  emailVerified,
   profile,
   orders,
 }: {
   email: string;
+  emailVerified: boolean;
   profile: Profile;
   orders: OrderRow[];
 }) {
@@ -106,7 +110,17 @@ export default function DashboardClient({
           </form>
         </div>
 
-        <p className="text-sm text-mist mb-6">{email}</p>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-6">
+          <span className="text-sm text-mist inline-flex items-center gap-1.5">
+            {email}
+            <EmailVerifiedMark
+              verified={emailVerified}
+              confirmedLabel={t('dashboard.emailConfirmed')}
+              unconfirmedLabel={t('dashboard.emailNotConfirmed')}
+            />
+          </span>
+          {!emailVerified && <ResendConfirmationButton email={email} locale={locale} />}
+        </div>
 
         <form action={formAction} onChange={() => setDirty(true)} className="space-y-4">
           <Labelled label={t('fields.fullName')}>
