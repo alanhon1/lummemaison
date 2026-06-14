@@ -11,6 +11,7 @@ import AdminOrderStatusPanel from '@/components/admin/AdminOrderStatusPanel';
 import AdminOrderMessages from '@/components/admin/AdminOrderMessages';
 import OrderReceiptModal from '@/components/admin/OrderReceiptModal';
 import OrderAttachments from '@/components/account/OrderAttachments';
+import EmailVerifiedMark from '@/components/account/EmailVerifiedMark';
 
 export const dynamic = 'force-dynamic';
 
@@ -113,11 +114,13 @@ export default async function AdminOrderDetailPage({
       .order('created_at', { ascending: true }),
     supabase
       .from('customer_profiles')
-      .select('customer_code')
+      .select('customer_code, email_verified')
       .eq('user_id', detail.user_id)
       .maybeSingle(),
   ]);
   const customerCode = (customerProfile as { customer_code?: string } | null)?.customer_code ?? null;
+  const customerEmailVerified =
+    (customerProfile as { email_verified?: boolean } | null)?.email_verified ?? false;
 
   // Current stock per ordered product, to flag oversold items. Stock is only
   // deducted at packaging, so for pre-packaging orders this compares the order
@@ -315,7 +318,17 @@ export default async function AdminOrderDetailPage({
         <h2 className="font-display text-lg text-charcoal mb-3">Customer</h2>
         <div className="text-sm text-charcoal space-y-1">
           <div className="font-semibold">{detail.customer_name}</div>
-          <div>{detail.customer_email}</div>
+          <div className="flex items-center gap-2 flex-wrap">
+            <span>{detail.customer_email}</span>
+            <EmailVerifiedMark verified={customerEmailVerified} />
+            {customerEmailVerified ? (
+              <span className="text-xs font-medium text-blue-600">Email confirmed</span>
+            ) : (
+              <span className="text-xs font-semibold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">
+                Email not confirmed
+              </span>
+            )}
+          </div>
           <div>{detail.customer_phone}</div>
         </div>
       </section>
