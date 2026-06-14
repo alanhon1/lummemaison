@@ -180,7 +180,7 @@
       "postalCode": "ZIP / Postal code",
       "fedexAccount": "FedEx account number (optional)",
       "fedexHint": "USA customers: please provide your FedEx account number. Without one, shipping is $65 via FedEx Priority instead of $35.",
-      "notes": "Order notes / Reference (optional)",
+      "notes": "Order notes (optional)",
       "notesHint": "Anything you'd like us to know — we'll see it before shipping.",
       "notesPlaceholder": "e.g. pack fillers separately, customs HS code or declared value, exclude masks, etc.",
       "discountCode": "Discount code (optional)",
@@ -367,7 +367,8 @@
       "button": "Get In Touch",
       "whatsapp": "WhatsApp",
       "telegram": "Telegram",
-      "email": "Email Us"
+      "email": "Email Us",
+      "viewCatalogue": "View Catalogue"
     }
   },
   "catalogue": {

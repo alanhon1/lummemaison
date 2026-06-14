@@ -2,15 +2,17 @@
 
 import { useActionState, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { X } from 'lucide-react';
+import { X, AlertCircle } from 'lucide-react';
 import { reportIssue, type ReportState } from '@/app/[locale]/report/actions';
 
 const initialState: ReportState = {};
 
-// Footer "Report an issue" entry point. Renders a small link that opens a modal
-// with a minimal form (message required, email optional). Submitting posts to the
+// "Report an issue" entry point. Two variants:
+//   • 'link'     — a small inline text link (legacy footer placement)
+//   • 'floating' — a fixed circular button pinned bottom-right, site-wide
+// Both open the same modal (message required, email optional) which posts to the
 // reportIssue server action; on success we swap the form for a thank-you note.
-export default function ReportIssueLink() {
+export default function ReportIssueLink({ variant = 'link' }: { variant?: 'link' | 'floating' }) {
   const t = useTranslations('report');
   const [open, setOpen] = useState(false);
   const [state, formAction, pending] = useActionState(reportIssue, initialState);
@@ -27,13 +29,25 @@ export default function ReportIssueLink() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="text-xs text-cream/40 hover:text-gold transition-colors [touch-action:manipulation]"
-      >
-        {t('trigger')}
-      </button>
+      {variant === 'floating' ? (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-label={t('trigger')}
+          title={t('trigger')}
+          className="fixed bottom-44 right-6 z-40 w-12 h-12 rounded-full bg-charcoal text-cream shadow-lg flex items-center justify-center hover:bg-gold-dark hover:scale-110 transition-all duration-300 [touch-action:manipulation]"
+        >
+          <AlertCircle size={20} />
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="text-xs text-cream/40 hover:text-gold transition-colors [touch-action:manipulation]"
+        >
+          {t('trigger')}
+        </button>
+      )}
 
       {open && (
         <div

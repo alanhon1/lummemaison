@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { MessageCircle, Send, Mail } from 'lucide-react';
+import { MessageCircle, Send, BookOpen } from 'lucide-react';
 import { siteConfig } from '@/lib/site-config';
 import { localePath } from '@/lib/i18n';
 
@@ -52,11 +52,11 @@ export default function CTASection() {
               </a>
             )}
             <Link
-              href={localePath(locale, '/contact')}
+              href={localePath(locale, '/catalogue')}
               className="btn-gold btn-loop w-full sm:w-auto gap-2"
             >
-              <Mail size={16} />
-              {t('email')}
+              <BookOpen size={16} />
+              {t('viewCatalogue')}
             </Link>
           </div>
         </motion.div>

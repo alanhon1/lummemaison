@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer';
 import CartPanel from '@/components/layout/CartPanel';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 import ChatWidget from '@/components/layout/ChatWidget';
+import ReportIssueLink from '@/components/layout/ReportIssueLink';
 import GoldParticles from '@/components/effects/GoldParticles';
 import { createClient } from '@/lib/supabase/server';
 import DisclaimerModal from '@/components/disclaimer/DisclaimerModal';
@@ -58,6 +59,7 @@ export default async function LocaleLayout({
         <CartPanel />
         <FloatingWhatsApp />
         <ChatWidget isLoggedIn={!!user} />
+        <ReportIssueLink variant="floating" />
         <DisclaimerModal />
         <AnnouncementModal announcements={announcements} />
       </div>
