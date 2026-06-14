@@ -1,0 +1,4 @@
+{
+  "_comment": "Owner-confirmed mappings: xlsx product name -> site product id. Add entries as the owner confirms them. Use 0 to mark 'not on site (skip)'.",
+  "mappings": {}
+}
