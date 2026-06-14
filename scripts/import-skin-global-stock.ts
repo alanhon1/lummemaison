@@ -48,7 +48,11 @@ const products: Prod[] = (Array.isArray(prodRaw) ? prodRaw : prodRaw.products ||
     desc: String(p.description ?? '').slice(0, 90),
   }));
 
-const manual = JSON.parse(readFileSync(MAP_PATH, 'utf8')).mappings as Record<string, number>;
+const mapJson = JSON.parse(readFileSync(MAP_PATH, 'utf8'));
+const manual = mapJson.mappings as Record<string, number>;
+// Site product ids the owner has explicitly marked WONDER (unknown stock). These
+// are emitted as wonder/stock_unknown SQL even though they aren't an xlsx row.
+const wonderProductIds: number[] = mapJson.wonderProductIds ?? [];
 
 const byExact = new Map<string, Prod>();
 const byNorm = new Map<string, Prod[]>();
@@ -128,6 +132,11 @@ const sql = [
   ...matchedForSql.map(m =>
     `insert into public.product_stock (product_id, stock, stock_unknown) values (${m.id}, ${m.qty}, false) ` +
     `on conflict (product_id) do update set stock = excluded.stock, stock_unknown = false; -- ${m.name} [${m.how}]`),
+  '',
+  ...(wonderProductIds.length ? ['-- Owner-marked WONDER products (unknown stock / ???).'] : []),
+  ...wonderProductIds.map(id =>
+    `insert into public.product_stock (product_id, stock, wonder, stock_unknown) values (${id}, 0, true, true) ` +
+    `on conflict (product_id) do update set wonder = true, stock_unknown = true; -- #${id} ${prodById.get(id)?.name ?? '?'}`),
   '',
 ].join('\n');
 writeFileSync(SQL_OUT, sql);
