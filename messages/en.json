@@ -186,6 +186,10 @@
       "discountCode": "Discount code (optional)",
       "discountCodeHint": "If you have a code, enter it here. We will verify and apply any adjustment manually before shipping."
     },
+    "errors": {
+      "fillHighlighted": "Please fill in the highlighted field.",
+      "phoneRequired": "Please enter your phone number."
+    },
     "emptyCart": {
       "title": "Your cart is empty",
       "subtitle": "Add a product to continue.",
