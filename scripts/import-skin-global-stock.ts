@@ -63,8 +63,12 @@ for (const it of xlsxItems) {
   if (exact) { matched.push({ name: it.name, qty: it.qty, id: exact.id, how: 'exact' }); continue; }
   const n = byNorm.get(norm(it.name));
   if (n && n.length === 1) { matched.push({ name: it.name, qty: it.qty, id: n[0].id, how: 'normalized' }); continue; }
+  // Fuzzy core: if exactly one site product shares the volume/variant-stripped
+  // core, auto-accept it (flagged 'core' so the owner can skim these).
+  const c = byCore.get(core(it.name));
+  if (c && c.length === 1) { matched.push({ name: it.name, qty: it.qty, id: c[0].id, how: 'core' }); continue; }
   // ambiguous or unmatched → report with core candidates
-  const cands = (byCore.get(core(it.name)) ?? n ?? []).slice(0, 6);
+  const cands = (c ?? n ?? []).slice(0, 6);
   report.push({ name: it.name, qty: it.qty, candidates: cands });
 }
 
@@ -80,12 +84,19 @@ const sql = [
 writeFileSync(SQL_OUT, sql);
 
 // Emit the owner report.
+const prodById = new Map(products.map(p => [p.id, p]));
+const fuzzy = matched.filter(m => m.how === 'core');
 const rep = [
   `# Stock Import Report — ${xlsxItems.length} xlsx products`,
   '',
-  `- Matched (will be in the SQL): **${matched.length}**`,
+  `- Matched (will be in the SQL): **${matched.length}** (exact/normalized: ${matched.length - fuzzy.length}, fuzzy 'core': ${fuzzy.length})`,
   `- Skipped (manual map = 0, not on site): **${skipped.length}**`,
   `- Needs your decision: **${report.length}**`,
+  '',
+  '## Fuzzy auto-matches — please skim (tell me if any are wrong)',
+  'These were matched after stripping volume/variant tokens. Usually right, but double-check.',
+  '',
+  ...fuzzy.map(m => `- **${m.name}** (qty ${m.qty}) → #${m.id} ${prodById.get(m.id)?.name ?? '?'}`),
   '',
   '## Needs your decision',
   'For each, reply with the site product id (or "skip"). Best-guess candidates shown.',

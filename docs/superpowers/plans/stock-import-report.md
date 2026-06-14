@@ -1,14 +1,38 @@
 # Stock Import Report — 298 xlsx products
 
-- Matched (will be in the SQL): **112**
+- Matched (will be in the SQL): **134** (exact/normalized: 112, fuzzy 'core': 22)
 - Skipped (manual map = 0, not on site): **0**
-- Needs your decision: **186**
+- Needs your decision: **164**
+
+## Fuzzy auto-matches — please skim (tell me if any are wrong)
+These were matched after stripping volume/variant tokens. Usually right, but double-check.
+
+- **ACEPAIN INJ 100mL** (qty 12) → #352 Acepain Inj.
+- **BERACAINE SPRAY 50ml** (qty 4) → #374 BERACAINE SPRAY
+- **DERMAGEN BICHAEAHN PORE TONING CREAM 80g** (qty 2) → #230 DERMAGEN Bichaeahn Pore Toning Cream
+- **DERMAGEN EGENSIA CREAM 50g** (qty 6) → #215 DERMAGEN Egensia Cream
+- **DERMAGEN MOHEALER SHAMPOO 500 ML** (qty 15) → #151 DERMAGEN Mohealer Shampoo
+- **DERMAGEN SCARGEL+ 15g** (qty 2) → #225 DERMAGEN Scargel
+- **DR.PICOS EGENCICA CREAM 60g** (qty 8) → #216 Dr. PICOS EGENCICA CREAM
+- **EU.MEI SUN ESSENCE 50G** (qty 7) → #190 EU.MEI SUN ESSENCE
+- **G2 OIL LIFTING PACK (Wrinkle Mask Pack Cream) 50mL** (qty 1) → #188 G2 OIL LIFTING PACK (Wrinkle Mask Pack Cream)
+- **GLUTATINE TAB. [100MG]** (qty 2) → #345 Glutatine Tab. 100 mg
+- **GTM BALANCE CLEANSING GEL 150mL** (qty 4) → #242 GTM Balance Cleansing Gel
+- **INVU REPARATIVE BB 30mL** (qty 44) → #185 INVU REPARATIVE BB
+- **NEO PRO CREAM 450g** (qty 8) → #377 NEO PRO CREAM
+- **RAVELLO PLLA-PDRN 50mg** (qty 10) → #431 Ravello PLLA + PDRN
+- **REJUVENEX VEGA SHINE 2.5 ML*6AMP** (qty 10) → #439 Rejuvenex Vega Shine 
+- **REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM 50 ML** (qty 11) → #187 REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM
+- **REPIDA BODY TONE-UP RADIANCE SERUM 200 ML** (qty 7) → #186 REPIDA BODY TONE-UP RADIANCE SERUM
+- **REPIDA CLEARNEST INTENSIVE FOAM CLEANSER 150 ML** (qty 39) → #133 REPIDA CLEARNEST INTENSIVE FOAM CLEANSER
+- **SALINE 20 ML** (qty 224) → #323 SALINE
+- **TRIAMCINOLONE inj. 40mg/1ml** (qty 3) → #437 Triamcinolone inj. 
+- **WELLSCAINE CREAM 500g** (qty 7) → #373 WELLSCAINE CREAM
+- **ZEROTOX 100 UNIT** (qty 53) → #319 ZEROTOX 100 units
 
 ## Needs your decision
 For each, reply with the site product id (or "skip"). Best-guess candidates shown.
 
-- **ACEPAIN INJ 100mL** (qty 12)
-  - candidates: #352 Acepain Inj.
 - **ACLEAN 2% BODY ACNE TREATMENT SPRAY 100mL** (qty 3)
   - candidates: (no candidates found)
 - **ARGININE PREMIX INJ 100mL/10g** (qty 13)
@@ -31,8 +55,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **BELLONA LAB OPACIOUS SERUM** (qty 1)
   - candidates: (no candidates found)
-- **BERACAINE SPRAY 50ml** (qty 4)
-  - candidates: #374 BERACAINE SPRAY
 - **BM HID INJ 200,000 IU / 1 ML** (qty 70)
   - candidates: (no candidates found)
 - **BOTULAX 100U** (qty 30)
@@ -65,8 +87,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **DERMAGEN ACSSAK ACNE** (qty 17)
   - candidates: (no candidates found)
-- **DERMAGEN BICHAEAHN PORE TONING CREAM 80g** (qty 2)
-  - candidates: #230 DERMAGEN Bichaeahn Pore Toning Cream
 - **DERMAGEN CELLSIA [35G]** (qty 6)
   - candidates: (no candidates found)
 - **DERMAGEN CELLSIA [500G]** (qty 7)
@@ -75,20 +95,14 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **DERMAGEN CINDELLA I (PN 1%)** (qty 2)
   - candidates: (no candidates found)
-- **DERMAGEN EGENSIA CREAM 50g** (qty 6)
-  - candidates: #215 DERMAGEN Egensia Cream
 - **DERMAGEN KLARGEN LACTOBATH CLEANSER** (qty 4)
   - candidates: (no candidates found)
 - **DERMAGEN KLARGEN SOLUTION 50mL** (qty 3)
   - candidates: (no candidates found)
-- **DERMAGEN MOHEALER SHAMPOO 500 ML** (qty 15)
-  - candidates: #151 DERMAGEN Mohealer Shampoo
 - **DERMAGEN NAD+** (qty 12)
   - candidates: (no candidates found)
 - **DERMAGEN RAPPORAPY LUNATOX** (qty 0)
   - candidates: (no candidates found)
-- **DERMAGEN SCARGEL+ 15g** (qty 2)
-  - candidates: #225 DERMAGEN Scargel
 - **DERMAGEN WELLSPOT** (qty 8)
   - candidates: (no candidates found)
 - **DK MESO NEEDLE 27G 13** (qty 1)
@@ -123,8 +137,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **DR. PACE LEADER VITAMIN MASSAGE CREAM 1000 ML** (qty 1)
   - candidates: (no candidates found)
-- **DR.PICOS EGENCICA CREAM 60g** (qty 8)
-  - candidates: #216 Dr. PICOS EGENCICA CREAM
 - **EGF ACTIVE CREAM 20mL** (qty 7)
   - candidates: (no candidates found)
 - **EGF PDRN ACTIVE SYNERGY MASK 25mL x 3 SHEETS** (qty 1)
@@ -143,8 +155,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **ELAXEN PLLA** (qty 8)
   - candidates: (no candidates found)
-- **EU.MEI SUN ESSENCE 50G** (qty 7)
-  - candidates: #190 EU.MEI SUN ESSENCE
 - **Everline  30G 2mm** (qty 5)
   - candidates: (no candidates found)
 - **Everline 31G 2mm** (qty 8)
@@ -167,18 +177,12 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **FIORA 1.5m *10** (qty 30)
   - candidates: (no candidates found)
-- **G2 OIL LIFTING PACK (Wrinkle Mask Pack Cream) 50mL** (qty 1)
-  - candidates: #188 G2 OIL LIFTING PACK (Wrinkle Mask Pack Cream)
 - **GITACO INJ.** (qty 4)
   - candidates: (no candidates found)
 - **GLACIATE BIO-GEL MASK** (qty 48)
   - candidates: (no candidates found)
-- **GLUTATINE TAB. [100MG]** (qty 2)
-  - candidates: #345 Glutatine Tab. 100 mg
 - **GTM ACTIVE PROTECTION SUN SERUM (SPF)** (qty 50)
   - candidates: (no candidates found)
-- **GTM BALANCE CLEANSING GEL 150mL** (qty 4)
-  - candidates: #242 GTM Balance Cleansing Gel
 - **GTM COLLAGEN SERUM** (qty 5)
   - candidates: (no candidates found)
 - **GTM GOLD CELL THE PREMIUM** (qty 1)
@@ -207,8 +211,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: #301 INNOTOX 50 units · #302 INNOTOX 100 units
 - **INNOTOX 50U** (qty 71)
   - candidates: #301 INNOTOX 50 units · #302 INNOTOX 100 units
-- **INVU REPARATIVE BB 30mL** (qty 44)
-  - candidates: #185 INVU REPARATIVE BB
 - **JM SOLUTION BIO-COLLAGEN PDRN FIRMING MASK** (qty 5)
   - candidates: (no candidates found)
 - **JOLLA GREENTEA 1 KG MASK** (qty 2)
@@ -263,8 +265,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: #303 NABOTA 100 units · #304 NABOTA 200 units · #422 NABOTA 150 Units (Botulinum Toxin Type A)
 - **NAD+ EXO COLLA EXOCOME** (qty 1)
   - candidates: (no candidates found)
-- **NEO PRO CREAM 450g** (qty 8)
-  - candidates: #377 NEO PRO CREAM
 - **NEO-CAIN CREAM [30G]** (qty 13)
   - candidates: #375 NEO-CAIN CREAM (30G) · #376 NEO-CAIN CREAM [500G]
 - **NOSCARNA GEL 20g** (qty 12)
@@ -281,8 +281,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **RAVELLO PLLA 200 MG** (qty 9)
   - candidates: (no candidates found)
-- **RAVELLO PLLA-PDRN 50mg** (qty 10)
-  - candidates: #431 Ravello PLLA + PDRN
 - **RED EXO COLLA EXOCOME** (qty 3)
   - candidates: (no candidates found)
 - **REJUBEAU MESO NEEDLE 30G 13MM** (qty 5)
@@ -297,22 +295,12 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **REJURAN I** (qty 3)
   - candidates: (no candidates found)
-- **REJUVENEX VEGA SHINE 2.5 ML*6AMP** (qty 10)
-  - candidates: #439 Rejuvenex Vega Shine 
 - **RENTOX 100u** (qty 23)
   - candidates: #311 Re N Tox 200 units · #312 RE N TOX 100 units
 - **RENTOX 200u** (qty 30)
   - candidates: #311 Re N Tox 200 units · #312 RE N TOX 100 units
-- **REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM 50 ML** (qty 11)
-  - candidates: #187 REPIDA AZULENE H9 DERMA PLUS BOOSTER CREAM
-- **REPIDA BODY TONE-UP RADIANCE SERUM 200 ML** (qty 7)
-  - candidates: #186 REPIDA BODY TONE-UP RADIANCE SERUM
-- **REPIDA CLEARNEST INTENSIVE FOAM CLEANSER 150 ML** (qty 39)
-  - candidates: #133 REPIDA CLEARNEST INTENSIVE FOAM CLEANSER
 - **REVOLAX DEEP** (qty 9)
   - candidates: (no candidates found)
-- **SALINE 20 ML** (qty 224)
-  - candidates: #323 SALINE
 - **SKINVIVE BY JUVEDERM** (qty 8)
   - candidates: (no candidates found)
 - **SM LIDO CREAM [30g] 10.56%** (qty 11)
@@ -339,8 +327,6 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **TESORO FINE PLUS** (qty 0)
   - candidates: (no candidates found)
-- **TRIAMCINOLONE inj. 40mg/1ml** (qty 3)
-  - candidates: #437 Triamcinolone inj. 
 - **UNION FILL HARD** (qty 1)
   - candidates: (no candidates found)
 - **VANHALLA BLEMISH** (qty 40)
@@ -369,13 +355,9 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
   - candidates: (no candidates found)
 - **Wati For Skin Peptide Hyaluonic Acid 30ml** (qty 43)
   - candidates: (no candidates found)
-- **WELLSCAINE CREAM 500g** (qty 7)
-  - candidates: #373 WELLSCAINE CREAM
 - **WELLSCAINE PLUS 500g** (qty 22)
   - candidates: (no candidates found)
 - **WHEAT GERM AMPOULE 50G** (qty 19)
   - candidates: #189 WHEAT GERM AMPOULE · #424 Wheat Germ Ampoule
 - **YOUTHFILL PN WITH LIDOCAINE** (qty 6)
   - candidates: (no candidates found)
-- **ZEROTOX 100 UNIT** (qty 53)
-  - candidates: #319 ZEROTOX 100 units
