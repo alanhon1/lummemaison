@@ -735,3 +735,23 @@ details.footer-collapsible > summary::-webkit-details-marker { display: none; }
     display: block !important;
   }
 }
+
+/* Checkout: flash a field/section the customer must act on. Provides the
+   mobile feedback that a gated CTA otherwise lacks (see ShippingForm /
+   DisclaimerStep / PaymentStep + lib/checkout/highlightField.ts). */
+@keyframes checkout-flash {
+  0%   { box-shadow: 0 0 0 0 rgba(160, 130, 80, 0); }
+  20%  { box-shadow: 0 0 0 3px rgba(160, 130, 80, 0.55); }
+  100% { box-shadow: 0 0 0 0 rgba(160, 130, 80, 0); }
+}
+.checkout-highlight {
+  animation: checkout-flash 1.3s ease-out;
+  border-radius: 0.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .checkout-highlight {
+    animation: none;
+    outline: 2px solid var(--accent-dark);
+    outline-offset: 2px;
+  }
+}
