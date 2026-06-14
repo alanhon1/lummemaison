@@ -7,6 +7,7 @@ import CountrySelect from '@/components/account/CountrySelect';
 import { resolveCountryCode } from '@/lib/countries';
 import { readDraft, writeDraft, type ShippingSnapshot } from '@/lib/checkout/state';
 import { localePath } from '@/lib/i18n';
+import { highlightField } from '@/lib/checkout/highlightField';
 
 export interface ProfileSeed {
   fullName: string;
@@ -42,6 +43,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
     discountCode: '',
   });
   const [hydrated, setHydrated] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const draft = readDraft();
@@ -55,8 +57,28 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
     setForm(prev => ({ ...prev, [key]: value }));
   }
 
+  // Required fields, in visual order. We validate explicitly (instead of native
+  // `required`) so the customer gets a visible error + scroll-to-field on
+  // mobile, where the native validation bubble is easy to miss.
+  const REQUIRED: Array<{ key: keyof ShippingSnapshot; id: string }> = [
+    { key: 'fullName', id: 'ship-fullName' },
+    { key: 'email', id: 'ship-email' },
+    { key: 'phone', id: 'ship-phone' },
+    { key: 'country', id: 'ship-country' },
+    { key: 'street', id: 'ship-street' },
+    { key: 'city', id: 'ship-city' },
+    { key: 'postalCode', id: 'ship-postalCode' },
+  ];
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const missing = REQUIRED.find(f => !String(form[f.key] ?? '').trim());
+    if (missing) {
+      setError(missing.key === 'phone' ? t('errors.phoneRequired') : t('errors.fillHighlighted'));
+      highlightField(document.getElementById(missing.id), { focus: true });
+      return;
+    }
+    setError('');
     writeDraft({ shipping: form });
     router.push(localePath(locale, '/checkout/disclaimers'));
   }
@@ -69,7 +91,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
     <form onSubmit={handleSubmit} className="space-y-5 bg-white border border-bone rounded-lg p-6 md:p-8">
       <Field label={t('fields.fullName')} required>
         <input
-          required
+          id="ship-fullName"
           type="text"
           value={form.fullName}
           onChange={e => set('fullName', e.target.value)}
@@ -81,7 +103,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
       <div className="grid sm:grid-cols-2 gap-4">
         <Field label={t('fields.email')} required>
           <input
-            required
+            id="ship-email"
             type="email"
             value={form.email}
             onChange={e => set('email', e.target.value)}
@@ -91,7 +113,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
         </Field>
         <Field label={t('fields.phone')} required>
           <input
-            required
+            id="ship-phone"
             type="tel"
             value={form.phone}
             onChange={e => set('phone', e.target.value)}
@@ -103,12 +125,12 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
       </div>
 
       <Field label={t('fields.country')} required>
-        <CountrySelect value={form.country} onChange={code => set('country', code)} required />
+        <CountrySelect id="ship-country" value={form.country} onChange={code => set('country', code)} />
       </Field>
 
       <Field label={t('fields.street')} required>
         <input
-          required
+          id="ship-street"
           type="text"
           value={form.street}
           onChange={e => set('street', e.target.value)}
@@ -120,7 +142,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
       <div className="grid sm:grid-cols-3 gap-4">
         <Field label={t('fields.city')} required>
           <input
-            required
+            id="ship-city"
             type="text"
             value={form.city}
             onChange={e => set('city', e.target.value)}
@@ -139,7 +161,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
         </Field>
         <Field label={t('fields.postalCode')} required>
           <input
-            required
+            id="ship-postalCode"
             type="text"
             value={form.postalCode}
             onChange={e => set('postalCode', e.target.value)}
@@ -182,6 +204,11 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
         />
       </Field>
 
+      {error && (
+        <p className="text-sm text-red-600 -mb-2" role="alert">
+          {error}
+        </p>
+      )}
       <button type="submit" className="btn-gold w-full">
         {t('shipping.continue')}
       </button>
