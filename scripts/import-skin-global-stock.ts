@@ -138,8 +138,11 @@ const bestById = new Map<number, typeof matched[number]>();
 const collisions: typeof matched = [];
 for (const m of matched) {
   const cur = bestById.get(m.id);
-  if (!cur) { bestById.set(m.id, m); continue; }
-  if (rank[m.how] < rank[cur.how]) { collisions.push(cur); bestById.set(m.id, m); }
+  if (!cur) { bestById.set(m.id, { ...m }); continue; }
+  // Two owner-mapped rows to the same product (e.g. one SKU with length/size
+  // options) → sum their quantities instead of dropping one.
+  if (m.how === 'manual' && cur.how === 'manual') { cur.qty += m.qty; cur.name += ' + ' + m.name; continue; }
+  if (rank[m.how] < rank[cur.how]) { collisions.push(cur); bestById.set(m.id, { ...m }); }
   else { collisions.push(m); }
 }
 const finalMatched = [...bestById.values()];
