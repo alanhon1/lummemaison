@@ -11,6 +11,7 @@ import { ClickableRow } from '@/components/admin/ClickableRow';
 import { type HistoryMovement } from '@/components/admin/BatchHistoryTable';
 import HistorySection from '@/components/admin/HistorySection';
 import ProductStockDetails from '@/components/admin/ProductStockDetails';
+import WonderMark from '@/components/admin/WonderMark';
 import StockOverviewPanel from '@/components/admin/StockOverviewPanel';
 import StockExportButton from '@/components/admin/StockExportButton';
 import OrdersExportButton from '@/components/admin/OrdersExportButton';
@@ -33,6 +34,7 @@ interface PageProps {
     month?: string;
     page?: string;
     sort?: string;
+    wonderOnly?: string;
   }>;
 }
 
@@ -181,17 +183,23 @@ export default async function StockPage({ searchParams }: PageProps) {
   if (tab === 'stock') {
     const sort = (sp.sort ?? 'qty-asc') as StockSort;
 
+    const wonderOnly = sp.wonderOnly === '1';
     const { data: stockRows } = await supabase
       .from('product_stock')
-      .select('product_id, stock');
+      .select('product_id, stock, wonder, stock_unknown');
 
-    const rows = (stockRows ?? []) as Array<{ product_id: number; stock: number }>;
+    const rows = (stockRows ?? []) as Array<{ product_id: number; stock: number; wonder: boolean; stock_unknown: boolean }>;
+    const rowFor = (id: number) => rows.find(r => r.product_id === id);
 
-    const allRows = allProducts.map(p => ({
+    let allRows = allProducts.map(p => ({
       id: p.id,
       name: p.name as string,
-      stock: rows.find(r => r.product_id === p.id)?.stock ?? 0,
-    })).sort((a, b) => {
+      stock: rowFor(p.id)?.stock ?? 0,
+      wonder: Boolean(rowFor(p.id)?.wonder),
+      unknown: Boolean(rowFor(p.id)?.stock_unknown),
+    }));
+    if (wonderOnly) allRows = allRows.filter(r => r.wonder);
+    allRows = allRows.sort((a, b) => {
       if (sort === 'name-asc') return a.name.localeCompare(b.name);
       if (sort === 'id-asc')   return a.id - b.id;
       if (sort === 'qty-desc') return b.stock - a.stock;
@@ -248,6 +256,16 @@ export default async function StockPage({ searchParams }: PageProps) {
           <button type="submit" className="text-xs border border-bone px-3 py-1.5 rounded text-mist hover:text-charcoal transition-colors">
             Apply
           </button>
+          <a
+            href={`/manzura/stock?tab=stock${wonderOnly ? '' : '&wonderOnly=1'}&sort=${sort}`}
+            className={`text-xs px-3 py-1.5 rounded border transition-colors ${
+              wonderOnly
+                ? 'bg-purple-600 text-white border-purple-600'
+                : 'border-bone text-mist hover:text-charcoal'
+            }`}
+          >
+            {wonderOnly ? 'Wonder ✓' : 'Wonder only'}
+          </a>
         </form>
 
         <div className="bg-white border border-bone rounded overflow-hidden">
@@ -268,8 +286,15 @@ export default async function StockPage({ searchParams }: PageProps) {
                 return (
                   <tr key={r.id} className={`border-t border-bone ${isOut ? 'bg-rose-50/30' : isLow ? 'bg-amber-50/30' : ''}`}>
                     <td className="px-4 py-2.5 text-xs text-mist font-mono">#{r.id}</td>
-                    <td className="px-4 py-2.5 text-charcoal text-sm">{r.name}</td>
-                    <td className="px-4 py-2.5 text-right font-semibold text-charcoal">{r.stock}</td>
+                    <td className="px-4 py-2.5 text-charcoal text-sm">
+                      <span className="inline-flex items-center gap-1">
+                        {r.name}
+                        {r.wonder && <WonderMark />}
+                      </span>
+                    </td>
+                    <td className="px-4 py-2.5 text-right font-semibold text-charcoal">
+                      {r.unknown ? <span className="text-purple-700" title="Unknown — set the real stock">???</span> : r.stock}
+                    </td>
                     <td className="px-4 py-2.5">
                       {isOut ? (
                         <span className="text-[10px] px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200">Sold out</span>
