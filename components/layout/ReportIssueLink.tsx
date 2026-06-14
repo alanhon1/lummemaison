@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import { X, AlertCircle } from 'lucide-react';
 import { reportIssue, type ReportState } from '@/app/[locale]/report/actions';
 
@@ -14,6 +15,7 @@ const initialState: ReportState = {};
 // reportIssue server action; on success we swap the form for a thank-you note.
 export default function ReportIssueLink({ variant = 'link' }: { variant?: 'link' | 'floating' }) {
   const t = useTranslations('report');
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [state, formAction, pending] = useActionState(reportIssue, initialState);
 
@@ -26,6 +28,10 @@ export default function ReportIssueLink({ variant = 'link' }: { variant?: 'link'
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [open]);
+
+  // Hide the floating button during checkout so it never overlaps the primary
+  // CTA (Continue / Place order) on mobile.
+  if (variant === 'floating' && pathname.includes('/checkout')) return null;
 
   return (
     <>

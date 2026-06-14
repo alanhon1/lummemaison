@@ -6,6 +6,7 @@ import { MessageCircle, X, Send, ShoppingBag } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { localePath } from '@/lib/i18n';
 
 type RecommendedProduct = { id: number; name: string };
@@ -32,6 +33,7 @@ function todayUtc() {
 
 export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
   const locale = useLocale();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -128,6 +130,10 @@ export default function ChatWidget({ isLoggedIn }: { isLoggedIn: boolean }) {
       setLoading(false);
     }
   }
+
+  // Hide on the checkout flow so the floating buttons never overlap the
+  // primary CTA (Continue / Place order) on mobile.
+  if (pathname.includes('/checkout')) return null;
 
   return (
     <div className="fixed bottom-24 right-6 z-50 flex flex-col items-end gap-2">
