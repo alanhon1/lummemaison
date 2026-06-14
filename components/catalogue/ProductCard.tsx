@@ -80,9 +80,10 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const { addItem } = useCartStore();
   const { currency } = useCurrencyStore();
   const stock = useProductStock(product.id);
-  const soldOut = stock === 0;
+  // Out of stock is still orderable (a backorder); only notForSale blocks buying.
+  const backorder = stock === 0;
   const notForSale = !!product.notForSale;
-  const cannotBuy = soldOut || notForSale;
+  const cannotBuy = notForSale;
   const tagChips = matchedTags(product.tags, searchQuery);
   const pct = discountPct(product);
 
@@ -166,7 +167,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
           onClick={handleAddToCart}
           disabled={cannotBuy}
           className="self-center flex-shrink-0 w-9 h-9 border border-bone rounded-md flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-bone disabled:hover:text-charcoal"
-          aria-label={notForSale ? 'Not for sale' : soldOut ? tProduct('soldOut') : t('addToCart')}
+          aria-label={notForSale ? 'Not for sale' : t('addToCart')}
         >
           <ShoppingBag size={16} />
         </button>
@@ -204,12 +205,12 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
                   Not for sale
                 </span>
               ),
-              soldOut && !notForSale && (
+              backorder && !notForSale && (
                 <span
                   key="so"
-                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-charcoal text-cream"
+                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-amber-500 text-white"
                 >
-                  {tProduct('soldOut')}
+                  {tProduct('backorder')}
                 </span>
               ),
               pct > 0 && <span key="s" className="badge-discount">−{pct}%</span>,
@@ -235,7 +236,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
             className="w-full btn-gold text-[10px] py-2.5 flex items-center justify-center gap-2 disabled:bg-charcoal disabled:opacity-100"
           >
             <ShoppingBag size={13} />
-            {notForSale ? 'Not for sale' : soldOut ? tProduct('soldOut') : t('addToCart')}
+            {notForSale ? 'Not for sale' : t('addToCart')}
           </button>
         </div>
       </div>

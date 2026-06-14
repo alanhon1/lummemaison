@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
+import { getStockMap } from '@/lib/products/stock';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { findCountry } from '@/lib/countries';
 import AdminOrderStatusPanel from '@/components/admin/AdminOrderStatusPanel';
@@ -118,6 +119,19 @@ export default async function AdminOrderDetailPage({
   ]);
   const customerCode = (customerProfile as { customer_code?: string } | null)?.customer_code ?? null;
 
+  // Current stock per ordered product, to flag oversold items. Stock is only
+  // deducted at packaging, so for pre-packaging orders this compares the order
+  // against live shelf stock; once packed, stock already reflects the deduction
+  // (so a packed order shows no shortfall). An item is "short" when the ordered
+  // quantity exceeds the stock we currently hold — the order can't be packed
+  // until it's replenished.
+  const orderItems = ((items ?? []) as OrderItem[]);
+  const itemStock = await getStockMap(orderItems.map(i => i.product_id));
+  const stockOf = (pid: number) => itemStock[pid] ?? 0;
+  const shortItems = orderItems.filter(i => stockOf(i.product_id) < i.quantity);
+  const isPacked = ['packaging', 'shipped', 'delivered'].includes(detail.status);
+  const showShortfall = shortItems.length > 0 && !isPacked;
+
   // Customer photo attachments (#8): rows then signed URLs (private bucket).
   const { data: attachmentRows } = await supabase
     .from('order_attachments')
@@ -215,6 +229,20 @@ export default async function AdminOrderDetailPage({
           </div>
         </div>
       </div>
+
+      {showShortfall && (
+        <section className="bg-rose-50 border border-rose-300 rounded-lg p-4">
+          <div className="flex items-start gap-2">
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-rose-600 text-white text-[11px] font-bold leading-none shrink-0 mt-0.5">!</span>
+            <div className="text-sm text-rose-800">
+              <p className="font-semibold">재고 초과 품목 {shortItems.length}개 — 재입고 필요</p>
+              <p className="text-xs text-rose-700 mt-1">
+                아래 빨간 품목은 주문 수량이 현재 재고보다 많습니다. <span className="font-semibold">add inbound</span>으로 재고를 채우기 전까지는 <span className="font-semibold">packaging으로 넘길 수 없습니다.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       <AdminOrderStatusPanel
         orderId={detail.id}
@@ -343,28 +371,43 @@ export default async function AdminOrderDetailPage({
             <tr className="text-[10px] uppercase tracking-widest text-mist border-b border-bone">
               <th className="text-left py-2">Item</th>
               <th className="text-center py-2">Qty</th>
+              <th className="text-center py-2">Stock</th>
               <th className="text-right py-2">Unit</th>
               <th className="text-right py-2">Line</th>
             </tr>
           </thead>
           <tbody>
-            {(items ?? []).map((it: OrderItem) => (
+            {orderItems.map((it: OrderItem) => {
+              const stock = stockOf(it.product_id);
+              const short = !isPacked && stock < it.quantity;
+              return (
               <tr key={it.id} className="border-b border-bone">
-                <td className="py-2 text-charcoal">{it.product_name}{it.option ? ` (${it.option})` : ''}</td>
-                <td className="py-2 text-center text-charcoal">{it.quantity}</td>
+                <td className="py-2 text-charcoal">
+                  {it.product_name}{it.option ? ` (${it.option})` : ''}
+                  {short && (
+                    <span className="block text-[11px] font-semibold text-rose-700 mt-0.5">
+                      재입고 필요 — {it.quantity - stock}개 부족
+                    </span>
+                  )}
+                </td>
+                <td className={`py-2 text-center ${short ? 'text-rose-700 font-bold' : 'text-charcoal'}`}>{it.quantity}</td>
+                <td className={`py-2 text-center ${short ? 'text-rose-700 font-bold' : 'text-charcoal'}`}>
+                  {isPacked ? '—' : stock}
+                </td>
                 <td className="py-2 text-right text-charcoal">{formatUSD(it.unit_cents, detail.currency)}</td>
                 <td className="py-2 text-right text-charcoal">{formatUSD(it.line_cents, detail.currency)}</td>
               </tr>
-            ))}
+              );
+            })}
           </tbody>
           <tfoot>
             <tr>
-              <td colSpan={3} className="py-1 pr-4 text-right text-xs text-mist">Subtotal</td>
+              <td colSpan={4} className="py-1 pr-4 text-right text-xs text-mist">Subtotal</td>
               <td className="py-1 text-right text-charcoal">{formatUSD(detail.subtotal_cents, detail.currency)}</td>
             </tr>
             {detail.subtotal_cents + detail.shipping_cents - detail.total_cents > 0 && (
               <tr>
-                <td colSpan={3} className="py-1 pr-4 text-right text-xs text-emerald-700">
+                <td colSpan={4} className="py-1 pr-4 text-right text-xs text-emerald-700">
                   Discount{detail.discount_code ? ` (${detail.discount_code})` : ''}
                 </td>
                 <td className="py-1 text-right text-emerald-700">
@@ -373,11 +416,11 @@ export default async function AdminOrderDetailPage({
               </tr>
             )}
             <tr>
-              <td colSpan={3} className="py-1 pr-4 text-right text-xs text-mist">Shipping</td>
+              <td colSpan={4} className="py-1 pr-4 text-right text-xs text-mist">Shipping</td>
               <td className="py-1 text-right text-charcoal">{formatUSD(detail.shipping_cents, detail.currency)}</td>
             </tr>
             <tr>
-              <td colSpan={3} className="py-2 pr-4 text-right text-xs uppercase tracking-widest text-charcoal font-semibold border-t-2 border-charcoal">
+              <td colSpan={4} className="py-2 pr-4 text-right text-xs uppercase tracking-widest text-charcoal font-semibold border-t-2 border-charcoal">
                 Total
               </td>
               <td className="py-2 text-right text-charcoal font-display text-lg border-t-2 border-charcoal">

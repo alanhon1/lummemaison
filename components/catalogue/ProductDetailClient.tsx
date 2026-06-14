@@ -18,9 +18,10 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   useCurrencyStore();
   const [added, setAdded] = useState(false);
   const stock = useProductStock(product.id);
-  const soldOut = stock === 0;
+  // Out of stock is still orderable (a backorder); only notForSale blocks buying.
+  const backorder = stock === 0;
   const notForSale = !!product.notForSale;
-  const cannotBuy = soldOut || notForSale;
+  const cannotBuy = notForSale;
 
   const options = product.options ?? [];
   const [option, setOption] = useState(options[0] ?? '');
@@ -78,7 +79,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         }`}
       >
         {cannotBuy ? (
-          <>{notForSale ? 'Not for sale' : t('soldOut')}</>
+          <>Not for sale</>
         ) : added ? (
           <>
             <Check size={16} />
@@ -98,6 +99,9 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         {t('contactForOrder')}
       </Link>
       </div>
+      {backorder && !notForSale && (
+        <p className="text-xs text-amber-600 font-medium">{t('backorderHint')}</p>
+      )}
     </div>
   );
 }

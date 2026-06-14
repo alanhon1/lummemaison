@@ -1,28 +1,24 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useCartStore, cartLineKey } from './store';
+import { useCartStore } from './store';
 import { useStockStore } from './stock-store';
 
 export interface CartStockInfo {
   // Real-time stock for a cart line, or undefined while still loading.
   stockOf: (id: number) => number | undefined;
-  // True once stock is known to be 0 for this line.
-  isSoldOut: (id: number) => boolean;
-  // True if any line in the cart is sold out — checkout should be blocked.
-  hasSoldOut: boolean;
+  // True once stock is known to be 0 or less for this line. The line is still
+  // orderable (a backorder) — this only drives the "Backorder" label, it does
+  // NOT block adding, editing quantity, or checking out.
+  isBackorder: (id: number) => boolean;
 }
 
-// Reconciles the persisted cart against real-time Supabase stock whenever the
-// cart is shown:
-//   • loads current stock for every line,
-//   • auto-clamps any line whose quantity now exceeds available stock (e.g. the
-//     user kept 2 but only 1 remains -> silently drops to 1),
-//   • flags lines that are fully sold out so the UI can show "Sold out" and
-//     block checkout (these are NOT removed — the customer removes them).
+// Loads real-time Supabase stock for every cart line so the UI can flag
+// backordered (out-of-stock) lines. Oversell is allowed by design: we never
+// clamp quantities down to stock and never block checkout here. The shortfall is
+// handled on the admin side (an oversold order can't be packed until restocked).
 export function useCartStock(): CartStockInfo {
   const items = useCartStore(s => s.items);
-  const updateQuantity = useCartStore(s => s.updateQuantity);
   const stockMap = useStockStore(s => s.stockMap);
   const ensureLoaded = useStockStore(s => s.ensureLoaded);
 
@@ -31,19 +27,10 @@ export function useCartStock(): CartStockInfo {
     for (const i of items) ensureLoaded(i.id);
   }, [items, ensureLoaded]);
 
-  // Auto-clamp over-quantity lines down to what's actually available. Sold-out
-  // lines (stock 0) are left untouched so the cart can surface them.
-  useEffect(() => {
-    for (const i of items) {
-      const s = stockMap[i.id];
-      if (typeof s === 'number' && s > 0 && i.quantity > s) {
-        updateQuantity(cartLineKey(i), s);
-      }
-    }
-  }, [items, stockMap, updateQuantity]);
-
   const stockOf = (id: number) => stockMap[id];
-  const isSoldOut = (id: number) => stockMap[id] === 0;
-  const hasSoldOut = items.some(i => stockMap[i.id] === 0);
-  return { stockOf, isSoldOut, hasSoldOut };
+  const isBackorder = (id: number) => {
+    const s = stockMap[id];
+    return typeof s === 'number' && s <= 0;
+  };
+  return { stockOf, isBackorder };
 }

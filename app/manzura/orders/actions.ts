@@ -10,7 +10,7 @@ import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
 import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail, sendPaymentVerifiedEmail, sendLowStockAlert } from '@/lib/email/sendOrderEmails';
-import { deductStockForItems, restoreStockForItems } from '@/lib/products/stock';
+import { deductStockForItems, restoreStockForItems, getStockMap } from '@/lib/products/stock';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
 
@@ -128,6 +128,22 @@ export async function updateOrderStatus(
       .eq('order_id', orderId);
     if (items && items.length > 0) {
       const typed = items as Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }>;
+      // Oversell guard: an order may have been placed for more than we hold in
+      // stock (oversell is allowed on the storefront). Stock must never go
+      // negative, so block the packaging crossing until every item is covered —
+      // the admin replenishes via "add inbound", then this passes. Checked
+      // BEFORE deduction so nothing is taken from the shelf on a failed pack.
+      const stockBefore = await getStockMap(typed.map(i => i.product_id));
+      const short = typed.filter(i => (stockBefore[i.product_id] ?? 0) < i.quantity);
+      if (short.length > 0) {
+        const detail = short
+          .map(i => `${i.product_name} (재고 ${stockBefore[i.product_id] ?? 0} / 주문 ${i.quantity}, ${i.quantity - (stockBefore[i.product_id] ?? 0)}개 부족)`)
+          .join(', ');
+        return {
+          ok: false,
+          error: `재고 부족으로 packaging 불가 — 재입고 후 다시 시도하세요: ${detail}`,
+        };
+      }
       const deductResult = await deductStockForItems(typed.map(i => ({ product_id: i.product_id, quantity: i.quantity })));
       if (!deductResult.ok) {
         return { ok: false, error: `재고 차감 실패: ${deductResult.error}` };
@@ -137,7 +153,6 @@ export async function updateOrderStatus(
       );
       // Low stock alert: products at/below threshold after deduction.
       const LOW = 2;
-      const { getStockMap } = await import('@/lib/products/stock');
       const stockAfter = await getStockMap(typed.map(i => i.product_id));
       const lowItems = typed
         .filter(i => (stockAfter[i.product_id] ?? 0) <= LOW)
