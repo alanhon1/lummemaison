@@ -46,7 +46,10 @@ export async function cancelOrder(orderId: number): Promise<{ ok: boolean; error
   // not-yet-packed order must not add phantom stock. Awaited (not fire-and-
   // forget) — on serverless an un-awaited promise after the response can be
   // killed before it finishes, leaving stock unrestored and history wrong.
-  const wasStockDeducted = stageIndex(order.status as string) >= stageIndex('packaging');
+  // Test orders (order_number "TEST-…") never deducted real stock, so cancelling
+  // one must not restore any — that would inject phantom inventory.
+  const isTestOrder = String(order.order_number ?? '').toUpperCase().startsWith('TEST-');
+  const wasStockDeducted = !isTestOrder && stageIndex(order.status as string) >= stageIndex('packaging');
   try {
     const { data: items } = wasStockDeducted
       ? await admin.from('order_items').select('product_id, quantity').eq('order_id', orderId)

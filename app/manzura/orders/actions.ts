@@ -177,7 +177,7 @@ export async function updateOrderStatus(
   // unrestored and the history movements still tagged 'order' (showing -n
   // instead of the cancelled/0 row).
   if (nextStatus === 'cancelled' && current.status !== 'cancelled') {
-    const wasStockDeducted = stageIndex(current.status) >= stageIndex('packaging');
+    const wasStockDeducted = !isTestOrder && stageIndex(current.status) >= stageIndex('packaging');
     if (wasStockDeducted) {
       try {
         const { data: items } = await supabase
@@ -215,7 +215,7 @@ export async function updateOrderStatus(
     const currentIdx = stageIndex(current.status);
     const nextIdx = stageIndex(nextStatus);
     const packIdx = stageIndex('packaging');
-    if (currentIdx >= packIdx && nextIdx < packIdx) {
+    if (!isTestOrder && currentIdx >= packIdx && nextIdx < packIdx) {
       try {
         const { data: items } = await supabase
           .from('order_items')

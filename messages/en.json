@@ -432,7 +432,6 @@
     "addToCart": "Add to Cart",
     "inStock": "In Stock",
     "outOfStock": "Out of Stock",
-    "soldOut": "Sold out",
     "backorder": "Backorder",
     "backorderHint": "Out of stock — order now, ships when restocked.",
     "category": "Category",
@@ -458,8 +457,6 @@
     "items": "items",
     "checkout": "Proceed to Checkout",
     "clear": "Clear Cart",
-    "soldOut": "Sold out",
-    "soldOutBlock": "Remove sold-out items to check out.",
     "backorder": "Backorder"
   },
   "about": {

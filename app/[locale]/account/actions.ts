@@ -243,8 +243,13 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
       .select('email_verified, full_name')
       .eq('user_id', user.id)
       .maybeSingle();
-    if (!prof?.email_verified) {
-      await sendConfirmationLink(email, (prof?.full_name as string | null) ?? null, locale);
+    // Only block when a profile row EXISTS and is unverified. A missing row
+    // (prof === null) must NOT lock the user out here — let them through to the
+    // account page, which routes them to profile repair. Treating null as
+    // "unverified" would be an inescapable loop (the confirm link can't flag a
+    // row that doesn't exist).
+    if (prof && !prof.email_verified) {
+      await sendConfirmationLink(email, (prof.full_name as string | null) ?? null, locale);
       await supabase.auth.signOut();
       return { error: 'Please confirm your email before signing in. We just sent a confirmation link — check your inbox and your spam folder.' };
     }
@@ -307,24 +312,6 @@ export async function resendConfirmation(_prev: FormState, formData: FormData): 
     return { error: "Couldn't resend the email right now. Please try again shortly." };
   }
   return { success: true };
-}
-
-// Re-reads the signed-in customer's verification state. Used by the account
-// banner's "I've confirmed" button so a customer who just clicked the email link
-// (in another tab) can clear the notice without a full reload. Reads via the
-// user-scoped client — RLS lets a user read their own profile row.
-export async function checkEmailVerified(): Promise<{ verified: boolean }> {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return { verified: false };
-  const { data } = await supabase
-    .from('customer_profiles')
-    .select('email_verified')
-    .eq('user_id', user.id)
-    .maybeSingle();
-  return { verified: !!data?.email_verified };
 }
 
 // ---------------------------------------------------------------------------

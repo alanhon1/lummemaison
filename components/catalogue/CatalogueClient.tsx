@@ -330,7 +330,7 @@ export default function CatalogueClient({ products, initialCategory }: { product
             <div className="flex items-center gap-2 mt-2 pt-2 border-t border-bone">
               <span className="text-xs text-mist">Viewing:</span>
               <span className="text-xs font-semibold text-gold">
-                {categories.find(c => c.id === activeCategory)?.name}
+                {tCat(activeCategory)}
               </span>
               <button
                 onClick={() => { setActiveCategory(''); updateUrl({ cat: '' }); }}

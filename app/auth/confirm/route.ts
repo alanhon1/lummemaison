@@ -41,7 +41,15 @@ export async function GET(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser();
   if (user) {
     const admin = createServiceClient();
-    await admin.from('customer_profiles').update({ email_verified: true }).eq('user_id', user.id);
+    const { error: vErr, count } = await admin
+      .from('customer_profiles')
+      .update({ email_verified: true }, { count: 'exact' })
+      .eq('user_id', user.id);
+    // Don't fail the redirect, but log when nothing was flagged (e.g. no profile
+    // row) so a silently-unverified account doesn't go unnoticed.
+    if (vErr || !count) {
+      console.warn('[auth/confirm] email_verified not set for', user.id, vErr?.message ?? '0 rows');
+    }
   }
 
   return NextResponse.redirect(`${origin}${safeNext}`);

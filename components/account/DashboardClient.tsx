@@ -19,7 +19,6 @@ interface Profile {
   state_province: string | null;
   postal_code: string;
   fedex_account: string | null;
-  email_verified: boolean;
 }
 
 interface OrderRow {
