@@ -35,7 +35,7 @@ export default function ReportIssueLink({ variant = 'link' }: { variant?: 'link'
           onClick={() => setOpen(true)}
           aria-label={t('trigger')}
           title={t('trigger')}
-          className="fixed bottom-24 right-6 z-40 w-14 h-14 rounded-full bg-charcoal text-cream shadow-lg flex items-center justify-center hover:bg-gold-dark hover:scale-110 transition-all duration-300 [touch-action:manipulation]"
+          className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-charcoal text-cream shadow-lg flex items-center justify-center hover:bg-gold-dark hover:scale-110 transition-all duration-300 [touch-action:manipulation]"
         >
           <AlertCircle size={24} />
         </button>
