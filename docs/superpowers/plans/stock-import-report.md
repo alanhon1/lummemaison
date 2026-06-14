@@ -1,9 +1,9 @@
 # Stock Import Report — 298 xlsx products
 
 - Matched (will be in the SQL): **239** (exact/normalized: 218, fuzzy 'core': 21)
-- Skipped (manual map = 0, not on site): **47**
+- Skipped (manual map = 0, not on site): **48**
 - Marked WONDER (no number; toggle in admin after deploy): **0**
-- Needs your decision: **12**
+- Needs your decision: **11**
 
 ## Fuzzy auto-matches — please skim (tell me if any are wrong)
 These were matched after stripping volume/variant tokens. Usually right, but double-check.
@@ -110,5 +110,3 @@ For each, reply with the site product id (or "skip"). Best-guess candidates show
     - #404 DK ULTRA Thin Meso needles — spec: 100pcs/box (30G/32G/33G/34G, 4/6/8/13) — DK ULTRA Thin Meso Needles are sterile, single-use ultra-fine hypodermic needles for profe…
     - #263 DN64 NEEDLE — spec: 5ea/box, 0.25mm or 0.5mm — DN64 NEEDLE is a 64-pin roller-type replaceable needle cartridge engineered for MTS (Micro…
     - #264 DN16 NEEDLE — spec: 5ea/box — DN16 NEEDLE is a 16-pin stamp-type replaceable needle cartridge for MTS devices, designed …
-- **G2 OIL LIFTING PACK (Wrinkle Mask Pack Cream) 50mL** (qty 1)
-    - #188 G2 OIL LIFTING PACK (Wrinkle Mask Pack Cream) — spec: 50 mL — G2 OIL LIFTING PACK combines a G2 Fermented Complex of garlic and ginger extracts with pep…
