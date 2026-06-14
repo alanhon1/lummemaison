@@ -6,7 +6,6 @@ import { useTranslations, useLocale } from 'next-intl';
 import { ShoppingBag, Check } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { useCurrencyStore } from '@/lib/currency-store';
-import { useProductStock } from '@/lib/stock-store';
 import { localePath } from '@/lib/i18n';
 import type { Product } from '@/lib/products';
 
@@ -17,9 +16,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const locale = useLocale();
   useCurrencyStore();
   const [added, setAdded] = useState(false);
-  const stock = useProductStock(product.id);
-  // Out of stock is still orderable (a backorder); only notForSale blocks buying.
-  const backorder = stock === 0;
+  // Stock is admin-only now — oversell means stock never blocks/labels buying.
   const notForSale = !!product.notForSale;
   const cannotBuy = notForSale;
 
@@ -99,9 +96,6 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         {t('contactForOrder')}
       </Link>
       </div>
-      {backorder && !notForSale && (
-        <p className="text-xs text-amber-600 font-medium">{t('backorderHint')}</p>
-      )}
     </div>
   );
 }

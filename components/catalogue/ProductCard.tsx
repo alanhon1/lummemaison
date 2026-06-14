@@ -8,7 +8,6 @@ import { useCartStore } from '@/lib/store';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 import { getLocalizedSpecification, getGroupRange, type Product } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
-import { useProductStock } from '@/lib/stock-store';
 import ProductImage from './ProductImage';
 
 interface ProductCardProps {
@@ -79,9 +78,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const locale = useLocale();
   const { addItem } = useCartStore();
   const { currency } = useCurrencyStore();
-  const stock = useProductStock(product.id);
-  // Out of stock is still orderable (a backorder); only notForSale blocks buying.
-  const backorder = stock === 0;
+  // Stock is admin-only now — oversell means stock never blocks/labels buying.
   const notForSale = !!product.notForSale;
   const cannotBuy = notForSale;
   const tagChips = matchedTags(product.tags, searchQuery);
@@ -203,14 +200,6 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
                   className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-charcoal/80 text-cream"
                 >
                   Not for sale
-                </span>
-              ),
-              backorder && !notForSale && (
-                <span
-                  key="so"
-                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-amber-500 text-white"
-                >
-                  {tProduct('backorder')}
                 </span>
               ),
               pct > 0 && <span key="s" className="badge-discount">−{pct}%</span>,

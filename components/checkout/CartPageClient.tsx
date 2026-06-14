@@ -6,14 +6,12 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCartStore, cartLineKey } from '@/lib/store';
-import { useCartStock } from '@/lib/useCartStock';
 import { localePath } from '@/lib/i18n';
 
 export default function CartPageClient() {
   const t = useTranslations('cart');
   const locale = useLocale();
   const { items, removeItem, updateQuantity, clearCart, totalPrice } = useCartStore();
-  const { isBackorder } = useCartStock();
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
@@ -35,7 +33,6 @@ export default function CartPageClient() {
       {/* Items */}
       <div className="order-2 lg:order-1 lg:col-span-2 space-y-3">
         {items.map(item => {
-          const backorder = isBackorder(item.id);
           const lineKey = cartLineKey(item);
           return (
           <div key={lineKey} className="flex gap-4 p-4 bg-white border border-bone rounded-sm">
@@ -55,9 +52,6 @@ export default function CartPageClient() {
                 <p className="text-xs font-semibold text-gold-dark mt-0.5">{item.option}</p>
               )}
               <p className="text-base font-semibold text-gold mt-1">${item.price.toFixed(2)}</p>
-              {backorder && (
-                <p className="text-xs font-semibold text-amber-600 uppercase tracking-wider mt-1">{t('backorder')}</p>
-              )}
               <div className="flex items-center gap-3 mt-2">
                 <button
                   onClick={() => updateQuantity(lineKey, item.quantity - 1)}

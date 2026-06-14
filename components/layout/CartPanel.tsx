@@ -6,7 +6,6 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
 import { useCartStore, cartLineKey } from '@/lib/store';
-import { useCartStock } from '@/lib/useCartStock';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 import { localePath } from '@/lib/i18n';
 
@@ -14,7 +13,6 @@ export default function CartPanel() {
   const t = useTranslations('cart');
   const locale = useLocale();
   const { items, isOpen, closeCart, removeItem, updateQuantity, clearCart, totalItems, totalPrice } = useCartStore();
-  const { isBackorder } = useCartStock();
   const { currency } = useCurrencyStore();
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
@@ -64,7 +62,6 @@ export default function CartPanel() {
           <div className="flex flex-col h-full">
             <div className="flex-1 overflow-y-auto py-4">
               {items.map(item => {
-                const backorder = isBackorder(item.id);
                 const lineKey = cartLineKey(item);
                 return (
                 <div key={lineKey} className="flex gap-4 px-6 py-4 border-b border-bone/50">
@@ -97,9 +94,6 @@ export default function CartPanel() {
                       <p className="text-xs font-semibold text-gold-dark">{item.option}</p>
                     ) : null}
                     <p className="text-sm font-semibold text-gold mt-1">{formatPrice(item.price, currency)}</p>
-                    {backorder && (
-                      <p className="text-xs font-semibold text-amber-600 uppercase tracking-wider mt-1">{t('backorder')}</p>
-                    )}
 
                     {/* Quantity */}
                     <div className="flex items-center gap-2 mt-2">
