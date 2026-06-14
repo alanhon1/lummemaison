@@ -14,12 +14,12 @@ import { missingEmailEnv } from '@/lib/email/mailer';
 export type FormState = { error?: string; success?: boolean };
 
 // Email verification is required to sign in for accounts created on/after this
-// timestamp (the cutover moment). Everyone who already had an account before it
-// is grandfathered (may sign in unverified) — including those who signed up
-// during the 2026-06-13~14 window when confirmation was temporarily optional
-// (SMTP was broken then, so they couldn't have verified). Only NEW signups from
-// the cutover onward must verify.
-const VERIFY_REQUIRED_SINCE = '2026-06-14T06:10:00Z';
+// timestamp. It's set to the END of 2026-06-14 in KST (UTC+9), i.e. midnight
+// KST = 15:00 UTC, so EVERY account from 2026-06-13 and 2026-06-14 (the window
+// when confirmation was temporarily optional because SMTP was broken — those
+// users couldn't have verified) is grandfathered and can sign in unverified.
+// Only NEW signups from 2026-06-15 KST onward must verify.
+const VERIFY_REQUIRED_SINCE = '2026-06-14T15:00:00Z';
 
 // Resolves the public-facing absolute origin (https://lumeemaison.com,
 // http://localhost:3000, etc.) so we can build the redirect_to URL that
