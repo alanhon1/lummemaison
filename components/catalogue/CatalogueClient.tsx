@@ -87,7 +87,10 @@ export default function CatalogueClient({ products, initialCategory }: { product
   }, [products, searchQuery, activeCategory, saleOnly, newOnly, sortBy, fuse]);
 
   const totalPages = Math.ceil(filteredProducts.length / PER_PAGE);
-  const paginated = filteredProducts.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+  // Clamp a stale/deep-linked page (e.g. ?page=10, or a result set that shrank
+  // after filtering) so we never slice past the end and show an empty grid.
+  const safePage = Math.min(Math.max(1, page), Math.max(1, totalPages));
+  const paginated = filteredProducts.slice((safePage - 1) * PER_PAGE, safePage * PER_PAGE);
 
   const updateUrl = useCallback(
     (patch: Partial<{ q: string; cat: string; sale: boolean; new: boolean; sort: SortOption; page: number }>) => {
@@ -385,8 +388,11 @@ export default function CatalogueClient({ products, initialCategory }: { product
                   else if (page >= totalPages - 3) pageNum = totalPages - 6 + i;
                   else pageNum = page - 3 + i;
                 }
-                // On mobile, hide the first and last of the 7 buttons (visible window = 5)
-                const hideOnMobile = i === 0 || i === 6;
+                // On mobile, only trim the ends when we actually have a 7-wide
+                // sliding window (>7 pages). With ≤7 pages every button is a real
+                // sequential page — hiding index 0/6 there wrongly dropped page 1
+                // (and the last page), which read as "next page is broken".
+                const hideOnMobile = totalPages > 7 && (i === 0 || i === 6);
                 return (
                   <button
                     key={pageNum}
