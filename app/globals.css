@@ -556,7 +556,11 @@ body {
     position: fixed;
     top: 0;
     right: 0;
+    /* 100dvh (not 100vh): on iOS Safari, 100vh ignores the bottom browser bar,
+       so the footer (Proceed to Checkout) hides behind it. dvh tracks the
+       visible viewport so the button stays on-screen. */
     height: 100vh;
+    height: 100dvh;
     width: 100%;
     max-width: 420px;
     background: var(--surface);

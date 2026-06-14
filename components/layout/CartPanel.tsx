@@ -130,8 +130,9 @@ export default function CartPanel() {
               })}
             </div>
 
-            {/* Footer */}
-            <div className="border-t border-bone p-6 space-y-4">
+            {/* Footer — extra bottom padding clears the iOS home indicator /
+                Safari bottom bar so the checkout CTA is never hidden. */}
+            <div className="border-t border-bone p-6 space-y-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
               <div className="flex justify-between items-center">
                 <span className="text-sm text-mist">{t('total')}</span>
                 <span className="font-display text-xl font-light">
