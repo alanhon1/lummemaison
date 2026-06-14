@@ -7,9 +7,10 @@ import { saveProductStockAction } from '@/app/manzura/products/actions';
 interface Props {
   productId: number;
   initialStock: number;
+  initialUnknown?: boolean;
 }
 
-export default function StockInput({ productId, initialStock }: Props) {
+export default function StockInput({ productId, initialStock, initialUnknown = false }: Props) {
   const [value, setValue] = useState(String(initialStock));
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<number | null>(null);
@@ -17,6 +18,9 @@ export default function StockInput({ productId, initialStock }: Props) {
 
   const parsed = Math.max(0, Math.floor(Number.parseInt(value, 10) || 0));
   const dirty = parsed !== initialStock;
+  // Once the admin types and saves a number, the row is no longer "unknown".
+  // We only show the ??? warning until that first save in this session.
+  const showUnknown = initialUnknown && savedAt === null;
 
   async function save() {
     setSaving(true);
@@ -58,6 +62,11 @@ export default function StockInput({ productId, initialStock }: Props) {
             {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
             {saving ? 'Saving…' : 'Save stock'}
           </button>
+          {showUnknown && (
+            <span className="text-[10px] uppercase tracking-widest text-purple-700 bg-purple-50 border border-purple-200 px-2 py-1 rounded">
+              ??? — set the real stock (counts as 0 until you do)
+            </span>
+          )}
           {parsed === 0 && (
             <span className="text-[10px] uppercase tracking-widest text-rose-700 bg-rose-50 border border-rose-200 px-2 py-1 rounded">
               Sold out
