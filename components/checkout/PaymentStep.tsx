@@ -8,6 +8,7 @@ import { readDraft, computeShippingCents, type CheckoutDraft } from '@/lib/check
 import { useCartStore, cartLineKey } from '@/lib/store';
 import { placeOrderAction, uploadPaymentProof, validatePromoCode } from '@/app/[locale]/checkout/actions';
 import { localePath } from '@/lib/i18n';
+import { highlightField } from '@/lib/checkout/highlightField';
 import CopyButton from './CopyButton';
 
 const ACCEPTED_MIME = [
@@ -62,6 +63,8 @@ export default function PaymentStep({ payment, serverError }: Props) {
   const [uploadError, setUploadError] = useState('');
   const [discountCents, setDiscountCents] = useState(0);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const proofSectionRef = useRef<HTMLElement | null>(null);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     const d = readDraft();
@@ -127,8 +130,6 @@ export default function PaymentStep({ payment, serverError }: Props) {
     paymentTransactionLink: transactionLink.trim() || undefined,
   });
 
-  const confirmEnabled = !submitting && !!proofPath;
-
   async function handleFile(file: File) {
     setUploadError('');
     if (file.size > MAX_PROOF_BYTES) {
@@ -150,6 +151,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
       }
       setProofPath(res.path);
       setProofFileName(file.name);
+      setSubmitError('');
     } finally {
       setUploading(false);
     }
@@ -303,7 +305,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
       </article>
 
       {/* Payment proof — gating */}
-      <article className="bg-white border border-bone rounded-lg p-5 md:p-6">
+      <article ref={proofSectionRef} className="bg-white border border-bone rounded-lg p-5 md:p-6">
         <header className="flex items-center gap-2 mb-2">
           <FileCheck2 size={20} className="text-gold-dark" aria-hidden />
           <h2 className="font-display italic text-xl text-charcoal">{t('payment.proof.heading')}</h2>
@@ -388,7 +390,22 @@ export default function PaymentStep({ payment, serverError }: Props) {
         </p>
       )}
 
+      {submitError && (
+        <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md p-3" role="alert">
+          {submitError}
+        </p>
+      )}
+
       <form
+        onSubmit={e => {
+          // Always pressable: if the screenshot is missing, stop the submit and
+          // point the customer at the upload box instead of doing nothing.
+          if (!proofPath) {
+            e.preventDefault();
+            setSubmitError(t('payment.proof.requireScreenshot'));
+            highlightField(proofSectionRef.current);
+          }
+        }}
         action={async fd => {
           setSubmitting(true);
           await placeOrderAction(fd);
@@ -404,7 +421,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
         >
           {t('back')}
         </button>
-        <button type="submit" disabled={!confirmEnabled} className="btn-gold disabled:opacity-60">
+        <button type="submit" disabled={submitting} className="btn-gold disabled:opacity-60">
           {submitting ? t('payment.submitting') : t('payment.confirm')}
         </button>
       </form>
