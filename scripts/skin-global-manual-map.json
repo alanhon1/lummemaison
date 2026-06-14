@@ -158,7 +158,19 @@
     "SKINVIVE BY JUVEDERM": 0,
     "VIVARO CANNULA 17G 150mm": 0,
     "VIVARO CANNULA 22G 50mm": 0,
-    "UNION FILL HARD": 0
+    "UNION FILL HARD": 0,
+    "REJUBEAU MESO NEEDLE 30G 13MM": { "id": 391, "option": "13mm" },
+    "REJUBEAU MESO NEEDLE 30G 4MM": { "id": 391, "option": "4mm" },
+    "REJUBEAU MESO NEEDLE 33G 4MM": { "id": 393, "option": "4mm" },
+    "REJUBEAU MESO NEEDLE 34G 4MM": { "id": 394, "option": "4mm" },
+    "SUNGSHIM INSULIN SYRINGE  0.5 mL/cc 30G 8MM": { "id": 400, "option": "0.5mL/30G/8mm" },
+    "SUNGSHIM INSULIN SYRINGE  0.5 mL/cc 31G 8MM": { "id": 400, "option": "0.5mL/31G/8mm" },
+    "SUNGSHIM INSULIN SYRINGE 1mL/cc  30G 8MM": { "id": 400, "option": "1mL/30G/8mm" },
+    "SUNGSHIM INSULIN SYRINGE 1mL/cc 31G 8MM": { "id": 400, "option": "1mL/31G/8mm" },
+    "SUNGSHIM NEEDLES 30/13": { "id": 399, "option": "30G/13mm" },
+    "SUNGSHIM NEEDLES 30/4": { "id": 399, "option": "30G/4mm" },
+    "SUNGSHIM Insulin Pen Needle 32G 6MM": { "id": 401, "option": "32G/6mm" }
   },
-  "wonderProductIds": [143]
+  "wonderProductIds": [143],
+  "wonderOptions": [{ "id": 391, "option": "6mm" }]
 }
