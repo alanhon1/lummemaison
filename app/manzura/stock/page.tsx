@@ -186,18 +186,23 @@ export default async function StockPage({ searchParams }: PageProps) {
     const wonderOnly = sp.wonderOnly === '1';
     const { data: stockRows } = await supabase
       .from('product_stock')
-      .select('product_id, stock, wonder, stock_unknown');
+      .select('product_id, option, stock, wonder, stock_unknown');
 
-    const rows = (stockRows ?? []) as Array<{ product_id: number; stock: number; wonder: boolean; stock_unknown: boolean }>;
-    const rowFor = (id: number) => rows.find(r => r.product_id === id);
+    const rows = (stockRows ?? []) as Array<{ product_id: number; option: string; stock: number; wonder: boolean; stock_unknown: boolean }>;
+    const rowFor = (id: number, opt: string) => rows.find(r => r.product_id === id && r.option === opt);
 
-    let allRows = allProducts.map(p => ({
-      id: p.id,
-      name: p.name as string,
-      stock: rowFor(p.id)?.stock ?? 0,
-      wonder: Boolean(rowFor(p.id)?.wonder),
-      unknown: Boolean(rowFor(p.id)?.stock_unknown),
-    }));
+    // One row per (product, option); optionless products get a single '' row.
+    let allRows = allProducts.flatMap(p => {
+      const opts = p.options && p.options.length > 0 ? p.options : [''];
+      return opts.map(opt => ({
+        id: p.id,
+        name: opt ? `${p.name} — ${opt}` : (p.name as string),
+        option: opt,
+        stock: rowFor(p.id, opt)?.stock ?? 0,
+        wonder: Boolean(rowFor(p.id, opt)?.wonder),
+        unknown: Boolean(rowFor(p.id, opt)?.stock_unknown),
+      }));
+    });
     if (wonderOnly) allRows = allRows.filter(r => r.wonder);
     allRows = allRows.sort((a, b) => {
       if (sort === 'name-asc') return a.name.localeCompare(b.name);
@@ -284,7 +289,7 @@ export default async function StockPage({ searchParams }: PageProps) {
                 const isOut = r.stock <= 0;
                 const isLow = !isOut && r.stock <= 3;
                 return (
-                  <tr key={r.id} className={`border-t border-bone ${isOut ? 'bg-rose-50/30' : isLow ? 'bg-amber-50/30' : ''}`}>
+                  <tr key={`${r.id}-${r.option}`} className={`border-t border-bone ${isOut ? 'bg-rose-50/30' : isLow ? 'bg-amber-50/30' : ''}`}>
                     <td className="px-4 py-2.5 text-xs text-mist font-mono">#{r.id}</td>
                     <td className="px-4 py-2.5 text-charcoal text-sm">
                       <span className="inline-flex items-center gap-1">
@@ -305,7 +310,7 @@ export default async function StockPage({ searchParams }: PageProps) {
                       )}
                     </td>
                     <td className="px-4 py-2.5">
-                      <ProductStockDetails productId={r.id} productName={r.name as string} />
+                      <ProductStockDetails productId={r.id} option={r.option} productName={r.name as string} />
                     </td>
                   </tr>
                 );

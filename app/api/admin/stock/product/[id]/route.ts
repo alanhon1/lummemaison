@@ -6,7 +6,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 
 export async function GET(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
@@ -15,26 +15,34 @@ export async function GET(
   const { id } = await params;
   const productId = Number.parseInt(id, 10);
   if (!Number.isFinite(productId)) return NextResponse.json({ error: 'bad id' }, { status: 400 });
+  const option = req.nextUrl.searchParams.get('option') ?? '';
 
   const supabase = createServiceClient();
+
+  // order_items.option is nullable (rows predate options), so only filter it
+  // when a specific option is requested; '' = whole product = all its orders.
+  let orderItemsQuery = supabase
+    .from('order_items')
+    .select('quantity, option, orders(id, order_seq, order_number, created_at, status, customer_name, total_cents, currency)')
+    .eq('product_id', productId);
+  if (option) orderItemsQuery = orderItemsQuery.eq('option', option);
 
   const [{ data: movements }, { data: orderItems }, { data: stock }] = await Promise.all([
     supabase
       .from('stock_movements')
       .select('id, delta, reason, created_at, note, companies(name), orders(order_seq, order_number)')
       .eq('product_id', productId)
+      .eq('option', option)
       .order('created_at', { ascending: false })
       .limit(200),
-    supabase
-      .from('order_items')
-      .select('quantity, orders(id, order_seq, order_number, created_at, status, customer_name, total_cents, currency)')
-      .eq('product_id', productId)
+    orderItemsQuery
       .order('created_at', { ascending: false, referencedTable: 'orders' })
       .limit(100),
     supabase
       .from('product_stock')
       .select('stock')
       .eq('product_id', productId)
+      .eq('option', option)
       .maybeSingle(),
   ]);
 

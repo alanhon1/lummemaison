@@ -87,9 +87,11 @@ function ChartSection({ title, children }: ChartSectionProps) {
 
 export default function ProductStockDetails({
   productId,
+  option = '',
   productName,
 }: {
   productId: number;
+  option?: string;
   productName: string;
 }) {
   const [open, setOpen] = useState(false);
@@ -99,12 +101,12 @@ export default function ProductStockDetails({
   useEffect(() => {
     if (!open || data) return;
     setLoading(true);
-    fetch(`/api/admin/stock/product/${productId}`)
+    fetch(`/api/admin/stock/product/${productId}?option=${encodeURIComponent(option)}`)
       .then(r => r.json())
       .then((d: ProductData) => setData(d))
       .catch(console.error)
       .finally(() => setLoading(false));
-  }, [open, productId, data]);
+  }, [open, productId, option, data]);
 
   // ── Chart data ────────────────────────────────────────────────────────────
 
