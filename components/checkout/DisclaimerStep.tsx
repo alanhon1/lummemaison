@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { readDraft, writeDraft } from '@/lib/checkout/state';
 import { localePath } from '@/lib/i18n';
+import { highlightField } from '@/lib/checkout/highlightField';
 
 const KEYS = ['shipping', 'delivery', 'stock', 'temperatureSensitive', 'fragileItems'] as const;
 type Key = (typeof KEYS)[number];
@@ -31,6 +32,8 @@ export default function DisclaimerStep() {
   const router = useRouter();
   const [checked, setChecked] = useState<Record<Key, boolean>>(EMPTY_CHECKED);
   const [hydrated, setHydrated] = useState(false);
+  const [error, setError] = useState('');
+  const checkboxRef = useRef<HTMLLabelElement | null>(null);
 
   useEffect(() => {
     const draft = readDraft();
@@ -54,7 +57,12 @@ export default function DisclaimerStep() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!allChecked) return;
+    if (!allChecked) {
+      setError(t('disclaimers.mustAccept'));
+      highlightField(checkboxRef.current);
+      return;
+    }
+    setError('');
     writeDraft({
       disclaimers: {
         shipping: true,
@@ -98,7 +106,10 @@ export default function DisclaimerStep() {
         ))}
       </div>
 
-      <label className="flex items-start gap-3 bg-white border border-bone rounded-lg p-5 cursor-pointer select-none [touch-action:manipulation]">
+      <label
+        ref={checkboxRef}
+        className="flex items-start gap-3 bg-white border border-bone rounded-lg p-5 cursor-pointer select-none [touch-action:manipulation]"
+      >
         <input
           type="checkbox"
           checked={allChecked}
@@ -118,8 +129,8 @@ export default function DisclaimerStep() {
       </label>
 
       <div className="flex flex-col-reverse sm:flex-row sm:items-center gap-3 sm:justify-end">
-        {!allChecked && (
-          <p className="text-xs text-mist sm:mr-auto">{t('disclaimers.mustAccept')}</p>
+        {error && (
+          <p className="text-xs text-red-600 sm:mr-auto" role="alert">{error}</p>
         )}
         <button
           type="button"
@@ -128,7 +139,7 @@ export default function DisclaimerStep() {
         >
           {t('back')}
         </button>
-        <button type="submit" disabled={!allChecked} className="btn-gold disabled:opacity-50 disabled:cursor-not-allowed">
+        <button type="submit" className="btn-gold">
           {t('disclaimers.continue')}
         </button>
       </div>
