@@ -35,6 +35,7 @@ interface PageProps {
     page?: string;
     sort?: string;
     wonderOnly?: string;
+    nonWonderOnly?: string;
   }>;
 }
 
@@ -184,6 +185,7 @@ export default async function StockPage({ searchParams }: PageProps) {
     const sort = (sp.sort ?? 'qty-asc') as StockSort;
 
     const wonderOnly = sp.wonderOnly === '1';
+    const nonWonderOnly = !wonderOnly && sp.nonWonderOnly === '1';
     const { data: stockRows } = await supabase
       .from('product_stock')
       .select('product_id, option, stock, wonder, stock_unknown');
@@ -204,6 +206,7 @@ export default async function StockPage({ searchParams }: PageProps) {
       }));
     });
     if (wonderOnly) allRows = allRows.filter(r => r.wonder);
+    else if (nonWonderOnly) allRows = allRows.filter(r => !r.wonder);
     allRows = allRows.sort((a, b) => {
       if (sort === 'name-asc') return a.name.localeCompare(b.name);
       if (sort === 'id-asc')   return a.id - b.id;
@@ -270,6 +273,16 @@ export default async function StockPage({ searchParams }: PageProps) {
             }`}
           >
             {wonderOnly ? 'Wonder ✓' : 'Wonder only'}
+          </a>
+          <a
+            href={`/manzura/stock?tab=stock${nonWonderOnly ? '' : '&nonWonderOnly=1'}&sort=${sort}`}
+            className={`text-xs px-3 py-1.5 rounded border transition-colors ${
+              nonWonderOnly
+                ? 'bg-emerald-600 text-white border-emerald-600'
+                : 'border-bone text-mist hover:text-charcoal'
+            }`}
+          >
+            {nonWonderOnly ? 'Non-wonder ✓' : 'Non-wonder only'}
           </a>
         </form>
 
