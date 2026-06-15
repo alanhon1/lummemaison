@@ -245,9 +245,9 @@ export default async function AdminOrderDetailPage({
           <div className="flex items-start gap-2">
             <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-rose-600 text-white text-[11px] font-bold leading-none shrink-0 mt-0.5">!</span>
             <div className="text-sm text-rose-800">
-              <p className="font-semibold">재고 초과 품목 {shortItems.length}개 — 재입고 필요</p>
+              <p className="font-semibold">{shortItems.length} item{shortItems.length > 1 ? 's' : ''} over stock — restock needed</p>
               <p className="text-xs text-rose-700 mt-1">
-                아래 빨간 품목은 주문 수량이 현재 재고보다 많습니다. <span className="font-semibold">add inbound</span>으로 재고를 채우기 전까지는 <span className="font-semibold">packaging으로 넘길 수 없습니다.</span>
+                The red items below are ordered in greater quantity than current stock. Until you refill stock via <span className="font-semibold">add inbound</span>, <span className="font-semibold">this order can&apos;t be moved to packaging.</span>
               </p>
             </div>
           </div>
@@ -410,7 +410,7 @@ export default async function AdminOrderDetailPage({
                   </span>
                   {short && (
                     <span className="block text-[11px] font-semibold text-rose-700 mt-0.5">
-                      재입고 필요 — {it.quantity - stock}개 부족
+                      Restock needed — short by {it.quantity - stock}
                     </span>
                   )}
                 </td>
