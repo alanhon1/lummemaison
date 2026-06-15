@@ -12,6 +12,7 @@ import AdminOrderMessages from '@/components/admin/AdminOrderMessages';
 import OrderReceiptModal from '@/components/admin/OrderReceiptModal';
 import OrderAttachments from '@/components/account/OrderAttachments';
 import EmailVerifiedMark from '@/components/account/EmailVerifiedMark';
+import WonderMark from '@/components/admin/WonderMark';
 
 export const dynamic = 'force-dynamic';
 
@@ -131,6 +132,12 @@ export default async function AdminOrderDetailPage({
   const orderItems = ((items ?? []) as OrderItem[]);
   const itemFlags = await getStockFlagsMap(orderItems.map(i => ({ product_id: i.product_id, option: i.option ?? '' })));
   const stockOf = (pid: number, option: string | null) => itemFlags[stockKey(pid, option ?? '')]?.stock ?? 0;
+  // Wonder (???) = stock unknown; the system still treats it as 0, so these
+  // items keep counting as short / blocking packaging — we only flag them ???.
+  const isWonder = (pid: number, option: string | null) => {
+    const f = itemFlags[stockKey(pid, option ?? '')];
+    return Boolean(f?.wonder || f?.stockUnknown);
+  };
   const shortItems = orderItems.filter(i => stockOf(i.product_id, i.option) < i.quantity);
   const isPacked = ['packaging', 'shipped', 'delivered'].includes(detail.status);
   const showShortfall = shortItems.length > 0 && !isPacked;
@@ -392,11 +399,15 @@ export default async function AdminOrderDetailPage({
           <tbody>
             {orderItems.map((it: OrderItem) => {
               const stock = stockOf(it.product_id, it.option);
+              const wonder = isWonder(it.product_id, it.option);
               const short = !isPacked && stock < it.quantity;
               return (
               <tr key={it.id} className="border-b border-bone">
                 <td className="py-2 text-charcoal">
-                  {it.product_name}{it.option ? ` (${it.option})` : ''}
+                  <span className="inline-flex items-center gap-1">
+                    {it.product_name}{it.option ? ` (${it.option})` : ''}
+                    {wonder && <WonderMark />}
+                  </span>
                   {short && (
                     <span className="block text-[11px] font-semibold text-rose-700 mt-0.5">
                       재입고 필요 — {it.quantity - stock}개 부족
@@ -405,7 +416,11 @@ export default async function AdminOrderDetailPage({
                 </td>
                 <td className={`py-2 text-center ${short ? 'text-rose-700 font-bold' : 'text-charcoal'}`}>{it.quantity}</td>
                 <td className={`py-2 text-center ${short ? 'text-rose-700 font-bold' : 'text-charcoal'}`}>
-                  {isPacked ? '—' : stock}
+                  {isPacked
+                    ? '—'
+                    : wonder
+                      ? <span className="text-purple-700 font-semibold" title="Unknown — set the real stock">???</span>
+                      : stock}
                 </td>
                 <td className="py-2 text-right text-charcoal">{formatUSD(it.unit_cents, detail.currency)}</td>
                 <td className="py-2 text-right text-charcoal">{formatUSD(it.line_cents, detail.currency)}</td>
