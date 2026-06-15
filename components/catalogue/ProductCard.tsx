@@ -79,8 +79,11 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const { addItem } = useCartStore();
   const { currency } = useCurrencyStore();
   // Stock is admin-only now — oversell means stock never blocks/labels buying.
+  // The only hard blocks are the manual "not for sale" / "out of stock" flags.
   const notForSale = !!product.notForSale;
-  const cannotBuy = notForSale;
+  const outOfStock = !!product.outOfStock;
+  const cannotBuy = notForSale || outOfStock;
+  const blockLabel = notForSale ? 'Not for sale' : 'Out of stock';
   const tagChips = matchedTags(product.tags, searchQuery);
   const pct = discountPct(product);
 
@@ -164,7 +167,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
           onClick={handleAddToCart}
           disabled={cannotBuy}
           className="self-center flex-shrink-0 w-9 h-9 border border-bone rounded-md flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-bone disabled:hover:text-charcoal"
-          aria-label={notForSale ? 'Not for sale' : t('addToCart')}
+          aria-label={cannotBuy ? blockLabel : t('addToCart')}
         >
           <ShoppingBag size={16} />
         </button>
@@ -194,12 +197,12 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         <div className="absolute top-3 left-3 flex flex-col gap-1">
           {(() => {
             const all = [
-              notForSale && (
+              cannotBuy && (
                 <span
                   key="nfs"
-                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-charcoal/80 text-cream"
+                  className={`text-[10px] uppercase tracking-widest px-2 py-0.5 text-cream ${notForSale ? 'bg-charcoal/80' : 'bg-rose-600/90'}`}
                 >
-                  Not for sale
+                  {blockLabel}
                 </span>
               ),
               pct > 0 && <span key="s" className="badge-discount">−{pct}%</span>,
@@ -225,7 +228,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
             className="w-full btn-gold text-[10px] py-2.5 flex items-center justify-center gap-2 disabled:bg-charcoal disabled:opacity-100"
           >
             <ShoppingBag size={13} />
-            {notForSale ? 'Not for sale' : t('addToCart')}
+            {cannotBuy ? blockLabel : t('addToCart')}
           </button>
         </div>
       </div>

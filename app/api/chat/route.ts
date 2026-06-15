@@ -118,7 +118,7 @@ function buildDynamicContext(
     parts.push('--- PRODUCT DATA (matched to this question) ---');
     products.forEach(p => {
       const onSale = typeof p.originalPrice === 'number' && p.originalPrice > p.price && p.price > 0;
-      const stock = !p.inStock ? 'Sold Out' : onSale ? 'On Sale' : 'In Stock';
+      const stock = (p.outOfStock || !p.inStock) ? 'Sold Out' : p.notForSale ? 'Not for sale' : onSale ? 'On Sale' : 'In Stock';
       const priceStr = onSale
         ? `$${p.price} (ON SALE — was $${p.originalPrice}, ${Math.round((p.originalPrice! - p.price) / p.originalPrice! * 100)}% off)`
         : `$${p.price}`;

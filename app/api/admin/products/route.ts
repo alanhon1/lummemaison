@@ -32,6 +32,7 @@ export async function POST(req: Request) {
     isSale: false,
     isBestSeller: false,
     inStock: true,
+    outOfStock: false,
     image: '',
     ...updates,
   };

@@ -17,8 +17,11 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   useCurrencyStore();
   const [added, setAdded] = useState(false);
   // Stock is admin-only now — oversell means stock never blocks/labels buying.
+  // The only hard blocks are the manual "not for sale" / "out of stock" flags.
   const notForSale = !!product.notForSale;
-  const cannotBuy = notForSale;
+  const outOfStock = !!product.outOfStock;
+  const cannotBuy = notForSale || outOfStock;
+  const blockLabel = notForSale ? 'Not for sale' : 'Out of stock';
 
   const options = product.options ?? [];
   const [option, setOption] = useState(options[0] ?? '');
@@ -76,7 +79,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         }`}
       >
         {cannotBuy ? (
-          <>Not for sale</>
+          <>{blockLabel}</>
         ) : added ? (
           <>
             <Check size={16} />

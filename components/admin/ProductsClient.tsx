@@ -8,6 +8,7 @@ import Fuse from 'fuse.js';
 import type { Product, Category } from '@/lib/products';
 import { saveProductStockAction } from '@/app/manzura/products/actions';
 import WonderMark from './WonderMark';
+import { NotForSaleMark, OutOfStockMark } from './ProductFlagMarks';
 
 interface Props {
   products: Product[];
@@ -551,6 +552,8 @@ export default function ProductsClient({ products, categories, stockMap, wonderI
                 <span className="inline-flex items-center gap-1">
                   {nameOf(product)}
                   {wonderSet.has(product.id) && <WonderMark />}
+                  {product.notForSale && <NotForSaleMark />}
+                  {product.outOfStock && <OutOfStockMark />}
                 </span>
               </Link>
               <div className="flex items-center justify-between mt-auto pt-1">
@@ -648,6 +651,8 @@ export default function ProductsClient({ products, categories, stockMap, wonderI
                       <span className="line-clamp-1 inline-flex items-center gap-1">
                         {nameOf(product)}
                         {wonderSet.has(product.id) && <WonderMark />}
+                        {product.notForSale && <NotForSaleMark />}
+                        {product.outOfStock && <OutOfStockMark />}
                       </span>
                     )}
                   </td>

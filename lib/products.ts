@@ -66,7 +66,8 @@ export interface Product {
   isSale: boolean;
   isBestSeller: boolean;
   inStock: boolean;
-  notForSale?: boolean; // display only — add-to-cart / purchase disabled
+  notForSale?: boolean; // purchase disabled — reason: not for sale
+  outOfStock?: boolean; // purchase disabled — reason: out of stock (mutually exclusive with notForSale)
   image: string;
   moq: number;
   enrichedInfo?: EnrichedInfo;

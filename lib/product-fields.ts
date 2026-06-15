@@ -27,6 +27,7 @@ export const ALLOWED_PRODUCT_FIELDS = [
   'isBestSeller',
   'inStock',
   'notForSale',
+  'outOfStock',
   'image',
   'moq',
   'enrichedInfo',

@@ -21,7 +21,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   const [form, setForm] = useState<Partial<Product>>(product ?? {
     name: '', specification: '', description: '', price: 0, moq: 1,
     categoryId: categories[0]?.id ?? '', tags: [], isNew: false,
-    isSale: false, isBestSeller: false, inStock: true, image: '',
+    isSale: false, isBestSeller: false, inStock: true, outOfStock: false, image: '',
   });
   const [isDirty, setIsDirty] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -40,6 +40,18 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
 
   function update<K extends keyof Product>(key: K, value: Product[K]) {
     setForm(f => ({ ...f, [key]: value }));
+    setIsDirty(true);
+  }
+
+  // "Out of stock" and "Not for sale" both disable purchase and are mutually
+  // exclusive — enabling one clears the other (a product is blocked for exactly
+  // one stated reason).
+  function setBlockFlag(key: 'outOfStock' | 'notForSale', checked: boolean) {
+    setForm(f => ({
+      ...f,
+      outOfStock: key === 'outOfStock' ? checked : false,
+      notForSale: key === 'notForSale' ? checked : false,
+    }));
     setIsDirty(true);
   }
 
@@ -356,8 +368,6 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
                 // "New" is automatic (newest 40 products by id) — no manual toggle.
                 ['isSale', 'Sale'],
                 ['isBestSeller', 'Best Seller'],
-                ['inStock', 'In Stock'],
-                ['notForSale', 'Not for sale (purchase disabled)'],
               ] as const).map(([key, label]) => (
                 <label key={key} className="flex items-center gap-2 cursor-pointer">
                   <input type="checkbox" checked={!!form[key]} onChange={e => update(key, e.target.checked as Product[typeof key])}
@@ -365,6 +375,17 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
                   <span className="text-xs">{label}</span>
                 </label>
               ))}
+              {/* Out of stock / Not for sale — both disable purchase, mutually exclusive. */}
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" checked={!!form.outOfStock}
+                  onChange={e => setBlockFlag('outOfStock', e.target.checked)} className="accent-gold" />
+                <span className="text-xs">Out of stock (purchase disabled)</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" checked={!!form.notForSale}
+                  onChange={e => setBlockFlag('notForSale', e.target.checked)} className="accent-gold" />
+                <span className="text-xs">Not for sale (purchase disabled)</span>
+              </label>
             </div>
           </div>
         </div>
