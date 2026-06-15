@@ -54,9 +54,9 @@ function StatCard({ label, value }: { label: string; value: string }) {
 }
 
 const PERIODS: Array<{ value: Period; label: string }> = [
-  { value: 'day', label: '일' },
-  { value: 'week', label: '주' },
-  { value: 'month', label: '월' },
+  { value: 'day', label: 'Day' },
+  { value: 'week', label: 'Week' },
+  { value: 'month', label: 'Month' },
   { value: 'all', label: 'All' },
 ];
 

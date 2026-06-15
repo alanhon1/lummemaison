@@ -101,8 +101,8 @@ export default function DashboardClient({
   }
 
   async function handleRestore(name: string) {
-    if (!confirm('이 백업으로 복원하면 현재 카탈로그 전체가 덮어써집니다. 계속할까요?')) return;
-    if (!confirm('정말 확실합니까? 이 작업은 되돌릴 수 없습니다. (복원 직전 현재 상태는 자동으로 백업됩니다)')) return;
+    if (!confirm('Restoring this backup will overwrite the entire current catalogue. Continue?')) return;
+    if (!confirm('Are you absolutely sure? This cannot be undone. (The current state is automatically backed up right before restoring.)')) return;
     setBackupError('');
     setRestoring(name);
     try {
@@ -116,7 +116,7 @@ export default function DashboardClient({
   }
 
   async function handleDelete(name: string) {
-    if (!confirm('이 백업을 삭제할까요?')) return;
+    if (!confirm('Delete this backup?')) return;
     setBackupError('');
     setDeleting(name);
     try {
@@ -289,14 +289,14 @@ export default function DashboardClient({
               {creating ? 'Backing up…' : 'Create backup now'}
             </button>
             <span className="text-[11px] text-mist">
-              최대 3개 유지 · 복원은 현재 카탈로그를 덮어씁니다 (확인 2번, 복원 전 자동 백업)
+              Keeps up to 3 · Restore overwrites the current catalogue (2 confirmations, auto-backup before restore)
             </span>
           </div>
 
           {backupError && <p className="text-xs text-rose-600">{backupError}</p>}
 
           {backups.length === 0 ? (
-            <p className="text-xs text-mist">백업이 없습니다.</p>
+            <p className="text-xs text-mist">No backups yet.</p>
           ) : (
             <ul className="space-y-1">
               {backups.map(b => (

@@ -550,7 +550,7 @@ export default function QuestionsClient({
             </table>
           </div>
           <p className="text-[11px] text-mist mt-3">
-            질문을 1개 이상 한 유저만 집계됩니다. “Avg / user” = 해당 기간 질문 수 ÷ 해당 기간 활동 유저 수.
+            Only users who asked at least one question are counted. “Avg / user” = questions in the period ÷ active users in the period.
           </p>
         </>
       )}

@@ -138,16 +138,16 @@ export async function updateOrderStatus(
       const short = lines.filter(i => stockOf(i) < i.quantity);
       if (short.length > 0) {
         const detail = short
-          .map(i => `${i.product_name}${i.option ? ` (${i.option})` : ''} (재고 ${stockOf(i)} / 주문 ${i.quantity}, ${i.quantity - stockOf(i)}개 부족)`)
+          .map(i => `${i.product_name}${i.option ? ` (${i.option})` : ''} (stock ${stockOf(i)} / ordered ${i.quantity}, short by ${i.quantity - stockOf(i)})`)
           .join(', ');
         return {
           ok: false,
-          error: `재고 부족으로 packaging 불가 — 재입고 후 다시 시도하세요: ${detail}`,
+          error: `Can't move to packaging — not enough stock. Restock and try again: ${detail}`,
         };
       }
       const deductResult = await deductStockForItems(lines.map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option })));
       if (!deductResult.ok) {
-        return { ok: false, error: `재고 차감 실패: ${deductResult.error}` };
+        return { ok: false, error: `Stock deduction failed: ${deductResult.error}` };
       }
       await supabase.from('stock_movements').insert(
         lines.map(i => ({ product_id: i.product_id, option: i.option, delta: -i.quantity, reason: 'order', order_id: orderId })),
