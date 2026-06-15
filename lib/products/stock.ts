@@ -92,13 +92,14 @@ export async function getProductStock(productId: number, option = ''): Promise<n
 }
 
 // Admin write — sets a known stock for one (product_id, option) and clears the
-// "unknown" flag. Negative clamped to 0.
+// "unknown" + "wonder" flags (entering a real count means it's no longer
+// unknown/wonder). Negative clamped to 0.
 export async function setProductStock(productId: number, option: string, stock: number): Promise<{ ok: boolean; error?: string }> {
   const clamped = Math.max(0, Math.floor(stock));
   const supabase = createServiceClient();
   const { error } = await supabase
     .from('product_stock')
-    .upsert({ product_id: productId, option, stock: clamped, stock_unknown: false }, { onConflict: 'product_id,option' });
+    .upsert({ product_id: productId, option, stock: clamped, stock_unknown: false, wonder: false }, { onConflict: 'product_id,option' });
   if (error) return { ok: false, error: error.message };
   return { ok: true };
 }
