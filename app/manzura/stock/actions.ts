@@ -60,19 +60,25 @@ export async function addInbound(
     return { ok: false, error: (e as Error).message };
   }
 
+  // Inbound targets the optionless row (option ''); product_stock is keyed by
+  // (product_id, option) since migration 027, so the upsert must conflict on the
+  // composite key — `onConflict: 'product_id'` errors (42P10) and silently broke
+  // both the stock bump and its history row.
   const { data: currentRow } = await supabase
     .from('product_stock')
     .select('stock')
     .eq('product_id', productId)
+    .eq('option', '')
     .maybeSingle();
   const newStock = ((currentRow?.stock as number | null) ?? 0) + qty;
   const { error: stockErr } = await supabase
     .from('product_stock')
-    .upsert({ product_id: productId, stock: newStock }, { onConflict: 'product_id' });
+    .upsert({ product_id: productId, option: '', stock: newStock }, { onConflict: 'product_id,option' });
   if (stockErr) return { ok: false, error: stockErr.message };
 
   const { error: movErr } = await supabase.from('stock_movements').insert({
     product_id: productId,
+    option: '',
     delta: qty,
     reason: 'inbound',
     company_id: companyId,
@@ -145,15 +151,17 @@ export async function addInboundBatch(
       .from('product_stock')
       .select('stock')
       .eq('product_id', item.product_id)
+      .eq('option', '')
       .maybeSingle();
     const newStock = ((currentRow?.stock as number | null) ?? 0) + item.quantity;
     const { error: stockErr } = await supabase
       .from('product_stock')
-      .upsert({ product_id: item.product_id, stock: newStock }, { onConflict: 'product_id' });
+      .upsert({ product_id: item.product_id, option: '', stock: newStock }, { onConflict: 'product_id,option' });
     if (stockErr) return { ok: false, error: `Stock update failed for product ${item.product_id}: ${stockErr.message}` };
 
     const { error: movErr } = await supabase.from('stock_movements').insert({
       product_id: item.product_id,
+      option: '',
       delta: item.quantity,
       reason: 'inbound',
       company_id: companyId,

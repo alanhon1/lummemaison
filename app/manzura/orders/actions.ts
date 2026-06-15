@@ -149,9 +149,10 @@ export async function updateOrderStatus(
       if (!deductResult.ok) {
         return { ok: false, error: `Stock deduction failed: ${deductResult.error}` };
       }
-      await supabase.from('stock_movements').insert(
+      const { error: orderMovErr } = await supabase.from('stock_movements').insert(
         lines.map(i => ({ product_id: i.product_id, option: i.option, delta: -i.quantity, reason: 'order', order_id: orderId })),
       );
+      if (orderMovErr) console.error('[stock] order movement insert failed:', orderMovErr.message);
       // Low stock alert: options at/below threshold after deduction.
       const LOW = 2;
       const flagsAfter = await getStockFlagsMap(lines.map(i => ({ product_id: i.product_id, option: i.option })));

@@ -28,16 +28,16 @@ export async function saveProductStockAction(
 
   const delta = Math.max(0, Math.floor(stock)) - oldStock;
   if (delta !== 0) {
-    try {
-      await createServiceClient().from('stock_movements').insert({
-        product_id: productId,
-        option,
-        delta,
-        reason: 'adjustment',
-      });
-    } catch {
-      // Best-effort — don't fail the save if the ledger insert fails.
-    }
+    // Best-effort ledger row — don't fail the save if it can't be written, but
+    // surface the error in logs (supabase-js returns it, never throws) so a
+    // schema mismatch doesn't silently drop adjustment history again.
+    const { error: movErr } = await createServiceClient().from('stock_movements').insert({
+      product_id: productId,
+      option,
+      delta,
+      reason: 'adjustment',
+    });
+    if (movErr) console.error('[stock] adjustment ledger insert failed:', movErr.message);
   }
 
   return result;
