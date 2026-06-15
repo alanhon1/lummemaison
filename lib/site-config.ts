@@ -62,7 +62,7 @@ export const siteConfig = {
     fedexNote: "FedEx rates apply to USA only. Contact us for other destinations.",
   },
 
-  // Temporarily empty so the storefront is visible from Korea too.
-  // Restore to ["KR"] to re-enable the Korea geo-block.
-  restrictedCountries: [],
+  // Korea geo-block ON: visitors from KR get a bare 502 on customer-facing
+  // pages (admin /manzura and /api/admin bypass). Set to [] to disable.
+  restrictedCountries: ["KR"],
 };
