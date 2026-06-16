@@ -3,6 +3,7 @@
 import { randomUUID } from 'node:crypto';
 import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { getAllProducts } from '@/lib/catalogue';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents } from '@/lib/checkout/state';
@@ -126,6 +127,28 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   if (input.items.length === 0) {
     return { ok: false, error: 'Your cart is empty.' };
   }
+
+  // AUTHORITATIVE availability guard. The add-to-cart buttons block
+  // notForSale/outOfStock products, but the cart persists in the browser
+  // (localStorage, zustand `lumiere-cart`) with no server-side cart. An item
+  // flagged AFTER it was added — or a product since deleted — would otherwise
+  // sail straight through here. The client cart is NEVER trusted: re-check every
+  // line against the live catalogue and refuse the whole order if any is blocked.
+  // This is the one place that actually closes the "already in cart" bypass.
+  const liveProducts = await getAllProducts();
+  const liveById = new Map(liveProducts.map(p => [p.id, p]));
+  const blockedLines = input.items.filter(l => {
+    const p = liveById.get(l.product_id);
+    return !p || p.notForSale || p.outOfStock; // missing product ⇒ unpurchasable
+  });
+  if (blockedLines.length > 0) {
+    const names = [...new Set(blockedLines.map(l => l.product_name))].join(', ');
+    return {
+      ok: false,
+      error: `These items are no longer available for purchase and must be removed from your cart before you can order: ${names}`,
+    };
+  }
+
   if (
     !input.disclaimers.shipping ||
     !input.disclaimers.delivery ||

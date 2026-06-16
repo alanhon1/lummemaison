@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { AlertTriangle, MessageCircle, FileCheck2, Loader2 } from 'lucide-react';
 import { readDraft, computeShippingCents, type CheckoutDraft } from '@/lib/checkout/state';
 import { useCartStore, cartLineKey } from '@/lib/store';
+import { useCartAvailability } from '@/lib/useCartAvailability';
 import { placeOrderAction, uploadPaymentProof, validatePromoCode } from '@/app/[locale]/checkout/actions';
 import { localePath } from '@/lib/i18n';
 import { highlightField } from '@/lib/checkout/highlightField';
@@ -54,6 +55,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
   const locale = useLocale();
   const router = useRouter();
   const { items } = useCartStore();
+  const { isBlocked, blockLabelOf, anyBlocked } = useCartAvailability();
   const [draft, setDraft] = useState<CheckoutDraft | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [proofPath, setProofPath] = useState('');
@@ -189,6 +191,11 @@ export default function PaymentStep({ payment, serverError }: Props) {
             <li key={cartLineKey(i)} className="flex justify-between text-sm">
               <span className="text-charcoal line-clamp-1 pr-3">
                 {i.name}{i.option ? ` (${i.option})` : ''} <span className="text-mist">× {i.quantity}</span>
+                {isBlocked(i.id) && (
+                  <span className="ml-1.5 text-[10px] font-semibold uppercase tracking-widest text-red-600">
+                    · {blockLabelOf(i.id)}
+                  </span>
+                )}
               </span>
               <span className="text-charcoal whitespace-nowrap">
                 {formatUSD(Math.round(i.price * 100) * i.quantity, locale)}
@@ -384,6 +391,17 @@ export default function PaymentStep({ payment, serverError }: Props) {
         </div>
       </article>
 
+      {anyBlocked && (
+        <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md p-3 flex items-start gap-2" role="alert">
+          <AlertTriangle size={16} className="mt-0.5 shrink-0" aria-hidden />
+          <span>
+            One or more items in your cart are no longer available for purchase
+            (marked above). Please go back to your cart and remove them before
+            you pay — an order with these items cannot be placed.
+          </span>
+        </p>
+      )}
+
       {serverError && (
         <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md p-3">
           {serverError}
@@ -398,6 +416,14 @@ export default function PaymentStep({ payment, serverError }: Props) {
 
       <form
         onSubmit={e => {
+          // Block the submit outright if the cart holds an unavailable item —
+          // createOrder would reject it anyway, but the customer may have
+          // already paid off-platform, so stop them here first.
+          if (anyBlocked) {
+            e.preventDefault();
+            setSubmitError('Remove the unavailable item(s) from your cart before placing the order.');
+            return;
+          }
           // Always pressable: if the screenshot is missing, stop the submit and
           // point the customer at the upload box instead of doing nothing.
           if (!proofPath) {
@@ -421,7 +447,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
         >
           {t('back')}
         </button>
-        <button type="submit" disabled={submitting} className="btn-gold disabled:opacity-60">
+        <button type="submit" disabled={submitting || anyBlocked} className="btn-gold disabled:opacity-60">
           {submitting ? t('payment.submitting') : t('payment.confirm')}
         </button>
       </form>

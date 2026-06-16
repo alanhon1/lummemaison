@@ -4,14 +4,16 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
+import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, AlertTriangle } from 'lucide-react';
 import { useCartStore, cartLineKey } from '@/lib/store';
+import { useCartAvailability } from '@/lib/useCartAvailability';
 import { localePath } from '@/lib/i18n';
 
 export default function CartPageClient() {
   const t = useTranslations('cart');
   const locale = useLocale();
   const { items, removeItem, updateQuantity, clearCart, totalPrice } = useCartStore();
+  const { isBlocked, blockLabelOf, anyBlocked } = useCartAvailability();
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
 
@@ -52,6 +54,12 @@ export default function CartPageClient() {
                 <p className="text-xs font-semibold text-gold-dark mt-0.5">{item.option}</p>
               )}
               <p className="text-base font-semibold text-gold mt-1">${item.price.toFixed(2)}</p>
+              {isBlocked(item.id) && (
+                <p className="mt-1 inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-widest text-red-600">
+                  <AlertTriangle size={12} aria-hidden />
+                  {blockLabelOf(item.id)}
+                </p>
+              )}
               <div className="flex items-center gap-3 mt-2">
                 <button
                   onClick={() => updateQuantity(lineKey, item.quantity - 1)}
@@ -119,16 +127,35 @@ export default function CartPageClient() {
           <span className="text-sm font-semibold">{t('total')}</span>
           <span className="font-display text-2xl font-light">${totalPrice().toFixed(2)}</span>
         </div>
-        <Link
-          href={localePath(locale, '/checkout')}
-          className="btn-primary w-full text-center flex items-center justify-center gap-2"
-        >
-          {t('checkout')}
-          <ArrowRight size={14} />
-        </Link>
-        <p className="text-xs text-mist text-center mt-4">
-          + Shipping calculated at checkout
-        </p>
+        {anyBlocked ? (
+          <>
+            <button
+              type="button"
+              disabled
+              className="btn-primary w-full text-center flex items-center justify-center gap-2 opacity-50 cursor-not-allowed"
+            >
+              {t('checkout')}
+              <ArrowRight size={14} />
+            </button>
+            <p className="text-xs text-red-600 text-center mt-4 flex items-center justify-center gap-1">
+              <AlertTriangle size={12} aria-hidden />
+              Remove the unavailable item(s) above to continue
+            </p>
+          </>
+        ) : (
+          <>
+            <Link
+              href={localePath(locale, '/checkout')}
+              className="btn-primary w-full text-center flex items-center justify-center gap-2"
+            >
+              {t('checkout')}
+              <ArrowRight size={14} />
+            </Link>
+            <p className="text-xs text-mist text-center mt-4">
+              + Shipping calculated at checkout
+            </p>
+          </>
+        )}
       </div>
     </div>
   );

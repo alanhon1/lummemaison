@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
-import { X, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
+import { X, Minus, Plus, ShoppingBag, Trash2, AlertTriangle } from 'lucide-react';
 import { useCartStore, cartLineKey } from '@/lib/store';
+import { useCartAvailability } from '@/lib/useCartAvailability';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 import { localePath } from '@/lib/i18n';
 
@@ -13,6 +14,7 @@ export default function CartPanel() {
   const t = useTranslations('cart');
   const locale = useLocale();
   const { items, isOpen, closeCart, removeItem, updateQuantity, clearCart, totalItems, totalPrice } = useCartStore();
+  const { isBlocked, blockLabelOf, anyBlocked } = useCartAvailability();
   const { currency } = useCurrencyStore();
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
@@ -95,6 +97,13 @@ export default function CartPanel() {
                     ) : null}
                     <p className="text-sm font-semibold text-gold mt-1">{formatPrice(item.price, currency)}</p>
 
+                    {isBlocked(item.id) && (
+                      <p className="mt-1 inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-widest text-red-600">
+                        <AlertTriangle size={11} aria-hidden />
+                        {blockLabelOf(item.id)}
+                      </p>
+                    )}
+
                     {/* Quantity */}
                     <div className="flex items-center gap-2 mt-2">
                       <button
@@ -133,13 +142,29 @@ export default function CartPanel() {
                   {formatPrice(totalPrice(), currency)}
                 </span>
               </div>
-              <Link
-                href={localePath(locale, '/checkout')}
-                onClick={closeCart}
-                className="btn-primary w-full text-center block"
-              >
-                {t('checkout')}
-              </Link>
+              {anyBlocked ? (
+                <>
+                  <button
+                    type="button"
+                    disabled
+                    className="btn-primary w-full text-center block opacity-50 cursor-not-allowed"
+                  >
+                    {t('checkout')}
+                  </button>
+                  <p className="text-xs text-red-600 text-center flex items-center justify-center gap-1">
+                    <AlertTriangle size={12} aria-hidden />
+                    Remove unavailable items to check out
+                  </p>
+                </>
+              ) : (
+                <Link
+                  href={localePath(locale, '/checkout')}
+                  onClick={closeCart}
+                  className="btn-primary w-full text-center block"
+                >
+                  {t('checkout')}
+                </Link>
+              )}
               <button
                 onClick={clearCart}
                 className="w-full text-xs text-mist hover:text-charcoal transition-colors text-center"
