@@ -165,6 +165,8 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
             locale={locale}
             reorderLabel={t('reorder')}
             confirmText={t('reorderConfirm')}
+            skippedLabel={t('reorderSkipped')}
+            noneAvailableLabel={t('reorderNoneAvailable')}
           />
         </div>
 

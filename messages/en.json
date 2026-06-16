@@ -162,7 +162,9 @@
         "delivered": "Delivered"
       },
       "reorder": "Reorder",
-      "reorderConfirm": "Your cart has items. Replace with this order?"
+      "reorderConfirm": "Your cart has items. Replace with this order?",
+      "reorderSkipped": "Some items are no longer available and were left out of your cart:",
+      "reorderNoneAvailable": "None of these items are available for purchase right now, so your cart was not changed."
     }
   },
   "checkout": {
