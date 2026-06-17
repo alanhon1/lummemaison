@@ -7,7 +7,7 @@ import { getAllProducts } from '@/lib/catalogue';
 import { purchaseBlockReason } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
-import { computeShippingCents } from '@/lib/checkout/state';
+import { computeShippingCents, isValidFedexAccount } from '@/lib/checkout/state';
 import { sendOrderEmails, type OrderData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
@@ -223,7 +223,10 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
       customer_name: s.fullName,
       customer_email: s.email,
       customer_phone: s.phone,
-      fedex_account: s.country === 'US' ? s.fedexAccount.trim() || null : null,
+      // Only persist a real 9-digit FedEx account; junk is dropped to null so it
+      // can never sit on the order or affect pricing (shipping is computed by
+      // computeShippingCents, which applies the same validity check).
+      fedex_account: s.country === 'US' && isValidFedexAccount(s.fedexAccount) ? s.fedexAccount.trim() : null,
       payment_method: input.paymentMethod ?? null,
       notes: notes || null,
       discount_code: discountCode || null,

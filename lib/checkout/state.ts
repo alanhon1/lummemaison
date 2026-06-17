@@ -62,10 +62,20 @@ export function clearDraft() {
   }
 }
 
-// Shipping cost in cents. USA without a FedEx account is $65; everyone
-// else (incl. USA with FedEx account) is $35 flat.
+// A FedEx account number is exactly 9 digits. Anything else (blank, an email,
+// letters, wrong length) is NOT a valid account — critical for shipping pricing
+// below, where any non-empty value used to wrongly unlock the $35 rate.
+const FEDEX_ACCOUNT_RE = /^\d{9}$/;
+export function isValidFedexAccount(value: string): boolean {
+  return FEDEX_ACCOUNT_RE.test(value.trim());
+}
+
+// Shipping cost in cents. USA without a VALID 9-digit FedEx account is $65;
+// everyone else (incl. USA with a valid FedEx account) is $35 flat. Validity is
+// checked with isValidFedexAccount so junk like an email can never drop a US
+// order from $65 to $35.
 export function computeShippingCents(shipping: ShippingSnapshot): number {
-  if (shipping.country === 'US' && !shipping.fedexAccount.trim()) {
+  if (shipping.country === 'US' && !isValidFedexAccount(shipping.fedexAccount)) {
     return 6500;
   }
   return 3500;

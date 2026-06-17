@@ -195,7 +195,8 @@
     },
     "errors": {
       "fillHighlighted": "Please fill in the highlighted field.",
-      "phoneRequired": "Please enter your phone number."
+      "phoneRequired": "Please enter your phone number.",
+      "fedexDigits": "FedEx account number must be exactly 9 digits, or leave it blank."
     },
     "emptyCart": {
       "title": "Your cart is empty",

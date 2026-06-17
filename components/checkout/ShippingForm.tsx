@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import CountrySelect from '@/components/account/CountrySelect';
 import { resolveCountryCode } from '@/lib/countries';
-import { readDraft, writeDraft, type ShippingSnapshot } from '@/lib/checkout/state';
+import { readDraft, writeDraft, isValidFedexAccount, type ShippingSnapshot } from '@/lib/checkout/state';
 import { localePath } from '@/lib/i18n';
 import { highlightField } from '@/lib/checkout/highlightField';
 
@@ -76,6 +76,14 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
     if (missing) {
       setError(missing.key === 'phone' ? t('errors.phoneRequired') : t('errors.fillHighlighted'));
       highlightField(document.getElementById(missing.id), { focus: true });
+      return;
+    }
+    // FedEx account is optional, but if a US customer enters one it must be a
+    // real 9-digit number. Junk (e.g. an email) must not slip through and
+    // wrongly drop the order from the $65 to the $35 rate.
+    if (form.country === 'US' && form.fedexAccount.trim() && !isValidFedexAccount(form.fedexAccount)) {
+      setError(t('errors.fedexDigits'));
+      highlightField(document.getElementById('ship-fedex'), { focus: true });
       return;
     }
     setError('');
@@ -174,9 +182,16 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
       {showFedex && (
         <Field label={t('fields.fedexAccount')} hint={t('fields.fedexHint')}>
           <input
+            id="ship-fedex"
             type="text"
+            inputMode="numeric"
+            pattern="\d{9}"
+            maxLength={9}
             value={form.fedexAccount}
-            onChange={e => set('fedexAccount', e.target.value)}
+            // Digits only, capped at 9 — an email/letters can never be entered,
+            // so the $65→$35 pricing bug can't be triggered from this field.
+            onChange={e => set('fedexAccount', e.target.value.replace(/\D/g, '').slice(0, 9))}
+            placeholder="9-digit account #"
             className={inputClass}
           />
         </Field>
