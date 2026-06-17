@@ -24,15 +24,13 @@ export default async function ProductsPage({
   const { data: stockRows } = await supabase
     .from('product_stock')
     .select('product_id, stock, wonder, stock_unknown');
-  // Sum stock across all options per product for the list display; a product is
-  // wonder/unknown in the list if ANY of its options is.
+  // Sum stock across all options per product for the list display; a product
+  // gets the yellow "S" (arbitrarily assigned) mark if ANY of its options is.
   const stockMap: Record<number, number> = {};
   const wonderIds: number[] = [];
-  const unknownIds: number[] = [];
   for (const r of stockRows ?? []) {
     stockMap[r.product_id] = (stockMap[r.product_id] ?? 0) + (r.stock ?? 0);
     if (r.wonder && !wonderIds.includes(r.product_id)) wonderIds.push(r.product_id);
-    if (r.stock_unknown && !unknownIds.includes(r.product_id)) unknownIds.push(r.product_id);
   }
 
   return (
@@ -41,7 +39,6 @@ export default async function ProductsPage({
       categories={categories}
       stockMap={stockMap}
       wonderIds={wonderIds}
-      unknownIds={unknownIds}
       initialFilter={filter}
     />
   );

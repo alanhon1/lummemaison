@@ -71,9 +71,11 @@ export async function addInbound(
     .eq('option', '')
     .maybeSingle();
   const newStock = ((currentRow?.stock as number | null) ?? 0) + qty;
+  // Receiving stock means the count is now real — clear the "arbitrarily
+  // assigned" (S) flag and the legacy unknown flag.
   const { error: stockErr } = await supabase
     .from('product_stock')
-    .upsert({ product_id: productId, option: '', stock: newStock }, { onConflict: 'product_id,option' });
+    .upsert({ product_id: productId, option: '', stock: newStock, wonder: false, stock_unknown: false }, { onConflict: 'product_id,option' });
   if (stockErr) return { ok: false, error: stockErr.message };
 
   const { error: movErr } = await supabase.from('stock_movements').insert({
@@ -154,9 +156,11 @@ export async function addInboundBatch(
       .eq('option', '')
       .maybeSingle();
     const newStock = ((currentRow?.stock as number | null) ?? 0) + item.quantity;
+    // Receiving stock means the count is now real — clear the "arbitrarily
+    // assigned" (S) flag and the legacy unknown flag.
     const { error: stockErr } = await supabase
       .from('product_stock')
-      .upsert({ product_id: item.product_id, option: '', stock: newStock }, { onConflict: 'product_id,option' });
+      .upsert({ product_id: item.product_id, option: '', stock: newStock, wonder: false, stock_unknown: false }, { onConflict: 'product_id,option' });
     if (stockErr) return { ok: false, error: `Stock update failed for product ${item.product_id}: ${stockErr.message}` };
 
     const { error: movErr } = await supabase.from('stock_movements').insert({

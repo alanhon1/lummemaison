@@ -7,7 +7,7 @@ import { getProductById } from '@/lib/catalogue';
 import { getProductOptionStock } from '@/lib/products/stock';
 import ProductEditClient from '@/components/admin/ProductEditClient';
 import StockInput from '@/components/admin/StockInput';
-import WonderToggle from '@/components/admin/WonderToggle';
+import WonderMark from '@/components/admin/WonderMark';
 
 export default async function ProductEditPage({ params }: { params: Promise<{ id: string }> }) {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
@@ -25,16 +25,21 @@ export default async function ProductEditPage({ params }: { params: Promise<{ id
       <div className="max-w-5xl mx-auto px-6 pt-6 space-y-4">
         {opts.map(opt => (
           <div key={opt || '_'} className="space-y-2">
-            {opt && (
-              <p className="text-xs font-semibold text-mist uppercase tracking-widest">{opt}</p>
-            )}
+            <div className="flex items-center gap-2">
+              {opt && (
+                <p className="text-xs font-semibold text-mist uppercase tracking-widest">{opt}</p>
+              )}
+              {flagsFor(opt).wonder && (
+                <span className="inline-flex items-center gap-1 text-[10px] text-amber-700">
+                  <WonderMark /> Arbitrarily assigned — clears when you save a real stock
+                </span>
+              )}
+            </div>
             <StockInput
               productId={product.id}
               option={opt}
               initialStock={flagsFor(opt).stock}
-              initialUnknown={flagsFor(opt).stockUnknown}
             />
-            <WonderToggle productId={product.id} option={opt} initialWonder={flagsFor(opt).wonder} />
           </div>
         ))}
       </div>

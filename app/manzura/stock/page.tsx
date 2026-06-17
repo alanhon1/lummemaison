@@ -266,13 +266,14 @@ export default async function StockPage({ searchParams }: PageProps) {
           </button>
           <a
             href={`/manzura/stock?tab=stock${wonderOnly ? '' : '&wonderOnly=1'}&sort=${sort}`}
+            title="Arbitrarily assigned stock"
             className={`text-xs px-3 py-1.5 rounded border transition-colors ${
               wonderOnly
-                ? 'bg-purple-600 text-white border-purple-600'
+                ? 'bg-amber-400 text-amber-950 border-amber-400'
                 : 'border-bone text-mist hover:text-charcoal'
             }`}
           >
-            {wonderOnly ? 'Wonder ✓' : 'Wonder only'}
+            {wonderOnly ? 'S only ✓' : 'S only'}
           </a>
           <a
             href={`/manzura/stock?tab=stock${nonWonderOnly ? '' : '&nonWonderOnly=1'}&sort=${sort}`}
@@ -282,7 +283,7 @@ export default async function StockPage({ searchParams }: PageProps) {
                 : 'border-bone text-mist hover:text-charcoal'
             }`}
           >
-            {nonWonderOnly ? 'Non-wonder ✓' : 'Non-wonder only'}
+            {nonWonderOnly ? 'Non-S ✓' : 'Non-S'}
           </a>
         </form>
 
@@ -311,7 +312,7 @@ export default async function StockPage({ searchParams }: PageProps) {
                       </span>
                     </td>
                     <td className="px-4 py-2.5 text-right font-semibold text-charcoal">
-                      {r.unknown ? <span className="text-purple-700" title="Unknown — set the real stock">???</span> : r.stock}
+                      {r.stock}
                     </td>
                     <td className="px-4 py-2.5">
                       {isOut ? (

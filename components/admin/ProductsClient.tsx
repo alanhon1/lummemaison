@@ -14,8 +14,8 @@ interface Props {
   products: Product[];
   categories: Category[];
   stockMap: Record<number, number>;
+  // Product ids whose stock was arbitrarily assigned (the yellow "S" mark).
   wonderIds?: number[];
-  unknownIds?: number[];
   initialFilter?: string;
 }
 
@@ -149,10 +149,9 @@ function InlineStockCell({
   );
 }
 
-export default function ProductsClient({ products, categories, stockMap, wonderIds, unknownIds, initialFilter }: Props) {
+export default function ProductsClient({ products, categories, stockMap, wonderIds, initialFilter }: Props) {
   const router = useRouter();
   const wonderSet = useMemo(() => new Set(wonderIds ?? []), [wonderIds]);
-  const unknownSet = useMemo(() => new Set(unknownIds ?? []), [unknownIds]);
   const [search, setSearch] = useState('');
   const [catFilter, setCatFilter] = useState('');
   const [imgFilter, setImgFilter] = useState(initialFilter === 'no-image' ? 'no-image' : '');
@@ -560,15 +559,11 @@ export default function ProductsClient({ products, categories, stockMap, wonderI
                 <span className="text-xs font-semibold text-charcoal">
                   {priceOf(product) > 0 ? `$${priceOf(product)}` : 'POA'}
                 </span>
-                {unknownSet.has(product.id) ? (
-                  <span className="text-purple-700 font-semibold text-xs" title="Unknown — set the real stock">???</span>
-                ) : (
-                  <InlineStockCell
-                    productId={product.id}
-                    initial={effectiveStock(product.id)}
-                    onChange={next => setStockOverrides(prev => ({ ...prev, [product.id]: next }))}
-                  />
-                )}
+                <InlineStockCell
+                  productId={product.id}
+                  initial={effectiveStock(product.id)}
+                  onChange={next => setStockOverrides(prev => ({ ...prev, [product.id]: next }))}
+                />
               </div>
               <div className="flex justify-end gap-1 mt-2 pt-2 border-t border-bone">
                 <Link
@@ -686,8 +681,6 @@ export default function ProductsClient({ products, categories, stockMap, wonderI
                         onChange={e => updateDraft(product, 'stock', e.target.value)}
                         className="w-16 border border-gold/60 bg-white px-1.5 py-1 text-xs text-charcoal outline-none focus:border-gold rounded"
                       />
-                    ) : unknownSet.has(product.id) ? (
-                      <span className="text-purple-700 font-semibold" title="Unknown — set the real stock">???</span>
                     ) : (
                       <InlineStockCell
                         productId={product.id}

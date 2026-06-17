@@ -104,19 +104,6 @@ export async function setProductStock(productId: number, option: string, stock: 
   return { ok: true };
 }
 
-// Admin-only wonder flag per (product_id, option). Enabling marks stock unknown
-// (???); disabling clears both flags.
-export async function setProductWonder(productId: number, option: string, wonder: boolean): Promise<{ ok: boolean; error?: string }> {
-  const supabase = createServiceClient();
-  const { error } = wonder
-    ? await supabase.from('product_stock').upsert(
-        { product_id: productId, option, wonder: true, stock_unknown: true, stock: 0 }, { onConflict: 'product_id,option' })
-    : await supabase.from('product_stock').upsert(
-        { product_id: productId, option, wonder: false, stock_unknown: false }, { onConflict: 'product_id,option' });
-  if (error) return { ok: false, error: error.message };
-  return { ok: true };
-}
-
 // Deducts stock when payment is verified, per (product_id, option), via the
 // atomic decrement_stock_for_order RPC (migration 027, option-aware).
 export async function deductStockForItems(

@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
-import { getProductStock, setProductStock, setProductWonder } from '@/lib/products/stock';
+import { getProductStock, setProductStock } from '@/lib/products/stock';
 import { createServiceClient } from '@/lib/supabase/server';
 
 export interface SaveStockResult {
@@ -41,17 +41,4 @@ export async function saveProductStockAction(
   }
 
   return result;
-}
-
-export async function toggleWonderAction(
-  productId: number,
-  option: string,
-  wonder: boolean,
-): Promise<SaveStockResult> {
-  const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
-  if (!session.loggedIn) return { ok: false, error: 'Not authorized.' };
-  if (!Number.isFinite(productId) || productId <= 0) {
-    return { ok: false, error: 'Invalid product id.' };
-  }
-  return setProductWonder(productId, option, wonder);
 }

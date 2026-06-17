@@ -132,11 +132,12 @@ export default async function AdminOrderDetailPage({
   const orderItems = ((items ?? []) as OrderItem[]);
   const itemFlags = await getStockFlagsMap(orderItems.map(i => ({ product_id: i.product_id, option: i.option ?? '' })));
   const stockOf = (pid: number, option: string | null) => itemFlags[stockKey(pid, option ?? '')]?.stock ?? 0;
-  // Wonder (???) = stock unknown; the system still treats it as 0, so these
-  // items keep counting as short / blocking packaging — we only flag them ???.
+  // "S" (wonder column) = stock was arbitrarily assigned, not a real count. We
+  // show the yellow S mark next to such items; the stock number itself is used
+  // normally for the short/packaging checks.
   const isWonder = (pid: number, option: string | null) => {
     const f = itemFlags[stockKey(pid, option ?? '')];
-    return Boolean(f?.wonder || f?.stockUnknown);
+    return Boolean(f?.wonder);
   };
   const shortItems = orderItems.filter(i => stockOf(i.product_id, i.option) < i.quantity);
   const isPacked = ['packaging', 'shipped', 'delivered'].includes(detail.status);
@@ -416,11 +417,7 @@ export default async function AdminOrderDetailPage({
                 </td>
                 <td className={`py-2 text-center ${short ? 'text-rose-700 font-bold' : 'text-charcoal'}`}>{it.quantity}</td>
                 <td className={`py-2 text-center ${short ? 'text-rose-700 font-bold' : 'text-charcoal'}`}>
-                  {isPacked
-                    ? '—'
-                    : wonder
-                      ? <span className="text-purple-700 font-semibold" title="Unknown — set the real stock">???</span>
-                      : stock}
+                  {isPacked ? '—' : stock}
                 </td>
                 <td className="py-2 text-right text-charcoal">{formatUSD(it.unit_cents, detail.currency)}</td>
                 <td className="py-2 text-right text-charcoal">{formatUSD(it.line_cents, detail.currency)}</td>
