@@ -5,8 +5,9 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
+import { useProductStock } from '@/lib/stock-store';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
-import { getLocalizedSpecification, getGroupRange, type Product } from '@/lib/products';
+import { getLocalizedSpecification, getGroupRange, purchaseBlockReason, purchaseBlockLabel, type Product } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
 import ProductImage from './ProductImage';
 
@@ -78,16 +79,19 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const locale = useLocale();
   const { addItem } = useCartStore();
   const { currency } = useCurrencyStore();
-  // Stock is admin-only now — oversell means stock never blocks/labels buying.
-  // The only hard blocks are the manual "not for sale" / "out of stock" flags.
-  const notForSale = !!product.notForSale;
-  const outOfStock = !!product.outOfStock;
-  const cannotBuy = notForSale || outOfStock;
-  const blockLabel = notForSale ? 'Not for sale' : 'Out of stock';
+  // Purchase is gated by the admin "Available for order" switch + "Not for sale"
+  // flag only — never by the real stock count. A purchasable product with 0 real
+  // stock is a preorder (shown on single-product cards; group cards aggregate
+  // variants so the label would be ambiguous there).
+  const blockReason = purchaseBlockReason(product);
+  const cannotBuy = blockReason !== null;
+  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : '';
+  const stock = useProductStock(product.id);
   const tagChips = matchedTags(product.tags, searchQuery);
   const pct = discountPct(product);
 
   const isGroup = variantCount > 1;
+  const isPreorder = !cannotBuy && !isGroup && stock === 0;
   const displayName = isGroup && product.groupName ? product.groupName : product.name;
   const displayImage = isGroup && product.groupImage ? product.groupImage : product.image;
   const range = isGroup && product.groupId ? getGroupRange(product.groupId) : null;
@@ -160,6 +164,9 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
               {product.moq > 1 && (
                 <div className="text-xs text-mist">MOQ: {product.moq}</div>
               )}
+              {isPreorder && (
+                <div className="text-[10px] font-semibold uppercase tracking-wider text-gold-dark">Preorder</div>
+              )}
             </div>
           </div>
         </div>
@@ -200,9 +207,17 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
               cannotBuy && (
                 <span
                   key="nfs"
-                  className={`text-[10px] uppercase tracking-widest px-2 py-0.5 text-cream ${notForSale ? 'bg-charcoal/80' : 'bg-rose-600/90'}`}
+                  className={`text-[10px] uppercase tracking-widest px-2 py-0.5 text-cream ${blockReason === 'notForSale' ? 'bg-charcoal/80' : 'bg-rose-600/90'}`}
                 >
                   {blockLabel}
+                </span>
+              ),
+              isPreorder && (
+                <span
+                  key="pre"
+                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 text-charcoal bg-gold/25"
+                >
+                  Preorder
                 </span>
               ),
               pct > 0 && <span key="s" className="badge-discount">−{pct}%</span>,

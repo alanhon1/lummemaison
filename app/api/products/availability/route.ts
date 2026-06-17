@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllProducts } from '@/lib/catalogue';
+import { isAvailableForOrder } from '@/lib/products';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,7 +30,10 @@ export async function GET(req: NextRequest) {
   const out: Record<string, { notForSale: boolean; outOfStock: boolean }> = {};
   for (const p of products) {
     if (wanted.has(p.id)) {
-      out[String(p.id)] = { notForSale: !!p.notForSale, outOfStock: !!p.outOfStock };
+      // `outOfStock` here means "blocked from ordering" — derived from the
+      // admin Available-for-order switch (with legacy-flag fallback), NOT the
+      // real stock count, so stock-0 preorders stay purchasable.
+      out[String(p.id)] = { notForSale: !!p.notForSale, outOfStock: !isAvailableForOrder(p) };
     }
   }
   // Ids missing from the live catalogue (deleted product) are not purchasable —

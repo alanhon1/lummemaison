@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Save, Trash2, ArrowLeft } from 'lucide-react';
-import type { Product, Category } from '@/lib/products';
+import { isAvailableForOrder, type Product, type Category } from '@/lib/products';
 import { discountPercent } from '@/lib/fake-discount';
 
 interface Props {
@@ -21,7 +21,8 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   const [form, setForm] = useState<Partial<Product>>(product ?? {
     name: '', specification: '', description: '', price: 0, moq: 1,
     categoryId: categories[0]?.id ?? '', tags: [], isNew: false,
-    isSale: false, isBestSeller: false, inStock: true, outOfStock: false, image: '',
+    isSale: false, isBestSeller: false, inStock: true, outOfStock: false,
+    available_for_order: true, image: '',
   });
   const [isDirty, setIsDirty] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -43,15 +44,11 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
     setIsDirty(true);
   }
 
-  // "Out of stock" and "Not for sale" both disable purchase and are mutually
-  // exclusive — enabling one clears the other (a product is blocked for exactly
-  // one stated reason).
-  function setBlockFlag(key: 'outOfStock' | 'notForSale', checked: boolean) {
-    setForm(f => ({
-      ...f,
-      outOfStock: key === 'outOfStock' ? checked : false,
-      notForSale: key === 'notForSale' ? checked : false,
-    }));
+  // "Available for order" is the master purchase switch — INDEPENDENT of the
+  // real stock count, so customers can preorder a product whose stock is 0. We
+  // mirror the legacy `outOfStock` flag as its inverse for backward compatibility.
+  function setAvailableForOrder(checked: boolean) {
+    setForm(f => ({ ...f, available_for_order: checked, outOfStock: !checked }));
     setIsDirty(true);
   }
 
@@ -375,15 +372,19 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
                   <span className="text-xs">{label}</span>
                 </label>
               ))}
-              {/* Out of stock / Not for sale — both disable purchase, mutually exclusive. */}
+              {/* Availability — the master order switch, independent of real stock
+                  (oversell/preorder is allowed). "Not for sale" is a separate hard block. */}
               <label className="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" checked={!!form.outOfStock}
-                  onChange={e => setBlockFlag('outOfStock', e.target.checked)} className="accent-gold" />
-                <span className="text-xs">Out of stock (purchase disabled)</span>
+                <input type="checkbox" checked={isAvailableForOrder(form)}
+                  onChange={e => setAvailableForOrder(e.target.checked)} className="accent-gold" />
+                <span className="text-xs">Available for order</span>
               </label>
+              <p className="text-[11px] text-mist -mt-1 ml-6">
+                Customers can order even when real stock is 0 (shown as “Preorder”). Turn OFF to disable the buy button.
+              </p>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" checked={!!form.notForSale}
-                  onChange={e => setBlockFlag('notForSale', e.target.checked)} className="accent-gold" />
+                  onChange={e => update('notForSale', e.target.checked)} className="accent-gold" />
                 <span className="text-xs">Not for sale (purchase disabled)</span>
               </label>
             </div>

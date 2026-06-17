@@ -28,6 +28,7 @@ export const ALLOWED_PRODUCT_FIELDS = [
   'inStock',
   'notForSale',
   'outOfStock',
+  'available_for_order',
   'image',
   'moq',
   'enrichedInfo',

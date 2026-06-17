@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Search, X, Edit2, Trash2, Check, Loader2, LayoutGrid, List } from 'lucide-react';
 import Fuse from 'fuse.js';
-import type { Product, Category } from '@/lib/products';
+import { isAvailableForOrder, type Product, type Category } from '@/lib/products';
 import { saveProductStockAction } from '@/app/manzura/products/actions';
 import WonderMark from './WonderMark';
 import { NotForSaleMark, OutOfStockMark } from './ProductFlagMarks';
@@ -553,7 +553,7 @@ export default function ProductsClient({ products, categories, stockMap, wonderI
                   {nameOf(product)}
                   {wonderSet.has(product.id) && <WonderMark />}
                   {product.notForSale && <NotForSaleMark />}
-                  {product.outOfStock && <OutOfStockMark />}
+                  {!isAvailableForOrder(product) && <OutOfStockMark />}
                 </span>
               </Link>
               <div className="flex items-center justify-between mt-auto pt-1">

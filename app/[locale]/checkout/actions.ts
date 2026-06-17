@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto';
 import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
+import { purchaseBlockReason } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents } from '@/lib/checkout/state';
@@ -139,7 +140,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   const liveById = new Map(liveProducts.map(p => [p.id, p]));
   const blockedLines = input.items.filter(l => {
     const p = liveById.get(l.product_id);
-    return !p || p.notForSale || p.outOfStock; // missing product ⇒ unpurchasable
+    return !p || purchaseBlockReason(p) !== null; // missing ⇒ unpurchasable
   });
   if (blockedLines.length > 0) {
     const names = [...new Set(blockedLines.map(l => l.product_name))].join(', ');

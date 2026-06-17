@@ -67,7 +67,12 @@ export interface Product {
   isBestSeller: boolean;
   inStock: boolean;
   notForSale?: boolean; // purchase disabled — reason: not for sale
-  outOfStock?: boolean; // purchase disabled — reason: out of stock (mutually exclusive with notForSale)
+  outOfStock?: boolean; // LEGACY purchase-disabled flag — kept in sync as the inverse of `available_for_order` for backward compatibility. Prefer `available_for_order`.
+  // Admin "Available for order" master switch, INDEPENDENT of the real stock
+  // count (oversell/preorder is allowed by design). true ⇒ customers can order
+  // even when real stock is 0 (a preorder); false ⇒ buy button is disabled.
+  // Undefined ⇒ fall back to the legacy `outOfStock` flag (see isAvailableForOrder).
+  available_for_order?: boolean;
   image: string;
   moq: number;
   enrichedInfo?: EnrichedInfo;
@@ -87,6 +92,34 @@ const bundledProducts: Product[] = productsData.products as Product[];
 
 export function getCategoryById(id: string): Category | undefined {
   return categories.find(c => c.id === id);
+}
+
+// Availability is admin-controlled and INDEPENDENT of the real stock count
+// (oversell / preorder is allowed). `available_for_order` is the positive master
+// switch; legacy `outOfStock` is its inverse. Undefined ⇒ resolve from the legacy
+// flag so products saved before this field existed still behave correctly.
+export function isAvailableForOrder(
+  p: Pick<Product, 'available_for_order' | 'outOfStock'>,
+): boolean {
+  if (typeof p.available_for_order === 'boolean') return p.available_for_order;
+  return !p.outOfStock;
+}
+
+// The single source of truth for whether the buy button is disabled and why.
+// 'notForSale' = never sold; 'unavailable' = switched off for ordering. null =
+// purchasable (which still includes stock-0 preorders).
+export function purchaseBlockReason(
+  p: Pick<Product, 'notForSale' | 'available_for_order' | 'outOfStock'>,
+): 'notForSale' | 'unavailable' | null {
+  if (p.notForSale) return 'notForSale';
+  if (!isAvailableForOrder(p)) return 'unavailable';
+  return null;
+}
+
+// Customer-facing label for a blocked product. Unavailable reads as "Out of
+// stock" to shoppers (the admin's own wording stays "Available for order").
+export function purchaseBlockLabel(reason: 'notForSale' | 'unavailable'): string {
+  return reason === 'notForSale' ? 'Not for sale' : 'Out of stock';
 }
 
 const _groupRangeCache: Map<string, { min: number; max: number }> = (() => {

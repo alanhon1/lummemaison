@@ -2,7 +2,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { SYSTEM_PROMPT } from '@/lib/chatbot-prompt';
 import { loadProducts } from '@/lib/catalogue-store';
-import { categories, type Product } from '@/lib/products';
+import { categories, purchaseBlockReason, type Product } from '@/lib/products';
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const DAILY_LIMIT = 15;
@@ -118,7 +118,8 @@ function buildDynamicContext(
     parts.push('--- PRODUCT DATA (matched to this question) ---');
     products.forEach(p => {
       const onSale = typeof p.originalPrice === 'number' && p.originalPrice > p.price && p.price > 0;
-      const stock = (p.outOfStock || !p.inStock) ? 'Sold Out' : p.notForSale ? 'Not for sale' : onSale ? 'On Sale' : 'In Stock';
+      const blocked = purchaseBlockReason(p);
+      const stock = blocked === 'unavailable' ? 'Sold Out' : blocked === 'notForSale' ? 'Not for sale' : onSale ? 'On Sale' : 'In Stock';
       const priceStr = onSale
         ? `$${p.price} (ON SALE — was $${p.originalPrice}, ${Math.round((p.originalPrice! - p.price) / p.originalPrice! * 100)}% off)`
         : `$${p.price}`;

@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { ShoppingBag, Check } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
+import { useProductStock } from '@/lib/stock-store';
 import { useCurrencyStore } from '@/lib/currency-store';
 import { localePath } from '@/lib/i18n';
-import type { Product } from '@/lib/products';
+import { purchaseBlockReason, purchaseBlockLabel, type Product } from '@/lib/products';
 
 export default function ProductDetailClient({ product }: { product: Product }) {
   const t = useTranslations('product');
@@ -16,12 +17,14 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const locale = useLocale();
   useCurrencyStore();
   const [added, setAdded] = useState(false);
-  // Stock is admin-only now — oversell means stock never blocks/labels buying.
-  // The only hard blocks are the manual "not for sale" / "out of stock" flags.
-  const notForSale = !!product.notForSale;
-  const outOfStock = !!product.outOfStock;
-  const cannotBuy = notForSale || outOfStock;
-  const blockLabel = notForSale ? 'Not for sale' : 'Out of stock';
+  // Purchase is gated only by the admin's "Available for order" switch and the
+  // "Not for sale" flag — NEVER by the real stock count (oversell/preorder is
+  // allowed). A purchasable product whose real stock is 0 is a preorder.
+  const blockReason = purchaseBlockReason(product);
+  const cannotBuy = blockReason !== null;
+  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : '';
+  const stock = useProductStock(product.id);
+  const isPreorder = !cannotBuy && stock === 0;
 
   const options = product.options ?? [];
   const [option, setOption] = useState(options[0] ?? '');
@@ -99,6 +102,12 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         {t('contactForOrder')}
       </Link>
       </div>
+      {isPreorder && (
+        <p className="text-xs text-gold-dark">
+          <span className="font-semibold uppercase tracking-widest">Preorder</span>
+          {' '}— available to order now, ships once restocked (typically 2 weeks–2 months).
+        </p>
+      )}
     </div>
   );
 }
