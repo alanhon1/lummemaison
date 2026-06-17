@@ -165,6 +165,12 @@ export default function DashboardClient({
           >
             <Tag size={14} /> Promos
           </Link>
+          <Link
+            href="/manzura/requests"
+            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream px-4 py-2 rounded transition-colors"
+          >
+            <Inbox size={14} /> Requests
+          </Link>
         </div>
       </div>
 

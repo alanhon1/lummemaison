@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
 import { purchaseBlockReason } from '@/lib/products';
+import { getStockMap } from '@/lib/products/stock';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents, isValidFedexAccount } from '@/lib/checkout/state';
@@ -136,11 +137,16 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   // sail straight through here. The client cart is NEVER trusted: re-check every
   // line against the live catalogue and refuse the whole order if any is blocked.
   // This is the one place that actually closes the "already in cart" bypass.
-  const liveProducts = await getAllProducts();
+  const [liveProducts, stockMap] = await Promise.all([
+    getAllProducts(),
+    getStockMap([...new Set(input.items.map(l => l.product_id))]),
+  ]);
   const liveById = new Map(liveProducts.map(p => [p.id, p]));
   const blockedLines = input.items.filter(l => {
     const p = liveById.get(l.product_id);
-    return !p || purchaseBlockReason(p) !== null; // missing ⇒ unpurchasable
+    // Blocked if: product is gone, not-for-sale / switched off, OR out of stock
+    // (0 real stock — sold out since it was added to the cart).
+    return !p || purchaseBlockReason(p) !== null || (stockMap[l.product_id] ?? 0) <= 0;
   });
   if (blockedLines.length > 0) {
     const names = [...new Set(blockedLines.map(l => l.product_name))].join(', ');

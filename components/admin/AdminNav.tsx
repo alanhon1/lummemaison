@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, ClipboardList, ShoppingCart, Package, BarChart3, MessageSquare, Users, Warehouse, LogOut, BrainCircuit, AlertCircle } from 'lucide-react';
+import { LayoutDashboard, ClipboardList, ShoppingCart, Package, BarChart3, MessageSquare, Users, Warehouse, LogOut, BrainCircuit, AlertCircle, Inbox } from 'lucide-react';
 
 // Admin navigation. Mounted in app/manzura/layout.tsx; suppresses itself on
 // /manzura/login so the login page stays clean.
@@ -19,6 +19,7 @@ const TABS: Array<{ href: string; label: string; icon: typeof LayoutDashboard }>
   { href: '/manzura/status', label: 'Status', icon: BarChart3 },
   { href: '/manzura/feedbacks', label: 'Reviews', icon: MessageSquare },
   { href: '/manzura/issues', label: 'Issues', icon: AlertCircle },
+  { href: '/manzura/requests', label: 'Requests', icon: Inbox },
   { href: '/manzura/users', label: 'Users', icon: Users },
   { href: '/manzura/stock', label: 'Stock', icon: Warehouse },
   { href: '/manzura/questions', label: 'AI Q', icon: BrainCircuit },

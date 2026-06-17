@@ -9,6 +9,7 @@ import { useProductStock } from '@/lib/stock-store';
 import { useCurrencyStore } from '@/lib/currency-store';
 import { localePath } from '@/lib/i18n';
 import { purchaseBlockReason, purchaseBlockLabel, type Product } from '@/lib/products';
+import RequestModal from './RequestModal';
 
 export default function ProductDetailClient({ product }: { product: Product }) {
   const t = useTranslations('product');
@@ -17,14 +18,16 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const locale = useLocale();
   useCurrencyStore();
   const [added, setAdded] = useState(false);
-  // Purchase is gated only by the admin's "Available for order" switch and the
-  // "Not for sale" flag — NEVER by the real stock count (oversell/preorder is
-  // allowed). A purchasable product whose real stock is 0 is a preorder.
+  // Purchase is gated by: the "Not for sale" flag, the admin "Available for
+  // order" switch (purchaseBlockReason), AND real stock — a product at 0 stock
+  // is out of stock and can't be bought; the customer can "make a request"
+  // instead so we can gauge demand before restocking.
   const blockReason = purchaseBlockReason(product);
-  const cannotBuy = blockReason !== null;
-  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : '';
   const stock = useProductStock(product.id);
-  const isPreorder = !cannotBuy && stock === 0;
+  const outOfStock = !blockReason && stock !== undefined && stock <= 0;
+  const cannotBuy = blockReason !== null || outOfStock;
+  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : outOfStock ? 'Out of stock' : '';
+  const [requestOpen, setRequestOpen] = useState(false);
 
   const options = product.options ?? [];
   const [option, setOption] = useState(options[0] ?? '');
@@ -102,11 +105,28 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         {t('contactForOrder')}
       </Link>
       </div>
-      {isPreorder && (
-        <p className="text-xs text-gold-dark">
-          <span className="font-semibold uppercase tracking-widest">Preorder</span>
-          {' '}— available to order now, ships once restocked (typically 2 weeks–2 months).
-        </p>
+      {outOfStock && (
+        <div className="rounded-md border border-bone bg-cream/60 p-3">
+          <p className="text-xs text-charcoal mb-2">
+            <span className="font-semibold">Out of stock</span> — this item isn&apos;t available right now,
+            please check back later.
+          </p>
+          <button
+            type="button"
+            onClick={() => setRequestOpen(true)}
+            className="btn-secondary text-xs px-4 py-2 inline-flex items-center justify-center"
+          >
+            Make a request
+          </button>
+        </div>
+      )}
+      {requestOpen && (
+        <RequestModal
+          productId={product.id}
+          productName={product.name}
+          option={options.length > 0 ? (option || options[0]) : undefined}
+          onClose={() => setRequestOpen(false)}
+        />
       )}
     </div>
   );

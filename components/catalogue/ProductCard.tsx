@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
@@ -10,6 +11,7 @@ import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 import { getLocalizedSpecification, getGroupRange, purchaseBlockReason, purchaseBlockLabel, type Product } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
 import ProductImage from './ProductImage';
+import RequestModal from './RequestModal';
 
 interface ProductCardProps {
   product: Product;
@@ -79,19 +81,20 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const locale = useLocale();
   const { addItem } = useCartStore();
   const { currency } = useCurrencyStore();
-  // Purchase is gated by the admin "Available for order" switch + "Not for sale"
-  // flag only — never by the real stock count. A purchasable product with 0 real
-  // stock is a preorder (shown on single-product cards; group cards aggregate
-  // variants so the label would be ambiguous there).
+  const [requestOpen, setRequestOpen] = useState(false);
+  // Purchase is gated by the "Not for sale" flag, the "Available for order"
+  // switch (purchaseBlockReason), AND real stock. A single product at 0 stock is
+  // out of stock — the quick-add becomes "Make a request" instead. Group cards
+  // aggregate variants so we don't stock-gate them here.
   const blockReason = purchaseBlockReason(product);
-  const cannotBuy = blockReason !== null;
-  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : '';
   const stock = useProductStock(product.id);
   const tagChips = matchedTags(product.tags, searchQuery);
   const pct = discountPct(product);
 
   const isGroup = variantCount > 1;
-  const isPreorder = !cannotBuy && !isGroup && stock === 0;
+  const outOfStock = !blockReason && !isGroup && stock !== undefined && stock <= 0;
+  const cannotBuy = blockReason !== null || outOfStock;
+  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : outOfStock ? 'Out of stock' : '';
   const displayName = isGroup && product.groupName ? product.groupName : product.name;
   const displayImage = isGroup && product.groupImage ? product.groupImage : product.image;
   const range = isGroup && product.groupId ? getGroupRange(product.groupId) : null;
@@ -107,7 +110,8 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
     if (product.options && product.options.length > 0) return;
     e.preventDefault();
     e.stopPropagation();
-    if (cannotBuy) return;
+    if (blockReason) return; // not for sale / unavailable — no action
+    if (outOfStock) { setRequestOpen(true); return; } // out of stock → request demand
     addItem({
       id: product.id,
       name: product.name,
@@ -119,6 +123,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
 
   if (layout === 'list') {
     return (
+      <>
       <Link
         href={localePath(locale, `/product/${product.id}`)}
         onClick={rememberCatalogueUrl}
@@ -164,25 +169,27 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
               {product.moq > 1 && (
                 <div className="text-xs text-mist">MOQ: {product.moq}</div>
               )}
-              {isPreorder && (
-                <div className="text-[10px] font-semibold uppercase tracking-wider text-gold-dark">Preorder</div>
-              )}
             </div>
           </div>
         </div>
         <button
           onClick={handleAddToCart}
-          disabled={cannotBuy}
+          disabled={blockReason !== null}
           className="self-center flex-shrink-0 w-9 h-9 border border-bone rounded-md flex items-center justify-center hover:border-gold hover:text-gold text-charcoal transition-colors disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-bone disabled:hover:text-charcoal"
-          aria-label={cannotBuy ? blockLabel : t('addToCart')}
+          aria-label={blockReason ? blockLabel : outOfStock ? 'Make a request' : t('addToCart')}
         >
           <ShoppingBag size={16} />
         </button>
       </Link>
+      {requestOpen && (
+        <RequestModal productId={product.id} productName={product.name} onClose={() => setRequestOpen(false)} />
+      )}
+      </>
     );
   }
 
   return (
+    <>
     <Link
       href={localePath(locale, `/product/${product.id}`)}
       onClick={rememberCatalogueUrl}
@@ -212,14 +219,6 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
                   {blockLabel}
                 </span>
               ),
-              isPreorder && (
-                <span
-                  key="pre"
-                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 text-charcoal bg-gold/25"
-                >
-                  Preorder
-                </span>
-              ),
               pct > 0 && <span key="s" className="badge-discount">−{pct}%</span>,
               product.isNew && <span key="n" className="badge-new">{tProduct('tags.new')}</span>,
               product.isBestSeller && <span key="b" className="badge-best">{tProduct('tags.bestSeller')}</span>,
@@ -239,11 +238,11 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         <div className="hidden md:block absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
           <button
             onClick={handleAddToCart}
-            disabled={cannotBuy}
+            disabled={blockReason !== null}
             className="w-full btn-gold text-[10px] py-2.5 flex items-center justify-center gap-2 disabled:bg-charcoal disabled:opacity-100"
           >
             <ShoppingBag size={13} />
-            {cannotBuy ? blockLabel : t('addToCart')}
+            {blockReason ? blockLabel : outOfStock ? 'Make a request' : t('addToCart')}
           </button>
         </div>
       </div>
@@ -276,5 +275,9 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
         </div>
       </div>
     </Link>
+    {requestOpen && (
+      <RequestModal productId={product.id} productName={product.name} onClose={() => setRequestOpen(false)} />
+    )}
+    </>
   );
 }

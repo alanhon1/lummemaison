@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllProducts } from '@/lib/catalogue';
 import { isAvailableForOrder } from '@/lib/products';
+import { getStockMap } from '@/lib/products/stock';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,14 +27,18 @@ export async function GET(req: NextRequest) {
   }
 
   const wanted = new Set(ids);
-  const products = await getAllProducts();
+  const [products, stockMap] = await Promise.all([getAllProducts(), getStockMap(ids)]);
   const out: Record<string, { notForSale: boolean; outOfStock: boolean }> = {};
   for (const p of products) {
     if (wanted.has(p.id)) {
-      // `outOfStock` here means "blocked from ordering" — derived from the
-      // admin Available-for-order switch (with legacy-flag fallback), NOT the
-      // real stock count, so stock-0 preorders stay purchasable.
-      out[String(p.id)] = { notForSale: !!p.notForSale, outOfStock: !isAvailableForOrder(p) };
+      // `outOfStock` here means "blocked from ordering": either the admin turned
+      // off Available-for-order, OR the real stock is 0 (sold out). Both disable
+      // the buy button and the cart/checkout, so a stock-0 line already sitting
+      // in a cart is caught here too.
+      out[String(p.id)] = {
+        notForSale: !!p.notForSale,
+        outOfStock: !isAvailableForOrder(p) || (stockMap[p.id] ?? 0) <= 0,
+      };
     }
   }
   // Ids missing from the live catalogue (deleted product) are not purchasable —
