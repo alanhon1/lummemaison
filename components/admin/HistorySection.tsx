@@ -12,6 +12,7 @@ const REASON_META: Record<string, { label: string; cls: string }> = {
   order:          { label: 'Order',         cls: 'bg-sky-50 text-sky-700 border-sky-200'             },
   cancel_restock: { label: 'Cancel +stock', cls: 'bg-amber-50 text-amber-700 border-amber-200'       },
   cancelled:      { label: 'Cancelled',     cls: 'bg-rose-50 text-rose-700 border-rose-200'          },
+  auto_add:       { label: 'Auto add stock', cls: 'bg-violet-50 text-violet-700 border-violet-200'   },
   adjustment:     { label: 'Adjustment',    cls: 'bg-stone-50 text-stone-600 border-stone-200'       },
 };
 

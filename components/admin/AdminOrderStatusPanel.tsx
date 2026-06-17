@@ -36,6 +36,9 @@ export default function AdminOrderStatusPanel({
   const [pending, startTransition] = useTransition();
   const [shipFormOpen, setShipFormOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // After a "not enough stock" block, the next click on that same stage offers
+  // to auto-add the missing stock (the user's "2nd click" behaviour).
+  const [autoAddArmed, setAutoAddArmed] = useState<OrderStatus | null>(null);
   const photoInputRef = useRef<HTMLInputElement>(null);
   const [photoName, setPhotoName] = useState<string | null>(null);
 
@@ -56,13 +59,34 @@ export default function AdminOrderStatusPanel({
     return ORDER_STAGES[idx - 1];
   })();
 
-  function advanceTo(next: OrderStatus) {
+  function advanceTo(next: OrderStatus, autoAddStock = false) {
     setError(null);
     startTransition(async () => {
-      const res = await updateOrderStatus(orderId, next);
-      if (!res.ok) setError(res.error);
-      else router.refresh();
+      const res = await updateOrderStatus(orderId, next, autoAddStock ? { autoAddStock: true } : undefined);
+      if (!res.ok) {
+        setError(res.error);
+        // Arm the auto-add path so the admin's next click on this stage can top
+        // up the missing stock instead of being blocked again.
+        if (res.error.includes('not enough stock')) setAutoAddArmed(next);
+        return;
+      }
+      setAutoAddArmed(null);
+      router.refresh();
     });
+  }
+
+  // Click handler for a forward "Mark <stage>" button: first time it just tries;
+  // once blocked for stock it asks to auto-add on the next click.
+  function handleAdvanceClick(next: OrderStatus) {
+    if (autoAddArmed === next) {
+      const ok = confirm(
+        `Not enough stock for this order.\n\nAuto-add the missing stock and move to ${ADMIN_LABEL[next]}? ` +
+          `The added quantity is recorded in stock history as "Auto add stock".`,
+      );
+      if (ok) advanceTo(next, true);
+      return;
+    }
+    advanceTo(next);
   }
 
   async function handleShipSubmit(formData: FormData) {
@@ -143,11 +167,15 @@ export default function AdminOrderStatusPanel({
             <button
               type="button"
               disabled={pending}
-              onClick={() => advanceTo(nextStage)}
-              className="btn-gold text-xs inline-flex items-center gap-1.5 disabled:opacity-60"
+              onClick={() => handleAdvanceClick(nextStage)}
+              className={`text-xs inline-flex items-center gap-1.5 disabled:opacity-60 ${
+                autoAddArmed === nextStage
+                  ? 'border border-amber-400 bg-amber-50 text-amber-800 px-3 py-1.5 rounded'
+                  : 'btn-gold'
+              }`}
             >
               <ArrowRight size={13} />
-              Mark {ADMIN_LABEL[nextStage]}
+              {autoAddArmed === nextStage ? `Auto-add stock & ${ADMIN_LABEL[nextStage]}` : `Mark ${ADMIN_LABEL[nextStage]}`}
             </button>
           )}
           {nextStage === 'shipped' && !shipFormOpen && (

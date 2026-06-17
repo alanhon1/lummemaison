@@ -38,6 +38,10 @@ const VALID_STATUSES = new Set<OrderStatus>([
 export async function updateOrderStatus(
   orderId: number,
   nextStatus: OrderStatus,
+  // When the packaging crossing is blocked by insufficient stock, passing
+  // { autoAddStock: true } tops every short line up to the ordered quantity and
+  // records it in stock history as reason 'auto_add' (the admin's 2nd click).
+  options?: { autoAddStock?: boolean },
 ): Promise<ActionResult> {
   try {
     await requireAdmin();
@@ -137,13 +141,32 @@ export async function updateOrderStatus(
       const stockOf = (i: { product_id: number; option: string }) => flags[stockKey(i.product_id, i.option)]?.stock ?? 0;
       const short = lines.filter(i => stockOf(i) < i.quantity);
       if (short.length > 0) {
-        const detail = short
-          .map(i => `${i.product_name}${i.option ? ` (${i.option})` : ''} (stock ${stockOf(i)} / ordered ${i.quantity}, short by ${i.quantity - stockOf(i)})`)
-          .join(', ');
-        return {
-          ok: false,
-          error: `Can't move to packaging — not enough stock. Restock and try again: ${detail}`,
-        };
+        if (!options?.autoAddStock) {
+          const detail = short
+            .map(i => `${i.product_name}${i.option ? ` (${i.option})` : ''} (stock ${stockOf(i)} / ordered ${i.quantity}, short by ${i.quantity - stockOf(i)})`)
+            .join(', ');
+          return {
+            ok: false,
+            error: `Can't move to packaging — not enough stock. Restock and try again: ${detail}`,
+          };
+        }
+        // Auto-add: top each short line up to the ordered quantity so packing can
+        // proceed, and record the added amount in stock history as 'auto_add'.
+        // Receiving a real number also clears the arbitrarily-assigned (S) flag.
+        for (const i of short) {
+          const shortfall = i.quantity - stockOf(i);
+          const { error: addErr } = await supabase
+            .from('product_stock')
+            .upsert(
+              { product_id: i.product_id, option: i.option, stock: i.quantity, wonder: false, stock_unknown: false },
+              { onConflict: 'product_id,option' },
+            );
+          if (addErr) return { ok: false, error: `Auto-add stock failed: ${addErr.message}` };
+          const { error: addMovErr } = await supabase.from('stock_movements').insert({
+            product_id: i.product_id, option: i.option, delta: shortfall, reason: 'auto_add', order_id: orderId,
+          });
+          if (addMovErr) console.error('[stock] auto_add movement insert failed:', addMovErr.message);
+        }
       }
       const deductResult = await deductStockForItems(lines.map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option })));
       if (!deductResult.ok) {
