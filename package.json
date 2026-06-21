@@ -60,6 +60,7 @@
     "@anthropic-ai/sdk": "^0.102.0",
     "@supabase/ssr": "^0.10.3",
     "@supabase/supabase-js": "^2.106.2",
+    "@vercel/analytics": "^2.0.1",
     "axios": "^1.16.1",
     "cheerio": "^1.2.0",
     "exceljs": "^4.4.0",
