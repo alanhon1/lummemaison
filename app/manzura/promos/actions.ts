@@ -41,6 +41,22 @@ export async function createPromoCode(formData: FormData): Promise<ActionResult>
   const notes = String(formData.get('notes') ?? '').trim().slice(0, 500) || null;
   const includeShipping = formData.get('include_shipping') === '1';
 
+  // Flat shipping override (cents). Blank = keep the normal computed rate.
+  const flatShipRaw = formData.get('flat_shipping_cents');
+  const flatShippingCents =
+    flatShipRaw && String(flatShipRaw).trim() !== '' ? Math.round(Number(flatShipRaw)) : null;
+  if (flatShippingCents !== null && (!Number.isFinite(flatShippingCents) || flatShippingCents < 0)) {
+    return { ok: false, error: 'Flat shipping must be a non-negative number of cents' };
+  }
+
+  // Categories the % must skip (still count toward the minimum). Accepts a
+  // multi-select and/or comma-separated values.
+  const excludeCategoryIds = formData
+    .getAll('exclude_category_ids')
+    .flatMap(v => String(v).split(','))
+    .map(v => v.trim())
+    .filter(Boolean);
+
   const supabase = createServiceClient();
   const { error } = await supabase.from('promo_codes').insert({
     code,
@@ -52,6 +68,8 @@ export async function createPromoCode(formData: FormData): Promise<ActionResult>
     expires_at: expiresAt,
     notes,
     include_shipping: includeShipping,
+    flat_shipping_cents: flatShippingCents,
+    exclude_category_ids: excludeCategoryIds,
   });
 
   if (error) {

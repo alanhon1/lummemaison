@@ -9,6 +9,7 @@ import { getStockMap } from '@/lib/products/stock';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents, isValidFedexAccount } from '@/lib/checkout/state';
+import { applyPromo, type PromoRule, type PromoLine, type PromoResult } from '@/lib/checkout/promo';
 import { sendOrderEmails, type OrderData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
@@ -194,7 +195,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   }
 
   const subtotal = input.items.reduce((sum, l) => sum + l.unit_cents * l.quantity, 0);
-  const shipping = computeShippingCents(input.shipping);
+  const normalShipping = computeShippingCents(input.shipping);
 
   // Cap user-supplied text server-side regardless of what the form sent.
   const notes = (s.notes ?? '').trim().slice(0, 500);
@@ -202,9 +203,18 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
 
   const admin = createServiceClient();
 
-  // Discount base is the products subtotal (or subtotal + shipping for an
-  // include_shipping promo); the real shipping is still added to the total.
-  const discountCents = await promoDiscountCents(admin, discountCode, subtotal, shipping);
+  // Promo recompute — authoritative. Each line carries the category from the
+  // LIVE catalogue (never the client) so a category-excluding code like MAISON15
+  // discounts only the eligible items, and a code may override shipping (flat
+  // $100). The minimum is still measured against the full products subtotal.
+  const promoLines: PromoLine[] = input.items.map(l => ({
+    unitCents: l.unit_cents,
+    quantity: l.quantity,
+    categoryId: liveById.get(l.product_id)?.categoryId ?? null,
+  }));
+  const promo = await resolvePromo(admin, discountCode, promoLines, normalShipping);
+  const discountCents = promo.discountCents;
+  const shipping = promo.shippingCents;
   const total = subtotal + shipping - discountCents;
 
   // order_seq, order_number, view_token are populated by DB column defaults
@@ -314,7 +324,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
 
   // Fire-and-forget: increment used_count only when the code actually applied
   // (never for test orders).
-  if (!isTest && discountCode && discountCents > 0) {
+  if (!isTest && discountCode && promo.applied) {
     void admin
       .rpc('increment_promo_used_count', { p_code: discountCode.trim().toUpperCase() })
       .then(({ error }) => {
@@ -333,42 +343,53 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   };
 }
 
-// Promo lookup → discount in cents. The discount base is the products subtotal
-// by default; a promo flagged `include_shipping` discounts subtotal + shipping
-// instead. The minimum-order check is always against the products subtotal.
-// Returns 0 for invalid/inactive/expired/used-up/below-minimum.
-async function promoDiscountCents(
+// Promo lookup → resolved discount + effective shipping via the shared pure
+// logic (lib/checkout/promo.ts). The minimum-order check is always against the
+// full products subtotal; a code may exclude categories from the % and/or
+// override shipping. Returns a zero discount and the normal shipping for any
+// invalid/inactive/expired/used-up/below-minimum code.
+async function resolvePromo(
   admin: ReturnType<typeof createServiceClient>,
   code: string,
-  subtotalCents: number,
-  shippingCents: number,
-): Promise<number> {
+  lines: PromoLine[],
+  normalShippingCents: number,
+): Promise<PromoResult> {
   const c = (code ?? '').trim();
-  if (!c) return 0;
+  if (!c) return { applied: false, discountCents: 0, shippingCents: normalShippingCents };
   const { data: promo } = await admin
     .from('promo_codes')
-    .select('discount_type, discount_value, min_order_cents, max_uses, used_count, active, expires_at, include_shipping')
+    .select('discount_type, discount_value, min_order_cents, max_uses, used_count, active, expires_at, include_shipping, flat_shipping_cents, exclude_category_ids')
     .ilike('code', c)
     .maybeSingle();
-  if (!promo || !promo.active) return 0;
-  if (promo.expires_at != null && new Date(promo.expires_at as string) <= new Date()) return 0;
-  if (promo.max_uses != null && (promo.used_count as number) >= (promo.max_uses as number)) return 0;
-  if (subtotalCents < (promo.min_order_cents as number)) return 0;
-  const base = promo.include_shipping ? subtotalCents + shippingCents : subtotalCents;
-  return promo.discount_type === 'percent'
-    ? Math.round((base * (promo.discount_value as number)) / 100)
-    : Math.min(promo.discount_value as number, base);
+  const rule: PromoRule | null = promo
+    ? {
+        discountType: promo.discount_type as 'percent' | 'fixed',
+        discountValue: promo.discount_value as number,
+        minOrderCents: promo.min_order_cents as number,
+        maxUses: (promo.max_uses as number | null) ?? null,
+        usedCount: promo.used_count as number,
+        active: promo.active as boolean,
+        expiresAt: (promo.expires_at as string | null) ?? null,
+        includeShipping: Boolean(promo.include_shipping),
+        flatShippingCents: (promo.flat_shipping_cents as number | null) ?? null,
+        excludeCategoryIds: (promo.exclude_category_ids as string[] | null) ?? [],
+      }
+    : null;
+  return applyPromo(rule, lines, normalShippingCents, new Date());
 }
 
-// Client-callable preview: returns the discount a code would give. Pass the
-// shipping so include_shipping codes preview the same amount checkout will charge.
+// Client-callable preview: returns the discount and effective shipping a code
+// would give for the current cart. The lines carry each item's category so a
+// category-excluding code (e.g. MAISON15) previews the same amount checkout
+// will charge. Non-authoritative — createOrder recomputes from live categories.
 export async function validatePromoCode(
   code: string,
-  subtotalCents: number,
-  shippingCents = 0,
-): Promise<{ discountCents: number }> {
+  lines: PromoLine[],
+  normalShippingCents = 0,
+): Promise<{ discountCents: number; shippingCents: number }> {
   const admin = createServiceClient();
-  return { discountCents: await promoDiscountCents(admin, code, subtotalCents, shippingCents) };
+  const r = await resolvePromo(admin, code, lines, normalShippingCents);
+  return { discountCents: r.discountCents, shippingCents: r.shippingCents };
 }
 
 // Convenience server action used by the payment step's "Confirm Order" form.

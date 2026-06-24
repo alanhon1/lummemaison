@@ -94,6 +94,15 @@ export function getCategoryById(id: string): Category | undefined {
   return categories.find(c => c.id === id);
 }
 
+// Product id → its category id, from the bundled catalogue (client-safe). Used
+// by the checkout promo preview to know which lines a category-excluding code
+// (e.g. MAISON15 skipping "imported-products") may discount. The authoritative
+// recompute at order creation reads categoryId from the LIVE catalogue instead.
+const PRODUCT_CATEGORY = new Map<number, string>(bundledProducts.map(p => [p.id, p.categoryId]));
+export function categoryIdForProductId(id: number): string | null {
+  return PRODUCT_CATEGORY.get(id) ?? null;
+}
+
 // Availability is admin-controlled and INDEPENDENT of the real stock count
 // (oversell / preorder is allowed). `available_for_order` is the positive master
 // switch; legacy `outOfStock` is its inverse. Undefined ⇒ resolve from the legacy

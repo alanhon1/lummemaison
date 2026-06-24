@@ -16,17 +16,21 @@ export interface PromoCode {
   expires_at: string | null;
   notes: string | null;
   include_shipping: boolean;
+  flat_shipping_cents: number | null;
+  exclude_category_ids: string[];
   created_at: string;
 }
 
-interface Props { codes: PromoCode[]; }
+interface CategoryOption { id: string; name: string; }
+
+interface Props { codes: PromoCode[]; categories: CategoryOption[]; }
 
 function formatDiscount(type: string, value: number): string {
   if (type === 'percent') return `${value}%`;
   return `$${(value / 100).toFixed(2)}`;
 }
 
-export default function PromosClient({ codes }: Props) {
+export default function PromosClient({ codes, categories }: Props) {
   const [showForm, setShowForm] = useState(false);
   const [formError, setFormError] = useState('');
   const [isPending, startTransition] = useTransition();
@@ -55,6 +59,7 @@ export default function PromosClient({ codes }: Props) {
     });
   }
 
+  const catName = (id: string) => categories.find(c => c.id === id)?.name ?? id;
   const inputCls = 'w-full border border-bone rounded px-3 py-1.5 text-sm bg-white focus:outline-none focus:border-charcoal';
   const labelCls = 'block text-xs font-semibold tracking-wide text-mist uppercase mb-1';
 
@@ -120,6 +125,20 @@ export default function PromosClient({ codes }: Props) {
               <label className={labelCls}>Notes (internal)</label>
               <input name="notes" placeholder="Internal memo…" className={inputCls} />
             </div>
+            <div>
+              <label className={labelCls}>Flat shipping override (cents)</label>
+              <input name="flat_shipping_cents" type="number" min="0" placeholder="blank = normal" className={inputCls} />
+              <p className="text-[10px] text-mist mt-1">Blank keeps the normal $35/$65 rate. e.g. 10000 = flat $100 (MAISON15).</p>
+            </div>
+            <div className="col-span-2">
+              <label className={labelCls}>Exclude categories from the %</label>
+              <select name="exclude_category_ids" multiple size={Math.min(5, Math.max(2, categories.length))} className={`${inputCls} h-auto`}>
+                {categories.map(c => (
+                  <option key={c.id} value={c.id}>{c.name}</option>
+                ))}
+              </select>
+              <p className="text-[10px] text-mist mt-1">Ctrl/Cmd-click to select. Excluded items still count toward the minimum — they just don’t get the % off. (MAISON15 excludes Imported Products.)</p>
+            </div>
           </div>
           <div className="flex justify-end">
             <button type="submit" disabled={isPending} className="btn-gold text-xs">
@@ -160,6 +179,12 @@ export default function PromosClient({ codes }: Props) {
                     <td className="px-4 py-3 text-charcoal">
                       {formatDiscount(c.discount_type, c.discount_value)}
                       <div className="text-[10px] text-mist">{c.include_shipping ? 'incl. shipping' : 'subtotal only'}</div>
+                      {c.flat_shipping_cents != null && (
+                        <div className="text-[10px] text-gold-dark">flat ship ${(c.flat_shipping_cents / 100).toFixed(0)}</div>
+                      )}
+                      {c.exclude_category_ids?.length > 0 && (
+                        <div className="text-[10px] text-mist">excl: {c.exclude_category_ids.map(catName).join(', ')}</div>
+                      )}
                     </td>
                     <td className="px-4 py-3 text-right text-mist">{c.min_order_cents > 0 ? `$${(c.min_order_cents / 100).toFixed(0)}` : '—'}</td>
                     <td className="px-4 py-3 text-right">
