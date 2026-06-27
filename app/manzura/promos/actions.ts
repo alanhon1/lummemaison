@@ -13,9 +13,26 @@ async function requireAdmin() {
 
 export type ActionResult = { ok: true } | { ok: false; error: string };
 
-export async function createPromoCode(formData: FormData): Promise<ActionResult> {
-  try { await requireAdmin(); } catch { return { ok: false, error: 'not authorized' }; }
+// Shape written to the promo_codes row by both create and edit. Deliberately
+// excludes used_count and active — editing a code must never reset how many
+// times it's been used, and active is controlled by the toggle.
+interface PromoFields {
+  code: string;
+  description: string | null;
+  discount_type: string;
+  discount_value: number;
+  min_order_cents: number;
+  max_uses: number | null;
+  expires_at: string | null;
+  notes: string | null;
+  include_shipping: boolean;
+  flat_shipping_cents: number | null;
+  exclude_category_ids: string[];
+}
 
+// Parse + validate the promo form. Shared by createPromoCode and updatePromoCode
+// so the two paths can never drift apart.
+function parsePromoForm(formData: FormData): { ok: true; values: PromoFields } | { ok: false; error: string } {
   const code = String(formData.get('code') ?? '').trim().toUpperCase();
   if (!code) return { ok: false, error: 'Code is required' };
   if (!/^[A-Z0-9_-]{2,32}$/.test(code)) return { ok: false, error: 'Code must be 2–32 alphanumeric characters (A-Z, 0-9, -, _)' };
@@ -57,23 +74,57 @@ export async function createPromoCode(formData: FormData): Promise<ActionResult>
     .map(v => v.trim())
     .filter(Boolean);
 
+  return {
+    ok: true,
+    values: {
+      code,
+      description,
+      discount_type: discountType,
+      discount_value: Math.round(discountValue),
+      min_order_cents: minOrderCents,
+      max_uses: maxUses,
+      expires_at: expiresAt,
+      notes,
+      include_shipping: includeShipping,
+      flat_shipping_cents: flatShippingCents,
+      exclude_category_ids: excludeCategoryIds,
+    },
+  };
+}
+
+export async function createPromoCode(formData: FormData): Promise<ActionResult> {
+  try { await requireAdmin(); } catch { return { ok: false, error: 'not authorized' }; }
+
+  const parsed = parsePromoForm(formData);
+  if (!parsed.ok) return parsed;
+
   const supabase = createServiceClient();
-  const { error } = await supabase.from('promo_codes').insert({
-    code,
-    description,
-    discount_type: discountType,
-    discount_value: Math.round(discountValue),
-    min_order_cents: minOrderCents,
-    max_uses: maxUses,
-    expires_at: expiresAt,
-    notes,
-    include_shipping: includeShipping,
-    flat_shipping_cents: flatShippingCents,
-    exclude_category_ids: excludeCategoryIds,
-  });
+  const { error } = await supabase.from('promo_codes').insert(parsed.values);
 
   if (error) {
-    if (error.code === '23505') return { ok: false, error: `Code "${code}" already exists` };
+    if (error.code === '23505') return { ok: false, error: `Code "${parsed.values.code}" already exists` };
+    return { ok: false, error: error.message };
+  }
+
+  revalidatePath('/manzura/promos');
+  return { ok: true };
+}
+
+// Edit an existing code. used_count and active are NOT in the update payload, so
+// the usage count is preserved exactly and the active state stays as the toggle
+// left it.
+export async function updatePromoCode(id: number, formData: FormData): Promise<ActionResult> {
+  try { await requireAdmin(); } catch { return { ok: false, error: 'not authorized' }; }
+  if (!Number.isFinite(id) || id <= 0) return { ok: false, error: 'Invalid code id' };
+
+  const parsed = parsePromoForm(formData);
+  if (!parsed.ok) return parsed;
+
+  const supabase = createServiceClient();
+  const { error } = await supabase.from('promo_codes').update(parsed.values).eq('id', id);
+
+  if (error) {
+    if (error.code === '23505') return { ok: false, error: `Code "${parsed.values.code}" already exists` };
     return { ok: false, error: error.message };
   }
 
