@@ -291,11 +291,6 @@ export default function PaymentStep({ payment, serverError }: Props) {
           </p>
         </div>
 
-        <div className="bg-cream border border-bone rounded-md p-4 mb-5 text-sm text-charcoal leading-relaxed">
-          <p className="font-semibold mb-1">{t('payment.usdt.testFirst.label')}</p>
-          <p>{t('payment.usdt.testFirst.body')}</p>
-        </div>
-
         {payment.usdt.networks.length === 0 ? (
           <p className="text-sm text-mist italic">{t('payment.usdt.noNetworks')}</p>
         ) : (

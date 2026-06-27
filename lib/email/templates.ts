@@ -399,13 +399,6 @@ export function customerEmail(order: OrderData): { subject: string; html: string
                         )
                         .join('')
                 }
-                ${
-                  paymentWhatsapp
-                    ? `<div style="margin-top:10px;padding-top:10px;border-top:1px dashed #d6c8b0;font-size:12px;color:#6b6157;line-height:1.5;">
-                        First-time senders: send a small test of <strong>1–5 USD</strong> first, then message us on WhatsApp <strong style="color:#3a342c;">${escapeHtml(paymentWhatsapp)}</strong> before sending the full amount.
-                      </div>`
-                    : ''
-                }
               </td>
             </tr>
           </table>
@@ -471,9 +464,6 @@ export function customerEmail(order: OrderData): { subject: string; html: string
       textLines.push(`    Network: ${n.label}`);
       textLines.push(`    Address: ${n.address}`);
       textLines.push('');
-    }
-    if (paymentWhatsapp) {
-      textLines.push(`    First-time senders: send 1–5 USD test first, then WhatsApp ${paymentWhatsapp} before sending the full amount.`);
     }
   }
   textLines.push('');

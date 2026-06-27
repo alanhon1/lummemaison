@@ -279,10 +279,6 @@
           "noBtc": "Do not send BTC or any other coin. USDT only.",
           "networkOnly": "Use only the network(s) listed below. Sending on any other network (Base, BSC, Polygon, etc.) will result in lost funds."
         },
-        "testFirst": {
-          "label": "First-time sender? Send a test first.",
-          "body": "Please send a small test transfer of 1–5 USD first, then contact us on WhatsApp to confirm receipt. We will confirm once it arrives, and you can then send the remaining amount."
-        },
         "whatsapp": {
           "label": "USDT inquiries & payment confirmation — WhatsApp"
         }
