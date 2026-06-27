@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X, Minus, Plus, Check, Send, Loader2 } from 'lucide-react';
 import { submitProductRequest } from '@/app/manzura/requests/actions';
 
@@ -35,7 +36,12 @@ export default function RequestModal({
     }
   }
 
-  return (
+  // Render through a portal to <body> so the fixed overlay is positioned against
+  // the viewport — not a transformed ancestor (e.g. the page-enter <main>
+  // animation), which would otherwise make `inset-0` cover the full page height
+  // and push the centered card off-screen (visible blur, invisible modal). The
+  // modal only mounts after a client click, so document.body is always present.
+  return createPortal(
     <div
       className="fixed inset-0 z-[60] flex items-center justify-center p-4"
       style={{ background: 'rgba(10,10,10,0.72)', backdropFilter: 'blur(2px)' }}
@@ -118,6 +124,7 @@ export default function RequestModal({
           </>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
