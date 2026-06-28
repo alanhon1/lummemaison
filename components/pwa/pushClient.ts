@@ -10,7 +10,7 @@ export function urlBase64ToUint8Array(base64String: string): Uint8Array {
   return out;
 }
 
-export async function subscribeToPush(vapidPublicKey: string): Promise<'ok' | 'denied' | 'unsupported'> {
+export async function subscribeToPush(vapidPublicKey: string): Promise<'ok' | 'denied' | 'unsupported' | 'error'> {
   if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
     return 'unsupported';
   }
@@ -31,5 +31,5 @@ export async function subscribeToPush(vapidPublicKey: string): Promise<'ok' | 'd
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(sub.toJSON()),
   });
-  return res.ok ? 'ok' : 'unsupported';
+  return res.ok ? 'ok' : 'error'; // subscribed in the browser but the server couldn't save it
 }

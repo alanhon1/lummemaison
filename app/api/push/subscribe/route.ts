@@ -1,6 +1,5 @@
 // app/api/push/subscribe/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 
 export async function POST(req: NextRequest) {

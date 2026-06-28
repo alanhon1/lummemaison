@@ -10,7 +10,7 @@ export default function EnableAlertsButton() {
   const t = useTranslations('pwa');
   const [mounted, setMounted] = useState(false);
   const [standalone, setStandalone] = useState(false);
-  const [state, setState] = useState<'idle' | 'busy' | 'ok' | 'denied' | 'unsupported'>('idle');
+  const [state, setState] = useState<'idle' | 'busy' | 'ok' | 'denied' | 'unsupported' | 'error'>('idle');
 
   useEffect(() => {
     setMounted(true);
@@ -29,7 +29,7 @@ export default function EnableAlertsButton() {
   async function enable() {
     setState('busy');
     const r = await subscribeToPush(VAPID);
-    setState(r === 'ok' ? 'ok' : r === 'denied' ? 'denied' : 'unsupported');
+    setState(r === 'ok' ? 'ok' : r === 'denied' ? 'denied' : r === 'unsupported' ? 'unsupported' : 'error');
   }
 
   if (state === 'ok') return <p className="text-xs text-gold-dark">{t('enabled')}</p>;
@@ -41,6 +41,7 @@ export default function EnableAlertsButton() {
       </button>
       {state === 'denied' && <p className="text-xs text-red-600">{t('denied')}</p>}
       {state === 'unsupported' && <p className="text-xs text-mist">{t('unsupported')}</p>}
+      {state === 'error' && <p className="text-xs text-red-600">{t('error')}</p>}
     </div>
   );
 }
