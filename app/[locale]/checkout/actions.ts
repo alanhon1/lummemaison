@@ -13,6 +13,7 @@ import { sendOrderEmails, type OrderData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { heicToJpegBuffer } from '@/lib/uploads/heicToJpeg';
+import { isReservedPromoCode } from '@/lib/checkout/bulk';
 
 const PROOF_BUCKET = 'payment-proofs';
 const PROOF_MAX_BYTES = 10 * 1024 * 1024;
@@ -343,6 +344,7 @@ async function promoDiscountCents(
   subtotalCents: number,
   shippingCents: number,
 ): Promise<number> {
+  if (isReservedPromoCode(code)) return 0; // BULK15 is server-only — never redeemable
   const c = (code ?? '').trim();
   if (!c) return 0;
   const { data: promo } = await admin
@@ -367,6 +369,7 @@ export async function validatePromoCode(
   subtotalCents: number,
   shippingCents = 0,
 ): Promise<{ discountCents: number }> {
+  if (isReservedPromoCode(code)) return { discountCents: 0 };
   const admin = createServiceClient();
   return { discountCents: await promoDiscountCents(admin, code, subtotalCents, shippingCents) };
 }
