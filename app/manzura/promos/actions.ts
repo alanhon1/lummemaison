@@ -26,8 +26,6 @@ interface PromoFields {
   expires_at: string | null;
   notes: string | null;
   include_shipping: boolean;
-  flat_shipping_cents: number | null;
-  exclude_category_ids: string[];
 }
 
 // Parse + validate the promo form. Shared by createPromoCode and updatePromoCode
@@ -58,22 +56,6 @@ function parsePromoForm(formData: FormData): { ok: true; values: PromoFields } |
   const notes = String(formData.get('notes') ?? '').trim().slice(0, 500) || null;
   const includeShipping = formData.get('include_shipping') === '1';
 
-  // Flat shipping override (cents). Blank = keep the normal computed rate.
-  const flatShipRaw = formData.get('flat_shipping_cents');
-  const flatShippingCents =
-    flatShipRaw && String(flatShipRaw).trim() !== '' ? Math.round(Number(flatShipRaw)) : null;
-  if (flatShippingCents !== null && (!Number.isFinite(flatShippingCents) || flatShippingCents < 0)) {
-    return { ok: false, error: 'Flat shipping must be a non-negative number of cents' };
-  }
-
-  // Categories the % must skip (still count toward the minimum). Accepts a
-  // multi-select and/or comma-separated values.
-  const excludeCategoryIds = formData
-    .getAll('exclude_category_ids')
-    .flatMap(v => String(v).split(','))
-    .map(v => v.trim())
-    .filter(Boolean);
-
   return {
     ok: true,
     values: {
@@ -86,8 +68,6 @@ function parsePromoForm(formData: FormData): { ok: true; values: PromoFields } |
       expires_at: expiresAt,
       notes,
       include_shipping: includeShipping,
-      flat_shipping_cents: flatShippingCents,
-      exclude_category_ids: excludeCategoryIds,
     },
   };
 }

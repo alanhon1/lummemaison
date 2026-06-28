@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
-import { categories } from '@/lib/products';
 import PromosClient, { type PromoCode } from '@/components/admin/PromosClient';
 
 export const dynamic = 'force-dynamic';
@@ -19,10 +18,5 @@ export default async function PromosPage() {
     .select('*')
     .order('created_at', { ascending: false });
 
-  return (
-    <PromosClient
-      codes={(data ?? []) as PromoCode[]}
-      categories={categories.map(c => ({ id: c.id, name: c.name }))}
-    />
-  );
+  return <PromosClient codes={(data ?? []) as PromoCode[]} />;
 }

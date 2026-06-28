@@ -6,7 +6,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { AlertTriangle, MessageCircle, FileCheck2, Loader2 } from 'lucide-react';
 import { readDraft, computeShippingCents, type CheckoutDraft } from '@/lib/checkout/state';
 import { useCartStore, cartLineKey } from '@/lib/store';
-import { categoryIdForProductId } from '@/lib/products';
 import { useCartAvailability } from '@/lib/useCartAvailability';
 import { placeOrderAction, uploadPaymentProof, validatePromoCode } from '@/app/[locale]/checkout/actions';
 import { localePath } from '@/lib/i18n';
@@ -65,7 +64,6 @@ export default function PaymentStep({ payment, serverError }: Props) {
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState('');
   const [discountCents, setDiscountCents] = useState(0);
-  const [shippingOverride, setShippingOverride] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const proofSectionRef = useRef<HTMLElement | null>(null);
   const [submitError, setSubmitError] = useState('');
@@ -80,23 +78,17 @@ export default function PaymentStep({ payment, serverError }: Props) {
   }, [locale, router]);
 
   // Live discount preview for the entered promo code (server-validated so the
-  // amount matches what checkout will actually charge). Each line carries its
-  // category so a category-excluding code (MAISON15) previews correctly, and the
-  // server returns the effective shipping so a flat-shipping code shows its rate.
+  // amount matches what checkout will actually charge). Shipping is passed so
+  // an include_shipping promo previews the same amount it will charge.
   const promoCode = draft?.shipping?.discountCode?.trim() ?? '';
   useEffect(() => {
+    const sub = items.reduce((s, i) => s + Math.round(i.price * 100) * i.quantity, 0);
     const ship = draft?.shipping ? computeShippingCents(draft.shipping) : 0;
-    const lines = items.map(i => ({
-      unitCents: Math.round(i.price * 100),
-      quantity: i.quantity,
-      categoryId: categoryIdForProductId(i.id),
-    }));
-    const sub = lines.reduce((s, l) => s + l.unitCents * l.quantity, 0);
-    if (!promoCode || sub === 0) { setDiscountCents(0); setShippingOverride(null); return; }
+    if (!promoCode || sub === 0) { setDiscountCents(0); return; }
     let active = true;
-    validatePromoCode(promoCode, lines, ship)
-      .then(r => { if (active) { setDiscountCents(r.discountCents); setShippingOverride(r.shippingCents); } })
-      .catch(() => { if (active) { setDiscountCents(0); setShippingOverride(null); } });
+    validatePromoCode(promoCode, sub, ship)
+      .then(r => { if (active) setDiscountCents(r.discountCents); })
+      .catch(() => { if (active) setDiscountCents(0); });
     return () => { active = false; };
   }, [promoCode, items, draft]);
 
@@ -119,10 +111,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
     (sum, i) => sum + Math.round(i.price * 100) * i.quantity,
     0,
   );
-  // A flat-shipping code (e.g. MAISON15 → $100) overrides the computed rate;
-  // shippingOverride holds the server's effective shipping while a code applies.
-  const normalShippingCents = computeShippingCents(draft.shipping);
-  const shippingCents = shippingOverride ?? normalShippingCents;
+  const shippingCents = computeShippingCents(draft.shipping);
   // Clamp to subtotal + shipping so an include_shipping promo can also discount
   // shipping without the total going negative.
   const appliedDiscount = Math.min(discountCents, subtotalCents + shippingCents);
@@ -222,7 +211,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
           <Row
             label={t('payment.shipping')}
             value={formatUSD(shippingCents, locale)}
-            hint={shippingOverride != null ? undefined : (shippingCents === 6500 ? t('payment.shippingUsaNoFedex') : t('payment.shippingFlat'))}
+            hint={shippingCents === 6500 ? t('payment.shippingUsaNoFedex') : t('payment.shippingFlat')}
           />
           <Row label={t('payment.total')} value={formatUSD(totalCents, locale)} strong />
         </div>
