@@ -323,6 +323,26 @@
       "fedexAccount": "FedEx account",
       "continueShopping": "Continue shopping",
       "viewOrders": "View my orders"
+    },
+    "wise": {
+      "heading": "Payment Instructions (Important)",
+      "kicker": "Wise Transfer",
+      "steps": {
+        "s1": "Open Wise and tap \"Send\".",
+        "s2": "Enter the amount and choose the currency (send from USD to KRW).",
+        "s3": "Add us as the recipient, choose \"Business\", and enter the details below.",
+        "s4": "At \"How would you like to pay?\" choose Bank transfer — NOT card (the card fee is high).",
+        "s5": "Wise shows you their bank details and a reference number. Open your own bank app, send the money there, and include the reference number so they can match your payment.",
+        "s6": "Done — Wise notifies you once they receive it."
+      },
+      "reason": "For the transfer reason, select \"Pay for goods and services\".",
+      "screenshotsTitle": "Step-by-step screenshots",
+      "img1": "1 · Recipient details",
+      "img2": "2 · Recipient address",
+      "img3": "3 · Cover the fee",
+      "img4": "4 · Goods & services",
+      "bankTitle": "Bank details",
+      "copyAll": "Copy all"
     }
   },
   "home": {
