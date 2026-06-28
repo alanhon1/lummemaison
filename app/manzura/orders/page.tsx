@@ -42,6 +42,8 @@ function formatTotal(cents: number, currency: string) {
 // supabase/migrations/006_order_status_flow.sql.
 function statusBadge(status: string): { cls: string; label: string } {
   const map: Record<string, { cls: string; label: string }> = {
+    quote_pending:    { cls: 'bg-violet-50 text-violet-700 border border-violet-200', label: 'Quote pending' },
+    awaiting_payment: { cls: 'bg-orange-50 text-orange-700 border border-orange-200', label: 'Awaiting payment' },
     order_received:   { cls: 'bg-cream text-gold-dark border border-gold/30', label: 'Received' },
     payment_verified: { cls: 'bg-blue-50 text-blue-700 border border-blue-200', label: 'Payment verified' },
     packaging:        { cls: 'bg-amber-50 text-amber-800 border border-amber-200', label: 'Packing' },
@@ -57,6 +59,8 @@ function statusBadge(status: string): { cls: string; label: string } {
 // hatch. Keep in sync with statusBadge() vocab above.
 const FILTER_TABS: Array<{ value: string; label: string }> = [
   { value: 'all', label: 'All' },
+  { value: 'quote_pending', label: 'Quote pending' },
+  { value: 'awaiting_payment', label: 'Awaiting payment' },
   { value: 'order_received', label: 'Received' },
   { value: 'payment_verified', label: 'Payment verified' },
   { value: 'packaging', label: 'Packing' },

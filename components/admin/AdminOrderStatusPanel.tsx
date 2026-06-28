@@ -9,6 +9,8 @@ import { updateOrderStatus, markOrderShipped, deleteOrder } from '@/app/manzura/
 
 // Visible labels (admin only, English) — order_received → Received, etc.
 const ADMIN_LABEL: Record<OrderStatus, string> = {
+  quote_pending: 'Quote pending',
+  awaiting_payment: 'Awaiting payment',
   order_received: 'Received',
   payment_verified: 'Payment verified',
   packaging: 'Packing',

@@ -6,6 +6,8 @@ import type { OrderStatus } from '@/lib/orders/status';
 // Status → Tailwind classes (background + text). Kept inline so the palette
 // is reviewable at a glance.
 const STYLES: Record<OrderStatus, string> = {
+  quote_pending:   'bg-violet-50 text-violet-700 border border-violet-200',
+  awaiting_payment:'bg-orange-50 text-orange-700 border border-orange-200',
   order_received:  'bg-cream text-gold-dark border border-gold/30',
   payment_verified:'bg-blue-50 text-blue-700 border border-blue-200',
   packaging:       'bg-amber-50 text-amber-700 border border-amber-200',

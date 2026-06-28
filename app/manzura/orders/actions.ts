@@ -27,6 +27,8 @@ export type ActionResult = { ok: true } | { ok: false; error: string };
 //
 // Allowed transitions: any forward stage, plus rollback by one, plus cancel/reopen.
 const VALID_STATUSES = new Set<OrderStatus>([
+  'quote_pending',
+  'awaiting_payment',
   'order_received',
   'payment_verified',
   'packaging',
