@@ -117,6 +117,41 @@ export async function uploadPaymentProof(formData: FormData): Promise<UploadProo
   return { ok: true, path: objectKey };
 }
 
+// Customer-facing action: attach payment proof to an awaiting_payment (quoted)
+// order. Ownership + status are verified with the user client before the
+// service client writes, so no customer can touch another user's order.
+export async function attachOrderPaymentProof(
+  orderId: number,
+  proofPath: string,
+  transactionLink?: string,
+): Promise<{ ok: boolean; error?: string }> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return { ok: false, error: 'Not signed in.' };
+
+  const { data: o } = await supabase
+    .from('orders')
+    .select('id, status')
+    .eq('id', orderId)
+    .eq('user_id', user.id)
+    .maybeSingle();
+  if (!o || o.status !== 'awaiting_payment') {
+    return { ok: false, error: 'This order is not awaiting payment.' };
+  }
+
+  const admin = createServiceClient();
+  const { error } = await admin
+    .from('orders')
+    .update({
+      payment_proof_path: (proofPath ?? '').trim(),
+      payment_transaction_link: (transactionLink ?? '').trim().slice(0, 500),
+    })
+    .eq('id', orderId);
+  return error ? { ok: false, error: error.message } : { ok: true };
+}
+
 export async function createOrder(input: CreateOrderInput, opts?: { quote?: boolean }): Promise<CreateOrderResult> {
   // Auth check — never create an order for an unauthenticated request.
   const supabase = await createClient();

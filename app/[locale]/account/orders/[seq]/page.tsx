@@ -12,6 +12,7 @@ import MessagesSeenMarker from '@/components/account/MessagesSeenMarker';
 import CancelOrderButton from '@/components/account/CancelOrderButton';
 import ReorderButton from '@/components/account/ReorderButton';
 import OrderAttachments from '@/components/account/OrderAttachments';
+import OrderPaymentSection from '@/components/account/OrderPaymentSection';
 import productsData from '@/data/products.json';
 
 interface PageProps {
@@ -214,6 +215,15 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
               </div>
             )}
           </section>
+        )}
+
+        {/* Payment section — only shown for quoted orders awaiting customer payment */}
+        {order.status === 'awaiting_payment' && (
+          <OrderPaymentSection
+            orderId={order.id as number}
+            totalCents={order.total_cents as number}
+            currency={order.currency as string}
+          />
         )}
 
         {/* Items + totals */}
