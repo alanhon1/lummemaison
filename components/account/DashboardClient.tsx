@@ -260,7 +260,7 @@ export default function DashboardClient({
                           <OrderStatusBadge status={o.status} />
                           {o.unread_message_count > 0 && (
                             <span className="text-[10px] uppercase tracking-widest text-rose-700">
-                              {t('newMessages', { count: o.unread_message_count })}
+                              {t('dashboard.newMessages', { count: o.unread_message_count })}
                             </span>
                           )}
                         </div>
@@ -269,7 +269,7 @@ export default function DashboardClient({
                         <div>
                           <p className="font-display text-lg text-charcoal">{total}</p>
                           <p className="text-[10px] tracking-widest uppercase text-mist group-hover:text-gold-dark transition-colors">
-                            {t('details')}
+                            {t('dashboard.details')}
                           </p>
                         </div>
                         <ChevronRight size={16} className="text-mist group-hover:text-gold-dark transition-colors" />
