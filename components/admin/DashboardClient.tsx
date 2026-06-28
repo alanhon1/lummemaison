@@ -15,6 +15,7 @@ import {
   Megaphone,
 } from 'lucide-react';
 import BackupPreviewModal from './BackupPreviewModal';
+import AnnounceForm from '@/components/admin/AnnounceForm';
 
 interface BackupFile { name: string; size: number; created: string; productCount: number; }
 
@@ -172,6 +173,11 @@ export default function DashboardClient({
             <Inbox size={14} /> Requests
           </Link>
         </div>
+      </div>
+
+      {/* Push notification broadcast */}
+      <div className="mb-8">
+        <AnnounceForm />
       </div>
 
       {/* Operational stat cards */}
