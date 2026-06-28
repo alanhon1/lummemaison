@@ -1,0 +1,707 @@
+{
+  "feedback": {
+    "title": "Comment s'est passée votre expérience ?",
+    "good": "Bien",
+    "bad": "Mauvais",
+    "promptGood": "Qu'avons-nous bien fait ?",
+    "promptBad": "Dites-nous comment nous améliorer",
+    "optional": "facultatif",
+    "submit": "Envoyer",
+    "thanksGood": "Merci pour votre retour !",
+    "thanksBad": "Merci — nous en tiendrons compte pour nous améliorer."
+  },
+  "nav": {
+    "home": "Accueil",
+    "catalogue": "Catalogue",
+    "about": "À propos",
+    "contact": "Contact",
+    "cart": "Panier",
+    "search": "Rechercher",
+    "faq": "FAQ",
+    "announcements": "Actualités",
+    "account": "Mon compte",
+    "inbox": "Messages"
+  },
+  "announcements": {
+    "close": "Fermer",
+    "readMore": "Toutes les actualités"
+  },
+  "inbox": {
+    "title": "Messages",
+    "subtitle": "Messages de Lumée Maison",
+    "noMessages": "Aucun message pour l'instant.",
+    "back": "Retour à mon compte",
+    "from": "Lumée Maison",
+    "unread": "Nouveau"
+  },
+  "account": {
+    "fields": {
+      "fullName": "Nom complet",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "passwordHint": "Au moins 8 caractères.",
+      "phone": "Téléphone",
+      "phoneHint": "Incluez l'indicatif pays, ex. +1 555 123 4567.",
+      "country": "Pays",
+      "street": "Adresse postale",
+      "city": "Ville",
+      "stateProvince": "État / Province",
+      "postalCode": "Code postal",
+      "fedexAccount": "Numéro de compte FedEx (facultatif)",
+      "fedexHint": "États-Unis uniquement. Sans compte FedEx, l'expédition est de 65 $ via FedEx Priority au lieu de 35 $."
+    },
+    "signup": {
+      "pageTitle": "Créer un compte",
+      "title": "Créez votre compte",
+      "subtitle": "Enregistrez vos coordonnées de livraison pour un paiement plus rapide.",
+      "submit": "Créer un compte",
+      "submitting": "Création en cours…",
+      "haveAccount": "Vous avez déjà un compte ?",
+      "signIn": "Se connecter",
+      "forgotPassword": "Mot de passe oublié ?"
+    },
+    "login": {
+      "pageTitle": "Se connecter",
+      "title": "Bon retour",
+      "subtitle": "Connectez-vous pour continuer.",
+      "submit": "Se connecter",
+      "submitting": "Connexion en cours…",
+      "noAccount": "Pas encore de compte ?",
+      "signUp": "En créer un",
+      "forgotPassword": "Mot de passe oublié ?",
+      "checkInbox": "Un e-mail de confirmation a été envoyé — vérifiez votre boîte de réception avant de vous connecter.",
+      "accountCreated": "Compte créé — veuillez vous connecter ci-dessous.",
+      "confirmed": "E-mail confirmé. Vous pouvez vous connecter maintenant.",
+      "confirmExpired": "Ce lien de confirmation a expiré. Veuillez vous inscrire à nouveau ou contacter le support.",
+      "confirmInvalid": "Ce lien de confirmation est invalide ou déjà utilisé.",
+      "passwordReset": "Mot de passe mis à jour. Vous pouvez vous connecter avec votre nouveau mot de passe.",
+      "resendPrompt": "Vous n'avez pas reçu l'e-mail de confirmation ?",
+      "resendCta": "Renvoyer l'e-mail de confirmation",
+      "resendSending": "Envoi en cours…",
+      "resendSent": "Si votre e-mail n'est pas encore confirmé, un nouveau lien de confirmation est en chemin."
+    },
+    "forgotPassword": {
+      "pageTitle": "Réinitialiser le mot de passe",
+      "title": "Réinitialisez votre mot de passe",
+      "subtitle": "Entrez l'e-mail associé à votre compte. Nous vous enverrons un code à 4 chiffres pour réinitialiser votre mot de passe.",
+      "emailLabel": "E-mail",
+      "submit": "Envoyer le code",
+      "submitting": "Envoi en cours…",
+      "sent": "Si cet e-mail est enregistré, un code à 4 chiffres est en chemin. Ouvrez la page de réinitialisation pour le saisir.",
+      "openReset": "Saisir votre code",
+      "backToLogin": "Retour à la connexion"
+    },
+    "resetPassword": {
+      "pageTitle": "Saisir le code et définir le mot de passe",
+      "title": "Saisissez votre code",
+      "subtitle": "Entrez le code à 4 chiffres que nous vous avons envoyé par e-mail, puis définissez un nouveau mot de passe.",
+      "emailLabel": "E-mail",
+      "codeLabel": "Code à 4 chiffres",
+      "checkCode": "Vérifier le code",
+      "checking": "Vérification en cours…",
+      "codeOk": "Code vérifié. Définissez votre nouveau mot de passe ci-dessous.",
+      "newPasswordLabel": "Saisir le nouveau mot de passe",
+      "confirmPasswordLabel": "Confirmer le mot de passe",
+      "submit": "Enregistrer le mot de passe",
+      "submitting": "Enregistrement en cours…",
+      "backToLogin": "Retour à la connexion",
+      "needCode": "Besoin d'un code ?"
+    },
+    "dashboard": {
+      "pageTitle": "Mon compte",
+      "title": "Mon compte",
+      "subtitle": "Bonjour, {name}.",
+      "profile": "Profil et livraison",
+      "orderHistory": "Historique des commandes",
+      "noOrders": "Aucune commande pour l'instant.",
+      "details": "Détails",
+      "newMessages": "{count, plural, one {# nouveau message} other {# nouveaux messages}}",
+      "save": "Enregistrer les modifications",
+      "saving": "Enregistrement en cours…",
+      "saved": "Enregistré.",
+      "unsaved": "Vous avez des modifications non enregistrées — cliquez sur Enregistrer les modifications pour les conserver.",
+      "logout": "Se déconnecter",
+      "emailConfirmed": "E-mail confirmé",
+      "emailNotConfirmed": "E-mail non confirmé",
+      "resendConfirmation": "Renvoyer la confirmation",
+      "resending": "Envoi en cours…",
+      "confirmationSent": "Confirmation envoyée ✓"
+    },
+    "orders": {
+      "pageTitle": "Commande {number}",
+      "back": "Retour à mon compte",
+      "itemsTitle": "Articles",
+      "subtotal": "Sous-total",
+      "shipping": "Livraison",
+      "total": "Total",
+      "shippingTitle": "Livraison à",
+      "tracking": "Suivi",
+      "carrier": "Transporteur",
+      "trackingNumber": "Numéro de suivi",
+      "trackingLink": "Suivre le colis",
+      "shipmentPhoto": "Photo d'expédition",
+      "messages": "Messages de notre part",
+      "noMessages": "Aucun message pour l'instant — nous publierons des mises à jour ici au fur et à mesure de l'avancement de votre commande.",
+      "cancelled": "Cette commande a été annulée.",
+      "cancelOrder": "Annuler la commande",
+      "cancelConfirm": "Êtes-vous sûr ? Cette action est irréversible.",
+      "cancelNo": "Conserver la commande",
+      "status": {
+        "quote_pending": "Devis en attente",
+        "awaiting_payment": "En attente de paiement",
+        "order_received": "Commande reçue",
+        "payment_verified": "Paiement vérifié",
+        "packaging": "En cours d'emballage",
+        "shipped": "Expédiée",
+        "delivered": "Livrée",
+        "cancelled": "Annulée"
+      },
+      "stepper": {
+        "order_received": "Reçue",
+        "payment_verified": "Vérifiée",
+        "packaging": "Emballage",
+        "shipped": "Expédiée",
+        "delivered": "Livrée"
+      },
+      "reorder": "Recommander",
+      "reorderConfirm": "Votre panier contient des articles. Les remplacer par cette commande ?",
+      "reorderSkipped": "Certains articles ne sont plus disponibles et n'ont pas été ajoutés à votre panier :",
+      "reorderNoneAvailable": "Aucun de ces articles n'est disponible à l'achat pour l'instant, votre panier n'a donc pas été modifié."
+    }
+  },
+  "checkout": {
+    "loading": "Chargement…",
+    "back": "Retour",
+    "steps": {
+      "shipping": "Livraison",
+      "disclaimers": "Politiques",
+      "payment": "Paiement",
+      "done": "Confirmation"
+    },
+    "fields": {
+      "fullName": "Nom complet",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "country": "Pays",
+      "street": "Adresse postale",
+      "city": "Ville",
+      "stateProvince": "État / Province",
+      "postalCode": "Code postal",
+      "fedexAccount": "Numéro de compte FedEx (facultatif)",
+      "fedexHint": "Clients américains : veuillez fournir votre numéro de compte FedEx. Sans compte, l'expédition est de 65 $ via FedEx Priority au lieu de 35 $.",
+      "notes": "Notes de commande (facultatif)",
+      "notesHint": "Tout ce que vous souhaitez nous faire savoir — nous le verrons avant l'expédition.",
+      "notesPlaceholder": "ex. emballer les produits séparément, code HS douanier ou valeur déclarée, exclure les masques, etc.",
+      "discountCode": "Code de réduction (facultatif)",
+      "discountCodeHint": "Si vous avez un code, saisissez-le ici. Nous vérifierons et appliquerons tout ajustement manuellement avant l'expédition."
+    },
+    "errors": {
+      "fillHighlighted": "Veuillez remplir le champ en surbrillance.",
+      "phoneRequired": "Veuillez saisir votre numéro de téléphone.",
+      "fedexDigits": "Le numéro de compte FedEx doit comporter exactement 9 chiffres, ou laissez-le vide."
+    },
+    "emptyCart": {
+      "title": "Votre panier est vide",
+      "subtitle": "Ajoutez un produit pour continuer.",
+      "cta": "Parcourir le catalogue"
+    },
+    "shipping": {
+      "title": "Informations de livraison",
+      "subtitle": "Nous avons prérempli les informations de votre compte — modifiez-les si nécessaire avant de continuer.",
+      "continue": "Continuer vers les politiques"
+    },
+    "disclaimers": {
+      "title": "Avertissements et politiques",
+      "subtitle": "Veuillez lire et accepter ce qui suit avant le paiement.",
+      "acceptAll": "J'ai lu et j'accepte tout ce qui précède.",
+      "mustAccept": "Veuillez cocher la case ci-dessus pour continuer.",
+      "continue": "Continuer vers le paiement",
+      "shipping": {
+        "heading": "Livraison",
+        "body": "Nous proposons une livraison mondiale à forfait de 35 $ depuis la Corée du Sud via FedEx.\n\nClients américains : un numéro de compte FedEx est requis. La création est gratuite et simple. Sans compte FedEx, l'expédition est disponible via FedEx Priority à 65 $.\n\nLes transporteurs varient selon les pays (FedEx, DHL, EMS, UPS selon la destination). Le transporteur le plus fiable pour votre pays sera automatiquement sélectionné."
+      },
+      "delivery": {
+        "heading": "Délai de livraison",
+        "body": "Une fois expédié, la livraison prend généralement 3 à 5 jours ouvrables, selon la destination et le dédouanement."
+      },
+      "stock": {
+        "heading": "Stock et produits sur commande",
+        "body": "Certains produits sont fabriqués sur commande et ne sont pas conservés en stock. Ces articles nécessitent 1 à 4 jours ouvrables pour être reçus de notre fournisseur avant l'expédition.\n\nVous serez notifié par e-mail si votre commande contient des articles sur commande."
+      },
+      "temperatureSensitive": {
+        "heading": "Produits sensibles à la température",
+        "body": "Les produits sensibles à la température (toxines botuliques, exosomes actifs, hyaluronidase et produits EGF actifs) sont expédiés dans des emballages isolés avec des packs de glace pour maintenir la température pendant le transport. Lors des expéditions internationales, les packs de glace peuvent fondre et les produits peuvent arriver à température ambiante. Les conditions de transit sont hors de notre contrôle. Au fil de nos années de pratique, ces produits restent stables dans de telles conditions, tant qu'ils ne sont pas exposés à la chaleur directe ou aux rayons du soleil ; arriver à température ambiante ne signifie pas que le produit s'est dégradé."
+      },
+      "fragileItems": {
+        "heading": "Articles fragiles (ampoules et flacons)",
+        "body": "Les articles fragiles tels que les ampoules et les flacons sont individuellement emballés dans du papier bulle, et plus de 99 % de nos envois arrivent intacts. Dans de rares cas, un flacon peut se casser pendant le transport. Cela étant hors de notre contrôle une fois expédié, nous ne pouvons pas être tenus responsables des casses survenant pendant le transport."
+      }
+    },
+    "payment": {
+      "title": "Paiement",
+      "subtitle": "Choisissez Wise ou USDT et effectuez le paiement avec les informations ci-dessous.",
+      "summary": "Récapitulatif de la commande",
+      "subtotal": "Sous-total",
+      "discount": "Réduction",
+      "shipping": "Livraison",
+      "shippingFlat": "35 $ forfait — FedEx",
+      "shippingUsaNoFedex": "65 $ — FedEx Priority (sans compte FedEx)",
+      "total": "Total",
+      "wise": {
+        "heading": "Wise — Virement bancaire",
+        "accountName": "Nom du compte",
+        "bank": "Banque",
+        "accountNumber": "Numéro de compte",
+        "swift": "SWIFT / Routage",
+        "address": "Adresse",
+        "city": "Ville",
+        "country": "Pays",
+        "postcode": "Code postal",
+        "currency": "Devise",
+        "notConfigured": "Les informations de virement Wise sont en cours de mise à jour. Veuillez nous contacter pour les informations actuelles.",
+        "example": "Ceci est un exemple",
+        "warnings": {
+          "creditCard": "N'effectuez pas de paiement par carte de crédit ou de débit sur Wise — les frais de carte sont généralement de 40 à 50 USD par virement.",
+          "recommended": "Recommandé : liez Wise à votre propre compte bancaire et effectuez un virement bancaire — les frais tombent généralement à 5–9 USD.",
+          "businessGoods": "Lorsqu'on vous le demande, indiquez le motif du virement comme « affaires » ou « biens et services ».",
+          "directEntry": "Pour votre premier virement, ne recherchez pas le destinataire — saisissez directement les informations ci-dessous. La recherche peut correspondre au mauvais destinataire.",
+          "feesAtSender": "Tous les frais de virement et de traitement sont à la charge de l'expéditeur. Le montant net que nous recevons doit être égal au total de votre commande."
+        },
+        "reference": {
+          "label": "Référence Wise",
+          "body": "Saisissez votre numéro de commande dans le champ « référence » de Wise afin que nous puissions associer le paiement à votre commande."
+        }
+      },
+      "usdt": {
+        "heading": "USDT UNIQUEMENT",
+        "network": "Réseau",
+        "address": "Adresse",
+        "noNetworks": "Les adresses du portefeuille USDT sont en cours de mise à jour. Veuillez nous contacter sur WhatsApp ci-dessous pour les informations de paiement actuelles.",
+        "warnings": {
+          "noBtc": "N'envoyez pas de BTC ni aucune autre crypto. USDT uniquement.",
+          "networkOnly": "Utilisez uniquement le(s) réseau(x) indiqué(s) ci-dessous. L'envoi sur tout autre réseau (Base, BSC, Polygon, etc.) entraînera la perte de fonds."
+        },
+        "whatsapp": {
+          "label": "Demandes USDT et confirmation de paiement — WhatsApp"
+        }
+      },
+      "confirmNote": "Après avoir effectué le paiement, veuillez envoyer une capture d'écran de votre transaction à {email} avec votre numéro de commande.",
+      "confirm": "J'ai envoyé le paiement — confirmer la commande",
+      "submitting": "Confirmation en cours…",
+      "copy": "Copier",
+      "copied": "Copié",
+      "proof": {
+        "heading": "Preuve de paiement",
+        "subheading": "Téléchargez une capture d'écran de votre virement, ou collez le lien de la transaction depuis Wise/votre portefeuille. Nous avons besoin d'au moins un avant que vous puissiez confirmer.",
+        "fileLabel": "Capture d'écran ou PDF",
+        "fileHint": "PNG, JPG, WEBP, HEIC ou PDF. Jusqu'à 10 Mo.",
+        "uploading": "Téléchargement en cours…",
+        "uploaded": "Téléchargé : {name}",
+        "replace": "Remplacer",
+        "or": "ou",
+        "transactionLabel": "Lien de transaction",
+        "transactionPlaceholder": "https://wise.com/… ou URL de l'explorateur de portefeuille",
+        "transactionHint": "URL de virement Wise, lien USDT (Etherscan / Tronscan), etc.",
+        "requireEither": "Téléchargez une capture d'écran ou collez un lien de transaction pour activer le bouton de confirmation.",
+        "requireScreenshot": "Une capture d'écran du paiement est requise pour confirmer votre commande.",
+        "errors": {
+          "tooLarge": "Le fichier dépasse 10 Mo.",
+          "wrongType": "Veuillez télécharger un fichier PNG, JPG, WEBP, HEIC ou PDF.",
+          "generic": "Le téléchargement a échoué. Veuillez réessayer ou utiliser le champ du lien de transaction."
+        }
+      }
+    },
+    "bulk": {
+      "popup": {
+        "title": "Vous bénéficiez de tarifs en gros !",
+        "body": "Votre commande dépasse 2 500 $ et vous donne accès à notre remise exclusive en gros. Choisissez comment vous souhaitez procéder.",
+        "next": "Voir mes options"
+      },
+      "optionsTitle": "Choisissez votre option",
+      "cardA": {
+        "title": "Payer maintenant",
+        "badge": "Le plus rapide",
+        "noDiscount": "Aucune réduction appliquée",
+        "shipping": "Livraison {amount}",
+        "shippingNote": "35 $ — US sans compte FedEx : 65 $",
+        "payToday": "Payez aujourd'hui, expédition immédiate",
+        "totalDueNow": "Total dû maintenant",
+        "cta": "Procéder au paiement"
+      },
+      "cardB": {
+        "title": "Bénéficiez de 15 % de réduction",
+        "discountBadge": "Économisez {amount}",
+        "discount15": "15 % de réduction sur toute votre commande",
+        "shippingQuoted": "Livraison estimée par notre équipe en 1 à 3 jours ouvrables",
+        "payLater": "Ne payez rien aujourd'hui",
+        "productAfterDiscount": "Produits après 15 % de réduction",
+        "shipping": "Livraison",
+        "shippingValue": "Estimée en 1 à 3 jours",
+        "dueNow": "Dû maintenant",
+        "cta": "Demander mon devis complet"
+      },
+      "quoteRequested": {
+        "title": "Devis demandé",
+        "body": "Merci. Notre équipe vous enverra le total complet par e-mail — 15 % de réduction plus les frais de livraison réels — dans un délai de 1 à 3 jours ouvrables. Aucun paiement n'est requis pour l'instant."
+      },
+      "requesting": "Demande en cours…",
+      "genericError": "Une erreur inattendue s'est produite. Veuillez réessayer."
+    },
+    "confirmation": {
+      "title": "Commande reçue",
+      "subtitle": "Merci pour votre commande.",
+      "thanks": "Merci",
+      "hello": "{name}",
+      "received": "Commande {number} reçue. Nous confirmerons à réception du paiement et vous enverrons les mises à jour de livraison par e-mail.",
+      "items": "Articles",
+      "subtotal": "Sous-total",
+      "shipping": "Livraison",
+      "total": "Total",
+      "shippingTo": "Livrer à",
+      "fedexAccount": "Compte FedEx",
+      "continueShopping": "Continuer vos achats",
+      "viewOrders": "Voir mes commandes"
+    },
+    "wise": {
+      "heading": "Instructions de paiement (Important)",
+      "kicker": "Virement Wise",
+      "steps": {
+        "s1": "Ouvrez Wise et appuyez sur « Envoyer ».",
+        "s2": "Saisissez le montant et choisissez la devise (envoi en USD vers KRW).",
+        "s3": "Ajoutez-nous comme destinataire, choisissez « Entreprise », et entrez les informations ci-dessous.",
+        "s4": "À « Comment souhaitez-vous payer ? » choisissez Virement bancaire — PAS de carte (les frais de carte sont élevés).",
+        "s5": "Wise vous affiche les coordonnées bancaires et un numéro de référence. Ouvrez votre application bancaire, envoyez l'argent là-bas et incluez le numéro de référence pour qu'ils puissent associer votre paiement.",
+        "s6": "Terminé — Wise vous notifie une fois la réception effectuée."
+      },
+      "reason": "Pour le motif du virement, sélectionnez « Payer des biens et services ».",
+      "screenshotsTitle": "Captures d'écran étape par étape",
+      "img1": "1 · Informations du destinataire",
+      "img2": "2 · Adresse du destinataire",
+      "img3": "3 · Couvrir les frais",
+      "img4": "4 · Biens et services",
+      "bankTitle": "Coordonnées bancaires",
+      "copyAll": "Tout copier"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Là où la beauté coréenne",
+      "titleAccent": "Trouve sa Demeure",
+      "subtitle": "Par Skin Global. Les meilleurs cosmétiques médicaux, esthétiques et de soin coréens — réunis sous un même toit lumineux, livrés aux professionnels et aux connaisseurs dans plus de cinquante pays.",
+      "cta": "Voir le catalogue",
+      "ctaSecondary": "Nous contacter",
+      "tagline": "Une Maison de Lumière",
+      "explore": "Explorer",
+      "exploreAria": "Défiler vers les catégories"
+    },
+    "categories": {
+      "title": "Nos catégories",
+      "subtitle": "Explorez notre gamme complète de produits esthétiques professionnels",
+      "viewAll": "Voir tout"
+    },
+    "bestSellers": {
+      "title": "Meilleures ventes",
+      "subtitle": "Nos produits les plus populaires, approuvés par les professionnels"
+    },
+    "whyChooseUs": {
+      "title": "Pourquoi choisir Lumée Maison",
+      "subtitle": "Votre partenaire de confiance pour les produits esthétiques coréens premium",
+      "authentic": {
+        "title": "100 % Authentique",
+        "desc": "Tous les produits sont approvisionnés directement auprès de fabricants coréens certifiés"
+      },
+      "shipping": {
+        "title": "Directement de Corée",
+        "desc": "Expédition rapide et fiable dans le monde entier via FedEx depuis Séoul"
+      },
+      "global": {
+        "title": "Portée mondiale",
+        "desc": "Au service des professionnels de l'esthétique dans plus de 50 pays"
+      },
+      "b2b": {
+        "title": "Spécialiste B2B",
+        "desc": "Tarification en gros dédiée et flexibilité des MOQ pour les professionnels"
+      }
+    },
+    "newProducts": {
+      "title": "Nouveautés",
+      "subtitle": "Les derniers ajouts à notre catalogue"
+    },
+    "cta": {
+      "title": "Prêt à commander ?",
+      "subtitle": "Contactez-nous pour les tarifs, les MOQ et les demandes en gros",
+      "button": "Prendre contact",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "email": "Nous écrire",
+      "viewCatalogue": "Voir le catalogue"
+    }
+  },
+  "catalogue": {
+    "title": "Catalogue de produits",
+    "subtitle": "Notre gamme professionnelle complète en 20 catégories",
+    "search": "Rechercher des produits...",
+    "filter": "Filtres",
+    "allCategories": "Toutes les catégories",
+    "priceRange": "Fourchette de prix",
+    "saleOnly": "Soldes uniquement",
+    "newOnly": "Nouveautés uniquement",
+    "sortBy": "Trier par",
+    "sortDefault": "Par défaut",
+    "sortNew": "Nouveautés",
+    "sortPriceAsc": "Prix : croissant",
+    "sortPriceDesc": "Prix : décroissant",
+    "sortName": "Nom A-Z",
+    "noResults": "Aucun produit trouvé",
+    "noResultsHint": "Essayez d'ajuster votre recherche ou vos filtres",
+    "products": "produits",
+    "addToCart": "Ajouter au panier",
+    "viewDetails": "Voir les détails",
+    "categoryNames": {
+      "fillers": "Fillers",
+      "mesotherapy": "Mésothérapie / Biorevitalisation / HA",
+      "acne-treatment": "Traitement de l'acné",
+      "hair-treatment": "Traitement capillaire",
+      "pharmacy-favourites": "Favoris pharmacie",
+      "topical-cosmetics": "Cosmétiques topiques",
+      "intimate-care": "Soin intime",
+      "growth-factor-exosome": "Facteur de croissance & Thérapie aux exosomes",
+      "curenex": "Gamme Curenex",
+      "dermagen": "Gamme Dermagen",
+      "gtm": "Gamme GTM",
+      "equipment": "Équipement",
+      "salon-grade": "Produits salon (grand format)",
+      "lipolytics": "Cocktails lipolytiques brûleurs de graisses",
+      "botulinum": "Thérapie botulinique",
+      "injections": "Injections",
+      "anesthetics": "Anesthésiques",
+      "placental-therapy": "Thérapie placentaire",
+      "nano-needle-cannula": "Nano-aiguilles et canules",
+      "imported-products": "Produits importés",
+      "neo-pdo-threads": "Fils Neo PDO"
+    },
+    "allCategoriesItem": "Toutes les catégories",
+    "bundles": "Forfaits",
+    "cards": "cartes",
+    "productsLong": "produits"
+  },
+  "product": {
+    "specification": "Spécification",
+    "description": "Description",
+    "indication": "Indication",
+    "packaging": "Conditionnement",
+    "protocol": "Protocole",
+    "price": "Prix",
+    "moq": "MOQ",
+    "unit": "unité",
+    "units": "unités",
+    "addToCart": "Ajouter au panier",
+    "inStock": "En stock",
+    "outOfStock": "Rupture de stock",
+    "backorder": "Sur commande",
+    "backorderHint": "En rupture de stock — commandez maintenant, expédié dès réapprovisionnement.",
+    "category": "Catégorie",
+    "tags": {
+      "new": "Nouveau",
+      "sale": "Solde",
+      "bestSeller": "Meilleure vente"
+    },
+    "relatedProducts": "Produits similaires",
+    "contactForOrder": "Contacter pour commander",
+    "readMore": "Lire la suite",
+    "readLess": "Réduire"
+  },
+  "cart": {
+    "title": "Panier",
+    "empty": "Votre panier est vide",
+    "emptyHint": "Parcourez notre catalogue pour trouver des produits",
+    "continueShopping": "Continuer vos achats",
+    "remove": "Supprimer",
+    "quantity": "Qté",
+    "subtotal": "Sous-total",
+    "total": "Total",
+    "items": "articles",
+    "checkout": "Procéder au paiement",
+    "clear": "Vider le panier",
+    "backorder": "Sur commande",
+    "bulk": {
+      "progress": "Ajoutez {amount} de plus pour débloquer 15 % de remise en gros",
+      "unlocked": "Remise en gros débloquée — 15 % de réduction à la caisse"
+    }
+  },
+  "about": {
+    "title": "À propos",
+    "subtitle": "Votre partenaire de confiance pour les produits esthétiques coréens premium",
+    "story": {
+      "title": "Notre histoire",
+      "content": "Lumée Maison est un fournisseur B2B spécialisé dans les produits esthétiques médicaux coréens premium. Nous connectons les cliniques esthétiques, les dermatologues et les professionnels de la beauté du monde entier aux meilleurs produits des principaux fabricants coréens."
+    },
+    "mission": {
+      "title": "Notre mission",
+      "content": "Rendre les innovations esthétiques coréennes premium accessibles aux professionnels du monde entier, en garantissant authenticité, qualité et approvisionnement fiable."
+    },
+    "values": {
+      "title": "Nos valeurs",
+      "authentic": "Authenticité",
+      "quality": "Qualité",
+      "reliability": "Fiabilité",
+      "expertise": "Expertise"
+    },
+    "process": {
+      "title": "Comment nous travaillons",
+      "browse": {
+        "title": "Parcourir",
+        "desc": "Explorez notre catalogue en 20 catégories spécialisées."
+      },
+      "request": {
+        "title": "Demander",
+        "desc": "Envoyez une demande de devis ou passez une commande via notre équipe."
+      },
+      "authenticate": {
+        "title": "Authentifier",
+        "desc": "Chaque article est approvisionné directement auprès de fabricants coréens certifiés."
+      },
+      "ship": {
+        "title": "Expédier",
+        "desc": "Expédition directe en chaîne du froid depuis Séoul via FedEx, dans le monde entier."
+      }
+    }
+  },
+  "contact": {
+    "title": "Nous contacter",
+    "subtitle": "Prenez contact pour vos demandes en gros",
+    "form": {
+      "name": "Votre nom",
+      "email": "Adresse e-mail",
+      "company": "Nom de la société / clinique",
+      "message": "Message",
+      "send": "Envoyer le message"
+    },
+    "info": {
+      "title": "Prendre contact",
+      "email": "E-mail",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "address": "Adresse",
+      "assistant": "Assistant IA",
+      "assistantDesc": "Posez des questions directes et obtenez des réponses instantanées",
+      "assistantCta": "Discuter avec notre assistant"
+    }
+  },
+  "report": {
+    "trigger": "Signaler un problème",
+    "title": "Signaler un problème",
+    "subtitle": "Vous avez trouvé un bug ou quelque chose qui ne fonctionne pas ? Faites-le nous savoir, nous allons l'examiner.",
+    "messageLabel": "Qu'est-il arrivé ?",
+    "messagePlaceholder": "Décrivez le problème — ce que vous faisiez, ce qui s'est passé et sur quelle page.",
+    "emailLabel": "Votre e-mail",
+    "optional": "(facultatif)",
+    "emailPlaceholder": "vous@exemple.com — pour que nous puissions vous répondre",
+    "submit": "Envoyer le rapport",
+    "submitting": "Envoi en cours…",
+    "successTitle": "Merci",
+    "successBody": "Votre rapport a été envoyé à notre équipe. Nous vous remercions de nous aider à nous améliorer.",
+    "done": "Terminé",
+    "close": "Fermer"
+  },
+  "footer": {
+    "company": "Société",
+    "about": "À propos",
+    "catalogue": "Catalogue",
+    "contact": "Contact",
+    "payment": "Moyens de paiement",
+    "shipping": "Livraison",
+    "legal": "Mentions légales",
+    "copyright": "© 2026 Lumée Maison. Tous droits réservés.",
+    "disclaimer": "À usage professionnel uniquement. Ventes B2B uniquement. Non destiné à la revente aux consommateurs finaux."
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "tryAgain": "Réessayer",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "viewAll": "Voir tout",
+    "learnMore": "En savoir plus",
+    "contact": "Contact",
+    "from": "à partir de",
+    "currency": "$"
+  },
+  "gates": {
+    "professional": {
+      "title": "Accès professionnel uniquement",
+      "subtitle": "Lumée Maison s'adresse exclusivement aux professionnels esthétiques et médicaux agréés.",
+      "question": "Êtes-vous un professionnel esthétique ou médical agréé ?",
+      "yes": "Oui, je suis un professionnel",
+      "no": "Non, je ne le suis pas"
+    },
+    "korea": {
+      "title": "Service non disponible",
+      "subtitle": "Nous ne desservons pas actuellement le marché intérieur coréen.",
+      "message": "Lumée Maison est un service exclusivement à l'export. Nous n'expédions pas en Corée du Sud.",
+      "contact": "Pour toute demande, veuillez nous contacter à"
+    }
+  },
+  "disclaimer": {
+    "step1": {
+      "title": "Bienvenue sur Lumée Maison",
+      "intro": "Lumée Maison propose des cosmétiques coréens premium — des produits médico-esthétiques professionnels aux soins de beauté à domicile.",
+      "confirmHeading": "Veuillez confirmer avant d'entrer :",
+      "confirm": {
+        "age": "J'ai 18 ans ou plus",
+        "injectables": "Je comprends que les injectables médicaux et esthétiques (fillers, toxines botuliques, mésothérapie, etc.) sont destinés exclusivement aux professionnels agréés",
+        "homecare": "Je comprends que les produits de soin à domicile sont disponibles pour un usage personnel"
+      },
+      "cta": {
+        "understand": "Je comprends — Entrer sur le site",
+        "exit": "Quitter"
+      }
+    },
+    "step2": {
+      "title": "Avertissements et politiques",
+      "section": {
+        "products": {
+          "icon": "🔬",
+          "heading": "Catégories de produits et utilisation",
+          "body": "Lumée Maison vend deux catégories de produits :\n\n1. Produits médicaux et esthétiques professionnels — comprenant les fillers dermiques, les toxines botuliques, les solutions de mésothérapie et les injectables. Ces produits sont strictement destinés aux professionnels médicaux et esthétiques agréés et doivent être administrés par, ou sous la supervision d'un prestataire de santé qualifié.\n\n2. Soins et cosmétiques à domicile — comprenant les crèmes, sérums, masques, nettoyants et autres produits topiques destinés à un usage personnel ou professionnel à domicile.\n\nL'acheteur assume l'entière responsabilité du choix des produits appropriés à ses qualifications professionnelles et du respect de toutes les lois et réglementations locales."
+        },
+        "noMedicalAdvice": {
+          "icon": "⚕️",
+          "heading": "Pas de conseil médical",
+          "body": "Les informations sur ce site sont à des fins éducatives et informatives uniquement. Elles ne constituent pas un avis médical. Consultez toujours un professionnel de santé agréé avant toute utilisation clinique d'un produit esthétique ou médical.\n\nLumée Maison décline toute responsabilité en cas de mauvais usage, blessure, réaction indésirable ou dommages résultant d'une manipulation incorrecte, d'une utilisation non autorisée ou de l'administration de produits achetés sur ce site."
+        },
+        "reship": {
+          "icon": "📦",
+          "heading": "Politique de réexpédition",
+          "body": "Nous offrons une réexpédition gratuite pour la première livraison uniquement, en cas de problème de livraison (tel qu'une perte en transit).\n\nLa réexpédition n'est pas disponible pour les commandes répétées."
+        },
+        "refund": {
+          "icon": "💰",
+          "heading": "Politique de remboursement",
+          "body": "Les remboursements sont émis uniquement lorsqu'un colis ne passe pas la douane et nous est retourné.\n\nDans ce cas, le remboursement couvre uniquement le coût des produits — les frais d'expédition ne sont pas remboursables.\n\nUne fois la commande passée, le paiement reçu et le colis remis au transporteur, toutes les ventes sont définitives."
+        },
+        "shipping": {
+          "icon": "🚚",
+          "heading": "Responsabilité d'expédition",
+          "body": "Lumée Maison N'EST PAS responsable des colis perdus, retardés, retenus ou volés une fois remis au transporteur.\n\nL'acheteur est responsable de la fourniture d'informations d'expédition exactes. Lumée Maison N'EST PAS responsable de la non-livraison due à des informations d'adresse incorrectes ou incomplètes."
+        }
+      },
+      "finalLine": "En cliquant sur « J'accepte » ci-dessous, vous confirmez avoir lu, compris et accepté toutes les conditions ci-dessus.",
+      "cta": {
+        "agree": "J'ai lu et j'accepte",
+        "decline": "Refuser"
+      }
+    }
+  },
+  "pwa": {
+    "enableAlerts": "Activer les alertes",
+    "enabling": "Activation en cours…",
+    "enabled": "Alertes activées ✓",
+    "denied": "Les notifications sont bloquées dans les paramètres de votre navigateur.",
+    "iosHint": "Ajoutez d'abord ce site à votre écran d'accueil, puis ouvrez-le pour activer les alertes.",
+    "unsupported": "Votre navigateur ne prend pas en charge les alertes.",
+    "error": "Impossible d'activer les alertes. Veuillez réessayer."
+  }
+}
