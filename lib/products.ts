@@ -1,6 +1,8 @@
 import productsData from '@/data/products.json';
 import translationsRu from '@/data/translations/ru.json';
 import translationsKo from '@/data/translations/ko.json';
+import translationsFr from '@/data/translations/fr.json';
+import translationsEs from '@/data/translations/es.json';
 
 // Client-safe product module: types, the (bundled) category list, pure
 // localization helpers, and structural group-range lookup.
@@ -21,6 +23,8 @@ type ProductTranslation = {
 const TRANSLATIONS: Record<string, Record<string, ProductTranslation>> = {
   ru: translationsRu as Record<string, ProductTranslation>,
   ko: translationsKo as Record<string, ProductTranslation>,
+  fr: translationsFr as Record<string, ProductTranslation>,
+  es: translationsEs as Record<string, ProductTranslation>,
 };
 
 export interface Category {
