@@ -1,9 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Minus, Plus, Check, Send, Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { useLocale } from 'next-intl';
+import { X, Minus, Plus, Check, Send, Loader2, LogIn } from 'lucide-react';
 import { submitProductRequest } from '@/app/manzura/requests/actions';
+import { createClient } from '@/lib/supabase/browser';
+import { localePath } from '@/lib/i18n';
 
 // Storefront "make a request" popup, shown when a product is out of stock. The
 // customer picks how many units they want; the request is recorded so the owner
@@ -19,17 +23,36 @@ export default function RequestModal({
   option?: string;
   onClose: () => void;
 }) {
+  const locale = useLocale();
   const [qty, setQty] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState('');
+  // 'checking' until we know; 'in' = signed in; 'out' = must log in first.
+  const [auth, setAuth] = useState<'checking' | 'in' | 'out'>('checking');
+
+  // A request must be tied to a customer account. Check the session on open so
+  // we can show the login prompt instead of the form when signed out. The
+  // server action enforces this too — this is just UX.
+  useEffect(() => {
+    let active = true;
+    createClient()
+      .auth.getUser()
+      .then(({ data }) => { if (active) setAuth(data.user ? 'in' : 'out'); })
+      .catch(() => { if (active) setAuth('out'); });
+    return () => { active = false; };
+  }, []);
 
   async function submit() {
     setSubmitting(true);
     setError('');
     try {
       const res = await submitProductRequest({ productId, productName, option, quantity: qty });
-      if (!res.ok) { setError(res.error); return; }
+      if (!res.ok) {
+        if (res.code === 'auth') { setAuth('out'); return; }
+        setError(res.error);
+        return;
+      }
       setDone(true);
     } finally {
       setSubmitting(false);
@@ -62,7 +85,25 @@ export default function RequestModal({
           <X size={20} />
         </button>
 
-        {done ? (
+        {auth === 'checking' ? (
+          <div className="flex items-center justify-center py-12">
+            <Loader2 size={22} className="animate-spin text-gold" />
+          </div>
+        ) : auth === 'out' ? (
+          <div className="text-center py-4">
+            <div className="w-12 h-12 rounded-full bg-gold/10 text-gold-dark flex items-center justify-center mx-auto mb-4">
+              <LogIn size={22} />
+            </div>
+            <p className="font-display text-xl text-charcoal mb-2">Please log in</p>
+            <p className="text-sm text-mist mb-6">
+              You need an account to make a request. Log in or create one — it only takes a moment.
+            </p>
+            <Link href={localePath(locale, '/account/login')} className="btn-gold w-full inline-flex items-center justify-center gap-2">
+              <LogIn size={15} />
+              Log in
+            </Link>
+          </div>
+        ) : done ? (
           <div className="text-center py-4">
             <div className="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4">
               <Check size={24} />

@@ -7,7 +7,9 @@ import { sessionOptions, type SessionData } from '@/lib/session';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { REQUESTS_TAG, type RequestStatus } from '@/lib/requests';
 
-export type ActionResult = { ok: true } | { ok: false; error: string };
+export type ActionResult =
+  | { ok: true }
+  | { ok: false; error: string; code?: 'auth' };
 
 const revalidateRequests = () => (revalidateTag as (tag: string) => void)(REQUESTS_TAG);
 
@@ -23,10 +25,10 @@ export interface SubmitRequestInput {
   quantity: number;
 }
 
-// PUBLIC — called from the storefront RequestModal when a product is out of
-// stock. Records how many units the customer wants. Attaches the signed-in
-// customer (email/name) when there is one; anonymous submissions are allowed
-// since the request is just a demand signal.
+// PUBLIC (storefront) but LOGIN-REQUIRED — called from the RequestModal when a
+// product is out of stock. Records how many units the customer wants so the
+// owner can gauge demand. A signed-in customer is required: this is the
+// authoritative gate (the client also blocks, but never trust the client).
 export async function submitProductRequest(input: SubmitRequestInput): Promise<ActionResult> {
   const productId = Number(input.productId);
   const quantity = Math.floor(Number(input.quantity));
@@ -34,20 +36,19 @@ export async function submitProductRequest(input: SubmitRequestInput): Promise<A
   if (!Number.isFinite(quantity) || quantity <= 0) return { ok: false, error: 'Please choose how many you want.' };
   if (quantity > 100000) return { ok: false, error: 'Quantity is too large.' };
 
-  // Identify the customer if they're signed in (best-effort).
-  let userId: string | null = null;
+  // Require a signed-in customer. Attach their identity to the request.
+  let userId: string;
   let email: string | null = null;
   let name: string | null = null;
   try {
     const supabaseAuth = await createClient();
     const { data: { user } } = await supabaseAuth.auth.getUser();
-    if (user) {
-      userId = user.id;
-      email = user.email ?? null;
-      name = (user.user_metadata?.full_name as string | undefined) ?? null;
-    }
+    if (!user) return { ok: false, error: 'Please log in to make a request.', code: 'auth' };
+    userId = user.id;
+    email = user.email ?? null;
+    name = (user.user_metadata?.full_name as string | undefined) ?? null;
   } catch {
-    // Not signed in / auth unavailable — record anonymously.
+    return { ok: false, error: 'Please log in to make a request.', code: 'auth' };
   }
 
   const admin = createServiceClient();
