@@ -9,6 +9,9 @@ import {
   passwordResetCodeEmail,
   paymentVerifiedEmail,
   lowStockAlertEmail,
+  quoteTeamEmail,
+  quoteAckEmail,
+  paymentOpenEmail,
   type OrderData,
   type ShipmentData,
   type CancellationData,
@@ -17,10 +20,16 @@ import {
   type PasswordResetCodeData,
   type PaymentVerifiedData,
   type LowStockAlertData,
+  type QuoteEmailData,
 } from './templates';
 import { createServiceClient } from '@/lib/supabase/server';
 
-export type { OrderData, ShipmentData, CancellationData, DeliveryData, SignupConfirmData, PasswordResetCodeData, PaymentVerifiedData, LowStockAlertData } from './templates';
+export type { OrderData, ShipmentData, CancellationData, DeliveryData, SignupConfirmData, PasswordResetCodeData, PaymentVerifiedData, LowStockAlertData, QuoteEmailData } from './templates';
+
+export interface QuoteSendResult {
+  team: { ok: boolean; error?: string };
+  customer: { ok: boolean; error?: string };
+}
 
 export interface SendResult {
   customer: { ok: boolean; error?: string };
@@ -260,6 +269,81 @@ export async function sendLowStockAlert(d: LowStockAlertData): Promise<{ ok: boo
     return { ok: false, error: 'ADMIN_NOTIFICATION_EMAIL missing' };
   }
   return sendOne(to, lowStockAlertEmail(d), 'low-stock-alert');
+}
+
+// Sends the team notification + customer ack emails when a bulk quote order is
+// created. Team goes to ADMIN_NOTIFICATION_EMAIL; customer ack to order.customerEmail.
+// Uses Promise.allSettled so one failure never blocks the other. Never throws.
+export async function sendQuoteEmails(order: QuoteEmailData): Promise<QuoteSendResult> {
+  const from = process.env.SMTP_FROM;
+  const adminTo = process.env.ADMIN_NOTIFICATION_EMAIL;
+
+  if (!from || !adminTo) {
+    const reason = !from ? 'SMTP_FROM missing' : 'ADMIN_NOTIFICATION_EMAIL missing';
+    console.warn(`[email] ${reason} — skipping quote emails for`, order.orderNumber);
+    return {
+      team: { ok: false, error: reason },
+      customer: { ok: false, error: reason },
+    };
+  }
+
+  let transporter: ReturnType<typeof getTransporter>;
+  try {
+    transporter = getTransporter();
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[email] transporter init failed', order.orderNumber, msg);
+    return {
+      team: { ok: false, error: msg },
+      customer: { ok: false, error: msg },
+    };
+  }
+
+  const teamRendered = quoteTeamEmail(order);
+  const ackRendered = quoteAckEmail(order);
+
+  const [teamOutcome, custOutcome] = await Promise.allSettled([
+    transporter.sendMail({
+      from,
+      to: adminTo,
+      subject: teamRendered.subject,
+      html: teamRendered.html,
+      text: teamRendered.text,
+      replyTo: order.customerEmail,
+    }),
+    transporter.sendMail({
+      from,
+      to: order.customerEmail,
+      subject: ackRendered.subject,
+      html: ackRendered.html,
+      text: ackRendered.text,
+      replyTo: from,
+    }),
+  ]);
+
+  const teamRes: QuoteSendResult['team'] =
+    teamOutcome.status === 'fulfilled'
+      ? { ok: true }
+      : { ok: false, error: teamOutcome.reason instanceof Error ? teamOutcome.reason.message : String(teamOutcome.reason) };
+  if (!teamRes.ok) {
+    console.error('[email] quote team send failed', order.orderNumber, teamRes.error);
+  }
+
+  const customerRes: QuoteSendResult['customer'] =
+    custOutcome.status === 'fulfilled'
+      ? { ok: true }
+      : { ok: false, error: custOutcome.reason instanceof Error ? custOutcome.reason.message : String(custOutcome.reason) };
+  if (!customerRes.ok) {
+    console.error('[email] quote ack send failed', order.orderNumber, customerRes.error);
+  }
+
+  return { team: teamRes, customer: customerRes };
+}
+
+// Fires the customer-facing payment-open notification when admin unlocks
+// payment on a bulk quote order. Uses sendOne. Never throws.
+export async function sendPaymentOpenEmail(order: QuoteEmailData): Promise<{ ok: boolean; error?: string }> {
+  return sendOne(order.customerEmail, paymentOpenEmail(order), 'payment-open');
 }
 
 // Same shape as sendShipmentEmail — fires the customer-facing cancellation

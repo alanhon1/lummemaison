@@ -1090,3 +1090,246 @@ export function adminEmail(order: OrderData): { subject: string; html: string; t
 
   return { subject, html, text: textLines.join('\n') };
 }
+
+// ----------------------------------------------------------------------------
+// Quote-flow email templates — quote request (team notification + customer ack)
+// and payment-open notification.
+// ----------------------------------------------------------------------------
+
+export interface QuoteEmailData {
+  orderNumber: string;
+  orderSeq: number;          // used in the link /account/orders/<orderSeq>
+  customerName: string;
+  customerEmail: string;
+  shippingAddress: OrderShippingAddress;
+  subtotalCents: number;     // product subtotal before discount
+  discountCents: number;     // 15% discount amount
+  totalCents: number;        // product after discount (at quote time); final incl. shipping (at payment-open time)
+}
+
+// Team notification — admin-style, concise, fulfillment-focused.
+export function quoteTeamEmail(order: QuoteEmailData): { subject: string; html: string; text: string } {
+  const subject = `New quote request — ${order.orderNumber}`;
+  const productAfterDiscount = order.subtotalCents - order.discountCents;
+  const addrLines = formatAddressLines(order.shippingAddress).map(escapeHtml).join('<br/>');
+
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#f6f7f9;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#111;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f6f7f9;padding:24px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="620" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e5e7eb;">
+        <tr><td style="padding:18px 24px;background:#111;color:#fff;">
+          <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:0.7;">New Quote Request</div>
+          <div style="font-size:18px;font-weight:600;margin-top:2px;">${escapeHtml(order.orderNumber)}</div>
+        </td></tr>
+
+        <tr><td style="padding:20px 24px;background:#fff8e1;border-bottom:1px solid #f3e6b3;">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b5b00;margin-bottom:6px;">Customer</div>
+          <div style="font-size:15px;line-height:1.55;">
+            <strong>${escapeHtml(order.customerName)}</strong><br/>
+            <a href="mailto:${escapeHtml(order.customerEmail)}" style="color:#1f6feb;">${escapeHtml(order.customerEmail)}</a>
+          </div>
+        </td></tr>
+
+        <tr><td style="padding:20px 24px;border-bottom:1px solid #e5e7eb;">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:6px;">Ship to</div>
+          <div style="font-size:14px;line-height:1.6;">${escapeHtml(order.customerName)}<br/>${addrLines}</div>
+        </td></tr>
+
+        <tr><td style="padding:20px 24px;">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:8px;">Pricing</div>
+          <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:14px;line-height:1.8;width:100%;">
+            <tr><td style="color:#6b7280;">Product subtotal</td><td style="text-align:right;">${formatUSD(order.subtotalCents)}</td></tr>
+            <tr><td style="color:#0a7a4f;">Discount (15%)</td><td style="text-align:right;color:#0a7a4f;">&minus;${formatUSD(order.discountCents)}</td></tr>
+            <tr><td style="font-weight:700;border-top:2px solid #111;padding-top:6px;">Product after discount</td><td style="text-align:right;font-weight:700;border-top:2px solid #111;padding-top:6px;">${formatUSD(productAfterDiscount)}</td></tr>
+            <tr><td style="color:#6b7280;padding-top:4px;">Shipping</td><td style="text-align:right;color:#6b7280;padding-top:4px;">To be quoted</td></tr>
+          </table>
+        </td></tr>
+
+        <tr><td style="padding:14px 24px 20px;font-size:12px;color:#6b7280;border-top:1px solid #e5e7eb;">
+          Reply to this email to contact the customer directly.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const addrText = formatAddressLines(order.shippingAddress);
+  const text = [
+    `NEW QUOTE REQUEST — ${order.orderNumber}`,
+    '',
+    `Customer:  ${order.customerName}`,
+    `Email:     ${order.customerEmail}`,
+    '',
+    'Ship to:',
+    `  ${order.customerName}`,
+    ...addrText.map(l => `  ${l}`),
+    '',
+    'Pricing:',
+    `  Product subtotal:       ${formatUSD(order.subtotalCents)}`,
+    `  Discount (15%):        -${formatUSD(order.discountCents)}`,
+    `  Product after discount:  ${formatUSD(productAfterDiscount)}`,
+    `  Shipping:               To be quoted`,
+    '',
+    'Reply to this email to contact the customer directly.',
+  ].join('\n');
+
+  return { subject, html, text };
+}
+
+// Customer ack — Lumée Maison brand, confirms receipt, no payment details yet.
+export function quoteAckEmail(order: QuoteEmailData): { subject: string; html: string; text: string } {
+  const subject = `We received your quote request — ${order.orderNumber}`;
+
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6f0;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #eadfd1;">
+        <tr><td style="padding:36px 40px 24px;text-align:center;border-bottom:1px solid #eadfd1;">
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;letter-spacing:1px;color:#3a342c;">Lum&eacute;e Maison</div>
+          <div style="font-size:12px;letter-spacing:3px;color:#9a8e7e;margin-top:4px;text-transform:uppercase;">Quote Request Received</div>
+        </td></tr>
+        <tr><td style="padding:32px 40px 8px;">
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(order.customerName)},</p>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Thank you for your quote request with Lum&eacute;e Maison. We have received your enquiry and are preparing your personalised total.</p>
+
+          <p style="margin:0 0 4px;font-size:13px;color:#9a8e7e;text-transform:uppercase;letter-spacing:2px;">Quote reference</p>
+          <p style="margin:0 0 24px;font-size:20px;font-weight:600;letter-spacing:0.5px;color:#3a342c;">${escapeHtml(order.orderNumber)}</p>
+
+          <div style="background:#f7ede0;border:1px solid #eadfd1;padding:18px 20px;margin:0 0 24px;">
+            <p style="margin:0 0 8px;font-size:14px;line-height:1.6;"><strong>What happens next:</strong></p>
+            <p style="margin:0;font-size:14px;line-height:1.7;color:#3a342c;">We will email you your full total &mdash; 15% off the product price plus the actual shipping cost &mdash; within <strong>1&ndash;3 business days</strong>.<br/><br/>No payment is needed at this stage.</p>
+          </div>
+
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">If you have any questions in the meantime, please reply to this email and we will be happy to help.</p>
+
+          <p style="margin:28px 0 4px;font-size:14px;line-height:1.6;">With gratitude,</p>
+          <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:16px;color:#3a342c;">The Lum&eacute;e Maison Team</p>
+        </td></tr>
+        <tr><td style="padding:20px 40px 28px;border-top:1px solid #eadfd1;font-size:11px;color:#9a8e7e;text-align:center;">
+          This is a confirmation for your quote request ${escapeHtml(order.orderNumber)}.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const text = [
+    `Lumée Maison — Quote Request Received`,
+    `Quote reference: ${order.orderNumber}`,
+    '',
+    `Dear ${order.customerName},`,
+    '',
+    'Thank you for your quote request with Lumée Maison. We have received your enquiry.',
+    '',
+    'What happens next:',
+    'We will email you your full total — 15% off the product price plus the actual shipping',
+    'cost — within 1–3 business days.',
+    '',
+    'No payment is needed at this stage.',
+    '',
+    'If you have any questions, please reply to this email.',
+    '',
+    'With gratitude,',
+    'The Lumée Maison Team',
+  ].join('\n');
+
+  return { subject, html, text };
+}
+
+// Payment-open notification — customer, final total + order link + Wise details.
+export function paymentOpenEmail(order: QuoteEmailData): { subject: string; html: string; text: string } {
+  const subject = `Your order total is ready — ${order.orderNumber}`;
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.lumeemaison.com').replace(/\/$/, '');
+  const orderUrl = `${siteUrl}/account/orders/${order.orderSeq}`;
+  const wiseFields = WISE_PAYMENT.bankFields.map(f => ({ label: f.label, value: f.value }));
+
+  const html = `<!doctype html>
+<html><head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#faf6f0;font-family:Georgia,'Times New Roman',serif;color:#3a342c;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf6f0;padding:40px 0;">
+    <tr><td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #eadfd1;">
+        <tr><td style="padding:36px 40px 24px;text-align:center;border-bottom:1px solid #eadfd1;">
+          <div style="font-family:Georgia,serif;font-style:italic;font-size:28px;letter-spacing:1px;color:#3a342c;">Lum&eacute;e Maison</div>
+          <div style="font-size:12px;letter-spacing:3px;color:#9a8e7e;margin-top:4px;text-transform:uppercase;">Your Order Total Is Ready</div>
+        </td></tr>
+        <tr><td style="padding:32px 40px 8px;">
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Dear ${escapeHtml(order.customerName)},</p>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">We have prepared your personalised order total, including the 15% bulk discount and shipping. Your order is now ready for payment.</p>
+
+          <p style="margin:0 0 4px;font-size:13px;color:#9a8e7e;text-transform:uppercase;letter-spacing:2px;">Order number</p>
+          <p style="margin:0 0 8px;font-size:20px;font-weight:600;letter-spacing:0.5px;color:#3a342c;">${escapeHtml(order.orderNumber)}</p>
+
+          <p style="margin:0 0 4px;font-size:13px;color:#9a8e7e;text-transform:uppercase;letter-spacing:2px;">Total to pay</p>
+          <p style="margin:0 0 24px;font-size:26px;font-weight:700;color:#3a342c;">${formatUSD(order.totalCents)}</p>
+
+          <p style="margin:0 0 16px;"><a href="${orderUrl}" style="display:inline-block;padding:12px 28px;background:#c9a875;color:#ffffff;text-decoration:none;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;">View Your Order &rarr;</a></p>
+          <p style="margin:0 0 24px;font-size:13px;color:#6b6157;">Or copy this link: <span style="word-break:break-all;color:#7a5a3a;">${escapeHtml(orderUrl)}</span></p>
+
+          <h3 style="font-family:Georgia,serif;font-style:italic;color:#3a342c;margin:28px 0 12px;">Pay via Wise (Bank Transfer)</h3>
+          <p style="margin:0 0 12px;font-size:14px;line-height:1.6;color:#3a342c;">Please transfer the total above using the Wise bank details below &mdash; the same as usual.</p>
+          <div style="background:#f7ede0;border:1px solid #eadfd1;padding:16px 18px;margin:0 0 8px;">
+            ${
+              wiseFields.length === 0
+                ? `<p style="margin:0;font-size:13px;color:#6b6157;font-style:italic;">Details being updated &mdash; please contact us.</p>`
+                : `<table role="presentation" cellpadding="0" cellspacing="0" style="font-size:13px;line-height:1.8;">
+                  ${wiseFields
+                    .map(
+                      f =>
+                        `<tr><td style="color:#6b6157;padding-right:14px;vertical-align:top;">${escapeHtml(f.label)}</td><td style="color:#3a342c;">${escapeHtml(f.value)}</td></tr>`,
+                    )
+                    .join('')}
+                </table>`
+            }
+          </div>
+          <p style="margin:8px 0 24px;font-size:13px;color:#6b6157;">Enter your order number <strong style="color:#3a342c;">${escapeHtml(order.orderNumber)}</strong> in the Wise &ldquo;reference&rdquo; field.</p>
+
+          <p style="margin:0 0 16px;font-size:14px;line-height:1.6;">After paying, please reply to this email with a screenshot of your transfer receipt. Once we confirm your payment, your order will be prepared for shipment.</p>
+
+          <p style="margin:28px 0 4px;font-size:14px;line-height:1.6;">With gratitude,</p>
+          <p style="margin:0;font-family:Georgia,serif;font-style:italic;font-size:16px;color:#3a342c;">The Lum&eacute;e Maison Team</p>
+        </td></tr>
+        <tr><td style="padding:20px 40px 28px;border-top:1px solid #eadfd1;font-size:11px;color:#9a8e7e;text-align:center;">
+          This is a payment request for your order ${escapeHtml(order.orderNumber)}.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  const textLines: string[] = [
+    `Lumée Maison — Your Order Total Is Ready`,
+    `Order number: ${order.orderNumber}`,
+    '',
+    `Dear ${order.customerName},`,
+    '',
+    'Your personalised order total is ready, including the 15% bulk discount and shipping.',
+    '',
+    `Total to pay: ${formatUSD(order.totalCents)}`,
+    '',
+    `View your order: ${orderUrl}`,
+    '',
+    'Pay via Wise (Bank Transfer):',
+  ];
+  if (wiseFields.length === 0) {
+    textLines.push('  Details being updated — please contact us.');
+  } else {
+    for (const f of wiseFields) {
+      textLines.push(`  ${f.label.padEnd(20)}${f.value}`);
+    }
+  }
+  textLines.push(`  ${'Reference:'.padEnd(20)}${order.orderNumber}`);
+  textLines.push(
+    '',
+    'After paying, please reply to this email with a screenshot of your transfer receipt.',
+    '',
+    'With gratitude,',
+    'The Lumée Maison Team',
+  );
+
+  return { subject, html, text: textLines.join('\n') };
+}
