@@ -10,8 +10,10 @@ import { useCartAvailability } from '@/lib/useCartAvailability';
 import { placeOrderAction, uploadPaymentProof, validatePromoCode } from '@/app/[locale]/checkout/actions';
 import { localePath } from '@/lib/i18n';
 import { highlightField } from '@/lib/checkout/highlightField';
+import { BULK_THRESHOLD_CENTS, bulkDiscountCents } from '@/lib/checkout/bulk';
 import CopyButton from './CopyButton';
 import WisePaymentInfo from './WisePaymentInfo';
+import BulkDiscountGate from './BulkDiscountGate';
 
 const ACCEPTED_MIME = [
   'image/png',
@@ -68,6 +70,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const proofSectionRef = useRef<HTMLElement | null>(null);
   const [submitError, setSubmitError] = useState('');
+  const [bulkChoice, setBulkChoice] = useState<'none' | 'paynow'>('none');
 
   useEffect(() => {
     const d = readDraft();
@@ -117,6 +120,9 @@ export default function PaymentStep({ payment, serverError }: Props) {
   // shipping without the total going negative.
   const appliedDiscount = Math.min(discountCents, subtotalCents + shippingCents);
   const totalCents = subtotalCents + shippingCents - appliedDiscount;
+  const bulkDc = bulkDiscountCents(
+    items.map(i => ({ unitCents: Math.round(i.price * 100), quantity: i.quantity, categoryId: null })),
+  );
 
   const payload = JSON.stringify({
     locale,
@@ -202,6 +208,18 @@ export default function PaymentStep({ payment, serverError }: Props) {
           <Row label={t('payment.total')} value={formatUSD(totalCents, locale)} strong />
         </div>
       </div>
+
+      {subtotalCents >= BULK_THRESHOLD_CENTS && bulkChoice === 'none' ? (
+        <BulkDiscountGate
+          subtotalCents={subtotalCents}
+          shippingCents={shippingCents}
+          discountCents={bulkDc}
+          payload={payload}
+          locale={locale}
+          onChoosePayNow={() => setBulkChoice('paynow')}
+        />
+      ) : (
+        <>
 
       {/* Wise */}
       <WisePaymentInfo />
@@ -393,6 +411,9 @@ export default function PaymentStep({ payment, serverError }: Props) {
           {submitting ? t('payment.submitting') : t('payment.confirm')}
         </button>
       </form>
+
+        </>
+      )}
     </div>
   );
 }

@@ -309,6 +309,42 @@
         }
       }
     },
+    "bulk": {
+      "popup": {
+        "title": "You qualify for bulk pricing!",
+        "body": "Your order exceeds $2,500 and qualifies for our exclusive bulk discount. Choose how you'd like to proceed.",
+        "next": "See my options"
+      },
+      "optionsTitle": "Choose your option",
+      "cardA": {
+        "title": "Pay now",
+        "badge": "Fastest",
+        "noDiscount": "No discount applied",
+        "shipping": "Shipping {amount}",
+        "shippingNote": "$35 — US without a FedEx account: $65",
+        "payToday": "Pay today, ships right away",
+        "totalDueNow": "Total due now",
+        "cta": "Proceed to payment"
+      },
+      "cardB": {
+        "title": "Get 15% off",
+        "discountBadge": "Save {amount}",
+        "discount15": "15% off your whole order",
+        "shippingQuoted": "Shipping quoted by our team in 1–3 business days",
+        "payLater": "Pay nothing today",
+        "productAfterDiscount": "Products after 15% off",
+        "shipping": "Shipping",
+        "shippingValue": "Quoted in 1–3 days",
+        "dueNow": "Due now",
+        "cta": "Request my full quote"
+      },
+      "quoteRequested": {
+        "title": "Quote requested",
+        "body": "Thank you. Our team will email your full total — 15% off plus actual shipping — within 1–3 business days. No payment is needed yet."
+      },
+      "requesting": "Requesting…",
+      "genericError": "An unexpected error occurred. Please try again."
+    },
     "confirmation": {
       "title": "Order received",
       "subtitle": "Thank you for your order.",
