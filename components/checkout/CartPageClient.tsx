@@ -8,6 +8,7 @@ import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, AlertTriangle } from 'luc
 import { useCartStore, cartLineKey } from '@/lib/store';
 import { useCartAvailability } from '@/lib/useCartAvailability';
 import { localePath } from '@/lib/i18n';
+import BulkProgressBar from '@/components/cart/BulkProgressBar';
 
 export default function CartPageClient() {
   const t = useTranslations('cart');
@@ -122,6 +123,9 @@ export default function CartPageClient() {
               </span>
             </div>
           ))}
+        </div>
+        <div className="mb-6">
+          <BulkProgressBar />
         </div>
         <div className="flex justify-between items-center mb-8">
           <span className="text-sm font-semibold">{t('total')}</span>

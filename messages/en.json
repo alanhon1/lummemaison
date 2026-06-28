@@ -523,7 +523,11 @@
     "items": "items",
     "checkout": "Proceed to Checkout",
     "clear": "Clear Cart",
-    "backorder": "Backorder"
+    "backorder": "Backorder",
+    "bulk": {
+      "progress": "Add {amount} more to unlock 15% bulk discount",
+      "unlocked": "Bulk discount unlocked — 15% off at checkout"
+    }
   },
   "about": {
     "title": "About Us",
