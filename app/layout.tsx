@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+﻿import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import PwaRegister from '@/components/pwa/PwaRegister';
@@ -52,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={`${cormorant.variable} ${inter.variable}`} data-scroll-behavior="smooth">
+    <html lang="en" className={`${cormorant.variable} ${inter.variable}`} data-scroll-behavior="smooth">
       <body className="min-h-screen flex flex-col">
         {children}
         <PwaRegister />

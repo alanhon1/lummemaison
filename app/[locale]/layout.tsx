@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     alternates: {
       canonical: localePath(locale),
-      languages: { en: '/', ru: '/ru' },
+      languages: Object.fromEntries(locales.map(l => [l, localePath(l, '/')])),
     },
   };
 }
