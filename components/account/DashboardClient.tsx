@@ -11,6 +11,7 @@ import { findCountry, resolveCountryCode } from '@/lib/countries';
 import OrderStatusBadge from './OrderStatusBadge';
 import EmailVerifiedMark from './EmailVerifiedMark';
 import ResendConfirmationButton from './ResendConfirmationButton';
+import EnableAlertsButton from '@/components/pwa/EnableAlertsButton';
 
 interface Profile {
   full_name: string;
@@ -163,6 +164,10 @@ export default function DashboardClient({
             {pending ? t('dashboard.saving') : t('dashboard.save')}
           </button>
         </form>
+
+        <div className="mt-6">
+          <EnableAlertsButton />
+        </div>
       </section>
 
       {/* Order history */}
