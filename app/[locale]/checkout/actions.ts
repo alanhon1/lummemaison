@@ -9,11 +9,11 @@ import { getStockMap } from '@/lib/products/stock';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents, isValidFedexAccount } from '@/lib/checkout/state';
-import { sendOrderEmails, type OrderData } from '@/lib/email/sendOrderEmails';
+import { sendOrderEmails, sendQuoteEmails, type OrderData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { heicToJpegBuffer } from '@/lib/uploads/heicToJpeg';
-import { isReservedPromoCode } from '@/lib/checkout/bulk';
+import { isReservedPromoCode, bulkDiscountCents, qualifiesForBulk, BULK_MARKER } from '@/lib/checkout/bulk';
 
 const PROOF_BUCKET = 'payment-proofs';
 const PROOF_MAX_BYTES = 10 * 1024 * 1024;
@@ -117,7 +117,7 @@ export async function uploadPaymentProof(formData: FormData): Promise<UploadProo
   return { ok: true, path: objectKey };
 }
 
-export async function createOrder(input: CreateOrderInput): Promise<CreateOrderResult> {
+export async function createOrder(input: CreateOrderInput, opts?: { quote?: boolean }): Promise<CreateOrderResult> {
   // Auth check — never create an order for an unauthenticated request.
   const supabase = await createClient();
   const {
@@ -187,7 +187,7 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   // Payment screenshot is required (skipped for test orders).
   const proofPath = (input.paymentProofPath ?? '').trim();
   const transactionLink = (input.paymentTransactionLink ?? '').trim().slice(0, 500);
-  if (!isTest && !proofPath) {
+  if (!isTest && !opts?.quote && !proofPath) {
     return {
       ok: false,
       error: 'Please upload a payment screenshot before confirming.',
@@ -202,6 +202,101 @@ export async function createOrder(input: CreateOrderInput): Promise<CreateOrderR
   const discountCode = (s.discountCode ?? '').trim().slice(0, 64);
 
   const admin = createServiceClient();
+
+  // Build bulk lines for potential quote discount — reuse liveById already fetched above.
+  const bulkLines = input.items.map(l => ({
+    unitCents: l.unit_cents,
+    quantity: l.quantity,
+    categoryId: (liveById.get(l.product_id) as { category?: string } | undefined)?.category ?? null,
+  }));
+
+  // ── Quote branch (Option B: 15% off, $0 payment now, team quotes shipping) ──
+  if (opts?.quote) {
+    if (!qualifiesForBulk(subtotal)) {
+      return { ok: false, error: 'A bulk quote requires a $2,500 or higher product subtotal.' };
+    }
+    const discountCents = bulkDiscountCents(bulkLines);
+    const total = subtotal - discountCents;
+
+    const { data: quoteOrder, error: quoteOrderError } = await admin
+      .from('orders')
+      .insert({
+        user_id: user.id,
+        status: 'quote_pending',
+        subtotal_cents: subtotal,
+        shipping_cents: 0,
+        total_cents: total,
+        currency: 'USD',
+        shipping_address: {
+          street: s.street,
+          city: s.city,
+          state_province: s.stateProvince,
+          postal_code: s.postalCode,
+          country: s.country,
+        },
+        customer_name: s.fullName,
+        customer_email: s.email,
+        customer_phone: s.phone,
+        fedex_account: s.country === 'US' && isValidFedexAccount(s.fedexAccount) ? s.fedexAccount.trim() : null,
+        payment_method: input.paymentMethod ?? null,
+        notes: notes || null,
+        discount_code: BULK_MARKER,
+        payment_proof_path: null,
+        payment_transaction_link: null,
+      })
+      .select('id, order_seq, view_token, order_number')
+      .single();
+
+    if (quoteOrderError || !quoteOrder) {
+      return { ok: false, error: quoteOrderError?.message ?? 'Could not create the quote.' };
+    }
+
+    const quoteItemLines = input.items.map(l => ({
+      order_id: quoteOrder.id,
+      product_id: l.product_id,
+      product_name: l.product_name,
+      unit_cents: l.unit_cents,
+      quantity: l.quantity,
+      line_cents: l.unit_cents * l.quantity,
+      option: l.option?.trim() || null,
+    }));
+    const { error: quoteItemsError } = await admin.from('order_items').insert(quoteItemLines);
+    if (quoteItemsError) {
+      await admin.from('orders').delete().eq('id', quoteOrder.id);
+      return { ok: false, error: quoteItemsError.message };
+    }
+
+    const orderSeq = (quoteOrder.order_seq as number | null) ?? undefined;
+    const viewToken = quoteOrder.view_token as string;
+    const orderNumberDisplay =
+      orderSeq != null ? formatOrderNumber(orderSeq) : (quoteOrder.order_number as string);
+
+    try {
+      const countryName = findCountry(s.country)?.name ?? s.country;
+      await sendQuoteEmails({
+        orderNumber: orderNumberDisplay,
+        orderSeq: orderSeq ?? 0,
+        customerName: s.fullName,
+        customerEmail: s.email,
+        shippingAddress: {
+          street: s.street,
+          city: s.city,
+          state_province: s.stateProvince,
+          postal_code: s.postalCode,
+          country: s.country,
+          countryName,
+        },
+        subtotalCents: subtotal,
+        discountCents,
+        totalCents: total,
+      });
+    } catch (e) {
+      console.error('[checkout] sendQuoteEmails threw', orderNumberDisplay, e);
+    }
+
+    return { ok: true, orderSeq, viewToken, orderNumber: orderNumberDisplay };
+  }
+  // ── End quote branch ──
 
   // Discount base is the products subtotal (or subtotal + shipping for an
   // include_shipping promo); the real shipping is still added to the total.
@@ -397,4 +492,12 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
   redirect(
     `${localePath(locale, `/checkout/confirmation/${result.orderSeq}`)}?t=${result.viewToken}`,
   );
+}
+
+// Public server action for Option B bulk quote requests.
+// Accepts the same JSON payload contract as placeOrderAction so the client can
+// reuse the same payload builder — only the action endpoint differs.
+export async function requestBulkQuoteAction(payload: string): Promise<CreateOrderResult> {
+  const input = JSON.parse(payload) as CreateOrderInput;
+  return createOrder(input, { quote: true });
 }
