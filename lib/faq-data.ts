@@ -89,8 +89,8 @@ export const FAQ_ITEMS: FaqItem[] = [
       ru: 'Есть ли оптовые скидки?',
     },
     a: {
-      en: 'Yes! We are happy to offer discounts on larger orders. Email us at **info@lumeemaison.com** with the products and quantities you are interested in, and we will prepare a custom quote.\n\nNote: shipping for bulk orders is calculated based on actual volume and weight.',
-      ru: 'Да! Мы рады предложить скидки на крупные заказы. Напишите нам на **info@lumeemaison.com** с указанием нужных товаров и количества, и мы подготовим индивидуальное предложение.\n\nОбратите внимание: доставка для оптовых заказов рассчитывается на основе фактического объёма и веса.',
+      en: 'Yes — orders with a product subtotal of **$2,500 or more** automatically unlock a **15% bulk discount** at checkout. You\'ll be offered two options:\n\n• **Pay now** — standard checkout, no discount.\n• **Get 15% off** — pay nothing today; our team emails your full total (15% off plus actual shipping) within **1–3 business days**, then you pay.\n\nFor very large or custom orders, you\'re always welcome to email **info@lumeemaison.com** for a tailored quote.',
+      ru: 'Да — заказы с суммой товаров **от $2,500** автоматически получают **оптовую скидку 15%** при оформлении. Вам будут предложены два варианта:\n\n• **Оплатить сейчас** — обычное оформление, без скидки.\n• **Скидка 15%** — сегодня платить не нужно; наша команда пришлёт полную сумму (15% скидка плюс фактическая доставка) в течение **1–3 рабочих дней**, после чего вы оплачиваете.\n\nДля очень крупных или индивидуальных заказов вы всегда можете написать на **info@lumeemaison.com** для персонального расчёта.',
     },
   },
   {
@@ -102,6 +102,94 @@ export const FAQ_ITEMS: FaqItem[] = [
     a: {
       en: 'Before checkout, you can freely adjust your cart. If you have already placed and paid for an order, please email **info@lumeemaison.com** as soon as possible with your order number and the changes you need. We will do our best to accommodate, but modifications may not be possible once packing has begun.',
       ru: 'До оформления заказа вы можете свободно изменять корзину. Если заказ уже оформлен и оплачен, напишите как можно скорее на **info@lumeemaison.com**, указав номер заказа и нужные изменения. Мы постараемся помочь, однако изменения могут быть невозможны, если упаковка уже началась.',
+    },
+  },
+  {
+    id: 10,
+    q: {
+      en: 'What if my parcel is held at customs?',
+      ru: 'Что делать, если посылку задержали на таможне?',
+    },
+    a: {
+      en: 'If a shipment is held, we have to wait for an official update from the carrier before we can act — occasionally there may be a quiet period of up to two weeks with no movement. In many cases customs simply requires the recipient to pay local import duties before the parcel is released. We\'ll help you follow up wherever we can.',
+      ru: 'Если посылка задержана, мы можем действовать только после официального обновления от перевозчика — иногда возможен «тихий период» до двух недель без движения. Часто таможня просто требует от получателя оплатить местные импортные пошлины перед выдачей посылки. Мы поможем вам с уточнениями, насколько это возможно.',
+    },
+  },
+  {
+    id: 11,
+    q: {
+      en: 'Will I have to pay import tax or duties?',
+      ru: 'Нужно ли платить импортные налоги или пошлины?',
+    },
+    a: {
+      en: 'Any import duties or taxes are set by your destination country and are the responsibility of the recipient. Rates vary by country and product — if you\'re unsure what may apply, please check with your local customs office.',
+      ru: 'Любые импортные пошлины и налоги устанавливаются страной назначения и оплачиваются получателем. Ставки зависят от страны и товара — если вы не уверены, уточните в местной таможне.',
+    },
+  },
+  {
+    id: 12,
+    q: {
+      en: 'My tracking says "Delivered" but nothing has arrived.',
+      ru: 'В трекинге «Доставлено», но посылка не пришла.',
+    },
+    a: {
+      en: 'This usually resolves within a day or two — couriers sometimes scan a parcel as delivered slightly early, or leave it with a neighbour, building reception, or a safe spot. Please check around your address first, then contact your local courier with your tracking number. If it\'s still missing after that, reach out to us and we\'ll help you follow up.',
+      ru: 'Обычно это решается за день-два — курьеры иногда отмечают доставку чуть раньше или оставляют посылку у соседей, на ресепшене или в безопасном месте. Сначала проверьте вокруг вашего адреса, затем свяжитесь с местным курьером, указав трек-номер. Если посылка так и не найдена, напишите нам — мы поможем разобраться.',
+    },
+  },
+  {
+    id: 13,
+    q: {
+      en: 'My box arrived damaged.',
+      ru: 'Коробка пришла повреждённой.',
+    },
+    a: {
+      en: 'We\'re sorry if your parcel arrived in poor condition. Please photograph the outer box and the contents as soon as it arrives — ideally within **48 hours** of delivery — and send the images to **info@lumeemaison.com**. We\'ll review each case individually and advise on the best next step.',
+      ru: 'Сожалеем, если посылка пришла в плохом состоянии. Сфотографируйте внешнюю коробку и содержимое сразу после получения — желательно в течение **48 часов** — и отправьте снимки на **info@lumeemaison.com**. Мы рассмотрим каждый случай индивидуально и подскажем дальнейшие шаги.',
+    },
+  },
+  {
+    id: 14,
+    q: {
+      en: 'Can you guarantee a specific delivery date?',
+      ru: 'Можете ли вы гарантировать конкретную дату доставки?',
+    },
+    a: {
+      en: 'We\'re not able to promise an exact delivery date. Transit times are estimates, and the final leg depends on customs and your local courier. We\'ll always give you the most accurate window we can.',
+      ru: 'Мы не можем гарантировать точную дату доставки. Сроки являются ориентировочными, а последний этап зависит от таможни и местного курьера. Мы всегда сообщаем максимально точный диапазон.',
+    },
+  },
+  {
+    id: 15,
+    q: {
+      en: 'Do you provide medical advice?',
+      ru: 'Предоставляете ли вы медицинские консультации?',
+    },
+    a: {
+      en: 'Lumée Maison supplies professional-grade products to qualified, licensed practitioners. We can share product specifications and manufacturer information, but we cannot give clinical or medical advice. Always follow the manufacturer\'s instructions and rely on your own professional training, or consult a qualified healthcare professional.',
+      ru: 'Lumée Maison поставляет продукцию профессионального уровня квалифицированным лицензированным специалистам. Мы можем предоставить характеристики продукта и информацию производителя, но не даём клинических или медицинских рекомендаций. Всегда следуйте инструкциям производителя и опирайтесь на собственную профессиональную подготовку или консультацию квалифицированного специалиста.',
+    },
+  },
+  {
+    id: 16,
+    q: {
+      en: 'Can I combine two different products together?',
+      ru: 'Можно ли смешивать два разных продукта?',
+    },
+    a: {
+      en: 'We don\'t recommend it. Products from different manufacturers aren\'t designed to be mixed, so we can\'t guarantee safety or results if you combine them. In our experience, visible results from a single product typically take two weeks to a month. If you\'re considering it, please proceed with caution and professional judgement.',
+      ru: 'Мы не рекомендуем этого. Продукты разных производителей не предназначены для смешивания, поэтому мы не можем гарантировать безопасность или результат. По нашему опыту, заметный результат от одного продукта обычно проявляется через две недели — месяц. Если вы всё же рассматриваете это, действуйте осторожно и на основе профессионального суждения.',
+    },
+  },
+  {
+    id: 17,
+    q: {
+      en: 'How long do products last? What about expiry?',
+      ru: 'Какой срок годности у продуктов?',
+    },
+    a: {
+      en: 'Each product\'s shelf life and expiry date are printed on its packaging. We ship items with a reasonable remaining shelf life and store everything under proper conditions until dispatch. Please store your products as directed on the label.',
+      ru: 'Срок годности и дата истечения указаны на упаковке каждого продукта. Мы отправляем товары с разумным остаточным сроком годности и храним всё в надлежащих условиях до отправки. Пожалуйста, храните продукты согласно указаниям на этикетке.',
     },
   },
 ];
