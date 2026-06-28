@@ -45,6 +45,8 @@ The other three sub-projects (FR/ES locales, PWA+push, FAQ page) are **out of sc
 | D6 | Two new statuses with a **payment lock**: `quote_pending → awaiting_payment → payment_verified`. No auto-jump from `quote_pending` to `payment_verified`. The team presses **"Open payment"** to move `quote_pending → awaiting_payment`. |
 | D7 | In `awaiting_payment`, the customer pays via an **in-app per-order payment page** (reuses the existing Wise + proof-upload UI). |
 | D8 | The order **instruction email** uses the **same** Korestetics Global account as the site. Bank details live in **one** config constant (`lib/checkout/wisePayment.ts`); the email imports it too. **Remove the scattered env-based Wise bank values.** |
+| D9 | Option B **customer acknowledgement email is required** (confirmed). |
+| D10 | `BULK15` is a **server-only reserved marker** — explicitly rejected by the promo redemption/validation path so it can never be redeemed via the promo box (security). |
 
 ---
 
@@ -107,13 +109,20 @@ When `status='awaiting_payment'`: normal admin actions; team marks `payment_veri
 
 ### A6. Emails — `lib/email/*`
 - **`sendQuoteRequestEmail(order)`** → `ADMIN_NOTIFICATION_EMAIL`: "New quote request — SGL #…", customer name, full shipping address, product subtotal, 15% discount, product-after-discount; "shipping TBD".
-- **Customer acknowledgement** (recommended, lightweight) on Option B submit: "We received your quote request; full total within 1–3 business days."
+- **Customer acknowledgement (CONFIRMED — required)** on Option B submit: a short email — *"Quote request received — we'll email your full total within 1–3 business days. No payment is needed now."* Rationale: a $0 "request" leaves nothing in the customer's hands once they close the screen; the ack reduces follow-up enquiries.
 - **Customer payment-open email** when `quote_pending → awaiting_payment`: final total + link to pay in-app. Reuses the instruction-email template (now sourced from `wisePayment.ts`, see Section B).
 - Reuse `lib/email/mailer.ts` + `templates.ts` patterns; emails never throw (match `sendOrderEmails` behaviour).
 
 ### A7. Customer in-app payment page (`awaiting_payment`)
 - Surface on the customer's order detail (`app/[locale]/account/orders/[seq]/page.tsx`; the order-number/`view_token` confirmation route may also link here). When `status='awaiting_payment'`, render a payment section that **reuses the Wise instructions + payment-proof upload** from `PaymentStep` (extract the shared pieces), driven by the **existing order** (team-set total), not the checkout draft.
 - A server action attaches the uploaded proof to the order (`payment_proof_path` / `payment_transaction_link`). Team then verifies → `payment_verified`.
+
+### A9. Security — `BULK15` is a server-only reserved marker (REQUIRED)
+`BULK15` is **not a redeemable promo code**. It is set **only** server-side inside `requestBulkQuoteAction` to label bulk-quote orders. The customer must never be able to obtain the 15% by typing it.
+
+- The promo redemption/validation path — `promoDiscountCents()` and `validatePromoCode()` in `app/[locale]/checkout/actions.ts` — **explicitly rejects** the reserved marker: normalize the entered code (trim + uppercase, as promos already do) and if it equals `BULK15` (or any future reserved bulk marker), return "not a valid code" **before** any DB lookup — so even a mistakenly-created `BULK15` promo row can never apply.
+- Keep the reserved set in one place (e.g. `RESERVED_PROMO_CODES = new Set(['BULK15'])`) referenced by both the redeem path and any admin promo-create validation (optional: block creating a code with a reserved name).
+- The 15% bulk discount is therefore reachable **only** through the ≥ $2,500 payment-step flow, never the promo box.
 
 ### A8. i18n
 Add keys to `messages/en.json` + `messages/ru.json` for: popup title/body/Next, Option A card, Option B card, "Request my full quote", quote-requested confirmation, and the new email/status strings. (fr/es handled in sub-project ②, with English fallback meanwhile.)
@@ -177,7 +186,8 @@ In `buildPackagingText`, change the header line from `No:   ${props.orderNumber}
 - `tsc --noEmit` ✅, `next build` ✅.
 - Cart ≥ $2,500 → payment step shows popup → Next → two cards.
 - Option A: card shows **real** shipping; US-without-FedEx shows $65; normal order places unchanged.
-- Option B: creates `quote_pending` order (no payment), team email fires, customer sees "quote requested".
+- Option B: creates `quote_pending` order (no payment), **team notification email + customer acknowledgement email** both fire, customer sees "quote requested".
+- **Security:** with an **ineligible cart (subtotal < $2,500)**, typing `BULK15` (and case/whitespace variants) into the promo box is **rejected** as invalid — no discount applied. Confirm the 15% is unreachable except via the ≥ $2,500 payment-step flow.
 - Admin: set shipping/total on the quote order → "Open payment" → `awaiting_payment`; customer pays in-app (Wise + proof); team verifies → `payment_verified` → normal pipeline. No `quote_pending → payment_verified` jump available.
 - Site Wise section and order email show the **identical** Korestetics Global account (single source). Editing `wisePayment.ts` updates both.
 - Receipt header shows only `SGL #…` (no `No:`).
@@ -186,4 +196,3 @@ In `buildPackagingText`, change the header line from `No:   ${props.orderNumber}
 ## 9. Open items
 
 - Exact stage ordering/labels for the two new statuses in the admin badge map (cosmetic).
-- Whether the customer ack email (A6) is included (recommended; cheap) — default: include.
