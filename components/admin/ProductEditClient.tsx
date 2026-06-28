@@ -319,32 +319,43 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
               </select>
             </Field>
 
-            {/* Translatable fields: English + Russian side by side. RU is optional
-                and falls back to English on the storefront when empty. */}
+            {/* Translatable fields: English source + Russian / French / Spanish.
+                The non-English locales are optional and fall back to English on
+                the storefront when empty. */}
             <TranslatableField
               label="Specification" rows={1}
               en={form.specification ?? ''} onEn={v => update('specification', v)}
               ru={form.specification_ru ?? ''} onRu={v => update('specification_ru', v)}
+              fr={form.specification_fr ?? ''} onFr={v => update('specification_fr', v)}
+              es={form.specification_es ?? ''} onEs={v => update('specification_es', v)}
             />
             <TranslatableField
               label="Description" rows={4}
               en={form.description ?? ''} onEn={v => update('description', v)}
               ru={form.description_ru ?? ''} onRu={v => update('description_ru', v)}
+              fr={form.description_fr ?? ''} onFr={v => update('description_fr', v)}
+              es={form.description_es ?? ''} onEs={v => update('description_es', v)}
             />
             <TranslatableField
               label="Indication" rows={3} placeholder="What this product is indicated for…"
               en={form.indication ?? ''} onEn={v => update('indication', v)}
               ru={form.indication_ru ?? ''} onRu={v => update('indication_ru', v)}
+              fr={form.indication_fr ?? ''} onFr={v => update('indication_fr', v)}
+              es={form.indication_es ?? ''} onEs={v => update('indication_es', v)}
             />
             <TranslatableField
               label="Packaging" rows={2} placeholder="e.g. 1 × 1.0 ml prefilled syringe, 2 × needles…"
               en={form.packaging ?? ''} onEn={v => update('packaging', v)}
               ru={form.packaging_ru ?? ''} onRu={v => update('packaging_ru', v)}
+              fr={form.packaging_fr ?? ''} onFr={v => update('packaging_fr', v)}
+              es={form.packaging_es ?? ''} onEs={v => update('packaging_es', v)}
             />
             <TranslatableField
               label="Protocol (shown on product page)" rows={4} placeholder="How to use / treatment protocol…"
               en={form.protocol ?? ''} onEn={v => update('protocol', v)}
               ru={form.protocol_ru ?? ''} onRu={v => update('protocol_ru', v)}
+              fr={form.protocol_fr ?? ''} onFr={v => update('protocol_fr', v)}
+              es={form.protocol_es ?? ''} onEs={v => update('protocol_es', v)}
             />
 
             <Field label="Tags (comma-separated, e.g. #lips, #hyaluronicacid)">
@@ -405,30 +416,36 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 }
 
 function TranslatableField({
-  label, en, onEn, ru, onRu, rows = 1, placeholder,
+  label, en, onEn, ru, onRu, fr, onFr, es, onEs, rows = 1, placeholder,
 }: {
   label: string;
   en: string; onEn: (v: string) => void;
   ru: string; onRu: (v: string) => void;
+  fr: string; onFr: (v: string) => void;
+  es: string; onEs: (v: string) => void;
   rows?: number; placeholder?: string;
 }) {
   const cls = 'w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white resize-none';
+  // English is the source; ru/fr/es are optional and fall back to English on the
+  // storefront when empty. Only the English cell shows the placeholder hint.
+  const cells: { lang: string; value: string; onChange: (v: string) => void; ph?: string }[] = [
+    { lang: 'English', value: en, onChange: onEn, ph: placeholder },
+    { lang: 'Русский (optional)', value: ru, onChange: onRu },
+    { lang: 'Français (optional)', value: fr, onChange: onFr },
+    { lang: 'Español (optional)', value: es, onChange: onEs },
+  ];
   return (
     <div>
       <label className="block text-[10px] uppercase tracking-[0.2em] text-mist mb-1.5">{label}</label>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div>
-          <span className="block text-[9px] uppercase tracking-[0.15em] text-mist/70 mb-1">English</span>
-          {rows > 1
-            ? <textarea rows={rows} value={en} onChange={e => onEn(e.target.value)} placeholder={placeholder} className={cls} />
-            : <input value={en} onChange={e => onEn(e.target.value)} placeholder={placeholder} className={cls} />}
-        </div>
-        <div>
-          <span className="block text-[9px] uppercase tracking-[0.15em] text-mist/70 mb-1">Русский (optional)</span>
-          {rows > 1
-            ? <textarea rows={rows} value={ru} onChange={e => onRu(e.target.value)} className={cls} />
-            : <input value={ru} onChange={e => onRu(e.target.value)} className={cls} />}
-        </div>
+        {cells.map(c => (
+          <div key={c.lang}>
+            <span className="block text-[9px] uppercase tracking-[0.15em] text-mist/70 mb-1">{c.lang}</span>
+            {rows > 1
+              ? <textarea rows={rows} value={c.value} onChange={e => c.onChange(e.target.value)} placeholder={c.ph} className={cls} />
+              : <input value={c.value} onChange={e => c.onChange(e.target.value)} placeholder={c.ph} className={cls} />}
+          </div>
+        ))}
       </div>
     </div>
   );

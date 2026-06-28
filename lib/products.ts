@@ -50,13 +50,25 @@ export interface Product {
   indication?: string;
   packaging?: string;
   protocol?: string;
-  // Russian translations, entered by admin and stored on the product itself
-  // (so they persist via the catalogue store). Empty/absent → English fallback.
+  // Per-locale translations, entered by admin and stored on the product itself
+  // (so they persist via the catalogue store). Empty/absent → bundled
+  // translation file → English fallback. Suffix is the locale code, so
+  // `localized()` resolves `${field}_${locale}` generically (ru/fr/es).
   specification_ru?: string;
   description_ru?: string;
   indication_ru?: string;
   packaging_ru?: string;
   protocol_ru?: string;
+  specification_fr?: string;
+  description_fr?: string;
+  indication_fr?: string;
+  packaging_fr?: string;
+  protocol_fr?: string;
+  specification_es?: string;
+  description_es?: string;
+  indication_es?: string;
+  packaging_es?: string;
+  protocol_es?: string;
   price: number;
   // Pre-discount "was" price shown struck-through next to `price`. Display only —
   // the customer always pays `price`. Absent / <= price ⇒ no discount shown.
@@ -142,36 +154,36 @@ export function getGroupRange(groupId: string): { min: number; max: number } | n
 }
 
 // Resolution order for a localized field:
-//   1. the product's own RU field (new home, e.g. `description_ru`)
-//   2. the legacy bundled translations file (fallback for not-yet-migrated rows)
+//   1. the product's own per-locale field (admin-entered, e.g. `description_fr`)
+//   2. the bundled translations file for that locale (ru/ko/fr/es)
 //   3. the English value
 function localized(
   product: Product,
   locale: string,
   field: keyof ProductTranslation,
-  ruValue: string | undefined,
 ): string {
-  if (locale === 'ru' && ruValue) return ruValue;
+  const own = (product as unknown as Record<string, unknown>)[`${field}_${locale}`];
+  if (typeof own === 'string' && own) return own;
   const legacy = TRANSLATIONS[locale]?.[String(product.id)]?.[field];
   return legacy || (product[field] as string | undefined) || '';
 }
 
 export function getLocalizedDescription(product: Product, locale: string): string {
-  return localized(product, locale, 'description', product.description_ru) || product.description;
+  return localized(product, locale, 'description') || product.description;
 }
 
 export function getLocalizedSpecification(product: Product, locale: string): string {
-  return localized(product, locale, 'specification', product.specification_ru) || product.specification;
+  return localized(product, locale, 'specification') || product.specification;
 }
 
 export function getLocalizedIndication(product: Product, locale: string): string {
-  return localized(product, locale, 'indication', product.indication_ru);
+  return localized(product, locale, 'indication');
 }
 
 export function getLocalizedPackaging(product: Product, locale: string): string {
-  return localized(product, locale, 'packaging', product.packaging_ru);
+  return localized(product, locale, 'packaging');
 }
 
 export function getLocalizedProtocol(product: Product, locale: string): string {
-  return localized(product, locale, 'protocol', product.protocol_ru);
+  return localized(product, locale, 'protocol');
 }
