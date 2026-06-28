@@ -8,7 +8,7 @@ import { ShoppingBag, Search, Menu, X, Globe } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { locales, defaultLocale, localePath, type Locale } from '@/lib/i18n';
 
-const LOCALE_LABELS: Record<Locale, string> = { en: 'EN', ru: 'RU' };
+const LOCALE_LABELS: Record<Locale, string> = { en: 'EN', ru: 'RU', fr: 'FR', es: 'ES' };
 
 export default function Header() {
   const t = useTranslations('nav');
