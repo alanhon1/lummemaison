@@ -147,6 +147,8 @@
       "cancelConfirm": "Вы уверены? Это действие нельзя отменить.",
       "cancelNo": "Оставить заказ",
       "status": {
+        "quote_pending": "Ожидает расчёта",
+        "awaiting_payment": "Ожидает оплаты",
         "order_received": "Заказ принят",
         "payment_verified": "Оплата подтверждена",
         "packaging": "Упаковка",

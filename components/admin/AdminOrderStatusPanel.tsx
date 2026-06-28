@@ -3,7 +3,7 @@
 import { useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { Check, ArrowRight, Undo2, X, Camera, Trash2 } from 'lucide-react';
-import { ORDER_STAGES, stageIndex, type OrderStatus } from '@/lib/orders/status';
+import { ORDER_STAGES, stageIndex, type OrderStatus, isQuoteStatus } from '@/lib/orders/status';
 import { CARRIERS, type CarrierKey } from '@/lib/orders/carriers';
 import { updateOrderStatus, markOrderShipped, deleteOrder } from '@/app/manzura/orders/actions';
 
@@ -48,6 +48,9 @@ export default function AdminOrderStatusPanel({
   const isCancelled = status === 'cancelled';
   const isDelivered = status === 'delivered';
   const isShipped = status === 'shipped';
+  // Suppress forward actions only for quote_pending (admin must use QuoteShippingPanel →
+  // "Open payment" instead). awaiting_payment keeps the normal verify-payment flow.
+  const isQuotePending = isQuoteStatus(status) && status === 'quote_pending';
 
   const nextStage: OrderStatus | null = (() => {
     if (isCancelled || isDelivered) return null;
@@ -165,7 +168,12 @@ export default function AdminOrderStatusPanel({
       {/* Action buttons */}
       {!isCancelled && !isDelivered && (
         <div className="flex flex-wrap items-center gap-2">
-          {nextStage && nextStage !== 'shipped' && !isShipped && (
+          {isQuotePending && (
+            <p className="text-xs text-stone-500 italic">
+              Set shipping and open payment using the panel below.
+            </p>
+          )}
+          {!isQuotePending && nextStage && nextStage !== 'shipped' && !isShipped && (
             <button
               type="button"
               disabled={pending}

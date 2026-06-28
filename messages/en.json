@@ -147,6 +147,8 @@
       "cancelConfirm": "Are you sure? This cannot be undone.",
       "cancelNo": "Keep order",
       "status": {
+        "quote_pending": "Quote pending",
+        "awaiting_payment": "Awaiting payment",
         "order_received": "Order received",
         "payment_verified": "Payment verified",
         "packaging": "Packing",
