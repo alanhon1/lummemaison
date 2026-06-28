@@ -498,6 +498,11 @@ export async function placeOrderAction(formData: FormData): Promise<void> {
 // Accepts the same JSON payload contract as placeOrderAction so the client can
 // reuse the same payload builder — only the action endpoint differs.
 export async function requestBulkQuoteAction(payload: string): Promise<CreateOrderResult> {
-  const input = JSON.parse(payload) as CreateOrderInput;
+  let input: CreateOrderInput;
+  try {
+    input = JSON.parse(payload) as CreateOrderInput;
+  } catch {
+    return { ok: false, error: 'Invalid request payload.' };
+  }
   return createOrder(input, { quote: true });
 }
