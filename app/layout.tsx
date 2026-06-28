@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -33,10 +33,16 @@ export const metadata: Metadata = {
     siteName: "Lumée Maison",
     url: 'https://lumeemaison.com',
   },
+  manifest: '/manifest.webmanifest',
+  appleWebApp: { capable: true, title: 'Lumée Maison', statusBarStyle: 'default' },
   icons: {
     icon: '/favicon.png',
-    apple: '/favicon.png',
+    apple: '/icons/apple-touch-180.png',
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#3A342C',
 };
 
 export default function RootLayout({
