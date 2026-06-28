@@ -8,6 +8,7 @@ import { getStockFlagsMap, stockKey } from '@/lib/products/stock';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { findCountry } from '@/lib/countries';
 import AdminOrderStatusPanel from '@/components/admin/AdminOrderStatusPanel';
+import QuoteShippingPanel from '@/components/admin/QuoteShippingPanel';
 import AdminOrderMessages from '@/components/admin/AdminOrderMessages';
 import OrderReceiptModal from '@/components/admin/OrderReceiptModal';
 import OrderAttachments from '@/components/account/OrderAttachments';
@@ -262,6 +263,14 @@ export default async function AdminOrderDetailPage({
         trackingNumber={detail.tracking_number}
         shipmentPhotoPath={detail.shipment_photo_path}
       />
+
+      {detail.status === 'quote_pending' && (
+        <QuoteShippingPanel
+          orderId={detail.id}
+          subtotalCents={detail.subtotal_cents}
+          discountCents={detail.subtotal_cents - detail.total_cents}
+        />
+      )}
 
       {shipmentPhotoUrl && (
         <section className="bg-white border border-bone rounded-lg p-5">

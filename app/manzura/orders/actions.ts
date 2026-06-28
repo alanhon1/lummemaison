@@ -9,7 +9,8 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
-import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail, sendPaymentVerifiedEmail, sendLowStockAlert } from '@/lib/email/sendOrderEmails';
+import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail, sendPaymentVerifiedEmail, sendLowStockAlert, sendPaymentOpenEmail, type QuoteEmailData } from '@/lib/email/sendOrderEmails';
+import { findCountry } from '@/lib/countries';
 import { deductStockForItems, restoreStockForItems, getStockFlagsMap, stockKey } from '@/lib/products/stock';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
@@ -67,6 +68,12 @@ export async function updateOrderStatus(
     .eq('id', orderId)
     .single();
   if (!current) return { ok: false, error: 'order not found' };
+
+  // Guard: quote_pending orders must go through openOrderPayment() first.
+  // The only valid exits are awaiting_payment (via Open payment) and cancelled.
+  if (current.status === 'quote_pending' && !['awaiting_payment', 'cancelled'].includes(nextStatus)) {
+    return { ok: false, error: 'Set shipping and Open payment first.' };
+  }
 
   if (nextStatus === 'shipped') {
     // A *fresh* ship (capturing carrier + tracking + photo) must go through
@@ -463,5 +470,71 @@ export async function deleteOrder(orderId: number): Promise<ActionResult> {
   revalidatePath('/manzura/orders');
   revalidatePath('/manzura');
   revalidatePath('/manzura/stock');
+  return { ok: true };
+}
+
+// ----- openOrderPayment -----
+// Sets real shipping, computes new total, moves status to `awaiting_payment`,
+// and emails the customer to pay. Only valid from `quote_pending`.
+export async function openOrderPayment(orderId: number, shippingCents: number): Promise<ActionResult> {
+  try { await requireAdmin(); } catch { return { ok: false, error: 'not authorized' }; }
+  if (!Number.isFinite(shippingCents) || shippingCents < 0) {
+    return { ok: false, error: 'Invalid shipping amount' };
+  }
+
+  const supabase = createServiceClient();
+  const { data: o } = await supabase
+    .from('orders')
+    .select('id, status, subtotal_cents, total_cents, order_seq, order_number, customer_name, customer_email, shipping_address')
+    .eq('id', orderId)
+    .single();
+  if (!o) return { ok: false, error: 'order not found' };
+  if (o.status !== 'quote_pending') return { ok: false, error: 'Order is not awaiting a quote.' };
+
+  // discount = subtotal − current_total (current total has shipping 0, so this is the 15% off)
+  const subtotalCents = o.subtotal_cents as number;
+  const currentTotal = o.total_cents as number;
+  const discount = subtotalCents - currentTotal;
+  const newTotal = currentTotal + Math.round(shippingCents);
+
+  const { error: updateErr } = await supabase
+    .from('orders')
+    .update({ shipping_cents: Math.round(shippingCents), total_cents: newTotal, status: 'awaiting_payment' })
+    .eq('id', orderId);
+  if (updateErr) return { ok: false, error: updateErr.message };
+
+  // Fire-and-forget payment-open email to the customer. Never throws.
+  try {
+    const addr = o.shipping_address as {
+      street: string; city: string; state_province?: string | null; postal_code: string; country: string;
+    };
+    const orderNumber =
+      o.order_seq != null ? formatOrderNumber(o.order_seq as number) : (o.order_number as string);
+    const emailData: QuoteEmailData = {
+      orderNumber,
+      orderSeq: (o.order_seq as number) ?? 0,
+      customerName: o.customer_name as string,
+      customerEmail: o.customer_email as string,
+      shippingAddress: {
+        street: addr.street,
+        city: addr.city,
+        state_province: addr.state_province ?? undefined,
+        postal_code: addr.postal_code,
+        country: addr.country,
+        countryName: findCountry(addr.country)?.name ?? addr.country,
+      },
+      subtotalCents,
+      discountCents: discount,
+      totalCents: newTotal,
+    };
+    await sendPaymentOpenEmail(emailData);
+  } catch (e) {
+    // Email failure is non-fatal; log and continue.
+    console.error('[openOrderPayment] payment-open email threw:', e);
+  }
+
+  revalidatePath(`/manzura/orders/${orderId}`);
+  revalidatePath('/manzura/orders');
+  revalidatePath('/manzura');
   return { ok: true };
 }
