@@ -2,6 +2,8 @@
 // All monetary amounts (price, total, subtotal, shipping) are integer CENTS.
 // Conversion to display dollars happens only inside formatUSD() at render.
 
+import { WISE_PAYMENT } from '@/lib/checkout/wisePayment';
+
 export interface OrderItem {
   name: string;
   quantity: number;
@@ -274,17 +276,7 @@ export function customerEmail(order: OrderData): { subject: string; html: string
   const currency = order.currency ?? 'USD';
   const subject = `Your Lumée Maison Order ${order.orderNumber} — Payment Instructions`;
 
-  const wiseFields: Array<{ label: string; value: string }> = [
-    { label: 'Account name', value: envValue('WISE_ACCOUNT_NAME') },
-    { label: 'Bank', value: envValue('WISE_BANK_NAME') },
-    { label: 'Account no.', value: envValue('WISE_ACCOUNT_NUMBER') },
-    { label: 'SWIFT', value: envValue('WISE_SWIFT') },
-    { label: 'Currency', value: envValue('WISE_CURRENCY') },
-    { label: 'Address', value: envValue('WISE_ADDRESS') },
-    { label: 'City', value: envValue('WISE_CITY') },
-    { label: 'Postcode', value: envValue('WISE_POSTCODE') },
-    { label: 'Country', value: envValue('WISE_COUNTRY') },
-  ].filter(f => f.value);
+  const wiseFields = WISE_PAYMENT.bankFields.map(f => ({ label: f.label, value: f.value }));
 
   const usdtNetworks: Array<{ label: string; address: string }> = [];
   const erc20 = envValue('USDT_ERC20_ADDRESS');

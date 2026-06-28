@@ -11,6 +11,7 @@ import { placeOrderAction, uploadPaymentProof, validatePromoCode } from '@/app/[
 import { localePath } from '@/lib/i18n';
 import { highlightField } from '@/lib/checkout/highlightField';
 import CopyButton from './CopyButton';
+import WisePaymentInfo from './WisePaymentInfo';
 
 const ACCEPTED_MIME = [
   'image/png',
@@ -166,21 +167,6 @@ export default function PaymentStep({ payment, serverError }: Props) {
     if (fileInputRef.current) fileInputRef.current.value = '';
   }
 
-  // Build the visible Wise fields list — env-driven, so unconfigured fields
-  // simply disappear instead of leaking "[pending]" text. Order matches the
-  // order a customer would fill in a Wise transfer form.
-  const wiseFields: Array<{ key: string; label: string; value: string; mono?: boolean }> = [
-    { key: 'wise-name', label: t('payment.wise.accountName'), value: payment.wise.accountName },
-    { key: 'wise-bank', label: t('payment.wise.bank'), value: payment.wise.bankName },
-    { key: 'wise-account', label: t('payment.wise.accountNumber'), value: payment.wise.accountNumber, mono: true },
-    { key: 'wise-swift', label: t('payment.wise.swift'), value: payment.wise.swift, mono: true },
-    { key: 'wise-currency', label: t('payment.wise.currency'), value: payment.wise.currency },
-    { key: 'wise-address', label: t('payment.wise.address'), value: payment.wise.address },
-    { key: 'wise-city', label: t('payment.wise.city'), value: payment.wise.city },
-    { key: 'wise-postcode', label: t('payment.wise.postcode'), value: payment.wise.postcode },
-    { key: 'wise-country', label: t('payment.wise.country'), value: payment.wise.country },
-  ].filter(f => f.value);
-
   return (
     <div className="space-y-6">
       {/* Summary */}
@@ -218,46 +204,7 @@ export default function PaymentStep({ payment, serverError }: Props) {
       </div>
 
       {/* Wise */}
-      <article className="bg-white border border-bone rounded-lg p-5 md:p-6 hover-glow">
-        <header className="flex items-center gap-2 mb-4">
-          <span aria-hidden>💳</span>
-          <h2 className="font-display italic text-xl text-charcoal">{t('payment.wise.heading')}</h2>
-        </header>
-        <div className="h-px w-12 bg-gold-dark mb-4" aria-hidden />
-
-        <div className="bg-cream border border-bone rounded-md p-4 mb-5 text-sm text-charcoal leading-relaxed space-y-2">
-          <p>{t('payment.wise.warnings.creditCard')}</p>
-          <p>{t('payment.wise.warnings.recommended')}</p>
-          <p>{t('payment.wise.warnings.businessGoods')}</p>
-          <p>{t('payment.wise.warnings.directEntry')}</p>
-          <p>{t('payment.wise.warnings.feesAtSender')}</p>
-        </div>
-
-        {wiseFields.length === 0 ? (
-          <p className="text-sm text-mist italic">{t('payment.wise.notConfigured')}</p>
-        ) : (
-          <dl className="space-y-2 text-sm">
-            {wiseFields.map(f => (
-              <PaymentRow key={f.key} label={f.label} value={f.value} mono={f.mono} />
-            ))}
-          </dl>
-        )}
-
-        {/* Example screenshot — how to add the recipient in the Wise app. */}
-        <figure className="mt-5">
-          <figcaption className="text-xs font-semibold tracking-wider uppercase text-gold-dark mb-2">
-            {t('payment.wise.example')}
-          </figcaption>
-          <a href="/wise-example.jpg" target="_blank" rel="noopener noreferrer" className="inline-block">
-            <img
-              src="/wise-example.jpg"
-              alt={t('payment.wise.example')}
-              loading="lazy"
-              className="w-full max-w-[240px] rounded-md border border-bone"
-            />
-          </a>
-        </figure>
-      </article>
+      <WisePaymentInfo />
 
       {/* USDT */}
       <article className="bg-white border border-bone rounded-lg p-5 md:p-6 hover-glow">
