@@ -46,7 +46,7 @@ function fmtUSD(cents: number, currency: string) {
 
 function buildPackagingText(props: ReceiptProps): string {
   const lines: string[] = [
-    `No:   ${props.orderNumber}`,
+    `${props.orderNumber}`,
     `Name: ${props.customerName}`,
     '',
     ...props.items.flatMap(it => [itemName(it), `Quantity: ${it.quantity}`, '']),
