@@ -702,6 +702,8 @@
     "denied": "Les notifications sont bloquées dans les paramètres de votre navigateur.",
     "iosHint": "Ajoutez d'abord ce site à votre écran d'accueil, puis ouvrez-le pour activer les alertes.",
     "unsupported": "Votre navigateur ne prend pas en charge les alertes.",
-    "error": "Impossible d'activer les alertes. Veuillez réessayer."
+    "error": "Impossible d'activer les alertes. Veuillez réessayer.",
+    "disableAlerts": "Désactiver",
+    "disabling": "Désactivation…"
   }
 }

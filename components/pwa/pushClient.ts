@@ -33,3 +33,28 @@ export async function subscribeToPush(vapidPublicKey: string): Promise<'ok' | 'd
   });
   return res.ok ? 'ok' : 'error'; // subscribed in the browser but the server couldn't save it
 }
+
+// Current ON/OFF state for this device (does a push subscription exist?).
+export async function getPushState(): Promise<'on' | 'off' | 'unsupported'> {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) return 'unsupported';
+  const reg = await navigator.serviceWorker.ready;
+  return (await reg.pushManager.getSubscription()) ? 'on' : 'off';
+}
+
+// Turn alerts OFF: unsubscribe in the browser AND delete the saved row so future
+// broadcasts skip this user. Best-effort; clears the app badge too.
+export async function unsubscribeFromPush(): Promise<'ok' | 'error'> {
+  if (!('serviceWorker' in navigator)) return 'ok';
+  const reg = await navigator.serviceWorker.ready;
+  const sub = await reg.pushManager.getSubscription();
+  if (!sub) return 'ok';
+  const endpoint = sub.endpoint;
+  await sub.unsubscribe().catch(() => {});
+  await fetch('/api/push/unsubscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ endpoint }),
+  }).catch(() => {});
+  navigator.clearAppBadge?.().catch?.(() => {});
+  return 'ok';
+}

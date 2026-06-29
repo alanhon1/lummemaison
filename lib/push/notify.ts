@@ -47,3 +47,44 @@ export async function pushToUser(
   }
   return { sent, failed, pruned: goneIds.length };
 }
+
+export interface BroadcastOpts {
+  title: string;
+  body: string;
+  url?: string;
+  kind?: 'announcement' | 'product' | 'system';
+  productId?: number;
+}
+
+// Targeted broadcast: send to every logged-in user whose push is ON (i.e. has a
+// push_subscriptions row). Inserts ONE inbox row per user (so it appears in
+// /account/inbox as unread, with a click-through url) AND Web-Pushes their
+// devices. Users with push OFF get neither — the owner's rule is "only when ON
+// does it save". Best-effort; returns a small summary.
+export async function notifyUsers(opts: BroadcastOpts): Promise<{ users: number; pushed: number }> {
+  const admin = createServiceClient();
+  const { data: subs } = await admin
+    .from('push_subscriptions')
+    .select('client_code')
+    .not('client_code', 'is', null);
+  const userIds = [...new Set((subs ?? []).map(s => s.client_code as string))];
+  if (userIds.length === 0) return { users: 0, pushed: 0 };
+
+  // Inbox rows — subject = title; url/kind/product_id drive the click-through.
+  const rows = userIds.map(uid => ({
+    user_id: uid,
+    subject: opts.title,
+    body: opts.body,
+    url: opts.url ?? null,
+    kind: opts.kind ?? 'announcement',
+    product_id: opts.productId ?? null,
+  }));
+  await admin.from('user_messages').insert(rows);
+
+  let pushed = 0;
+  for (const uid of userIds) {
+    const r = await pushToUser(uid, { title: opts.title, body: opts.body, url: opts.url, count: 1 });
+    pushed += r.sent;
+  }
+  return { users: userIds.length, pushed };
+}

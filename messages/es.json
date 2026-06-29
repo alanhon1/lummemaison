@@ -702,6 +702,8 @@
     "denied": "Las notificaciones están bloqueadas en la configuración de su navegador.",
     "iosHint": "Primero agregue este sitio a su pantalla de inicio, luego ábralo para activar las alertas.",
     "unsupported": "Su navegador no admite alertas.",
-    "error": "No se pudieron activar las alertas. Por favor inténtelo de nuevo."
+    "error": "No se pudieron activar las alertas. Por favor inténtelo de nuevo.",
+    "disableAlerts": "Desactivar",
+    "disabling": "Desactivando…"
   }
 }

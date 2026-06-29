@@ -702,6 +702,8 @@
     "denied": "Notifications are blocked in your browser settings.",
     "iosHint": "Add this site to your Home Screen first, then open it to turn on alerts.",
     "unsupported": "Your browser doesn't support alerts.",
-    "error": "Couldn't turn on alerts. Please try again."
+    "error": "Couldn't turn on alerts. Please try again.",
+    "disableAlerts": "Turn off",
+    "disabling": "Turning off…"
   }
 }
