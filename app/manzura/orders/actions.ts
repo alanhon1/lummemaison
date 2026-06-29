@@ -143,6 +143,12 @@ export async function updateOrderStatus(
     if (items && items.length > 0) {
       const lines = (items as Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number; option: string | null }>)
         .map(i => ({ ...i, option: i.option ?? '' }));
+      // Idempotency: if this order already recorded an 'order' deduction, a prior
+      // attempt deducted stock but failed before the status write below — don't
+      // deduct again on retry (which previously drove stock down by 2x).
+      const { data: priorOrderMov } = await supabase
+        .from('stock_movements').select('id').eq('order_id', orderId).eq('reason', 'order').limit(1);
+      if ((priorOrderMov?.length ?? 0) === 0) {
       // Oversell guard, per (product_id, option): an order may have been placed
       // for more than we hold (oversell is allowed). Stock must never go
       // negative, so block the packaging crossing until every option is covered.
@@ -193,6 +199,7 @@ export async function updateOrderStatus(
         .filter(i => (flagsAfter[stockKey(i.product_id, i.option)]?.stock ?? 0) <= LOW)
         .map(i => ({ id: i.product_id, name: `${i.product_name}${i.option ? ` (${i.option})` : ''}`, stock: flagsAfter[stockKey(i.product_id, i.option)]?.stock ?? 0 }));
       if (lowItems.length > 0) void sendLowStockAlert({ products: lowItems });
+      } // end !alreadyDeducted
     }
   }
 
@@ -241,8 +248,10 @@ export async function updateOrderStatus(
             })),
           );
         }
-      } catch {
-        // Best-effort: don't fail the status update if stock ops error.
+      } catch (e) {
+        // Best-effort: don't fail the status update if stock ops error — but LOG
+        // it, since a silent failure leaves stock un-restored (phantom oversell).
+        console.error('[stock] cancel restock failed for order', orderId, e);
       }
     }
   }
@@ -280,7 +289,10 @@ export async function updateOrderStatus(
             })),
           );
         }
-      } catch { /* best-effort */ }
+      } catch (e) {
+        // Best-effort, but log: a silent failure leaves stock un-restored.
+        console.error('[stock] rollback restock failed for order', orderId, e);
+      }
     }
   }
 
@@ -297,10 +309,14 @@ export async function updateOrderStatus(
       customerName: current.customer_name as string,
       customerEmail: current.customer_email as string,
     };
-    if (nextStatus === 'cancelled') void sendCancellationEmail(recipient);
-    if (nextStatus === 'delivered') void sendDeliveryEmail(recipient);
+    // Awaited (not fire-and-forget): an un-awaited promise after the action
+    // returns can be frozen/killed on serverless before the mail is sent, so a
+    // status-change email could silently never go out. The senders catch their
+    // own errors, so awaiting never throws here.
+    if (nextStatus === 'cancelled') await sendCancellationEmail(recipient);
+    if (nextStatus === 'delivered') await sendDeliveryEmail(recipient);
     if (nextStatus === 'payment_verified' && verifiedItems) {
-      void sendPaymentVerifiedEmail({
+      await sendPaymentVerifiedEmail({
         ...recipient,
         items: verifiedItems.map(i => ({ name: i.product_name, quantity: i.quantity, price: i.unit_cents })),
         subtotalCents: (current.subtotal_cents as number) ?? 0,

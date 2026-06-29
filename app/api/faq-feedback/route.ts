@@ -1,4 +1,5 @@
 import { createServiceClient } from '@/lib/supabase/server';
+import { clientIp } from '@/lib/rate-limit-ip';
 
 // Unauthenticated endpoint — cap submissions per IP so it can't be scripted to
 // flood the faq_feedback table. In-memory (per serverless instance), which is
@@ -9,10 +10,7 @@ const RL_MAX = 20;
 const RL_WINDOW_MS = 10 * 60 * 1000;
 
 function rateLimited(req: Request): boolean {
-  const ip =
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    req.headers.get('x-real-ip') ||
-    'unknown';
+  const ip = clientIp(req);
   const now = Date.now();
   const e = RL.get(ip);
   if (!e || now > e.resetAt) {

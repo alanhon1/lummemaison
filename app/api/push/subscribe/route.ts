@@ -1,6 +1,7 @@
 // app/api/push/subscribe/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { clientIp } from '@/lib/rate-limit-ip';
 
 // Unauthenticated endpoint — cap subscribe attempts per IP so it can't be
 // scripted to flood push_subscriptions. In-memory (per serverless instance),
@@ -12,10 +13,7 @@ const RL_MAX = 20;
 const RL_WINDOW_MS = 10 * 60 * 1000;
 
 function rateLimited(req: NextRequest): boolean {
-  const ip =
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    req.headers.get('x-real-ip') ||
-    'unknown';
+  const ip = clientIp(req);
   const now = Date.now();
   const e = RL.get(ip);
   if (!e || now > e.resetAt) {

@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
 import { purchaseBlockReason } from '@/lib/products';
-import { getStockMap } from '@/lib/products/stock';
+import { getStockFlagsMap, stockKey } from '@/lib/products/stock';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents, isValidFedexAccount } from '@/lib/checkout/state';
@@ -174,16 +174,21 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
   // sail straight through here. The client cart is NEVER trusted: re-check every
   // line against the live catalogue and refuse the whole order if any is blocked.
   // This is the one place that actually closes the "already in cart" bypass.
-  const [liveProducts, stockMap] = await Promise.all([
+  const [liveProducts, optionStock] = await Promise.all([
     getAllProducts(),
-    getStockMap([...new Set(input.items.map(l => l.product_id))]),
+    getStockFlagsMap(input.items.map(l => ({ product_id: l.product_id, option: l.option?.trim() || '' }))),
   ]);
   const liveById = new Map(liveProducts.map(p => [p.id, p]));
   const blockedLines = input.items.filter(l => {
     const p = liveById.get(l.product_id);
-    // Blocked if: product is gone, not-for-sale / switched off, OR out of stock
-    // (0 real stock — sold out since it was added to the cart).
-    return !p || purchaseBlockReason(p) !== null || (stockMap[l.product_id] ?? 0) <= 0;
+    // Sold-out is checked PER (product, option): a product with option A=0 but
+    // option B in stock must not let an A line through (previously this used the
+    // per-product total, so a sold-out option could be ordered then stall at the
+    // per-option packaging guard — a paid-then-rejected order).
+    const optStock = optionStock[stockKey(l.product_id, l.option?.trim() || '')]?.stock ?? 0;
+    // Blocked if: product is gone, not-for-sale / switched off, OR that option
+    // is out of stock (0 real stock — sold out since it was added to the cart).
+    return !p || purchaseBlockReason(p) !== null || optStock <= 0;
   });
   if (blockedLines.length > 0) {
     const names = [...new Set(blockedLines.map(l => l.product_name))].join(', ');
@@ -230,7 +235,17 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
     };
   }
 
-  const subtotal = input.items.reduce((sum, l) => sum + l.unit_cents * l.quantity, 0);
+  // AUTHORITATIVE PRICING. Never trust the client-sent unit_cents (the cart
+  // lives in localStorage and is fully forgeable). Re-derive every line's unit
+  // price from the live catalogue — price is product-level, so options don't
+  // change it. All money math AND persistence below use pricedItems, not the raw
+  // input. (Lines past the block guard above are guaranteed present in liveById.)
+  const pricedItems = input.items.map(l => ({
+    ...l,
+    unit_cents: Math.round((liveById.get(l.product_id)?.price ?? 0) * 100),
+  }));
+
+  const subtotal = pricedItems.reduce((sum, l) => sum + l.unit_cents * l.quantity, 0);
   const shipping = computeShippingCents(input.shipping);
 
   // Cap user-supplied text server-side regardless of what the form sent.
@@ -239,11 +254,12 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
 
   const admin = createServiceClient();
 
-  // Build bulk lines for potential quote discount — reuse liveById already fetched above.
-  const bulkLines = input.items.map(l => ({
+  // Build bulk lines for potential quote discount — use the re-priced lines and
+  // the correct catalogue field (categoryId, not category).
+  const bulkLines = pricedItems.map(l => ({
     unitCents: l.unit_cents,
     quantity: l.quantity,
-    categoryId: (liveById.get(l.product_id) as { category?: string } | undefined)?.category ?? null,
+    categoryId: liveById.get(l.product_id)?.categoryId ?? null,
   }));
 
   // ── Quote branch (Option B: 15% off, $0 payment now, team quotes shipping) ──
@@ -287,7 +303,7 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
       return { ok: false, error: quoteOrderError?.message ?? 'Could not create the quote.' };
     }
 
-    const quoteItemLines = input.items.map(l => ({
+    const quoteItemLines = pricedItems.map(l => ({
       order_id: quoteOrder.id,
       product_id: l.product_id,
       product_name: l.product_name,
@@ -390,7 +406,7 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
     return { ok: false, error: orderError.message };
   }
 
-  const itemLines = input.items.map(l => ({
+  const itemLines = pricedItems.map(l => ({
     order_id: order.id,
     product_id: l.product_id,
     product_name: l.product_name,
@@ -465,16 +481,17 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
     });
   }
 
-  // Fire-and-forget: increment used_count only when the code actually applied
-  // (never for test orders).
+  // Count the redemption only when the code actually applied (never for test
+  // orders). Awaited — a fire-and-forget RPC can be frozen/killed after the
+  // action returns, which silently dropped the count and let a capped code be
+  // reused indefinitely. The RPC is now cap-aware (won't exceed max_uses).
   if (!isTest && discountCode && discountCents > 0) {
-    void admin
-      .rpc('increment_promo_used_count', { p_code: discountCode.trim().toUpperCase() })
-      .then(({ error }) => {
-        if (error && !error.message.includes('does not exist')) {
-          console.warn('[checkout] promo increment failed', error.message);
-        }
-      });
+    const { error: incErr } = await admin.rpc('increment_promo_used_count', {
+      p_code: discountCode.trim().toUpperCase(),
+    });
+    if (incErr && !incErr.message.includes('does not exist')) {
+      console.warn('[checkout] promo increment failed', incErr.message);
+    }
   }
 
   return {
@@ -510,7 +527,8 @@ async function promoDiscountCents(
   if (subtotalCents < (promo.min_order_cents as number)) return 0;
   const base = promo.include_shipping ? subtotalCents + shippingCents : subtotalCents;
   return promo.discount_type === 'percent'
-    ? Math.round((base * (promo.discount_value as number)) / 100)
+    // Cap at the base so a misconfigured >100% code can't make the total negative.
+    ? Math.min(Math.round((base * (promo.discount_value as number)) / 100), base)
     : Math.min(promo.discount_value as number, base);
 }
 

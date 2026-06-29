@@ -3,6 +3,7 @@ import { timingSafeEqual, createHash } from 'crypto';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
+import { clientIp } from '@/lib/rate-limit-ip';
 
 // Brute-force guard: max 8 attempts per IP per 30-minute window.
 //
@@ -14,14 +15,6 @@ import { createServiceClient } from '@/lib/supabase/server';
 const attempts = new Map<string, { count: number; resetAt: number }>();
 const MAX_ATTEMPTS = 8;
 const WINDOW_MS = 30 * 60 * 1000;
-
-function getClientIp(req: NextRequest): string {
-  return (
-    req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    req.headers.get('x-real-ip') ||
-    'unknown'
-  );
-}
 
 function checkRateLimit(ip: string): boolean {
   const now = Date.now();
@@ -85,7 +78,7 @@ function safeEqual(a: string, b: string): boolean {
 }
 
 export async function POST(req: NextRequest) {
-  const ip = getClientIp(req);
+  const ip = clientIp(req);
 
   const allowedMem = checkRateLimit(ip);
   const allowedDb = await checkRateLimitDb(ip);
