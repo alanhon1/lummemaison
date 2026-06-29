@@ -71,7 +71,11 @@ export async function notifyUsers(opts: BroadcastOpts): Promise<{ users: number;
   const { data: subs } = await admin
     .from('push_subscriptions')
     .select('client_code')
-    .not('client_code', 'is', null);
+    .not('client_code', 'is', null)
+    // Exclude the admin sentinel: its client_code is not a real customer auth id,
+    // so it must never receive customer broadcasts (a uuid insert below would
+    // fail the whole batch) nor get the customer push. See ADMIN_PUSH_CODE.
+    .neq('client_code', ADMIN_PUSH_CODE);
   const userIds = [...new Set((subs ?? []).map(s => s.client_code as string))];
   if (userIds.length === 0) return { users: 0, pushed: 0 };
 
@@ -84,7 +88,13 @@ export async function notifyUsers(opts: BroadcastOpts): Promise<{ users: number;
     kind: opts.kind ?? 'announcement',
     product_id: opts.productId ?? null,
   }));
-  await admin.from('user_messages').insert(rows);
+  const { error: insertError } = await admin.from('user_messages').insert(rows);
+  if (insertError) {
+    // Surface the failure instead of reporting a false success — the composer/
+    // announcement flow shows the returned counts to the admin.
+    console.error('[notifyUsers] inbox insert failed', insertError.message);
+    return { users: 0, pushed: 0 };
+  }
 
   let pushed = 0;
   for (const uid of userIds) {
