@@ -37,10 +37,12 @@ export default async function NotificationsPage() {
   const notifs = (notifData ?? []) as AdminNotif[];
 
   // Mark unread as read now that the owner is viewing the inbox (mirrors the
-  // customer inbox). The list above is captured before this so the unread accent
-  // still shows for items on this render.
-  if (notifs.some(n => !n.is_read)) {
-    await admin.from('admin_notifications').update({ is_read: true }).eq('is_read', false);
+  // customer inbox). Only the rows actually shown on this render are marked —
+  // not a blanket is_read=false update — so a notification arriving between the
+  // SELECT above and this UPDATE isn't silently marked read unseen.
+  const unreadShownIds = notifs.filter(n => !n.is_read).map(n => n.id);
+  if (unreadShownIds.length > 0) {
+    await admin.from('admin_notifications').update({ is_read: true }).in('id', unreadShownIds);
   }
 
   const productOptions = products.map(p => ({ id: p.id, name: p.name }));

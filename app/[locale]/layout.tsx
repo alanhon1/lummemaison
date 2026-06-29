@@ -10,6 +10,7 @@ import ChatWidget from '@/components/layout/ChatWidget';
 import ReportIssueLink from '@/components/layout/ReportIssueLink';
 import GoldParticles from '@/components/effects/GoldParticles';
 import StandaloneAuthGate from '@/components/pwa/StandaloneAuthGate';
+import PushClientCodeBackfill from '@/components/pwa/PushClientCodeBackfill';
 import { createClient } from '@/lib/supabase/server';
 import DisclaimerModal from '@/components/disclaimer/DisclaimerModal';
 import type { Metadata } from 'next';
@@ -53,6 +54,7 @@ export default async function LocaleLayout({
     <NextIntlClientProvider locale={locale} messages={messages}>
       <div lang={locale} className="flex flex-col min-h-screen">
         <StandaloneAuthGate isAuthed={!!user} locale={locale} />
+        <PushClientCodeBackfill isAuthed={!!user} />
         <GoldParticles />
         <Header />
         <main className="flex-1">{children}</main>

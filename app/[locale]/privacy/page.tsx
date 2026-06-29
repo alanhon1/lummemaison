@@ -1,16 +1,21 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  return {
-    title: locale === 'ru' ? 'Политика конфиденциальности | Lumée Maison' : 'Privacy Policy | Lumée Maison',
-    description: locale === 'ru'
-      ? 'Политика конфиденциальности Lumée Maison — как мы собираем, используем и защищаем ваши данные.'
-      : 'Privacy policy for Lumée Maison — how we collect, use, and protect your information.',
-  };
-}
+type Locale = 'en' | 'ru' | 'fr' | 'es';
 
-const SECTIONS_EN = [
+const toLocale = (l: string): Locale =>
+  l === 'ru' || l === 'fr' || l === 'es' ? l : 'en';
+
+type Section = {
+  n: string;
+  title: string;
+  body?: string | null;
+  list?: string[];
+  note?: string;
+  bullets?: { head: string; items: string[] }[];
+};
+
+const SECTIONS_EN: Section[] = [
   {
     n: '1', title: 'Who We Are',
     body: 'Lumée Maison is a business-to-business supplier of professional aesthetic products, serving licensed aesthetic professionals and clinics worldwide. We ship internationally from South Korea. Our website is not directed to the general public or to consumers in South Korea.',
@@ -74,7 +79,7 @@ const SECTIONS_EN = [
   },
 ];
 
-const SECTIONS_RU = [
+const SECTIONS_RU: Section[] = [
   {
     n: '1', title: 'О нас',
     body: 'Lumée Maison — поставщик профессиональных эстетических продуктов для бизнеса, обслуживающий лицензированных специалистов в области эстетики и клиники по всему миру. Мы осуществляем международную доставку из Южной Кореи. Наш сайт не предназначен для широкой публики или потребителей в Южной Корее.',
@@ -138,17 +143,201 @@ const SECTIONS_RU = [
   },
 ];
 
-type Section = {
-  n: string;
-  title: string;
-  body?: string | null;
-  list?: string[];
-  note?: string;
-  bullets?: { head: string; items: string[] }[];
+const SECTIONS_FR: Section[] = [
+  {
+    n: '1', title: 'Qui sommes-nous',
+    body: 'Lumée Maison est un fournisseur interentreprises de produits esthétiques professionnels, au service des professionnels de l’esthétique agréés et des cliniques du monde entier. Nous expédions à l’international depuis la Corée du Sud. Notre site n’est pas destiné au grand public ni aux consommateurs en Corée du Sud.',
+  },
+  {
+    n: '2', title: 'Informations que nous collectons', body: null,
+    bullets: [
+      { head: 'Informations que vous nous communiquez :', items: ['Nom et nom de l’entreprise/de la clinique', 'Adresse e-mail et numéro de téléphone', 'Adresse de livraison', 'Détails de la commande (produits, quantités)', 'Les messages que vous nous envoyez, y compris les questions posées à l’assistant de chat de notre site'] },
+      { head: 'Informations de paiement :', items: ['Les paiements sont effectués par virement bancaire Wise ou en USDT (cryptomonnaie). Nous ne collectons ni ne conservons les coordonnées complètes de votre carte bancaire sur notre site.'] },
+      { head: 'Informations collectées automatiquement :', items: ['Données de base sur l’appareil et l’utilisation (type de navigateur, pages visitées)', 'Cookies et technologies similaires (voir la Section 8)'] },
+    ],
+  },
+  {
+    n: '3', title: 'Comment nous utilisons vos informations',
+    body: 'Nous utilisons vos informations pour :',
+    list: ['Traiter, exécuter et expédier vos commandes', 'Communiquer avec vous au sujet de votre commande et fournir une assistance client', 'Répondre à vos questions', 'Améliorer notre site, nos produits et notre service client', 'Respecter les obligations légales, fiscales et douanières'],
+    note: 'Nous ne vendons pas vos informations personnelles.',
+  },
+  {
+    n: '4', title: 'Partage de vos informations',
+    body: 'Nous ne partageons vos informations que dans la mesure nécessaire au fonctionnement de notre activité :',
+    bullets: [
+      { head: 'Transporteurs', items: ['(FedEx, DHL, EMS, UPS) pour livrer votre commande'] },
+      { head: 'Prestataires de services', items: ['qui nous aident à exploiter le site'] },
+      { head: 'Autorités', items: ['lorsque la loi ou les douanes l’exigent, ou pour protéger nos droits'] },
+    ],
+  },
+  {
+    n: '5', title: 'Transferts internationaux',
+    body: 'Nous opérons depuis la Corée du Sud, et vos informations peuvent être traitées et stockées dans ce pays ou dans d’autres pays où nos prestataires de services exercent leurs activités. Les lois sur la protection des données dans ces pays peuvent différer de celles de votre propre pays.',
+  },
+  {
+    n: '6', title: 'Conservation des données',
+    body: 'Nous ne conservons vos informations que le temps nécessaire pour exécuter les commandes, fournir une assistance et respecter nos obligations légales et comptables. Ensuite, nous les supprimons ou les anonymisons.',
+  },
+  {
+    n: '7', title: 'Vos droits',
+    body: 'Selon votre lieu de résidence, vous pouvez avoir le droit de :',
+    list: ['Accéder aux informations personnelles que nous détenons à votre sujet', 'Corriger des informations inexactes', 'Demander la suppression de vos informations', 'Vous opposer à certains traitements ou les limiter'],
+    note: 'Pour exercer l’un de ces droits, écrivez à info@lumeemaison.com.',
+  },
+  {
+    n: '8', title: 'Cookies',
+    body: 'Notre site utilise des cookies pour assurer le fonctionnement de votre panier, mémoriser vos préférences et comprendre comment le site est utilisé. Vous pouvez contrôler ou désactiver les cookies dans les paramètres de votre navigateur, mais certaines fonctionnalités risquent de ne pas fonctionner correctement sans eux.',
+  },
+  {
+    n: '9', title: 'Mineurs',
+    body: 'Notre site et nos produits sont destinés aux professionnels agréés et ne s’adressent à personne de moins de 18 ans. Nous ne collectons pas sciemment d’informations auprès de mineurs.',
+  },
+  {
+    n: '10', title: 'Sécurité',
+    body: 'Nous prenons des mesures raisonnables pour protéger vos informations. Toutefois, aucune méthode de transmission ou de stockage n’est totalement sécurisée, et nous ne pouvons garantir une sécurité absolue.',
+  },
+  {
+    n: '11', title: 'Modifications de la présente politique',
+    body: 'Nous pouvons mettre à jour la présente politique de temps à autre. La date de « Dernière mise à jour » en haut de la page indique la version la plus récente. Les modifications importantes seront publiées sur cette page.',
+  },
+  {
+    n: '12', title: 'Contact',
+    body: 'Des questions sur la présente politique ou vos informations ? Écrivez-nous à info@lumeemaison.com.',
+  },
+];
+
+const SECTIONS_ES: Section[] = [
+  {
+    n: '1', title: 'Quiénes somos',
+    body: 'Lumée Maison es un proveedor entre empresas de productos estéticos profesionales, al servicio de profesionales de la estética autorizados y clínicas de todo el mundo. Realizamos envíos internacionales desde Corea del Sur. Nuestro sitio web no está dirigido al público general ni a los consumidores de Corea del Sur.',
+  },
+  {
+    n: '2', title: 'Información que recopilamos', body: null,
+    bullets: [
+      { head: 'Información que usted nos proporciona:', items: ['Nombre y nombre de la empresa/clínica', 'Dirección de correo electrónico y número de teléfono', 'Dirección de envío', 'Detalles del pedido (productos, cantidades)', 'Los mensajes que nos envía, incluidas las preguntas que formula al asistente de chat de nuestro sitio web'] },
+      { head: 'Información de pago:', items: ['Los pagos se realizan mediante transferencia bancaria Wise o USDT (criptomoneda). No recopilamos ni almacenamos los datos completos de su tarjeta bancaria en nuestro sitio.'] },
+      { head: 'Información recopilada automáticamente:', items: ['Datos básicos del dispositivo y de uso (como el tipo de navegador y las páginas visitadas)', 'Cookies y tecnologías similares (véase la Sección 8)'] },
+    ],
+  },
+  {
+    n: '3', title: 'Cómo utilizamos su información',
+    body: 'Utilizamos su información para:',
+    list: ['Procesar, gestionar y enviar sus pedidos', 'Comunicarnos con usted sobre su pedido y brindar atención al cliente', 'Responder a sus preguntas', 'Mejorar nuestro sitio web, productos y servicio al cliente', 'Cumplir con los requisitos legales, fiscales y aduaneros'],
+    note: 'No vendemos su información personal.',
+  },
+  {
+    n: '4', title: 'Cómo compartimos su información',
+    body: 'Solo compartimos información en la medida necesaria para gestionar nuestro negocio:',
+    bullets: [
+      { head: 'Empresas de transporte', items: ['(FedEx, DHL, EMS, UPS) para entregar su pedido'] },
+      { head: 'Proveedores de servicios', items: ['que nos ayudan a operar el sitio web'] },
+      { head: 'Autoridades', items: ['cuando lo exija la ley, las aduanas o para proteger nuestros derechos'] },
+    ],
+  },
+  {
+    n: '5', title: 'Transferencias internacionales',
+    body: 'Operamos desde Corea del Sur, y su información puede procesarse y almacenarse allí o en otros países donde operan nuestros proveedores de servicios. Las leyes de protección de datos de estos países pueden diferir de las de su propio país.',
+  },
+  {
+    n: '6', title: 'Conservación de datos',
+    body: 'Conservamos su información solo durante el tiempo necesario para gestionar pedidos, brindar asistencia y cumplir con las obligaciones legales y contables. Después, la eliminamos o la anonimizamos.',
+  },
+  {
+    n: '7', title: 'Sus derechos',
+    body: 'Según su lugar de residencia, usted puede tener derecho a:',
+    list: ['Acceder a la información personal que tenemos sobre usted', 'Corregir información inexacta', 'Solicitar la eliminación de su información', 'Oponerse a determinados tratamientos o restringirlos'],
+    note: 'Para ejercer cualquiera de estos derechos, escriba a info@lumeemaison.com.',
+  },
+  {
+    n: '8', title: 'Cookies',
+    body: 'Nuestro sitio web utiliza cookies para mantener el funcionamiento de su carrito, recordar sus preferencias y comprender cómo se utiliza el sitio. Puede controlar o desactivar las cookies en la configuración de su navegador, aunque es posible que algunas funciones no funcionen correctamente sin ellas.',
+  },
+  {
+    n: '9', title: 'Menores',
+    body: 'Nuestro sitio web y nuestros productos están destinados a profesionales autorizados y no están dirigidos a menores de 18 años. No recopilamos conscientemente información de menores.',
+  },
+  {
+    n: '10', title: 'Seguridad',
+    body: 'Adoptamos medidas razonables para proteger su información. No obstante, ningún método de transmisión o almacenamiento es completamente seguro, y no podemos garantizar una seguridad absoluta.',
+  },
+  {
+    n: '11', title: 'Cambios en esta política',
+    body: 'Podemos actualizar esta política de vez en cuando. La fecha de «Última actualización» en la parte superior muestra la versión más reciente. Los cambios significativos se publicarán en esta página.',
+  },
+  {
+    n: '12', title: 'Contacto',
+    body: '¿Tiene preguntas sobre esta política o su información? Escríbanos a info@lumeemaison.com.',
+  },
+];
+
+const SECTIONS_BY_LOCALE: Record<Locale, Section[]> = {
+  en: SECTIONS_EN,
+  ru: SECTIONS_RU,
+  fr: SECTIONS_FR,
+  es: SECTIONS_ES,
 };
 
-function PolicyContent({ sections, locale }: { sections: Section[]; locale: string }) {
-  const isRu = locale === 'ru';
+// Page chrome copy per locale. Keep keys in sync across all four locales.
+// `introLead` is the text shown before the contact email link; the email link
+// and trailing period are appended identically in every locale.
+const CHROME: Record<Locale, {
+  metaTitle: string;
+  metaDescription: string;
+  eyebrow: string;
+  heading: string;
+  lastUpdated: string;
+  introLead: string;
+  disclaimer: string;
+}> = {
+  en: {
+    metaTitle: 'Privacy Policy | Lumée Maison',
+    metaDescription: 'Privacy policy for Lumée Maison — how we collect, use, and protect your information.',
+    eyebrow: 'Legal',
+    heading: 'Privacy Policy',
+    lastUpdated: 'Last updated: June 7, 2026',
+    introLead: 'Lumée Maison respects your privacy. This policy explains what information we collect when you use our website, how we use it, and the choices you have. By using our site, you agree to this policy. If you have any questions, contact us at',
+    disclaimer: 'This policy is provided for informational purposes. For full compliance with laws such as the EU GDPR, consider review by a qualified professional.',
+  },
+  ru: {
+    metaTitle: 'Политика конфиденциальности | Lumée Maison',
+    metaDescription: 'Политика конфиденциальности Lumée Maison — как мы собираем, используем и защищаем ваши данные.',
+    eyebrow: 'Юридическая информация',
+    heading: 'Политика конфиденциальности',
+    lastUpdated: 'Последнее обновление: 7 июня 2026 г.',
+    introLead: 'Lumée Maison уважает вашу конфиденциальность. Настоящая политика объясняет, какую информацию мы собираем, когда вы используете наш сайт, как мы её используем и какой выбор у вас есть. Используя наш сайт, вы соглашаетесь с настоящей политикой. Если у вас есть вопросы, свяжитесь с нами по адресу',
+    disclaimer: 'Настоящая политика предоставлена в информационных целях. Для полного соответствия таким законам, как GDPR ЕС, рекомендуется консультация квалифицированного специалиста.',
+  },
+  fr: {
+    metaTitle: 'Politique de confidentialité | Lumée Maison',
+    metaDescription: 'Politique de confidentialité de Lumée Maison — comment nous collectons, utilisons et protégeons vos informations.',
+    eyebrow: 'Mentions légales',
+    heading: 'Politique de confidentialité',
+    lastUpdated: 'Dernière mise à jour : 7 juin 2026',
+    introLead: 'Lumée Maison respecte votre vie privée. La présente politique explique quelles informations nous collectons lorsque vous utilisez notre site, comment nous les utilisons et les choix qui s’offrent à vous. En utilisant notre site, vous acceptez la présente politique. Si vous avez des questions, contactez-nous à l’adresse',
+    disclaimer: 'La présente politique est fournie à titre informatif. Pour une conformité totale avec des lois telles que le RGPD de l’UE, envisagez un examen par un professionnel qualifié.',
+  },
+  es: {
+    metaTitle: 'Política de privacidad | Lumée Maison',
+    metaDescription: 'Política de privacidad de Lumée Maison — cómo recopilamos, utilizamos y protegemos su información.',
+    eyebrow: 'Aviso legal',
+    heading: 'Política de privacidad',
+    lastUpdated: 'Última actualización: 7 de junio de 2026',
+    introLead: 'Lumée Maison respeta su privacidad. Esta política explica qué información recopilamos cuando usted utiliza nuestro sitio web, cómo la utilizamos y las opciones que tiene. Al utilizar nuestro sitio, usted acepta esta política. Si tiene alguna pregunta, contáctenos en',
+    disclaimer: 'Esta política se proporciona con fines informativos. Para un cumplimiento total de leyes como el RGPD de la UE, considere la revisión por parte de un profesional cualificado.',
+  },
+};
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const ui = CHROME[toLocale(locale)];
+  return {
+    title: ui.metaTitle,
+    description: ui.metaDescription,
+  };
+}
+
+function PolicyContent({ sections, disclaimer }: { sections: Section[]; disclaimer: string }) {
   return (
     <div className="space-y-8">
       {sections.map(s => (
@@ -191,9 +380,7 @@ function PolicyContent({ sections, locale }: { sections: Section[]; locale: stri
         </section>
       ))}
       <p className="text-xs text-mist/60 text-center mt-4 leading-relaxed">
-        {isRu
-          ? 'Настоящая политика предоставлена в информационных целях. Для полного соответствия таким законам, как GDPR ЕС, рекомендуется консультация квалифицированного специалиста.'
-          : 'This policy is provided for informational purposes. For full compliance with laws such as the EU GDPR, consider review by a qualified professional.'}
+        {disclaimer}
       </p>
     </div>
   );
@@ -201,33 +388,38 @@ function PolicyContent({ sections, locale }: { sections: Section[]; locale: stri
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const isRu = locale === 'ru';
-  const sections = isRu ? SECTIONS_RU : SECTIONS_EN;
+  const l = toLocale(locale);
+  const ui = CHROME[l];
+  const sections = SECTIONS_BY_LOCALE[l];
+
+  const intro: ReactNode = (
+    <>
+      {ui.introLead}{' '}
+      <a href="mailto:info@lumeemaison.com" className="text-gold hover:underline">info@lumeemaison.com</a>.
+    </>
+  );
 
   return (
     <div className="pt-24 min-h-screen luxe-bg">
       <div className="max-w-3xl mx-auto px-6 py-16">
         <div className="text-center mb-14">
           <p className="text-xs uppercase tracking-[0.3em] text-gold mb-3">
-            {isRu ? 'Юридическая информация' : 'Legal'}
+            {ui.eyebrow}
           </p>
           <h1 className="font-display text-4xl md:text-5xl font-light text-charcoal mb-4">
-            {isRu ? 'Политика конфиденциальности' : 'Privacy Policy'}
+            {ui.heading}
           </h1>
           <div className="w-16 h-px bg-gold mx-auto mb-4" />
           <p className="text-xs text-mist">
-            Lumée Maison · {isRu ? 'Последнее обновление: 7 июня 2026 г.' : 'Last updated: June 7, 2026'}
+            Lumée Maison · {ui.lastUpdated}
           </p>
         </div>
 
         <p className="text-sm text-mist leading-relaxed mb-10 border-l-2 border-gold/40 pl-4">
-          {isRu
-            ? <>Lumée Maison уважает вашу конфиденциальность. Настоящая политика объясняет, какую информацию мы собираем, когда вы используете наш сайт, как мы её используем и какой выбор у вас есть. Используя наш сайт, вы соглашаетесь с настоящей политикой. Если у вас есть вопросы, свяжитесь с нами по адресу{' '}<a href="mailto:info@lumeemaison.com" className="text-gold hover:underline">info@lumeemaison.com</a>.</>
-            : <>Lumée Maison respects your privacy. This policy explains what information we collect when you use our website, how we use it, and the choices you have. By using our site, you agree to this policy. If you have any questions, contact us at{' '}<a href="mailto:info@lumeemaison.com" className="text-gold hover:underline">info@lumeemaison.com</a>.</>
-          }
+          {intro}
         </p>
 
-        <PolicyContent sections={sections as Section[]} locale={locale} />
+        <PolicyContent sections={sections} disclaimer={ui.disclaimer} />
       </div>
     </div>
   );

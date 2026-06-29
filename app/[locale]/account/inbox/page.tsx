@@ -58,7 +58,7 @@ export default async function InboxPage({ params }: PageProps) {
 
   // Mark all unread as read now that the user is viewing the inbox
   if (hasUnread) {
-    await markMessagesRead(user.id);
+    await markMessagesRead();
   }
 
   // Surface admin order-messages in the inbox too (clickable → the order). Read

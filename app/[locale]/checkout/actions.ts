@@ -153,6 +153,25 @@ export async function attachOrderPaymentProof(
   return error ? { ok: false, error: error.message } : { ok: true };
 }
 
+// Per-user order throttle (in-memory, per serverless instance). createOrder is
+// auth-gated, but nothing stopped a signed-in user from scripting a flood of
+// orders → transactional-email spam + junk rows. Cap to a sane human rate.
+const ORDER_RL = new Map<string, { count: number; resetAt: number }>();
+const ORDER_RL_MAX = 8;
+const ORDER_RL_WINDOW_MS = 5 * 60 * 1000;
+
+function orderRateLimited(userId: string): boolean {
+  const now = Date.now();
+  const e = ORDER_RL.get(userId);
+  if (!e || now > e.resetAt) {
+    ORDER_RL.set(userId, { count: 1, resetAt: now + ORDER_RL_WINDOW_MS });
+    return false;
+  }
+  if (e.count >= ORDER_RL_MAX) return true;
+  e.count++;
+  return false;
+}
+
 export async function createOrder(input: CreateOrderInput, opts?: { quote?: boolean }): Promise<CreateOrderResult> {
   // Auth check — never create an order for an unauthenticated request.
   const supabase = await createClient();
@@ -161,6 +180,10 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
   } = await supabase.auth.getUser();
   if (!user) {
     return { ok: false, error: 'You must be signed in to place an order.' };
+  }
+
+  if (orderRateLimited(user.id)) {
+    return { ok: false, error: 'Too many orders in a short time. Please wait a few minutes and try again.' };
   }
 
   if (input.items.length === 0) {
@@ -295,6 +318,9 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
         discount_code: BULK_MARKER,
         payment_proof_path: null,
         payment_transaction_link: null,
+        // TEST quotes get a TEST- number (no real order_seq consumed) and skip
+        // emails/admin-notify below, mirroring the normal order branch.
+        ...(isTest ? { order_seq: null, order_number: `TEST-${randomUUID().slice(0, 8).toUpperCase()}` } : {}),
       })
       .select('id, order_seq, view_token, order_number')
       .single();
@@ -323,7 +349,7 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
     const orderNumberDisplay =
       orderSeq != null ? formatOrderNumber(orderSeq) : (quoteOrder.order_number as string);
 
-    try {
+    if (!isTest) try {
       const countryName = findCountry(s.country)?.name ?? s.country;
       await sendQuoteEmails({
         orderNumber: orderNumberDisplay,
@@ -346,14 +372,17 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
       console.error('[checkout] sendQuoteEmails threw', orderNumberDisplay, e);
     }
 
-    // Admin inbox: a bulk quote request needs the owner's attention (best-effort).
-    await notifyAdmin({
-      kind: 'order',
-      title: `New bulk quote ${orderNumberDisplay}`,
-      body: `${s.fullName} requested a quote — $${(total / 100).toFixed(2)}.`,
-      url: `/manzura/orders/${quoteOrder.id}`,
-      orderId: quoteOrder.id as number,
-    });
+    // Admin inbox: a bulk quote request needs the owner's attention (best-effort,
+    // skipped for TEST orders).
+    if (!isTest) {
+      await notifyAdmin({
+        kind: 'order',
+        title: `New bulk quote ${orderNumberDisplay}`,
+        body: `${s.fullName} requested a quote — $${(total / 100).toFixed(2)}.`,
+        url: `/manzura/orders/${quoteOrder.id}`,
+        orderId: quoteOrder.id as number,
+      });
+    }
 
     return { ok: true, orderSeq, viewToken, orderNumber: orderNumberDisplay };
   }
