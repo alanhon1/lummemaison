@@ -5,14 +5,29 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ThumbsUp, ThumbsDown } from 'lucide-react';
 import type { FaqItem } from '@/lib/faq-data';
 
-type Locale = 'en' | 'ru';
+type Locale = 'en' | 'ru' | 'fr' | 'es';
 type Rating = 'up' | 'down';
 
 const LABELS = {
-  helpful: { en: 'Was this helpful?', ru: 'Это было полезно?' },
-  thanks: { en: 'Thank you for your feedback!', ru: 'Спасибо за ваш отзыв!' },
-  placeholder: { en: 'Tell us more (optional)…', ru: 'Расскажите подробнее (необязательно)…' },
-  submit: { en: 'Submit', ru: 'Отправить' },
+  helpful: {
+    en: 'Was this helpful?',
+    ru: 'Это было полезно?',
+    fr: 'Cela vous a-t-il été utile ?',
+    es: '¿Le resultó útil?',
+  },
+  thanks: {
+    en: 'Thank you for your feedback!',
+    ru: 'Спасибо за ваш отзыв!',
+    fr: 'Merci pour votre retour !',
+    es: '¡Gracias por sus comentarios!',
+  },
+  placeholder: {
+    en: 'Tell us more (optional)…',
+    ru: 'Расскажите подробнее (необязательно)…',
+    fr: 'Dites-nous en plus (facultatif)…',
+    es: 'Cuéntenos más (opcional)…',
+  },
+  submit: { en: 'Submit', ru: 'Отправить', fr: 'Envoyer', es: 'Enviar' },
 };
 
 export default function FaqClient({ items, locale }: { items: FaqItem[]; locale: Locale }) {
