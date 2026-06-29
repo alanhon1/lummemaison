@@ -18,13 +18,18 @@ export default function InstallAppBanner() {
   const [dismissed, setDismissed] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [showSteps, setShowSteps] = useState(false);
+  // Hold the banner back a few seconds so it doesn't slam the page on first paint
+  // — let the customer glance at the page first, then slide it up.
+  const [delayPassed, setDelayPassed] = useState(false);
 
   useEffect(() => {
     try { setDismissed(localStorage.getItem(DISMISS_KEY) === '1'); } catch { setDismissed(false); }
     setIsMobile(window.matchMedia('(max-width: 820px)').matches);
+    const timer = setTimeout(() => setDelayPassed(true), 4000);
+    return () => clearTimeout(timer);
   }, []);
 
-  if (!mounted || standalone || dismissed || !isMobile) return null;
+  if (!mounted || standalone || dismissed || !isMobile || !delayPassed) return null;
 
   function close() {
     setDismissed(true);
