@@ -6,6 +6,7 @@ import { randomUUID } from 'node:crypto';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
+import { pushToUser } from '@/lib/push/notify';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
@@ -426,6 +427,25 @@ export async function addOrderMessage(
     is_internal: isInternal,
   });
   if (error) return { ok: false, error: error.message };
+
+  // Customer-visible messages also fire a Web Push to the order owner's devices
+  // (banner + badge), not just the in-app order thread. Internal admin notes
+  // never notify the customer. Best-effort — never blocks the saved message.
+  if (!isInternal) {
+    const { data: ord } = await supabase
+      .from('orders')
+      .select('user_id, order_seq')
+      .eq('id', orderId)
+      .maybeSingle();
+    if (ord?.user_id) {
+      await pushToUser(ord.user_id as string, {
+        title: 'New message about your order',
+        body: trimmed.slice(0, 300),
+        url: ord.order_seq != null ? `/account/orders/${ord.order_seq}` : '/account',
+        count: 1,
+      });
+    }
+  }
 
   revalidatePath(`/manzura/orders/${orderId}`);
   return { ok: true };

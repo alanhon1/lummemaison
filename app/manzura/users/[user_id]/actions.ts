@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
+import { pushToUser } from '@/lib/push/notify';
 
 async function requireAdmin() {
   const session = await getIronSession<SessionData>(await cookies(), sessionOptions);
@@ -32,6 +33,15 @@ export async function sendMessage(
     }
     return { error: error.message };
   }
+
+  // Fire a Web Push to the customer's devices so a banner + badge appear, not
+  // just the in-app Inbox entry. Best-effort: never blocks the saved message.
+  await pushToUser(userId, {
+    title: subject,
+    body: body.slice(0, 300),
+    url: '/account/inbox',
+    count: 1,
+  });
 
   return { ok: true };
 }
