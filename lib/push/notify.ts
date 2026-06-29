@@ -2,6 +2,11 @@ import 'server-only';
 import { createServiceClient } from '@/lib/supabase/server';
 import { sendPush } from '@/lib/push/webPush';
 
+// Reserved client_code for admin (owner) push subscriptions. Admin has no
+// Supabase auth user (iron-session login), so its push_subscriptions rows are
+// tagged with this sentinel instead of a user id. See /api/admin/push/*.
+export const ADMIN_PUSH_CODE = '__admin__';
+
 export interface PushPayload {
   title: string;
   body: string;
@@ -115,4 +120,14 @@ export async function notifyAdmin(opts: AdminNotifyOpts): Promise<void> {
   } catch {
     // best-effort — the triggering action has already succeeded
   }
+
+  // Phase 3: also Web-Push the owner's subscribed device(s). pushToUser targets
+  // every subscription whose client_code matches — here the admin sentinel — and
+  // prunes expired endpoints. Deep-links into the admin app. Best-effort.
+  await pushToUser(ADMIN_PUSH_CODE, {
+    title: opts.title,
+    body: opts.body ?? '',
+    url: opts.url ?? '/manzura/notifications',
+    count: 1,
+  });
 }

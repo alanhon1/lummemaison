@@ -10,7 +10,12 @@ export function urlBase64ToUint8Array(base64String: string): Uint8Array {
   return out;
 }
 
-export async function subscribeToPush(vapidPublicKey: string): Promise<'ok' | 'denied' | 'unsupported' | 'error'> {
+// apiBase lets the admin app reuse this flow against /api/admin/push (which tags
+// the saved subscription as admin), while customers use the default /api/push.
+export async function subscribeToPush(
+  vapidPublicKey: string,
+  apiBase = '/api/push',
+): Promise<'ok' | 'denied' | 'unsupported' | 'error'> {
   if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
     return 'unsupported';
   }
@@ -26,7 +31,7 @@ export async function subscribeToPush(vapidPublicKey: string): Promise<'ok' | 'd
       applicationServerKey: urlBase64ToUint8Array(vapidPublicKey) as unknown as BufferSource,
     }));
 
-  const res = await fetch('/api/push/subscribe', {
+  const res = await fetch(`${apiBase}/subscribe`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(sub.toJSON()),
@@ -43,14 +48,14 @@ export async function getPushState(): Promise<'on' | 'off' | 'unsupported'> {
 
 // Turn alerts OFF: unsubscribe in the browser AND delete the saved row so future
 // broadcasts skip this user. Best-effort; clears the app badge too.
-export async function unsubscribeFromPush(): Promise<'ok' | 'error'> {
+export async function unsubscribeFromPush(apiBase = '/api/push'): Promise<'ok' | 'error'> {
   if (!('serviceWorker' in navigator)) return 'ok';
   const reg = await navigator.serviceWorker.ready;
   const sub = await reg.pushManager.getSubscription();
   if (!sub) return 'ok';
   const endpoint = sub.endpoint;
   await sub.unsubscribe().catch(() => {});
-  await fetch('/api/push/unsubscribe', {
+  await fetch(`${apiBase}/unsubscribe`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ endpoint }),

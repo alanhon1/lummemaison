@@ -6,6 +6,7 @@ import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
 import NotificationComposer from '@/components/admin/NotificationComposer';
+import EnableAdminAlertsButton from '@/components/admin/EnableAdminAlertsButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -68,7 +69,10 @@ export default async function NotificationsPage() {
 
       {/* Admin inbox */}
       <section className="space-y-3">
-        <h2 className="text-sm font-semibold uppercase tracking-widest text-charcoal">Order alerts</h2>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-charcoal">Order alerts</h2>
+          <EnableAdminAlertsButton />
+        </div>
         {notifs.length === 0 ? (
           <p className="text-sm text-mist border border-dashed border-bone p-8 text-center">
             No notifications yet.
