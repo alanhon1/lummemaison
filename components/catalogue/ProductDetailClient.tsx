@@ -5,33 +5,43 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { ShoppingBag, Check } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
-import { useProductStock } from '@/lib/stock-store';
 import { useCurrencyStore } from '@/lib/currency-store';
 import { localePath } from '@/lib/i18n';
 import { purchaseBlockReason, purchaseBlockLabel, type Product } from '@/lib/products';
 import RequestModal from './RequestModal';
 
-export default function ProductDetailClient({ product }: { product: Product }) {
+export default function ProductDetailClient({
+  product,
+  optionStock,
+}: {
+  product: Product;
+  // Live stock per purchase option (key '' = optionless). Server-provided so the
+  // gate is correct before any payment. Missing key ⇒ treat as 0 (sold out).
+  optionStock: Record<string, number>;
+}) {
   const t = useTranslations('product');
   const tCat = useTranslations('catalogue');
   const { addItem } = useCartStore();
   const locale = useLocale();
   useCurrencyStore();
   const [added, setAdded] = useState(false);
-  // Purchase is gated by: the "Not for sale" flag, the admin "Available for
-  // order" switch (purchaseBlockReason), AND real stock — a product at 0 stock
-  // is out of stock and can't be bought; the customer can "make a request"
-  // instead so we can gauge demand before restocking.
-  const blockReason = purchaseBlockReason(product);
-  const stock = useProductStock(product.id);
-  const outOfStock = !blockReason && stock !== undefined && stock <= 0;
-  const cannotBuy = blockReason !== null || outOfStock;
-  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : outOfStock ? 'Out of stock' : '';
   const [requestOpen, setRequestOpen] = useState(false);
 
   const options = product.options ?? [];
   const [option, setOption] = useState(options[0] ?? '');
   const optionLabel = options.length > 0 && options.every(o => /mm$/i.test(o)) ? 'Length' : 'Option';
+
+  // Purchase is gated by: the "Not for sale" flag, the admin "Available for
+  // order" switch (purchaseBlockReason), AND real stock of the SELECTED option —
+  // a sold-out option can't be bought (the customer can "make a request" for it
+  // instead so we can gauge demand before restocking).
+  const blockReason = purchaseBlockReason(product);
+  const selectedKey = options.length > 0 ? (option || options[0]) : '';
+  const selectedStock = optionStock[selectedKey] ?? 0;
+  const optionSoldOut = (o: string) => (optionStock[o] ?? 0) <= 0;
+  const outOfStock = !blockReason && selectedStock <= 0;
+  const cannotBuy = blockReason !== null || outOfStock;
+  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : outOfStock ? 'Out of stock' : '';
 
   function handleAddToCart() {
     if (cannotBuy) return;
@@ -55,20 +65,24 @@ export default function ProductDetailClient({ product }: { product: Product }) {
             {optionLabel}
           </label>
           <div className="flex flex-wrap gap-2">
-            {options.map(o => (
-              <button
-                key={o}
-                type="button"
-                onClick={() => setOption(o)}
-                className={`px-4 py-2 text-xs font-semibold tracking-wider rounded-sm border transition-colors ${
-                  o === option
-                    ? 'border-gold text-gold bg-gold/10'
-                    : 'border-bone text-charcoal hover:border-gold'
-                }`}
-              >
-                {o}
-              </button>
-            ))}
+            {options.map(o => {
+              const soldOut = optionSoldOut(o);
+              return (
+                <button
+                  key={o}
+                  type="button"
+                  onClick={() => setOption(o)}
+                  title={soldOut ? 'Out of stock' : undefined}
+                  className={`px-4 py-2 text-xs font-semibold tracking-wider rounded-sm border transition-colors ${
+                    o === option
+                      ? 'border-gold text-gold bg-gold/10'
+                      : 'border-bone text-charcoal hover:border-gold'
+                  } ${soldOut ? 'line-through opacity-50' : ''}`}
+                >
+                  {o}{soldOut ? ' · Out' : ''}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}

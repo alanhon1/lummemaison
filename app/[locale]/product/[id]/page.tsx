@@ -7,6 +7,7 @@ import { Tag, Layers } from 'lucide-react';
 import { getCategoryById, getLocalizedSpecification, categories } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
 import { getProductById, getProductsByCategory, getProductVariants } from '@/lib/catalogue';
+import { getProductOptionStock } from '@/lib/products/stock';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
 import ProductStockStatus from '@/components/catalogue/ProductStockStatus';
@@ -34,6 +35,14 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
 
   const t = await getTranslations({ locale, namespace: 'product' });
   const category = getCategoryById(product.categoryId);
+
+  // Live per-option stock (page is force-dynamic, so this is fresh each load).
+  // Drives the buy gate so a sold-out option is disabled BEFORE the customer
+  // pays — payment is off-platform, so a paid-then-rejected order is real harm.
+  const optionStockRows = await getProductOptionStock(product.id);
+  const optionStock: Record<string, number> = Object.fromEntries(
+    optionStockRows.map(r => [r.option, r.stock]),
+  );
 
   // Related: score by shared brand prefix, price proximity, shared tags.
   function brandPrefix(name: string): string {
@@ -168,7 +177,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             <ProductPrice price={product.price} originalPrice={product.originalPrice} moq={product.moq} moqLabel={t('units')} />
 
             <div className="mt-6 mb-8">
-              <ProductDetailClient product={product} />
+              <ProductDetailClient product={product} optionStock={optionStock} />
             </div>
 
             {product.specification && (
