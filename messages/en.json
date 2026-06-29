@@ -704,6 +704,19 @@
     "unsupported": "Your browser doesn't support alerts.",
     "error": "Couldn't turn on alerts. Please try again.",
     "disableAlerts": "Turn off",
-    "disabling": "Turning off…"
+    "disabling": "Turning off…",
+    "installTitle": "Get the Lumée app",
+    "installBody": "New arrivals & restock alerts, right on your phone.",
+    "installCta": "Install app",
+    "installLater": "Not now",
+    "installHowTitle": "Add to your Home Screen",
+    "iosStep1": "Tap the Share button in Safari",
+    "iosStep2": "Choose “Add to Home Screen”",
+    "iosStep3": "Open Lumée from your Home Screen",
+    "androidStep1": "Open the ⋮ menu in Chrome",
+    "androidStep2": "Tap “Install app”",
+    "installClose": "Got it",
+    "accountAppTitle": "Lumée app",
+    "accountAppBody": "Install Lumée on your phone for new-arrival alerts and a faster, full-screen experience."
   }
 }

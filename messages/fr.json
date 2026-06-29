@@ -704,6 +704,19 @@
     "unsupported": "Votre navigateur ne prend pas en charge les alertes.",
     "error": "Impossible d'activer les alertes. Veuillez réessayer.",
     "disableAlerts": "Désactiver",
-    "disabling": "Désactivation…"
+    "disabling": "Désactivation…",
+    "installTitle": "Installez l’application Lumée",
+    "installBody": "Nouveautés et alertes de réassort, directement sur votre téléphone.",
+    "installCta": "Installer",
+    "installLater": "Plus tard",
+    "installHowTitle": "Ajouter à l’écran d’accueil",
+    "iosStep1": "Touchez le bouton Partager dans Safari",
+    "iosStep2": "Choisissez « Sur l’écran d’accueil »",
+    "iosStep3": "Ouvrez Lumée depuis votre écran d’accueil",
+    "androidStep1": "Ouvrez le menu ⋮ dans Chrome",
+    "androidStep2": "Touchez « Installer l’application »",
+    "installClose": "Compris",
+    "accountAppTitle": "Application Lumée",
+    "accountAppBody": "Installez Lumée sur votre téléphone pour les alertes nouveautés et une expérience plein écran plus rapide."
   }
 }

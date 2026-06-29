@@ -12,6 +12,7 @@ import OrderStatusBadge from './OrderStatusBadge';
 import EmailVerifiedMark from './EmailVerifiedMark';
 import ResendConfirmationButton from './ResendConfirmationButton';
 import EnableAlertsButton from '@/components/pwa/EnableAlertsButton';
+import InstallAppCard from '@/components/pwa/InstallAppCard';
 
 interface Profile {
   full_name: string;
@@ -165,7 +166,8 @@ export default function DashboardClient({
           </button>
         </form>
 
-        <div className="mt-6">
+        <div className="mt-6 space-y-4">
+          <InstallAppCard />
           <EnableAlertsButton />
         </div>
       </section>

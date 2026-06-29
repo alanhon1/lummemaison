@@ -704,6 +704,19 @@
     "unsupported": "Su navegador no admite alertas.",
     "error": "No se pudieron activar las alertas. Por favor inténtelo de nuevo.",
     "disableAlerts": "Desactivar",
-    "disabling": "Desactivando…"
+    "disabling": "Desactivando…",
+    "installTitle": "Instala la app de Lumée",
+    "installBody": "Novedades y avisos de reposición, directo en tu teléfono.",
+    "installCta": "Instalar",
+    "installLater": "Ahora no",
+    "installHowTitle": "Añadir a la pantalla de inicio",
+    "iosStep1": "Toca el botón Compartir en Safari",
+    "iosStep2": "Elige «Añadir a inicio»",
+    "iosStep3": "Abre Lumée desde tu pantalla de inicio",
+    "androidStep1": "Abre el menú ⋮ en Chrome",
+    "androidStep2": "Toca «Instalar app»",
+    "installClose": "Entendido",
+    "accountAppTitle": "App de Lumée",
+    "accountAppBody": "Instala Lumée en tu teléfono para recibir avisos de novedades y una experiencia a pantalla completa más rápida."
   }
 }
