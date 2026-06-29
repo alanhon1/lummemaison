@@ -38,6 +38,9 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   // Raw text of the tags field, shown with '#'. Kept separate from form.tags so
   // typing commas isn't eaten by re-deriving the value from the parsed array.
   const [tagInput, setTagInput] = useState<string>((product?.tags ?? []).map(t => `#${t}`).join(', '));
+  // After a NEW product is created, offer to push it to subscribed customers.
+  const [notifyFor, setNotifyFor] = useState<{ id: number; name: string } | null>(null);
+  const [notifying, setNotifying] = useState(false);
 
   function update<K extends keyof Product>(key: K, value: Product[K]) {
     setForm(f => ({ ...f, [key]: value }));
@@ -157,7 +160,9 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
           }
         }
         setIsDirty(false);
-        router.push(`/manzura/products/${newId}`);
+        // Offer to notify subscribed customers about the new product. The modal's
+        // actions handle navigation to the new product's edit page.
+        setNotifyFor({ id: newId, name: (form.name ?? '').trim() || `#${newId}` });
       } else {
         const res = await fetch(`/api/admin/products/${product!.id}`, {
           method: 'PATCH',
@@ -174,6 +179,36 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
     } finally {
       setSaving(false);
     }
+  }
+
+  async function sendNewProductNotice() {
+    if (!notifyFor) return;
+    setNotifying(true);
+    try {
+      await fetch('/api/admin/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'product',
+          subtype: 'new',
+          productId: notifyFor.id,
+          productName: notifyFor.name,
+        }),
+      });
+    } catch {
+      // best-effort — the product is already created
+    } finally {
+      const id = notifyFor.id;
+      setNotifying(false);
+      setNotifyFor(null);
+      router.push(`/manzura/products/${id}`);
+    }
+  }
+
+  function skipNewProductNotice() {
+    const id = notifyFor?.id;
+    setNotifyFor(null);
+    if (id) router.push(`/manzura/products/${id}`);
   }
 
   async function handleDelete() {
@@ -402,6 +437,35 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
           </div>
         </div>
       </div>
+
+      {/* Post-create: offer to notify subscribed customers about the new product. */}
+      {notifyFor && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/40 px-4">
+          <div className="bg-white rounded-sm border border-bone max-w-sm w-full p-6 space-y-4">
+            <h2 className="font-display text-xl font-light text-charcoal">Notify customers?</h2>
+            <p className="text-sm text-mist">
+              Send a “New arrival” notification about <span className="text-charcoal">{notifyFor.name}</span> to
+              subscribed customers? They’ll get an inbox message and a push linking to the product.
+            </p>
+            <div className="flex items-center justify-end gap-3 pt-1">
+              <button
+                onClick={skipNewProductNotice}
+                disabled={notifying}
+                className="text-xs uppercase tracking-widest text-mist hover:text-charcoal disabled:opacity-60"
+              >
+                Skip
+              </button>
+              <button
+                onClick={sendNewProductNotice}
+                disabled={notifying}
+                className="btn-gold text-xs disabled:opacity-60"
+              >
+                {notifying ? 'Sending…' : 'Notify customers'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

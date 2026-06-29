@@ -14,6 +14,7 @@ import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { heicToJpegBuffer } from '@/lib/uploads/heicToJpeg';
 import { isReservedPromoCode, bulkDiscountCents, qualifiesForBulk, BULK_MARKER } from '@/lib/checkout/bulk';
+import { notifyAdmin } from '@/lib/push/notify';
 
 const PROOF_BUCKET = 'payment-proofs';
 const PROOF_MAX_BYTES = 10 * 1024 * 1024;
@@ -329,6 +330,15 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
       console.error('[checkout] sendQuoteEmails threw', orderNumberDisplay, e);
     }
 
+    // Admin inbox: a bulk quote request needs the owner's attention (best-effort).
+    await notifyAdmin({
+      kind: 'order',
+      title: `New bulk quote ${orderNumberDisplay}`,
+      body: `${s.fullName} requested a quote — $${(total / 100).toFixed(2)}.`,
+      url: `/manzura/orders/${quoteOrder.id}`,
+      orderId: quoteOrder.id as number,
+    });
+
     return { ok: true, orderSeq, viewToken, orderNumber: orderNumberDisplay };
   }
   // ── End quote branch ──
@@ -441,6 +451,18 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
     await sendOrderEmails(payload);
   } catch (e) {
     console.error('[checkout] sendOrderEmails threw', orderNumberDisplay, e);
+  }
+
+  // Admin inbox: surface the new order to the owner (best-effort). TEST orders
+  // are excluded — same rule as the transactional emails above.
+  if (!isTest) {
+    await notifyAdmin({
+      kind: 'order',
+      title: `New order ${orderNumberDisplay}`,
+      body: `${s.fullName} placed an order — $${(total / 100).toFixed(2)}.`,
+      url: `/manzura/orders/${order.id}`,
+      orderId: order.id as number,
+    });
   }
 
   // Fire-and-forget: increment used_count only when the code actually applied

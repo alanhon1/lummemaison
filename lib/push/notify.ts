@@ -88,3 +88,31 @@ export async function notifyUsers(opts: BroadcastOpts): Promise<{ users: number;
   }
   return { users: userIds.length, pushed };
 }
+
+export interface AdminNotifyOpts {
+  title: string;
+  body?: string;
+  url?: string;
+  kind?: 'order' | 'system';
+  orderId?: number;
+}
+
+// In-app admin notification: insert one row into admin_notifications, which the
+// owner reads at /manzura/notifications (with an unread badge). Admin Web Push is
+// deferred to Phase 3 — this is inbox + badge only. Best-effort: it never throws,
+// so a notification failure can't break the action that triggered it (e.g. an
+// order being placed).
+export async function notifyAdmin(opts: AdminNotifyOpts): Promise<void> {
+  try {
+    const admin = createServiceClient();
+    await admin.from('admin_notifications').insert({
+      title: opts.title,
+      body: opts.body ?? '',
+      url: opts.url ?? null,
+      kind: opts.kind ?? 'order',
+      order_id: opts.orderId ?? null,
+    });
+  } catch {
+    // best-effort — the triggering action has already succeeded
+  }
+}

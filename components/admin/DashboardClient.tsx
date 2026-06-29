@@ -38,6 +38,7 @@ interface Props {
   totalCategories: number;
   recentOrders: RecentOrder[];
   backups: BackupFile[];
+  unreadNotifs: number;
 }
 
 // Admin-side status palette (kept in sync with app/manzura/orders/page.tsx).
@@ -66,6 +67,7 @@ export default function DashboardClient({
   totalCategories,
   recentOrders,
   backups,
+  unreadNotifs,
 }: Props) {
   const router = useRouter();
   const [restoring, setRestoring] = useState<string | null>(null);
@@ -174,9 +176,14 @@ export default function DashboardClient({
           </Link>
           <Link
             href="/manzura/notifications"
-            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream px-4 py-2 rounded transition-colors"
+            className="relative inline-flex items-center gap-1.5 text-xs uppercase tracking-widest border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream px-4 py-2 rounded transition-colors"
           >
             <Bell size={14} /> Notifications
+            {unreadNotifs > 0 && (
+              <span className="ml-1 min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-white text-[10px] leading-[18px] text-center">
+                {unreadNotifs > 9 ? '9+' : unreadNotifs}
+              </span>
+            )}
           </Link>
         </div>
       </div>

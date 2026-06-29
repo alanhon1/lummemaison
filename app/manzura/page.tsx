@@ -31,6 +31,7 @@ export default async function DashboardPage() {
     { count: awaitingShipCount },
     { data: lowStockRows },
     { data: recentOrders },
+    { count: unreadNotifCount },
   ] = await Promise.all([
     supabase
       .from('orders')
@@ -57,6 +58,10 @@ export default async function DashboardPage() {
       .not('order_number', 'ilike', 'TEST-%')
       .order('created_at', { ascending: false })
       .limit(8),
+    supabase
+      .from('admin_notifications')
+      .select('id', { count: 'exact', head: true })
+      .eq('is_read', false),
   ]);
 
   // Catalogue backups now live in Supabase Storage (persist on Vercel). The
@@ -81,6 +86,7 @@ export default async function DashboardPage() {
         created_at: o.created_at,
       }))}
       backups={backups}
+      unreadNotifs={unreadNotifCount ?? 0}
     />
   );
 }

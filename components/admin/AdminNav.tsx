@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, ClipboardList, ShoppingCart, Package, BarChart3, MessageSquare, Users, Warehouse, LogOut, BrainCircuit, AlertCircle, Inbox, Tag } from 'lucide-react';
+import { LayoutDashboard, ClipboardList, ShoppingCart, Package, BarChart3, MessageSquare, Users, Warehouse, LogOut, BrainCircuit, AlertCircle, Inbox, Tag, Bell } from 'lucide-react';
 
 // Admin navigation. Mounted in app/manzura/layout.tsx; suppresses itself on
 // /manzura/login so the login page stays clean.
@@ -29,6 +30,27 @@ const TABS: Array<{ href: string; label: string; icon: typeof LayoutDashboard }>
 export default function AdminNav() {
   const pathname = usePathname() ?? '';
   const router = useRouter();
+  const [unread, setUnread] = useState(0);
+
+  // Poll the admin notification badge (order alerts). Light: every 60s, and
+  // again whenever the route changes (so opening the inbox clears it quickly).
+  useEffect(() => {
+    if (pathname === '/manzura/login') return;
+    let alive = true;
+    const load = async () => {
+      try {
+        const r = await fetch('/api/admin/notifications/unread-count', { cache: 'no-store' });
+        if (!r.ok) return;
+        const d = await r.json();
+        if (alive) setUnread(d.count ?? 0);
+      } catch {
+        /* ignore — badge is best-effort */
+      }
+    };
+    load();
+    const id = setInterval(load, 60_000);
+    return () => { alive = false; clearInterval(id); };
+  }, [pathname]);
 
   if (pathname === '/manzura/login') return null;
 
@@ -73,9 +95,21 @@ export default function AdminNav() {
               );
             })}
           </nav>
+          <Link
+            href="/manzura/notifications"
+            aria-label="Notifications"
+            className="relative inline-flex items-center justify-center text-mist hover:text-charcoal ml-auto md:ml-0"
+          >
+            <Bell size={18} />
+            {unread > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 px-1 rounded-full bg-gold text-white text-[10px] leading-4 text-center">
+                {unread > 9 ? '9+' : unread}
+              </span>
+            )}
+          </Link>
           <button
             onClick={handleLogout}
-            className="inline-flex items-center gap-1.5 text-xs text-mist hover:text-charcoal ml-auto md:ml-0"
+            className="inline-flex items-center gap-1.5 text-xs text-mist hover:text-charcoal ml-4 md:ml-2"
           >
             <LogOut size={13} />
             <span className="hidden sm:inline">Logout</span>
