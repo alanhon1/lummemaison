@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import BackupPreviewModal from './BackupPreviewModal';
 import AnnounceForm from '@/components/admin/AnnounceForm';
+import PushDiagPanel from '@/components/admin/PushDiagPanel';
 
 interface BackupFile { name: string; size: number; created: string; productCount: number; }
 
@@ -178,6 +179,11 @@ export default function DashboardClient({
       {/* Push notification broadcast */}
       <div className="mb-8">
         <AnnounceForm />
+      </div>
+
+      {/* Push diagnostics (temporary) */}
+      <div className="mb-8">
+        <PushDiagPanel />
       </div>
 
       {/* Operational stat cards */}
