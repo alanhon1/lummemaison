@@ -4,19 +4,24 @@ import { loadActiveAnnouncements } from '@/lib/announcements';
 
 export const dynamic = 'force-dynamic';
 
+type Loc = 'en' | 'ru' | 'fr' | 'es';
+const toLoc = (l: string): Loc => (l === 'ru' || l === 'fr' || l === 'es' ? l : 'en');
+
+const UI: Record<Loc, { metaTitle: string; metaDescription: string; heading: string; subtitle: string; empty: string; dateLocale: string }> = {
+  en: { metaTitle: 'Announcements | Lumée Maison', metaDescription: 'News and important announcements from Lumée Maison.', heading: 'Announcements', subtitle: 'News and updates from our store.', empty: 'No announcements yet.', dateLocale: 'en-US' },
+  ru: { metaTitle: 'Объявления | Lumée Maison', metaDescription: 'Новости и важные объявления магазина Lumée Maison.', heading: 'Объявления', subtitle: 'Новости и обновления магазина.', empty: 'Пока нет объявлений.', dateLocale: 'ru-RU' },
+  fr: { metaTitle: 'Actualités | Lumée Maison', metaDescription: 'Actualités et annonces importantes de Lumée Maison.', heading: 'Actualités', subtitle: 'Actualités et nouveautés de notre boutique.', empty: 'Aucune annonce pour le moment.', dateLocale: 'fr-FR' },
+  es: { metaTitle: 'Novedades | Lumée Maison', metaDescription: 'Novedades y anuncios importantes de Lumée Maison.', heading: 'Novedades', subtitle: 'Novedades y actualizaciones de nuestra tienda.', empty: 'Aún no hay anuncios.', dateLocale: 'es-ES' },
+};
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return {
-    title: locale === 'ru' ? 'Объявления | Lumée Maison' : 'Announcements | Lumée Maison',
-    description:
-      locale === 'ru'
-        ? 'Новости и важные объявления магазина Lumée Maison.'
-        : 'News and important announcements from Lumée Maison.',
-  };
+  const ui = UI[toLoc(locale)];
+  return { title: ui.metaTitle, description: ui.metaDescription };
 }
 
 export default async function AnnouncementsPage({
@@ -25,14 +30,14 @@ export default async function AnnouncementsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const l = locale === 'ru' ? 'ru' : 'en';
+  const ui = UI[toLoc(locale)];
 
   const announcements = await loadActiveAnnouncements();
 
-  const heading = l === 'ru' ? 'Объявления' : 'Announcements';
-  const subtitle = l === 'ru' ? 'Новости и обновления магазина.' : 'News and updates from our store.';
-  const empty = l === 'ru' ? 'Пока нет объявлений.' : 'No announcements yet.';
-  const dateLocale = l === 'ru' ? 'ru-RU' : 'en-US';
+  const heading = ui.heading;
+  const subtitle = ui.subtitle;
+  const empty = ui.empty;
+  const dateLocale = ui.dateLocale;
 
   return (
     <div className="pt-24 min-h-screen luxe-bg">

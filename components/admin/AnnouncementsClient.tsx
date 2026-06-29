@@ -133,6 +133,13 @@ export default function AnnouncementsClient({ items }: Props) {
             Active (visible to customers)
           </label>
 
+          {!editing && (
+            <label className="flex items-center gap-2 text-sm text-charcoal">
+              <input type="checkbox" name="push" className="accent-gold" />
+              Also push to subscribed customers (banner + inbox)
+            </label>
+          )}
+
           <div className="flex justify-end">
             <button type="submit" disabled={isPending} className="btn-gold text-xs">
               {isPending ? 'Saving…' : editing ? 'Save Changes' : 'Create Announcement'}

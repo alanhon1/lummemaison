@@ -13,10 +13,9 @@ import {
   ShieldCheck,
   Tag,
   Megaphone,
+  Bell,
 } from 'lucide-react';
 import BackupPreviewModal from './BackupPreviewModal';
-import AnnounceForm from '@/components/admin/AnnounceForm';
-import PushDiagPanel from '@/components/admin/PushDiagPanel';
 
 interface BackupFile { name: string; size: number; created: string; productCount: number; }
 
@@ -173,17 +172,13 @@ export default function DashboardClient({
           >
             <Inbox size={14} /> Requests
           </Link>
+          <Link
+            href="/manzura/notifications"
+            className="inline-flex items-center gap-1.5 text-xs uppercase tracking-widest border border-charcoal text-charcoal hover:bg-charcoal hover:text-cream px-4 py-2 rounded transition-colors"
+          >
+            <Bell size={14} /> Notifications
+          </Link>
         </div>
-      </div>
-
-      {/* Push notification broadcast */}
-      <div className="mb-8">
-        <AnnounceForm />
-      </div>
-
-      {/* Push diagnostics (temporary) */}
-      <div className="mb-8">
-        <PushDiagPanel />
       </div>
 
       {/* Operational stat cards */}

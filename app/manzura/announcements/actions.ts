@@ -6,6 +6,7 @@ import { revalidatePath, revalidateTag } from 'next/cache';
 import { getIronSession } from 'iron-session';
 import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
+import { notifyUsers } from '@/lib/push/notify';
 import { ANNOUNCEMENTS_TAG, type AnnouncementPlacement } from '@/lib/announcements';
 
 const BUCKET = 'announcement-images';
@@ -80,6 +81,15 @@ export async function createAnnouncement(formData: FormData): Promise<ActionResu
     active,
   });
   if (error) return { ok: false, error: error.message };
+
+  // Optional: push this announcement to every logged-in user whose alerts are ON
+  // (banner + inbox entry, deep-linking to the News page). Best-effort — never
+  // fails the announcement. The customer-facing News list is /announcements.
+  if (formData.get('push') != null) {
+    try {
+      await notifyUsers({ title, body, url: '/announcements', kind: 'announcement' });
+    } catch { /* best-effort */ }
+  }
 
   revalidateAnnouncements();
   revalidatePath('/manzura/announcements');

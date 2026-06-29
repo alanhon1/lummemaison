@@ -18,6 +18,7 @@ interface Message {
   body: string;
   is_read: boolean;
   created_at: string;
+  url: string | null;
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -36,7 +37,7 @@ export default async function InboxPage({ params }: PageProps) {
 
   const { data, error } = await supabase
     .from('user_messages')
-    .select('id, subject, body, is_read, created_at')
+    .select('id, subject, body, is_read, created_at, url')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false });
 
@@ -87,6 +88,7 @@ export default async function InboxPage({ params }: PageProps) {
     createdAt: string;
     read: boolean;
     href?: string;
+    cta?: string;
   }
   const items: InboxItem[] = [
     ...messages.map(m => ({
@@ -95,6 +97,8 @@ export default async function InboxPage({ params }: PageProps) {
       body: m.body,
       createdAt: m.created_at,
       read: m.is_read,
+      // Pushed notifications carry a click-through url (internal path or absolute).
+      href: m.url ? (m.url.startsWith('/') ? localePath(locale, m.url) : m.url) : undefined,
     })),
     ...orderMsgs.map(m => {
       const o = orderById.get(m.order_id);
@@ -108,6 +112,7 @@ export default async function InboxPage({ params }: PageProps) {
         createdAt: m.created_at,
         read: seen,
         href: localePath(locale, `/account/orders/${seqOrNum}`),
+        cta: 'Open order →',
       };
     }),
   ].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
@@ -138,7 +143,7 @@ export default async function InboxPage({ params }: PageProps) {
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div>
                     <p className="text-sm font-semibold text-charcoal">{item.subject}</p>
-                    <p className="text-[11px] text-mist">{item.href ? 'Open order →' : t('from')}</p>
+                    <p className="text-[11px] text-mist">{item.cta ?? t('from')}</p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     {!item.read && (
