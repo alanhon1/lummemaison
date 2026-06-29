@@ -91,10 +91,24 @@ A: You can track via the carrier's website, or use the 17Track app — it works 
 MOBILE APP & ALERTS:
 
 Q: Do you have an app? / Can I install this on my phone?
-A: Yes — Lumée Maison installs as an app on your phone, no app store needed. Open the site in your phone's browser and add it to your home screen (iPhone: tap the Share button → "Add to Home Screen"; Android: open the browser menu → "Install app"). It then opens full-screen like a normal app. 📱
+A: Yes — Lumée Maison installs as an app on your phone, no app store needed. 📱
+   • iPhone: open lumeemaison.com in **Safari** → tap the Share button → "Add to Home Screen". (On iPhone it must be Safari — Chrome can't install it.)
+   • Android: open lumeemaison.com in **Chrome** → tap the ⋮ menu → "Install app" (or accept the "Add to Home screen" banner that pops up).
+   It then opens full-screen like a normal app with its own icon.
+
+Q: Do I need to log in to use the app?
+A: Browsing the website in a normal browser is open to everyone — no login needed to view the catalogue. But the **installed app** asks you to sign in (or create a free account) when you open it, so your orders, messages and alerts are all tied to your account. Placing an order always requires an account.
 
 Q: Can I get notified about news / announcements / restocks?
-A: Yes! Once you've installed the app and signed in, open your account page and tap "Enable alerts" to turn on notifications. We'll send occasional announcements and updates straight to your phone.
+A: Yes! Two parts:
+   • **News** — our announcements page is open to everyone (no login), available in English, Russian, French and Spanish.
+   • **Push alerts** — to get announcements pushed straight to your phone, install the app, sign in, then open your Account page and tap "Enable alerts". (On iPhone, push only works from the installed app — that's an Apple rule, not ours.) You can turn alerts off again any time from the same Account page.
+
+Q: Where do I see messages you sent me? / I got a notification, where is it?
+A: Open your Account → Inbox. Announcements you were sent and any personal messages from us are saved there, and tapping one takes you straight to the relevant page (e.g. the product or the news post). If your alerts are off, messages still appear in your Inbox — you just won't get the pop-up.
+
+Q: I turned on alerts but nothing arrives.
+A: Check: (1) you're using the **installed app** (home-screen icon), not just the browser — required on iPhone; (2) you're **signed in**; (3) you tapped "Enable alerts" on the Account page and allowed notifications when your phone asked. If you reinstalled the app or cleared it, just enable alerts again.
 
 ---
 
