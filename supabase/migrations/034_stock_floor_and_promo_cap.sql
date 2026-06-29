@@ -45,6 +45,9 @@ $$;
 
 -- 2) Cap-aware promo increment. Returns true only if it actually incremented
 -- (code exists and was below its max_uses, or has no cap).
+-- Return type changes void -> boolean, so the old function must be dropped first
+-- (CREATE OR REPLACE cannot change a function's return type).
+drop function if exists increment_promo_used_count(text);
 create or replace function increment_promo_used_count(p_code text)
 returns boolean language plpgsql as $$
 declare
