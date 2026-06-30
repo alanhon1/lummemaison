@@ -37,9 +37,16 @@ business has decided oversell should no longer be allowed on the storefront.
 **`availableStock(product, option)`** — the per-(product, option) cap used everywhere:
 
 - `notForSale` → **not orderable** (existing hard block, unchanged).
-- `stock_unknown` **or** `wonder` flag set → cap = **0** (not orderable; request only).
+- `stock_unknown` flag set → cap = **0** (not orderable; request only).
 - otherwise → cap = the manual `stock` integer for that `(product_id, option)`.
   Stock `0` → not orderable (request only).
+
+> **`wonder` is NOT a block.** Migration 026 documents `wonder` as a cosmetic
+> admin-only label ("purple W", never shown to customers) with no stock meaning.
+> A wonder option still carries a real stock count and is capped at that number
+> like any other. (Live-DB check on 2026-06-30: all 212 wonder rows had positive
+> stock; treating wonder as 0 would have taken ~45% of the purchasable catalogue
+> offline. Earlier drafts mislabelled wonder as "untracked" — corrected here.)
 
 "Not orderable" means: no add-to-cart, no quantity raise; the UI shows the existing
 "Make a request" affordance instead.

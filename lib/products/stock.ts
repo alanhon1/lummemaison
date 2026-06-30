@@ -16,14 +16,19 @@ export function stockKey(productId: number, option = ''): string { return k(prod
 // may order. Single source of truth for the hard-cap rule — folds every block
 // into one number:
 //   - product missing (deleted), notForSale, or not available_for_order ⇒ 0
-//   - option stock_unknown or wonder (no real count tracked) ⇒ 0
+//   - option stock_unknown (real count not yet entered) ⇒ 0
 //   - otherwise ⇒ the real stock integer (0 ⇒ not orderable, request only)
+// NOTE: `wonder` is intentionally NOT a block. Per migration 026 it is a
+// cosmetic admin-only label (purple "W"), never shown to customers and carrying
+// no stock meaning — a wonder option still has a real stock count and is capped
+// at that number like any other. (Blocking it would take ~45% of the live
+// catalogue offline, since wonder is set on ~half of the stock rows.)
 export function orderableCap(
   product: Pick<Product, 'notForSale' | 'available_for_order' | 'outOfStock'> | undefined,
   flags: StockFlags | undefined,
 ): number {
   if (!product || purchaseBlockReason(product) !== null) return 0;
-  if (!flags || flags.stockUnknown || flags.wonder) return 0;
+  if (!flags || flags.stockUnknown) return 0;
   return Math.max(0, Math.floor(flags.stock));
 }
 
