@@ -5,6 +5,7 @@ import { locales, localePath } from '@/lib/i18n';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CartPanel from '@/components/layout/CartPanel';
+import CartStockGuard from '@/components/cart/CartStockGuard';
 import FloatingWhatsApp from '@/components/layout/FloatingWhatsApp';
 import ChatWidget from '@/components/layout/ChatWidget';
 import ReportIssueLink from '@/components/layout/ReportIssueLink';
@@ -62,6 +63,7 @@ export default async function LocaleLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <CartPanel />
+        <CartStockGuard />
         <FloatingWhatsApp />
         <ChatWidget isLoggedIn={!!user} />
         <ReportIssueLink variant="floating" />
