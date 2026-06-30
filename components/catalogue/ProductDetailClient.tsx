@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { ShoppingBag, Check } from 'lucide-react';
-import { useCartStore, cartLineKey } from '@/lib/store';
+import { useCartStore } from '@/lib/store';
 import { useCurrencyStore } from '@/lib/currency-store';
 import { localePath } from '@/lib/i18n';
 import { purchaseBlockReason, purchaseBlockLabel, type Product } from '@/lib/products';

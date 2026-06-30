@@ -4,7 +4,6 @@ import { randomUUID } from 'node:crypto';
 import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
-import { purchaseBlockReason } from '@/lib/products';
 import { getStockFlagsMap, orderableCap, stockKey } from '@/lib/products/stock';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
