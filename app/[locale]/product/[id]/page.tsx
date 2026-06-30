@@ -7,7 +7,7 @@ import { Tag, Layers } from 'lucide-react';
 import { getCategoryById, getLocalizedSpecification, categories } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
 import { getProductById, getProductsByCategory, getProductVariants } from '@/lib/catalogue';
-import { getProductOptionStock } from '@/lib/products/stock';
+import { getProductOptionStock, orderableCap } from '@/lib/products/stock';
 import { getTranslations } from 'next-intl/server';
 import ProductDetailClient from '@/components/catalogue/ProductDetailClient';
 import ProductStockStatus from '@/components/catalogue/ProductStockStatus';
@@ -41,7 +41,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
   // pays — payment is off-platform, so a paid-then-rejected order is real harm.
   const optionStockRows = await getProductOptionStock(product.id);
   const optionStock: Record<string, number> = Object.fromEntries(
-    optionStockRows.map(r => [r.option, r.stock]),
+    optionStockRows.map(r => [r.option, orderableCap(product, r)]),
   );
 
   // Related: score by shared brand prefix, price proximity, shared tags.

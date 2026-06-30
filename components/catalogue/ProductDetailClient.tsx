@@ -22,6 +22,7 @@ export default function ProductDetailClient({
   const t = useTranslations('product');
   const tCat = useTranslations('catalogue');
   const { addItem } = useCartStore();
+  const items = useCartStore(s => s.items);
   const locale = useLocale();
   useCurrencyStore();
   const [added, setAdded] = useState(false);
@@ -43,8 +44,16 @@ export default function ProductDetailClient({
   const cannotBuy = blockReason !== null || outOfStock;
   const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : outOfStock ? 'Out of stock' : '';
 
+  // How many of the SELECTED line are already in the cart, and whether that
+  // already uses up the cap. selectedStock is the orderableCap (server-capped),
+  // so a wonder/unknown/notForSale option is selectedStock === 0 ⇒ outOfStock.
+  const inCart = items.find(
+    i => i.id === product.id && (i.option ?? '') === selectedKey,
+  )?.quantity ?? 0;
+  const atCap = !cannotBuy && selectedStock > 0 && inCart >= selectedStock;
+
   function handleAddToCart() {
-    if (cannotBuy) return;
+    if (cannotBuy || atCap) return;
     addItem({
       id: product.id,
       name: product.name,
@@ -89,9 +98,9 @@ export default function ProductDetailClient({
       <div className="flex flex-col sm:flex-row gap-3">
       <button
         onClick={handleAddToCart}
-        disabled={cannotBuy}
+        disabled={cannotBuy || atCap}
         className={`flex-1 flex items-center justify-center gap-2 py-4 text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 ${
-          cannotBuy
+          cannotBuy || atCap
             ? 'bg-charcoal text-cream cursor-not-allowed'
             : added
               ? 'bg-green-600 text-white border border-green-600'
@@ -100,6 +109,8 @@ export default function ProductDetailClient({
       >
         {cannotBuy ? (
           <>{blockLabel}</>
+        ) : atCap ? (
+          <>Max in cart ({selectedStock})</>
         ) : added ? (
           <>
             <Check size={16} />
@@ -119,11 +130,20 @@ export default function ProductDetailClient({
         {t('contactForOrder')}
       </Link>
       </div>
-      {outOfStock && (
+      {(outOfStock || atCap) && (
         <div className="rounded-md border border-bone bg-cream/60 p-3">
           <p className="text-xs text-charcoal mb-2">
-            <span className="font-semibold">Out of stock</span> — this item isn&apos;t available right now,
-            please check back later.
+            {outOfStock ? (
+              <>
+                <span className="font-semibold">Out of stock</span> — this item isn&apos;t available
+                right now, please check back later.
+              </>
+            ) : (
+              <>
+                <span className="font-semibold">Only {selectedStock} in stock</span> — that&apos;s all
+                in your cart. Need more? Make a request and we&apos;ll plan a restock.
+              </>
+            )}
           </p>
           <button
             type="button"

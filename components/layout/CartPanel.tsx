@@ -10,12 +10,17 @@ import { useCartAvailability } from '@/lib/useCartAvailability';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 import { localePath } from '@/lib/i18n';
 import BulkProgressBar from '@/components/cart/BulkProgressBar';
+import { useCartCaps } from '@/lib/cap-store';
+import RequestModal from '@/components/catalogue/RequestModal';
+import type { CartItem } from '@/lib/store';
 
 export default function CartPanel() {
   const t = useTranslations('cart');
   const locale = useLocale();
   const { items, isOpen, closeCart, removeItem, updateQuantity, clearCart, totalItems, totalPrice } = useCartStore();
   const { isBlocked, blockLabelOf, anyBlocked } = useCartAvailability();
+  const { capOf } = useCartCaps();
+  const [requestItem, setRequestItem] = useState<CartItem | null>(null);
   const { currency } = useCurrencyStore();
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
@@ -66,6 +71,8 @@ export default function CartPanel() {
             <div className="flex-1 overflow-y-auto py-4">
               {items.map(item => {
                 const lineKey = cartLineKey(item);
+                const cap = capOf(item);
+                const atCap = typeof cap === 'number' && item.quantity >= cap;
                 return (
                 <div key={lineKey} className="flex gap-4 px-6 py-4 border-b border-bone/50">
                   {/* Image */}
@@ -115,8 +122,11 @@ export default function CartPanel() {
                       </button>
                       <span className="text-xs font-semibold w-6 text-center">{item.quantity}</span>
                       <button
-                        onClick={() => updateQuantity(lineKey, item.quantity + 1)}
-                        className="w-6 h-6 border border-bone rounded-sm flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
+                        onClick={() => { if (!atCap) updateQuantity(lineKey, item.quantity + 1); }}
+                        disabled={atCap}
+                        className={`w-6 h-6 border border-bone rounded-sm flex items-center justify-center transition-colors ${
+                          atCap ? 'opacity-40 cursor-not-allowed' : 'hover:border-gold hover:text-gold'
+                        }`}
                       >
                         <Plus size={10} />
                       </button>
@@ -128,6 +138,15 @@ export default function CartPanel() {
                         <Trash2 size={14} />
                       </button>
                     </div>
+                    {atCap && (
+                      <button
+                        type="button"
+                        onClick={() => setRequestItem(item)}
+                        className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-gold-dark hover:text-gold"
+                      >
+                        Only {cap} in stock · Request more
+                      </button>
+                    )}
                   </div>
                 </div>
                 );
@@ -175,6 +194,14 @@ export default function CartPanel() {
               </button>
             </div>
           </div>
+        )}
+        {requestItem && (
+          <RequestModal
+            productId={requestItem.id}
+            productName={requestItem.name}
+            option={requestItem.option}
+            onClose={() => setRequestItem(null)}
+          />
         )}
       </aside>
     </>
