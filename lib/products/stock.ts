@@ -3,6 +3,7 @@
 // 027. Products are defined in the live catalogue; only stock lives here.
 
 import { createServiceClient } from '@/lib/supabase/server';
+import { purchaseBlockReason, type Product } from '@/lib/products';
 
 export type StockMap = Record<number, number>;
 export interface StockKey { product_id: number; option?: string }
@@ -10,6 +11,21 @@ export interface StockFlags { stock: number; wonder: boolean; stockUnknown: bool
 
 const k = (id: number, option: string) => `${id} ${option}`;
 export function stockKey(productId: number, option = ''): string { return k(productId, option); }
+
+// The orderable cap for one (product, option): the maximum quantity a customer
+// may order. Single source of truth for the hard-cap rule — folds every block
+// into one number:
+//   - product missing (deleted), notForSale, or not available_for_order ⇒ 0
+//   - option stock_unknown or wonder (no real count tracked) ⇒ 0
+//   - otherwise ⇒ the real stock integer (0 ⇒ not orderable, request only)
+export function orderableCap(
+  product: Pick<Product, 'notForSale' | 'available_for_order' | 'outOfStock'> | undefined,
+  flags: StockFlags | undefined,
+): number {
+  if (!product || purchaseBlockReason(product) !== null) return 0;
+  if (!flags || flags.stockUnknown || flags.wonder) return 0;
+  return Math.max(0, Math.floor(flags.stock));
+}
 
 // Per-product total stock (summed across all options). Used by procurement and
 // the public stock endpoint where option granularity doesn't matter.
