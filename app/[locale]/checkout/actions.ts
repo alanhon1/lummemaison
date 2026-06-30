@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
 import { purchaseBlockReason } from '@/lib/products';
-import { getStockFlagsMap, stockKey } from '@/lib/products/stock';
+import { getStockFlagsMap, orderableCap, stockKey } from '@/lib/products/stock';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents, isValidFedexAccount } from '@/lib/checkout/state';
@@ -202,22 +202,29 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
     getStockFlagsMap(input.items.map(l => ({ product_id: l.product_id, option: l.option?.trim() || '' }))),
   ]);
   const liveById = new Map(liveProducts.map(p => [p.id, p]));
-  const blockedLines = input.items.filter(l => {
-    const p = liveById.get(l.product_id);
-    // Sold-out is checked PER (product, option): a product with option A=0 but
-    // option B in stock must not let an A line through (previously this used the
-    // per-product total, so a sold-out option could be ordered then stall at the
-    // per-option packaging guard — a paid-then-rejected order).
-    const optStock = optionStock[stockKey(l.product_id, l.option?.trim() || '')]?.stock ?? 0;
-    // Blocked if: product is gone, not-for-sale / switched off, OR that option
-    // is out of stock (0 real stock — sold out since it was added to the cart).
-    return !p || purchaseBlockReason(p) !== null || optStock <= 0;
+  // AUTHORITATIVE hard-cap guard. orderableCap folds every rule into one number
+  // (notForSale / unavailable / stock_unknown / wonder ⇒ 0; else the real stock).
+  // Refuse the whole order if any line's quantity exceeds its cap. This is the
+  // one place that actually closes the "already in cart" / forged-cart bypass —
+  // single-customer oversell can never get past here.
+  const overCapLines = input.items.filter(l => {
+    const flags = optionStock[stockKey(l.product_id, l.option?.trim() || '')];
+    return l.quantity > orderableCap(liveById.get(l.product_id), flags);
   });
-  if (blockedLines.length > 0) {
-    const names = [...new Set(blockedLines.map(l => l.product_name))].join(', ');
+  if (overCapLines.length > 0) {
+    const detail = overCapLines
+      .map(l => {
+        const flags = optionStock[stockKey(l.product_id, l.option?.trim() || '')];
+        const cap = orderableCap(liveById.get(l.product_id), flags);
+        const name = l.product_name + (l.option ? ` (${l.option})` : '');
+        return cap <= 0
+          ? `${name}: no longer available`
+          : `${name}: only ${cap} available (your cart has ${l.quantity})`;
+      })
+      .join('; ');
     return {
       ok: false,
-      error: `These items are no longer available for purchase and must be removed from your cart before you can order: ${names}`,
+      error: `Some items exceed available stock — please adjust your cart before ordering: ${detail}`,
     };
   }
 
@@ -242,11 +249,8 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
   // for any country since the postal code field is always present.
   const isTest = (s.postalCode ?? '').trim().toUpperCase() === 'ALANTEST';
 
-  // Oversell is allowed by design: customers may order beyond available stock
-  // (including stock 0 — a backorder). We deliberately do NOT block order
-  // creation on stock here. The shortfall is surfaced on the admin order detail
-  // and enforced at fulfilment: advancing the order into "packaging" is blocked
-  // until the item is restocked, so real stock never goes negative.
+  // Stock hard-cap is enforced above (orderableCap guard). The admin packaging
+  // guard + DB floor (migration 034) remain as the deferred-concurrency net.
 
   // Payment screenshot is required (skipped for test orders).
   const proofPath = (input.paymentProofPath ?? '').trim();
