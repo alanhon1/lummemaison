@@ -100,3 +100,22 @@ KOREANO.txt
 
 # Security report — keep the findings out of any public push as a precaution
 security improvr/
+
+# Local-only emergency data backups (contain customer PII — never commit; repo is public)
+emergency-backup-*/
+
+# Personal/data working files — never commit (public repo)
+*.xlsx
+*.pdf
+IMG_*
+tgenv.txt
+_personal/
+_data/
+undefined/
+
+# Local Claude Code state
+.claude/settings.local.json
+.claude/worktrees/
+
+# Script-generated rollback dumps
+scripts/backups/
