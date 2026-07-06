@@ -61,6 +61,7 @@ interface OrderDetail {
   currency: string;
   notes: string | null;
   discount_code: string | null;
+  referral_code: string | null;
   payment_method: string | null;
   payment_proof_path: string | null;
   payment_transaction_link: string | null;
@@ -372,7 +373,7 @@ export default async function AdminOrderDetailPage({
         )}
       </section>
 
-      {(detail.notes || detail.discount_code) && (
+      {(detail.notes || detail.discount_code || detail.referral_code) && (
         <section className="bg-amber-50 border border-amber-200 rounded-lg p-5">
           {detail.notes && (
             <div className="mb-4">
@@ -388,6 +389,17 @@ export default async function AdminOrderDetailPage({
               </div>
               <p className="text-xs text-amber-700 mt-2">
                 No discount has been applied automatically — verify the code and adjust the total manually before shipping.
+              </p>
+            </div>
+          )}
+          {detail.referral_code && (
+            <div className={detail.notes || detail.discount_code ? 'mt-4' : ''}>
+              <div className="text-xs uppercase tracking-widest text-amber-800 mb-2">Referral</div>
+              <div className="text-sm font-mono bg-white border border-amber-200 inline-block px-3 py-1.5 rounded">
+                {detail.referral_code}
+              </div>
+              <p className="text-xs text-amber-700 mt-2">
+                Customer arrived via this influencer link — rewards are handled manually (see Referrals).
               </p>
             </div>
           )}

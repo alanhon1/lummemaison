@@ -202,7 +202,7 @@ export async function GET(req: NextRequest) {
 
     let ordersQuery = supabase
       .from('orders')
-      .select('id, order_seq, order_number, status, customer_name, customer_email, customer_phone, total_cents, currency, created_at, shipping_address, user_id')
+      .select('id, order_seq, order_number, status, customer_name, customer_email, customer_phone, total_cents, currency, created_at, shipping_address, user_id, referral_code')
       .not('order_number', 'ilike', 'TEST-%')
       .order('created_at', { ascending: false })
       .limit(10000);
@@ -216,6 +216,7 @@ export async function GET(req: NextRequest) {
       status: string; customer_name: string; customer_email: string;
       customer_phone: string; total_cents: number; currency: string;
       created_at: string; shipping_address: Record<string, string> | null; user_id: string;
+      referral_code: string | null;
     }>;
 
     const orderIds = orders.map(o => o.id);
@@ -252,6 +253,7 @@ export async function GET(req: NextRequest) {
       { header: 'Phone',         key: 'phone',      width: 16 },
       { header: 'Items',         key: 'items',      width: 40 },
       { header: 'Total (USD)',   key: 'total',      width: 13 },
+      { header: 'Referral',      key: 'referral',   width: 12 },
       { header: 'Address',       key: 'address',    width: 36 },
       { header: 'Status',        key: 'status',     width: 14 },
     ];
@@ -275,6 +277,7 @@ export async function GET(req: NextRequest) {
         phone: o.customer_phone || '',
         items: itemsByOrder.get(o.id) ?? '',
         total: o.total_cents / 100,
+        referral: o.referral_code ?? '',
         address: addrStr,
         status: statusLabel,
       });
