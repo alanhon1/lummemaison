@@ -1,6 +1,7 @@
 'use server';
 
 import { randomUUID } from 'node:crypto';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
@@ -13,6 +14,7 @@ import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { heicToJpegBuffer } from '@/lib/uploads/heicToJpeg';
 import { isReservedPromoCode, bulkDiscountCents, qualifiesForBulk, BULK_MARKER } from '@/lib/checkout/bulk';
+import { REF_COOKIE, normalizeReferralCode } from '@/lib/referrals';
 import { notifyAdmin } from '@/lib/push/notify';
 
 const PROOF_BUCKET = 'payment-proofs';
@@ -278,6 +280,11 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
   const notes = (s.notes ?? '').trim().slice(0, 500);
   const discountCode = (s.discountCode ?? '').trim().slice(0, 64);
 
+  // First-touch referral attribution (?ref=<code> landing, cookie set by
+  // /api/ref/track). Applies to quotes too — a quote_pending order keeps its
+  // referral when the admin later converts it.
+  const referralCode = normalizeReferralCode((await cookies()).get(REF_COOKIE)?.value);
+
   const admin = createServiceClient();
 
   // Build bulk lines for potential quote discount — use the re-priced lines and
@@ -319,6 +326,7 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
         payment_method: input.paymentMethod ?? null,
         notes: notes || null,
         discount_code: BULK_MARKER,
+        referral_code: referralCode,
         payment_proof_path: null,
         payment_transaction_link: null,
         // TEST quotes get a TEST- number (no real order_seq consumed) and skip
@@ -425,6 +433,7 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
       payment_method: input.paymentMethod ?? null,
       notes: notes || null,
       discount_code: discountCode || null,
+      referral_code: referralCode,
       payment_proof_path: proofPath || null,
       payment_transaction_link: transactionLink || null,
       // Test orders skip the real sequence and get a "TEST-" number so they're

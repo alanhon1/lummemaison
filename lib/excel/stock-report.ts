@@ -59,6 +59,7 @@ interface OrderRow {
   created_at: string;
   shipping_address: Record<string, string> | null;
   user_id: string;
+  referral_code: string | null;
 }
 interface ItemRow { order_id: number; product_id: number; product_name: string; quantity: number }
 interface MoveRow {
@@ -78,7 +79,7 @@ export async function buildFullStockReport(
     supabase.from('product_stock').select('product_id, stock'),
     supabase
       .from('orders')
-      .select('id, order_seq, order_number, status, customer_name, customer_email, customer_phone, total_cents, currency, created_at, shipping_address, user_id')
+      .select('id, order_seq, order_number, status, customer_name, customer_email, customer_phone, total_cents, currency, created_at, shipping_address, user_id, referral_code')
       .not('order_number', 'ilike', 'TEST-%')
       .order('created_at', { ascending: false })
       .limit(10000),
@@ -253,6 +254,7 @@ export async function buildFullStockReport(
       { header: 'Items', key: 'items', width: 16 },
       { header: 'Total (USD)', key: 'total', width: 13 },
       { header: 'Status', key: 'status', width: 12 },
+      { header: 'Referral', key: 'referral', width: 12 },
       { header: 'Address', key: 'address', width: 34 },
     ];
     styleHeaderRow(ws);
@@ -271,6 +273,7 @@ export async function buildFullStockReport(
         items: `${agg.items} items · ${agg.units} units`,
         total: o.total_cents / 100,
         status: STATUS_LABEL[o.status] ?? o.status,
+        referral: o.referral_code ?? '',
         address: addrStr,
       });
       row.height = 15;
