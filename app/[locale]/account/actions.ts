@@ -2,8 +2,9 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { headers } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
+import { REF_COOKIE, normalizeReferralCode } from '@/lib/referrals';
 import { localePath } from '@/lib/i18n';
 import {
   sendSignupConfirmationEmail,
@@ -123,6 +124,23 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
     // (e.g. if they hit a transient validation failure on the profile row).
     await admin.auth.admin.deleteUser(user.id);
     return { error: profileError.message };
+  }
+
+  // First-touch referral attribution (?ref=<code> landing, cookie set by
+  // /api/ref/track) — same source as the order stamp in checkout/actions.
+  // Separate best-effort update (not part of the insert) so signup keeps
+  // working even if migration 036 hasn't been applied yet.
+  try {
+    const referralCode = normalizeReferralCode((await cookies()).get(REF_COOKIE)?.value);
+    if (referralCode) {
+      const { error: refError } = await admin
+        .from('customer_profiles')
+        .update({ referral_code: referralCode })
+        .eq('user_id', user.id);
+      if (refError) console.error('[signup] referral stamp failed for', input.email, '—', refError.message);
+    }
+  } catch (e) {
+    console.error('[signup] referral stamp threw for', input.email, e);
   }
 
   // Fire the confirmation/verify email but DON'T block signup on it. The account

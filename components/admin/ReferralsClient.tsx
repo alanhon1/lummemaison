@@ -25,9 +25,18 @@ export interface ReferralOrder {
   referral_code: string;
 }
 
+export interface ReferralSignup {
+  user_id: string;
+  full_name: string;
+  email: string;
+  created_at: string;
+  referral_code: string;
+}
+
 interface Props {
   codes: ReferralCode[];
   orders: ReferralOrder[];
+  signups: ReferralSignup[];
 }
 
 const STATUS_LABEL: Record<string, string> = {
@@ -45,10 +54,11 @@ function usd(cents: number): string {
   return `$${(cents / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
-export default function ReferralsClient({ codes, orders }: Props) {
+export default function ReferralsClient({ codes, orders, signups }: Props) {
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState<ReferralCode | null>(null);
-  const [expanded, setExpanded] = useState<number | null>(null);
+  // One panel open at a time: either a code's orders or its signups.
+  const [expanded, setExpanded] = useState<{ id: number; kind: 'orders' | 'signups' } | null>(null);
   const [formError, setFormError] = useState('');
   const [isPending, startTransition] = useTransition();
 
@@ -57,6 +67,17 @@ export default function ReferralsClient({ codes, orders }: Props) {
     const arr = ordersByCode.get(o.referral_code) ?? [];
     arr.push(o);
     ordersByCode.set(o.referral_code, arr);
+  }
+
+  const signupsByCode = new Map<string, ReferralSignup[]>();
+  for (const s of signups) {
+    const arr = signupsByCode.get(s.referral_code) ?? [];
+    arr.push(s);
+    signupsByCode.set(s.referral_code, arr);
+  }
+
+  function togglePanel(id: number, kind: 'orders' | 'signups') {
+    setExpanded(expanded?.id === id && expanded.kind === kind ? null : { id, kind });
   }
 
   function openCreate() {
@@ -168,6 +189,7 @@ export default function ReferralsClient({ codes, orders }: Props) {
                 <th className="text-left px-4 py-3">Code</th>
                 <th className="text-left px-4 py-3">Influencer</th>
                 <th className="text-right px-4 py-3">Clicks</th>
+                <th className="text-right px-4 py-3">Signups</th>
                 <th className="text-right px-4 py-3">Orders</th>
                 <th className="text-right px-4 py-3">Order Value</th>
                 <th className="text-center px-4 py-3">Active</th>
@@ -177,10 +199,12 @@ export default function ReferralsClient({ codes, orders }: Props) {
             <tbody>
               {codes.map(c => {
                 const codeOrders = ordersByCode.get(c.code.toLowerCase()) ?? [];
+                const codeSignups = signupsByCode.get(c.code.toLowerCase()) ?? [];
                 // Totals exclude cancelled orders; the expanded list shows everything.
                 const counted = codeOrders.filter(o => o.status !== 'cancelled');
                 const valueCents = counted.reduce((sum, o) => sum + o.total_cents, 0);
-                const isOpen = expanded === c.id;
+                const ordersOpen = expanded?.id === c.id && expanded.kind === 'orders';
+                const signupsOpen = expanded?.id === c.id && expanded.kind === 'signups';
                 return (
                   <React.Fragment key={c.id}>
                     <tr className="border-b border-bone last:border-0 hover:bg-cream/50 transition-colors">
@@ -192,10 +216,20 @@ export default function ReferralsClient({ codes, orders }: Props) {
                       <td className="px-4 py-3 text-right text-charcoal">{c.clicks.toLocaleString()}</td>
                       <td className="px-4 py-3 text-right">
                         <button
-                          onClick={() => setExpanded(isOpen ? null : c.id)}
+                          onClick={() => togglePanel(c.id, 'signups')}
+                          disabled={codeSignups.length === 0}
+                          className="text-charcoal underline-offset-2 hover:underline disabled:no-underline disabled:opacity-50"
+                          title={codeSignups.length > 0 ? (signupsOpen ? 'Hide signups' : 'Show signups') : 'No signups yet'}
+                        >
+                          {codeSignups.length}
+                        </button>
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        <button
+                          onClick={() => togglePanel(c.id, 'orders')}
                           disabled={codeOrders.length === 0}
                           className="text-charcoal underline-offset-2 hover:underline disabled:no-underline disabled:opacity-50"
-                          title={codeOrders.length > 0 ? (isOpen ? 'Hide orders' : 'Show orders') : 'No orders yet'}
+                          title={codeOrders.length > 0 ? (ordersOpen ? 'Hide orders' : 'Show orders') : 'No orders yet'}
                         >
                           {counted.length}
                         </button>
@@ -221,9 +255,38 @@ export default function ReferralsClient({ codes, orders }: Props) {
                         </button>
                       </td>
                     </tr>
-                    {isOpen && codeOrders.length > 0 && (
+                    {signupsOpen && codeSignups.length > 0 && (
                       <tr className="border-b border-bone last:border-0 bg-cream/40">
-                        <td colSpan={7} className="px-4 py-3">
+                        <td colSpan={8} className="px-4 py-3">
+                          <table className="w-full text-xs">
+                            <thead>
+                              <tr className="text-mist uppercase tracking-wide">
+                                <th className="text-left py-1 pr-4">Customer</th>
+                                <th className="text-left py-1 pr-4">Email</th>
+                                <th className="text-left py-1">Joined</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {codeSignups.map(s => (
+                                <tr key={s.user_id} className="text-charcoal">
+                                  <td className="py-1 pr-4">
+                                    <Link href={`/manzura/users/${s.user_id}`} className="hover:text-gold-dark hover:underline">
+                                      {s.full_name || '—'}
+                                    </Link>
+                                  </td>
+                                  <td className="py-1 pr-4">{s.email || '—'}</td>
+                                  <td className="py-1">{new Date(s.created_at).toLocaleDateString()}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                          <p className="text-[10px] text-mist mt-2">Customers who signed up after landing on this code’s link (tracked from July 2026).</p>
+                        </td>
+                      </tr>
+                    )}
+                    {ordersOpen && codeOrders.length > 0 && (
+                      <tr className="border-b border-bone last:border-0 bg-cream/40">
+                        <td colSpan={8} className="px-4 py-3">
                           <table className="w-full text-xs">
                             <thead>
                               <tr className="text-mist uppercase tracking-wide">
