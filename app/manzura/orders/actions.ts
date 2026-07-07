@@ -13,6 +13,7 @@ import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carrie
 import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail, sendPaymentVerifiedEmail, sendLowStockAlert, sendPaymentOpenEmail, type QuoteEmailData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
 import { deductStockForItems, restoreStockForItems, getStockFlagsMap, stockKey } from '@/lib/products/stock';
+import { sendOrderToOpsHub } from '@/lib/ops/ingest';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
 
@@ -65,7 +66,7 @@ export async function updateOrderStatus(
   // still intact). One read either way.
   const { data: current } = await supabase
     .from('orders')
-    .select('order_seq, order_number, customer_name, customer_email, status, carrier, tracking_number, shipped_at, delivered_at, shipment_photo_path, subtotal_cents, shipping_cents, total_cents, currency')
+    .select('order_seq, order_number, customer_name, customer_email, status, carrier, tracking_number, shipped_at, delivered_at, shipment_photo_path, subtotal_cents, shipping_cents, total_cents, currency, created_at, shipping_address')
     .eq('id', orderId)
     .single();
   if (!current) return { ok: false, error: 'order not found' };
@@ -122,14 +123,15 @@ export async function updateOrderStatus(
   const isTestOrder = String(current.order_number ?? '').toUpperCase().startsWith('TEST-');
   const PACK_IDX = stageIndex('packaging');
 
-  // Items snapshot for the "payment verified" customer email (no stock change).
-  let verifiedItems: Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }> | null = null;
+  // Items snapshot for the "payment verified" customer email + the ops-hub
+  // ingest push (no stock change).
+  let verifiedItems: Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number; option: string | null }> | null = null;
   if (nextStatus === 'payment_verified' && current.status !== 'payment_verified' && !isTestOrder) {
     const { data: items } = await supabase
       .from('order_items')
-      .select('product_id, product_name, unit_cents, quantity')
+      .select('product_id, product_name, unit_cents, quantity, option')
       .eq('order_id', orderId);
-    verifiedItems = (items as Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number }> | null) ?? null;
+    verifiedItems = (items as Array<{ product_id: number; product_name: string; unit_cents: number; quantity: number; option: string | null }> | null) ?? null;
   }
 
   // Deduct on the FORWARD crossing into packaging-or-beyond (threshold-crossing,
@@ -323,6 +325,30 @@ export async function updateOrderStatus(
         shippingCents: (current.shipping_cents as number) ?? 0,
         totalCents: (current.total_cents as number) ?? 0,
         currency: (current.currency as string) ?? 'USD',
+      });
+
+      // Push the now-paid order to the internal ops hub (packing + accounting).
+      // Awaited but never throws; the hub dedupes by order number, so verifying
+      // again after a rollback won't create a duplicate over there.
+      const addr = (current.shipping_address ?? {}) as {
+        street?: string; city?: string; state_province?: string; postal_code?: string; country?: string;
+      };
+      const countryName = addr.country ? findCountry(addr.country)?.name ?? addr.country : '';
+      await sendOrderToOpsHub({
+        external_order_id: orderNumber,
+        order_date: (current.created_at as string) ?? new Date().toISOString(),
+        customer_name: (current.customer_name as string) ?? '',
+        customer_country: countryName,
+        shipping_address: [addr.street, addr.city, addr.state_province, addr.postal_code, countryName]
+          .filter(Boolean)
+          .join(', '),
+        currency: (current.currency as string) ?? 'USD',
+        total_paid: ((current.total_cents as number) ?? 0) / 100,
+        items: verifiedItems.map(i => ({
+          sku: String(i.product_id),
+          product_name: i.option ? `${i.product_name} (${i.option})` : i.product_name,
+          qty: i.quantity,
+        })),
       });
     }
   }
