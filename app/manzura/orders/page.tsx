@@ -7,6 +7,7 @@ import { sessionOptions, type SessionData } from '@/lib/session';
 import { createServiceClient } from '@/lib/supabase/server';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
 import { ClickableRow } from '@/components/admin/ClickableRow';
+import OpsSyncTrigger from '@/components/admin/OpsSyncTrigger';
 
 export const dynamic = 'force-dynamic';
 
@@ -135,6 +136,7 @@ export default async function AdminOrdersPage({ searchParams }: PageProps) {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-10">
+      <OpsSyncTrigger />
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="font-display text-4xl font-light text-charcoal">Orders</h1>
