@@ -7,6 +7,7 @@ import { restoreStockForItems } from '@/lib/products/stock';
 import { stageIndex } from '@/lib/orders/status';
 import { sendCancellationEmail } from '@/lib/email/sendOrderEmails';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
+import { sendStatusToOpsHub } from '@/lib/ops/ingest';
 
 // Mark all messages on the given order as "seen" by the current user.
 // Called from the order detail page's <MessagesSeenMarker> on mount, so
@@ -89,6 +90,12 @@ export async function cancelOrder(orderId: number): Promise<{ ok: boolean; error
     customerName: order.customer_name as string,
     customerEmail: order.customer_email as string,
   });
+
+  // Mirror the cancel onto the ops hub — its board and shelf counts must
+  // follow a customer self-cancel just like an admin one (awaited, no-throw).
+  if (!isTestOrder) {
+    await sendStatusToOpsHub({ external_order_id: orderNumber, status: 'cancelled' });
+  }
 
   revalidatePath(`/account/orders/${order.order_seq ?? order.order_number}`);
   revalidatePath('/account');

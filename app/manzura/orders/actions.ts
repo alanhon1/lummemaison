@@ -46,7 +46,9 @@ export async function updateOrderStatus(
   // When the packaging crossing is blocked by insufficient stock, passing
   // { autoAddStock: true } tops every short line up to the ordered quantity and
   // records it in stock history as reason 'auto_add' (the admin's 2nd click).
-  options?: { autoAddStock?: boolean },
+  // { skipOpsMirror: true } is passed by the ops-hub pull sync — the change
+  // originated on the hub, so echoing it back is a wasted round-trip.
+  options?: { autoAddStock?: boolean; skipOpsMirror?: boolean },
 ): Promise<ActionResult> {
   try {
     await requireAdmin();
@@ -355,7 +357,7 @@ export async function updateOrderStatus(
 
   // Mirror packing/cancel onto the ops hub so its board matches this side
   // (shipped goes through markOrderShipped below). Awaited, never throws.
-  if (!isTestOrder && current.status !== nextStatus) {
+  if (!isTestOrder && current.status !== nextStatus && !options?.skipOpsMirror) {
     const hubStatus =
       nextStatus === 'packaging' ? 'packing' : nextStatus === 'cancelled' ? 'cancelled' : null;
     if (hubStatus) {
