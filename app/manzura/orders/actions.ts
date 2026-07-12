@@ -13,7 +13,7 @@ import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carrie
 import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail, sendPaymentVerifiedEmail, sendLowStockAlert, sendPaymentOpenEmail, type QuoteEmailData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
 import { deductStockForItems, restoreStockForItems, getStockFlagsMap, stockKey } from '@/lib/products/stock';
-import { sendOrderToOpsHub } from '@/lib/ops/ingest';
+import { sendOrderToOpsHub, sendStatusToOpsHub } from '@/lib/ops/ingest';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
 
@@ -353,6 +353,18 @@ export async function updateOrderStatus(
     }
   }
 
+  // Mirror packing/cancel onto the ops hub so its board matches this side
+  // (shipped goes through markOrderShipped below). Awaited, never throws.
+  if (!isTestOrder && current.status !== nextStatus) {
+    const hubStatus =
+      nextStatus === 'packaging' ? 'packing' : nextStatus === 'cancelled' ? 'cancelled' : null;
+    if (hubStatus) {
+      const orderNumber =
+        current.order_seq != null ? formatOrderNumber(current.order_seq as number) : (current.order_number as string);
+      await sendStatusToOpsHub({ external_order_id: orderNumber, status: hubStatus });
+    }
+  }
+
   revalidatePath(`/manzura/orders/${orderId}`);
   revalidatePath('/manzura/orders');
   revalidatePath('/manzura');
@@ -438,6 +450,16 @@ export async function markOrderShipped(formData: FormData): Promise<ActionResult
     trackingNumber,
     trackingUrl,
   });
+
+  // Mirror onto the ops hub (board + stock follow; awaited, never throws).
+  if (!orderNumber.toUpperCase().startsWith('TEST-')) {
+    await sendStatusToOpsHub({
+      external_order_id: orderNumber,
+      status: 'shipped',
+      tracking_number: trackingNumber,
+      carrier: carrierLabel(carrier),
+    });
+  }
 
   revalidatePath(`/manzura/orders/${orderId}`);
   revalidatePath('/manzura/orders');

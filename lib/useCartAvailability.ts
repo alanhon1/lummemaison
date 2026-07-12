@@ -38,7 +38,7 @@ export function useCartAvailability(): CartAvailabilityInfo {
   const blockLabelOf = (id: number) => {
     const a = map[id];
     if (!a) return null;
-    if (a.notForSale) return 'Not for sale';
+    if (a.notForSale) return 'Sold out';
     if (a.outOfStock) return 'Out of stock';
     return null;
   };

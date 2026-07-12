@@ -19,6 +19,38 @@ export interface OpsHubOrderPayload {
   items: { sku: string; product_name: string; qty: number }[];
 }
 
+// Mirror a status change onto the hub so an order handled on THIS side
+// doesn't sit on the hub board as NEW forever. Same secret, same
+// best-effort/no-throw contract; the hub applies it forward-only.
+export async function sendStatusToOpsHub(payload: {
+  external_order_id: string;
+  status: 'packing' | 'packed' | 'shipped' | 'cancelled';
+  tracking_number?: string | null;
+  carrier?: string | null;
+}): Promise<void> {
+  const url = process.env.OPS_HUB_INGEST_URL;
+  const secret = process.env.OPS_HUB_INGEST_SECRET;
+  if (!url || !secret) return;
+
+  try {
+    const res = await fetch(url.replace(/\/order\/?$/, '/order-status'), {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${secret}`,
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) {
+      const body = await res.text().catch(() => '');
+      console.error('[ops-status]', payload.external_order_id, '→ HTTP', res.status, body.slice(0, 300));
+    }
+  } catch (e) {
+    console.error('[ops-status]', payload.external_order_id, 'send failed:', e);
+  }
+}
+
 export async function sendOrderToOpsHub(payload: OpsHubOrderPayload): Promise<void> {
   const url = process.env.OPS_HUB_INGEST_URL;
   const secret = process.env.OPS_HUB_INGEST_SECRET;

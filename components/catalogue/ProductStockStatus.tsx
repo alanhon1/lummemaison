@@ -14,7 +14,7 @@ export default function ProductStockStatus({ product }: { product: Product }) {
   return (
     <div className="flex items-center gap-2 mb-8">
       <div className="w-2 h-2 rounded-full bg-red-400" />
-      <span className="text-xs font-semibold text-charcoal">{reason === 'notForSale' ? 'Not for sale' : t('outOfStock')}</span>
+      <span className="text-xs font-semibold text-charcoal">{reason === 'notForSale' ? 'Sold out' : t('outOfStock')}</span>
     </div>
   );
 }

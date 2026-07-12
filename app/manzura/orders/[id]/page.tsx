@@ -335,7 +335,10 @@ export default async function AdminOrderDetailPage({
       <section className="bg-white border border-bone rounded-lg p-5">
         <h2 className="font-display text-lg text-charcoal mb-3">Customer</h2>
         <div className="text-sm text-charcoal space-y-1">
-          <div className="font-semibold">{detail.customer_name}</div>
+          <div className="font-semibold">
+            {detail.customer_name}
+            <span className="ml-2 font-mono text-xs font-normal text-mist">{display}</span>
+          </div>
           <div className="flex items-center gap-2 flex-wrap">
             <span>{detail.customer_email}</span>
             <EmailVerifiedMark verified={customerEmailVerified} />

@@ -132,10 +132,11 @@ export function purchaseBlockReason(
   return null;
 }
 
-// Customer-facing label for a blocked product. Unavailable reads as "Out of
-// stock" to shoppers (the admin's own wording stays "Available for order").
+// Customer-facing label for a blocked product. Shoppers never see the admin
+// wording — a not-for-sale product simply reads "Sold out" (button disabled),
+// and unavailable reads "Out of stock".
 export function purchaseBlockLabel(reason: 'notForSale' | 'unavailable'): string {
-  return reason === 'notForSale' ? 'Not for sale' : 'Out of stock';
+  return reason === 'notForSale' ? 'Sold out' : 'Out of stock';
 }
 
 const _groupRangeCache: Map<string, { min: number; max: number }> = (() => {
