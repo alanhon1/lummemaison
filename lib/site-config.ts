@@ -50,9 +50,14 @@ export const siteConfig = {
       accountName: "Lumée Maison",
       accountDetails: "Please contact us for Wise payment details",
     },
+    // AUTHORITATIVE crypto deposit addresses (checkout page + payment emails
+    // read these — the old USDT_*_ADDRESS env vars are no longer consulted).
+    // Owner-verified against Binance deposit QR screenshots on 2026-07-13;
+    // the QR images in public/payment/ picture these exact addresses, so
+    // change the image whenever an address changes.
     usdt: {
-      network: "TRC-20",
-      address: "TRC20_ADDRESS_PLACEHOLDER",
+      erc20: "0xd14fc0aab6118775f2647cbd1ee94bbaaa908095",
+      trc20: "TGgjd3PpdUFFSg2xjagtdRbQ5ErfitaESf",
     },
   },
 

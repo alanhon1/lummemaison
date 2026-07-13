@@ -3,6 +3,7 @@
 // Conversion to display dollars happens only inside formatUSD() at render.
 
 import { WISE_PAYMENT } from '@/lib/checkout/wisePayment';
+import { siteConfig } from '@/lib/site-config';
 
 export interface OrderItem {
   name: string;
@@ -278,10 +279,10 @@ export function customerEmail(order: OrderData): { subject: string; html: string
 
   const wiseFields = WISE_PAYMENT.bankFields.map(f => ({ label: f.label, value: f.value }));
 
+  // Addresses come from siteConfig (code-managed — env is not consulted).
   const usdtNetworks: Array<{ label: string; address: string }> = [];
-  const erc20 = envValue('USDT_ERC20_ADDRESS');
+  const { erc20, trc20 } = siteConfig.payment.usdt;
   if (erc20) usdtNetworks.push({ label: 'ERC20 (Ethereum)', address: erc20 });
-  const trc20 = envValue('USDT_TRC20_ADDRESS');
   if (trc20) usdtNetworks.push({ label: 'TRC20 (Tron)', address: trc20 });
 
   const paymentWhatsapp = envValue('PAYMENT_WHATSAPP');
