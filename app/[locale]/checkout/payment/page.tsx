@@ -45,11 +45,13 @@ export default async function CheckoutPaymentPage({ params, searchParams }: Page
 
   const t = await getTranslations({ locale, namespace: 'checkout' });
 
+  // QR images live in public/payment and picture these exact addresses — when
+  // an address env changes, swap the matching image too.
   const usdtNetworks: PaymentInfo['usdt']['networks'] = [];
   const erc20 = envValue('USDT_ERC20_ADDRESS');
-  if (erc20) usdtNetworks.push({ id: 'erc20', label: 'ERC20 (Ethereum)', address: erc20 });
+  if (erc20) usdtNetworks.push({ id: 'erc20', label: 'ERC20 (Ethereum)', address: erc20, qr: '/payment/usdt-erc20.jpg' });
   const trc20 = envValue('USDT_TRC20_ADDRESS');
-  if (trc20) usdtNetworks.push({ id: 'trc20', label: 'TRC20 (Tron)', address: trc20 });
+  if (trc20) usdtNetworks.push({ id: 'trc20', label: 'TRC20 (Tron)', address: trc20, qr: '/payment/usdt-trc20.jpg' });
 
   const paymentInfo: PaymentInfo = {
     wise: {

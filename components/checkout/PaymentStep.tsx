@@ -38,7 +38,7 @@ export interface PaymentInfo {
     currency: string;
   };
   usdt: {
-    networks: Array<{ id: string; label: string; address: string }>;
+    networks: Array<{ id: string; label: string; address: string; qr?: string }>;
     whatsapp: string;
   };
   adminEmail: string;
@@ -255,6 +255,20 @@ export default function PaymentStep({ payment, serverError }: Props) {
                   {t('payment.usdt.network')}: <span className="text-charcoal font-semibold">{n.label}</span>
                 </div>
                 <PaymentRow label={t('payment.usdt.address')} value={n.address} mono />
+                {n.qr && (
+                  <details className="pt-1">
+                    <summary className="cursor-pointer text-xs text-gold-dark hover:underline">
+                      Show QR code
+                    </summary>
+                    {/* Plain <img>: /public files aren't in next.config images.localPatterns */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={n.qr}
+                      alt={`${n.label} deposit QR code`}
+                      className="mt-2 w-full max-w-xs rounded-md border border-bone"
+                    />
+                  </details>
+                )}
               </div>
             ))}
           </dl>
