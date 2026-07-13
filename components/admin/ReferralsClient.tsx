@@ -54,6 +54,35 @@ function usd(cents: number): string {
   return `$${(cents / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
+// One-click copy of the shareable link for a code (what you paste to the
+// influencer). Uses the current origin so it works on any deployment.
+function CopyLinkButton({ code }: { code: string }) {
+  const [copied, setCopied] = useState(false);
+  async function copy(e: React.MouseEvent) {
+    e.stopPropagation();
+    const link = `${window.location.origin}/?ref=${code}`;
+    try {
+      await navigator.clipboard.writeText(link);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      window.prompt('Copy the link:', link);
+    }
+  }
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      title={`Copy https://lumeemaison.com/?ref=${code}`}
+      className={`ml-2 rounded border px-1.5 py-0.5 text-[10px] font-sans font-medium transition-colors ${
+        copied ? 'border-green-600 text-green-700' : 'border-bone text-mist hover:border-gold hover:text-gold-dark'
+      }`}
+    >
+      {copied ? 'Copied ✓' : 'Copy link'}
+    </button>
+  );
+}
+
 export default function ReferralsClient({ codes, orders, signups }: Props) {
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState<ReferralCode | null>(null);
@@ -209,7 +238,10 @@ export default function ReferralsClient({ codes, orders, signups }: Props) {
                   <React.Fragment key={c.id}>
                     <tr className="border-b border-bone last:border-0 hover:bg-cream/50 transition-colors">
                       <td className="px-4 py-3">
-                        <div className="font-mono font-semibold text-charcoal">{c.code}</div>
+                        <div className="font-mono font-semibold text-charcoal">
+                          {c.code}
+                          <CopyLinkButton code={c.code} />
+                        </div>
                         {c.notes && <div className="text-xs text-mist">{c.notes}</div>}
                       </td>
                       <td className="px-4 py-3 text-charcoal">{c.influencer_name}</td>
