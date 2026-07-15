@@ -4,11 +4,12 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Droplets, Sparkles, FlaskConical, Scissors, Pill, Layers, Heart, Dna, Zap, Shield, Gem, Microscope, Brush, Target, Syringe, Activity, Leaf, PenLine, Globe, Package, type LucideIcon } from 'lucide-react';
+import { ArrowRight, Droplets, Sparkles, FlaskConical, Scissors, Pill, Layers, Heart, Dna, Zap, Shield, Gem, Microscope, Brush, Target, Syringe, Activity, Leaf, PenLine, Globe, Aperture, Package, type LucideIcon } from 'lucide-react';
 import { categories } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  opacious: Aperture,
   fillers: Droplets,
   mesotherapy: Sparkles,
   'acne-treatment': FlaskConical,

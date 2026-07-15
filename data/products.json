@@ -1,6 +1,14 @@
 {
   "categories": [
     {
+      "id": "opacious",
+      "name": "Opacious",
+      "range": [
+        0,
+        0
+      ]
+    },
+    {
       "id": "fillers",
       "name": "Fillers",
       "range": [

@@ -20,7 +20,7 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [form, setForm] = useState<Partial<Product>>(product ?? {
     name: '', specification: '', description: '', price: 0, moq: 1,
-    categoryId: categories[0]?.id ?? '', tags: [], isNew: false,
+    categoryId: categories.find((c) => c.id === 'fillers')?.id ?? categories[0]?.id ?? '', tags: [], isNew: false,
     isSale: false, isBestSeller: false, inStock: true, outOfStock: false,
     available_for_order: true, image: '',
   });
