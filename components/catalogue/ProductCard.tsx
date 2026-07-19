@@ -83,6 +83,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const { currency } = useCurrencyStore();
   const [requestOpen, setRequestOpen] = useState(false);
   const [lastOne, setLastOne] = useState(false);
+  const [perOrderHit, setPerOrderHit] = useState(false);
   // Purchase is gated by the "Not for sale" flag, the "Available for order"
   // switch (purchaseBlockReason), AND real stock. A single product at 0 stock is
   // out of stock — the quick-add becomes "Make a request" instead. Group cards
@@ -109,6 +110,17 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   // be tapped past the stock count.
   const inCart = items.find(i => i.id === product.id && !i.option)?.quantity ?? 0;
 
+  // Optional admin per-order cap, and the effective quick-add cap = the tighter
+  // of live stock and the per-order limit. `perOrderBinding` is true when the
+  // per-order cap — not stock — is what's holding it back (so we show that
+  // message instead of a restock request).
+  const maxPerOrder = typeof product.max_per_order === 'number' && product.max_per_order > 0 ? product.max_per_order : undefined;
+  const effectiveCap =
+    maxPerOrder === undefined ? stock
+    : stock === undefined ? maxPerOrder
+    : Math.min(stock, maxPerOrder);
+  const perOrderBinding = maxPerOrder !== undefined && (stock === undefined || stock >= maxPerOrder);
+
   function handleAddToCart(e: React.MouseEvent) {
     // Products with purchase options (e.g. needle length) can't be quick-added
     // from the card — let the click fall through to the card link so the
@@ -118,7 +130,12 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
     e.stopPropagation();
     if (blockReason) return; // not for sale / unavailable — no action
     if (outOfStock) { setRequestOpen(true); return; } // out of stock → request demand
-    if (stock !== undefined && inCart >= stock) { setRequestOpen(true); return; } // cart holds all we have → request more
+    if (effectiveCap !== undefined && inCart >= effectiveCap) {
+      // Cart already holds all we allow for this line.
+      if (perOrderBinding) { setPerOrderHit(true); setTimeout(() => setPerOrderHit(false), 4000); return; }
+      setRequestOpen(true); // stock-limited → request more
+      return;
+    }
     addItem({
       id: product.id,
       name: product.name,
@@ -126,10 +143,10 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       image: product.image,
       specification: product.specification,
     });
-    if (stock !== undefined && inCart + 1 >= stock) {
-      // They just took the last available unit — say so.
-      setLastOne(true);
-      setTimeout(() => setLastOne(false), 4000);
+    if (effectiveCap !== undefined && inCart + 1 >= effectiveCap) {
+      // They just took the last unit we allow — say why.
+      if (perOrderBinding) { setPerOrderHit(true); setTimeout(() => setPerOrderHit(false), 4000); }
+      else { setLastOne(true); setTimeout(() => setLastOne(false), 4000); }
     }
   }
 
@@ -199,6 +216,11 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       {lastOne && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70] rounded-md bg-charcoal px-4 py-3 text-xs text-cream shadow-lg">
           Only {stock} in stock — that was the last one. It&apos;s all in your cart now.
+        </div>
+      )}
+      {perOrderHit && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70] rounded-md bg-charcoal px-4 py-3 text-xs text-cream shadow-lg">
+          Limited to {maxPerOrder} per order — that&apos;s all in your cart. You can order again later.
         </div>
       )}
       </>
@@ -298,6 +320,11 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
     {lastOne && (
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70] rounded-md bg-charcoal px-4 py-3 text-xs text-cream shadow-lg">
         Only {stock} in stock — that was the last one. It&apos;s all in your cart now.
+      </div>
+    )}
+    {perOrderHit && (
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70] rounded-md bg-charcoal px-4 py-3 text-xs text-cream shadow-lg">
+        Limited to {maxPerOrder} per order — that&apos;s all in your cart. You can order again later.
       </div>
     )}
     </>

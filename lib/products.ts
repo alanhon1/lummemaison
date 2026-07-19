@@ -91,6 +91,12 @@ export interface Product {
   available_for_order?: boolean;
   image: string;
   moq: number;
+  // Optional per-ORDER quantity cap: the most units of this product a single
+  // order may contain. Absent / 0 ⇒ no limit (default). Purely per-order — it
+  // does NOT track totals across a customer's past orders; a new order may buy
+  // up to the cap again. Folded into the orderableCap alongside real stock, so
+  // the cart, product page, and the authoritative checkout guard all honour it.
+  max_per_order?: number;
   enrichedInfo?: EnrichedInfo;
   groupId?: string;
   variantLabel?: string;

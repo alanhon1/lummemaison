@@ -321,6 +321,25 @@ export default function ProductEditClient({ product, categories, isNew }: Props)
               </Field>
             </div>
 
+            {/* Optional per-order cap. Empty / 0 = no limit (default). Stored on
+                the product; folded into the orderable cap so the storefront and
+                the checkout guard enforce it. Per single order only. */}
+            <Field label="Max quantity per order (0 = no limit)">
+              <input
+                type="number" min="0" step="1"
+                value={form.max_per_order ?? ''}
+                placeholder="No limit"
+                onChange={e => {
+                  const v = parseInt(e.target.value, 10);
+                  update('max_per_order', Number.isFinite(v) && v > 0 ? v : 0);
+                }}
+                className="w-full border border-bone px-3 py-2 text-sm outline-none focus:border-gold bg-white"
+              />
+              <p className="text-[11px] text-mist mt-1">
+                Caps how many of this product a single order may contain. Empty or 0 = no limit. Applies per order only — a customer can order again later.
+              </p>
+            </Field>
+
             {/* Manual sale control. The "was" price drives the struck-through
                 price + −N% badge. 0 / blank = no sale. New products get one
                 automatically; here you can override or clear it. */}

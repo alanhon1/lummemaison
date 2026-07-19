@@ -6,9 +6,14 @@ import { useCartStore } from './store';
 import { capKey } from './products/capKey';
 
 interface CapStore {
-  // capKey(id, option) -> cap. `undefined` = not yet known. Consumers must NOT
-  // treat unknown as 0 (a slow/failed fetch must never clamp or drop a line).
+  // capKey(id, option) -> effective orderable cap. `undefined` = not yet known.
+  // Consumers must NOT treat unknown as 0 (a slow/failed fetch must never clamp
+  // or drop a line).
   map: Record<string, number | undefined>;
+  // capKey(id, option) -> the product's per-order limit (null = no limit), or
+  // `undefined` while unknown. Used only to pick the cart message; never to
+  // clamp (that's `map`, which already folds the per-order limit in).
+  perOrder: Record<string, number | null | undefined>;
   ensureLoaded: (id: number, option?: string) => void;
 }
 
@@ -27,15 +32,19 @@ async function flush(set: (fn: (state: CapStore) => Partial<CapStore>) => void) 
       body: JSON.stringify({ keys: entries }),
     });
     if (!res.ok) return; // leave entries unknown
-    const data = (await res.json()) as Record<string, number>;
+    const data = (await res.json()) as Record<string, { cap: number; perOrder: number | null }>;
     set(state => {
       const next = { ...state.map };
+      const nextPerOrder = { ...state.perOrder };
       for (const e of entries) {
         const key = capKey(e.product_id, e.option);
         const v = data[key];
-        if (typeof v === 'number') next[key] = v;
+        if (v && typeof v.cap === 'number') {
+          next[key] = v.cap;
+          nextPerOrder[key] = v.perOrder ?? null;
+        }
       }
-      return { map: next };
+      return { map: next, perOrder: nextPerOrder };
     });
   } catch {
     // Network errors are non-fatal — lines stay "unknown" (never clamped). The
@@ -45,6 +54,7 @@ async function flush(set: (fn: (state: CapStore) => Partial<CapStore>) => void) 
 
 export const useCapStore = create<CapStore>((set, get) => ({
   map: {},
+  perOrder: {},
   ensureLoaded(id, option = '') {
     const key = capKey(id, option);
     if (get().map[key] !== undefined) return;
@@ -60,6 +70,10 @@ export const useCapStore = create<CapStore>((set, get) => ({
 export interface CartCapsInfo {
   // Max orderable quantity for a cart line, or undefined while loading.
   capOf: (item: { id: number; option?: string }) => number | undefined;
+  // The product's per-order limit for a cart line (null = none), or undefined
+  // while loading. When it equals `capOf`, the per-order limit — not stock — is
+  // what's holding the quantity back, so the cart shows "Limited to N per order".
+  perOrderOf: (item: { id: number; option?: string }) => number | null | undefined;
 }
 
 // Loads the orderable cap for every cart line so the cart/checkout can disable
@@ -67,6 +81,7 @@ export interface CartCapsInfo {
 export function useCartCaps(): CartCapsInfo {
   const items = useCartStore(s => s.items);
   const map = useCapStore(s => s.map);
+  const perOrder = useCapStore(s => s.perOrder);
   const ensureLoaded = useCapStore(s => s.ensureLoaded);
 
   useEffect(() => {
@@ -74,5 +89,6 @@ export function useCartCaps(): CartCapsInfo {
   }, [items, ensureLoaded]);
 
   const capOf = (item: { id: number; option?: string }) => map[capKey(item.id, item.option ?? '')];
-  return { capOf };
+  const perOrderOf = (item: { id: number; option?: string }) => perOrder[capKey(item.id, item.option ?? '')];
+  return { capOf, perOrderOf };
 }

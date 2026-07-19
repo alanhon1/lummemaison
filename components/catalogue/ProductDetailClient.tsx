@@ -51,6 +51,11 @@ export default function ProductDetailClient({
     i => i.id === product.id && (i.option ?? '') === selectedKey,
   )?.quantity ?? 0;
   const atCap = !cannotBuy && selectedStock > 0 && inCart >= selectedStock;
+  // The admin per-order cap is the binding constraint when it equals the
+  // orderableCap (i.e. real stock is not the tighter limit). Drives a
+  // "Limited to N per order" message distinct from the low-stock one.
+  const maxPerOrder = product.max_per_order ?? 0;
+  const perOrderBinding = maxPerOrder > 0 && selectedStock === maxPerOrder;
 
   function handleAddToCart() {
     if (cannotBuy || atCap) return;
@@ -130,7 +135,15 @@ export default function ProductDetailClient({
         {t('contactForOrder')}
       </Link>
       </div>
-      {(outOfStock || atCap) && (
+      {atCap && perOrderBinding && !outOfStock && (
+        <div className="rounded-md border border-bone bg-cream/60 p-3">
+          <p className="text-xs text-charcoal">
+            <span className="font-semibold">Limited to {maxPerOrder} per order</span> — that&apos;s all
+            in your cart. You can place another order later.
+          </p>
+        </div>
+      )}
+      {(outOfStock || (atCap && !perOrderBinding)) && (
         <div className="rounded-md border border-bone bg-cream/60 p-3">
           <p className="text-xs text-charcoal mb-2">
             {outOfStock ? (

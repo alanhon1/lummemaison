@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
-import { getStockFlagsMap, orderableCap, stockKey } from '@/lib/products/stock';
+import { getStockFlagsMap, orderableCap, perOrderLimit, stockKey } from '@/lib/products/stock';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
 import { computeShippingCents, isValidFedexAccount } from '@/lib/checkout/state';
@@ -204,10 +204,12 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
   ]);
   const liveById = new Map(liveProducts.map(p => [p.id, p]));
   // AUTHORITATIVE hard-cap guard. orderableCap folds every rule into one number
-  // (notForSale / unavailable / stock_unknown / wonder ⇒ 0; else the real stock).
-  // Refuse the whole order if any line's quantity exceeds its cap. This is the
-  // one place that actually closes the "already in cart" / forged-cart bypass —
-  // single-customer oversell can never get past here.
+  // (notForSale / unavailable / stock_unknown / wonder ⇒ 0; else the real stock,
+  // further clamped by the product's per-order max_per_order). Refuse the whole
+  // order if any line's quantity exceeds its cap. This is the one place that
+  // actually closes the "already in cart" / forged-cart bypass — single-customer
+  // oversell and the per-order limit can never get past here (also covers the
+  // bulk/quote flow, which runs through this same guard).
   const overCapLines = input.items.filter(l => {
     const flags = optionStock[stockKey(l.product_id, l.option?.trim() || '')];
     return l.quantity > orderableCap(liveById.get(l.product_id), flags);
@@ -215,12 +217,18 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
   if (overCapLines.length > 0) {
     const detail = overCapLines
       .map(l => {
+        const product = liveById.get(l.product_id);
         const flags = optionStock[stockKey(l.product_id, l.option?.trim() || '')];
-        const cap = orderableCap(liveById.get(l.product_id), flags);
+        const cap = orderableCap(product, flags);
+        const perOrder = perOrderLimit(product);
         const name = l.product_name + (l.option ? ` (${l.option})` : '');
-        return cap <= 0
-          ? `${name}: no longer available`
-          : `${name}: only ${cap} available (your cart has ${l.quantity})`;
+        if (cap <= 0) return `${name}: no longer available`;
+        // When the per-order limit is the binding cap, say so — "only N in
+        // stock" would be misleading (there may be plenty in stock).
+        if (perOrder !== null && cap === perOrder) {
+          return `${name}: limited to ${perOrder} per order (your cart has ${l.quantity})`;
+        }
+        return `${name}: only ${cap} available (your cart has ${l.quantity})`;
       })
       .join('; ');
     return {
