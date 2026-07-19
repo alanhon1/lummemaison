@@ -18,7 +18,7 @@ export default function CartPageClient() {
   const locale = useLocale();
   const { items, removeItem, updateQuantity, clearCart, totalPrice } = useCartStore();
   const { isBlocked, blockLabelOf, anyBlocked } = useCartAvailability();
-  const { capOf } = useCartCaps();
+  const { capOf, perOrderOf } = useCartCaps();
   const [requestItem, setRequestItem] = useState<CartItem | null>(null);
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
@@ -44,6 +44,10 @@ export default function CartPageClient() {
           const lineKey = cartLineKey(item);
           const cap = capOf(item);
           const atCap = typeof cap === 'number' && item.quantity >= cap;
+          // The per-order limit is the binding constraint when it equals the
+          // effective cap (i.e. stock isn't the tighter of the two).
+          const perOrder = perOrderOf(item);
+          const perOrderBinding = typeof perOrder === 'number' && perOrder > 0 && cap === perOrder;
           return (
           <div key={lineKey} className="flex gap-4 p-4 bg-white border border-bone rounded-sm">
             <div className="w-20 h-20 bg-cream flex-shrink-0 flex items-center justify-center">
@@ -87,13 +91,19 @@ export default function CartPageClient() {
                 </button>
               </div>
               {atCap && (
-                <button
-                  type="button"
-                  onClick={() => setRequestItem(item)}
-                  className="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-gold-dark hover:text-gold"
-                >
-                  Only {cap} in stock · Request more
-                </button>
+                perOrderBinding ? (
+                  <p className="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-mist">
+                    Limited to {perOrder} per order
+                  </p>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setRequestItem(item)}
+                    className="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-gold-dark hover:text-gold"
+                  >
+                    Only {cap} in stock · Request more
+                  </button>
+                )
               )}
             </div>
             <div className="flex flex-col items-end justify-between">

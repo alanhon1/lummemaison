@@ -19,7 +19,7 @@ export default function CartPanel() {
   const locale = useLocale();
   const { items, isOpen, closeCart, removeItem, updateQuantity, clearCart, totalItems, totalPrice } = useCartStore();
   const { isBlocked, blockLabelOf, anyBlocked } = useCartAvailability();
-  const { capOf } = useCartCaps();
+  const { capOf, perOrderOf } = useCartCaps();
   const [requestItem, setRequestItem] = useState<CartItem | null>(null);
   const { currency } = useCurrencyStore();
   const [mounted, setMounted] = useState(false);
@@ -73,6 +73,8 @@ export default function CartPanel() {
                 const lineKey = cartLineKey(item);
                 const cap = capOf(item);
                 const atCap = typeof cap === 'number' && item.quantity >= cap;
+                const perOrder = perOrderOf(item);
+                const perOrderBinding = typeof perOrder === 'number' && perOrder > 0 && cap === perOrder;
                 return (
                 <div key={lineKey} className="flex gap-4 px-6 py-4 border-b border-bone/50">
                   {/* Image */}
@@ -139,13 +141,19 @@ export default function CartPanel() {
                       </button>
                     </div>
                     {atCap && (
-                      <button
-                        type="button"
-                        onClick={() => setRequestItem(item)}
-                        className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-gold-dark hover:text-gold"
-                      >
-                        Only {cap} in stock · Request more
-                      </button>
+                      perOrderBinding ? (
+                        <p className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-mist">
+                          Limited to {perOrder} per order
+                        </p>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setRequestItem(item)}
+                          className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-gold-dark hover:text-gold"
+                        >
+                          Only {cap} in stock · Request more
+                        </button>
+                      )
                     )}
                   </div>
                 </div>
