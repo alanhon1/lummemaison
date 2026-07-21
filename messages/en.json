@@ -218,7 +218,7 @@
       "continue": "Continue to payment",
       "shipping": {
         "heading": "Shipping",
-        "body": "We offer $35 flat shipping from South Korea worldwide via FedEx.\n\nUSA clients: a FedEx account number is required. Creating one is free and easy. Without a FedEx account, shipping is available via FedEx Priority at $65.\n\nShipping carriers vary by country (FedEx, DHL, EMS, UPS depending on destination). The most reliable carrier for your country will be used automatically."
+        "body": "We offer $35 flat shipping from South Korea worldwide via FedEx.\n\nUSA clients: a FedEx account number is required. Creating one is free and easy. Without a FedEx account, shipping is available via FedEx Priority at $65.\n\nShipping carriers vary by country (FedEx, DHL, EMS, UPS depending on destination). The most reliable carrier for your country will be used automatically.\n\n📦 Shipping covers delivery only. Import duties, taxes, and tariffs are set by your country's customs and billed separately by the carrier (FedEx/DHL). These fees are the customer's responsibility. Since Aug 29, 2025, the US applies these on all imports — US clients should expect a small separate customs bill after delivery."
       },
       "delivery": {
         "heading": "Delivery time",

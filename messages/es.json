@@ -218,7 +218,7 @@
       "continue": "Continuar al pago",
       "shipping": {
         "heading": "Envío",
-        "body": "Ofrecemos envío mundial a tarifa plana de $35 desde Corea del Sur vía FedEx.\n\nClientes de EE. UU.: se requiere un número de cuenta FedEx. Crearlo es gratis y fácil. Sin cuenta FedEx, el envío está disponible vía FedEx Priority a $65.\n\nLos transportistas varían por país (FedEx, DHL, EMS, UPS según el destino). Se seleccionará automáticamente el transportista más confiable para su país."
+        "body": "Ofrecemos envío mundial a tarifa plana de $35 desde Corea del Sur vía FedEx.\n\nClientes de EE. UU.: se requiere un número de cuenta FedEx. Crearlo es gratis y fácil. Sin cuenta FedEx, el envío está disponible vía FedEx Priority a $65.\n\nLos transportistas varían por país (FedEx, DHL, EMS, UPS según el destino). Se seleccionará automáticamente el transportista más confiable para su país.\n\n📦 El envío cubre solo la entrega. Los aranceles de importación, impuestos y tarifas los fija la aduana de su país y los factura por separado el transportista (FedEx/DHL). Estos cargos son responsabilidad del cliente. Desde el 29 de agosto de 2025, EE. UU. los aplica a todas las importaciones — los clientes de EE. UU. deben esperar una pequeña factura de aduana por separado tras la entrega."
       },
       "delivery": {
         "heading": "Tiempo de entrega",

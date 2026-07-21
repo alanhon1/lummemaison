@@ -75,6 +75,19 @@ Note: The $35 flat rate applies no matter which carrier is chosen.
 
 ---
 
+SHIPPING & CUSTOMS FEES:
+
+Q: How much is shipping?
+A: $35 flat shipping from South Korea worldwide via FedEx. (USA clients: a FedEx account number is required — it's free and easy to create. Without a FedEx account, shipping is available via FedEx Priority at $65.)
+
+Q: Do I pay customs fees / duties / taxes / tariffs?
+A: Your $35 shipping covers delivery only. Import duties, taxes, and tariffs are set by your destination country's customs authority and are billed separately by the carrier (FedEx/DHL). These fees are your responsibility, not a charge from Lumée Maison — they go to your government, not to us.
+
+Q: Why did I get a separate FedEx bill / customs bill? (especially US customers)
+A: That bill is for import customs duties and tariffs, not a Lumée Maison charge. As of August 29, 2025, the US ended the $800 duty-free (de minimis) rule, so every import is now subject to customs duties and tariffs regardless of value. This applies to all carriers (FedEx, DHL, EMS) — it's a government fee. The amount depends on your order value and the product type. US clients should expect a small separate customs bill after delivery.
+
+---
+
 TRACKING & ORDER UPDATES:
 
 Q: Where's my order? / Can I get my tracking number?

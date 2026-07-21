@@ -218,7 +218,7 @@
       "continue": "Continuer vers le paiement",
       "shipping": {
         "heading": "Livraison",
-        "body": "Nous proposons une livraison mondiale à forfait de 35 $ depuis la Corée du Sud via FedEx.\n\nClients américains : un numéro de compte FedEx est requis. La création est gratuite et simple. Sans compte FedEx, l'expédition est disponible via FedEx Priority à 65 $.\n\nLes transporteurs varient selon les pays (FedEx, DHL, EMS, UPS selon la destination). Le transporteur le plus fiable pour votre pays sera automatiquement sélectionné."
+        "body": "Nous proposons une livraison mondiale à forfait de 35 $ depuis la Corée du Sud via FedEx.\n\nClients américains : un numéro de compte FedEx est requis. La création est gratuite et simple. Sans compte FedEx, l'expédition est disponible via FedEx Priority à 65 $.\n\nLes transporteurs varient selon les pays (FedEx, DHL, EMS, UPS selon la destination). Le transporteur le plus fiable pour votre pays sera automatiquement sélectionné.\n\n📦 Les frais d'expédition couvrent uniquement la livraison. Les droits de douane, taxes et tarifs sont fixés par la douane de votre pays et facturés séparément par le transporteur (FedEx/DHL). Ces frais sont à la charge du client. Depuis le 29 août 2025, les États-Unis les appliquent à toutes les importations — les clients américains doivent s'attendre à une petite facture de douane distincte après la livraison."
       },
       "delivery": {
         "heading": "Délai de livraison",
