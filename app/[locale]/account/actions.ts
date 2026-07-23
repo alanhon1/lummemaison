@@ -11,8 +11,52 @@ import {
   sendPasswordResetCodeEmail,
 } from '@/lib/email/sendOrderEmails';
 import { missingEmailEnv } from '@/lib/email/mailer';
+import { maskEmail, errorMessage, logEvent } from '@/lib/log';
 
-export type FormState = { error?: string; success?: boolean };
+// `errorCode` lets the client render an actionable UI for a known failure
+// (e.g. offer "sign in" / "reset password" links when the email is taken)
+// instead of only printing a sentence. Unknown failures leave it undefined.
+export type SignupErrorCode =
+  | 'missing_fields'
+  | 'weak_password'
+  | 'email_exists'
+  | 'create_failed'
+  | 'profile_failed'
+  | 'orphan_account';
+
+export type FormState = { error?: string; success?: boolean; errorCode?: SignupErrorCode };
+
+// Supabase reports "this email is taken" differently across GoTrue versions
+// (error code on newer ones, message text on older). Match both so the customer
+// always gets the actionable message rather than a raw English sentence.
+function isDuplicateEmailError(err: unknown): boolean {
+  if (!err) return false;
+  const e = err as { code?: string; message?: string; status?: number };
+  const code = (e.code ?? '').toLowerCase();
+  const msg = (e.message ?? '').toLowerCase();
+  return (
+    code === 'email_exists' ||
+    code === 'user_already_exists' ||
+    msg.includes('already been registered') ||
+    msg.includes('already registered') ||
+    msg.includes('already exists')
+  );
+}
+
+function isWeakPasswordError(err: unknown): boolean {
+  if (!err) return false;
+  const e = err as { code?: string; message?: string };
+  const code = (e.code ?? '').toLowerCase();
+  const msg = (e.message ?? '').toLowerCase();
+  return (
+    code === 'weak_password' ||
+    (msg.includes('password') &&
+      (msg.includes('weak') ||
+        msg.includes('short') ||
+        msg.includes('breach') ||
+        msg.includes('easy to guess')))
+  );
+}
 
 // Email verification is required to sign in for accounts created on/after this
 // timestamp. It's set to the END of 2026-06-14 in KST (UTC+9), i.e. midnight
@@ -69,20 +113,43 @@ function readSignupInput(formData: FormData): SignupInput {
 export async function signup(_prev: FormState, formData: FormData): Promise<FormState> {
   const input = readSignupInput(formData);
 
-  if (
-    !input.fullName ||
-    !input.email ||
-    !input.password ||
-    !input.phone ||
-    !input.country ||
-    !input.street ||
-    !input.city ||
-    !input.postalCode
-  ) {
-    return { error: 'Please fill in every required field.' };
+  // Name every missing field so the log shows exactly which one the browser let
+  // through (a required-attribute gap on some mobile browsers looks identical to
+  // "the button does nothing" from the customer's side).
+  const missingFields = (
+    [
+      ['fullName', input.fullName],
+      ['email', input.email],
+      ['password', input.password],
+      ['phone', input.phone],
+      ['country', input.country],
+      ['street', input.street],
+      ['city', input.city],
+      ['postalCode', input.postalCode],
+    ] as const
+  )
+    .filter(([, v]) => !v)
+    .map(([k]) => k);
+
+  if (missingFields.length > 0) {
+    logEvent('signup', 'validation_failed', {
+      stage: 'required_fields',
+      email: maskEmail(input.email),
+      missing: missingFields,
+      locale: input.locale,
+    });
+    return {
+      error: `Please fill in every required field (missing: ${missingFields.join(', ')}).`,
+      errorCode: 'missing_fields',
+    };
   }
   if (input.password.length < 8) {
-    return { error: 'Password must be at least 8 characters.' };
+    logEvent('signup', 'validation_failed', {
+      stage: 'password_length',
+      email: maskEmail(input.email),
+      length: input.password.length,
+    });
+    return { error: 'Password must be at least 8 characters.', errorCode: 'weak_password' };
   }
 
   // Email confirmation is OPTIONAL (see migration 024_email_optional). We create
@@ -104,7 +171,49 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
     user_metadata: { full_name: input.fullName },
   });
   if (createError || !created?.user) {
-    return { error: createError?.message ?? 'Unable to create account. Please try again.' };
+    // Every branch below logs before returning — this is the single most likely
+    // place a "can't create an account" report originates, and it used to be
+    // completely silent in production.
+    if (isDuplicateEmailError(createError)) {
+      logEvent('signup', 'rejected', {
+        stage: 'create_user',
+        reason: 'email_exists',
+        email: maskEmail(input.email),
+        locale: input.locale,
+      });
+      return {
+        error:
+          'This email is already registered. Please sign in instead, or reset your password if you have forgotten it.',
+        errorCode: 'email_exists',
+      };
+    }
+    if (isWeakPasswordError(createError)) {
+      logEvent('signup', 'rejected', {
+        stage: 'create_user',
+        reason: 'weak_password',
+        email: maskEmail(input.email),
+        detail: errorMessage(createError),
+      });
+      return {
+        error:
+          'That password was rejected as too weak or previously breached. Please choose a different password of at least 8 characters.',
+        errorCode: 'weak_password',
+      };
+    }
+    logEvent('signup', 'failed', {
+      stage: 'create_user',
+      email: maskEmail(input.email),
+      locale: input.locale,
+      code: (createError as { code?: string } | null)?.code ?? null,
+      status: (createError as { status?: number } | null)?.status ?? null,
+      detail: errorMessage(createError),
+      noUserReturned: !created?.user,
+    });
+    return {
+      error:
+        "We couldn't create your account just now — this is usually temporary. Please try again in a moment, or email info@lumeemaison.com if it keeps happening.",
+      errorCode: 'create_failed',
+    };
   }
   const user = created.user;
 
@@ -122,8 +231,41 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
   if (profileError) {
     // Roll back the auth user so the customer can retry with the same email
     // (e.g. if they hit a transient validation failure on the profile row).
-    await admin.auth.admin.deleteUser(user.id);
-    return { error: profileError.message };
+    //
+    // The rollback's own result MUST be checked: if the delete fails the auth
+    // user is orphaned, and every later attempt with that email returns
+    // "already registered" — the customer is then permanently unable to sign up
+    // and there is nothing they can do about it. In that case we say so and
+    // point them at support instead of telling them to try again.
+    const { error: rollbackError } = await admin.auth.admin.deleteUser(user.id);
+    logEvent('signup', 'failed', {
+      stage: 'profile_insert',
+      email: maskEmail(input.email),
+      locale: input.locale,
+      country: input.country,
+      code: (profileError as { code?: string }).code ?? null,
+      detail: profileError.message,
+      rolledBack: !rollbackError,
+      rollbackDetail: rollbackError ? errorMessage(rollbackError) : null,
+    });
+    if (rollbackError) {
+      logEvent('signup', 'orphan_auth_user', {
+        stage: 'rollback',
+        email: maskEmail(input.email),
+        userId: user.id,
+        detail: errorMessage(rollbackError),
+      });
+      return {
+        error:
+          "Your login was created but we couldn't save your details, and the automatic cleanup failed. Please email info@lumeemaison.com and we'll finish setting up your account — retrying here will report the email as already taken.",
+        errorCode: 'orphan_account',
+      };
+    }
+    return {
+      error:
+        "We couldn't save your account details. Please check your address fields and try again, or email info@lumeemaison.com if it keeps happening.",
+      errorCode: 'profile_failed',
+    };
   }
 
   // First-touch referral attribution (?ref=<code> landing, cookie set by
@@ -149,12 +291,22 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
   // in and flips email_verified to true on /auth/confirm.
   try {
     const origin = await getOrigin();
-    const { data: linkData } = await admin.auth.admin.generateLink({
+    // generateLink's error was previously discarded and the `if (hashedToken)`
+    // below had no else — so a failure here sent no email AND logged nothing,
+    // leaving "did the welcome email go out?" unanswerable after the fact.
+    const { data: linkData, error: linkError } = await admin.auth.admin.generateLink({
       type: 'magiclink',
       email: input.email,
     });
     const hashedToken = linkData?.properties?.hashed_token;
-    if (hashedToken) {
+    if (linkError || !hashedToken) {
+      logEvent('signup', 'confirmation_email_skipped', {
+        stage: 'generate_link',
+        email: maskEmail(input.email),
+        reason: linkError ? 'generate_link_error' : 'no_hashed_token',
+        detail: linkError ? errorMessage(linkError) : null,
+      });
+    } else {
       const nextPath = `${localePath(input.locale, '/account')}?welcome=1`;
       const confirmUrl = `${origin}/auth/confirm?token_hash=${encodeURIComponent(hashedToken)}&type=magiclink&next=${encodeURIComponent(nextPath)}`;
       const sendResult = await sendSignupConfirmationEmail({
@@ -162,20 +314,32 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
         customerEmail: input.email,
         confirmUrl,
       });
-      if (!sendResult.ok) {
-        const missing = missingEmailEnv();
-        console.error(
-          '[signup] confirmation email failed for',
-          input.email,
-          '— reason:',
-          sendResult.error ?? 'unknown',
-          missing.length ? `— missing env: ${missing.join(', ')}` : '',
-        );
+      if (sendResult.ok) {
+        logEvent('signup', 'confirmation_email_sent', {
+          email: maskEmail(input.email),
+          origin,
+        });
+      } else {
+        logEvent('signup', 'confirmation_email_failed', {
+          stage: 'smtp_send',
+          email: maskEmail(input.email),
+          detail: sendResult.error ?? 'unknown',
+          missingEnv: missingEmailEnv(),
+        });
       }
     }
   } catch (e) {
-    console.error('[signup] confirmation email threw for', input.email, e);
+    logEvent('signup', 'confirmation_email_threw', {
+      email: maskEmail(input.email),
+      detail: errorMessage(e),
+    });
   }
+
+  logEvent('signup', 'succeeded', {
+    email: maskEmail(input.email),
+    locale: input.locale,
+    country: input.country,
+  });
 
   // Send the customer to the login page to sign in themselves (no auto-login),
   // preserving returnTo so they still land where they intended (e.g. checkout).
@@ -183,6 +347,88 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
   const params = new URLSearchParams({ created: '1' });
   if (returnTo) params.set('returnTo', returnTo);
   redirect(`${localePath(input.locale, '/account/login')}?${params.toString()}`);
+}
+
+// Repairs a signed-in account whose customer_profiles row is missing (signup
+// interrupted between admin.createUser and the profile INSERT, or the row was
+// removed later).
+//
+// This exists because /account used to "repair" that state by redirecting to
+// /account/signup, which immediately redirected a signed-in visitor back to
+// /account — an inescapable loop that the browser surfaces as
+// ERR_TOO_MANY_REDIRECTS, i.e. exactly the "I can't create an account" report.
+export async function completeProfile(_prev: FormState, formData: FormData): Promise<FormState> {
+  const locale = String(formData.get('locale') ?? 'en');
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) redirect(localePath(locale, '/account/login'));
+
+  const input = {
+    fullName: String(formData.get('fullName') ?? '').trim(),
+    phone: String(formData.get('phone') ?? '').trim(),
+    country: String(formData.get('country') ?? '').trim(),
+    street: String(formData.get('street') ?? '').trim(),
+    city: String(formData.get('city') ?? '').trim(),
+    stateProvince: String(formData.get('stateProvince') ?? '').trim(),
+    postalCode: String(formData.get('postalCode') ?? '').trim(),
+    fedexAccount: String(formData.get('fedexAccount') ?? '').trim(),
+  };
+
+  const missingFields = (
+    [
+      ['fullName', input.fullName],
+      ['phone', input.phone],
+      ['country', input.country],
+      ['street', input.street],
+      ['city', input.city],
+      ['postalCode', input.postalCode],
+    ] as const
+  )
+    .filter(([, v]) => !v)
+    .map(([k]) => k);
+  if (missingFields.length > 0) {
+    return {
+      error: `Please fill in every required field (missing: ${missingFields.join(', ')}).`,
+      errorCode: 'missing_fields',
+    };
+  }
+
+  // upsert (not insert) so a concurrent repair — or a row that reappeared
+  // between the page render and this submit — resolves instead of throwing a
+  // unique-violation the customer can do nothing about.
+  const admin = createServiceClient();
+  const { error } = await admin.from('customer_profiles').upsert(
+    {
+      user_id: user.id,
+      full_name: input.fullName,
+      phone: input.phone,
+      country: input.country,
+      street: input.street,
+      city: input.city,
+      state_province: input.stateProvince || null,
+      postal_code: input.postalCode,
+      fedex_account: input.country === 'US' ? input.fedexAccount || null : null,
+    },
+    { onConflict: 'user_id' },
+  );
+  if (error) {
+    logEvent('profile-repair', 'failed', {
+      userId: user.id,
+      email: maskEmail(user.email),
+      code: (error as { code?: string }).code ?? null,
+      detail: error.message,
+    });
+    return {
+      error:
+        "We couldn't save your details. Please try again, or email info@lumeemaison.com and we'll finish this for you.",
+      errorCode: 'profile_failed',
+    };
+  }
+
+  logEvent('profile-repair', 'succeeded', { userId: user.id, email: maskEmail(user.email) });
+  redirect(localePath(locale, '/account'));
 }
 
 function safeReturnTo(value: string, locale: string): string {

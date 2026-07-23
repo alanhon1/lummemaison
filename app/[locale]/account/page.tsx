@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { createClient } from '@/lib/supabase/server';
+import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { localePath } from '@/lib/i18n';
 import { ensureCustomerCode } from '@/lib/customer-code';
+import { maskEmail, logEvent } from '@/lib/log';
 import DashboardClient from '@/components/account/DashboardClient';
 
 export const dynamic = 'force-dynamic';
@@ -27,16 +28,36 @@ export default async function AccountPage({ params }: PageProps) {
 
   const t = await getTranslations({ locale, namespace: 'account' });
 
-  const { data: profile } = await supabase
+  // Read the profile with the service role, scoped to this authenticated user's
+  // own row. The RLS-bound anon client returned 0 rows for some sessions (the
+  // same failure already documented on the write path in actions.ts), and a
+  // false "no profile" here used to bounce the customer into a redirect loop.
+  // `.maybeSingle()` rather than `.single()`: the latter errors on 0 rows.
+  const admin = createServiceClient();
+  const { data: profile, error: profileError } = await admin
     .from('customer_profiles')
     .select('*')
     .eq('user_id', user.id)
-    .single();
+    .maybeSingle();
+
+  if (profileError) {
+    logEvent('account', 'profile_read_failed', {
+      userId: user.id,
+      email: maskEmail(user.email),
+      detail: profileError.message,
+    });
+  }
 
   if (!profile) {
-    // Edge case: auth user exists but profile row missing (e.g. signup interrupted).
-    // Send them back through signup to repair.
-    redirect(localePath(locale, '/account/signup'));
+    // Auth user exists but the profile row is missing (signup interrupted
+    // between createUser and the profile INSERT). Send them to the dedicated
+    // repair page — NOT to /account/signup, which redirects signed-in visitors
+    // straight back here and produces ERR_TOO_MANY_REDIRECTS.
+    logEvent('account', 'profile_missing_repair_redirect', {
+      userId: user.id,
+      email: maskEmail(user.email),
+    });
+    redirect(localePath(locale, '/account/complete-profile'));
   }
 
   // First confirmed login: assign the admin-facing Customer ID if not yet set.

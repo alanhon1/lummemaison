@@ -134,9 +134,28 @@ export default function SignupForm() {
       )}
 
       {state.error && (
-        <p className="text-sm text-red-600" role="alert">
-          {state.error}
-        </p>
+        <div
+          className="rounded-md border border-red-200 bg-red-50 p-3 space-y-2"
+          role="alert"
+          aria-live="assertive"
+        >
+          <p className="text-sm text-red-600">{state.error}</p>
+          {/* A taken email is the one failure the customer can resolve without
+              us — give them the two routes out rather than a dead sentence. */}
+          {state.errorCode === 'email_exists' && (
+            <p className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+              <Link href={signInHref} className="text-gold-dark hover:text-gold underline underline-offset-2">
+                {t('signup.signIn')}
+              </Link>
+              <Link
+                href={localePath(locale, '/account/forgot-password')}
+                className="text-gold-dark hover:text-gold underline underline-offset-2"
+              >
+                {t('signup.forgotPassword')}
+              </Link>
+            </p>
+          )}
+        </div>
       )}
 
       <button type="submit" disabled={pending} className="btn-gold w-full disabled:opacity-60">

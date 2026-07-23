@@ -50,6 +50,13 @@
       "fedexAccount": "Número de cuenta FedEx (opcional)",
       "fedexHint": "Solo EE. UU. Sin cuenta FedEx, el envío es de $65 vía FedEx Priority en lugar de $35."
     },
+    "completeProfile": {
+      "pageTitle": "Complete su cuenta",
+      "title": "Complete la configuración de su cuenta",
+      "subtitle": "Su inicio de sesión ya funciona, pero aún necesitamos sus datos de envío. Solo tomará un momento.",
+      "submit": "Guardar y continuar",
+      "submitting": "Guardando…"
+    },
     "signup": {
       "pageTitle": "Crear cuenta",
       "title": "Cree su cuenta",

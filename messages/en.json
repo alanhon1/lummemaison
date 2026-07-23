@@ -50,6 +50,13 @@
       "fedexAccount": "FedEx account number (optional)",
       "fedexHint": "USA only. Without a FedEx account, shipping is $65 via FedEx Priority instead of $35."
     },
+    "completeProfile": {
+      "pageTitle": "Finish your account",
+      "title": "Finish setting up your account",
+      "subtitle": "Your sign-in works, but we still need your shipping details. This only takes a moment.",
+      "submit": "Save and continue",
+      "submitting": "Saving…"
+    },
     "signup": {
       "pageTitle": "Create account",
       "title": "Create your account",

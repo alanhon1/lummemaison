@@ -6,6 +6,7 @@ import { locales, defaultLocale } from '@/lib/i18n';
 import { createServerClient } from '@supabase/ssr';
 import { siteConfig } from '@/lib/site-config';
 import { LAUNCH_AT } from '@/lib/launch';
+import { logEvent } from '@/lib/log';
 
 // ----- Geo-block -----
 // Customer-facing pages are not available from siteConfig.restrictedCountries
@@ -20,6 +21,15 @@ function maybeGeoBlock(req: NextRequest): NextResponse | null {
   if (!country) return null;
   const restricted = (siteConfig.restrictedCountries as readonly string[]).map(c => c.toUpperCase());
   if (!restricted.includes(country.toUpperCase())) return null;
+
+  // Log every block. The response below is a bare 502 by design, which is
+  // indistinguishable from a genuine upstream failure — including to us, when
+  // a customer later reports "the site/signup wouldn't load". This line is the
+  // only way to tell the two apart after the fact.
+  logEvent('geo-block', 'blocked', {
+    country: country.toUpperCase(),
+    path: req.nextUrl.pathname,
+  });
 
   // Keep the visitor on the original lumeemaison.com URL but return an
   // empty 502 Bad Gateway. Chrome / Safari / Firefox render their own
