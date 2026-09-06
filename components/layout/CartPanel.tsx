@@ -19,7 +19,7 @@ export default function CartPanel() {
   const locale = useLocale();
   const { items, isOpen, closeCart, removeItem, updateQuantity, clearCart, totalItems, totalPrice } = useCartStore();
   const { isBlocked, blockLabelOf, anyBlocked } = useCartAvailability();
-  const { capOf, perOrderOf } = useCartCaps();
+  const { canAdd, mustReduce, perOrderOf, answerOf } = useCartCaps();
   const [requestItem, setRequestItem] = useState<CartItem | null>(null);
   const { currency } = useCurrencyStore();
   const [mounted, setMounted] = useState(false);
@@ -71,10 +71,12 @@ export default function CartPanel() {
             <div className="flex-1 overflow-y-auto py-4">
               {items.map(item => {
                 const lineKey = cartLineKey(item);
-                const cap = capOf(item);
-                const atCap = typeof cap === 'number' && item.quantity >= cap;
+                // Boolean limits only — no stock number reaches the client.
+                // `undefined` (loading) must never clamp, so atCap stays false.
+                const atCap = canAdd(item) === false;
+                const overCap = mustReduce(item);
                 const perOrder = perOrderOf(item);
-                const perOrderBinding = typeof perOrder === 'number' && perOrder > 0 && cap === perOrder;
+                const perOrderBinding = answerOf(item)?.limitReason === 'perOrder';
                 return (
                 <div key={lineKey} className="flex gap-4 px-6 py-4 border-b border-bone/50">
                   {/* Image */}
@@ -140,7 +142,11 @@ export default function CartPanel() {
                         <Trash2 size={14} />
                       </button>
                     </div>
-                    {atCap && (
+                    {overCap ? (
+                      <p className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-red-600">
+                        Availability changed · Please reduce this quantity
+                      </p>
+                    ) : atCap && (
                       perOrderBinding ? (
                         <p className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-mist">
                           Limited to {perOrder} per order
@@ -151,7 +157,7 @@ export default function CartPanel() {
                           onClick={() => setRequestItem(item)}
                           className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-gold-dark hover:text-gold"
                         >
-                          Only {cap} in stock · Request more
+                          Maximum available reached · Request more
                         </button>
                       )
                     )}

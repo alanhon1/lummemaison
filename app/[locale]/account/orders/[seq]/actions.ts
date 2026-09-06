@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import { randomUUID } from 'node:crypto';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
-import { restoreStockForItems } from '@/lib/products/stock';
+import { releaseReservationForOrder, restoreStockForItems } from '@/lib/products/stock';
 import { stageIndex } from '@/lib/orders/status';
 import { sendCancellationEmail } from '@/lib/email/sendOrderEmails';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
@@ -51,6 +51,25 @@ export async function cancelOrder(orderId: number): Promise<{ ok: boolean; error
   // one must not restore any — that would inject phantom inventory.
   const isTestOrder = String(order.order_number ?? '').toUpperCase().startsWith('TEST-');
   const wasStockDeducted = !isTestOrder && stageIndex(order.status as string) >= stageIndex('packaging');
+
+  // Cancelled BEFORE packing: no physical stock moved, but the order has held a
+  // reservation since checkout (migration 037). Release it so the units go back
+  // on sale straight away. No-op for orders placed before 037.
+  if (!isTestOrder && !wasStockDeducted) {
+    try {
+      const { data: openItems } = await admin
+        .from('order_items')
+        .select('product_id, quantity, option')
+        .eq('order_id', orderId);
+      const typed = ((openItems ?? []) as Array<{ product_id: number; quantity: number; option: string | null }>)
+        .map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option ?? '' }));
+      const released = await releaseReservationForOrder(orderId, typed);
+      if (!released.ok) console.error('[stock] release on customer cancel failed', orderId, released.error);
+    } catch (e) {
+      console.error('[stock] release on customer cancel threw', orderId, e);
+    }
+  }
+
   try {
     const { data: items } = wasStockDeducted
       ? await admin.from('order_items').select('product_id, quantity, option').eq('order_id', orderId)

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import CountrySelect from '@/components/account/CountrySelect';
 import { resolveCountryCode } from '@/lib/countries';
-import { readDraft, writeDraft, isValidFedexAccount, type ShippingSnapshot } from '@/lib/checkout/state';
+import { readDraft, writeDraft, isUsShippingZone, isValidFedexAccount, type ShippingSnapshot } from '@/lib/checkout/state';
 import { localePath } from '@/lib/i18n';
 import { highlightField } from '@/lib/checkout/highlightField';
 
@@ -51,7 +51,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
     setHydrated(true);
   }, []);
 
-  const showFedex = form.country === 'US';
+  const showFedex = isUsShippingZone(form.country);
 
   function set<K extends keyof ShippingSnapshot>(key: K, value: ShippingSnapshot[K]) {
     setForm(prev => ({ ...prev, [key]: value }));
@@ -81,7 +81,7 @@ export default function ShippingForm({ profile }: { profile: ProfileSeed }) {
     // FedEx account is optional, but if a US customer enters one it must be a
     // real 9-digit number. Junk (e.g. an email) must not slip through and
     // wrongly drop the order from the $65 to the $35 rate.
-    if (form.country === 'US' && form.fedexAccount.trim() && !isValidFedexAccount(form.fedexAccount)) {
+    if (isUsShippingZone(form.country) && form.fedexAccount.trim() && !isValidFedexAccount(form.fedexAccount)) {
       setError(t('errors.fedexDigits'));
       highlightField(document.getElementById('ship-fedex'), { focus: true });
       return;

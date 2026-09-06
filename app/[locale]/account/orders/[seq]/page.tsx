@@ -13,6 +13,7 @@ import CancelOrderButton from '@/components/account/CancelOrderButton';
 import ReorderButton from '@/components/account/ReorderButton';
 import OrderAttachments from '@/components/account/OrderAttachments';
 import OrderPaymentSection from '@/components/account/OrderPaymentSection';
+import CommissionWarning from '@/components/CommissionWarning';
 import productsData from '@/data/products.json';
 
 interface PageProps {
@@ -103,6 +104,9 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
   );
 
   const t = await getTranslations({ locale, namespace: 'account.orders' });
+  // Commission warning lives under the checkout namespace — one source of truth
+  // for the wording across checkout, email and this page.
+  const tc = await getTranslations({ locale, namespace: 'checkout.payment.commissionWarning' });
 
   // Build reorder items: enrich order_items with image/specification from products.json
   const productMap = new Map(productsData.products.map(p => [p.id, p]));
@@ -256,6 +260,8 @@ export default async function AccountOrderDetailPage({ params }: PageProps) {
               emphasis
             />
           </div>
+
+          <CommissionWarning title={tc('title')} body={tc('body')} className="mt-4" />
         </section>
 
         {/* Shipping address */}

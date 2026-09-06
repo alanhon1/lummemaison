@@ -48,7 +48,7 @@
       "stateProvince": "Estado / Provincia",
       "postalCode": "Código postal",
       "fedexAccount": "Número de cuenta FedEx (opcional)",
-      "fedexHint": "Solo EE. UU. Sin cuenta FedEx, el envío es de $65 vía FedEx Priority en lugar de $35."
+      "fedexHint": "Solo EE. UU. y territorios de EE. UU. (Puerto Rico, Guam, Islas Vírgenes de EE. UU., Samoa Americana, Islas Marianas del Norte). Sin cuenta FedEx, el envío es de $65 vía FedEx Priority en lugar de $35."
     },
     "completeProfile": {
       "pageTitle": "Complete su cuenta",
@@ -195,7 +195,7 @@
       "stateProvince": "Estado / Provincia",
       "postalCode": "Código postal",
       "fedexAccount": "Número de cuenta FedEx (opcional)",
-      "fedexHint": "Clientes de EE. UU.: proporcione su número de cuenta FedEx. Sin cuenta, el envío es de $65 vía FedEx Priority en lugar de $35.",
+      "fedexHint": "Clientes de EE. UU. y territorios de EE. UU. (Puerto Rico, Guam, Islas Vírgenes de EE. UU., Samoa Americana, Islas Marianas del Norte): proporcione su número de cuenta FedEx. Sin cuenta, el envío es de $65 vía FedEx Priority en lugar de $35.",
       "notes": "Notas del pedido (opcional)",
       "notesHint": "Cualquier cosa que desee que sepamos — lo veremos antes del envío.",
       "notesPlaceholder": "p. ej. empacar rellenos por separado, código HS aduanero o valor declarado, excluir mascarillas, etc.",
@@ -225,7 +225,7 @@
       "continue": "Continuar al pago",
       "shipping": {
         "heading": "Envío",
-        "body": "Ofrecemos envío mundial a tarifa plana de $35 desde Corea del Sur vía FedEx.\n\nClientes de EE. UU.: se requiere un número de cuenta FedEx. Crearlo es gratis y fácil. Sin cuenta FedEx, el envío está disponible vía FedEx Priority a $65.\n\nLos transportistas varían por país (FedEx, DHL, EMS, UPS según el destino). Se seleccionará automáticamente el transportista más confiable para su país.\n\n📦 El envío cubre solo la entrega. Los aranceles de importación, impuestos y tarifas los fija la aduana de su país y los factura por separado el transportista (FedEx/DHL). Estos cargos son responsabilidad del cliente. Desde el 29 de agosto de 2025, EE. UU. los aplica a todas las importaciones — los clientes de EE. UU. deben esperar una pequeña factura de aduana por separado tras la entrega."
+        "body": "Ofrecemos envío mundial a tarifa plana de $35 desde Corea del Sur vía FedEx.\n\nClientes de EE. UU., incluidos Puerto Rico, Guam, las Islas Vírgenes de EE. UU., Samoa Americana y las Islas Marianas del Norte: se requiere un número de cuenta FedEx. Crearlo es gratis y fácil. Sin cuenta FedEx, el envío está disponible vía FedEx Priority a $65.\n\nLos transportistas varían por país (FedEx, DHL, EMS, UPS según el destino). Se seleccionará automáticamente el transportista más confiable para su país.\n\n📦 El envío cubre solo la entrega. Los aranceles de importación, impuestos y tarifas los fija la aduana de su país y los factura por separado el transportista (FedEx/DHL). Estos cargos son responsabilidad del cliente. Desde el 29 de agosto de 2025, EE. UU. los aplica a todas las importaciones — los clientes de EE. UU. deben esperar una pequeña factura de aduana por separado tras la entrega."
       },
       "delivery": {
         "heading": "Tiempo de entrega",
@@ -254,6 +254,10 @@
       "shippingFlat": "$35 tarifa plana — FedEx",
       "shippingUsaNoFedex": "$65 — FedEx Priority (sin cuenta FedEx)",
       "total": "Total",
+      "commissionWarning": {
+        "title": "Su pedido NO se enviará hasta que la comisión esté pagada en su totalidad.",
+        "body": "Todas las comisiones de transferencia y procesamiento (Wise o banco) son pagadas por el remitente. El monto neto que recibimos debe ser igual al total de su pedido. Si la comisión se deduce de su transferencia, su pedido quedará retenido hasta que se pague la diferencia."
+      },
       "wise": {
         "heading": "Wise — Transferencia bancaria",
         "accountName": "Nombre de cuenta",
@@ -330,7 +334,7 @@
         "badge": "Más rápido",
         "noDiscount": "Sin descuento aplicado",
         "shipping": "Envío {amount}",
-        "shippingNote": "$35 — EE. UU. sin cuenta FedEx: $65",
+        "shippingNote": "$35 — EE. UU. y territorios de EE. UU. sin cuenta FedEx: $65",
         "payToday": "Pague hoy, envío inmediato",
         "totalDueNow": "Total a pagar ahora",
         "cta": "Proceder al pago"

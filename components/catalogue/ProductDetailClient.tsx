@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { ShoppingBag, Check } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
+import { useProductCap } from '@/lib/cap-store';
 import { useCurrencyStore } from '@/lib/currency-store';
 import { localePath } from '@/lib/i18n';
 import { purchaseBlockReason, purchaseBlockLabel, type Product } from '@/lib/products';
@@ -12,12 +13,13 @@ import RequestModal from './RequestModal';
 
 export default function ProductDetailClient({
   product,
-  optionStock,
+  optionSoldOut: optionSoldOutMap,
 }: {
   product: Product;
-  // Live stock per purchase option (key '' = optionless). Server-provided so the
-  // gate is correct before any payment. Missing key ⇒ treat as 0 (sold out).
-  optionStock: Record<string, number>;
+  // Sold-out flag per purchase option (key '' = optionless). Server-provided so
+  // the gate is correct before any payment, and deliberately a BOOLEAN — the
+  // underlying count must never reach the browser. Missing key ⇒ sold out.
+  optionSoldOut: Record<string, boolean>;
 }) {
   const t = useTranslations('product');
   const tCat = useTranslations('catalogue');
@@ -38,24 +40,25 @@ export default function ProductDetailClient({
   // instead so we can gauge demand before restocking).
   const blockReason = purchaseBlockReason(product);
   const selectedKey = options.length > 0 ? (option || options[0]) : '';
-  const selectedStock = optionStock[selectedKey] ?? 0;
-  const optionSoldOut = (o: string) => (optionStock[o] ?? 0) <= 0;
-  const outOfStock = !blockReason && selectedStock <= 0;
+  const optionSoldOut = (o: string) => optionSoldOutMap[o] ?? true;
+  const outOfStock = !blockReason && optionSoldOut(selectedKey);
   const cannotBuy = blockReason !== null || outOfStock;
   const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : outOfStock ? 'Out of stock' : '';
 
   // How many of the SELECTED line are already in the cart, and whether that
-  // already uses up the cap. selectedStock is the orderableCap (server-capped),
-  // so a wonder/unknown/notForSale option is selectedStock === 0 ⇒ outOfStock.
+  // already uses up the limit. The limit itself is evaluated server-side and
+  // comes back as booleans only (see /api/products/caps) — `undefined` while
+  // loading, which must never clamp.
   const inCart = items.find(
     i => i.id === product.id && (i.option ?? '') === selectedKey,
   )?.quantity ?? 0;
-  const atCap = !cannotBuy && selectedStock > 0 && inCart >= selectedStock;
-  // The admin per-order cap is the binding constraint when it equals the
-  // orderableCap (i.e. real stock is not the tighter limit). Drives a
-  // "Limited to N per order" message distinct from the low-stock one.
+  const cap = useProductCap(product.id, selectedKey, inCart);
+  const atCap = !cannotBuy && cap?.canAdd === false;
+  // The admin per-order cap is a policy number, not inventory, so it stays
+  // visible — it drives a "Limited to N per order" message distinct from the
+  // availability one.
   const maxPerOrder = product.max_per_order ?? 0;
-  const perOrderBinding = maxPerOrder > 0 && selectedStock === maxPerOrder;
+  const perOrderBinding = cap?.limitReason === 'perOrder';
 
   function handleAddToCart() {
     if (cannotBuy || atCap) return;
@@ -115,7 +118,7 @@ export default function ProductDetailClient({
         {cannotBuy ? (
           <>{blockLabel}</>
         ) : atCap ? (
-          <>Max in cart ({selectedStock})</>
+          <>Max in cart</>
         ) : added ? (
           <>
             <Check size={16} />
@@ -153,7 +156,7 @@ export default function ProductDetailClient({
               </>
             ) : (
               <>
-                <span className="font-semibold">Only {selectedStock} in stock</span> — that&apos;s all
+                <span className="font-semibold">Maximum available reached</span> — that&apos;s all
                 in your cart. Need more? Make a request and we&apos;ll plan a restock.
               </>
             )}

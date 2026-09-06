@@ -18,7 +18,7 @@ export default function CartPageClient() {
   const locale = useLocale();
   const { items, removeItem, updateQuantity, clearCart, totalPrice } = useCartStore();
   const { isBlocked, blockLabelOf, anyBlocked } = useCartAvailability();
-  const { capOf, perOrderOf } = useCartCaps();
+  const { canAdd, mustReduce, perOrderOf, answerOf } = useCartCaps();
   const [requestItem, setRequestItem] = useState<CartItem | null>(null);
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
@@ -42,12 +42,13 @@ export default function CartPageClient() {
       <div className="order-2 lg:order-1 lg:col-span-2 space-y-3">
         {items.map(item => {
           const lineKey = cartLineKey(item);
-          const cap = capOf(item);
-          const atCap = typeof cap === 'number' && item.quantity >= cap;
-          // The per-order limit is the binding constraint when it equals the
-          // effective cap (i.e. stock isn't the tighter of the two).
+          // Quantity-relative limits, no stock number involved: the server says
+          // whether one more may be added and which constraint binds.
+          // `undefined` (still loading) must never clamp, so atCap stays false.
+          const atCap = canAdd(item) === false;
+          const overCap = mustReduce(item);
           const perOrder = perOrderOf(item);
-          const perOrderBinding = typeof perOrder === 'number' && perOrder > 0 && cap === perOrder;
+          const perOrderBinding = answerOf(item)?.limitReason === 'perOrder';
           return (
           <div key={lineKey} className="flex gap-4 p-4 bg-white border border-bone rounded-sm">
             <div className="w-20 h-20 bg-cream flex-shrink-0 flex items-center justify-center">
@@ -90,7 +91,14 @@ export default function CartPageClient() {
                   <Plus size={11} />
                 </button>
               </div>
-              {atCap && (
+              {overCap ? (
+                // The line is above what we can supply (availability dropped
+                // after it was added). We say that it must come down, never by
+                // how much — each "−" re-checks and the notice clears itself.
+                <p className="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-red-600">
+                  Availability changed · Please reduce this quantity
+                </p>
+              ) : atCap && (
                 perOrderBinding ? (
                   <p className="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-mist">
                     Limited to {perOrder} per order
@@ -101,7 +109,7 @@ export default function CartPageClient() {
                     onClick={() => setRequestItem(item)}
                     className="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-gold-dark hover:text-gold"
                   >
-                    Only {cap} in stock · Request more
+                    Maximum available reached · Request more
                   </button>
                 )
               )}

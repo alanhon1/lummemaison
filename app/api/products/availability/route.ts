@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAllProducts } from '@/lib/catalogue';
 import { isAvailableForOrder } from '@/lib/products';
-import { getStockMap } from '@/lib/products/stock';
+import { getAvailableMap } from '@/lib/products/stock';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,17 +27,18 @@ export async function GET(req: NextRequest) {
   }
 
   const wanted = new Set(ids);
-  const [products, stockMap] = await Promise.all([getAllProducts(), getStockMap(ids)]);
+  const [products, availableMap] = await Promise.all([getAllProducts(), getAvailableMap(ids)]);
   const out: Record<string, { notForSale: boolean; outOfStock: boolean }> = {};
   for (const p of products) {
     if (wanted.has(p.id)) {
       // `outOfStock` here means "blocked from ordering": either the admin turned
-      // off Available-for-order, OR the real stock is 0 (sold out). Both disable
+      // off Available-for-order, OR nothing is AVAILABLE — stock minus units
+      // already reserved by open orders (migration 037). Both disable
       // the buy button and the cart/checkout, so a stock-0 line already sitting
       // in a cart is caught here too.
       out[String(p.id)] = {
         notForSale: !!p.notForSale,
-        outOfStock: !isAvailableForOrder(p) || (stockMap[p.id] ?? 0) <= 0,
+        outOfStock: !isAvailableForOrder(p) || (availableMap[p.id] ?? 0) <= 0,
       };
     }
   }

@@ -12,7 +12,7 @@ import { stageIndex, type OrderStatus } from '@/lib/orders/status';
 import { carrierLabel, carrierTrackUrl, isCarrierKey } from '@/lib/orders/carriers';
 import { sendShipmentEmail, sendCancellationEmail, sendDeliveryEmail, sendPaymentVerifiedEmail, sendLowStockAlert, sendPaymentOpenEmail, type QuoteEmailData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
-import { deductStockForItems, restoreStockForItems, getStockFlagsMap, stockKey } from '@/lib/products/stock';
+import { commitReservationForOrder, releaseReservationForOrder, reserveStockForOrder, restoreStockForItems, getStockFlagsMap, stockKey } from '@/lib/products/stock';
 import { sendOrderToOpsHub, sendStatusToOpsHub } from '@/lib/ops/ingest';
 
 const SHIPMENT_BUCKET = 'shipment-photos';
@@ -188,7 +188,13 @@ export async function updateOrderStatus(
           if (addMovErr) console.error('[stock] auto_add movement insert failed:', addMovErr.message);
         }
       }
-      const deductResult = await deductStockForItems(lines.map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option })));
+      // Convert this order's reservation into a real decrement — the units now
+      // physically leave the shelf. Orders placed before migration 037 hold no
+      // reservation; the RPC falls back to a plain decrement for them.
+      const deductResult = await commitReservationForOrder(
+        orderId,
+        lines.map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option })),
+      );
       if (!deductResult.ok) {
         return { ok: false, error: `Stock deduction failed: ${deductResult.error}` };
       }
@@ -224,6 +230,23 @@ export async function updateOrderStatus(
   // instead of the cancelled/0 row).
   if (nextStatus === 'cancelled' && current.status !== 'cancelled') {
     const wasStockDeducted = !isTestOrder && stageIndex(current.status) >= stageIndex('packaging');
+    // Cancelled BEFORE packing: no physical stock ever moved, but the order has
+    // been holding a reservation since checkout (migration 037). Release it so
+    // the units go back on sale immediately. No-op for orders placed before 037.
+    if (!isTestOrder && !wasStockDeducted) {
+      try {
+        const { data: items } = await supabase
+          .from('order_items')
+          .select('product_id, quantity, option')
+          .eq('order_id', orderId);
+        const typed = ((items ?? []) as Array<{ product_id: number; quantity: number; option: string | null }>)
+          .map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option ?? '' }));
+        const released = await releaseReservationForOrder(orderId, typed);
+        if (!released.ok) console.error('[stock] release on cancel failed for order', orderId, released.error);
+      } catch (e) {
+        console.error('[stock] release on cancel threw for order', orderId, e);
+      }
+    }
     if (wasStockDeducted) {
       try {
         const { data: items } = await supabase
@@ -275,6 +298,16 @@ export async function updateOrderStatus(
           const typed = (items as Array<{ product_id: number; quantity: number; option: string | null }>)
             .map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option ?? '' }));
           await restoreStockForItems(typed);
+          // The order is open again and sitting before packing, so it must go
+          // back to HOLDING its units rather than releasing them to other
+          // customers. Restore put the physical stock back; re-reserving leaves
+          // available (stock - reserved) exactly where it was before the
+          // rollback. Best-effort: a failure here only means the units are
+          // sellable again, which the packing guard still catches.
+          const rereserved = await reserveStockForOrder(orderId, typed);
+          if (!rereserved.ok) {
+            console.error('[stock] re-reserve after rollback failed for order', orderId, rereserved.error);
+          }
           // Mark the original deduction rows as 'cancelled' (greyed in History)…
           await supabase
             .from('stock_movements')
@@ -588,6 +621,25 @@ export async function openOrderPayment(orderId: number, shippingCents: number): 
     .update({ shipping_cents: Math.round(shippingCents), total_cents: newTotal, status: 'awaiting_payment' })
     .eq('id', orderId);
   if (updateErr) return { ok: false, error: updateErr.message };
+
+  // A quote_pending order holds NO reservation — it's a request, not a sale, and
+  // reserving on it would let unconverted quotes sit on inventory. Opening
+  // payment is the point it becomes a real commitment, so reserve now
+  // (migration 037). Not fatal if it fails: the admin has already quoted the
+  // customer, and the packing guard still blocks an uncovered pack.
+  const isTestOrder = String(o.order_number ?? '').toUpperCase().startsWith('TEST-');
+  if (!isTestOrder) {
+    const { data: quoteItems } = await supabase
+      .from('order_items')
+      .select('product_id, quantity, option')
+      .eq('order_id', orderId);
+    const typed = ((quoteItems ?? []) as Array<{ product_id: number; quantity: number; option: string | null }>)
+      .map(i => ({ product_id: i.product_id, quantity: i.quantity, option: i.option ?? '' }));
+    const reserved = await reserveStockForOrder(orderId, typed);
+    if (!reserved.ok) {
+      console.error('[stock] reserve on openOrderPayment failed', orderId, reserved.error);
+    }
+  }
 
   // Fire-and-forget payment-open email to the customer. Never throws.
   try {

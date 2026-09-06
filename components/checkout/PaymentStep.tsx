@@ -12,6 +12,7 @@ import { localePath } from '@/lib/i18n';
 import { highlightField } from '@/lib/checkout/highlightField';
 import { BULK_THRESHOLD_CENTS, bulkDiscountCents } from '@/lib/checkout/bulk';
 import CopyButton from './CopyButton';
+import CommissionWarning from '@/components/CommissionWarning';
 import WisePaymentInfo from './WisePaymentInfo';
 import BulkDiscountGate from './BulkDiscountGate';
 
@@ -207,6 +208,12 @@ export default function PaymentStep({ payment, serverError }: Props) {
           />
           <Row label={t('payment.total')} value={formatUSD(totalCents, locale)} strong />
         </div>
+
+        <CommissionWarning
+          title={t('payment.commissionWarning.title')}
+          body={t('payment.commissionWarning.body')}
+          className="mt-4"
+        />
       </div>
 
       {subtotalCents >= BULK_THRESHOLD_CENTS && bulkChoice === 'none' ? (

@@ -6,10 +6,15 @@ import { useCartStore, cartLineKey } from '@/lib/store';
 import { useCartCaps, useCapStore } from '@/lib/cap-store';
 import { capKey } from '@/lib/products/capKey';
 
-// Mounted once in the layout. When live caps load, it clamps any persisted cart
-// line whose quantity exceeds its orderableCap (a cap-0 line is removed, since
-// updateQuantity(<=0) drops the line) and shows a one-time notice. Only acts on
-// KNOWN numeric caps — a still-loading/failed cap (undefined) never clamps.
+// Mounted once in the layout. Clamps any persisted cart line that is above what
+// we can supply, and shows a one-time notice.
+//
+// The server never tells us HOW MANY are available (stock counts must not reach
+// the browser — see app/api/products/caps/route.ts), only that the line is over
+// the limit. So this steps the quantity down ONE at a time: each decrement
+// re-queries the line, and the loop converges — either `mustReduce` clears, or
+// the quantity reaches 0 and updateQuantity drops the line entirely. A line
+// whose answer is still loading (undefined) is never touched.
 export default function CartStockGuard() {
   const items = useCartStore(s => s.items);
   const updateQuantity = useCartStore(s => s.updateQuantity);
@@ -22,9 +27,11 @@ export default function CartStockGuard() {
   useEffect(() => {
     let changed = false;
     for (const item of items) {
-      const cap = map[capKey(item.id, item.option ?? '')];
-      if (typeof cap === 'number' && item.quantity > cap) {
-        updateQuantity(cartLineKey(item), cap); // cap 0 ⇒ line removed
+      const entry = map[capKey(item.id, item.option ?? '')];
+      // Only act on an answer computed for the quantity the line actually holds
+      // right now — a stale answer would step the line down too far.
+      if (entry && entry.forQuantity === item.quantity && entry.mustReduce) {
+        updateQuantity(cartLineKey(item), item.quantity - 1); // 0 ⇒ line removed
         changed = true;
       }
     }

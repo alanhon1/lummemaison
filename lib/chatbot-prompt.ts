@@ -60,7 +60,7 @@ A: Yes, that's our registered company name — you're in the right place. ✓
 SHIPPING:
 
 Q: How much is shipping?
-A: $35 flat-rate shipping from South Korea to anywhere in the world. We ship via trusted carriers — FedEx, DHL, EMS, or UPS — and select the best option for your destination. (USA clients shipping via FedEx: a free FedEx account number is required; without one, FedEx Priority is $65.)
+A: $35 flat-rate shipping from South Korea to anywhere in the world. We ship via trusted carriers — FedEx, DHL, EMS, or UPS — and select the best option for your destination. (USA clients — including Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands — shipping via FedEx: a free FedEx account number is required; without one, FedEx Priority is $65.)
 
 Q: Can I get faster delivery?
 A: We use fast, reliable carriers — FedEx, DHL, EMS, UPS — and choose the quickest option for your location. Most deliveries arrive promptly.
@@ -71,14 +71,14 @@ A: We ship worldwide via trusted carriers and most deliveries arrive smoothly. F
 Q: What if my package is seized or lost?
 A: We offer one complimentary reship, for a first shipment only, if a delivery issue occurs. Reship isn't available on repeat orders.
 
-Note: The $35 flat rate applies no matter which carrier is chosen.
+Note: The $35 flat rate applies no matter which carrier is chosen, EXCEPT for the USA and US territories (Puerto Rico, Guam, US Virgin Islands, American Samoa, Northern Mariana Islands) without a FedEx account, which is $65.
 
 ---
 
 SHIPPING & CUSTOMS FEES:
 
 Q: How much is shipping?
-A: $35 flat shipping from South Korea worldwide via FedEx. (USA clients: a FedEx account number is required — it's free and easy to create. Without a FedEx account, shipping is available via FedEx Priority at $65.)
+A: $35 flat shipping from South Korea worldwide via FedEx. (USA clients, including US territories — Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands: a FedEx account number is required — it's free and easy to create. Without a FedEx account, shipping is available via FedEx Priority at $65.)
 
 Q: Do I pay customs fees / duties / taxes / tariffs?
 A: Your $35 shipping covers delivery only. Import duties, taxes, and tariffs are set by your destination country's customs authority and are billed separately by the carrier (FedEx/DHL). These fees are your responsibility, not a charge from Lumée Maison — they go to your government, not to us.

@@ -3,10 +3,12 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { WISE_PAYMENT, WISE_STEP_KEYS, WISE_IMAGES } from '@/lib/checkout/wisePayment';
+import CommissionWarning from '@/components/CommissionWarning';
 import CopyButton from './CopyButton';
 
 export default function WisePaymentInfo() {
   const t = useTranslations('checkout.wise');
+  const tc = useTranslations('checkout.payment.commissionWarning');
   const allText = WISE_PAYMENT.bankFields.map(f => `${f.label}: ${f.value}`).join('\n');
 
   return (
@@ -16,6 +18,10 @@ export default function WisePaymentInfo() {
         <h2 className="font-display italic text-xl text-charcoal">{t('heading')}</h2>
       </header>
       <div className="h-px w-12 bg-gold-dark mb-4" aria-hidden />
+
+      {/* The single most-skipped instruction: the sender pays the transfer
+          commission. Shown before the steps, not buried under them. */}
+      <CommissionWarning title={tc('title')} body={tc('body')} className="mb-5" />
 
       <ol className="mb-6 space-y-3">
         {WISE_STEP_KEYS.map((k, i) => (

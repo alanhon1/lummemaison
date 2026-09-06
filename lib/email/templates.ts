@@ -128,6 +128,32 @@ export function contactMessageEmail(d: ContactMessageData): { subject: string; h
   return { subject, html, text };
 }
 
+// Hard warning that the Wise/bank transfer commission is the SENDER's to pay.
+// Customers routinely send the invoice total MINUS their bank's commission,
+// which leaves us short and stalls the shipment — so every email that asks for
+// money repeats it as a bordered red callout, never as fine print. Emails are
+// English-only (no locale is carried into the templates), matching every other
+// template here. Kept in sync with the on-site wording in
+// messages/*.json → checkout.payment.commissionWarning.
+const COMMISSION_WARNING_TITLE =
+  'Orders will NOT be shipped until the commission fee is paid in full.';
+const COMMISSION_WARNING_BODY =
+  'All transfer and processing fees (Wise or bank) are paid by the sender. The net amount we receive must equal your order total. If the fee is deducted from your transfer, your order is held until the difference is paid.';
+
+const commissionWarningHtml = `
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0 0;">
+            <tr><td style="padding:14px 16px;background:#fef2f2;border:2px solid #f87171;">
+              <p style="margin:0;font-size:14px;font-weight:700;color:#991b1b;line-height:1.5;">&#9888; ${escapeHtml(COMMISSION_WARNING_TITLE)}</p>
+              <p style="margin:8px 0 0;font-size:13px;color:#b91c1c;line-height:1.6;">${escapeHtml(COMMISSION_WARNING_BODY)}</p>
+            </td></tr>
+          </table>`;
+
+const commissionWarningTextLines = [
+  '',
+  '!! ' + COMMISSION_WARNING_TITLE,
+  COMMISSION_WARNING_BODY,
+];
+
 function formatAddressLines(addr: OrderShippingAddress): string[] {
   const lines: string[] = [];
   lines.push(addr.street);
@@ -223,6 +249,8 @@ function receiptEmail(order: OrderData): { subject: string; html: string; text: 
             <tfoot>${totalsRows.join('')}</tfoot>
           </table>
 
+          ${commissionWarningHtml}
+
           ${shippingBlock}
 
           <p style="margin:32px 0 8px;font-size:15px;line-height:1.6;">We appreciate your trust in Lumée Maison and look forward to delivering your order. If you have any questions, please reply to this email.</p>
@@ -257,6 +285,7 @@ function receiptEmail(order: OrderData): { subject: string; html: string; text: 
   }
   if (order.shipping !== undefined) textLines.push(`  Shipping: ${formatUSD(order.shipping, currency)}`);
   textLines.push(`  Total:    ${formatUSD(order.total, currency)}`);
+  textLines.push(...commissionWarningTextLines);
   if (order.shippingAddress) {
     textLines.push('', 'Shipping to:');
     textLines.push(`  ${order.customerName}`);
@@ -350,6 +379,8 @@ export function customerEmail(order: OrderData): { subject: string; html: string
             <tfoot>${totalsRows.join('')}</tfoot>
           </table>
 
+          ${commissionWarningHtml}
+
           ${shippingBlock}
 
           <h3 style="font-family:Georgia,serif;font-style:italic;color:#3a342c;margin:32px 0 12px;">Payment instructions</h3>
@@ -428,6 +459,7 @@ export function customerEmail(order: OrderData): { subject: string; html: string
   }
   if (order.shipping !== undefined) textLines.push(`  Shipping: ${formatUSD(order.shipping, currency)}`);
   textLines.push(`  Total:    ${formatUSD(order.total, currency)}`);
+  textLines.push(...commissionWarningTextLines);
   if (order.shippingAddress) {
     textLines.push('');
     textLines.push('Shipping to:');
@@ -1268,7 +1300,9 @@ export function paymentOpenEmail(order: QuoteEmailData): { subject: string; html
           <p style="margin:0 0 4px;font-size:13px;color:#9a8e7e;text-transform:uppercase;letter-spacing:2px;">Total to pay</p>
           <p style="margin:0 0 24px;font-size:26px;font-weight:700;color:#3a342c;">${formatUSD(order.totalCents)}</p>
 
-          <p style="margin:0 0 16px;"><a href="${orderUrl}" style="display:inline-block;padding:12px 28px;background:#c9a875;color:#ffffff;text-decoration:none;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;">View Your Order &rarr;</a></p>
+          ${commissionWarningHtml}
+
+          <p style="margin:24px 0 16px;"><a href="${orderUrl}" style="display:inline-block;padding:12px 28px;background:#c9a875;color:#ffffff;text-decoration:none;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;">View Your Order &rarr;</a></p>
           <p style="margin:0 0 24px;font-size:13px;color:#6b6157;">Or copy this link: <span style="word-break:break-all;color:#7a5a3a;">${escapeHtml(orderUrl)}</span></p>
 
           <h3 style="font-family:Georgia,serif;font-style:italic;color:#3a342c;margin:28px 0 12px;">Pay via Wise (Bank Transfer)</h3>
@@ -1311,6 +1345,7 @@ export function paymentOpenEmail(order: QuoteEmailData): { subject: string; html
     'Your personalised order total is ready, including the 15% bulk discount and shipping.',
     '',
     `Total to pay: ${formatUSD(order.totalCents)}`,
+    ...commissionWarningTextLines,
     '',
     `View your order: ${orderUrl}`,
     '',

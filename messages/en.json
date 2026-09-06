@@ -48,7 +48,7 @@
       "stateProvince": "State / Province",
       "postalCode": "ZIP / Postal code",
       "fedexAccount": "FedEx account number (optional)",
-      "fedexHint": "USA only. Without a FedEx account, shipping is $65 via FedEx Priority instead of $35."
+      "fedexHint": "USA and US territories (Puerto Rico, Guam, USVI, American Samoa, N. Mariana Is.) only. Without a FedEx account, shipping is $65 via FedEx Priority instead of $35."
     },
     "completeProfile": {
       "pageTitle": "Finish your account",
@@ -195,7 +195,7 @@
       "stateProvince": "State / Province",
       "postalCode": "ZIP / Postal code",
       "fedexAccount": "FedEx account number (optional)",
-      "fedexHint": "USA customers: please provide your FedEx account number. Without one, shipping is $65 via FedEx Priority instead of $35.",
+      "fedexHint": "USA and US territory customers (Puerto Rico, Guam, USVI, American Samoa, N. Mariana Is.): please provide your FedEx account number. Without one, shipping is $65 via FedEx Priority instead of $35.",
       "notes": "Order notes (optional)",
       "notesHint": "Anything you'd like us to know — we'll see it before shipping.",
       "notesPlaceholder": "e.g. pack fillers separately, customs HS code or declared value, exclude masks, etc.",
@@ -225,7 +225,7 @@
       "continue": "Continue to payment",
       "shipping": {
         "heading": "Shipping",
-        "body": "We offer $35 flat shipping from South Korea worldwide via FedEx.\n\nUSA clients: a FedEx account number is required. Creating one is free and easy. Without a FedEx account, shipping is available via FedEx Priority at $65.\n\nShipping carriers vary by country (FedEx, DHL, EMS, UPS depending on destination). The most reliable carrier for your country will be used automatically.\n\n📦 Shipping covers delivery only. Import duties, taxes, and tariffs are set by your country's customs and billed separately by the carrier (FedEx/DHL). These fees are the customer's responsibility. Since Aug 29, 2025, the US applies these on all imports — US clients should expect a small separate customs bill after delivery."
+        "body": "We offer $35 flat shipping from South Korea worldwide via FedEx.\n\nUSA clients — including Puerto Rico, Guam, the US Virgin Islands, American Samoa and the Northern Mariana Islands — a FedEx account number is required. Creating one is free and easy. Without a FedEx account, shipping is available via FedEx Priority at $65.\n\nShipping carriers vary by country (FedEx, DHL, EMS, UPS depending on destination). The most reliable carrier for your country will be used automatically.\n\n📦 Shipping covers delivery only. Import duties, taxes, and tariffs are set by your country's customs and billed separately by the carrier (FedEx/DHL). These fees are the customer's responsibility. Since Aug 29, 2025, the US applies these on all imports — US clients should expect a small separate customs bill after delivery."
       },
       "delivery": {
         "heading": "Delivery time",
@@ -254,6 +254,10 @@
       "shippingFlat": "$35 flat — FedEx",
       "shippingUsaNoFedex": "$65 — FedEx Priority (no FedEx account)",
       "total": "Total",
+      "commissionWarning": {
+        "title": "Orders will NOT be shipped until the commission fee is paid in full.",
+        "body": "All transfer and processing fees (Wise or bank) are paid by the sender. The net amount we receive must equal your order total. If the fee is deducted from your transfer, your order is held until the difference is paid."
+      },
       "wise": {
         "heading": "Wise — Bank transfer",
         "accountName": "Account name",
@@ -330,7 +334,7 @@
         "badge": "Fastest",
         "noDiscount": "No discount applied",
         "shipping": "Shipping {amount}",
-        "shippingNote": "$35 — US without a FedEx account: $65",
+        "shippingNote": "$35 — USA and US territories without a FedEx account: $65",
         "payToday": "Pay today, ships right away",
         "totalDueNow": "Total due now",
         "cta": "Proceed to payment"

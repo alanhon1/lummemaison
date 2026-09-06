@@ -48,7 +48,7 @@
       "stateProvince": "État / Province",
       "postalCode": "Code postal",
       "fedexAccount": "Numéro de compte FedEx (facultatif)",
-      "fedexHint": "États-Unis uniquement. Sans compte FedEx, l'expédition est de 65 $ via FedEx Priority au lieu de 35 $."
+      "fedexHint": "États-Unis et territoires américains (Porto Rico, Guam, Îles Vierges américaines, Samoa américaines, Îles Mariannes du Nord) uniquement. Sans compte FedEx, l'expédition est de 65 $ via FedEx Priority au lieu de 35 $."
     },
     "completeProfile": {
       "pageTitle": "Finalisez votre compte",
@@ -195,7 +195,7 @@
       "stateProvince": "État / Province",
       "postalCode": "Code postal",
       "fedexAccount": "Numéro de compte FedEx (facultatif)",
-      "fedexHint": "Clients américains : veuillez fournir votre numéro de compte FedEx. Sans compte, l'expédition est de 65 $ via FedEx Priority au lieu de 35 $.",
+      "fedexHint": "Clients aux États-Unis et dans les territoires américains (Porto Rico, Guam, Îles Vierges américaines, Samoa américaines, Îles Mariannes du Nord) : veuillez fournir votre numéro de compte FedEx. Sans compte, l'expédition est de 65 $ via FedEx Priority au lieu de 35 $.",
       "notes": "Notes de commande (facultatif)",
       "notesHint": "Tout ce que vous souhaitez nous faire savoir — nous le verrons avant l'expédition.",
       "notesPlaceholder": "ex. emballer les produits séparément, code HS douanier ou valeur déclarée, exclure les masques, etc.",
@@ -225,7 +225,7 @@
       "continue": "Continuer vers le paiement",
       "shipping": {
         "heading": "Livraison",
-        "body": "Nous proposons une livraison mondiale à forfait de 35 $ depuis la Corée du Sud via FedEx.\n\nClients américains : un numéro de compte FedEx est requis. La création est gratuite et simple. Sans compte FedEx, l'expédition est disponible via FedEx Priority à 65 $.\n\nLes transporteurs varient selon les pays (FedEx, DHL, EMS, UPS selon la destination). Le transporteur le plus fiable pour votre pays sera automatiquement sélectionné.\n\n📦 Les frais d'expédition couvrent uniquement la livraison. Les droits de douane, taxes et tarifs sont fixés par la douane de votre pays et facturés séparément par le transporteur (FedEx/DHL). Ces frais sont à la charge du client. Depuis le 29 août 2025, les États-Unis les appliquent à toutes les importations — les clients américains doivent s'attendre à une petite facture de douane distincte après la livraison."
+        "body": "Nous proposons une livraison mondiale à forfait de 35 $ depuis la Corée du Sud via FedEx.\n\nClients américains — y compris Porto Rico, Guam, les Îles Vierges américaines, les Samoa américaines et les Îles Mariannes du Nord — un numéro de compte FedEx est requis. La création est gratuite et simple. Sans compte FedEx, l'expédition est disponible via FedEx Priority à 65 $.\n\nLes transporteurs varient selon les pays (FedEx, DHL, EMS, UPS selon la destination). Le transporteur le plus fiable pour votre pays sera automatiquement sélectionné.\n\n📦 Les frais d'expédition couvrent uniquement la livraison. Les droits de douane, taxes et tarifs sont fixés par la douane de votre pays et facturés séparément par le transporteur (FedEx/DHL). Ces frais sont à la charge du client. Depuis le 29 août 2025, les États-Unis les appliquent à toutes les importations — les clients américains doivent s'attendre à une petite facture de douane distincte après la livraison."
       },
       "delivery": {
         "heading": "Délai de livraison",
@@ -254,6 +254,10 @@
       "shippingFlat": "35 $ forfait — FedEx",
       "shippingUsaNoFedex": "65 $ — FedEx Priority (sans compte FedEx)",
       "total": "Total",
+      "commissionWarning": {
+        "title": "Votre commande ne sera PAS expédiée tant que les frais de commission ne sont pas intégralement payés.",
+        "body": "Tous les frais de virement et de traitement (Wise ou banque) sont à la charge de l'expéditeur. Le montant net que nous recevons doit être égal au total de votre commande. Si les frais sont déduits de votre virement, votre commande est suspendue jusqu'au paiement de la différence."
+      },
       "wise": {
         "heading": "Wise — Virement bancaire",
         "accountName": "Nom du compte",
@@ -330,7 +334,7 @@
         "badge": "Le plus rapide",
         "noDiscount": "Aucune réduction appliquée",
         "shipping": "Livraison {amount}",
-        "shippingNote": "35 $ — US sans compte FedEx : 65 $",
+        "shippingNote": "35 $ — États-Unis et territoires américains sans compte FedEx : 65 $",
         "payToday": "Payez aujourd'hui, expédition immédiate",
         "totalDueNow": "Total dû maintenant",
         "cta": "Procéder au paiement"

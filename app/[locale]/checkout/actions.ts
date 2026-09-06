@@ -5,10 +5,10 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { createClient, createServiceClient } from '@/lib/supabase/server';
 import { getAllProducts } from '@/lib/catalogue';
-import { getStockFlagsMap, orderableCap, perOrderLimit, stockKey } from '@/lib/products/stock';
+import { getStockFlagsMap, orderableCap, perOrderLimit, reserveStockForOrder, stockKey } from '@/lib/products/stock';
 import { localePath } from '@/lib/i18n';
 import type { ShippingSnapshot, DisclaimerAcceptance } from '@/lib/checkout/state';
-import { computeShippingCents, isValidFedexAccount } from '@/lib/checkout/state';
+import { computeShippingCents, isUsShippingZone, isValidFedexAccount } from '@/lib/checkout/state';
 import { sendOrderEmails, sendQuoteEmails, type OrderData } from '@/lib/email/sendOrderEmails';
 import { findCountry } from '@/lib/countries';
 import { formatOrderNumber } from '@/lib/orders/orderNumber';
@@ -223,12 +223,14 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
         const perOrder = perOrderLimit(product);
         const name = l.product_name + (l.option ? ` (${l.option})` : '');
         if (cap <= 0) return `${name}: no longer available`;
-        // When the per-order limit is the binding cap, say so — "only N in
-        // stock" would be misleading (there may be plenty in stock).
+        // The per-order limit is an admin policy number and stays visible —
+        // saying "we can't supply that many" would be misleading when there is
+        // plenty in stock. The availability cap itself is NEVER quoted: stock
+        // counts must not reach the customer (they only see "reduce this line").
         if (perOrder !== null && cap === perOrder) {
           return `${name}: limited to ${perOrder} per order (your cart has ${l.quantity})`;
         }
-        return `${name}: only ${cap} available (your cart has ${l.quantity})`;
+        return `${name}: we can't supply the quantity in your cart — please reduce it`;
       })
       .join('; ');
     return {
@@ -330,7 +332,7 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
         customer_name: s.fullName,
         customer_email: s.email,
         customer_phone: s.phone,
-        fedex_account: s.country === 'US' && isValidFedexAccount(s.fedexAccount) ? s.fedexAccount.trim() : null,
+        fedex_account: isUsShippingZone(s.country) && isValidFedexAccount(s.fedexAccount) ? s.fedexAccount.trim() : null,
         payment_method: input.paymentMethod ?? null,
         notes: notes || null,
         discount_code: BULK_MARKER,
@@ -437,7 +439,7 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
       // Only persist a real 9-digit FedEx account; junk is dropped to null so it
       // can never sit on the order or affect pricing (shipping is computed by
       // computeShippingCents, which applies the same validity check).
-      fedex_account: s.country === 'US' && isValidFedexAccount(s.fedexAccount) ? s.fedexAccount.trim() : null,
+      fedex_account: isUsShippingZone(s.country) && isValidFedexAccount(s.fedexAccount) ? s.fedexAccount.trim() : null,
       payment_method: input.paymentMethod ?? null,
       notes: notes || null,
       discount_code: discountCode || null,
@@ -471,8 +473,36 @@ export async function createOrder(input: CreateOrderInput, opts?: { quote?: bool
     return { ok: false, error: itemsError.message };
   }
 
-  // Stock is deducted when admin confirms payment (payment_verified step),
-  // not at order creation — see app/manzura/orders/actions.ts.
+  // RESERVE STOCK NOW (migration 037). Previously stock only moved when the
+  // order reached packing, so units stayed on sale between checkout and
+  // fulfilment and the same item could be sold several times over. The RPC is
+  // atomic across all lines and gates on stock - reserved, so concurrent orders
+  // for the last unit can't both succeed. Physical `stock` is untouched until
+  // packing — the reservation is converted there.
+  //
+  // TEST orders never touch real inventory, matching every other stock path.
+  if (!isTest) {
+    const reservation = await reserveStockForOrder(
+      order.id as number,
+      pricedItems.map(l => ({
+        product_id: l.product_id,
+        quantity: l.quantity,
+        option: l.option?.trim() || '',
+      })),
+    );
+    if (!reservation.ok) {
+      // Nothing was reserved (the RPC is all-or-nothing), so roll the order back
+      // entirely rather than leaving an order that holds no stock. order_items
+      // cascade on delete.
+      await admin.from('orders').delete().eq('id', order.id);
+      console.error('[checkout] stock reservation failed', order.id, reservation.error);
+      return {
+        ok: false,
+        error:
+          'Sorry — one of your items just sold out while you were checking out. Please review your cart and try again.',
+      };
+    }
+  }
 
   const orderSeq = (order.order_seq as number | null) ?? undefined;
   const viewToken = order.view_token as string;

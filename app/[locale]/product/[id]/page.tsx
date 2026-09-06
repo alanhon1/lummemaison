@@ -36,12 +36,14 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
   const t = await getTranslations({ locale, namespace: 'product' });
   const category = getCategoryById(product.categoryId);
 
-  // Live per-option stock (page is force-dynamic, so this is fresh each load).
-  // Drives the buy gate so a sold-out option is disabled BEFORE the customer
-  // pays — payment is off-platform, so a paid-then-rejected order is real harm.
+  // Live per-option availability (page is force-dynamic, so this is fresh each
+  // load). Drives the buy gate so a sold-out option is disabled BEFORE the
+  // customer pays — payment is off-platform, so a paid-then-rejected order is
+  // real harm. Reduced to a BOOLEAN here: the count is computed server-side and
+  // never crosses into the client payload.
   const optionStockRows = await getProductOptionStock(product.id);
-  const optionStock: Record<string, number> = Object.fromEntries(
-    optionStockRows.map(r => [r.option, orderableCap(product, r)]),
+  const optionSoldOut: Record<string, boolean> = Object.fromEntries(
+    optionStockRows.map(r => [r.option, orderableCap(product, r) <= 0]),
   );
 
   // Related: score by shared brand prefix, price proximity, shared tags.
@@ -177,7 +179,7 @@ export default async function ProductPage({ params }: { params: Promise<{ locale
             <ProductPrice price={product.price} originalPrice={product.originalPrice} moq={product.moq} moqLabel={t('units')} />
 
             <div className="mt-6 mb-8">
-              <ProductDetailClient product={product} optionStock={optionStock} />
+              <ProductDetailClient product={product} optionSoldOut={optionSoldOut} />
             </div>
 
             {product.specification && (

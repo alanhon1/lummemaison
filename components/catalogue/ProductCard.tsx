@@ -6,7 +6,7 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { ShoppingBag } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
-import { useProductStock } from '@/lib/stock-store';
+import { useProductCap } from '@/lib/cap-store';
 import { useCurrencyStore, formatPrice } from '@/lib/currency-store';
 import { getLocalizedSpecification, getGroupRange, purchaseBlockReason, purchaseBlockLabel, type Product } from '@/lib/products';
 import { localePath } from '@/lib/i18n';
@@ -82,21 +82,17 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   const { addItem, items } = useCartStore();
   const { currency } = useCurrencyStore();
   const [requestOpen, setRequestOpen] = useState(false);
-  const [lastOne, setLastOne] = useState(false);
+  const [justAdded, setJustAdded] = useState(false);
   const [perOrderHit, setPerOrderHit] = useState(false);
   // Purchase is gated by the "Not for sale" flag, the "Available for order"
-  // switch (purchaseBlockReason), AND real stock. A single product at 0 stock is
-  // out of stock — the quick-add becomes "Make a request" instead. Group cards
-  // aggregate variants so we don't stock-gate them here.
+  // switch (purchaseBlockReason), AND availability. A single product with
+  // nothing available is out of stock — the quick-add becomes "Make a request"
+  // instead. Group cards aggregate variants so we don't stock-gate them here.
   const blockReason = purchaseBlockReason(product);
-  const stock = useProductStock(product.id);
   const tagChips = matchedTags(product.tags, searchQuery);
   const pct = discountPct(product);
 
   const isGroup = variantCount > 1;
-  const outOfStock = !blockReason && !isGroup && stock !== undefined && stock <= 0;
-  const cannotBuy = blockReason !== null || outOfStock;
-  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : outOfStock ? 'Out of stock' : '';
   const displayName = isGroup && product.groupName ? product.groupName : product.name;
   const displayImage = isGroup && product.groupImage ? product.groupImage : product.image;
   const range = isGroup && product.groupId ? getGroupRange(product.groupId) : null;
@@ -110,16 +106,23 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
   // be tapped past the stock count.
   const inCart = items.find(i => i.id === product.id && !i.option)?.quantity ?? 0;
 
-  // Optional admin per-order cap, and the effective quick-add cap = the tighter
-  // of live stock and the per-order limit. `perOrderBinding` is true when the
-  // per-order cap — not stock — is what's holding it back (so we show that
-  // message instead of a restock request).
-  const maxPerOrder = typeof product.max_per_order === 'number' && product.max_per_order > 0 ? product.max_per_order : undefined;
-  const effectiveCap =
-    maxPerOrder === undefined ? stock
-    : stock === undefined ? maxPerOrder
-    : Math.min(stock, maxPerOrder);
-  const perOrderBinding = maxPerOrder !== undefined && (stock === undefined || stock >= maxPerOrder);
+  // Purchase limits, quantity-relative and free of any stock number: the server
+  // answers "may one more be added?" and which constraint binds, never how many
+  // are left. `undefined` while loading — treated as "allow", since createOrder
+  // is the authoritative guard.
+  const cap = useProductCap(product.id, '', inCart);
+  const atLimit = cap ? !cap.canAdd : false;
+  const perOrderBinding = cap?.limitReason === 'perOrder';
+  const outOfStock = !blockReason && !isGroup && (cap?.outOfStock ?? false);
+  const cannotBuy = blockReason !== null || outOfStock;
+  const blockLabel = blockReason ? purchaseBlockLabel(blockReason) : outOfStock ? 'Out of stock' : '';
+
+  // Banners are DERIVED, not set from an effect: `justAdded` is flipped by the
+  // click (an event), the refreshed cap answer arrives a moment later, and the
+  // message shows only while both hold. That way we never need the stock number
+  // to know the customer just took the last unit we allow.
+  const showLastOne = justAdded && atLimit && !perOrderBinding;
+  const showPerOrderHit = perOrderHit || (justAdded && atLimit && perOrderBinding);
 
   function handleAddToCart(e: React.MouseEvent) {
     // Products with purchase options (e.g. needle length) can't be quick-added
@@ -130,7 +133,7 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
     e.stopPropagation();
     if (blockReason) return; // not for sale / unavailable — no action
     if (outOfStock) { setRequestOpen(true); return; } // out of stock → request demand
-    if (effectiveCap !== undefined && inCart >= effectiveCap) {
+    if (atLimit) {
       // Cart already holds all we allow for this line.
       if (perOrderBinding) { setPerOrderHit(true); setTimeout(() => setPerOrderHit(false), 4000); return; }
       setRequestOpen(true); // stock-limited → request more
@@ -143,11 +146,11 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       image: product.image,
       specification: product.specification,
     });
-    if (effectiveCap !== undefined && inCart + 1 >= effectiveCap) {
-      // They just took the last unit we allow — say why.
-      if (perOrderBinding) { setPerOrderHit(true); setTimeout(() => setPerOrderHit(false), 4000); }
-      else { setLastOne(true); setTimeout(() => setLastOne(false), 4000); }
-    }
+    // The refreshed cap answer (the hook refetches as `inCart` changes) decides
+    // whether that was the last unit we allow; this just opens the window in
+    // which such a message may show.
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 4000);
   }
 
   if (layout === 'list') {
@@ -213,14 +216,14 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
       {requestOpen && (
         <RequestModal productId={product.id} productName={product.name} onClose={() => setRequestOpen(false)} />
       )}
-      {lastOne && (
+      {showLastOne && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70] rounded-md bg-charcoal px-4 py-3 text-xs text-cream shadow-lg">
-          Only {stock} in stock — that was the last one. It&apos;s all in your cart now.
+          Maximum available reached — that&apos;s all we can supply right now, and it&apos;s in your cart.
         </div>
       )}
-      {perOrderHit && (
+      {showPerOrderHit && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70] rounded-md bg-charcoal px-4 py-3 text-xs text-cream shadow-lg">
-          Limited to {maxPerOrder} per order — that&apos;s all in your cart. You can order again later.
+          Limited to {cap?.perOrder} per order — that&apos;s all in your cart. You can order again later.
         </div>
       )}
       </>
@@ -317,14 +320,14 @@ export default function ProductCard({ product, layout = 'grid', variantCount = 1
     {requestOpen && (
       <RequestModal productId={product.id} productName={product.name} onClose={() => setRequestOpen(false)} />
     )}
-    {lastOne && (
+    {showLastOne && (
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70] rounded-md bg-charcoal px-4 py-3 text-xs text-cream shadow-lg">
-        Only {stock} in stock — that was the last one. It&apos;s all in your cart now.
+        Maximum available reached — that&apos;s all we can supply right now, and it&apos;s in your cart.
       </div>
     )}
-    {perOrderHit && (
+    {showPerOrderHit && (
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[70] rounded-md bg-charcoal px-4 py-3 text-xs text-cream shadow-lg">
-        Limited to {maxPerOrder} per order — that&apos;s all in your cart. You can order again later.
+        Limited to {cap?.perOrder} per order — that&apos;s all in your cart. You can order again later.
       </div>
     )}
     </>
