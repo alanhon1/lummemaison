@@ -3,6 +3,7 @@ import { getAllProducts } from '@/lib/catalogue';
 import { getStockFlagsMap, orderableCap, perOrderLimit, stockKey } from '@/lib/products/stock';
 import { purchaseBlockReason } from '@/lib/products';
 import { capKey } from '@/lib/products/capKey';
+import type { CapAnswer, CapLimitReason } from '@/lib/products/capTypes';
 
 export const dynamic = 'force-dynamic';
 
@@ -25,15 +26,6 @@ export const dynamic = 'force-dynamic';
 // cart currently holds for that line (0 for a fresh card).
 // The authoritative cap is re-checked in createOrder — this only drives the UI.
 
-export type CapLimitReason = 'blocked' | 'stock' | 'perOrder' | null;
-
-export interface CapAnswer {
-  canAdd: boolean;
-  mustReduce: boolean;
-  outOfStock: boolean;
-  perOrder: number | null;
-  limitReason: CapLimitReason;
-}
 
 export async function POST(req: NextRequest) {
   let body: unknown;

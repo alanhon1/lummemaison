@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { create } from 'zustand';
 import { useCartStore } from './store';
 import { capKey } from './products/capKey';
-import type { CapAnswer } from '@/app/api/products/caps/route';
+import type { CapAnswer } from './products/capTypes';
 
 // Purchase limits for cart lines and catalogue cards. The server never sends a
 // stock number (see app/api/products/caps/route.ts) — only whether one more may
